@@ -17,14 +17,14 @@ export function AboutView({ c, version }: { c: IndexedCatalog; version: string }
         <div>
           <h1 style={{ margin: 0 }}>About Trunk</h1>
           <p className="subtle" style={{ margin: 0 }}>
-            A little help for the next hour.
+            An elephant’s trunk full of useful ideas.
           </p>
         </div>
       </div>
 
       <section>
         <p>
-          Trunk helps parents of children from 1 week to 4 years find something realistic to do next: play, a walk, a calm moment, an everyday routine, or a plan for a stretch of the day with one or two children.
+          Trunk helps parents of children from 1 week old up to their fifth birthday find something realistic to do next: play, a walk, a calm moment, an everyday routine, or a plan for a stretch of the day with one or two children.
         </p>
         <p>
           It holds {live.length} activities, {c.recipes.filter((r) => !r.retired).length} curated two-child pairings, and {sourceCount} sources (last checked {version}).

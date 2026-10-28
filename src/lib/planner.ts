@@ -16,13 +16,21 @@ import { activityEligible, activityPasses, hash, recipeEligible, recipePasses, D
 import { BREAK_LABEL, kidInputs, newId, youngerFor, type PlanKid, type PlanSegment, type PlanSettings } from './plan.ts';
 import { monthsToDays } from './age.ts';
 import { formatAgeShort } from './age.ts';
+import { parseHHMM } from './time.ts';
 
 export interface PlannerInput {
   kids: PlanKid[];
   settings: PlanSettings;
   window: number;
   seed?: number;
+  /** Local start time (HH:MM); enables time-of-day rules such as midday sun for young babies. */
+  start?: string;
 }
+
+/** AAP: keep babies under 6 months out of the sun and avoid 10 a.m.–4 p.m. outdoors. */
+export const MIDDAY_SUN = { from: 10 * 60, to: 16 * 60 };
+/** Outdoor-only activities aren't scheduled in late evening or at night. */
+export const NIGHT = { from: 20 * 60, to: 6 * 60 };
 
 export interface PlannerResult {
   segments: PlanSegment[];
@@ -42,6 +50,10 @@ type Candidate = {
   places: readonly string[];
   outing: boolean;
   media: boolean;
+  /** Can only happen outdoors. */
+  outdoorOnly: boolean;
+  /** Outdoor activity with a sun/weather hazard for the youngest child. */
+  sun: boolean;
   effort: string;
   setup: number;
   cleanup: number;
@@ -56,6 +68,8 @@ const fromActivity = (a: Activity): Candidate => ({
   places: a.places,
   outing: a.outing,
   media: a.kind === 'media',
+  outdoorOnly: !a.places.includes('indoors'),
+  sun: a.hazards.includes('sun-weather') && a.places.includes('outdoors'),
   effort: a.effort,
   setup: a.setupMinutes,
   cleanup: a.cleanupMinutes,
@@ -72,6 +86,8 @@ const fromRecipe = (r: MixedAgeRecipe, c: IndexedCatalog): Candidate => {
     places: r.places,
     outing: r.outing,
     media: acts.some((a) => a?.kind === 'media'),
+    outdoorOnly: !r.places.includes('indoors'),
+    sun: Boolean(acts[0]?.hazards.includes('sun-weather') && r.places.includes('outdoors')),
     effort: r.effort,
     setup: r.setupMinutes,
     cleanup: r.cleanupMinutes,
@@ -132,6 +148,19 @@ export function planWindow(c: IndexedCatalog, input: PlannerInput): PlannerResul
   }
 
   const cadence = breakCadence(youngest);
+  const startClock = input.start ? parseHHMM(input.start) : null;
+  const sunSensitive = youngest < monthsToDays(6);
+  let skippedForSun = false;
+  let skippedForNight = false;
+  const clockAt = (offset: number) => (startClock === null ? null : (startClock + offset) % 1440);
+  const inMiddaySun = (offset: number) => {
+    const clock = clockAt(offset);
+    return clock !== null && clock >= MIDDAY_SUN.from && clock < MIDDAY_SUN.to;
+  };
+  const atNight = (offset: number) => {
+    const clock = clockAt(offset);
+    return clock !== null && (clock >= NIGHT.from || clock < NIGHT.to);
+  };
   const segments: PlanSegment[] = [];
   const uses = new Map<string, number>();
   let remaining = window;
@@ -167,6 +196,14 @@ export function planWindow(c: IndexedCatalog, input: PlannerInput): PlannerResul
     }
     const options = pool.filter((p) => {
       if (p.setup + p.duration.min + p.cleanup > remaining) return false;
+      if (sunSensitive && p.sun && inMiddaySun(window - remaining)) {
+        skippedForSun = true;
+        return false;
+      }
+      if (p.outdoorOnly && atNight(window - remaining)) {
+        skippedForNight = true;
+        return false;
+      }
       if (p.outing && usedOuting) return false;
       if (p.media && usedMedia) return false;
       if (last && p.id === last.id) return false;
@@ -194,6 +231,12 @@ export function planWindow(c: IndexedCatalog, input: PlannerInput): PlannerResul
 
   if (remaining > 0 && segments.length > 0) {
     notes.push(`${remaining} min left open. Activities aren't stretched past what's realistic for this age.`);
+  }
+  if (skippedForNight) {
+    notes.push('Outdoor-only ideas are left out between 8 p.m. and 6 a.m.');
+  }
+  if (skippedForSun) {
+    notes.push('Outdoor time for babies under 6 months is kept out of 10 a.m.–4 p.m., following AAP sun-safety guidance.');
   }
   if (youngest < monthsToDays(3)) {
     notes.push('Young babies may need to feed or sleep at any point. Stop the plan whenever they do.');

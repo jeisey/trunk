@@ -133,6 +133,38 @@ describe('planner', () => {
   });
 });
 
+describe('time-of-day rules', () => {
+  it('keeps outdoor sun-exposed activities for babies under 6 months out of 10 a.m.–4 p.m.', () => {
+    const walk = variant(tummy, {
+      id: 'act.fixture-shaded-walk',
+      kind: 'outing',
+      outing: true,
+      places: ['outdoors'],
+      hazards: ['sun-weather'],
+      tummyTime: undefined,
+      supervision: { ...tummy.supervision, shareable: false },
+      duration: { min: 10, default: 20, max: 30 },
+    });
+    const c = fixtureCatalog({ activities: [walk] });
+    const plain = { kids: [baby], settings, window: 60, seed: 1 };
+    const midday = planWindow(c, { ...plain, start: '11:00' });
+    expect(midday.segments.some((s) => s.ref === walk.id)).toBe(false);
+    expect(midday.notes.join(' ')).toMatch(/10 a.m.–4 p.m./);
+    const evening = planWindow(c, { ...plain, start: '16:30' });
+    expect(evening.segments.some((s) => s.ref === walk.id)).toBe(true);
+  });
+
+  it('does not schedule outdoor-only activities at night', () => {
+    const walk = variant(books, { id: 'act.fixture-night-walk', kind: 'outing', outing: true, places: ['outdoors'], duration: { min: 10, default: 20, max: 30 } });
+    const c = fixtureCatalog({ activities: [walk] });
+    const late = planWindow(c, { kids: [toddler], settings, window: 60, seed: 1, start: '22:30' });
+    expect(late.segments.some((s) => s.ref === walk.id)).toBe(false);
+    expect(late.notes.join(' ')).toMatch(/8 p.m./);
+    const morning = planWindow(c, { kids: [toddler], settings, window: 60, seed: 1, start: '09:00' });
+    expect(morning.segments.some((s) => s.ref === walk.id)).toBe(true);
+  });
+});
+
 describe('finder filters', () => {
   it('busy-nearby never returns activities that need you close or water/food', () => {
     const water = variant(books, {

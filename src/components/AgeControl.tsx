@@ -140,7 +140,7 @@ export function AgeControl(props: {
       {props.relevantAbilities.length > 0 && (
         <details className="more">
           <summary>
-            Readiness <span className="tiny">&nbsp;(optional{child.notYet.length ? `, ${child.notYet.length} set` : ''})</span>
+            Readiness <span className="tiny"> (optional{child.notYet.length ? `, ${child.notYet.length} set` : ''})</span>
           </summary>
           <p className="tiny" style={{ marginBottom: 6 }}>
             Age is only a starting point. Mark anything your child isn’t doing yet to hide ideas that need it.

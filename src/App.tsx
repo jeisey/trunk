@@ -132,7 +132,7 @@ export function App() {
     const settings = settingsFromFilters(prefs.filters);
     const s = seed + 1;
     setSeed(s);
-    const result = planWindow(c, { kids: planKids, settings, window: minutes, seed: s });
+    const result = planWindow(c, { kids: planKids, settings, window: minutes, seed: s, start });
     setLastResult(result);
     if (result.blocked) {
       announce(result.blocked.reason);
@@ -369,7 +369,7 @@ export function App() {
         Skip to content
       </a>
       <header className="app-header">
-        <a className="brand" href="#/" aria-label="Trunk home: find something to do">
+        <a className="brand" href="#/">
           <Mascot size={40} />
           <span>
             <span className="brand-name">Trunk</span>

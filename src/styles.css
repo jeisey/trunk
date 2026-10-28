@@ -3,7 +3,7 @@
   --bg: #ffffff;
   --text: #16332a;
   --muted: #4b5f57;
-  --faint: #6b7d75;
+  --faint: #55665f;
   --line: #dbe3df;
   --surface: #f5f8f6;
   --accent: #2457a6;
@@ -39,6 +39,12 @@
 body {
   margin: 0;
   background: var(--bg);
+  /* break-word (not anywhere) so long strings wrap without shrinking min-content widths. */
+  overflow-wrap: break-word;
+}
+
+.link-field,
+.claim a {
   overflow-wrap: anywhere;
 }
 
@@ -125,6 +131,7 @@ a {
   text-decoration: none;
   color: inherit;
   min-height: var(--tap);
+  flex: 1 1 12rem;
 }
 
 .brand-name {
@@ -163,6 +170,13 @@ main {
 .find-layout {
   display: grid;
   gap: 16px;
+}
+
+/* Grid items may shrink below their min-content so large text wraps instead of overflowing. */
+.find-layout > *,
+.age-row > *,
+.child-head > * {
+  min-width: 0;
 }
 
 @media (min-width: 960px) {
@@ -330,6 +344,7 @@ button:disabled {
 
 .child-head {
   display: flex;
+  flex-wrap: wrap;
   align-items: baseline;
   justify-content: space-between;
   gap: 8px;
@@ -362,6 +377,7 @@ button:disabled {
 
 input[type='range'] {
   width: 100%;
+  min-width: 0;
   height: var(--tap);
   accent-color: var(--accent);
   margin: 0;
@@ -369,6 +385,7 @@ input[type='range'] {
 }
 
 .age-scale {
+  container-type: inline-size;
   position: relative;
   height: 1.2em;
   font-size: 0.72rem;
@@ -385,6 +402,13 @@ input[type='range'] {
 
 .age-scale span:first-child {
   transform: translateX(-30%);
+}
+
+/* When large text leaves no room for every tick label, keep only the ends. */
+@container (max-width: 9rem) {
+  .age-scale span:not(:first-child):not(:last-child) {
+    display: none;
+  }
 }
 
 .age-extra {
@@ -460,8 +484,13 @@ fieldset.segmented legend,
   margin-bottom: 4px;
 }
 
-/* Inline labels on phones wider than 360px keep results closer to the top. */
-@media (min-width: 360px) {
+/* Inline labels when there is room keep results closer to the top; with large
+   text or narrow screens the labels stack above the options instead. */
+.controls.quick {
+  container-type: inline-size;
+}
+
+@container (min-width: 21rem) {
   .controls.quick > .segmented {
     display: grid;
     grid-template-columns: 4.6rem 1fr;
@@ -483,9 +512,8 @@ fieldset.segmented legend,
 }
 
 .segments {
-  display: grid;
-  grid-auto-flow: column;
-  grid-auto-columns: 1fr;
+  display: flex;
+  flex-wrap: wrap;
   border: 1px solid var(--line);
   border-radius: var(--radius-sm);
   overflow: hidden;
@@ -494,6 +522,9 @@ fieldset.segmented legend,
 
 .segments label {
   position: relative;
+  flex: 1 1 0;
+  /* Words may wrap inside a segment, but a word is never clipped; at large text sizes segments wrap onto a new row instead. */
+  min-width: min-content;
   min-height: var(--tap);
   display: flex;
   align-items: center;
@@ -507,8 +538,12 @@ fieldset.segmented legend,
   line-height: 1.15;
 }
 
-.segments label + label {
-  border-left: 1px solid var(--line);
+.segments label {
+  box-shadow: inset 1px 0 0 var(--line);
+}
+
+.segments label:first-child {
+  box-shadow: none;
 }
 
 .segments input {
@@ -526,6 +561,7 @@ fieldset.segmented legend,
 
 .segments label:has(input:focus-visible) {
   box-shadow: inset 0 0 0 3px #fff, inset 0 0 0 5px var(--accent-strong);
+  z-index: 1;
 }
 
 .check {
@@ -547,6 +583,7 @@ fieldset.segmented legend,
 details.more > summary {
   min-height: var(--tap);
   display: flex;
+  flex-wrap: wrap;
   align-items: center;
   cursor: pointer;
   color: var(--accent);
@@ -734,13 +771,14 @@ details.more[open] > summary::before {
 
 .plan-cta {
   display: flex;
+  flex-wrap: wrap;
   gap: 8px;
   align-items: stretch;
   margin: 12px 0 4px;
 }
 
 .plan-cta .primary {
-  flex: 1;
+  flex: 1 1 12rem;
 }
 
 /* ---------- Detail ---------- */
