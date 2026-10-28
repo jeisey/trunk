@@ -1,0 +1,320 @@
+{
+  "schema": 1,
+  "workstream": "fixture",
+  "description": "Small valid fixture used by unit tests.",
+  "sources": [
+    {
+      "id": "src.aap-hc.back-to-sleep-tummy-to-play",
+      "url": "https://www.healthychildren.org/English/ages-stages/baby/sleep/Pages/Back-to-Sleep-Tummy-to-Play.aspx",
+      "org": "American Academy of Pediatrics (HealthyChildren.org)",
+      "title": "Back to Sleep, Tummy to Play: Give Your Baby a Safe, Strong Start",
+      "jurisdiction": "US",
+      "checked": "2026-10-28",
+      "updated": "2026-09-08",
+      "notes": "Page footer: last updated 9/8/2026; adapted from AAP Back to Sleep, Tummy to Play (2026)."
+    },
+    {
+      "id": "src.who.sit-less-play-more-2019",
+      "url": "https://www.who.int/news-room/detail/24-04-2019-to-grow-up-healthy-children-need-to-sit-less-and-play-more",
+      "org": "World Health Organization",
+      "title": "To grow up healthy, children need to sit less and play more (guidelines on physical activity, sedentary behaviour and sleep for children under 5)",
+      "jurisdiction": "International",
+      "checked": "2026-10-28",
+      "published": "2019-04-24",
+      "notes": "News release summarizing the 2019 WHO guidelines; global guidance, stricter on screens for 1-year-olds than current AAP framing."
+    }
+  ],
+  "claims": [
+    {
+      "id": "clm.core.tummy-awake-supervised",
+      "kind": "safety",
+      "text": "Tummy time is only for when your baby is awake and an adult is watching closely the whole time.",
+      "sources": [
+        "src.aap-hc.back-to-sleep-tummy-to-play"
+      ],
+      "locator": "AAP Back to Sleep: 'The basics of safe sleep & tummy time', item 2; HSE: 'Safety' do-list; AAP safe sleep guide: tummy time section",
+      "paraphrase": "AAP describes tummy time as for babies who are awake and closely supervised, and says an awake adult should supervise. HSE says always stay with your baby and keep them awake and supervised on their tummy.",
+      "scope": "All infants; US (AAP) and Ireland (HSE) public guidance agree."
+    },
+    {
+      "id": "clm.core.tummy-builds-strength",
+      "kind": "description",
+      "text": "Tummy time helps babies build the neck, shoulder, and back strength they use for rolling, sitting, and crawling.",
+      "sources": [
+        "src.aap-hc.back-to-sleep-tummy-to-play"
+      ],
+      "locator": "AAP Back to Sleep: 'Tummy to play'; HSE: opening paragraph; Children's Wisconsin: 'Why is tummy time important?'",
+      "paraphrase": "All three describe tummy time as building muscles babies need to roll, sit, and crawl; Children's Wisconsin adds back, neck, and shoulder muscles and using eyes and hands together.",
+      "scope": "General infant guidance; describes purpose, not a guaranteed outcome or timeline."
+    },
+    {
+      "id": "clm.core.young-child-joins-tummy-time",
+      "kind": "description",
+      "text": "While an adult keeps watch, a young child can get down on the floor and play with a baby during tummy time.",
+      "sources": [
+        "src.aap-hc.back-to-sleep-tummy-to-play"
+      ],
+      "locator": "Section 'How can I exercise my baby during tummy time?', last bullet",
+      "paraphrase": "While keeping watch, have a young child play with the baby on their tummy; young children get on the floor easily, have energy for playing with babies, and may enjoy the 'big kid' role.",
+      "scope": "US general guidance. The adult supervises; the child is a playmate, not a caregiver."
+    },
+    {
+      "id": "clm.core.who-reading-storytelling",
+      "kind": "recommendation",
+      "text": "When young children are sitting still, interactive non-screen time with a caregiver—reading, storytelling, singing, puzzles—is encouraged.",
+      "sources": [
+        "src.who.sit-less-play-more-2019"
+      ],
+      "locator": "Body paragraph on 24-hour activity patterns; 'Recommendations at a glance' bullets for each age group",
+      "paraphrase": "Quality sedentary time in interactive non-screen activities with a caregiver, such as reading, storytelling, singing, and puzzles, is very important for development; when sedentary, reading and storytelling with a caregiver is encouraged.",
+      "scope": "International guidance for children under 5."
+    }
+  ],
+  "activities": [
+    {
+      "id": "act.fixture-floor-tummy-time",
+      "rev": 1,
+      "title": "Face-to-face floor tummy time",
+      "summary": "Put your baby tummy-down on a firm, flat mat on the floor and lie down at their eye level to chat.",
+      "kind": "play",
+      "ageMin": "4m",
+      "ageMax": "2m",
+      "readiness": {
+        "abilities": [],
+        "notes": [
+          "Born early, reflux, or medical needs? Ask your baby's clinician about tummy time first."
+        ]
+      },
+      "goals": [
+        "gross-motor",
+        "communication"
+      ],
+      "intents": [
+        "move",
+        "connect"
+      ],
+      "places": [
+        "indoors"
+      ],
+      "spaces": [
+        "floor"
+      ],
+      "outing": false,
+      "materials": {
+        "level": "household",
+        "items": [
+          "Firm play mat or a blanket on a clean floor"
+        ]
+      },
+      "setupMinutes": 1,
+      "cleanupMinutes": 0,
+      "duration": {
+        "min": 1,
+        "default": 3,
+        "max": 5
+      },
+      "effort": "low",
+      "supervision": {
+        "participation": "leads",
+        "proximity": "arms-reach",
+        "handsOn": "intermittent",
+        "minAdults": 1,
+        "shareable": true,
+        "space": "Firm, flat floor surface—never a bed, sofa, or cushion. Smooth the blanket so it can't bunch."
+      },
+      "mess": "none",
+      "noise": "quiet",
+      "hazards": [
+        "suffocation"
+      ],
+      "steps": [
+        "Lay a firm mat or smoothed blanket on a clear patch of floor.",
+        "Place your baby tummy-down with their elbows tucked under their shoulders.",
+        "Lie down face to face and talk, sing, or hold a toy at their eye level.",
+        "Roll them onto their back for a rest when they've had enough."
+      ],
+      "adaptations": [
+        "Short and often beats long: 1–3 minutes a few times a day is a fine start.",
+        "Add a high-contrast card or your face just in front to give them something to lift up for."
+      ],
+      "stopCues": [
+        "Face down and fussing",
+        "Crying or frantic arm movements",
+        "Getting drowsy"
+      ],
+      "safety": [
+        {
+          "text": "Only while awake, with you right there.",
+          "claims": [
+            "clm.core.tummy-awake-supervised"
+          ]
+        }
+      ],
+      "why": {
+        "text": "Tummy time builds neck and shoulder strength.",
+        "claims": [
+          "clm.core.tummy-builds-strength"
+        ]
+      },
+      "tummyTime": {
+        "position": "floor",
+        "flatSurface": true
+      },
+      "evidence": {
+        "type": "described",
+        "claims": [
+          "clm.core.tummy-awake-supervised"
+        ]
+      },
+      "checked": "2026-10-28"
+    },
+    {
+      "id": "act.fixture-board-book-basket",
+      "rev": 1,
+      "title": "Board-book basket",
+      "summary": "Set out a basket of sturdy board books for your toddler to choose from and page through.",
+      "kind": "play",
+      "ageMin": "12m",
+      "ageMax": "36m",
+      "readiness": {
+        "abilities": [],
+        "notes": []
+      },
+      "goals": [
+        "communication"
+      ],
+      "intents": [
+        "calm",
+        "explore"
+      ],
+      "places": [
+        "indoors"
+      ],
+      "spaces": [
+        "floor"
+      ],
+      "outing": false,
+      "materials": {
+        "level": "toys",
+        "items": [
+          "4–6 board books",
+          "A low basket"
+        ]
+      },
+      "setupMinutes": 1,
+      "cleanupMinutes": 1,
+      "duration": {
+        "min": 3,
+        "default": 10,
+        "max": 20
+      },
+      "effort": "low",
+      "supervision": {
+        "participation": "watches",
+        "proximity": "same-room",
+        "handsOn": "none",
+        "minAdults": 1,
+        "shareable": true,
+        "space": "Same room as you, on the floor or a low seat."
+      },
+      "mess": "low",
+      "noise": "quiet",
+      "hazards": [],
+      "steps": [
+        "Put 4–6 board books in a low basket where your toddler can reach.",
+        "Let them choose; name a picture or two when they bring one to you."
+      ],
+      "adaptations": [
+        "Younger toddler: fewer books with big, simple pictures."
+      ],
+      "stopCues": [
+        "Wandering off or throwing books"
+      ],
+      "safety": [
+        {
+          "text": "Board books only; check for loose flaps or pieces.",
+          "claims": []
+        }
+      ],
+      "why": {
+        "text": "Sharing books with a caregiver is encouraged when young children are sitting still.",
+        "claims": [
+          "clm.core.who-reading-storytelling"
+        ]
+      },
+      "evidence": {
+        "type": "adapted",
+        "claims": [
+          "clm.core.who-reading-storytelling"
+        ]
+      },
+      "checked": "2026-10-28"
+    }
+  ],
+  "recipes": [
+    {
+      "id": "mix.fixture-tummy-time-and-books",
+      "rev": 1,
+      "mode": "parallel",
+      "title": "Tummy time beside the book basket",
+      "summary": "Baby does floor tummy time while the toddler pages through board books nearby.",
+      "places": [
+        "indoors"
+      ],
+      "outing": false,
+      "younger": {
+        "ageMin": "1w",
+        "ageMax": "3m",
+        "abilities": [],
+        "activity": "act.fixture-floor-tummy-time",
+        "does": "Short tummy-time tries on the mat."
+      },
+      "older": {
+        "ageMin": "18m",
+        "ageMax": "36m",
+        "abilities": [],
+        "activity": "act.fixture-board-book-basket",
+        "does": "Chooses and pages through books."
+      },
+      "adult": {
+        "does": "Lies on the floor face to face with the baby, chatting with both.",
+        "minAdults": 1,
+        "handsOnFor": "younger"
+      },
+      "sharedSetup": "Mat on the floor; basket of board books an arm's length away.",
+      "setupMinutes": 2,
+      "cleanupMinutes": 1,
+      "space": "Same room; the books stay off the baby's mat.",
+      "duration": {
+        "min": 2,
+        "default": 4,
+        "max": 5
+      },
+      "effort": "low",
+      "intents": [
+        "connect",
+        "move"
+      ],
+      "steps": [
+        "Put the baby on the mat and the basket nearby.",
+        "Chat with the baby while the toddler shows you books."
+      ],
+      "stopCues": [
+        "Baby fussing"
+      ],
+      "safety": [
+        {
+          "text": "The toddler plays beside the baby, never on or over them.",
+          "claims": [
+            "clm.core.young-child-joins-tummy-time"
+          ]
+        }
+      ],
+      "claims": [
+        "clm.core.young-child-joins-tummy-time"
+      ],
+      "checked": "2026-10-28"
+    }
+  ],
+  "starterPlans": []
+}
