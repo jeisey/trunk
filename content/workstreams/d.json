@@ -1,0 +1,2267 @@
+{
+  "schema": 1,
+  "workstream": "D",
+  "description": "Workstream D: toddlers 12 to under 24 months. Movement, hands-on, book, song, pretend, helper, outdoor and water activities, with US-default safety sources (AAP, CDC, CPSC) plus HSE and ZERO TO THREE.",
+  "sources": [
+    {
+      "id": "src.cdc.milestones-15-months",
+      "url": "https://www.cdc.gov/act-early/milestones/15-months.html",
+      "org": "Centers for Disease Control and Prevention (CDC), Learn the Signs. Act Early.",
+      "title": "Milestones by 15 Months",
+      "jurisdiction": "US",
+      "checked": "2026-10-28",
+      "published": "2025-09-04",
+      "updated": "2026-05-16",
+      "notes": "Read through a fetch tool (direct download HTTP 403). Used the parenting tips and activities list only."
+    },
+    {
+      "id": "src.cdc.milestones-18-months",
+      "url": "https://www.cdc.gov/act-early/milestones/18-months.html",
+      "org": "Centers for Disease Control and Prevention (CDC), Learn the Signs. Act Early.",
+      "title": "Milestones by 18 Months",
+      "jurisdiction": "US",
+      "checked": "2026-10-28",
+      "published": "2025-09-04",
+      "updated": "2026-05-16",
+      "notes": "Read through a fetch tool (direct download HTTP 403). Used the parenting tips and activities list only."
+    },
+    {
+      "id": "src.cdc.milestones-2-years",
+      "url": "https://www.cdc.gov/act-early/milestones/2-years.html",
+      "org": "Centers for Disease Control and Prevention (CDC), Learn the Signs. Act Early.",
+      "title": "Milestones by 2 Years",
+      "jurisdiction": "US",
+      "checked": "2026-10-28",
+      "published": "2025-09-04",
+      "updated": "2026-05-16",
+      "notes": "Read through a fetch tool (direct download HTTP 403). Used the parenting tips and activities list only."
+    },
+    {
+      "id": "src.cdc.positive-parenting-toddlers",
+      "url": "https://www.cdc.gov/child-development/positive-parenting-tips/toddlers-1-2-years.html",
+      "org": "Centers for Disease Control and Prevention (CDC)",
+      "title": "Positive Parenting Tips: Toddlers (1–2 years old)",
+      "jurisdiction": "US",
+      "checked": "2026-10-28",
+      "updated": "2026-02-20",
+      "notes": "Read through a fetch tool (direct download HTTP 403). The date Feb. 20, 2026 is shown at the top and bottom of the page without a 'reviewed' or 'updated' label."
+    },
+    {
+      "id": "src.hse.play-1-2-years",
+      "url": "https://www.hse.ie/babies-children/play/1-2-years/",
+      "org": "Health Service Executive (HSE), Ireland",
+      "title": "Play and toys to help your child develop - 1 to 2 years old",
+      "jurisdiction": "IE",
+      "checked": "2026-10-28",
+      "updated": "2021-04-20",
+      "notes": "Page last reviewed 20/04/2021; its stated next review date (20/04/2024) has passed. One item on the list (a lemon in a 'treasure' box) is not used by Trunk."
+    },
+    {
+      "id": "src.aap-hc.how-active-is-your-toddler",
+      "url": "https://www.healthychildren.org/English/ages-stages/toddler/fitness/Pages/The-Active-Toddler.aspx",
+      "org": "American Academy of Pediatrics (HealthyChildren.org)",
+      "title": "How Active Is Your Toddler?",
+      "jurisdiction": "US",
+      "checked": "2026-10-28",
+      "updated": "2026-01-06",
+      "notes": "By Hannah Wakefield, MD, MPH, FAAP. Age-based ideas are from the AAP book Retro Toddler. A 25–30-month idea on this page uses a balloon; Trunk does not use it."
+    },
+    {
+      "id": "src.aap-hc.power-of-play",
+      "url": "https://www.healthychildren.org/English/family-life/power-of-play/Pages/the-power-of-play-how-fun-and-games-help-children-thrive.aspx",
+      "org": "American Academy of Pediatrics (HealthyChildren.org)",
+      "title": "The Power of Play: How Fun and Games Help Children Thrive",
+      "jurisdiction": "US",
+      "checked": "2026-10-28",
+      "updated": "2023-05-03",
+      "notes": "By Michael Yogman, MD, FAAP; parent summary of the AAP clinical report 'The Power of Play'."
+    },
+    {
+      "id": "src.aap-hc.share-books-12-14-months",
+      "url": "https://www.healthychildren.org/English/ages-stages/toddler/Pages/How-to-Share-Books-with-Your-12-to-14-Month-Old.aspx",
+      "org": "American Academy of Pediatrics (HealthyChildren.org)",
+      "title": "How to Share Books with Your 12 to 14 Month Old",
+      "jurisdiction": "US",
+      "checked": "2026-10-28",
+      "updated": "2013-03-27",
+      "notes": "Source line: AAP Committee on Early Childhood (copyright 1994). Older page that is still published."
+    },
+    {
+      "id": "src.aap-hc.share-books-15-17-months",
+      "url": "https://www.healthychildren.org/English/ages-stages/toddler/Pages/How-to-Share-Books-with-Your-15-to-17-Month-Old.aspx",
+      "org": "American Academy of Pediatrics (HealthyChildren.org)",
+      "title": "How to Share Books with Your 15 to 17 Month Old",
+      "jurisdiction": "US",
+      "checked": "2026-10-28",
+      "updated": "2013-04-03",
+      "notes": "Source line: AAP Committee on Early Childhood (copyright 1994). Older page that is still published."
+    },
+    {
+      "id": "src.aap-hc.share-books-18-23-months",
+      "url": "https://www.healthychildren.org/English/ages-stages/toddler/Pages/How-to-Share-Books-with-Your-18-to-23-Month-Old.aspx",
+      "org": "American Academy of Pediatrics (HealthyChildren.org)",
+      "title": "How to Share Books with Your 18 to 23 Month Old",
+      "jurisdiction": "US",
+      "checked": "2026-10-28",
+      "updated": "2013-03-27",
+      "notes": "Source line: AAP Committee on Early Childhood (copyright 1994). Older page that is still published."
+    },
+    {
+      "id": "src.aap-hc.safety-1-to-2-years",
+      "url": "https://www.healthychildren.org/English/ages-stages/toddler/Pages/safety-for-your-child-1-to-2-years.aspx",
+      "org": "American Academy of Pediatrics (HealthyChildren.org)",
+      "title": "Safety for Your Child: 1 to 2 Years",
+      "jurisdiction": "US",
+      "checked": "2026-10-28",
+      "updated": "2022-02-25",
+      "notes": "Adapted from TIPP: The Injury Prevention Program (AAP, copyright 2019). Sections used: Poisonings, Falls, Burns, Drowning."
+    },
+    {
+      "id": "src.aap-hc.drowning-prevention-toddlers",
+      "url": "https://www.healthychildren.org/English/safety-prevention/at-play/Pages/Water-Safety-And-Young-Children.aspx",
+      "org": "American Academy of Pediatrics (HealthyChildren.org)",
+      "title": "Drowning Prevention for Curious Toddlers: What Parents Need to Know",
+      "jurisdiction": "US",
+      "checked": "2026-10-28",
+      "updated": "2026-05-18",
+      "notes": "URL slug says 'Water-Safety-And-Young-Children'; current page title is 'Drowning Prevention for Curious Toddlers'."
+    },
+    {
+      "id": "src.aap-hc.summer-safety-outdoors",
+      "url": "https://www.healthychildren.org/English/safety-prevention/at-play/Pages/Summer-Safety-Tips-Staying-Safe-Outdoors.aspx",
+      "org": "American Academy of Pediatrics (HealthyChildren.org)",
+      "title": "Summer Safety Tips: Staying Safe Outdoors",
+      "jurisdiction": "US",
+      "checked": "2026-10-28",
+      "updated": "2017-06-19",
+      "notes": "Only the 'Playground Safety' section is used. Older page (2017)."
+    },
+    {
+      "id": "src.cpsc.small-parts-faq",
+      "url": "https://www.cpsc.gov/FAQ/Small-Parts-and-Choking-Hazard-Labeling-FAQs",
+      "org": "U.S. Consumer Product Safety Commission (CPSC)",
+      "title": "Small Parts and Choking Hazard Labeling FAQs",
+      "jurisdiction": "US",
+      "checked": "2026-10-28",
+      "notes": "Read through a fetch tool (direct download HTTP 403). No page date shown. Business guidance on the federal small-parts ban for products intended for children under 3."
+    },
+    {
+      "id": "src.zero-to-three.play-activities-12-24-months",
+      "url": "https://www.zerotothree.org/resource/play-activities-for-12-to-24-months/",
+      "org": "ZERO TO THREE",
+      "title": "Play Activities for 12 to 24 Months",
+      "jurisdiction": "US",
+      "checked": "2026-10-28",
+      "published": "2022-04-29",
+      "notes": "Read through a fetch tool (direct download HTTP 403). Some ideas on this page use small items (coins, glitter bottles, cereal pieces, string on a box) that Trunk excludes."
+    },
+    {
+      "id": "src.zero-to-three.active-play-gather-round",
+      "url": "https://www.zerotothree.org/resource/learning-through-active-play-gather-round-activities/",
+      "org": "ZERO TO THREE",
+      "title": "Learning Through Active Play: Gather Round Activities",
+      "jurisdiction": "US",
+      "checked": "2026-10-28",
+      "published": "2016-06-27",
+      "notes": "Read through a fetch tool (direct download HTTP 403). Used the 12–24-month 'over, under, in, and out' activity."
+    }
+  ],
+  "claims": [
+    {
+      "id": "clm.d.push-to-practice-walking",
+      "kind": "description",
+      "text": "CDC (US) suggests letting a young toddler push things such as empty boxes, a child-size chair or push toys to practice walking, and says baby walkers are not recommended.",
+      "sources": [
+        "src.cdc.milestones-1-year",
+        "src.cdc.milestones-18-months",
+        "src.hse.play-1-2-years"
+      ],
+      "locator": "CDC 1 year: 'More parenting tips and activities' (push things around; encourage walking). CDC 18 months: tips list (push or pull toys). HSE 1–2 years: play ideas list (big-wheeled toys).",
+      "paraphrase": "CDC's 1-year page suggests letting a baby push empty boxes, a kiddie chair or push toys so he can practice walking, and to practice walking holding your hands or safe furniture; it says walkers are not recommended. The 18-month page suggests toys a child can push or pull safely. HSE lists big-wheeled push or pull toys for 1–2-year-olds.",
+      "scope": "Toddlers who pull to stand, cruise or are starting to walk; US guidance with Irish agreement. Not a timeline for walking."
+    },
+    {
+      "id": "clm.d.ball-back-and-forth",
+      "kind": "description",
+      "text": "CDC suggests simple back-and-forth games such as rolling a ball to each other, and around age 2 giving balls to kick, roll and throw; HSE suggests kicking a soft football between you.",
+      "sources": [
+        "src.cdc.milestones-18-months",
+        "src.cdc.milestones-2-years",
+        "src.hse.play-1-2-years"
+      ],
+      "locator": "CDC 18 months: tip on back-and-forth play (balls, cars, containers). CDC 2 years: 'More parenting tips and activities' (balls to kick, roll, throw). HSE 1–2 years: 'Soft footballs' bullet.",
+      "paraphrase": "CDC's 18-month page suggests playing together by rolling balls to each other, pushing toy cars and filling and emptying containers. Its 2-year page suggests giving balls to kick, roll and throw. HSE lists soft footballs for 1–2-year-olds, starting by kicking a ball between you or off a wall.",
+      "scope": "Toddlers 12–24 months, US and Ireland. Describes a play idea; no outcome is promised."
+    },
+    {
+      "id": "clm.d.toddler-active-play",
+      "kind": "description",
+      "text": "AAP (US): toddlers learn how their bodies work by walking, running, climbing and tossing and kicking balls, and regular one-on-one play with a parent supports their physical development and social skills.",
+      "sources": [
+        "src.aap-hc.how-active-is-your-toddler"
+      ],
+      "locator": "Opening paragraph; section 'Active play: good for your toddler & good for you'.",
+      "paraphrase": "The page says toddlers are learning how their bodies work by walking, running, climbing and tossing and kicking balls, and that about 15 minutes a day of quality one-on-one play helps physical development and social skills and helps them learn to manage emotions.",
+      "scope": "US general guidance for toddlers. Describes benefits of active play in general, not of one particular game."
+    },
+    {
+      "id": "clm.d.dance-and-freeze",
+      "kind": "description",
+      "text": "AAP suggests toddler dance parties where you copy each other's moves; ZERO TO THREE describes a 12–24-month freeze game (dance, then stop when the music stops) as practice in listening and in stopping and starting.",
+      "sources": [
+        "src.aap-hc.how-active-is-your-toddler",
+        "src.zero-to-three.play-activities-12-24-months"
+      ],
+      "locator": "AAP: 'Active fun for any age' — 'Dance parties'. ZERO TO THREE: 'Action-oriented activities' — 'Freeze!'.",
+      "paraphrase": "AAP suggests finding toddler-friendly music and dancing together, copying each other's movements. ZERO TO THREE suggests playing music for the child to move to and stopping when the music stops, saying it encourages listening and self-regulation as the child practices stopping and starting.",
+      "scope": "Toddlers, US organizations; ZERO TO THREE frames it for 12–24 months. Describes the game; no outcome is promised."
+    },
+    {
+      "id": "clm.d.bubble-play",
+      "kind": "description",
+      "text": "AAP and CDC suggest blowing bubbles for a toddler to point at, pop or chase, naming the action ('pop!') and taking turns; HSE also lists blowing bubbles among play ideas for 1–2-year-olds.",
+      "sources": [
+        "src.aap-hc.how-active-is-your-toddler",
+        "src.cdc.milestones-15-months",
+        "src.cdc.milestones-18-months",
+        "src.hse.play-1-2-years"
+      ],
+      "locator": "AAP: 'Active fun for any age' — 'Bubble play'. CDC 15 and 18 months: bubble tips in the activities lists. HSE 1–2 years: 'Blowing bubbles' bullet.",
+      "paraphrase": "AAP says that for younger children you can blow bubbles and have them practice pointing at them, while older ones chase and pop them. CDC suggests blowing bubbles for your child to pop while saying things like 'pop, pop', as a simple game where each of you has a turn. HSE lists blowing bubbles.",
+      "scope": "Toddlers, US and Ireland. Describes a play idea, not an outcome."
+    },
+    {
+      "id": "clm.d.bubbles-not-eaten",
+      "kind": "safety",
+      "text": "During bubble play, keep watch so your toddler doesn't eat the bubbles or drink the solution.",
+      "sources": [
+        "src.zero-to-three.play-activities-12-24-months"
+      ],
+      "locator": "'Sensory activities' — 'Make a Bubble Mound'.",
+      "paraphrase": "In its bubble activity for 12–24-month-olds, ZERO TO THREE tells the adult to watch to make sure the child doesn't eat any.",
+      "scope": "Toddlers 12–24 months; US organization.",
+      "caveat": "The source gives the watch-closely instruction but does not discuss how harmful bubble solution is. Keeping the bottle in the adult's hands is Trunk's own precaution."
+    },
+    {
+      "id": "clm.d.action-songs",
+      "kind": "description",
+      "text": "CDC suggests songs with gestures, seeing if your toddler tries the actions, and body-part songs where you pause so they can fill in a word or touch the part, to help them learn body-part names. AAP encourages singing and moving to the beat.",
+      "sources": [
+        "src.cdc.milestones-15-months",
+        "src.cdc.milestones-2-years",
+        "src.aap-hc.power-of-play"
+      ],
+      "locator": "CDC 15 months: activities list (songs with gestures). CDC 2 years: activities list (body-part songs). AAP Power of Play: 'Age-specific ideas' — '1 to 3 years old'.",
+      "paraphrase": "CDC's 15-month page suggests singing songs with gestures and watching whether the child tries some actions. The 2-year page suggests songs that name body parts, pausing to see if the child fills in a word or touches the part, to teach those names. AAP suggests singing songs and playing rhythms so a 1–3-year-old can learn and join in, and moving to the beat.",
+      "scope": "Toddlers 12–36 months; US. Describes the activity; no outcome is promised."
+    },
+    {
+      "id": "clm.d.book-sharing",
+      "kind": "description",
+      "text": "AAP says sharing books can help toddlers learn to talk, and suggests naming the pictures your child points to and asking questions they can answer by pointing. ZERO TO THREE says pointing games help build vocabulary.",
+      "sources": [
+        "src.aap-hc.share-books-12-14-months",
+        "src.aap-hc.share-books-15-17-months",
+        "src.aap-hc.share-books-18-23-months",
+        "src.zero-to-three.play-activities-12-24-months"
+      ],
+      "locator": "AAP book-sharing pages for 12–14, 15–17 and 18–23 months: opening paragraph and 'What Parents Can Do'. ZERO TO THREE: 'Language-building activities' — 'Point It Out'.",
+      "paraphrase": "The AAP pages say sharing books can help teach toddlers to talk; they suggest a quiet place, naming pictures the child points to or looks at, questions answered by pointing, and say 12–17-month-olds attend to a book for a few minutes at a time. ZERO TO THREE says asking a child to point to pictures helps link words and pictures and build vocabulary.",
+      "scope": "Toddlers 12–23 months; US.",
+      "caveat": "The AAP book-sharing pages are dated 2013 (content copyright 1994) but are still published by AAP."
+    },
+    {
+      "id": "clm.d.simple-objects-play",
+      "kind": "description",
+      "text": "AAP (US): for 1–3-year-olds, simple objects such as blocks, empty containers, wooden spoons, shape sorters and puzzles support creativity and an understanding of how the world works; a caregiver's attention matters more than gadgets.",
+      "sources": [
+        "src.aap-hc.power-of-play"
+      ],
+      "locator": "'Age-specific ideas for playful learning' — '1 to 3 years old', second bullet.",
+      "paraphrase": "AAP suggests letting a 1–3-year-old play with blocks, empty containers, wooden spoons, shape sorters and puzzles, saying simple, inexpensive objects are some of the best ways to support creativity and grasp of how the world works, and that parents' presence and attention, not electronic gadgets, enrich children.",
+      "scope": "Children 1–3 years; US general guidance."
+    },
+    {
+      "id": "clm.d.blocks-and-towers",
+      "kind": "description",
+      "text": "CDC suggests playing with blocks and other toys that get toddlers using their hands: stacking blocks for them to knock down, and later taking turns building towers. HSE lists building blocks for 1–2-year-olds.",
+      "sources": [
+        "src.cdc.milestones-1-year",
+        "src.cdc.milestones-15-months",
+        "src.cdc.milestones-2-years",
+        "src.hse.play-1-2-years"
+      ],
+      "locator": "CDC 1 year: blocks tip. CDC 15 months: stacking tip (you stack, child knocks down). CDC 2 years: tower-building tip. HSE 1–2 years: 'Building blocks' bullet.",
+      "paraphrase": "CDC's 1-year page suggests playing together with blocks and other toys that encourage the child to use her hands. The 15-month page gives the example of the parent stacking blocks for the child to knock down; the 2-year page suggests taking turns building towers and knocking them down. HSE lists building blocks.",
+      "scope": "Toddlers 12–36 months; US and Ireland."
+    },
+    {
+      "id": "clm.d.fill-and-dump",
+      "kind": "description",
+      "text": "ZERO TO THREE describes fill-and-dump play for 12–24 months: moving soft items from one container to another, with walking toddlers carrying them between containers a few steps apart. CDC suggests filling and emptying containers together.",
+      "sources": [
+        "src.zero-to-three.play-activities-12-24-months",
+        "src.cdc.milestones-18-months"
+      ],
+      "locator": "ZERO TO THREE: 'Quiet play activities' — 'Fill and Dump'. CDC 18 months: tip on back-and-forth play.",
+      "paraphrase": "ZERO TO THREE suggests putting soft balls in one box or basket and showing the toddler how to move them into a second one, placing the containers a few steps apart for toddlers who walk. CDC's 18-month page suggests filling and emptying containers with blocks or other items as a back-and-forth game.",
+      "scope": "Toddlers 12–24 months; US.",
+      "caveat": "ZERO TO THREE makes its balls from wadded paper and masking tape; Trunk substitutes rolled socks or soft toys so no torn paper or tape bits are mouthed."
+    },
+    {
+      "id": "clm.d.puzzles",
+      "kind": "description",
+      "text": "HSE (Ireland) lists simple puzzles for 1–2-year-olds as good for hand–eye coordination and problem-solving; CDC suggests shape sorting and simple puzzles, naming each piece as it goes in.",
+      "sources": [
+        "src.hse.play-1-2-years",
+        "src.cdc.positive-parenting-toddlers",
+        "src.cdc.milestones-2-years"
+      ],
+      "locator": "HSE 1–2 years: 'Simple puzzles' bullet. CDC Positive Parenting Tips (toddlers): 'Positive parenting tips' list. CDC 2 years: puzzle tip.",
+      "paraphrase": "HSE says simple puzzles are great for hand and eye coordination and problem-solving. CDC suggests matching games like shape sorting and simple puzzles for 1–2-year-olds, and at 2 years helping the child with simple shape, color or animal puzzles and naming each piece.",
+      "scope": "Toddlers 12–36 months; Ireland and US. Describes benefits of the play type; not a promise for any child."
+    },
+    {
+      "id": "clm.d.pretend-feeding",
+      "kind": "description",
+      "text": "CDC suggests encouraging pretend play by giving a toddler a spoon to feed a stuffed animal and taking turns; ZERO TO THREE suggests acting out simple scenes with a teddy and props such as a cup or blanket.",
+      "sources": [
+        "src.cdc.milestones-18-months",
+        "src.cdc.milestones-15-months",
+        "src.zero-to-three.play-activities-12-24-months"
+      ],
+      "locator": "CDC 18 months: pretend-play tip. CDC 15 months: tip on talking through a stuffed animal. ZERO TO THREE: 'Teddy Bear Pretend Play'.",
+      "paraphrase": "CDC's 18-month page suggests giving your child a spoon to pretend to feed a stuffed animal and taking turns pretending; the 15-month page suggests talking to your child through a stuffed animal. ZERO TO THREE suggests using a doll or stuffed animal to act out simple scenes and adding props like a cup or blanket.",
+      "scope": "Toddlers about 15–30 months; US.",
+      "caveat": "ZERO TO THREE says pretend play is only beginning at about 18 months; younger toddlers mostly copy single actions."
+    },
+    {
+      "id": "clm.d.pretend-play",
+      "kind": "description",
+      "text": "AAP (US): pretend play lets young children try out social roles and learn to cooperate, and builds communication and language skills; for 1–3-year-olds it suggests make-believe such as pretending to drink from an empty cup.",
+      "sources": [
+        "src.aap-hc.power-of-play"
+      ],
+      "locator": "'Types of play' — 'Pretend play'; 'Age-specific ideas' — '1 to 3 years old' (make-believe bullet).",
+      "paraphrase": "AAP says pretend play lets young children experiment with social roles and learn to cooperate, and that make-believe encourages creativity and builds negotiation, communication and language skills. For 1–3-year-olds it suggests make-believe like pretending to drink from an empty cup.",
+      "scope": "Young children; US general guidance. Describes the play type, not an outcome for one activity."
+    },
+    {
+      "id": "clm.d.hide-and-find",
+      "kind": "description",
+      "text": "AAP suggests a hidden-toy hunt for 12–18-month-olds (hide a toy with part showing, give hints) and describes hide-and-find games as practice with the idea that things still exist out of sight. CDC and HSE suggest hide and seek.",
+      "sources": [
+        "src.aap-hc.how-active-is-your-toddler",
+        "src.aap-hc.power-of-play",
+        "src.cdc.milestones-15-months",
+        "src.hse.play-1-2-years"
+      ],
+      "locator": "AAP Active Toddler: '12-18 months' — 'Scavenger hunt'. AAP Power of Play: '7 to 12 months' (peekaboo bullet). CDC 15 months: hide-and-seek tip. HSE 1–2 years: peekaboo/hide-and-seek bullet.",
+      "paraphrase": "AAP suggests hiding a toy with one part sticking out, letting the child look, giving hints and hiding it again. Its Power of Play page says peekaboo reinforces object permanence, shown when a baby looks for a toy hidden under a blanket. CDC suggests hiding behind a chair for your child to find you; HSE lists peekaboo and hide and seek.",
+      "scope": "Toddlers 12–24 months; US and Ireland.",
+      "caveat": "AAP's object-permanence statement sits in its 7–12-month list; Trunk applies it to a slightly harder toddler version of the same game."
+    },
+    {
+      "id": "clm.d.helping-tasks",
+      "kind": "description",
+      "text": "CDC suggests letting toddlers help with everyday tasks, such as putting socks or toys in a basket, and praising them for helping; HSE suggests encouraging toddlers to help tidy toys into a box.",
+      "sources": [
+        "src.cdc.milestones-15-months",
+        "src.cdc.milestones-2-years",
+        "src.hse.play-1-2-years"
+      ],
+      "locator": "CDC 15 months: everyday-help tip. CDC 2 years: chores tip. HSE 1–2 years: closing sentence on tidying up.",
+      "paraphrase": "CDC's 15-month page suggests finding ways to let your child help with everyday activities, with examples such as putting socks in the basket. The 2-year page suggests praising your child for helping and letting them help with simple chores such as putting toys or laundry in a basket. HSE suggests encouraging your child to help tidy toys into a box.",
+      "scope": "Toddlers 15–30 months; US and Ireland. Describes an everyday routine; no developmental outcome is claimed."
+    },
+    {
+      "id": "clm.d.child-led-walks",
+      "kind": "description",
+      "text": "AAP suggests child-led walks where it's safe, letting toddlers stop to look and explore while you stay close; it says they practice walking, running, squatting and climbing. ZERO TO THREE suggests collecting leaves on a walk.",
+      "sources": [
+        "src.aap-hc.how-active-is-your-toddler",
+        "src.zero-to-three.play-activities-12-24-months",
+        "src.cdc.milestones-2-years"
+      ],
+      "locator": "AAP: 'Active fun for any age' — 'Child-led walks'. ZERO TO THREE: 'Leaf Collector'. CDC 2 years: outings tip (park, walks).",
+      "paraphrase": "AAP suggests, if it is safe in your neighborhood, walking together and letting the toddler lead, stopping to look at bugs or puddles, saying they practice walking, running, squatting and climbing; stay close in case they get into something. ZERO TO THREE suggests filling a small basket with leaves on a walk, building large- and small-muscle skills. CDC suggests walks and park trips.",
+      "scope": "Walking toddlers; US. Assumes a safe route chosen by the adult."
+    },
+    {
+      "id": "clm.d.outdoor-play-senses",
+      "kind": "description",
+      "text": "AAP (US): outdoor play lets children use all their senses to build skills such as spatial awareness and balance.",
+      "sources": [
+        "src.aap-hc.power-of-play"
+      ],
+      "locator": "'Types of play' — 'Outdoor play'.",
+      "paraphrase": "AAP says outdoor play is particularly important because children use all their senses to build skills like spatial awareness and balance, and it may help attention span.",
+      "scope": "Young children; US general guidance. Describes outdoor play in general."
+    },
+    {
+      "id": "clm.d.outings-curiosity",
+      "kind": "description",
+      "text": "CDC suggests outings such as a trip to the park, a walk or a bus ride to encourage toddlers' curiosity and exploring.",
+      "sources": [
+        "src.cdc.milestones-2-years",
+        "src.cdc.positive-parenting-toddlers"
+      ],
+      "locator": "CDC 2 years: outings tip. CDC Positive Parenting Tips (toddlers): 'Encourage them to explore and try new things'.",
+      "paraphrase": "CDC's 2-year page suggests going to the park, taking walks or riding the bus to encourage curiosity and learning new things. The toddler parenting page suggests encouraging exploration, for example a trip to the park or a bus ride.",
+      "scope": "Toddlers 1–2 years; US."
+    },
+    {
+      "id": "clm.d.playground-toddler-equipment",
+      "kind": "description",
+      "text": "CPSC (US) treats toddlers as 6–23 months on playgrounds and lists suitable examples: climbers under 32 inches, ramps, single-file step ladders, small slides, spring rockers, stairways and full-bucket swings.",
+      "sources": [
+        "src.cpsc.public-playground-handbook"
+      ],
+      "locator": "Section 2.2.3 'Age group' and Table 1 'Examples of age appropriate equipment' (Toddler — ages 6–23 months).",
+      "paraphrase": "The handbook defines toddlers as 6 months through 23 months and gives toddler examples: climbing equipment under 32 inches high, ramps, single-file step ladders, slides, spring rockers, stairways and full-bucket swings. It says not all equipment suits every child and supervisors should look for posted age signs.",
+      "scope": "US public playgrounds (2010 handbook for owners and inspectors). Equipment examples, not a guarantee that a given playground is safe.",
+      "caveat": "The handbook notes a developmental overlap around age 2 and that parents may choose areas slightly above or below their child's ability."
+    },
+    {
+      "id": "clm.d.playground-checks",
+      "kind": "safety",
+      "text": "At playgrounds, toddlers need closer supervision than older children. Check for soft surfacing, ropes tied to equipment, and hot slides or metal; no drawstrings, helmets or cords around the neck.",
+      "sources": [
+        "src.cpsc.public-playground-handbook",
+        "src.aap-hc.summer-safety-outdoors"
+      ],
+      "locator": "CPSC handbook: 2.2.7 'Supervision'; 3.2.1 'Strings and ropes'. AAP Summer Safety: 'Playground Safety' list.",
+      "paraphrase": "CPSC says toddlers need more attentive supervision than older children, though supervision alone won't prevent injuries; check equipment, surfacing and for ropes tied on, and remove hood and neck drawstrings. AAP says supervise children on equipment, use tested mats or deep loose fill, remove ropes, take off helmets and anything around the neck, and make sure slides are cool.",
+      "scope": "US playground guidance for young children."
+    },
+    {
+      "id": "clm.d.water-touch-supervision",
+      "kind": "safety",
+      "text": "Around any water, stay within arm's reach with full attention (no phone or chores) and empty tubs, buckets and basins right after use. Toddlers can drown in an inch or two of water, and a young sibling can't be the one watching.",
+      "sources": [
+        "src.aap-hc.drowning-prevention-toddlers",
+        "src.aap-hc.safety-1-to-2-years"
+      ],
+      "locator": "AAP Drowning Prevention for Curious Toddlers: 'Empty water containers immediately after use', 'Provide close, constant supervision', 'Use touch supervision'. AAP Safety 1 to 2 Years: 'Drowning'.",
+      "paraphrase": "AAP says toddlers can drown quickly and silently in an inch or two of water; give full attention near water without phones or yard work; stay within arm's length with constant touch supervision; never leave a filled open container unattended and empty buckets right after use; do not let a young sibling supervise.",
+      "scope": "Toddlers; US. Applies to small amounts of water at home as well as pools."
+    },
+    {
+      "id": "clm.d.small-parts-under-3",
+      "kind": "safety",
+      "text": "For children under 3, use only toys and objects too big to fit in the mouth: no small parts, small balls, coins, pen or marker caps or detachable pieces. Follow toy age labels and check under cushions for small items.",
+      "sources": [
+        "src.aap-hc.choking-prevention",
+        "src.cpsc.small-parts-faq"
+      ],
+      "locator": "AAP Choking Prevention: 'Household items that are choking hazards' and 'How to prevent choking in children'. CPSC Small Parts FAQs: questions on what the ban covers and how a small part is defined.",
+      "paraphrase": "AAP lists coins, marbles, toys with small parts, toys that fit in the mouth, small balls and pen or marker caps as hazards; advises avoiding toys with small or detachable parts, following age labels, and checking under furniture and cushions. CPSC bans small parts in products for children under 3; a small part fits the test cylinder sized like a young child's throat.",
+      "scope": "Children under 3 (CPSC ban) and young children generally (AAP); US."
+    },
+    {
+      "id": "clm.d.older-siblings-small-objects",
+      "kind": "safety",
+      "text": "Watch what older children hand to younger ones: many choking incidents happen when an older brother or sister gives a baby or toddler food, a toy or a small object.",
+      "sources": [
+        "src.aap-hc.choking-prevention"
+      ],
+      "locator": "'How to prevent choking in children' — bullet on being aware of what older children are doing.",
+      "paraphrase": "AAP says to be aware of what older children are doing, because many choking incidents happen when older siblings give dangerous foods, toys or small objects to a younger child.",
+      "scope": "Households with more than one young child; US."
+    },
+    {
+      "id": "clm.d.falls-gates-furniture",
+      "kind": "safety",
+      "text": "Toddlers walk, climb and run before they understand danger: gate stairways, keep chairs away from counters and windows, and remove sharp-edged furniture from where they play.",
+      "sources": [
+        "src.aap-hc.safety-1-to-2-years",
+        "src.cdc.positive-parenting-toddlers"
+      ],
+      "locator": "AAP Safety 1 to 2 Years: opening and 'Falls'. CDC Positive Parenting Tips (toddlers): 'Child safety first' (block off stairs).",
+      "paraphrase": "AAP says children this age walk, run, climb and jump but cannot understand danger; to prevent serious falls use gates on stairways and window guards above the first floor, remove sharp-edged furniture from the play room, and note that a chair next to a counter, table or window lets a child climb high. CDC says block off stairs with a small gate.",
+      "scope": "Toddlers 1–2 years; US."
+    },
+    {
+      "id": "clm.d.anchor-furniture",
+      "kind": "safety",
+      "text": "Anchor dressers, bookcases and TVs to the wall and keep toys and remotes off high surfaces; climbing toddlers can tip furniture over, even with an adult in the room.",
+      "sources": [
+        "src.aap-hc.furniture-tip-overs"
+      ],
+      "locator": "'How furniture can be dangerous'; 'How to prevent tip-overs'.",
+      "paraphrase": "AAP says young children climb dressers, tables, TV stands and bookcases to reach things; tip-overs can happen with an adult in the room. It advises securing furniture and TVs with anti-tip devices, avoiding toys and remotes in high places, and never placing a TV on a dresser.",
+      "scope": "Homes with children under 6; US."
+    },
+    {
+      "id": "clm.d.kitchen-while-cooking",
+      "kind": "safety",
+      "text": "AAP (US): it's best to keep a toddler out of the kitchen while you cook; when you can't give full attention, a playpen, crib, stationary activity center or buckled high chair is a safer place.",
+      "sources": [
+        "src.aap-hc.safety-1-to-2-years",
+        "src.hse.burns-cooking"
+      ],
+      "locator": "AAP Safety 1 to 2 Years: 'Burns', first paragraph. HSE: 'Cookers, stove tops and hobs', 'Block off an area around the cooker', 'Ovens'.",
+      "paraphrase": "AAP says the kitchen is dangerous during meal preparation and that a playpen, crib, stationary activity center or buckled high chair is a safer place while you cook or can't give full attention; it is best to keep the child out of the kitchen. HSE says keep children away from a cooker in use and supervise at all times.",
+      "scope": "Toddlers; US guidance is the default. Irish guidance differs in method (see caveat).",
+      "caveat": "HSE (Ireland) does not say to keep children out of the kitchen; it advises a cooker guard, a taped no-go zone in front of the cooker, and a kitchen gate if the oven front gets hot. A gated, child-proofed play space in view is Trunk's own adaptation of the AAP advice."
+    },
+    {
+      "id": "clm.d.sun-protection",
+      "kind": "safety",
+      "text": "For outdoor play, use shade, a brimmed hat and light clothing that covers the skin, plus broad-spectrum sunscreen (SPF 15–50) on exposed skin for children over 6 months, reapplied every 2 hours. UV peaks 10 a.m.–4 p.m.",
+      "sources": [
+        "src.aap-hc.sun-safety"
+      ],
+      "locator": "'Simple rules to protect your family from sunburns'; 'How to choose a sunscreen'; 'How to apply sunscreen'; 'Sunscreen for babies'.",
+      "paraphrase": "AAP advises covering clothing, a hat with a 3-inch brim, limiting sun between 10 a.m. and 4 p.m., broad-spectrum sunscreen of SPF 15 to 50 applied to all exposed areas for babies over 6 months, reapplied every 2 hours and after sweating or water.",
+      "scope": "US; children over 6 months (toddlers in this workstream)."
+    },
+    {
+      "id": "clm.d.pedestrian-safety",
+      "kind": "safety",
+      "text": "When walking with a young child, choose sidewalks or paths, hold their hand when crossing, and keep small children off driveways; young children need an adult with them near traffic.",
+      "sources": [
+        "src.aap-hc.pedestrian-safety"
+      ],
+      "locator": "Opening paragraph; 'Teaching pedestrian skills to younger children'.",
+      "paraphrase": "AAP says children should be accompanied by a trusted adult until they consistently walk safely, and most are not ready to cross alone until at least 10. It advises routes with sidewalks or paths, crossing at crosswalks while holding your child's hand, and that small children should not play on driveways or yards next to driveways.",
+      "scope": "US pedestrian guidance for families with young children."
+    },
+    {
+      "id": "clm.d.household-products",
+      "kind": "safety",
+      "text": "Toddlers open doors, drawers and bottles: keep medicines and household products such as detergents out of sight and reach with safety caps on, and keep irons and appliances out of reach.",
+      "sources": [
+        "src.aap-hc.safety-1-to-2-years",
+        "src.cdc.positive-parenting-toddlers"
+      ],
+      "locator": "AAP Safety 1 to 2 Years: 'Poisonings'. CDC Positive Parenting Tips (toddlers): 'Child safety first'.",
+      "paraphrase": "AAP says toddlers can open doors, drawers and bottles and put everything in their mouths, so use safety caps and keep household products and medicines completely out of sight and reach. CDC advises keeping kitchen appliances, irons and heaters out of a toddler's reach.",
+      "scope": "Toddlers 1–2 years; US."
+    },
+    {
+      "id": "clm.d.water-sand-pouring",
+      "kind": "description",
+      "text": "HSE (Ireland) suggests plastic jugs and a basin for sand or water play for 1–2-year-olds, as sensory play that builds hand–eye coordination; CDC and ZERO TO THREE suggest cups, spoons or a funnel with water.",
+      "sources": [
+        "src.hse.play-1-2-years",
+        "src.cdc.milestones-2-years",
+        "src.zero-to-three.play-activities-12-24-months"
+      ],
+      "locator": "HSE 1–2 years: 'Plastic jugs and a basin' bullet. CDC 2 years: sand and water toys tip. ZERO TO THREE: 'Water, Water Everywhere'.",
+      "paraphrase": "HSE lists plastic jugs and a basin for playing with sand or water, saying it is great for sensory play and building hand-eye coordination. CDC suggests sand toys, plastic containers, spoons or a funnel in the tub or sandbox. ZERO TO THREE describes a dishpan of water on a towel with cups, spoons and a funnel, supervised, emptied afterwards.",
+      "scope": "Toddlers 12–36 months; Ireland and US. Water play always needs the water-safety claim alongside."
+    },
+    {
+      "id": "clm.d.over-under",
+      "kind": "description",
+      "text": "ZERO TO THREE describes a 12–24-month game of crawling over a pillow, under a table, and into and out of a laundry basket while the adult says each word, and says games like this help toddlers learn word meanings while active.",
+      "sources": [
+        "src.zero-to-three.active-play-gather-round"
+      ],
+      "locator": "12–24 months section: 'Play \"over, under, in, and out\" with your child'.",
+      "paraphrase": "The page suggests inviting a toddler to crawl over a pillow, under a table and into a laundry basket and back out, saying 'over', 'under', 'in' and 'out' at each step, and says games like this help a young toddler learn the meaning of new words while being active.",
+      "scope": "Toddlers 12–24 months; US organization. The page gives no safety notes; Trunk adds floor-level setup, anchoring and arm's-reach spotting."
+    }
+  ],
+  "activities": [
+    {
+      "id": "act.push-toy-laps",
+      "rev": 1,
+      "title": "Push a box or push toy around",
+      "summary": "Let your toddler push an empty laundry basket, a big box or a sturdy push toy around a cleared, gated room while you stay in view.",
+      "kind": "play",
+      "ageMin": "12m",
+      "ageMax": "24m",
+      "readiness": {
+        "abilities": [
+          "pulls-to-stand"
+        ],
+        "notes": [
+          "Not a walking timeline: some toddlers push before walking, others after.",
+          "Baby walkers aren't recommended; a box or push toy they steer themselves is different."
+        ]
+      },
+      "goals": [
+        "gross-motor"
+      ],
+      "intents": [
+        "move",
+        "explore",
+        "parent-moment"
+      ],
+      "places": [
+        "indoors"
+      ],
+      "spaces": [
+        "floor",
+        "open-area"
+      ],
+      "outing": false,
+      "materials": {
+        "level": "household",
+        "items": [
+          "Empty laundry basket or sturdy cardboard box",
+          "Or a stable push toy",
+          "A soft toy to give a ride"
+        ]
+      },
+      "setupMinutes": 2,
+      "cleanupMinutes": 1,
+      "duration": {
+        "min": 3,
+        "default": 10,
+        "max": 20
+      },
+      "effort": "low",
+      "supervision": {
+        "participation": "watches",
+        "proximity": "same-room",
+        "handsOn": "none",
+        "minAdults": 1,
+        "shareable": true,
+        "space": "Cleared floor in the room you're in; stairs gated, sharp corners out of the way, heavy furniture anchored."
+      },
+      "mess": "low",
+      "noise": "moderate",
+      "hazards": [
+        "falls"
+      ],
+      "steps": [
+        "Clear a path, check stairs are gated, and move anything sharp or breakable out of the way.",
+        "Hand over an empty laundry basket, big box or stable push toy, with a teddy inside for a ride.",
+        "Let them push it round the room while you stay in view; cheer when they turn a corner or bring teddy to you."
+      ],
+      "adaptations": [
+        "Just pulling up: a heavier box that slides slowly gives steadier support than a toy on wheels.",
+        "Steady walker: make it a delivery game, pushing toys from one side of the room to the other.",
+        "Baby crawling nearby: keep the baby out of the push path or give the toddler a separate space."
+      ],
+      "stopCues": [
+        "Frustrated when the box keeps getting stuck",
+        "Falling a lot or getting tired",
+        "Climbing into or onto the box"
+      ],
+      "safety": [
+        {
+          "text": "Gate stairs and keep the path clear of sharp furniture corners; toddlers fall often as they learn to walk.",
+          "claims": [
+            "clm.d.falls-gates-furniture"
+          ]
+        },
+        {
+          "text": "Anchor dressers, shelves and TVs: toddlers who pull up and cruise use furniture to steady themselves.",
+          "claims": [
+            "clm.d.anchor-furniture"
+          ]
+        }
+      ],
+      "why": {
+        "text": "CDC suggests letting toddlers push things like empty boxes, a child-size chair or push toys so they can practice walking.",
+        "claims": [
+          "clm.d.push-to-practice-walking"
+        ]
+      },
+      "evidence": {
+        "type": "described",
+        "claims": [
+          "clm.d.push-to-practice-walking",
+          "clm.core.who-active-play"
+        ]
+      },
+      "checked": "2026-10-28"
+    },
+    {
+      "id": "act.big-ball-kick-and-chase",
+      "rev": 1,
+      "title": "Kick and chase a big ball",
+      "summary": "Out in an open space, kick, roll or throw a big soft ball for your walking toddler to chase, then take turns sending it back.",
+      "kind": "play",
+      "ageMin": "15m",
+      "ageMax": "30m",
+      "readiness": {
+        "abilities": [
+          "walks"
+        ],
+        "notes": []
+      },
+      "goals": [
+        "gross-motor",
+        "social-emotional"
+      ],
+      "intents": [
+        "move",
+        "connect"
+      ],
+      "places": [
+        "indoors",
+        "outdoors"
+      ],
+      "spaces": [
+        "floor",
+        "open-area",
+        "yard-or-park"
+      ],
+      "outing": false,
+      "materials": {
+        "level": "toys",
+        "items": [
+          "Soft ball bigger than your toddler's fist"
+        ]
+      },
+      "setupMinutes": 1,
+      "cleanupMinutes": 1,
+      "duration": {
+        "min": 3,
+        "default": 10,
+        "max": 20
+      },
+      "effort": "medium",
+      "supervision": {
+        "participation": "joins",
+        "proximity": "same-room",
+        "handsOn": "intermittent",
+        "minAdults": 1,
+        "shareable": true,
+        "space": "Open floor or grass away from stairs, breakables, roads and driveways."
+      },
+      "mess": "none",
+      "noise": "moderate",
+      "hazards": [],
+      "steps": [
+        "Pick a soft ball bigger than your toddler’s fist and find open floor or grass.",
+        "Roll or gently kick it a few steps ahead and let them walk or run after it.",
+        "Take turns sending it back: “My turn, your turn!” Try a kick or a two-handed throw."
+      ],
+      "adaptations": [
+        "Wobbly walker: roll it slowly a short way ahead and let them walk after it.",
+        "Steady runner: kick it at a wall or into a laundry-basket “goal”.",
+        "Two children: an older child kicks to the toddler while you stand between them."
+      ],
+      "stopCues": [
+        "Losing interest or wandering off",
+        "Throwing the ball at faces or at a baby",
+        "Tired, cranky or rubbing eyes"
+      ],
+      "safety": [
+        {
+          "text": "Use a soft ball too big to fit in the mouth; small balls are a choking hazard for under-3s.",
+          "claims": [
+            "clm.d.small-parts-under-3"
+          ]
+        },
+        {
+          "text": "Play away from roads and driveways; a ball that rolls toward traffic is yours to fetch.",
+          "claims": [
+            "clm.d.pedestrian-safety"
+          ]
+        }
+      ],
+      "why": {
+        "text": "AAP says toddlers learn how their bodies work by walking, running and kicking balls, and that playing together supports physical and social skills.",
+        "claims": [
+          "clm.d.toddler-active-play"
+        ]
+      },
+      "evidence": {
+        "type": "described",
+        "claims": [
+          "clm.d.ball-back-and-forth",
+          "clm.d.toddler-active-play",
+          "clm.core.who-active-play"
+        ]
+      },
+      "checked": "2026-10-28"
+    },
+    {
+      "id": "act.freeze-dance-toddler",
+      "rev": 1,
+      "title": "Freeze dance",
+      "summary": "Put on music and dance together; when you pause it, everyone freezes, then dances again when it restarts.",
+      "kind": "play",
+      "ageMin": "12m",
+      "ageMax": "30m",
+      "readiness": {
+        "abilities": [],
+        "notes": [
+          "Younger toddlers may keep dancing through the pauses; that's fine."
+        ]
+      },
+      "goals": [
+        "gross-motor",
+        "social-emotional"
+      ],
+      "intents": [
+        "move",
+        "connect"
+      ],
+      "places": [
+        "indoors"
+      ],
+      "spaces": [
+        "floor",
+        "open-area"
+      ],
+      "outing": false,
+      "materials": {
+        "level": "household",
+        "items": [
+          "Music on a phone or speaker (screen face down)"
+        ]
+      },
+      "setupMinutes": 1,
+      "cleanupMinutes": 0,
+      "duration": {
+        "min": 2,
+        "default": 5,
+        "max": 15
+      },
+      "effort": "medium",
+      "supervision": {
+        "participation": "leads",
+        "proximity": "same-room",
+        "handsOn": "none",
+        "minAdults": 1,
+        "shareable": true,
+        "space": "Clear floor away from stairs, sharp table corners and hard edges."
+      },
+      "mess": "none",
+      "noise": "loud",
+      "hazards": [
+        "falls"
+      ],
+      "steps": [
+        "Clear a little floor space and put on a song with a strong beat.",
+        "Dance together: stomp, wiggle, clap and copy each other's moves.",
+        "Pause the music and freeze like statues, then restart it and cheer the unfreeze.",
+        "Keep pauses short and silly so the stopping stays fun."
+      ],
+      "adaptations": [
+        "Not walking yet: sway, clap and wave while sitting or holding the sofa.",
+        "Older toddler: freeze in a shape: tall, tiny or like an animal.",
+        "Winding down: slow songs and slow-motion moves."
+      ],
+      "stopCues": [
+        "Overexcited and crashing into things",
+        "Upset when the music stops",
+        "Tired or clingy"
+      ],
+      "safety": [
+        {
+          "text": "Dance on a clear floor away from stairs and sharp corners; socks can slip on smooth floors.",
+          "claims": [
+            "clm.d.falls-gates-furniture"
+          ]
+        }
+      ],
+      "why": {
+        "text": "ZERO TO THREE describes freeze games as practice in listening and in stopping and starting; AAP suggests dancing together and copying moves.",
+        "claims": [
+          "clm.d.dance-and-freeze"
+        ]
+      },
+      "evidence": {
+        "type": "described",
+        "claims": [
+          "clm.d.dance-and-freeze",
+          "clm.core.who-active-play"
+        ]
+      },
+      "checked": "2026-10-28"
+    },
+    {
+      "id": "act.bubble-pop-outside",
+      "rev": 1,
+      "title": "Bubble pop outside",
+      "summary": "Blow bubbles outdoors for your toddler to point at, chase and pop, saying 'pop!' each time.",
+      "kind": "play",
+      "ageMin": "12m",
+      "ageMax": "30m",
+      "readiness": {
+        "abilities": [],
+        "notes": []
+      },
+      "goals": [
+        "gross-motor",
+        "sensory"
+      ],
+      "intents": [
+        "fresh-air",
+        "move",
+        "connect"
+      ],
+      "places": [
+        "outdoors"
+      ],
+      "spaces": [
+        "yard-or-park",
+        "open-area"
+      ],
+      "outing": false,
+      "materials": {
+        "level": "toys",
+        "items": [
+          "Bubble solution and wand (you hold them)"
+        ]
+      },
+      "setupMinutes": 1,
+      "cleanupMinutes": 1,
+      "duration": {
+        "min": 3,
+        "default": 10,
+        "max": 15
+      },
+      "effort": "low",
+      "supervision": {
+        "participation": "leads",
+        "proximity": "same-room",
+        "handsOn": "intermittent",
+        "minAdults": 1,
+        "shareable": true,
+        "space": "Grass or a fenced yard or park, away from roads, ponds and paddling pools; the bottle stays with you."
+      },
+      "mess": "low",
+      "noise": "moderate",
+      "hazards": [
+        "mouthing",
+        "sun-weather"
+      ],
+      "steps": [
+        "Head outside to grass or a fenced yard and keep the bubble bottle in your hand or pocket.",
+        "Blow a few bubbles and point: 'Look, bubbles!' Let your toddler reach, clap or stomp to pop them.",
+        "Pause between rounds so they can ask for 'more' with a word, a sign or a look."
+      ],
+      "adaptations": [
+        "Not walking yet: sit them on the grass and blow bubbles low and slow.",
+        "Steady runner: blow a long stream and let them chase it across the grass.",
+        "Baby nearby: blow the bubbles away from the baby's face."
+      ],
+      "stopCues": [
+        "Rubbing eyes (soap stings)",
+        "Grabbing for the bottle to drink",
+        "Hot, tired or fussy"
+      ],
+      "safety": [
+        {
+          "text": "Keep the bottle with you and watch that your toddler doesn't eat bubbles or drink the solution.",
+          "claims": [
+            "clm.d.bubbles-not-eaten"
+          ]
+        },
+        {
+          "text": "Use shade, a hat and covering clothes, and sunscreen on exposed skin; avoid the midday sun.",
+          "claims": [
+            "clm.d.sun-protection"
+          ]
+        }
+      ],
+      "why": {
+        "text": "AAP suggests blowing bubbles for younger toddlers to point at and letting older ones chase and pop them; CDC treats bubble popping as a turn-taking game.",
+        "claims": [
+          "clm.d.bubble-play"
+        ]
+      },
+      "evidence": {
+        "type": "described",
+        "claims": [
+          "clm.d.bubble-play",
+          "clm.d.outdoor-play-senses"
+        ]
+      },
+      "checked": "2026-10-28"
+    },
+    {
+      "id": "act.toddler-action-songs",
+      "rev": 1,
+      "title": "Action songs with pauses",
+      "summary": "Sing an action song like “Wheels on the Bus” or a body-part song, and pause before an action or word so your toddler can fill it in.",
+      "kind": "play",
+      "ageMin": "15m",
+      "ageMax": "30m",
+      "readiness": {
+        "abilities": [],
+        "notes": []
+      },
+      "goals": [
+        "communication"
+      ],
+      "intents": [
+        "connect",
+        "calm"
+      ],
+      "places": [
+        "indoors",
+        "outdoors"
+      ],
+      "spaces": [
+        "anywhere",
+        "lap-or-arms",
+        "floor"
+      ],
+      "outing": false,
+      "materials": {
+        "level": "none",
+        "items": []
+      },
+      "setupMinutes": 0,
+      "cleanupMinutes": 0,
+      "duration": {
+        "min": 2,
+        "default": 5,
+        "max": 10
+      },
+      "effort": "low",
+      "supervision": {
+        "participation": "leads",
+        "proximity": "same-room",
+        "handsOn": "none",
+        "minAdults": 1,
+        "shareable": true,
+        "space": "Anywhere you can sit face to face, on the floor or a low seat."
+      },
+      "mess": "none",
+      "noise": "moderate",
+      "hazards": [],
+      "steps": [
+        "Sit face to face so your toddler can see your hands and mouth.",
+        "Sing a short song with big, simple actions: rolling hands, clapping, touching your nose.",
+        "Slow down and pause before an action or a last word so they can try it.",
+        "Repeat favorites; the same song many times over is normal."
+      ],
+      "adaptations": [
+        "Younger toddler: gently help their hands do one action, then let them watch you.",
+        "Older toddler: let them pick the song and lead the actions.",
+        "Swap in body parts or family names to keep it fresh."
+      ],
+      "stopCues": [
+        "Looking away or wriggling off",
+        "Fussing or overtired"
+      ],
+      "safety": [
+        {
+          "text": "If they're on your lap, sit on the floor or a low seat so a sudden wriggle isn't a fall.",
+          "claims": []
+        }
+      ],
+      "why": {
+        "text": "CDC suggests songs with gestures and body-part songs where you pause for your toddler to join in, to help them learn body-part names.",
+        "claims": [
+          "clm.d.action-songs"
+        ]
+      },
+      "evidence": {
+        "type": "described",
+        "claims": [
+          "clm.d.action-songs",
+          "clm.core.who-reading-storytelling"
+        ]
+      },
+      "checked": "2026-10-28"
+    },
+    {
+      "id": "act.where-is-it-picture-book",
+      "rev": 1,
+      "title": "“Where’s the dog?” picture book",
+      "summary": "Share a board book, ask “Where’s the…?” questions your toddler answers by pointing, and add a few words to each picture they show you.",
+      "kind": "play",
+      "ageMin": "15m",
+      "ageMax": "24m",
+      "readiness": {
+        "abilities": [],
+        "notes": []
+      },
+      "goals": [
+        "communication"
+      ],
+      "intents": [
+        "connect",
+        "calm"
+      ],
+      "places": [
+        "indoors"
+      ],
+      "spaces": [
+        "lap-or-arms",
+        "floor"
+      ],
+      "outing": false,
+      "materials": {
+        "level": "toys",
+        "items": [
+          "2–3 board books with big, clear pictures"
+        ]
+      },
+      "setupMinutes": 0,
+      "cleanupMinutes": 0,
+      "duration": {
+        "min": 2,
+        "default": 5,
+        "max": 10
+      },
+      "effort": "low",
+      "supervision": {
+        "participation": "leads",
+        "proximity": "holding",
+        "handsOn": "intermittent",
+        "minAdults": 1,
+        "shareable": true,
+        "space": "A quiet, comfortable spot with the TV off, on the floor or a low sofa."
+      },
+      "mess": "none",
+      "noise": "quiet",
+      "hazards": [],
+      "steps": [
+        "Find a quiet spot with the TV off and let your toddler choose a book.",
+        "Ask questions they can answer by pointing: “Where’s the ball? Where’s the cat’s nose?”",
+        "When they point, add a few words: “Yes, the dog. The dog says woof!”",
+        "Let them turn pages and skip around; you don’t need to finish the book."
+      ],
+      "adaptations": [
+        "Just starting to point: you point and name, and let them copy the animal sounds.",
+        "Older toddler: pause before a familiar word in a favorite book and let them fill it in.",
+        "Low on energy: one favorite page, looked at a few times, is plenty."
+      ],
+      "stopCues": [
+        "Wriggling off your lap",
+        "Pushing the book away",
+        "Chewing the pages more than looking"
+      ],
+      "safety": [
+        {
+          "text": "Use board books and check for loose flaps, foam pieces or stickers that could come off in the mouth.",
+          "claims": [
+            "clm.d.small-parts-under-3"
+          ]
+        }
+      ],
+      "why": {
+        "text": "AAP says sharing books can help toddlers learn to talk, and suggests naming the pictures your child points to and asking questions they can answer by pointing.",
+        "claims": [
+          "clm.d.book-sharing"
+        ]
+      },
+      "evidence": {
+        "type": "described",
+        "claims": [
+          "clm.d.book-sharing",
+          "clm.core.who-reading-storytelling"
+        ]
+      },
+      "checked": "2026-10-28"
+    },
+    {
+      "id": "act.busy-basket-gated-space",
+      "rev": 1,
+      "title": "Busy basket in a gated play space",
+      "summary": "Before you cook or do a task, set out a basket of large, safe toys and board books in a gated, child-proofed spot you can see.",
+      "kind": "play",
+      "ageMin": "15m",
+      "ageMax": "30m",
+      "readiness": {
+        "abilities": [],
+        "notes": []
+      },
+      "goals": [],
+      "intents": [
+        "parent-moment",
+        "explore"
+      ],
+      "places": [
+        "indoors"
+      ],
+      "spaces": [
+        "floor"
+      ],
+      "outing": false,
+      "materials": {
+        "level": "household",
+        "items": [
+          "Low basket or box",
+          "3–4 board books",
+          "Big blocks or stacking cups",
+          "Small pot or plastic bowl and a wooden spoon",
+          "A soft toy",
+          "Safety gate or playpen"
+        ]
+      },
+      "setupMinutes": 3,
+      "cleanupMinutes": 2,
+      "duration": {
+        "min": 5,
+        "default": 10,
+        "max": 20
+      },
+      "effort": "low",
+      "supervision": {
+        "participation": "watches",
+        "proximity": "same-room",
+        "handsOn": "none",
+        "minAdults": 1,
+        "shareable": true,
+        "space": "Gated, child-proofed spot outside the kitchen but in your view; nothing on shelves to climb for."
+      },
+      "mess": "low",
+      "noise": "moderate",
+      "hazards": [],
+      "steps": [
+        "Before the stove goes on, set up a playpen or gated play space outside the kitchen where you can see it.",
+        "Fill a basket with 5–8 large items: board books, big blocks, stacking cups, a soft toy, a pot and spoon.",
+        "Check the floor and under cushions for small things, then let them explore.",
+        "Glance over often and chat from where you are; swap in a 'new' item if they get bored."
+      ],
+      "adaptations": [
+        "Younger toddler: fewer items, plus a box to put things in and take out.",
+        "Older toddler: add a 'job', like socks to sort or a dry cloth to wipe the toy table.",
+        "Toddler and baby: a separate basket for the baby, and nothing small enough for a baby's mouth in either."
+      ],
+      "stopCues": [
+        "Crying at the gate or trying to climb it",
+        "Throwing things",
+        "Restless after a few minutes"
+      ],
+      "safety": [
+        {
+          "text": "While you cook, keep your toddler out of the kitchen; a playpen or gated space you can see is safer than underfoot.",
+          "claims": [
+            "clm.d.kitchen-while-cooking"
+          ]
+        },
+        {
+          "text": "Only items too big to fit in the mouth; check under cushions and furniture for coins, batteries and small toys.",
+          "claims": [
+            "clm.d.small-parts-under-3",
+            "clm.d.older-siblings-small-objects"
+          ]
+        },
+        {
+          "text": "Anchor shelves and keep tempting things off high surfaces in that space.",
+          "claims": [
+            "clm.d.anchor-furniture"
+          ]
+        }
+      ],
+      "evidence": {
+        "type": "adapted",
+        "claims": [
+          "clm.d.kitchen-while-cooking",
+          "clm.d.simple-objects-play"
+        ]
+      },
+      "checked": "2026-10-28"
+    },
+    {
+      "id": "act.stack-and-topple",
+      "rev": 1,
+      "title": "Stack it and knock it down",
+      "summary": "Build a tower of big blocks, empty boxes or plastic cups and let your toddler knock it down, then take turns building again.",
+      "kind": "play",
+      "ageMin": "12m",
+      "ageMax": "30m",
+      "readiness": {
+        "abilities": [],
+        "notes": []
+      },
+      "goals": [
+        "fine-motor",
+        "cognition"
+      ],
+      "intents": [
+        "explore",
+        "connect"
+      ],
+      "places": [
+        "indoors"
+      ],
+      "spaces": [
+        "floor",
+        "table"
+      ],
+      "outing": false,
+      "materials": {
+        "level": "household",
+        "items": [
+          "Big blocks or stacking cups",
+          "Empty cereal or tissue boxes"
+        ]
+      },
+      "setupMinutes": 1,
+      "cleanupMinutes": 2,
+      "duration": {
+        "min": 3,
+        "default": 8,
+        "max": 15
+      },
+      "effort": "low",
+      "supervision": {
+        "participation": "joins",
+        "proximity": "same-room",
+        "handsOn": "intermittent",
+        "minAdults": 1,
+        "shareable": true,
+        "space": "Floor space well away from a baby's mat so falling blocks don't land on anyone."
+      },
+      "mess": "low",
+      "noise": "moderate",
+      "hazards": [],
+      "steps": [
+        "Gather big blocks, stacking cups or empty boxes, nothing small enough to fit in the mouth.",
+        "Stack three or four and invite your toddler to knock them down: 'Ready... crash!'",
+        "Take turns: they add one, you add one, then down it goes again."
+      ],
+      "adaptations": [
+        "Younger toddler: you build, they topple, as many times as it's fun.",
+        "Older toddler: line boxes up as a train or build a wall to peek over.",
+        "Baby nearby: use light boxes or soft blocks and build on the far side of the room."
+      ],
+      "stopCues": [
+        "Throwing blocks at people",
+        "Upset every time a tower falls",
+        "Drifting off to something else"
+      ],
+      "safety": [
+        {
+          "text": "Use blocks and cups too big to fit in the mouth; pull staples, tabs and wrapping off boxes first.",
+          "claims": [
+            "clm.d.small-parts-under-3"
+          ]
+        },
+        {
+          "text": "Build away from a baby; toppling or thrown blocks can hit a little one.",
+          "claims": []
+        }
+      ],
+      "why": {
+        "text": "CDC suggests playing with blocks and toys that get hands busy, from stacking for your toddler to knock down to taking turns building towers.",
+        "claims": [
+          "clm.d.blocks-and-towers"
+        ]
+      },
+      "evidence": {
+        "type": "described",
+        "claims": [
+          "clm.d.blocks-and-towers",
+          "clm.d.simple-objects-play"
+        ]
+      },
+      "checked": "2026-10-28"
+    },
+    {
+      "id": "act.fill-and-dump-relay",
+      "rev": 1,
+      "title": "Fill-and-dump basket relay",
+      "summary": "Show your toddler how to carry rolled socks or soft toys from one basket to another a few steps away, then dump and start again.",
+      "kind": "play",
+      "ageMin": "15m",
+      "ageMax": "24m",
+      "readiness": {
+        "abilities": [
+          "walks"
+        ],
+        "notes": []
+      },
+      "goals": [
+        "cognition"
+      ],
+      "intents": [
+        "explore",
+        "move",
+        "parent-moment"
+      ],
+      "places": [
+        "indoors"
+      ],
+      "spaces": [
+        "floor"
+      ],
+      "outing": false,
+      "materials": {
+        "level": "household",
+        "items": [
+          "Two baskets, boxes or large pans",
+          "Rolled pairs of socks or soft toys"
+        ]
+      },
+      "setupMinutes": 2,
+      "cleanupMinutes": 1,
+      "duration": {
+        "min": 3,
+        "default": 8,
+        "max": 15
+      },
+      "effort": "low",
+      "supervision": {
+        "participation": "watches",
+        "proximity": "same-room",
+        "handsOn": "none",
+        "minAdults": 1,
+        "shareable": true,
+        "space": "Clear floor in a gated, child-proofed room you're in; nothing small in the baskets."
+      },
+      "mess": "medium",
+      "noise": "quiet",
+      "hazards": [],
+      "steps": [
+        "Put two baskets or boxes a few steps apart and fill one with rolled socks or soft toys.",
+        "Show once: carry one item over and drop it in the empty basket.",
+        "Let your toddler carry, drop and dump at their own pace while you stay in the room."
+      ],
+      "adaptations": [
+        "Wobbly walker: put the baskets just two steps apart.",
+        "Older toddler: sort as they go, socks in one and teddies in the other.",
+        "Post-box version: cut a big hole in a box lid for soft toys to push through."
+      ],
+      "stopCues": [
+        "Throwing items instead of carrying them",
+        "Bored after a few rounds",
+        "Tired or clingy"
+      ],
+      "safety": [
+        {
+          "text": "Use things too big to fit in the mouth, like rolled socks, soft toys or big blocks, and check the baskets for small bits.",
+          "claims": [
+            "clm.d.small-parts-under-3"
+          ]
+        },
+        {
+          "text": "Keep stairs gated and the floor clear of trip hazards.",
+          "claims": [
+            "clm.d.falls-gates-furniture"
+          ]
+        }
+      ],
+      "why": {
+        "text": "ZERO TO THREE describes fill-and-dump play for 12–24 months, and AAP lists empty containers among simple objects that help toddlers learn how things work.",
+        "claims": [
+          "clm.d.fill-and-dump",
+          "clm.d.simple-objects-play"
+        ]
+      },
+      "evidence": {
+        "type": "described",
+        "claims": [
+          "clm.d.fill-and-dump",
+          "clm.d.simple-objects-play"
+        ]
+      },
+      "checked": "2026-10-28"
+    },
+    {
+      "id": "act.chunky-puzzle-or-sorter",
+      "rev": 1,
+      "title": "Chunky puzzle or shape sorter",
+      "summary": "Sit with your toddler and a chunky knob puzzle or big shape sorter, naming each piece as it goes in.",
+      "kind": "play",
+      "ageMin": "15m",
+      "ageMax": "30m",
+      "readiness": {
+        "abilities": [],
+        "notes": []
+      },
+      "goals": [
+        "fine-motor",
+        "cognition"
+      ],
+      "intents": [
+        "explore",
+        "connect",
+        "calm"
+      ],
+      "places": [
+        "indoors"
+      ],
+      "spaces": [
+        "floor",
+        "table"
+      ],
+      "outing": false,
+      "materials": {
+        "level": "toys",
+        "items": [
+          "Chunky knob puzzle (2–4 pieces) or big shape sorter"
+        ]
+      },
+      "setupMinutes": 1,
+      "cleanupMinutes": 1,
+      "duration": {
+        "min": 3,
+        "default": 7,
+        "max": 15
+      },
+      "effort": "low",
+      "supervision": {
+        "participation": "joins",
+        "proximity": "same-room",
+        "handsOn": "intermittent",
+        "minAdults": 1,
+        "shareable": true,
+        "space": "Floor or a low table; pieces stay away from a baby who still mouths things."
+      },
+      "mess": "low",
+      "noise": "quiet",
+      "hazards": [],
+      "steps": [
+        "Choose a puzzle with a few large pieces, or a sorter with two or three simple shapes.",
+        "Take the pieces out together and name each one: 'Cow. Moo!'",
+        "Let them try to fit pieces; turn one slightly or guide their hand if they're stuck."
+      ],
+      "adaptations": [
+        "Younger toddler: start with a single round piece, or just drop shapes into an open box.",
+        "Older toddler: more pieces, or ask 'Where's the duck?' before they place it.",
+        "Getting frustrated: finish the last piece together, your hand over theirs."
+      ],
+      "stopCues": [
+        "Banging or throwing pieces",
+        "Frustrated crying",
+        "Mouthing pieces more than fitting them"
+      ],
+      "safety": [
+        {
+          "text": "Follow the age label; knobs and pieces must be firmly attached and too big to fit in the mouth.",
+          "claims": [
+            "clm.d.small-parts-under-3"
+          ]
+        },
+        {
+          "text": "Keep the toddler's puzzle pieces out of a baby's reach, and watch what gets handed to the baby.",
+          "claims": [
+            "clm.d.older-siblings-small-objects"
+          ]
+        }
+      ],
+      "why": {
+        "text": "HSE lists simple puzzles for 1–2-year-olds as good for hand–eye coordination and problem-solving; CDC suggests naming each piece as it goes in.",
+        "claims": [
+          "clm.d.puzzles"
+        ]
+      },
+      "evidence": {
+        "type": "described",
+        "claims": [
+          "clm.d.puzzles",
+          "clm.d.simple-objects-play"
+        ]
+      },
+      "checked": "2026-10-28"
+    },
+    {
+      "id": "act.feed-the-teddy",
+      "rev": 1,
+      "title": "Feed the teddy",
+      "summary": "Give your toddler a teddy or doll, a spoon, a cup and a cloth, and take turns pretending to feed it and tuck it in.",
+      "kind": "play",
+      "ageMin": "15m",
+      "ageMax": "30m",
+      "readiness": {
+        "abilities": [],
+        "notes": [
+          "Younger toddlers often copy one action; longer pretend stories tend to come later."
+        ]
+      },
+      "goals": [
+        "social-emotional",
+        "communication"
+      ],
+      "intents": [
+        "connect",
+        "explore"
+      ],
+      "places": [
+        "indoors"
+      ],
+      "spaces": [
+        "floor"
+      ],
+      "outing": false,
+      "materials": {
+        "level": "toys",
+        "items": [
+          "Teddy or doll",
+          "Plastic spoon, cup and bowl",
+          "Small cloth or blanket"
+        ]
+      },
+      "setupMinutes": 1,
+      "cleanupMinutes": 1,
+      "duration": {
+        "min": 3,
+        "default": 10,
+        "max": 20
+      },
+      "effort": "low",
+      "supervision": {
+        "participation": "joins",
+        "proximity": "same-room",
+        "handsOn": "intermittent",
+        "minAdults": 1,
+        "shareable": true,
+        "space": "Floor space anywhere in the room; pretend food only, no real food or drinks."
+      },
+      "mess": "low",
+      "noise": "quiet",
+      "hazards": [],
+      "steps": [
+        "Sit on the floor with teddy, a spoon, a cup and a cloth.",
+        "Show one pretend action, 'Teddy's hungry. Yum!', as you spoon pretend food to teddy.",
+        "Hand over the spoon and take turns; follow their ideas, like a drink, a nap or a bump to kiss better."
+      ],
+      "adaptations": [
+        "Younger toddler: just one action, a drink from the cup, and lots of copying.",
+        "Older toddler: add a second toy and a little story: teddy's bath or teddy's walk.",
+        "Talk through the toy: let teddy ask your toddler a question."
+      ],
+      "stopCues": [
+        "Wandering off",
+        "Frustrated or throwing toys",
+        "Asking for real food: a snack cue, not part of the game"
+      ],
+      "safety": [
+        {
+          "text": "Pretend food only, with big unbreakable toy dishes; nothing small enough to fit in the mouth.",
+          "claims": [
+            "clm.d.small-parts-under-3"
+          ]
+        }
+      ],
+      "why": {
+        "text": "AAP says pretend play lets young children try out social roles and builds communication and language; CDC suggests pretend-feeding a stuffed animal and taking turns.",
+        "claims": [
+          "clm.d.pretend-play",
+          "clm.d.pretend-feeding"
+        ]
+      },
+      "evidence": {
+        "type": "described",
+        "claims": [
+          "clm.d.pretend-feeding",
+          "clm.d.pretend-play"
+        ]
+      },
+      "checked": "2026-10-28"
+    },
+    {
+      "id": "act.hide-the-toy-hunt",
+      "rev": 1,
+      "title": "Find the hidden toy",
+      "summary": "Hide a favorite toy with a bit still showing, ask 'Where's teddy?' and give hints until your toddler finds it.",
+      "kind": "play",
+      "ageMin": "12m",
+      "ageMax": "24m",
+      "readiness": {
+        "abilities": [],
+        "notes": []
+      },
+      "goals": [
+        "cognition"
+      ],
+      "intents": [
+        "explore",
+        "connect",
+        "move"
+      ],
+      "places": [
+        "indoors"
+      ],
+      "spaces": [
+        "floor",
+        "open-area"
+      ],
+      "outing": false,
+      "materials": {
+        "level": "toys",
+        "items": [
+          "A favorite toy",
+          "A cushion, cloth or box to hide it under"
+        ]
+      },
+      "setupMinutes": 0,
+      "cleanupMinutes": 0,
+      "duration": {
+        "min": 3,
+        "default": 8,
+        "max": 15
+      },
+      "effort": "low",
+      "supervision": {
+        "participation": "leads",
+        "proximity": "same-room",
+        "handsOn": "none",
+        "minAdults": 1,
+        "shareable": true,
+        "space": "One child-proofed room; hide things at floor level, never on shelves or furniture they'd climb."
+      },
+      "mess": "none",
+      "noise": "quiet",
+      "hazards": [],
+      "steps": [
+        "Let your toddler watch you hide a favorite toy under a cushion or cloth, with a bit sticking out.",
+        "Ask 'Where's teddy?' and wait; point or give a hint if they need it.",
+        "Celebrate the find, then hide it again somewhere new at floor level."
+      ],
+      "adaptations": [
+        "Younger toddler: hide it under one cloth right in front of them.",
+        "Older toddler: hide it fully out of sight, or hide yourself behind a chair.",
+        "Two children: an older sibling does the hiding while you cheer."
+      ],
+      "stopCues": [
+        "Upset when they can't find it",
+        "Losing interest",
+        "Climbing furniture to search"
+      ],
+      "safety": [
+        {
+          "text": "Hide things at floor level only, and anchor furniture; searching toddlers climb.",
+          "claims": [
+            "clm.d.anchor-furniture"
+          ]
+        }
+      ],
+      "why": {
+        "text": "AAP suggests hidden-toy hunts for 12–18-month-olds and describes hide-and-find games as practice with the idea that things still exist out of sight.",
+        "claims": [
+          "clm.d.hide-and-find"
+        ]
+      },
+      "evidence": {
+        "type": "described",
+        "claims": [
+          "clm.d.hide-and-find"
+        ]
+      },
+      "checked": "2026-10-28"
+    },
+    {
+      "id": "act.sock-basket-helper",
+      "rev": 1,
+      "title": "Sock basket helper",
+      "summary": "While you sort clean laundry, hand your toddler socks to drop into a basket, then let them push or carry it, thanking them for helping.",
+      "kind": "routine",
+      "ageMin": "15m",
+      "ageMax": "30m",
+      "readiness": {
+        "abilities": [],
+        "notes": []
+      },
+      "goals": [],
+      "intents": [
+        "routine",
+        "connect"
+      ],
+      "places": [
+        "indoors"
+      ],
+      "spaces": [
+        "floor"
+      ],
+      "outing": false,
+      "materials": {
+        "level": "household",
+        "items": [
+          "Clean socks or small towels",
+          "Laundry basket"
+        ]
+      },
+      "setupMinutes": 0,
+      "cleanupMinutes": 0,
+      "duration": {
+        "min": 3,
+        "default": 8,
+        "max": 15
+      },
+      "effort": "low",
+      "supervision": {
+        "participation": "joins",
+        "proximity": "same-room",
+        "handsOn": "none",
+        "minAdults": 1,
+        "shareable": true,
+        "space": "Wherever you fold laundry, away from the iron, detergent and laundry pods."
+      },
+      "mess": "low",
+      "noise": "quiet",
+      "hazards": [],
+      "steps": [
+        "Sit on the floor with the clean laundry and a basket between you.",
+        "Hand over socks one at a time, 'Sock in!', and let them drop or throw them into the basket.",
+        "Say thank you, then let them push or carry the basket a short way to a drawer."
+      ],
+      "adaptations": [
+        "Younger toddler: in and out of the basket, as many times as they like.",
+        "Older toddler: find the matching sock, or make a pile of all the little ones.",
+        "Tidy-up version: toys into a box at the end of play, with a clean-up song."
+      ],
+      "stopCues": [
+        "Pulling the folded pile apart (a cue to stop, not to scold)",
+        "Bored or wandering",
+        "Tired"
+      ],
+      "safety": [
+        {
+          "text": "Keep detergent, laundry pods and the iron out of sight and reach while your toddler helps.",
+          "claims": [
+            "clm.d.household-products"
+          ]
+        }
+      ],
+      "why": {
+        "text": "CDC suggests letting toddlers help with everyday tasks, such as putting socks or toys in a basket, and praising them for helping.",
+        "claims": [
+          "clm.d.helping-tasks"
+        ]
+      },
+      "evidence": {
+        "type": "described",
+        "claims": [
+          "clm.d.helping-tasks"
+        ]
+      },
+      "checked": "2026-10-28"
+    },
+    {
+      "id": "act.toddler-led-walk",
+      "rev": 1,
+      "title": "Toddler-led walk",
+      "summary": "Walk a safe route at your toddler's pace and let them lead, stopping to squat, look and collect a few big leaves.",
+      "kind": "outing",
+      "ageMin": "12m",
+      "ageMax": "30m",
+      "readiness": {
+        "abilities": [
+          "walks"
+        ],
+        "notes": [
+          "New walkers manage short stretches; bring a stroller or carrier for the rest."
+        ]
+      },
+      "goals": [
+        "gross-motor",
+        "sensory"
+      ],
+      "intents": [
+        "fresh-air",
+        "move",
+        "explore"
+      ],
+      "places": [
+        "outdoors"
+      ],
+      "spaces": [
+        "neighborhood",
+        "yard-or-park"
+      ],
+      "outing": true,
+      "materials": {
+        "level": "none",
+        "items": [
+          "Optional: stroller or carrier for the way home",
+          "Optional: a paper bag for leaves"
+        ]
+      },
+      "setupMinutes": 5,
+      "cleanupMinutes": 2,
+      "duration": {
+        "min": 15,
+        "default": 25,
+        "max": 45
+      },
+      "effort": "medium",
+      "supervision": {
+        "participation": "joins",
+        "proximity": "arms-reach",
+        "handsOn": "intermittent",
+        "minAdults": 1,
+        "shareable": false,
+        "space": "Sidewalks, paths or a park away from traffic; hold hands near roads, driveways and crossings."
+      },
+      "mess": "low",
+      "noise": "moderate",
+      "hazards": [
+        "traffic",
+        "sun-weather",
+        "mouthing",
+        "falls"
+      ],
+      "steps": [
+        "Pick a short, safe route on sidewalks, paths or in a park, and bring the stroller for the way back.",
+        "Let your toddler set the pace and choose the stops: cracks, bugs, puddles, leaves.",
+        "Hold hands near any road, driveway or crossing; let go only on paths away from traffic.",
+        "Collect a few big leaves in a bag and keep an eye on what goes into hands and mouths."
+      ],
+      "adaptations": [
+        "New walker: walk a few minutes, ride a while, walk again.",
+        "Older toddler: copy animals you see, running like a squirrel or flapping like a bird.",
+        "Baby too: the baby rides in the stroller or carrier while the toddler walks holding your hand."
+      ],
+      "stopCues": [
+        "Tired legs or asking to be carried",
+        "Too hot, cold or fussy",
+        "Darting toward the road: time to hold hands or ride"
+      ],
+      "safety": [
+        {
+          "text": "Hold your toddler's hand near traffic and at crossings; stick to sidewalks or paths and stay off driveways.",
+          "claims": [
+            "clm.d.pedestrian-safety"
+          ]
+        },
+        {
+          "text": "Check hands and mouths often: no berries, mushrooms or small stones. Collect big leaves only.",
+          "claims": [
+            "clm.d.small-parts-under-3"
+          ]
+        },
+        {
+          "text": "Dress for the weather; in sun use shade, a hat and sunscreen on exposed skin.",
+          "claims": [
+            "clm.d.sun-protection"
+          ]
+        },
+        {
+          "text": "Let them out to walk: WHO advises not keeping young children strapped in a stroller for more than an hour at a time.",
+          "claims": [
+            "clm.core.who-not-restrained-1h"
+          ]
+        }
+      ],
+      "why": {
+        "text": "AAP suggests child-led walks, saying toddlers practice walking, running, squatting and climbing as they explore; ZERO TO THREE suggests collecting leaves.",
+        "claims": [
+          "clm.d.child-led-walks"
+        ]
+      },
+      "evidence": {
+        "type": "described",
+        "claims": [
+          "clm.d.child-led-walks",
+          "clm.d.outdoor-play-senses",
+          "clm.core.who-active-play"
+        ]
+      },
+      "checked": "2026-10-28"
+    },
+    {
+      "id": "act.playground-toddler-area",
+      "rev": 1,
+      "title": "Toddler area at the playground",
+      "summary": "Visit a playground's toddler area and stay within arm's reach as your toddler tries low steps, ramps, small slides and bucket swings.",
+      "kind": "outing",
+      "ageMin": "12m",
+      "ageMax": "24m",
+      "readiness": {
+        "abilities": [
+          "walks"
+        ],
+        "notes": [
+          "Look for posted age signs; equipment for older children isn't sized for toddlers."
+        ]
+      },
+      "goals": [
+        "gross-motor"
+      ],
+      "intents": [
+        "fresh-air",
+        "move"
+      ],
+      "places": [
+        "outdoors"
+      ],
+      "spaces": [
+        "yard-or-park"
+      ],
+      "outing": true,
+      "materials": {
+        "level": "none",
+        "items": []
+      },
+      "setupMinutes": 5,
+      "cleanupMinutes": 0,
+      "duration": {
+        "min": 15,
+        "default": 30,
+        "max": 60
+      },
+      "effort": "high",
+      "supervision": {
+        "participation": "joins",
+        "proximity": "arms-reach",
+        "handsOn": "intermittent",
+        "minAdults": 1,
+        "shareable": true,
+        "space": "Toddler-sized equipment over soft surfacing; you within arm's reach whenever they're off the ground."
+      },
+      "mess": "low",
+      "noise": "loud",
+      "hazards": [
+        "falls",
+        "sun-weather"
+      ],
+      "steps": [
+        "Head for the toddler section: low climbers, ramps, small slides, spring rockers and bucket swings.",
+        "Check the ground is soft (mulch, sand or rubber), slides aren't hot, and nothing is tied to the equipment.",
+        "Stay within arm's reach on anything off the ground; spot them up the steps and at the slide's end.",
+        "Mix in running on the grass and a sit-down break in the shade."
+      ],
+      "adaptations": [
+        "New walker: ramps, low steps and the bucket swing, with you in front.",
+        "Confident climber: a low ladder and small slide, still with you right there.",
+        "Busy playground: go at a quieter time or stay in the fenced toddler area away from running older kids."
+      ],
+      "stopCues": [
+        "Tired, clumsy or falling more",
+        "Hot, cold or hungry",
+        "Overwhelmed by crowds or noise"
+      ],
+      "safety": [
+        {
+          "text": "Use toddler-sized equipment and stay within arm's reach; toddlers need closer supervision than older children.",
+          "claims": [
+            "clm.d.playground-checks",
+            "clm.d.playground-toddler-equipment"
+          ]
+        },
+        {
+          "text": "Touch slides and metal before use; they can burn in the sun. No hood drawstrings, helmets or cords around the neck.",
+          "claims": [
+            "clm.d.playground-checks"
+          ]
+        },
+        {
+          "text": "Use shade, a hat and sunscreen on exposed skin; avoid the hottest hours.",
+          "claims": [
+            "clm.d.sun-protection"
+          ]
+        }
+      ],
+      "why": {
+        "text": "CPSC lists low climbers, ramps, small slides, spring rockers and full-bucket swings as toddler equipment; AAP says outdoor play helps build balance.",
+        "claims": [
+          "clm.d.playground-toddler-equipment",
+          "clm.d.outdoor-play-senses"
+        ]
+      },
+      "evidence": {
+        "type": "described",
+        "claims": [
+          "clm.d.outings-curiosity",
+          "clm.d.playground-toddler-equipment",
+          "clm.d.outdoor-play-senses",
+          "clm.core.who-active-play"
+        ]
+      },
+      "checked": "2026-10-28"
+    },
+    {
+      "id": "act.water-scoop-tub",
+      "rev": 1,
+      "title": "Scoop-and-pour water tub",
+      "summary": "Sit right beside your toddler at a shallow basin of water with cups, spoons and a funnel; tip the water out the moment you finish.",
+      "kind": "play",
+      "ageMin": "15m",
+      "ageMax": "30m",
+      "readiness": {
+        "abilities": [],
+        "notes": []
+      },
+      "goals": [
+        "sensory",
+        "fine-motor"
+      ],
+      "intents": [
+        "explore",
+        "calm"
+      ],
+      "places": [
+        "indoors",
+        "outdoors"
+      ],
+      "spaces": [
+        "floor",
+        "yard-or-park"
+      ],
+      "outing": false,
+      "materials": {
+        "level": "household",
+        "items": [
+          "Shallow basin or washing-up bowl",
+          "A little water",
+          "Plastic cups, spoons and a funnel",
+          "Towels"
+        ]
+      },
+      "setupMinutes": 3,
+      "cleanupMinutes": 3,
+      "duration": {
+        "min": 5,
+        "default": 10,
+        "max": 20
+      },
+      "effort": "medium",
+      "supervision": {
+        "participation": "joins",
+        "proximity": "arms-reach",
+        "handsOn": "intermittent",
+        "minAdults": 1,
+        "shareable": false,
+        "space": "You within arm's reach the whole time, phone away; towel under the basin; water emptied right after."
+      },
+      "mess": "high",
+      "noise": "quiet",
+      "hazards": [
+        "water"
+      ],
+      "steps": [
+        "Put a shallow basin with just a little water on a towel, indoors or outside.",
+        "Sit right beside your toddler, phone away, and hand over cups, spoons and a funnel.",
+        "Pour together and name what happens: full, empty, splash, drip.",
+        "When you finish, tip the water out straight away and put the basin out of reach."
+      ],
+      "adaptations": [
+        "Younger toddler: one cup and one spoon; splashing and grabbing is the game.",
+        "Older toddler: add a sponge to squeeze or toys that float and sink.",
+        "Baby at home too: do this while the baby sleeps or another adult has them."
+      ],
+      "stopCues": [
+        "Putting their face in or drinking the water",
+        "Shivering or cold hands",
+        "Tipping the basin or throwing water"
+      ],
+      "safety": [
+        {
+          "text": "Stay within arm's reach with full attention the whole time; toddlers can drown in an inch or two of water.",
+          "claims": [
+            "clm.d.water-touch-supervision"
+          ]
+        },
+        {
+          "text": "Empty the basin as soon as play ends; never leave water standing, and an older child can't be the one watching.",
+          "claims": [
+            "clm.d.water-touch-supervision"
+          ]
+        },
+        {
+          "text": "Wipe up spills; wet floors are slippery. Outdoors, add shade and a hat.",
+          "claims": [
+            "clm.d.sun-protection"
+          ]
+        }
+      ],
+      "why": {
+        "text": "HSE lists jugs and a basin for water play for 1–2-year-olds as sensory play that builds hand–eye coordination; CDC and ZERO TO THREE suggest cups, spoons and a funnel.",
+        "claims": [
+          "clm.d.water-sand-pouring"
+        ]
+      },
+      "evidence": {
+        "type": "described",
+        "claims": [
+          "clm.d.water-sand-pouring",
+          "clm.d.water-touch-supervision"
+        ]
+      },
+      "checked": "2026-10-28"
+    },
+    {
+      "id": "act.over-under-in-out",
+      "rev": 1,
+      "title": "Over, under, in and out",
+      "summary": "Set up a cushion to crawl over, a table to crawl under and a laundry basket to climb in and out of, saying each word as they go.",
+      "kind": "play",
+      "ageMin": "15m",
+      "ageMax": "24m",
+      "readiness": {
+        "abilities": [
+          "crawls"
+        ],
+        "notes": []
+      },
+      "goals": [
+        "gross-motor",
+        "communication"
+      ],
+      "intents": [
+        "move",
+        "connect"
+      ],
+      "places": [
+        "indoors"
+      ],
+      "spaces": [
+        "floor"
+      ],
+      "outing": false,
+      "materials": {
+        "level": "household",
+        "items": [
+          "Floor cushion or pillow",
+          "Sturdy table or chair to crawl under",
+          "Empty laundry basket"
+        ]
+      },
+      "setupMinutes": 3,
+      "cleanupMinutes": 2,
+      "duration": {
+        "min": 3,
+        "default": 8,
+        "max": 15
+      },
+      "effort": "medium",
+      "supervision": {
+        "participation": "leads",
+        "proximity": "arms-reach",
+        "handsOn": "intermittent",
+        "minAdults": 1,
+        "shareable": true,
+        "space": "Floor level only, away from stairs and hard edges; table and shelves stable or anchored."
+      },
+      "mess": "low",
+      "noise": "moderate",
+      "hazards": [
+        "falls"
+      ],
+      "steps": [
+        "Lay out a floor cushion, then a sturdy table to crawl under, then an empty laundry basket.",
+        "Show the way, saying each word: 'Over the cushion... under the table... in the basket... out!'",
+        "Stay within arm's reach at the basket, where wobbles are most likely, and go round again."
+      ],
+      "adaptations": [
+        "Cautious mover: start with just the cushion and the basket, with you on the far side.",
+        "Walking toddler: step over the cushion and walk around the table instead of under it.",
+        "Add 'through' with a big cardboard box opened at both ends as a tunnel."
+      ],
+      "stopCues": [
+        "Bumping their head under the table",
+        "Frustration or crying",
+        "Tired or wanting a cuddle"
+      ],
+      "safety": [
+        {
+          "text": "Keep everything at floor level, with cushions on the floor and never stacked on sofas, and spot within arm's reach.",
+          "claims": [
+            "clm.d.falls-gates-furniture"
+          ]
+        },
+        {
+          "text": "Use a sturdy table and anchored furniture; climbing toddlers can pull furniture over.",
+          "claims": [
+            "clm.d.anchor-furniture"
+          ]
+        }
+      ],
+      "why": {
+        "text": "ZERO TO THREE describes this over-under-in-out game for 12–24 months and says games like it help toddlers learn word meanings while being active.",
+        "claims": [
+          "clm.d.over-under"
+        ]
+      },
+      "evidence": {
+        "type": "described",
+        "claims": [
+          "clm.d.over-under",
+          "clm.core.who-active-play"
+        ]
+      },
+      "checked": "2026-10-28"
+    }
+  ],
+  "recipes": [],
+  "starterPlans": []
+}

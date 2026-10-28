@@ -4,7 +4,6 @@
   "version": "1.0.0",
   "description": "Trunk — a little help for the next hour. A practical activity finder for parents of children under five.",
   "type": "module",
-  "license": "MIT",
   "engines": {
     "node": ">=22.18"
   },
@@ -12,12 +11,14 @@
     "dev": "vite",
     "content": "node scripts/build-catalog.ts",
     "validate:content": "node scripts/build-catalog.ts --check",
-    "typecheck": "tsc --noEmit -p tsconfig.json",
+    "typecheck": "node scripts/build-catalog.ts && tsc --noEmit -p tsconfig.json",
     "test": "vitest run",
-    "build": "npm run content && npm run typecheck && vite build",
+    "build": "npm run typecheck && vite build",
     "preview": "vite preview",
     "e2e": "playwright test",
-    "check": "npm run content && npm run typecheck && npm test"
+    "check": "npm run typecheck && vitest run",
+    "pretest": "node scripts/build-catalog.ts",
+    "serve:subpath": "node e2e/serve.mjs"
   },
   "dependencies": {
     "react": "^19.3.1",

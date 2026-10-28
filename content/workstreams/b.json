@@ -1,0 +1,2200 @@
+{
+  "schema": 1,
+  "workstream": "B",
+  "description": "Workstream B (3 to under 6 months): floor, rolling, sitting, social, book, routine and outing activities, including three busy-nearby back-play options, with sources and claims checked 2026-10-28.",
+  "sources": [
+    {
+      "id": "src.cdc.milestones-4-months",
+      "url": "https://www.cdc.gov/act-early/milestones/4-months.html",
+      "org": "Centers for Disease Control and Prevention (CDC), Learn the Signs. Act Early.",
+      "title": "Milestones by 4 Months",
+      "jurisdiction": "US",
+      "checked": "2026-10-28",
+      "updated": "2026-05-16",
+      "notes": "Page shows 'Reviewed: May 16, 2026'. The site's CDN refuses scripted downloads, so the page was read through the WebFetch tool's text rendering (targeted quotes of each bullet). Worth a browser spot-check."
+    },
+    {
+      "id": "src.cdc.milestones-6-months",
+      "url": "https://www.cdc.gov/act-early/milestones/6-months.html",
+      "org": "Centers for Disease Control and Prevention (CDC), Learn the Signs. Act Early.",
+      "title": "Milestones by 6 Months",
+      "jurisdiction": "US",
+      "checked": "2026-10-28",
+      "updated": "2026-05-16",
+      "notes": "Page shows 'Reviewed: May 16, 2026'. Read through the WebFetch tool's text rendering (CDN refuses scripted downloads). Worth a browser spot-check."
+    },
+    {
+      "id": "src.aap-hc.movement-4-7-months",
+      "url": "https://www.healthychildren.org/English/ages-stages/baby/Pages/Movement-4-to-7-Months.aspx",
+      "org": "American Academy of Pediatrics (HealthyChildren.org)",
+      "title": "Movement Milestones: Babies 4 to 7 Months",
+      "jurisdiction": "US",
+      "checked": "2026-10-28",
+      "updated": "2021-03-08",
+      "notes": "Adapted from Caring for Your Baby and Young Child: Birth to Age 5, 7th ed. (AAP 2019). Mentions pillows for back support when practicing sitting; Trunk uses an adult's hands instead."
+    },
+    {
+      "id": "src.aap-hc.language-4-7-months",
+      "url": "https://www.healthychildren.org/English/ages-stages/baby/Pages/Language-Development-4-to-7-Months.aspx",
+      "org": "American Academy of Pediatrics (HealthyChildren.org)",
+      "title": "Language Development: 4 to 7 Months",
+      "jurisdiction": "US",
+      "checked": "2026-10-28",
+      "updated": "2009-08-01",
+      "notes": "Older page (last updated 8/1/2009) from Caring for Your Baby and Young Child (AAP 2009). Used only for the babbling description and the repeat-the-syllable tip; its 7-month hearing note is not used."
+    },
+    {
+      "id": "src.aap-hc.milestones-1-4-months",
+      "url": "https://www.healthychildren.org/English/ages-stages/baby/Pages/Developmental-Milestones-3-Months.aspx",
+      "org": "American Academy of Pediatrics (HealthyChildren.org)",
+      "title": "Developmental Milestones: 1-4 Months Old",
+      "jurisdiction": "US",
+      "checked": "2026-10-28",
+      "updated": "2026-04-22",
+      "notes": "URL slug says 3 months; page covers 1 to 4 months. Adapted from Caring for Your Baby and Young Child, 8th ed. (AAP 2024)."
+    },
+    {
+      "id": "src.aap-hc.how-active-is-your-baby",
+      "url": "https://www.healthychildren.org/English/ages-stages/baby/Pages/how-active-is-your-baby.aspx",
+      "org": "American Academy of Pediatrics (HealthyChildren.org)",
+      "title": "How Active is Your Baby? Tips to Get Infants Learning, Moving & Thriving",
+      "jurisdiction": "US",
+      "checked": "2026-10-28",
+      "updated": "2025-09-04",
+      "notes": "By Casey Freymiller, MD, FAAP. Has a '3-6 months' section and an any-age list that includes stroller or carrier walks."
+    },
+    {
+      "id": "src.aap-hc.how-to-buy-safe-toys",
+      "url": "https://www.healthychildren.org/English/safety-prevention/at-home/Pages/How-to-Buy-Safe-Toys.aspx",
+      "org": "American Academy of Pediatrics (HealthyChildren.org)",
+      "title": "How to Buy Safe Toys",
+      "jurisdiction": "US",
+      "checked": "2026-10-28",
+      "updated": "2024-12-19",
+      "notes": "Adapted from A Parent's Guide to Toy Safety (AAP 2021)."
+    },
+    {
+      "id": "src.nhs.keep-baby-active",
+      "url": "https://www.nhs.uk/baby/babys-development/play-and-learning/keep-baby-or-toddler-active/",
+      "org": "NHS (England)",
+      "title": "How to keep your baby or toddler active",
+      "jurisdiction": "UK",
+      "checked": "2026-10-28",
+      "updated": "2023-03-09",
+      "notes": "Page last reviewed 9 March 2023; its next review was due 9 March 2026, so it was overdue for review on the checked date."
+    },
+    {
+      "id": "src.nichd.tummy-time",
+      "url": "https://safetosleep.nichd.nih.gov/reduce-risk/tummy-time",
+      "org": "NICHD Safe to Sleep campaign (National Institutes of Health)",
+      "title": "Tummy Time for a Healthy Baby",
+      "jurisdiction": "US",
+      "checked": "2026-10-28",
+      "notes": "No page date shown; its citations list retrieval dates up to November 2024. Also says pediatricians recommend 15 to 30 minutes of total daily tummy time by about 2 months."
+    },
+    {
+      "id": "src.zero-to-three.stages-of-play-0-6",
+      "url": "https://www.zerotothree.org/resource/stages-of-play-from-birth-to-6-months-a-full-body-experience/",
+      "org": "ZERO TO THREE",
+      "title": "Stages of Play From Birth to 6 Months: A Full-Body Experience!",
+      "jurisdiction": "US",
+      "checked": "2026-10-28",
+      "published": "2015-02-26",
+      "notes": "The site refuses scripted downloads, so the page was read through the WebFetch tool's text rendering. Worth a browser spot-check."
+    },
+    {
+      "id": "src.hse.dress-undress-baby",
+      "url": "https://www.hse.ie/babies-children/parenting-advice/caring-for-a-new-baby/how-to-dress-undress/",
+      "org": "Health Service Executive (Ireland)",
+      "title": "How to dress and undress your baby",
+      "jurisdiction": "IE",
+      "checked": "2026-10-28",
+      "updated": "2023-06-21",
+      "notes": "Page last reviewed 21/06/2023; its next review was due 21/06/2026, so it was overdue for review on the checked date."
+    }
+  ],
+  "claims": [
+    {
+      "id": "clm.b.reach-kick-floor-opportunities",
+      "kind": "recommendation",
+      "text": "Give babies safe chances to reach for and kick at toys on the floor, such as lying on a blanket with a few safe toys nearby, and play on the floor with them every day.",
+      "sources": [
+        "src.cdc.milestones-4-months",
+        "src.hse.play-0-6-months",
+        "src.nhs.play-ideas"
+      ],
+      "locator": "CDC 4 months: 'What you can do for your 4-month-old', bullet 2, and 'More Parenting Tips' (floor or play mat daily); HSE 0–6 months: opening paragraph; NHS: 'Play ideas from 4 months'",
+      "paraphrase": "CDC suggests safe opportunities to reach for and kick at toys and explore, for example on a blanket with safe toys, plus floor or play-mat time each day. HSE suggests playing with babies while they lie on their back. NHS suggests putting toys near a baby from 4 months so they can reach for them.",
+      "scope": "General infant guidance: CDC frames it around 4 months, HSE 0–6 months, NHS from 4 months. US, Ireland, UK."
+    },
+    {
+      "id": "clm.b.swings-at-toys-4m",
+      "kind": "description",
+      "text": "Around 4 months, many babies swing their arms at toys, hold a toy put in their hand, and bring their hands to their mouth. Timing varies from baby to baby.",
+      "sources": [
+        "src.cdc.milestones-4-months",
+        "src.aap-hc.milestones-1-4-months"
+      ],
+      "locator": "CDC 4 months: 'Movement/Physical Development Milestones'; AAP 1–4 months: 'Movement milestones', 'At 4 months'",
+      "paraphrase": "Both list, at about 4 months, holding a toy placed in the hand, using the arms to swing at toys, and bringing the hands to the mouth.",
+      "scope": "US milestone lists for about 4 months. Descriptive only, not a deadline; corrected age applies for babies born early.",
+      "caveat": "Milestone lists describe what most babies do by an age; Trunk does not use them as targets for an activity."
+    },
+    {
+      "id": "clm.b.hanging-toy-safety",
+      "kind": "safety",
+      "text": "AAP (US): hanging crib toys such as mobiles and crib gyms should be out of reach and removed once a baby starts pushing up on hands and knees or reaches 5 months, whichever comes first; take loose strings or ribbons off toys.",
+      "sources": [
+        "src.aap-hc.how-to-buy-safe-toys"
+      ],
+      "locator": "'10 toy buying tips': the stuffed-toy tip (loose ribbons or strings) and the crib-toy tip (hanging crib toys)",
+      "paraphrase": "Remove loose ribbons or strings from toys to prevent strangulation. Hanging crib toys, including mobiles and crib gyms, should be kept out of the baby's reach and removed when the baby first pushes up on hands and knees or at 5 months, whichever is first, because they can strangle.",
+      "scope": "US guidance written for crib toys. Trunk applies the same cut-off to floor play-gym hanging toys as a conservative choice.",
+      "caveat": "The AAP passage is about crib toys, not floor play gyms used during awake, supervised play. HSE (Ireland) suggests a mobile above a baby at play to encourage reaching, but not above the cot."
+    },
+    {
+      "id": "clm.b.mobile-reach-grasp",
+      "kind": "recommendation",
+      "text": "HSE (Ireland) suggests hanging a mobile above a baby during play to encourage reaching and grasping, but not above their cot or bed.",
+      "sources": [
+        "src.hse.play-0-6-months"
+      ],
+      "locator": "'Play and toys to help your child develop - 0 to 6 months', 'You can also' list, mobile item",
+      "paraphrase": "A mobile above the baby's head encourages them to reach and grasp; don't put one above the cot or bed because it can disrupt sleep.",
+      "scope": "Ireland, babies 0–6 months. The page was last reviewed in April 2021 and its next review date has passed."
+    },
+    {
+      "id": "clm.b.toys-bigger-than-mouth",
+      "kind": "safety",
+      "text": "Babies mouth what they hold. Offer only clean toys that are too big to fit in your baby's mouth, with no small or loose parts, sharp edges, or hot surfaces.",
+      "sources": [
+        "src.aap-hc.how-to-buy-safe-toys",
+        "src.cdc.milestones-4-months",
+        "src.hse.play-0-6-months"
+      ],
+      "locator": "AAP: '10 toy buying tips', 'Think LARGE'; CDC 4 months: 'What you can do for your 4-month-old', bullet 3; HSE 0–6 months: clean and chewable toys item",
+      "paraphrase": "AAP: all toys and their parts should be larger than the child's mouth to prevent choking. CDC: let babies explore safe things by mouth, but nothing sharp, hot, or small enough to choke on. HSE: pick clean toys that can be chewed, since babies put everything in their mouths.",
+      "scope": "Infants and young children; US and Ireland."
+    },
+    {
+      "id": "clm.b.mouthing-normal",
+      "kind": "description",
+      "text": "Mouthing is a normal way babies this age explore objects, learning about their texture, size, and shape.",
+      "sources": [
+        "src.zero-to-three.stages-of-play-0-6",
+        "src.cdc.milestones-4-months",
+        "src.aap-hc.how-active-is-your-baby"
+      ],
+      "locator": "Zero to Three: 'Into the Mouth!'; CDC 4 months: 'What you can do for your 4-month-old', bullet 3; AAP How Active: '3-6 months'",
+      "paraphrase": "Zero to Three describes mouthing as an important way babies explore and learn about texture and size. CDC says putting safe things in the mouth is how babies learn. AAP suggests letting babies 3–6 months explore clean, safe objects with their mouth.",
+      "scope": "Babies roughly birth to 6 months; US sources."
+    },
+    {
+      "id": "clm.b.copy-sounds-take-turns",
+      "kind": "recommendation",
+      "text": "Answer your baby's coos and babbles: copy their sounds back, then pause so they can take another turn. Public health and pediatric sources suggest this back-and-forth from the early months.",
+      "sources": [
+        "src.cdc.milestones-4-months",
+        "src.cdc.milestones-6-months",
+        "src.nhs.first-sounds-0-6",
+        "src.sickkids.neonatal-follow-up-4-months"
+      ],
+      "locator": "CDC 4 months: 'More Parenting Tips' (copy your baby's sounds); CDC 6 months: 'What you can do' (back-and-forth play); NHS: 'Little tips for everyday play'; SickKids: 'Communication/Social'",
+      "paraphrase": "CDC suggests copying your baby's sounds to see how long they keep the exchange going, and back-and-forth play that mirrors smiles and sounds. NHS says to respond when your baby makes noises. SickKids says to respond and engage when they make sounds and to repeat their sounds.",
+      "scope": "US (about 4 and 6 months), UK (0–6 months), Canada (SickKids, for babies in neonatal follow-up at 4 months corrected age)."
+    },
+    {
+      "id": "clm.b.babble-begins",
+      "kind": "description",
+      "text": "Around 4 months many babies begin to babble with the rhythm of the language they hear. AAP suggests repeating a syllable your baby makes, then saying a few simple words that use that sound.",
+      "sources": [
+        "src.aap-hc.language-4-7-months",
+        "src.aap-hc.milestones-1-4-months"
+      ],
+      "locator": "AAP Language 4–7 months: paragraph 2; AAP 1–4 months: 'Language/communication milestones', 'At 4 months'",
+      "paraphrase": "At about four months babies start babbling with the rhythms of their native language; talk to them through the day, and when they make a recognizable syllable, say it back and follow with simple words containing it. The 1–4 month page lists cooing and making sounds back when spoken to.",
+      "scope": "US; typical development described, not a deadline.",
+      "caveat": "The Language 4–7 months page dates from 2009; the 1–4 month page was updated in 2026."
+    },
+    {
+      "id": "clm.b.lap-reading-bold-pictures",
+      "kind": "recommendation",
+      "text": "AAP (US): share books from birth. With babies under 6 months, hold them in your lap, make eye contact, point to pictures, vary your voice, and pick simple rhymes and bold pictures. Stop when they look away, arch, or fuss.",
+      "sources": [
+        "src.aap-hc.share-books-baby"
+      ],
+      "locator": "Opening paragraphs, and section 'Birth to 6 months' ('What your baby can do' and 'What you can do')",
+      "paraphrase": "Babies take in the rhythm, tones and sounds of speech before they understand words. Under 6 months they may touch the book and show they need a break by looking away, arching or fussing; there's no need to finish. Hold the baby in your lap somewhere quiet, make eye contact, use different voices, point to pictures, and choose simple rhymes and bold pictures.",
+      "scope": "US; birth to 6 months. Board and fabric books are named for 6–8 months on this page."
+    },
+    {
+      "id": "clm.b.fabric-board-books-3-6m",
+      "kind": "description",
+      "text": "Babies 3–6 months want to reach for and grab things, so a fabric or board book they can hold, pat, and mouth suits this age; mouthing books is a normal stage.",
+      "sources": [
+        "src.aap-hc.how-active-is-your-baby",
+        "src.aap-hc.share-books-baby",
+        "src.nhs.first-sounds-0-6"
+      ],
+      "locator": "AAP How Active: '3-6 months'; AAP Share Books: '6 to 8 month old', 'What your baby can do'; NHS: 'Activities using music, sounds and touch'",
+      "paraphrase": "AAP says infants 3–6 months want to reach and grab, so reading with a fabric or board book keeps mind and body busy, and that tasting books is a normal stage. NHS suggests textured fabric books and talking about how they feel.",
+      "scope": "US and UK; AAP frames this at 3–6 months and 6–8 months, NHS at 0–6 months."
+    },
+    {
+      "id": "clm.b.songs-rhymes-actions",
+      "kind": "recommendation",
+      "text": "Sing to your baby and repeat favourite rhymes with simple actions; you can gently guide their hands through the movements. Talking and singing are widely suggested ways to support early development.",
+      "sources": [
+        "src.nhs.first-sounds-0-6",
+        "src.hse.play-0-6-months",
+        "src.aap-hc.simple-ways-entertain",
+        "src.cdc.milestones-4-months"
+      ],
+      "locator": "NHS: 'Enjoy singing together', 'Activities using music, sounds and touch'; HSE 0–6 months: opening, music item; AAP Simple Ways: 'Pat-a-Cake'; CDC 4 months: 'More Parenting Tips'",
+      "paraphrase": "NHS: babies like hearing the same songs and rhymes many times, and need repetition to learn words; sing action rhymes with repetition. HSE: talking, singing and cuddling help development and confidence; guide the baby's hands to a body-parts song. AAP: gently clap a baby's hands through pat-a-cake. CDC: talk, read and sing to your baby.",
+      "scope": "UK and Ireland (0–6 months), US (newborn–3 months for pat-a-cake; about 4 months for CDC)."
+    },
+    {
+      "id": "clm.b.mirror-interest",
+      "kind": "description",
+      "text": "Babies this age are drawn to faces, and many enjoy seeing themselves in an unbreakable baby mirror, especially closer to 6 months. Baby-safe mirrors are a commonly suggested toy from about 4 months.",
+      "sources": [
+        "src.aap-hc.milestones-1-4-months",
+        "src.aap-hc.how-active-is-your-baby",
+        "src.hse.play-0-6-months",
+        "src.cdc.milestones-6-months"
+      ],
+      "locator": "AAP 1–4 months: 'Appropriate toys & activities', 'At 4 months'; AAP How Active: '3-6 months'; HSE 0–6 months: mirror item; CDC 6 months: 'Social/Emotional Milestones'",
+      "paraphrase": "AAP lists an unbreakable plastic or mylar mirror among toys at 4 months and says babies enjoy mirrors closer to 6 months. HSE suggests playing in front of a mirror. CDC lists liking to look at themselves in a mirror among social and emotional milestones at 6 months.",
+      "scope": "US and Ireland; descriptive. Glass mirrors are not baby toys."
+    },
+    {
+      "id": "clm.b.peekaboo",
+      "kind": "recommendation",
+      "text": "Simple social games like peekaboo, covering your eyes with your hands and then uncovering them, are suggested for babies around 4 months.",
+      "sources": [
+        "src.cdc.milestones-4-months",
+        "src.sickkids.neonatal-follow-up-4-months"
+      ],
+      "locator": "CDC 4 months: 'More Parenting Tips' (play games such as peek-a-boo); SickKids: 'Communication/Social'",
+      "paraphrase": "CDC suggests games like peek-a-boo, hiding your eyes behind your hands and uncovering them, and watching for your baby's reaction. SickKids lists social communication games such as peek-a-boo.",
+      "scope": "US (about 4 months) and Canada (neonatal follow-up, 4 months corrected age).",
+      "caveat": "AAP describes interest in peekaboo as a more marked skill toward 9–12 months; younger babies may simply watch and smile."
+    },
+    {
+      "id": "clm.b.feet-discovery",
+      "kind": "description",
+      "text": "AAP: as coordination improves between 4 and 7 months, babies lying on their back can grab their feet and toes and bring them to their mouth, discovering new sensations.",
+      "sources": [
+        "src.aap-hc.movement-4-7-months"
+      ],
+      "locator": "Section 'Gaining more control of hands & feet', paragraph 3",
+      "paraphrase": "With better coordination, babies find new body parts: on their back they can catch their feet and toes and take them to their mouth, and these explorations bring new sensations.",
+      "scope": "US; 4–7 months, with timing varying between babies."
+    },
+    {
+      "id": "clm.b.toe-rhyme",
+      "kind": "description",
+      "text": "AAP suggests a 'This Little Piggy' game for babies 4–6 months: hold up a foot and wiggle each toe in turn while saying the rhyme in a sing-song voice.",
+      "sources": [
+        "src.aap-hc.simple-ways-entertain"
+      ],
+      "locator": "Section '4 to 6 months', 'Little Piggy Game'",
+      "paraphrase": "Lift your baby's foot and wiggle one toe per line of 'This Little Piggy', in a lively sing-song voice, with a tickle at the end.",
+      "scope": "US; an activity idea for 4–6 months from AAP's Retro Baby."
+    },
+    {
+      "id": "clm.b.kick-time",
+      "kind": "recommendation",
+      "text": "Give babies time on their back to kick their legs freely; HSE (Ireland) suggests some kicking time without a nappy on.",
+      "sources": [
+        "src.hse.play-0-6-months",
+        "src.nhs.keep-baby-active"
+      ],
+      "locator": "HSE 0–6 months: 'give time for movement' item; NHS: 'Ways to get your baby moving', first bullet",
+      "paraphrase": "HSE: allow time for movement so babies can kick their legs with no nappy on. NHS: lay your baby on their back so they can kick.",
+      "scope": "Ireland and UK; general infant guidance."
+    },
+    {
+      "id": "clm.b.track-moving-toy",
+      "kind": "recommendation",
+      "text": "CDC (US) suggests laying your baby on their back and moving a bright toy slowly side to side and up and down to see whether they follow it with their eyes.",
+      "sources": [
+        "src.cdc.milestones-4-months",
+        "src.zero-to-three.stages-of-play-0-6"
+      ],
+      "locator": "CDC 4 months: 'More Parenting Tips' (bright-colored toy); Zero to Three: 'Looking and Noticing'",
+      "paraphrase": "CDC: with your baby on their back, show a brightly colored toy and move it slowly left and right and up and down to see if they watch it. Zero to Three: move a colorful object slowly about 10–12 inches from the baby's face.",
+      "scope": "US; about 4 months (CDC), birth to 6 months (Zero to Three)."
+    },
+    {
+      "id": "clm.b.offer-rattles",
+      "kind": "description",
+      "text": "Easy-to-hold rattles suit this age. Babies start looking at a toy and moving a hand toward it, and a toy offered within reach, or a second one while they hold the first, gives them grasping practice.",
+      "sources": [
+        "src.zero-to-three.stages-of-play-0-6",
+        "src.cdc.milestones-4-months",
+        "src.aap-hc.milestones-1-4-months"
+      ],
+      "locator": "Zero to Three: 'Grasping Begins'; CDC 4 months: 'More Parenting Tips' (safe toys that are easy to hold); AAP 1–4 months: toys 'At 4 months'",
+      "paraphrase": "Zero to Three: babies look at an object and move a hand to it, building hand-eye coordination; offer rattles within reach and a second object while one is held. CDC: give safe toys that are easy to hold, such as rattles. AAP lists see-through rattles among toys at 4 months.",
+      "scope": "US; birth to 6 months (Zero to Three) and about 4 months (CDC, AAP)."
+    },
+    {
+      "id": "clm.b.disengagement-cues",
+      "kind": "description",
+      "text": "Babies show when they need a break: looking or turning away, arching their back, fussing, hiccupping, or crying. Pausing and trying another time is part of the play.",
+      "sources": [
+        "src.zero-to-three.stages-of-play-0-6",
+        "src.aap-hc.share-books-baby"
+      ],
+      "locator": "Zero to Three: 'Feeling Connected'; AAP Share Books: 'Birth to 6 months', 'What your baby can do'",
+      "paraphrase": "Zero to Three lists turning away, back-arching, fussing, hiccupping and crying as signs a baby needs a break, and a calm, clear gaze and sounds as signs they're ready again. AAP says babies signal a break by looking away, arching or fussing, and that shared reading should be fun, not forced.",
+      "scope": "Infants birth to 6 months; US."
+    },
+    {
+      "id": "clm.b.roll-tummy-to-back-first",
+      "kind": "description",
+      "text": "AAP: babies often begin rolling in the 3–6 month period, usually tummy to back first, though timing varies and rolling the other way first is also normal.",
+      "sources": [
+        "src.aap-hc.movement-4-7-months",
+        "src.aap-hc.how-active-is-your-baby"
+      ],
+      "locator": "AAP Movement 4–7 months: 'Getting ready to roll over'; AAP How Active: '3-6 months'",
+      "paraphrase": "By the end of 4–7 months many babies roll both ways; the time frame differs between babies and most go stomach to back before back to stomach, though the reverse is normal. How Active says babies start rolling during 3–6 months, front to back first.",
+      "scope": "US; descriptive, not a deadline."
+    },
+    {
+      "id": "clm.b.toys-out-of-reach-roll",
+      "kind": "recommendation",
+      "text": "Placing a toy just out of reach while your baby is on their tummy or back gives them a reason to reach and roll toward it.",
+      "sources": [
+        "src.cdc.milestones-6-months",
+        "src.hse.play-0-6-months",
+        "src.sickkids.neonatal-follow-up-4-months"
+      ],
+      "locator": "CDC 6 months: 'More Parenting Tips' (toys just out of reach); HSE 0–6 months: opening paragraph; SickKids: 'Gross motor' (rolling to both sides)",
+      "paraphrase": "CDC: put your baby on their tummy or back with toys just out of reach and encourage rolling to get them. HSE: floor play encourages rolling, and toys placed just out of reach encourage movement. SickKids: practice rolling to both the left and right.",
+      "scope": "US (about 6 months), Ireland (0–6 months), Canada (neonatal follow-up, 4 months corrected age)."
+    },
+    {
+      "id": "clm.b.side-lying-support",
+      "kind": "description",
+      "text": "Side-lying play on a blanket, with a rolled towel behind the back if needed and both arms forward toward a toy, is described as a play position and an alternative for babies who dislike tummy time.",
+      "sources": [
+        "src.aap-hc.tummy-time-activities",
+        "src.sickkids.neonatal-follow-up-4-months"
+      ],
+      "locator": "AAP 3 Tummy Time Activities: 'Activity #3: Side lying with support'; SickKids: 'Gross motor' (side-lying position for play)",
+      "paraphrase": "AAP: lay the baby on their side on a blanket, propped against a rolled towel if needed, arms in front and hips and knees bent; offer a toy or book, and change position every 10–15 minutes. SickKids lists left and right side-lying for play among gross-motor suggestions.",
+      "scope": "US general guidance; Canada for babies in neonatal follow-up at 4 months corrected age. Awake, supervised play only.",
+      "caveat": "Side-lying is not tummy time; Trunk does not count it toward any tummy-time amount."
+    },
+    {
+      "id": "clm.b.towel-roll-prop",
+      "kind": "description",
+      "text": "A small rolled towel or blanket under the chest and arms can prop a baby up slightly during tummy time on the floor, which may help if lifting their head is hard.",
+      "sources": [
+        "src.nichd.tummy-time",
+        "src.nhs.keep-baby-active",
+        "src.childrens-wi.back-to-sleep-tummy-to-play"
+      ],
+      "locator": "NICHD: 'Tummy time tips' list; NHS: 'Why tummy time is important', paragraph 2; Children's Wisconsin: 'With a little help'",
+      "paraphrase": "NICHD suggests a rolled-up towel under the baby's arms to lift them slightly. NHS says that if a baby struggles to lift their head, a rolled towel can go under the armpits, with toys nearby. Children's Wisconsin describes a small blanket roll under the chest and arms.",
+      "scope": "US and UK general guidance. A propped position is not a flat surface.",
+      "caveat": "HSE (Ireland) says that from 3 months all tummy time should be on a firm, flat mat and does not describe a towel roll. Some care teams set flat-surface-only targets; Trunk never counts propped time toward one."
+    },
+    {
+      "id": "clm.b.supported-sitting",
+      "kind": "recommendation",
+      "text": "Once your baby can lift their chest during tummy time, you can help them practice sitting by holding them upright, with something interesting in front to look at.",
+      "sources": [
+        "src.aap-hc.movement-4-7-months",
+        "src.cdc.milestones-6-months",
+        "src.sickkids.neonatal-follow-up-4-months"
+      ],
+      "locator": "AAP Movement 4–7 months: 'Working on sitting up'; CDC 6 months: 'More Parenting Tips' (hold your baby up while she sits); SickKids: 'Gross motor' (sitting with less support)",
+      "paraphrase": "AAP: when a baby can raise their chest, help them practice sitting by holding them up; toys in front give them a focus while they find their balance. CDC: hold your baby up to sit, let them look around, and offer toys while they learn to balance. SickKids: sit with less support, hands as low on the body as possible.",
+      "scope": "US (4–7 months; about 6 months) and Canada (neonatal follow-up, 4 months corrected age).",
+      "caveat": "AAP also mentions pillows for back support. Trunk uses an adult's hands and lap instead, so a baby who tips forward doesn't land face-down in something soft."
+    },
+    {
+      "id": "clm.b.limit-seats-devices",
+      "kind": "recommendation",
+      "text": "Avoid long stretches in swings, bouncers, and seats that prop a baby upright. NHS (UK) suggests no more than 20 minutes at a time, and SickKids advises avoiding standing devices.",
+      "sources": [
+        "src.cdc.milestones-4-months",
+        "src.nhs.keep-baby-active",
+        "src.sickkids.neonatal-follow-up-4-months"
+      ],
+      "locator": "CDC 4 months: 'More Parenting Tips' (time to move and interact); NHS: 'Baby bouncers, walkers and seats'; SickKids: 'Gross motor', last item",
+      "paraphrase": "CDC: give babies time to move and interact through the day rather than long spells in swings, strollers or bouncy seats. NHS: long periods in seats that prop a baby sitting can delay sitting alone; limit walkers, bouncers and seats to about 20 minutes at a time. SickKids: avoid standing devices such as jumpers and activity centres.",
+      "scope": "US, UK, and Canada (SickKids for neonatal follow-up babies).",
+      "caveat": "Limits differ: NHS gives 20 minutes for these devices, while WHO's 1-hour limit covers any restraint, including strollers and carriers."
+    },
+    {
+      "id": "clm.b.textures",
+      "kind": "recommendation",
+      "text": "Offer babies a variety of textures to feel through the day, such as different fabrics and textured toys or books, and talk about how they feel.",
+      "sources": [
+        "src.aap-hc.tummy-time-activities",
+        "src.sickkids.neonatal-follow-up-4-months",
+        "src.nhs.first-sounds-0-6"
+      ],
+      "locator": "AAP 3 Tummy Time Activities: 'More tummy-time tips', 'Think about textures'; SickKids: 'Fine motor', last item; NHS: 'Activities using music, sounds and touch'",
+      "paraphrase": "AAP: babies need a range of textures during the day, such as blankets of different textures, and light clothing lets them feel the surfaces. SickKids: offer objects of different textures, shapes and sizes to explore with hands and mouth. NHS: play with textured fabric books and talk about how they feel.",
+      "scope": "US general guidance, Canada (neonatal follow-up at 4 months corrected age), UK (0–6 months)."
+    },
+    {
+      "id": "clm.b.narrate-care-routines",
+      "kind": "recommendation",
+      "text": "Use diaper changes and dressing as face-to-face talking time: say what you're doing in short, repeated words ('legs up', 'socks off') and add a song or rhyme.",
+      "sources": [
+        "src.nhs.first-sounds-0-6",
+        "src.hse.change-nappy",
+        "src.hse.dress-undress-baby"
+      ],
+      "locator": "NHS: 'Activities for your daily routine', 'Nappy changing'; HSE nappy page: 'Building a bond'; HSE dressing page: paragraph after the 'Important' box",
+      "paraphrase": "NHS: nappy changing is close, face-to-face time; describe what you're doing, reuse the same words and actions so the baby learns through repetition, and sing rhymes. HSE: nappy changes and dressing are chances to bond; talk, explain what you're doing, sing and play.",
+      "scope": "UK (0–6 months) and Ireland (babies generally)."
+    },
+    {
+      "id": "clm.b.talk-while-doing-tasks",
+      "kind": "recommendation",
+      "text": "Talk to your baby about what you're doing as you go about everyday tasks, and talk about what they're looking at; it gives them lots of everyday language to hear.",
+      "sources": [
+        "src.nhs.first-sounds-0-6",
+        "src.cdc.milestones-6-months",
+        "src.aap-hc.language-4-7-months"
+      ],
+      "locator": "NHS: video caption 'Talk with your baby as much as you can'; CDC 6 months: 'More Parenting Tips' (point to what your baby looks at and talk about it); AAP Language 4–7 months: paragraph 2",
+      "paraphrase": "NHS shows a parent keeping her baby with her and explaining what she is doing while she does chores. CDC: when your baby looks at something, point to it and talk about it. AAP: encourage babbling by talking to your baby throughout the day.",
+      "scope": "UK (0–6 months) and US (about 6 months; 4–7 months)."
+    },
+    {
+      "id": "clm.b.name-things-outside",
+      "kind": "recommendation",
+      "text": "On walks, point out and name what catches your baby's eye, like trees, cars, and dogs; a stroller or carrier walk is a simple way to show a baby new things.",
+      "sources": [
+        "src.cdc.milestones-6-months",
+        "src.nhs.first-sounds-0-6",
+        "src.aap-hc.how-active-is-your-baby"
+      ],
+      "locator": "CDC 6 months: 'What you can do for your 6-month-old', bullet 3; NHS: 'Out and about'; AAP How Active: 'Remember' list",
+      "paraphrase": "CDC: point out and name new things, for example cars, trees and animals on a walk. NHS: when out, watch what interests your baby, point to it and say what it is. AAP: walks in a stroller or infant carrier can show your baby new things.",
+      "scope": "US and UK; infants."
+    },
+    {
+      "id": "clm.b.sun-under-6-months",
+      "kind": "safety",
+      "text": "AAP (US): keep babies under 6 months out of direct sun. Use shade or a stroller canopy, light clothes that cover arms and legs, and a wide-brimmed hat; avoid 10 a.m. to 4 p.m. Sunscreen only on small areas if there's no shade.",
+      "sources": [
+        "src.aap-hc.sun-safety",
+        "src.aap-hc.baby-sunburn-prevention"
+      ],
+      "locator": "AAP Sun Safety: 'Simple rules to protect your family from sunburns', bullet 1, and 'Sunscreen for babies'; AAP Baby Sunburn Prevention: 'What is the best way to prevent sunburns in babies?'",
+      "paraphrase": "Keep babies younger than 6 months out of direct sunlight, using shade from a tree, umbrella or stroller canopy; dress them in lightweight long sleeves, long pants and wide-brimmed hats; avoid having a baby outside between 10 a.m. and 4 p.m.; under 6 months, sunscreen on small areas such as the face only if clothing and shade aren't available.",
+      "scope": "US; babies under 6 months.",
+      "caveat": "AAP's 2026 baby sunburn page is stricter: it says babies under 6 months should be kept out of direct and indirect sunlight entirely because of heat-stroke risk. HSE (Ireland) advises shade for all babies under 12 months; CPS (Canada) does not recommend sunscreen under 6 months."
+    },
+    {
+      "id": "clm.b.carrier-face-visible",
+      "kind": "safety",
+      "text": "In a carrier or sling, keep your baby's head above the fabric, face visible, chin off their chest, and nose and mouth clear, and check on them often.",
+      "sources": [
+        "src.aap-hc.baby-carriers"
+      ],
+      "locator": "'Safety tips for baby carriers', items 1 to 3 and the sling checklist",
+      "paraphrase": "Some slings curl a baby into a C-shape that raises the risk of breathing problems; keep the neck straight and chin off the chest, and always be able to see the face. In any carrier, check often that fabric or your body isn't blocking nose or mouth. Babies born early or with breathing problems should not go in upright carriers.",
+      "scope": "US; all infants in carriers. AAP cites a CPSC suffocation warning for sling carriers, especially under 4 months."
+    },
+    {
+      "id": "clm.b.raised-surface-falls",
+      "kind": "safety",
+      "text": "Never leave a baby alone on a changing table, bed, or other raised surface, even for a few seconds; babies can roll off and be badly hurt.",
+      "sources": [
+        "src.hse.change-nappy"
+      ],
+      "locator": "'Where to change a nappy', 'Important' box",
+      "paraphrase": "Don't leave a baby on a raised surface by themselves even briefly; babies can roll off changing tables, beds and similar surfaces, and such falls can cause serious head injuries.",
+      "scope": "Ireland; all babies, and more pressing once they start rolling."
+    },
+    {
+      "id": "clm.b.nappy-sacks-out-of-reach",
+      "kind": "safety",
+      "text": "Keep diaper sacks, bags, and other thin plastic out of your baby's reach, including on the changing surface; the material can cling to a baby's face.",
+      "sources": [
+        "src.hse.change-nappy"
+      ],
+      "locator": "Section 'Suffocation risk - nappy bag or sack'",
+      "paraphrase": "Nappy disposal bags and sacks, like other plastic bags, can suffocate a baby because the thin material can stick to the face; don't keep them anywhere a baby can reach, such as on the changer or cot.",
+      "scope": "Ireland; all babies."
+    },
+    {
+      "id": "clm.b.dress-gently-no-cords",
+      "kind": "safety",
+      "text": "Dress your baby on a safe, flat surface and move gently: don't twist, rush, or over-stretch their arms and legs, support their head, and skip clothes with drawstrings and hats with cords.",
+      "sources": [
+        "src.hse.dress-undress-baby"
+      ],
+      "locator": "Opening paragraph and 'Important' box; 'Unsafe clothes'; 'Bodysuits, vests and T-shirts' steps",
+      "paraphrase": "Use a safe, flat surface such as a changing mat or the floor and never leave the baby unattended. Avoid twisting, quick movements and over-extending limbs; support the head and body as tops go on, and ease sleeves over the hand without pulling the arm. Clothes with drawstrings and hats with cords are not safe.",
+      "scope": "Ireland; all babies."
+    }
+  ],
+  "activities": [
+    {
+      "id": "act.play-gym-bat-and-grab",
+      "rev": 1,
+      "title": "Play-gym batting on the mat",
+      "summary": "Lay your baby on their back under a floor play gym so they can swipe, bat, and grab at the hanging toys while you stay nearby.",
+      "kind": "play",
+      "ageMin": "3m",
+      "ageMax": "5m",
+      "readiness": {
+        "abilities": [],
+        "notes": [
+          "Take the hanging toys down once your baby starts pushing up on hands and knees.",
+          "Born early? Use corrected age as a guide and ask your baby's clinician."
+        ]
+      },
+      "goals": [
+        "fine-motor"
+      ],
+      "intents": [
+        "explore",
+        "move",
+        "parent-moment"
+      ],
+      "places": [
+        "indoors"
+      ],
+      "spaces": [
+        "floor"
+      ],
+      "outing": false,
+      "materials": {
+        "level": "toys",
+        "items": [
+          "Floor play gym with toys on short, firm links",
+          "Firm play mat or blanket on the floor"
+        ]
+      },
+      "setupMinutes": 2,
+      "cleanupMinutes": 1,
+      "duration": {
+        "min": 3,
+        "default": 8,
+        "max": 15
+      },
+      "effort": "low",
+      "supervision": {
+        "participation": "watches",
+        "proximity": "same-room",
+        "handsOn": "none",
+        "minAdults": 1,
+        "shareable": true,
+        "space": "Firm floor mat in your line of sight, away from sofa edges, pets, and older kids' small toys; look over often."
+      },
+      "mess": "none",
+      "noise": "quiet",
+      "hazards": [
+        "cords",
+        "mouthing",
+        "suffocation"
+      ],
+      "steps": [
+        "Set the play gym over a firm mat on the floor, somewhere you can see your baby from your task.",
+        "Check each hanging toy is on a short, firm link and too big to fit in your baby's mouth.",
+        "Lay your baby on their back under the arch and move one toy so it catches their eye.",
+        "Glance over often and chat from where you are; swap a toy if they lose interest."
+      ],
+      "adaptations": [
+        "Just starting to swipe: hang one toy low over their chest, close to their hands.",
+        "Grabbing well: move a toy down by their feet so they kick at it, or hang two toys to choose between."
+      ],
+      "stopCues": [
+        "Fussing, crying, or turning away from the toys",
+        "Rubbing eyes, yawning, or going quiet and drowsy",
+        "Rolled onto their tummy and getting tired"
+      ],
+      "safety": [
+        {
+          "text": "Hanging toys need short, secure links with no long strings. Take them down once your baby pushes up on hands and knees.",
+          "claims": [
+            "clm.b.hanging-toy-safety"
+          ]
+        },
+        {
+          "text": "Your baby will mouth whatever they grab, so every toy must be clean and too big to fit in their mouth.",
+          "claims": [
+            "clm.b.toys-bigger-than-mouth"
+          ]
+        },
+        {
+          "text": "If they roll onto their tummy, come close and watch. If they get drowsy, move them to their back in their own sleep space.",
+          "claims": [
+            "clm.core.tummy-awake-supervised",
+            "clm.core.sleep-on-back"
+          ]
+        }
+      ],
+      "why": {
+        "text": "Around 4 months many babies start swinging their arms at toys and holding what they touch; hanging toys give them something to aim for.",
+        "claims": [
+          "clm.b.swings-at-toys-4m",
+          "clm.b.mobile-reach-grasp"
+        ]
+      },
+      "evidence": {
+        "type": "described",
+        "claims": [
+          "clm.b.mobile-reach-grasp",
+          "clm.b.reach-kick-floor-opportunities",
+          "clm.b.swings-at-toys-4m"
+        ]
+      },
+      "checked": "2026-10-28"
+    },
+    {
+      "id": "act.toe-catch-back-play",
+      "rev": 1,
+      "title": "Toe-catching on the mat",
+      "summary": "Lay your baby on their back on a floor mat with bare feet so they can kick, catch their knees and toes, and pull them to their mouth.",
+      "kind": "play",
+      "ageMin": "4m",
+      "ageMax": "7m",
+      "readiness": {
+        "abilities": [],
+        "notes": [
+          "Born early? Use corrected age as a guide and ask your baby's clinician."
+        ]
+      },
+      "goals": [
+        "gross-motor",
+        "sensory"
+      ],
+      "intents": [
+        "move",
+        "explore",
+        "parent-moment"
+      ],
+      "places": [
+        "indoors"
+      ],
+      "spaces": [
+        "floor"
+      ],
+      "outing": false,
+      "materials": {
+        "level": "household",
+        "items": [
+          "Firm play mat or blanket on the floor",
+          "Old towel",
+          "A spare diaper within reach"
+        ]
+      },
+      "setupMinutes": 2,
+      "cleanupMinutes": 2,
+      "duration": {
+        "min": 3,
+        "default": 10,
+        "max": 15
+      },
+      "effort": "low",
+      "supervision": {
+        "participation": "watches",
+        "proximity": "same-room",
+        "handsOn": "none",
+        "minAdults": 1,
+        "shareable": true,
+        "space": "Firm floor mat in your line of sight, away from sofa edges, pets, and older kids' small toys; look over often."
+      },
+      "mess": "low",
+      "noise": "quiet",
+      "hazards": [
+        "suffocation"
+      ],
+      "steps": [
+        "Check the room is comfortably warm, then lay a towel flat over a firm mat on the floor.",
+        "Lay your baby on their back with legs and feet bare; a loosened diaper, or none, gives more freedom.",
+        "Let them kick and stretch. Many babies this age start catching their knees and toes and pulling them to their mouth.",
+        "Look over and chat from nearby; a smile or a word back keeps them going."
+      ],
+      "adaptations": [
+        "Not finding their feet yet? Kneel beside them, wiggle each toe through 'This Little Piggy', then lift their feet within reach of their hands.",
+        "Kicking a lot: hold a crinkly cloth book or soft toy by their feet so each kick makes it move."
+      ],
+      "stopCues": [
+        "Fussing, crying, or arching",
+        "Getting cold: mottled skin or a cool tummy",
+        "Yawning, staring off, or getting drowsy"
+      ],
+      "safety": [
+        {
+          "text": "Keep the towel flat under their hips with nothing soft by their face. If they get drowsy, move them to their back in their own sleep space.",
+          "claims": [
+            "clm.core.sleep-on-back"
+          ]
+        },
+        {
+          "text": "Floor only, never a bed or sofa: a kicking baby can scoot or roll off a raised surface.",
+          "claims": [
+            "clm.core.floor-not-bed",
+            "clm.b.raised-surface-falls"
+          ]
+        }
+      ],
+      "why": {
+        "text": "Kicking freely on their back is a simple way to move, and between 4 and 7 months many babies discover they can catch their own feet.",
+        "claims": [
+          "clm.b.kick-time",
+          "clm.b.feet-discovery"
+        ]
+      },
+      "evidence": {
+        "type": "described",
+        "claims": [
+          "clm.b.kick-time",
+          "clm.b.reach-kick-floor-opportunities",
+          "clm.b.feet-discovery",
+          "clm.b.toe-rhyme"
+        ]
+      },
+      "checked": "2026-10-28"
+    },
+    {
+      "id": "act.chore-chat-from-the-mat",
+      "rev": 1,
+      "title": "Chore chat from the play mat",
+      "summary": "Lay your baby on their back on a floor mat where they can see you, then talk them through a calm chore like folding laundry.",
+      "kind": "play",
+      "ageMin": "3m",
+      "ageMax": "6m",
+      "readiness": {
+        "abilities": [],
+        "notes": []
+      },
+      "goals": [
+        "communication"
+      ],
+      "intents": [
+        "connect",
+        "routine",
+        "parent-moment"
+      ],
+      "places": [
+        "indoors"
+      ],
+      "spaces": [
+        "floor"
+      ],
+      "outing": false,
+      "materials": {
+        "level": "household",
+        "items": [
+          "Firm play mat or blanket on the floor",
+          "A calm chore: laundry to fold, mail to sort"
+        ]
+      },
+      "setupMinutes": 1,
+      "cleanupMinutes": 0,
+      "duration": {
+        "min": 5,
+        "default": 10,
+        "max": 20
+      },
+      "effort": "low",
+      "supervision": {
+        "participation": "watches",
+        "proximity": "same-room",
+        "handsOn": "none",
+        "minAdults": 1,
+        "shareable": true,
+        "space": "Mat in your line of sight, a little apart from your task; no cooking, hot drinks, or cords near the baby."
+      },
+      "mess": "none",
+      "noise": "quiet",
+      "hazards": [
+        "suffocation"
+      ],
+      "steps": [
+        "Lay your baby on their back on a firm mat where they can see you, a little away from your work.",
+        "Talk about what you're doing as you go: 'One sock, two socks… here's a big blue towel.'",
+        "When they coo or kick, stop and answer them, then carry on.",
+        "Now and then hold something up to show them, like a bright T-shirt."
+      ],
+      "adaptations": [
+        "Low on words today: hum or sing what you're doing instead of talking.",
+        "Older sibling around: they can hand you socks and tell the baby what color each one is."
+      ],
+      "stopCues": [
+        "Fussing or crying",
+        "Rubbing eyes, yawning, or getting drowsy",
+        "Rolled onto their tummy and getting tired"
+      ],
+      "safety": [
+        {
+          "text": "Keep laundry piles, bags, and cords off the mat and away from your baby's face.",
+          "claims": [
+            "clm.b.nappy-sacks-out-of-reach"
+          ]
+        },
+        {
+          "text": "Not while cooking or carrying hot drinks. If your baby gets drowsy, move them to their back in their own sleep space.",
+          "claims": [
+            "clm.core.sleep-on-back"
+          ]
+        }
+      ],
+      "why": {
+        "text": "Hearing you talk about everyday things gives your baby lots of language to listen to, long before they understand the words.",
+        "claims": [
+          "clm.b.talk-while-doing-tasks"
+        ]
+      },
+      "evidence": {
+        "type": "adapted",
+        "claims": [
+          "clm.b.talk-while-doing-tasks",
+          "clm.b.copy-sounds-take-turns",
+          "clm.core.tummy-vary-positions"
+        ]
+      },
+      "checked": "2026-10-28"
+    },
+    {
+      "id": "act.rattle-track-and-grab",
+      "rev": 1,
+      "title": "Follow and grab the rattle",
+      "summary": "Move a rattle slowly across your baby's view so they follow it, then hold it within reach so they can swipe, grab, shake, and mouth it.",
+      "kind": "play",
+      "ageMin": "3m",
+      "ageMax": "7m",
+      "readiness": {
+        "abilities": [],
+        "notes": [
+          "Born early? Use corrected age as a guide and ask your baby's clinician."
+        ]
+      },
+      "goals": [
+        "fine-motor",
+        "sensory"
+      ],
+      "intents": [
+        "explore",
+        "connect"
+      ],
+      "places": [
+        "indoors",
+        "outdoors"
+      ],
+      "spaces": [
+        "floor",
+        "lap-or-arms"
+      ],
+      "outing": false,
+      "materials": {
+        "level": "toys",
+        "items": [
+          "A light, easy-to-hold rattle too big to fit in the mouth",
+          "Optional second rattle or soft toy"
+        ]
+      },
+      "setupMinutes": 0,
+      "cleanupMinutes": 1,
+      "duration": {
+        "min": 2,
+        "default": 5,
+        "max": 10
+      },
+      "effort": "low",
+      "supervision": {
+        "participation": "joins",
+        "proximity": "arms-reach",
+        "handsOn": "intermittent",
+        "minAdults": 1,
+        "shareable": true,
+        "space": "Baby on a floor mat or supported in your lap, within arm's reach; not on a bed or other raised surface."
+      },
+      "mess": "none",
+      "noise": "moderate",
+      "hazards": [
+        "mouthing"
+      ],
+      "steps": [
+        "With your baby on their back on the floor, hold a rattle about a forearm's length above their face.",
+        "Give it a soft rattle, then move it slowly side to side and up and down so their eyes can follow.",
+        "Bring it near their hands and let them swipe and grab; if they're new to it, place it in their palm.",
+        "Let them hold, shake, and mouth it. Once they've got it, offer a second toy to the other hand."
+      ],
+      "adaptations": [
+        "Just starting: move it very slowly and keep it close; your face beside the rattle helps them find it.",
+        "Grabbing easily: hold it a little out of reach to one side so they stretch for it."
+      ],
+      "stopCues": [
+        "Looking away or closing their eyes",
+        "Fussing or crying",
+        "Frustration when the toy stays out of reach"
+      ],
+      "safety": [
+        {
+          "text": "Mouthing is expected: use a clean rattle that's too big to fit in their mouth, with no loose or small parts.",
+          "claims": [
+            "clm.b.toys-bigger-than-mouth"
+          ]
+        },
+        {
+          "text": "Choose a light rattle; babies this age often bop themselves while waving it.",
+          "claims": []
+        }
+      ],
+      "why": {
+        "text": "Following a moving toy and then reaching for it links looking with hand movement; many babies around 4 months hold a toy placed in their hand.",
+        "claims": [
+          "clm.b.track-moving-toy",
+          "clm.b.offer-rattles",
+          "clm.b.swings-at-toys-4m"
+        ]
+      },
+      "evidence": {
+        "type": "described",
+        "claims": [
+          "clm.b.track-moving-toy",
+          "clm.b.offer-rattles",
+          "clm.b.mouthing-normal"
+        ]
+      },
+      "checked": "2026-10-28"
+    },
+    {
+      "id": "act.babble-copycat-chat",
+      "rev": 1,
+      "title": "Babble copycat chat",
+      "summary": "Face to face, wait for your baby to coo or babble, copy the sound back, then pause so they can take another turn.",
+      "kind": "play",
+      "ageMin": "4m",
+      "ageMax": "8m",
+      "readiness": {
+        "abilities": [],
+        "notes": []
+      },
+      "goals": [
+        "communication",
+        "social-emotional"
+      ],
+      "intents": [
+        "connect"
+      ],
+      "places": [
+        "indoors",
+        "outdoors"
+      ],
+      "spaces": [
+        "anywhere",
+        "lap-or-arms",
+        "floor"
+      ],
+      "outing": false,
+      "materials": {
+        "level": "none",
+        "items": []
+      },
+      "setupMinutes": 0,
+      "cleanupMinutes": 0,
+      "duration": {
+        "min": 2,
+        "default": 5,
+        "max": 10
+      },
+      "effort": "low",
+      "supervision": {
+        "participation": "leads",
+        "proximity": "arms-reach",
+        "handsOn": "none",
+        "minAdults": 1,
+        "shareable": true,
+        "space": "Anywhere you can be face to face and close: baby on a floor mat, in your lap, or buckled in a stroller."
+      },
+      "mess": "none",
+      "noise": "moderate",
+      "hazards": [],
+      "steps": [
+        "Get face to face, close enough that your baby can see your mouth, and wait quietly.",
+        "When they coo or babble, copy the sound back with a big, happy face.",
+        "Pause and wait; give them time to answer before you take your next turn.",
+        "If they repeat a sound like 'bah', say a few simple words that start with it."
+      ],
+      "adaptations": [
+        "Quiet baby: start by copying their smiles, sighs, or tongue pokes, then add sounds.",
+        "Chattier baby: try a new sound, like a raspberry or 'ma', and see if they copy you."
+      ],
+      "stopCues": [
+        "Looking or turning away",
+        "Arching, fussing, or hiccupping",
+        "Crying"
+      ],
+      "safety": [
+        {
+          "text": "If they're in your arms, keep their head and neck supported. If they get drowsy, put them on their back in their own sleep space.",
+          "claims": [
+            "clm.core.sleep-on-back"
+          ]
+        }
+      ],
+      "why": {
+        "text": "Around 4 months many babies start to babble; copying them and waiting for a reply follows the turn-taking pattern of a conversation.",
+        "claims": [
+          "clm.b.babble-begins",
+          "clm.b.copy-sounds-take-turns"
+        ]
+      },
+      "evidence": {
+        "type": "described",
+        "claims": [
+          "clm.b.copy-sounds-take-turns",
+          "clm.b.babble-begins",
+          "clm.b.disengagement-cues"
+        ]
+      },
+      "checked": "2026-10-28"
+    },
+    {
+      "id": "act.body-part-action-song",
+      "rev": 1,
+      "title": "Body-part action song",
+      "summary": "Sing 'Head, shoulders, knees and toes' slowly, gently touching each part or guiding your baby's hands to it as you name it.",
+      "kind": "play",
+      "ageMin": "4m",
+      "ageMax": "8m",
+      "readiness": {
+        "abilities": [],
+        "notes": []
+      },
+      "goals": [
+        "communication",
+        "social-emotional"
+      ],
+      "intents": [
+        "connect",
+        "calm"
+      ],
+      "places": [
+        "indoors",
+        "outdoors"
+      ],
+      "spaces": [
+        "lap-or-arms",
+        "floor",
+        "anywhere"
+      ],
+      "outing": false,
+      "materials": {
+        "level": "none",
+        "items": []
+      },
+      "setupMinutes": 0,
+      "cleanupMinutes": 0,
+      "duration": {
+        "min": 2,
+        "default": 5,
+        "max": 10
+      },
+      "effort": "low",
+      "supervision": {
+        "participation": "leads",
+        "proximity": "arms-reach",
+        "handsOn": "intermittent",
+        "minAdults": 1,
+        "shareable": true,
+        "space": "Baby on a floor mat or supported in your lap facing you; not on a bed or other raised surface."
+      },
+      "mess": "none",
+      "noise": "moderate",
+      "hazards": [],
+      "steps": [
+        "Lay your baby on their back on a mat, or sit them supported in your lap facing you.",
+        "Sing slowly, touching each body part as you name it, or gently guiding their hands to it.",
+        "Pause before the last word and watch for a smile or kick, then finish with a cuddle or gentle tickle.",
+        "Sing it again a few times; babies enjoy the familiar pattern."
+      ],
+      "adaptations": [
+        "Tired or fussy baby: sing softly and just hold their hands, without the actions.",
+        "Wants more: try 'Row, row, row your boat' with them supported in your lap, swaying slowly together."
+      ],
+      "stopCues": [
+        "Pulling their hands away or stiffening",
+        "Turning away or fussing",
+        "Overexcited crying"
+      ],
+      "safety": [
+        {
+          "text": "Move their arms only as far as they go easily, and never pull or yank on a hand or arm.",
+          "claims": []
+        }
+      ],
+      "why": {
+        "text": "Babies enjoy hearing the same rhymes again and again; that repetition, with your face, voice, and touch, is how they get to know sounds and words.",
+        "claims": [
+          "clm.b.songs-rhymes-actions"
+        ]
+      },
+      "evidence": {
+        "type": "described",
+        "claims": [
+          "clm.b.songs-rhymes-actions",
+          "clm.core.who-reading-storytelling"
+        ]
+      },
+      "checked": "2026-10-28"
+    },
+    {
+      "id": "act.bold-picture-lap-book",
+      "rev": 1,
+      "title": "Bold-picture book in your lap",
+      "summary": "Hold your baby in your lap and share a board or cloth book with bold pictures, pointing, using fun voices, and letting them touch and taste it.",
+      "kind": "play",
+      "ageMin": "3m",
+      "ageMax": "6m",
+      "readiness": {
+        "abilities": [],
+        "notes": []
+      },
+      "goals": [
+        "communication"
+      ],
+      "intents": [
+        "connect",
+        "calm"
+      ],
+      "places": [
+        "indoors",
+        "outdoors"
+      ],
+      "spaces": [
+        "lap-or-arms"
+      ],
+      "outing": false,
+      "materials": {
+        "level": "toys",
+        "items": [
+          "1–2 board, cloth, or vinyl books with bold, simple pictures"
+        ]
+      },
+      "setupMinutes": 1,
+      "cleanupMinutes": 0,
+      "duration": {
+        "min": 2,
+        "default": 5,
+        "max": 10
+      },
+      "effort": "low",
+      "supervision": {
+        "participation": "leads",
+        "proximity": "holding",
+        "handsOn": "continuous",
+        "minAdults": 1,
+        "shareable": true,
+        "space": "Seated somewhere comfortable with your baby in your lap and one arm around them; stay wide awake."
+      },
+      "mess": "none",
+      "noise": "quiet",
+      "hazards": [
+        "mouthing"
+      ],
+      "steps": [
+        "Sit with your baby held securely in your lap and the book about a forearm's length from their face.",
+        "Point to one picture at a time and name it with lots of expression and different voices.",
+        "Let them pat, grab, and mouth the book; you don't need to finish it or read every word.",
+        "Close the book when they look away or fuss, and try again another time."
+      ],
+      "adaptations": [
+        "Head control still developing: recline them against your chest so their head is supported.",
+        "Grabby baby: give them a cloth book to hold while you point at the pictures in yours.",
+        "Big sibling nearby: let them pick the book and point to the pictures with you."
+      ],
+      "stopCues": [
+        "Looking away from the book",
+        "Arching their back or fussing",
+        "Rubbing eyes or yawning"
+      ],
+      "safety": [
+        {
+          "text": "Use board, cloth, or vinyl books with no loose flaps, pieces, or ribbons, since the book will end up in their mouth.",
+          "claims": [
+            "clm.b.toys-bigger-than-mouth"
+          ]
+        },
+        {
+          "text": "Keep an arm around your baby and support their head while they're still steadying it.",
+          "claims": []
+        }
+      ],
+      "why": {
+        "text": "Sharing books in the early months lets babies hear the rhythm and sounds of speech, and at 3–6 months a sturdy book is also something to reach for.",
+        "claims": [
+          "clm.b.lap-reading-bold-pictures",
+          "clm.b.fabric-board-books-3-6m"
+        ]
+      },
+      "evidence": {
+        "type": "described",
+        "claims": [
+          "clm.b.lap-reading-bold-pictures",
+          "clm.b.fabric-board-books-3-6m",
+          "clm.core.who-reading-storytelling",
+          "clm.b.disengagement-cues"
+        ]
+      },
+      "checked": "2026-10-28"
+    },
+    {
+      "id": "act.mirror-faces-together",
+      "rev": 1,
+      "title": "Mirror faces together",
+      "summary": "Lie or sit with your baby in front of an unbreakable baby mirror, smile and make faces, and name their eyes, nose, and mouth.",
+      "kind": "play",
+      "ageMin": "4m",
+      "ageMax": "8m",
+      "readiness": {
+        "abilities": [],
+        "notes": []
+      },
+      "goals": [
+        "social-emotional"
+      ],
+      "intents": [
+        "connect",
+        "explore"
+      ],
+      "places": [
+        "indoors"
+      ],
+      "spaces": [
+        "floor",
+        "lap-or-arms"
+      ],
+      "outing": false,
+      "materials": {
+        "level": "toys",
+        "items": [
+          "Unbreakable baby mirror (plastic or mylar)"
+        ]
+      },
+      "setupMinutes": 1,
+      "cleanupMinutes": 1,
+      "duration": {
+        "min": 2,
+        "default": 5,
+        "max": 10
+      },
+      "effort": "low",
+      "supervision": {
+        "participation": "joins",
+        "proximity": "arms-reach",
+        "handsOn": "intermittent",
+        "minAdults": 1,
+        "shareable": true,
+        "space": "Firm floor mat or your lap, within arm's reach; mirror set so it can't tip onto your baby."
+      },
+      "mess": "none",
+      "noise": "quiet",
+      "hazards": [
+        "mouthing"
+      ],
+      "steps": [
+        "Prop an unbreakable baby mirror beside your baby on the floor mat, or hold it in front of them in your lap.",
+        "Put your face in the mirror next to theirs, then smile, raise your eyebrows, or stick out your tongue.",
+        "Touch and name their nose, eyes, and mouth, then point to the same parts in the mirror.",
+        "Pause and watch; if they smile, coo, or reach for the mirror, answer them."
+      ],
+      "adaptations": [
+        "Younger or tiring easily: hold them reclined in your lap with the mirror close.",
+        "Older sibling around: they can make silly faces in the mirror beside the baby."
+      ],
+      "stopCues": [
+        "Turning away from the mirror",
+        "Fussing or crying",
+        "Rubbing eyes or yawning"
+      ],
+      "safety": [
+        {
+          "text": "Use only a baby mirror made of unbreakable plastic or mylar, never glass, and check it can't tip onto your baby.",
+          "claims": [
+            "clm.b.mirror-interest"
+          ]
+        },
+        {
+          "text": "Your baby will mouth the mirror: keep it clean and free of detachable parts.",
+          "claims": [
+            "clm.b.toys-bigger-than-mouth"
+          ]
+        }
+      ],
+      "why": {
+        "text": "Babies this age are drawn to faces, and many enjoy watching the baby in the mirror, especially closer to 6 months.",
+        "claims": [
+          "clm.b.mirror-interest"
+        ]
+      },
+      "evidence": {
+        "type": "described",
+        "claims": [
+          "clm.b.mirror-interest"
+        ]
+      },
+      "checked": "2026-10-28"
+    },
+    {
+      "id": "act.peekaboo-hands",
+      "rev": 1,
+      "title": "Peekaboo with your hands",
+      "summary": "Face to face with your baby, cover your eyes with your hands, then uncover them with a happy 'peekaboo!' and watch how they react.",
+      "kind": "play",
+      "ageMin": "3m",
+      "ageMax": "8m",
+      "readiness": {
+        "abilities": [],
+        "notes": []
+      },
+      "goals": [
+        "social-emotional",
+        "communication"
+      ],
+      "intents": [
+        "connect"
+      ],
+      "places": [
+        "indoors",
+        "outdoors"
+      ],
+      "spaces": [
+        "anywhere",
+        "floor",
+        "lap-or-arms"
+      ],
+      "outing": false,
+      "materials": {
+        "level": "none",
+        "items": []
+      },
+      "setupMinutes": 0,
+      "cleanupMinutes": 0,
+      "duration": {
+        "min": 1,
+        "default": 3,
+        "max": 8
+      },
+      "effort": "low",
+      "supervision": {
+        "participation": "leads",
+        "proximity": "arms-reach",
+        "handsOn": "none",
+        "minAdults": 1,
+        "shareable": true,
+        "space": "Anywhere your baby is safely settled and can see your face: floor mat, lap, or buckled in a stroller."
+      },
+      "mess": "none",
+      "noise": "moderate",
+      "hazards": [],
+      "steps": [
+        "Settle your baby where they can see your face up close, on a mat or in your lap.",
+        "Cover your eyes with your hands, wait a moment, then uncover them and say 'peekaboo!' with a big smile.",
+        "Wait for a smile, kick, or squeal before the next round; go slower if they startle."
+      ],
+      "adaptations": [
+        "Younger or sensitive baby: keep it soft and slow, and don't stay hidden for long.",
+        "Ready for more: peek out from either side of a cloth you hold in front of your own face."
+      ],
+      "stopCues": [
+        "Startling or crying",
+        "Turning away",
+        "Fussing or hiccupping"
+      ],
+      "safety": [
+        {
+          "text": "Hide your own face, not your baby's, and keep any cloth away from their face.",
+          "claims": []
+        }
+      ],
+      "why": {
+        "text": "Simple social games like peekaboo are suggested from around 4 months as a way to share attention and enjoy each other.",
+        "claims": [
+          "clm.b.peekaboo"
+        ]
+      },
+      "evidence": {
+        "type": "described",
+        "claims": [
+          "clm.b.peekaboo",
+          "clm.b.disengagement-cues"
+        ]
+      },
+      "checked": "2026-10-28"
+    },
+    {
+      "id": "act.tummy-time-towel-roll",
+      "rev": 1,
+      "title": "Propped tummy time over a towel roll",
+      "summary": "On a firm floor mat, lay your baby tummy-down with a small rolled towel under their chest and arms, then play face to face.",
+      "kind": "play",
+      "ageMin": "3m",
+      "ageMax": "6m",
+      "readiness": {
+        "abilities": [],
+        "notes": [
+          "For babies who find flat tummy time hard. It is propped, so it doesn't count toward a flat-surface target.",
+          "Born early, reflux, or medical needs? Ask your baby's clinician about tummy time first."
+        ]
+      },
+      "goals": [
+        "gross-motor"
+      ],
+      "intents": [
+        "move",
+        "connect"
+      ],
+      "places": [
+        "indoors"
+      ],
+      "spaces": [
+        "floor"
+      ],
+      "outing": false,
+      "materials": {
+        "level": "household",
+        "items": [
+          "Firm play mat or blanket on the floor",
+          "Small hand towel rolled into a firm tube",
+          "A toy or unbreakable baby mirror"
+        ]
+      },
+      "setupMinutes": 2,
+      "cleanupMinutes": 1,
+      "duration": {
+        "min": 1,
+        "default": 4,
+        "max": 10
+      },
+      "effort": "low",
+      "supervision": {
+        "participation": "joins",
+        "proximity": "arms-reach",
+        "handsOn": "intermittent",
+        "minAdults": 1,
+        "shareable": true,
+        "space": "Firm floor surface, never a bed or sofa. Stay within arm's reach with eyes on your baby the whole time."
+      },
+      "mess": "none",
+      "noise": "quiet",
+      "hazards": [
+        "suffocation"
+      ],
+      "steps": [
+        "Roll a small hand towel into a firm tube and lay it across a firm mat on the floor.",
+        "Place your baby tummy-down with the roll under their chest and armpits, arms forward over it.",
+        "Get down face to face, or set a toy just in front, so they lift and turn their head.",
+        "When they tire, take the roll away and let them rest on their back."
+      ],
+      "adaptations": [
+        "Getting stronger: use a thinner roll, then none, moving toward flat tummy time on the mat.",
+        "Likes company: lie down facing them, or let an older child chat to them while you watch."
+      ],
+      "stopCues": [
+        "Face dropping toward the towel or mat",
+        "Fussing, crying, or arching",
+        "Getting drowsy"
+      ],
+      "safety": [
+        {
+          "text": "Awake and watched the whole time. If your baby gets drowsy, take the roll away and move them to their back in their own sleep space.",
+          "claims": [
+            "clm.core.tummy-awake-supervised",
+            "clm.core.sleep-on-back"
+          ]
+        },
+        {
+          "text": "Keep the roll under the chest, never the face, and use it only on the floor, never on a bed or sofa.",
+          "claims": [
+            "clm.core.floor-not-bed"
+          ]
+        }
+      ],
+      "why": {
+        "text": "A little lift under the chest can make it easier to raise the head on the tummy, which builds neck and shoulder strength.",
+        "claims": [
+          "clm.b.towel-roll-prop",
+          "clm.core.tummy-builds-strength"
+        ]
+      },
+      "tummyTime": {
+        "position": "propped",
+        "flatSurface": false
+      },
+      "evidence": {
+        "type": "described",
+        "claims": [
+          "clm.b.towel-roll-prop",
+          "clm.core.tummy-awake-supervised",
+          "clm.core.stop-when-upset"
+        ]
+      },
+      "checked": "2026-10-28"
+    },
+    {
+      "id": "act.tummy-to-back-roll-practice",
+      "rev": 1,
+      "title": "Tummy-to-back roll practice",
+      "summary": "During floor tummy time, move a toy up and over one shoulder so your baby turns to follow it and tips onto their back, with a gentle assist.",
+      "kind": "play",
+      "ageMin": "3m",
+      "ageMax": "7m",
+      "readiness": {
+        "abilities": [
+          "head-control"
+        ],
+        "notes": [
+          "Best once your baby can push up on their forearms during tummy time.",
+          "Born early or medical needs? Go by corrected age and ask your baby's clinician first."
+        ]
+      },
+      "goals": [
+        "gross-motor"
+      ],
+      "intents": [
+        "move",
+        "connect"
+      ],
+      "places": [
+        "indoors"
+      ],
+      "spaces": [
+        "floor"
+      ],
+      "outing": false,
+      "materials": {
+        "level": "toys",
+        "items": [
+          "Firm play mat or blanket on the floor",
+          "A favorite toy or rattle"
+        ]
+      },
+      "setupMinutes": 1,
+      "cleanupMinutes": 0,
+      "duration": {
+        "min": 2,
+        "default": 5,
+        "max": 10
+      },
+      "effort": "medium",
+      "supervision": {
+        "participation": "leads",
+        "proximity": "arms-reach",
+        "handsOn": "intermittent",
+        "minAdults": 1,
+        "shareable": true,
+        "space": "Firm floor with clear space on both sides; nothing hard, sharp, or small within rolling distance."
+      },
+      "mess": "none",
+      "noise": "quiet",
+      "hazards": [
+        "suffocation"
+      ],
+      "steps": [
+        "Lay your baby tummy-down on a firm floor mat, up on their forearms if they can.",
+        "Show a toy in front, then move it slowly up and over one shoulder so they turn their head to follow.",
+        "As their weight shifts, you can gently guide their hip over so they tip onto their back.",
+        "Cheer when they land, and try the other side another time."
+      ],
+      "adaptations": [
+        "Just starting: let them turn their head and shift weight to one side; finishing the roll can wait.",
+        "Rolling on their own: set the toy a little farther away so they roll and reach for it."
+      ],
+      "stopCues": [
+        "Fussing, crying, or face dropping to the mat",
+        "Frustration after a few tries",
+        "Getting drowsy"
+      ],
+      "safety": [
+        {
+          "text": "Tummy time only while awake and watched. If they get drowsy, move them to their back in their own sleep space.",
+          "claims": [
+            "clm.core.tummy-awake-supervised",
+            "clm.core.sleep-on-back"
+          ]
+        },
+        {
+          "text": "Guide the hip gently and let your baby lead the turn; never pull on an arm or the head.",
+          "claims": []
+        },
+        {
+          "text": "Once your baby rolls, never leave them alone on a bed, sofa, or changing table, even for a moment.",
+          "claims": [
+            "clm.b.raised-surface-falls"
+          ]
+        }
+      ],
+      "why": {
+        "text": "Many babies roll tummy to back first, often between 3 and 6 months; a toy just out of reach gives them a reason to turn and roll.",
+        "claims": [
+          "clm.b.roll-tummy-to-back-first",
+          "clm.b.toys-out-of-reach-roll"
+        ]
+      },
+      "tummyTime": {
+        "position": "floor",
+        "flatSurface": true
+      },
+      "evidence": {
+        "type": "adapted",
+        "claims": [
+          "clm.b.toys-out-of-reach-roll",
+          "clm.b.roll-tummy-to-back-first",
+          "clm.core.tummy-awake-supervised"
+        ]
+      },
+      "checked": "2026-10-28"
+    },
+    {
+      "id": "act.side-lying-toy-play",
+      "rev": 1,
+      "title": "Side-lying two-hand play",
+      "summary": "Lay your baby on their side on a floor mat, a rolled towel behind their back, with a toy in front for both hands to reach; then switch sides.",
+      "kind": "play",
+      "ageMin": "4m",
+      "ageMax": "6m",
+      "readiness": {
+        "abilities": [],
+        "notes": [
+          "Born early, reflux, or medical needs? Ask your baby's clinician which play positions suit them."
+        ]
+      },
+      "goals": [
+        "gross-motor"
+      ],
+      "intents": [
+        "move",
+        "explore"
+      ],
+      "places": [
+        "indoors"
+      ],
+      "spaces": [
+        "floor"
+      ],
+      "outing": false,
+      "materials": {
+        "level": "household",
+        "items": [
+          "Firm play mat or blanket on the floor",
+          "Hand towel rolled into a firm tube",
+          "A rattle, soft toy, or board book"
+        ]
+      },
+      "setupMinutes": 2,
+      "cleanupMinutes": 1,
+      "duration": {
+        "min": 2,
+        "default": 5,
+        "max": 10
+      },
+      "effort": "low",
+      "supervision": {
+        "participation": "joins",
+        "proximity": "arms-reach",
+        "handsOn": "intermittent",
+        "minAdults": 1,
+        "shareable": true,
+        "space": "Firm floor mat only. Stay within arm's reach; the towel stays behind the back, away from the face."
+      },
+      "mess": "none",
+      "noise": "quiet",
+      "hazards": [
+        "suffocation",
+        "mouthing"
+      ],
+      "steps": [
+        "Lay your baby on their side on a firm floor mat with a rolled towel snug behind their back.",
+        "Bring both arms forward and bend their hips and knees a little so they're comfy and steady.",
+        "Set a toy or book in front of their hands, close enough to touch, and chat to them.",
+        "After a few minutes, switch them to the other side or onto their back."
+      ],
+      "adaptations": [
+        "Prefers one side: start on the side they like, then give the other side a shorter turn.",
+        "Older sibling nearby: they can lie facing the baby and show them the toy."
+      ],
+      "stopCues": [
+        "Rolling forward onto their face and fussing",
+        "Fussing, crying, or arching",
+        "Getting drowsy"
+      ],
+      "safety": [
+        {
+          "text": "The towel roll is for awake, watched play only. If your baby gets drowsy, remove it and lay them on their back in their own sleep space.",
+          "claims": [
+            "clm.core.sleep-on-back"
+          ]
+        },
+        {
+          "text": "Keep the towel behind their back, away from their face; if they roll forward onto it, lift it away.",
+          "claims": []
+        },
+        {
+          "text": "Toys must be clean and too big to fit in their mouth.",
+          "claims": [
+            "clm.b.toys-bigger-than-mouth"
+          ]
+        }
+      ],
+      "why": {
+        "text": "Side-lying gives babies a different view and brings both arms forward to play; it's described as an alternative for babies who dislike tummy time.",
+        "claims": [
+          "clm.b.side-lying-support"
+        ]
+      },
+      "evidence": {
+        "type": "described",
+        "claims": [
+          "clm.b.side-lying-support",
+          "clm.core.tummy-vary-positions"
+        ]
+      },
+      "checked": "2026-10-28"
+    },
+    {
+      "id": "act.supported-sit-lap-play",
+      "rev": 1,
+      "title": "Supported sitting in your lap",
+      "summary": "Sit on the floor with your baby upright between your legs or in your lap, your hands low on their trunk, and a toy in front to look at and reach for.",
+      "kind": "play",
+      "ageMin": "4m",
+      "ageMax": "7m",
+      "readiness": {
+        "abilities": [
+          "head-control"
+        ],
+        "notes": [
+          "Best once your baby holds their head steady and lifts their chest during tummy time.",
+          "Born early? Go by corrected age and ask your baby's clinician."
+        ]
+      },
+      "goals": [
+        "gross-motor"
+      ],
+      "intents": [
+        "move",
+        "explore",
+        "connect"
+      ],
+      "places": [
+        "indoors",
+        "outdoors"
+      ],
+      "spaces": [
+        "floor",
+        "lap-or-arms"
+      ],
+      "outing": false,
+      "materials": {
+        "level": "toys",
+        "items": [
+          "A toy or board book to set in front"
+        ]
+      },
+      "setupMinutes": 0,
+      "cleanupMinutes": 0,
+      "duration": {
+        "min": 2,
+        "default": 5,
+        "max": 10
+      },
+      "effort": "low",
+      "supervision": {
+        "participation": "leads",
+        "proximity": "holding",
+        "handsOn": "continuous",
+        "minAdults": 1,
+        "shareable": true,
+        "space": "Sit on the floor, not a bed or sofa, with your baby between your legs or in your lap; hands on them throughout."
+      },
+      "mess": "none",
+      "noise": "quiet",
+      "hazards": [
+        "falls"
+      ],
+      "steps": [
+        "Sit on the floor and settle your baby upright between your legs or in your lap, facing out.",
+        "Hold them around the hips or lower trunk, as low as still keeps them steady.",
+        "Put a toy in front at their eye level and let them lean, look, and reach for it.",
+        "When they slump or tire, lay them on the floor on their back or tummy for a change."
+      ],
+      "adaptations": [
+        "Wobbly: hold higher, around the chest, and let them lean back against you.",
+        "Steadier: move your hands lower, or let them prop forward on their hands with a toy between them."
+      ],
+      "stopCues": [
+        "Slumping, head bobbing, or leaning hard to one side",
+        "Fussing or arching",
+        "Rubbing eyes or yawning"
+      ],
+      "safety": [
+        {
+          "text": "Do this on the floor with your hands on your baby. Never leave a baby sitting on a raised surface, even for a moment.",
+          "claims": [
+            "clm.b.raised-surface-falls"
+          ]
+        },
+        {
+          "text": "Short, hands-on sitting practice is preferred over long stretches in seats or devices that prop a baby upright.",
+          "claims": [
+            "clm.b.limit-seats-devices",
+            "clm.core.who-not-restrained-1h"
+          ]
+        }
+      ],
+      "why": {
+        "text": "Once babies can lift their chest, holding them upright with something interesting in front lets them practice balancing and looking around.",
+        "claims": [
+          "clm.b.supported-sitting"
+        ]
+      },
+      "evidence": {
+        "type": "described",
+        "claims": [
+          "clm.b.supported-sitting",
+          "clm.b.limit-seats-devices"
+        ]
+      },
+      "checked": "2026-10-28"
+    },
+    {
+      "id": "act.texture-touch-tour",
+      "rev": 1,
+      "title": "Texture touch tour",
+      "summary": "Brush a few clean, safe fabrics over your baby's hands and bare feet, naming each one: soft, bumpy, smooth, fuzzy.",
+      "kind": "play",
+      "ageMin": "3m",
+      "ageMax": "8m",
+      "readiness": {
+        "abilities": [],
+        "notes": []
+      },
+      "goals": [
+        "sensory"
+      ],
+      "intents": [
+        "explore",
+        "connect",
+        "calm"
+      ],
+      "places": [
+        "indoors"
+      ],
+      "spaces": [
+        "floor",
+        "lap-or-arms"
+      ],
+      "outing": false,
+      "materials": {
+        "level": "household",
+        "items": [
+          "3–4 clean fabrics with different feels",
+          "Washcloth, cotton T-shirt, knit hat, or fleece",
+          "Optional: a textured cloth book"
+        ]
+      },
+      "setupMinutes": 2,
+      "cleanupMinutes": 1,
+      "duration": {
+        "min": 2,
+        "default": 5,
+        "max": 10
+      },
+      "effort": "low",
+      "supervision": {
+        "participation": "leads",
+        "proximity": "arms-reach",
+        "handsOn": "intermittent",
+        "minAdults": 1,
+        "shareable": false,
+        "space": "Baby on a firm floor mat or in your lap. You hold each fabric and take it away when done."
+      },
+      "mess": "none",
+      "noise": "quiet",
+      "hazards": [
+        "suffocation",
+        "mouthing"
+      ],
+      "steps": [
+        "Gather 3–4 clean fabrics that feel different, with no buttons, strings, or loose threads.",
+        "With your baby on their back or in your lap, brush one fabric over their palms and the soles of their feet.",
+        "Name it as they feel it, 'soft fleece', 'bumpy towel', and let them grab and mouth it while you hold the other end.",
+        "Take each one away before the next, and put them all out of reach when you finish."
+      ],
+      "adaptations": [
+        "Easily overwhelmed: one fabric at a time, slowly, on the hands only.",
+        "Loves it: add a textured cloth book and talk about how each page feels."
+      ],
+      "stopCues": [
+        "Pulling hands or feet away",
+        "Fussing, frowning, or turning away",
+        "Getting drowsy"
+      ],
+      "safety": [
+        {
+          "text": "Keep hold of each fabric yourself and keep cloth away from your baby's face; clear everything away when you finish.",
+          "claims": []
+        },
+        {
+          "text": "Anything they mouth must be clean, with no buttons, strings, or loose threads that could come off.",
+          "claims": [
+            "clm.b.toys-bigger-than-mouth"
+          ]
+        },
+        {
+          "text": "If your baby gets drowsy, clear the fabrics and lay them on their back in their own sleep space.",
+          "claims": [
+            "clm.core.sleep-on-back"
+          ]
+        }
+      ],
+      "why": {
+        "text": "Feeling different textures with their skin, hands, and mouth is one of the ways babies explore, and naming them adds words to the experience.",
+        "claims": [
+          "clm.b.textures",
+          "clm.b.mouthing-normal"
+        ]
+      },
+      "evidence": {
+        "type": "adapted",
+        "claims": [
+          "clm.b.textures",
+          "clm.b.mouthing-normal"
+        ]
+      },
+      "checked": "2026-10-28"
+    },
+    {
+      "id": "act.dressing-sleeve-peekaboo",
+      "rev": 1,
+      "title": "Sleeve peekaboo while dressing",
+      "summary": "While dressing your baby, say each step in the same few words and play 'Where's your hand? There it is!' as each hand comes through a sleeve.",
+      "kind": "routine",
+      "ageMin": "3m",
+      "ageMax": "8m",
+      "readiness": {
+        "abilities": [],
+        "notes": []
+      },
+      "goals": [
+        "communication"
+      ],
+      "intents": [
+        "routine",
+        "connect"
+      ],
+      "places": [
+        "indoors"
+      ],
+      "spaces": [
+        "floor",
+        "anywhere"
+      ],
+      "outing": false,
+      "materials": {
+        "level": "household",
+        "items": [
+          "The next outfit, laid out within reach",
+          "Changing mat on the floor"
+        ]
+      },
+      "setupMinutes": 1,
+      "cleanupMinutes": 0,
+      "duration": {
+        "min": 2,
+        "default": 4,
+        "max": 8
+      },
+      "effort": "low",
+      "supervision": {
+        "participation": "leads",
+        "proximity": "arms-reach",
+        "handsOn": "continuous",
+        "minAdults": 1,
+        "shareable": false,
+        "space": "Changing mat on the floor is safest. On any raised surface, keep one hand on your baby the whole time."
+      },
+      "mess": "none",
+      "noise": "quiet",
+      "hazards": [
+        "falls"
+      ],
+      "steps": [
+        "Lay your baby on their back on a changing mat on the floor, with the next outfit within reach.",
+        "Say each step in the same short words every time: 'Arm in… head through… socks on!'",
+        "Gather a sleeve, reach in from the cuff to hold their hand, and ease it through: 'Where's your hand? There it is!'",
+        "Pause for their smile or coo, answer them, then do the next sleeve or sock."
+      ],
+      "adaptations": [
+        "Fussy about dressing: keep it short and sing one familiar line instead of the game.",
+        "Enjoying it: hide and find their feet in the legs of a sleepsuit the same way."
+      ],
+      "stopCues": [
+        "Crying or stiffening: finish quickly and calmly",
+        "Turning away or fussing"
+      ],
+      "safety": [
+        {
+          "text": "Never leave your baby alone on a changing table, bed, or other raised surface, even for a few seconds.",
+          "claims": [
+            "clm.b.raised-surface-falls"
+          ]
+        },
+        {
+          "text": "Ease clothes on without pulling, twisting, or over-stretching arms and legs, and support their head as tops go over it.",
+          "claims": [
+            "clm.b.dress-gently-no-cords"
+          ]
+        },
+        {
+          "text": "Skip clothes with drawstrings and hats with cords or ties.",
+          "claims": [
+            "clm.b.dress-gently-no-cords"
+          ]
+        }
+      ],
+      "why": {
+        "text": "Dressing is face-to-face time; using the same words for each step, plus a little game, gives your baby repeated language to tune into.",
+        "claims": [
+          "clm.b.narrate-care-routines"
+        ]
+      },
+      "evidence": {
+        "type": "adapted",
+        "claims": [
+          "clm.b.narrate-care-routines",
+          "clm.b.peekaboo"
+        ]
+      },
+      "checked": "2026-10-28"
+    },
+    {
+      "id": "act.shaded-stroller-walk",
+      "rev": 1,
+      "title": "Shaded stroller or carrier walk",
+      "summary": "Take a short walk with your baby fully shaded in a stroller with the canopy up, or in a carrier, and name what you see along the way.",
+      "kind": "outing",
+      "ageMin": "4m",
+      "ageMax": "6m",
+      "readiness": {
+        "abilities": [],
+        "notes": [
+          "Born early or breathing problems? Ask your baby's clinician before using an upright carrier."
+        ]
+      },
+      "goals": [
+        "communication"
+      ],
+      "intents": [
+        "fresh-air",
+        "connect",
+        "parent-moment"
+      ],
+      "places": [
+        "outdoors"
+      ],
+      "spaces": [
+        "neighborhood",
+        "yard-or-park"
+      ],
+      "outing": true,
+      "materials": {
+        "level": "household",
+        "items": [
+          "Stroller with a sunshade canopy, or a baby carrier",
+          "Light long sleeves, long pants, and a wide-brimmed hat"
+        ]
+      },
+      "setupMinutes": 5,
+      "cleanupMinutes": 2,
+      "duration": {
+        "min": 10,
+        "default": 20,
+        "max": 45
+      },
+      "effort": "medium",
+      "supervision": {
+        "participation": "leads",
+        "proximity": "arms-reach",
+        "handsOn": "intermittent",
+        "minAdults": 1,
+        "shareable": false,
+        "space": "Sidewalks or park paths with baby fully shaded; on sunny days go before 10 a.m. or after 4 p.m.; skip it in heat."
+      },
+      "mess": "none",
+      "noise": "quiet",
+      "hazards": [
+        "sun-weather",
+        "traffic",
+        "suffocation"
+      ],
+      "steps": [
+        "Pick a cooler time (before 10 a.m. or after 4 p.m. on sunny days) and dress your baby in light clothes that cover arms and legs, plus a hat.",
+        "Put the stroller canopy up so they stay in shade, or use a carrier with their face visible and chin off their chest.",
+        "Stop now and then to point at and name what they're looking at: a tree, a dog, a bus.",
+        "Head home well within an hour, or sooner if they fuss or seem too warm."
+      ],
+      "adaptations": [
+        "Hot or glaring day: walk somewhere fully shaded or indoors instead, or skip it.",
+        "Fussy in the stroller: try a carrier so they're close to you, keeping their face visible.",
+        "Older child along: they can 'spot' things for the baby while holding your hand."
+      ],
+      "stopCues": [
+        "Flushed, sweaty, or unusually fussy (too warm)",
+        "Crying that doesn't settle",
+        "Falling asleep"
+      ],
+      "safety": [
+        {
+          "text": "Keep a baby under 6 months out of direct sun: shade, canopy, light covering clothes, and a hat. Sunscreen only on small areas if there's no shade.",
+          "claims": [
+            "clm.b.sun-under-6-months"
+          ]
+        },
+        {
+          "text": "In a carrier, keep their face visible, chin off their chest, and nose and mouth clear, and check on them often.",
+          "claims": [
+            "clm.b.carrier-face-visible"
+          ]
+        },
+        {
+          "text": "If your baby falls asleep in the stroller or carrier, move them to their back on a firm, flat sleep surface as soon as you can.",
+          "claims": [
+            "clm.core.sleep-on-back"
+          ]
+        },
+        {
+          "text": "Stick to sidewalks and paths, and set the stroller brake whenever you stop.",
+          "claims": []
+        }
+      ],
+      "why": {
+        "text": "A walk shows your baby new sights and sounds, and pointing out and naming what they notice turns it into a conversation.",
+        "claims": [
+          "clm.b.name-things-outside"
+        ]
+      },
+      "evidence": {
+        "type": "described",
+        "claims": [
+          "clm.b.name-things-outside",
+          "clm.b.sun-under-6-months",
+          "clm.core.who-not-restrained-1h"
+        ]
+      },
+      "checked": "2026-10-28"
+    }
+  ],
+  "recipes": [],
+  "starterPlans": []
+}
