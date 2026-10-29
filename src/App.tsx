@@ -6,12 +6,11 @@ import { readDraft, writeDraft } from './lib/draft.ts';
 import { recipeAssignment } from './lib/eligibility.ts';
 import { activityEligible, type Filters } from './lib/filters.ts';
 import { analyzePlan, childLabel } from './lib/layout.ts';
-import { fillAround, planWindow, type PlannerResult } from './lib/planner.ts';
+import type { PlannerResult } from './lib/planner.ts';
 import { newId, newPlanId, youngerFor, type Plan, type PlanSegment } from './lib/plan.ts';
 import { addEntry, makePlan } from './lib/planEdit.ts';
 import { defaultPlanTitle } from './lib/planTitle.ts';
 import { reconcileSegments } from './lib/reconcile.ts';
-import { importPlanFile, ShareError } from './lib/share.ts';
 import { PlanStore, STORE_KEY, type StoreStatus } from './lib/storage.ts';
 import { cleanText, LIMITS } from './lib/text.ts';
 import { formatClock, nextStart, parseHHMM } from './lib/time.ts';
@@ -20,14 +19,19 @@ import { loadPrefs, savePrefs, type Prefs } from './state.ts';
 import { AboutView } from './components/AboutView.tsx';
 import { ActivityDetail, RecipeDetail } from './components/Details.tsx';
 import { FinderView } from './components/FinderView.tsx';
-import { kidsToPlanKids, PlannerView, settingsFromFilters } from './components/PlannerView.tsx';
+import { kidsToPlanKids, settingsFromFilters } from './components/planKids.ts';
 import { momentText, planTitle } from './components/planDisplay.ts';
 import { SavedView } from './components/SavedView.tsx';
-import { ShareDialog } from './components/ShareDialog.tsx';
-import { SharedView } from './components/SharedView.tsx';
 import { Toast, type ToastState } from './components/Toast.tsx';
 
 const ExportDialog = lazy(() => import('./export/ExportDialog.tsx'));
+// The planning engine, editor, and share code load on demand (prefetched when the browser is idle),
+// so the first Find screen stays small.
+const loadPlanner = () => import('./lib/planner.ts');
+const loadShare = () => import('./lib/share.ts');
+const PlannerView = lazy(() => import('./components/PlannerView.tsx').then((m) => ({ default: m.PlannerView })));
+const SharedView = lazy(() => import('./components/SharedView.tsx').then((m) => ({ default: m.SharedView })));
+const ShareDialog = lazy(() => import('./components/ShareDialog.tsx').then((m) => ({ default: m.ShareDialog })));
 
 /** The plan that was open in this tab before a reload, if it is still valid (v1 drafts are migrated). */
 const restoredDraft = readDraft();
@@ -129,7 +133,11 @@ export function App() {
   // Prefetch claims and sources once the first screen is up.
   useEffect(() => {
     const idle = (cb: () => void) => ('requestIdleCallback' in window ? window.requestIdleCallback(cb, { timeout: 3000 }) : setTimeout(cb, 1500));
-    idle(() => void loadEvidence());
+    idle(() => {
+      void loadEvidence();
+      void loadPlanner();
+      void import('./components/PlannerView.tsx');
+    });
   }, []);
 
   useEffect(() => {
@@ -147,11 +155,19 @@ export function App() {
   useLayoutEffect(() => {
     if (route.name === 'find') window.scrollTo(0, findScroll.current);
     else window.scrollTo(0, 0);
-    const h1 = document.querySelector('main h1');
-    if (navigatedInApp.current && h1 instanceof HTMLElement) {
-      h1.setAttribute('tabindex', '-1');
-      h1.focus({ preventScroll: true });
-    }
+    if (!navigatedInApp.current) return;
+    // Move focus to the new page's heading; a page that loads on demand gets it when it arrives.
+    let tries = 0;
+    let frame = 0;
+    const focusHeading = () => {
+      const h1 = document.querySelector('main h1');
+      if (h1 instanceof HTMLElement) {
+        h1.setAttribute('tabindex', '-1');
+        h1.focus({ preventScroll: true });
+      } else if (tries++ < 60) frame = requestAnimationFrame(focusHeading);
+    };
+    focusHeading();
+    return () => cancelAnimationFrame(frame);
   }, [route]);
 
   const notify = useCallback((text: string, action?: ToastState['action']) => setToast({ id: Date.now(), text, action }), []);
@@ -198,7 +214,8 @@ export function App() {
     setPristine(opts.pristine ? JSON.stringify(plan) : null);
   };
 
-  const generate = (minutes = windowMinutes, fromNow = false, withMoments: MomentContext[] | null = null) => {
+  const generate = async (minutes = windowMinutes, fromNow = false, withMoments: MomentContext[] | null = null) => {
+    const { planWindow } = await loadPlanner();
     const indexes = planChildIndexes();
     const planKids = planChildren();
     const settings = settingsFromFilters(prefs.filters);
@@ -233,8 +250,9 @@ export function App() {
     announce('Started a blank plan. Add a block to begin.');
   };
 
-  const fillPlan = () => {
+  const fillPlan = async () => {
     if (!draft) return generate();
+    const { fillAround } = await loadPlanner();
     const s = seed + 1;
     setSeed(s);
     const moment = planMoment && planMoment.planId === draft.id ? planMoment.moments : undefined;
@@ -263,8 +281,7 @@ export function App() {
       return;
     }
     setWindowMinutes(minutes);
-    generate(minutes, true, moments);
-    go('#/plan');
+    void generate(minutes, true, moments).then(() => go('#/plan'));
   };
 
   const savePlan = (plan: Plan) => {
@@ -381,7 +398,8 @@ export function App() {
     }
   };
 
-  const onImportFile = (text: string) => {
+  const onImportFile = async (text: string) => {
+    const { importPlanFile, ShareError } = await loadShare();
     try {
       const result = importPlanFile(text, c);
       openPlan(result.plan, false);
@@ -503,9 +521,9 @@ export function App() {
               }
             }
           }}
-          onGenerate={() => generate()}
+          onGenerate={() => void generate()}
           onBlank={startBlank}
-          onFillAround={fillPlan}
+          onFillAround={() => void fillPlan()}
           onPlan={(p, note) => {
             if (!draft || draft.id !== p.id) {
               adopt(p, { pristine: true });
@@ -585,7 +603,7 @@ export function App() {
         </a>
       </header>
       <main id="main" tabIndex={-1}>
-        {view}
+        <Suspense fallback={<p role="status" className="page loading">Loading…</p>}>{view}</Suspense>
       </main>
       <nav className="bottom-nav" aria-label="Main">
         <ul>
@@ -608,6 +626,7 @@ export function App() {
       </p>
       <Toast toast={toast} onDone={() => setToast(null)} />
       {sharing && draft && (
+        <Suspense fallback={null}>
         <ShareDialog
           plan={draft}
           c={c}
@@ -617,6 +636,7 @@ export function App() {
             setExporting(true);
           }}
         />
+        </Suspense>
       )}
       {exporting && draft && (
         <Suspense

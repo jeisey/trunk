@@ -1,11 +1,11 @@
 import { useState } from 'react';
 import type { IndexedCatalog } from '../content/catalog.ts';
 import type { StarterPlan } from '../content/schema.ts';
-import { formatAge, parseAgeString, normalizeEnteredAge } from '../lib/age.ts';
+import { formatAge, parseAgeString } from '../lib/age.ts';
+import { kidsToPlanKids, settingsFromFilters } from './planKids.ts';
 import { ENERGY_LABEL, mediaAllowed, RELAX_LABEL, relaxFilter, type Filters } from '../lib/filters.ts';
 import type { PlannerResult } from '../lib/planner.ts';
 import type { Plan, PlanKid, PlanSettings } from '../lib/plan.ts';
-import { reconcileSegments } from '../lib/reconcile.ts';
 import { layoutPlan } from '../lib/layout.ts';
 import { makePlan } from '../lib/planEdit.ts';
 import { starterToSegments } from '../lib/planner.ts';
@@ -16,17 +16,6 @@ import type { ChildState } from './AgeControl.tsx';
 import { PlanEditor } from './PlanEditor.tsx';
 import { defaultPlanTitle } from '../lib/planTitle.ts';
 import { Segmented } from './Segmented.tsx';
-
-export function kidsToPlanKids(kids: ChildState[]): PlanKid[] {
-  return kids.map((k) => {
-    const age = normalizeEnteredAge(k.age);
-    return { age: { value: age.value, unit: age.unit === 'w' ? 'w' : 'm' }, notYet: [...k.notYet] };
-  });
-}
-
-export function settingsFromFilters(f: Filters): PlanSettings {
-  return { energy: f.energy, place: f.place, mode: f.mode, adults: f.adults };
-}
 
 function starterFits(sp: StarterPlan, kids: PlanKid[], c: IndexedCatalog, energy: Filters['energy'], place: Filters['place']): boolean {
   if (sp.ages.length !== kids.length) return false;
@@ -93,11 +82,10 @@ export function PlannerView(props: {
 
   const useStarter = (sp: StarterPlan) => {
     const settings = settingsFromFilters(f);
-    const { segments, dropped } = starterToSegments(sp, planKids, c);
-    const { segments: checked, dropped: more } = reconcileSegments(planKids, settings, segments, c);
-    const lost = dropped.length + more.length;
-    const next = makeStarterPlan(planKids, settings, props.start, checked, sp.title, c);
-    props.onPlan(next, lost ? `${lost} item(s) didn’t fit these ages and were left out.` : undefined);
+    const { segments, dropped, changed } = starterToSegments(sp, planKids, c, settings);
+    const next = makeStarterPlan(planKids, settings, props.start, segments, sp.title, c);
+    const notes = [dropped.length ? `${dropped.length} item(s) didn’t fit these ages and were left out.` : '', changed.length ? `${changed.length} item(s) moved back into the main plan.` : ''].filter(Boolean);
+    props.onPlan(next, notes.length ? notes.join(' ') : undefined);
     props.onWindow(next.window);
   };
 

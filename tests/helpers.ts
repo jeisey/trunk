@@ -65,7 +65,7 @@ export class MemoryStorage implements Storage {
 
 // ---------- Timing fixtures (additive; deterministic, explicit stimulation) ----------
 
-import type { TimingRule } from '../src/content/schema.ts';
+import type { MixedAgeRecipe, Stimulation, TimingRule } from '../src/content/schema.ts';
 
 export const timingRule = (id: string, patch: Partial<TimingRule>): TimingRule => ({
   id,
@@ -124,6 +124,21 @@ export function timingFixture(): { c: IndexedCatalog; ids: Record<string, string
     toddler('act.fixture-ball-run', 'Ball run', { intents: ['move'], noise: 'moderate', timing: { stimulation: 'lively', rules: [] } }),
     toddler('act.fixture-unrated', 'Unrated idea', { intents: ['create'], timing: { stimulation: 'variable', rules: [] } }),
   ];
-  const c = fixtureCatalog({ timingRules: fixturePolicies, activities });
-  return { c, ids: Object.fromEntries(activities.map((a) => [a.title, a.id])) };
+  const base = f.recipes[0];
+  const pairing = (id: string, title: string, younger: string, older: string, stimulation: Stimulation, duration: MixedAgeRecipe['duration'], intents: MixedAgeRecipe['intents']): MixedAgeRecipe => ({
+    ...structuredClone(base),
+    id,
+    title,
+    younger: { ...base.younger, ageMin: '1w', ageMax: '12m', activity: younger },
+    older: { ...base.older, ageMin: '12m', ageMax: '60m', activity: older },
+    duration,
+    intents,
+    timing: { stimulation },
+  });
+  const recipes: MixedAgeRecipe[] = [
+    pairing('mix.fixture-cards-and-books', 'Cards and books', 'act.fixture-cards', 'act.fixture-quiet-books', 'gentle', { min: 3, default: 6, max: 10 }, ['calm', 'connect']),
+    pairing('mix.fixture-kick-and-ball', 'Kick and ball run', 'act.fixture-kick-gym', 'act.fixture-ball-run', 'lively', { min: 5, default: 10, max: 15 }, ['move']),
+  ];
+  const c = fixtureCatalog({ timingRules: fixturePolicies, activities, recipes });
+  return { c, ids: Object.fromEntries([...activities, ...recipes].map((a) => [a.title, a.id])) };
 }

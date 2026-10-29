@@ -38,6 +38,10 @@ export const UI = {
   safetySoft: '#fff5e6',
   safetyLine: '#f0d4a8',
   danger: '#a3271f',
+  dangerSoft: '#fdecea',
+  dangerLine: '#f1b5ae',
+  /** Borders of form fields and buttons (3:1 against the canvas). */
+  fieldLine: '#7d958d',
 } as const;
 
 /** Intrinsic size of the logo master (3:1, transparent padding included). */

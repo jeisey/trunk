@@ -65,6 +65,8 @@ describe('brand tokens', () => {
     expect(ratio(UI.muted, UI.skySoft)).toBeGreaterThanOrEqual(4.5);
     expect(ratio(UI.safety, UI.safetySoft)).toBeGreaterThanOrEqual(4.5);
     expect(ratio(UI.danger, UI.canvas)).toBeGreaterThanOrEqual(4.5);
+    expect(ratio(UI.danger, UI.dangerSoft)).toBeGreaterThanOrEqual(4.5);
+    expect(ratio(UI.fieldLine, UI.canvas)).toBeGreaterThanOrEqual(3);
     // White on pale sky is never readable; the UI never pairs them.
     expect(ratio(BRAND.white, UI.sky)).toBeLessThan(4.5);
   });

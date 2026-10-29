@@ -222,7 +222,7 @@ function phaseScore(cand: Candidate, span: Span, lanes: readonly (0 | 1)[], timi
       const until = next - span.end;
       if (until >= 0 && until <= 30) {
         // Winding down: calmer, less mess, little to set up or tidy away.
-        if (known) s += cand.stimulation === 'settling' ? 8 : cand.stimulation === 'gentle' ? 3 : -8;
+        if (known) s += cand.stimulation === 'settling' ? 8 : cand.stimulation === 'gentle' ? 4 : -8;
         s += cand.mess === 'none' || cand.mess === 'low' ? 1 : -4;
         s -= Math.min(4, cand.cleanup) + Math.min(3, Math.max(0, cand.setup - 1));
       } else if (until > 30 && active && known) {
@@ -292,6 +292,8 @@ interface Gap {
 }
 
 const LOOKAHEAD = 5;
+/** Cost of repeating an idea already in the plan: variety first, unless timing clearly favours the repeat. */
+const REPEAT = 15;
 
 type AvoidLog = { event: 'milk-feed' | 'meal' | 'nap'; when: 'before' | 'after'; tummy: boolean; moment: boolean };
 
@@ -371,6 +373,7 @@ export function planWindow(c: IndexedCatalog, input: PlannerInput): PlannerResul
 
   const baseScore = (cand: Candidate, minutes: number, room: number, ts: TrackState): number => {
     let s = 20;
+    if ((uses.get(cand.id) ?? 0) > 0) s -= REPEAT;
     const last = ts.last;
     if (last) {
       if (cand.intents[0] === last.intents[0]) s -= 8;
@@ -426,18 +429,15 @@ export function planWindow(c: IndexedCatalog, input: PlannerInput): PlannerResul
     return { cand, minutes, wall, span, timing, score: baseScore(cand, minutes, room, ts) + timing.score + phase };
   };
 
-  /** Unused ideas first; an idea repeats (at most twice) only when nothing unused fits here. */
+  /** Every idea that fits here. An idea appears at most twice, never back to back, and a repeat costs REPEAT. */
   const options = (at: number, room: number, track: Track, ts: TrackState, quiet: boolean): Placed[] => {
-    for (const repeat of [0, 1]) {
-      const out: Placed[] = [];
-      for (const cand of track.pool) {
-        if ((uses.get(cand.id) ?? 0) !== repeat) continue;
-        const p = evaluate(cand, at, room, track, ts, quiet);
-        if (p) out.push(p);
-      }
-      if (out.length) return out;
+    const out: Placed[] = [];
+    for (const cand of track.pool) {
+      if ((uses.get(cand.id) ?? 0) >= 2) continue;
+      const p = evaluate(cand, at, room, track, ts, quiet);
+      if (p) out.push(p);
     }
-    return [];
+    return out;
   };
 
   const byScore = (a: Placed, b: Placed) => b.score - a.score || (a.cand.id < b.cand.id ? -1 : a.cand.id > b.cand.id ? 1 : 0);

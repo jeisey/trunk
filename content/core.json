@@ -60,7 +60,7 @@
       "jurisdiction": "IE",
       "checked": "2026-10-29",
       "updated": "2026-05-17",
-      "notes": "Page last reviewed 17/05/2026; next review due 17/06/2029."
+      "notes": "Page last reviewed 17/05/2026; next review due 17/06/2029. HSE now also serves this page at the same path on www2.hse.ie, which its canonical link points to."
     },
     {
       "id": "src.childrens-wi.back-to-sleep-tummy-to-play",
@@ -343,6 +343,18 @@
       "paraphrase": "Children nap more easily with a steady daily routine so they know when nap time is, a darkened room, not being too warm, a comforter after 12 months, and a story read calmly.",
       "scope": "Ireland; daytime naps for babies and toddlers. Describes a pre-nap routine; says nothing about which play suits the time before it and gives no wind-down length.",
       "caveat": "The same page gives nap counts, spacing between naps and a 3.30 pm cut-off by age. Trunk does not use them: it never sets nap times, nap lengths or wake windows."
+    },
+    {
+      "id": "clm.core.hse-comforter-after-12m",
+      "kind": "recommendation",
+      "text": "HSE (Ireland): from 12 months of age, a special blanket or toy can be given as a comforter to make napping easier.",
+      "sources": [
+        "src.hse.naps-babies-toddlers"
+      ],
+      "locator": "Section 'Help your baby or toddler nap', list item 5",
+      "paraphrase": "Among the things that make daytime naps easier, HSE lists giving a child a special blanket or toy as a comforter once they are over 12 months old.",
+      "scope": "Ireland; daytime naps; children over 12 months only. The page gives no comforter advice for younger babies.",
+      "caveat": "For babies under 12 months, other guidance in Trunk keeps soft toys and loose blankets away from a baby's face and sleep space."
     },
     {
       "id": "clm.core.nhs-bedtime-wind-down",
@@ -1029,6 +1041,285 @@
         ]
       },
       "checked": "2026-10-28"
+    },
+    {
+      "id": "act.story-of-our-day",
+      "rev": 1,
+      "title": "Tell the story of your day",
+      "summary": "Cuddle up and, in a quiet voice, tell your child the simple story of their day so far: who you saw, what you did, what comes next.",
+      "kind": "play",
+      "ageMin": "4m",
+      "ageMax": "36m",
+      "readiness": {
+        "abilities": [],
+        "notes": []
+      },
+      "goals": [
+        "communication"
+      ],
+      "intents": [
+        "connect",
+        "calm"
+      ],
+      "places": [
+        "indoors",
+        "outdoors"
+      ],
+      "spaces": [
+        "lap-or-arms",
+        "seat",
+        "floor"
+      ],
+      "outing": false,
+      "materials": {
+        "level": "none",
+        "items": []
+      },
+      "setupMinutes": 0,
+      "cleanupMinutes": 0,
+      "duration": {
+        "min": 2,
+        "default": 5,
+        "max": 10
+      },
+      "effort": "low",
+      "supervision": {
+        "participation": "leads",
+        "proximity": "holding",
+        "handsOn": "intermittent",
+        "minAdults": 1,
+        "shareable": true,
+        "space": "A comfortable spot where you can hold your child close and stay awake, with the TV and music off."
+      },
+      "mess": "none",
+      "noise": "quiet",
+      "hazards": [
+        "suffocation"
+      ],
+      "steps": [
+        "Settle somewhere comfortable with your child in your lap or snuggled against you, and lower your voice.",
+        "Tell the story of their day so far in short, simple sentences: 'This morning you woke up. We had toast. We saw a big dog.'",
+        "Go slowly and leave pauses. A baby listens to your voice; a toddler may point, say a word, or fill in what happened.",
+        "End with a cuddle and what comes next, such as lunch, a walk or a rest."
+      ],
+      "adaptations": [
+        "Young baby: a few soft sentences while you hold them close is plenty.",
+        "Older toddler: leave gaps to fill in ('And then we saw a…?') or let them tell you one part.",
+        "Busy day? Tell just one small thing, like the bath or the bus ride."
+      ],
+      "stopCues": [
+        "Wriggles away or wants to get up",
+        "Looks away or fusses",
+        "Getting sleepy"
+      ],
+      "safety": [
+        {
+          "text": "Only while you're wide awake. If your child dozes off, lay them on their back in their own sleep space.",
+          "claims": [
+            "clm.core.stay-awake-holding",
+            "clm.core.sleep-on-back"
+          ]
+        }
+      ],
+      "timing": {
+        "stimulation": "settling",
+        "rules": []
+      },
+      "evidence": {
+        "type": "adapted",
+        "claims": [
+          "clm.core.who-reading-storytelling",
+          "clm.c.narrate-everyday",
+          "clm.core.hse-nap-calm-routine"
+        ]
+      },
+      "checked": "2026-10-29"
+    },
+    {
+      "id": "act.window-watch-in-arms",
+      "rev": 1,
+      "title": "Quiet window watching",
+      "summary": "Hold your child at a closed window and watch something slow together, like leaves, rain or clouds, naming it softly now and then.",
+      "kind": "play",
+      "ageMin": "4m",
+      "ageMax": "18m",
+      "readiness": {
+        "abilities": [],
+        "notes": []
+      },
+      "goals": [
+        "communication"
+      ],
+      "intents": [
+        "calm",
+        "connect",
+        "explore"
+      ],
+      "places": [
+        "indoors"
+      ],
+      "spaces": [
+        "lap-or-arms"
+      ],
+      "outing": false,
+      "materials": {
+        "level": "none",
+        "items": []
+      },
+      "setupMinutes": 0,
+      "cleanupMinutes": 0,
+      "duration": {
+        "min": 2,
+        "default": 5,
+        "max": 10
+      },
+      "effort": "low",
+      "supervision": {
+        "participation": "leads",
+        "proximity": "holding",
+        "handsOn": "continuous",
+        "minAdults": 1,
+        "shareable": true,
+        "space": "A closed window away from blind and curtain cords, with no furniture beneath it to climb."
+      },
+      "mess": "none",
+      "noise": "quiet",
+      "hazards": [
+        "falls",
+        "cords"
+      ],
+      "steps": [
+        "Pick a closed window with something slow to watch: trees moving, rain, clouds, birds or people passing.",
+        "Hold your child on your hip or sit with them in your lap facing out, head supported as needed.",
+        "Watch quietly together, naming things now and then in a soft voice: 'Leaves. Swish, swish.' Leave long pauses.",
+        "Follow their gaze; if they reach or point, name that thing slowly."
+      ],
+      "adaptations": [
+        "Younger baby: hold them upright against your shoulder so they can look over it.",
+        "Toddler: whisper 'What can you see?' and wait for a point or a word.",
+        "Rainy day? Watch the drops run down the glass."
+      ],
+      "stopCues": [
+        "Turns away or arches",
+        "Fusses or squirms",
+        "Getting sleepy"
+      ],
+      "safety": [
+        {
+          "text": "Hold your child yourself: never sit or stand them on a sill or on furniture by the window, and keep clear of blind and curtain cords.",
+          "claims": [
+            "clm.c.stairs-windows",
+            "clm.c.cords-away"
+          ]
+        },
+        {
+          "text": "If they doze off, lay them on their back in their own sleep space.",
+          "claims": [
+            "clm.core.sleep-on-back"
+          ]
+        }
+      ],
+      "timing": {
+        "stimulation": "settling",
+        "rules": []
+      },
+      "evidence": {
+        "type": "adapted",
+        "claims": [
+          "clm.b.talk-while-doing-tasks",
+          "clm.c.name-on-walks"
+        ]
+      },
+      "checked": "2026-10-29"
+    },
+    {
+      "id": "act.whisper-bye-bye-to-toys",
+      "rev": 1,
+      "title": "Whisper bye-bye to the toys",
+      "summary": "Walk slowly round the room together, whispering bye-bye to a few favourite toys and things, then sit down for a quiet cuddle.",
+      "kind": "play",
+      "ageMin": "12m",
+      "ageMax": "36m",
+      "readiness": {
+        "abilities": [],
+        "notes": []
+      },
+      "goals": [],
+      "intents": [
+        "calm",
+        "connect",
+        "routine"
+      ],
+      "places": [
+        "indoors"
+      ],
+      "spaces": [
+        "anywhere",
+        "lap-or-arms"
+      ],
+      "outing": false,
+      "materials": {
+        "level": "none",
+        "items": [
+          "Their comforter or a favourite soft toy, if they have one"
+        ]
+      },
+      "setupMinutes": 0,
+      "cleanupMinutes": 0,
+      "duration": {
+        "min": 2,
+        "default": 4,
+        "max": 8
+      },
+      "effort": "low",
+      "supervision": {
+        "participation": "leads",
+        "proximity": "arms-reach",
+        "handsOn": "intermittent",
+        "minAdults": 1,
+        "shareable": true,
+        "space": "Your usual play room with a clear floor to walk on and stairs gated."
+      },
+      "mess": "none",
+      "noise": "quiet",
+      "hazards": [],
+      "steps": [
+        "Lower your voice and tell your toddler it's time to say bye-bye to the toys for now.",
+        "Walk slowly round the room together, or carry them, whispering 'bye-bye, ball' and 'see you later, bear' to a few familiar things.",
+        "Let them wave or blow a kiss and choose the next one; doing it the same way each time can become a familiar ritual.",
+        "Finish sitting together for a quiet cuddle, with their comforter if they have one."
+      ],
+      "adaptations": [
+        "Not walking yet? Carry them on your hip and let them wave.",
+        "Older toddler: let them lead the round and whisper the goodbyes themselves.",
+        "Upset about leaving a toy? Let them bring it along to the cuddle."
+      ],
+      "stopCues": [
+        "Wants to run or play instead",
+        "Gets cross or upset"
+      ],
+      "safety": [
+        {
+          "text": "A comforter or soft toy is for over-1s (HSE). For babies, keep soft toys and loose blankets away from their face and out of their sleep space.",
+          "claims": [
+            "clm.core.hse-comforter-after-12m",
+            "clm.a.keep-face-clear"
+          ]
+        }
+      ],
+      "timing": {
+        "stimulation": "settling",
+        "rules": []
+      },
+      "evidence": {
+        "type": "adapted",
+        "claims": [
+          "clm.core.hse-nap-calm-routine",
+          "clm.core.nhs-bedtime-wind-down",
+          "clm.core.hse-comforter-after-12m"
+        ]
+      },
+      "checked": "2026-10-29"
     }
   ],
   "recipes": [],

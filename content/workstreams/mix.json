@@ -2805,7 +2805,7 @@
   "starterPlans": [
     {
       "id": "plan.gentle-newborn-hour",
-      "rev": 1,
+      "rev": 2,
       "title": "Gentle newborn hour",
       "summary": "Short, flexible pieces with long breaks: a chat, a few minutes of floor tummy time, bold pictures and a slow sway. A feed or a nap can replace any piece.",
       "circumstance": "A 3-week-old at home with one adult; feeds and sleep can come at any time.",
@@ -2818,11 +2818,6 @@
           "kind": "activity",
           "ref": "act.coo-and-copy-chat",
           "minutes": 4
-        },
-        {
-          "kind": "break",
-          "minutes": 15,
-          "label": "Feed, diaper or nap: whatever comes first"
         },
         {
           "kind": "activity",
@@ -2842,7 +2837,7 @@
         {
           "kind": "break",
           "minutes": 15,
-          "label": "Feed or sleep if baby is ready"
+          "label": "Diaper, cuddle or nap: whatever your baby needs"
         },
         {
           "kind": "activity",
@@ -2852,16 +2847,16 @@
         {
           "kind": "break",
           "minutes": 7,
-          "label": "Rest, or a drink for you"
+          "label": "Feed or sleep if your baby is ready"
         }
       ],
       "checked": "2026-10-29"
     },
     {
       "id": "plan.rainy-afternoon-4m-28m",
-      "rev": 1,
+      "rev": 2,
       "title": "Rainy afternoon: 4 months and 28 months, one adult",
-      "summary": "Indoor side-by-side play, a short tummy-time book session, action songs and a slow dance parade, with breaks for feeds, diapers and drinks.",
+      "summary": "A short tummy-time book session, side-by-side play, a slow dance parade and action songs, with breaks for feeds, diapers and drinks.",
       "circumstance": "One adult indoors on a wet afternoon with a 4-month-old and a 2-year-old.",
       "ages": [
         "4m",
@@ -2871,8 +2866,8 @@
       "segments": [
         {
           "kind": "recipe",
-          "ref": "mix.mat-and-table-side-by-side",
-          "minutes": 12
+          "ref": "mix.tummy-time-book-helper",
+          "minutes": 5
         },
         {
           "kind": "break",
@@ -2881,18 +2876,8 @@
         },
         {
           "kind": "recipe",
-          "ref": "mix.tummy-time-book-helper",
-          "minutes": 5
-        },
-        {
-          "kind": "break",
-          "minutes": 10,
-          "label": "Baby feed or cuddle; toddler beside you"
-        },
-        {
-          "kind": "recipe",
-          "ref": "mix.action-song-circle",
-          "minutes": 6
+          "ref": "mix.mat-and-table-side-by-side",
+          "minutes": 12
         },
         {
           "kind": "break",
@@ -2902,6 +2887,16 @@
         {
           "kind": "recipe",
           "ref": "mix.slow-dance-follow-the-leader",
+          "minutes": 6
+        },
+        {
+          "kind": "break",
+          "minutes": 10,
+          "label": "Baby feed or cuddle; toddler beside you"
+        },
+        {
+          "kind": "recipe",
+          "ref": "mix.action-song-circle",
           "minutes": 6
         },
         {
