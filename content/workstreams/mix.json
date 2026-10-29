@@ -1,0 +1,2974 @@
+{
+  "schema": 1,
+  "workstream": "mix",
+  "description": "Curated two-child recipes (together and one-adult parallel) and editable starter plans that sequence existing activities across ages 1 week to 5 years.",
+  "sources": [
+    {
+      "id": "src.healthdirect.toddler-and-new-baby",
+      "url": "https://www.pregnancybirthbaby.org.au/toddler-and-the-new-baby",
+      "org": "Pregnancy, Birth and Baby (Healthdirect Australia, funded by the Australian Government)",
+      "title": "Toddler and the new baby",
+      "jurisdiction": "AU",
+      "checked": "2026-10-28",
+      "updated": "2025-05",
+      "notes": "Page shows \"last reviewed May 2025\". Also suggests a toddler can gently hold the baby while sitting on your lap with your help; Trunk does not adopt that (children never hold babies in Trunk content)."
+    },
+    {
+      "id": "src.aap-hc.preparing-family-new-baby",
+      "url": "https://www.healthychildren.org/English/ages-stages/prenatal/Pages/Preparing-Your-Family-for-a-New-Baby.aspx",
+      "org": "American Academy of Pediatrics (HealthyChildren.org)",
+      "title": "Preparing Your Older Child for a New Baby: How to Help Siblings Adjust",
+      "jurisdiction": "US",
+      "checked": "2026-10-28",
+      "updated": "2026-02-10",
+      "notes": "Adapted from AAP \"Welcoming a New Sibling\" (2020). Sections by age: toddlers, preschoolers, school-age."
+    },
+    {
+      "id": "src.aap-hc.siblings-while-breastfeeding",
+      "url": "https://www.healthychildren.org/English/ages-stages/baby/breastfeeding/Pages/Managing-Older-Siblings-While-Breastfeeding.aspx",
+      "org": "American Academy of Pediatrics (HealthyChildren.org)",
+      "title": "Managing Older Siblings While Breastfeeding",
+      "jurisdiction": "US",
+      "checked": "2026-10-28",
+      "updated": "2009-11-02",
+      "notes": "Old page (from New Mother's Guide to Breastfeeding, 2nd ed., 2011) but still published. Used only for ideas to keep an older child occupied nearby; its suggestion that an older child hold the baby is not adopted."
+    }
+  ],
+  "claims": [
+    {
+      "id": "clm.mix.never-leave-toddler-with-baby",
+      "kind": "safety",
+      "text": "Never leave a toddler alone with a baby, even for a moment. A toddler may share food the baby could choke on, or rock a pram to settle the baby until it tips over.",
+      "sources": [
+        "src.healthdirect.toddler-and-new-baby"
+      ],
+      "locator": "Section on safety and the toddler and new baby ('never leave them alone together')",
+      "paraphrase": "Do not leave a toddler alone with a baby: the toddler might share food that could choke the baby, or rock the pram to stop the crying and overturn it.",
+      "scope": "Australian government-funded guidance for families with a toddler and a new baby. Trunk applies it to every recipe: an older child under 5 is a playmate, never the one in charge.",
+      "caveat": "The same page suggests a toddler can gently hold the baby on your lap with your help. Trunk does not suggest children holding, lifting or carrying babies (content policy)."
+    },
+    {
+      "id": "clm.mix.toddler-small-jobs",
+      "kind": "description",
+      "text": "Small jobs for the baby, such as fetching a diaper or the wipes, and invitations to help can help a toddler or preschooler feel included as the big brother or sister.",
+      "sources": [
+        "src.healthdirect.toddler-and-new-baby",
+        "src.aap-hc.preparing-family-new-baby"
+      ],
+      "locator": "Healthdirect: ways a toddler can help (fetching a nappy or wipes). AAP: 'Preschoolers' section (invite your child to help).",
+      "paraphrase": "Healthdirect suggests giving a toddler simple tasks such as bringing a nappy or wipes so they feel like a responsible big sibling, and praising care around the baby. AAP suggests finding ways to invite a preschooler to help so they feel included.",
+      "scope": "Toddlers and preschoolers with a new baby; Australia and US. Jobs are fetching and passing things to the adult, not handling the baby."
+    },
+    {
+      "id": "clm.mix.gentle-open-palm",
+      "kind": "recommendation",
+      "text": "Show a toddler how to touch the baby gently with an open palm, and remind preschoolers to be gentle whenever they play with or help with the baby.",
+      "sources": [
+        "src.healthdirect.toddler-and-new-baby",
+        "src.aap-hc.preparing-family-new-baby"
+      ],
+      "locator": "Healthdirect: gentle touch (stroke with the palm). AAP: 'Preschoolers' section (remind them to be gentle).",
+      "paraphrase": "Healthdirect suggests showing the toddler how to stroke the baby gently with their palm to avoid accidental poking or scratching. AAP says to remind preschoolers to be gentle when they play with or help care for the baby.",
+      "scope": "Toddlers and preschoolers with a baby sibling, with an adult right there; Australia and US."
+    },
+    {
+      "id": "clm.mix.busy-nearby-during-feeds",
+      "kind": "description",
+      "text": "While you feed or settle a baby, an older child can stay close: cuddle in for a story or music, or play near you with blocks, drawing, a toy or a doll to look after.",
+      "sources": [
+        "src.healthdirect.toddler-and-new-baby",
+        "src.aap-hc.siblings-while-breastfeeding"
+      ],
+      "locator": "Healthdirect: spending time with the toddler during feeds. AAP breastfeeding page: paragraphs on including the older child.",
+      "paraphrase": "Healthdirect suggests cuddling or reading to the toddler during a feed, or offering activities near you such as drawing, blocks or feeding dolls, and calm music. AAP suggests a story, drawing, a workbook or a toy, listening to music or stories together, or a small job such as folding laundry nearby.",
+      "scope": "Older siblings (toddler to school age) present while a parent feeds or cares for a baby; Australia and US.",
+      "caveat": "The AAP page dates from 2009. Both pages are about feeds; Trunk applies the same idea to holding and settling a baby. Neither page treats this as unsupervised time."
+    },
+    {
+      "id": "clm.mix.special-time-older-child",
+      "kind": "recommendation",
+      "text": "AAP suggests setting aside special time with a preschooler for reading, games, music or talking, and letting them cuddle next to you while you feed the baby.",
+      "sources": [
+        "src.aap-hc.preparing-family-new-baby"
+      ],
+      "locator": "'Preschoolers' section (special time; cuddling during feedings)",
+      "paraphrase": "For preschoolers adjusting to a new baby, set aside special time for reading, games, music or talking, and let them cuddle beside you during feedings so they feel included.",
+      "scope": "US guidance for families with a preschooler and a new baby."
+    },
+    {
+      "id": "clm.mix.rock-side-to-side-4-6m",
+      "kind": "description",
+      "text": "AAP's play ideas for babies 4 to 6 months include holding your baby against your chest and rocking gently side to side while you sing.",
+      "sources": [
+        "src.aap-hc.simple-ways-entertain"
+      ],
+      "locator": "'4 to 6 months' list (the chest-rocking song idea)",
+      "paraphrase": "For 4 to 6 months, the page suggests holding the baby tummy-down on your chest, rocking from side to side, and singing a song.",
+      "scope": "US, adapted from AAP Retro Baby (2nd ed.); babies about 4 to 6 months held by an awake adult.",
+      "caveat": "The same page's 7-9-month ideas include bouncing and lifting games. Trunk excludes those and keeps held movement slow and smooth for every age."
+    }
+  ],
+  "activities": [
+    {
+      "id": "act.held-slow-dance",
+      "rev": 1,
+      "title": "Slow dance with your baby in your arms",
+      "summary": "Put on a song and sway slowly around a clear room with your baby held against your chest, head and neck supported as needed.",
+      "kind": "play",
+      "ageMin": "4m",
+      "ageMax": "12m",
+      "readiness": {
+        "abilities": [],
+        "notes": [
+          "Support head and neck until your baby holds their head steady on their own."
+        ]
+      },
+      "goals": [
+        "social-emotional",
+        "communication"
+      ],
+      "intents": [
+        "connect",
+        "calm",
+        "move"
+      ],
+      "places": [
+        "indoors"
+      ],
+      "spaces": [
+        "lap-or-arms",
+        "open-area"
+      ],
+      "outing": false,
+      "materials": {
+        "level": "none",
+        "items": [
+          "Optional: music on a phone or speaker"
+        ]
+      },
+      "setupMinutes": 1,
+      "cleanupMinutes": 0,
+      "duration": {
+        "min": 2,
+        "default": 5,
+        "max": 15
+      },
+      "effort": "low",
+      "supervision": {
+        "participation": "leads",
+        "proximity": "holding",
+        "handsOn": "continuous",
+        "minAdults": 1,
+        "shareable": true,
+        "space": "Clear, flat floor with no toys, rugs or cords underfoot, away from stairs. No hot drinks in hand."
+      },
+      "mess": "none",
+      "noise": "moderate",
+      "hazards": [
+        "falls"
+      ],
+      "steps": [
+        "Clear a little space and put on a song you like.",
+        "Hold your baby upright against your chest, one arm under their bottom and a hand behind their back, head and neck supported if needed.",
+        "Sway slowly side to side or take small, smooth steps, singing or humming close to their ear.",
+        "Slow right down as the song ends and finish with a cuddle."
+      ],
+      "adaptations": [
+        "Fussy baby? Dim the lights, pick a slow song and just sway in place.",
+        "Older baby? Turn slowly so they can see the room, and name what they look at.",
+        "Too tired to stand? Rock gently in a chair instead, staying wide awake."
+      ],
+      "stopCues": [
+        "Crying harder, arching or turning their head away",
+        "Getting sleepy: lay them on their back in their own sleep space",
+        "Your arms or back are tiring"
+      ],
+      "safety": [
+        {
+          "text": "Slow, smooth movements with head and neck supported; no bouncing or quick turns. Never shake a baby; if you feel overwhelmed, put them down safely and step away.",
+          "claims": [
+            "clm.a.head-support",
+            "clm.a.never-shake"
+          ]
+        },
+        {
+          "text": "Watch your step while carrying, keep floors and stairs clear, and never hold a hot drink at the same time.",
+          "claims": [
+            "clm.a.carrying-trips",
+            "clm.a.no-hot-drinks-holding"
+          ]
+        },
+        {
+          "text": "If your baby falls asleep, lay them on their back in their own sleep space; rock in a chair only while wide awake.",
+          "claims": [
+            "clm.core.sleep-on-back",
+            "clm.core.stay-awake-holding"
+          ]
+        }
+      ],
+      "why": {
+        "text": "Rocking side to side with your baby held close while you sing is among AAP's play ideas for 4 to 6 months, and being held close helps babies feel safe.",
+        "claims": [
+          "clm.mix.rock-side-to-side-4-6m",
+          "clm.a.cuddle-hold-secure"
+        ]
+      },
+      "evidence": {
+        "type": "adapted",
+        "claims": [
+          "clm.mix.rock-side-to-side-4-6m",
+          "clm.a.rock-sway-sing-calms",
+          "clm.a.sing-rhymes",
+          "clm.a.cuddle-hold-secure"
+        ]
+      },
+      "checked": "2026-10-28"
+    }
+  ],
+  "recipes": [
+    {
+      "rev": 1,
+      "checked": "2026-10-29",
+      "outing": false,
+      "setupMinutes": 2,
+      "cleanupMinutes": 1,
+      "id": "mix.tummy-time-book-helper",
+      "mode": "together",
+      "title": "Tummy time with a toddler book helper",
+      "summary": "Brief floor tummy time for the baby while your toddler shows them a board book and names the pictures, with you on the floor right beside the baby.",
+      "places": [
+        "indoors"
+      ],
+      "younger": {
+        "ageMin": "3m",
+        "ageMax": "8m",
+        "abilities": [],
+        "activity": "act.tummy-time-reach-and-play",
+        "does": "Lies tummy-down on a firm, flat floor mat, lifting their head to look at the pictures and reaching for their own baby-safe toy.",
+        "adapt": "Head dropping after a minute? End there and look at the book together on your lap instead."
+      },
+      "older": {
+        "ageMin": "24m",
+        "ageMax": "36m",
+        "abilities": [],
+        "activity": "act.who-what-where-book-chat",
+        "does": "Sits at the edge of the mat facing the baby, holds a board book open near the floor about a forearm from the baby's face, and names or points to pictures.",
+        "adapt": "Wriggly? They turn the pages and answer 'Where's the dog?' while you hold the book."
+      },
+      "adult": {
+        "minAdults": 1,
+        "does": "Lies or sits on the floor right beside the baby, within arm's reach, hands free. Asks the toddler who, what and where questions and watches the baby's cues the whole time.",
+        "handsOnFor": "younger"
+      },
+      "sharedSetup": "Firm, flat mat on the floor, one sturdy board book or contrast card, one baby-safe toy. Clear the mat edge of the toddler's small toys and cups.",
+      "space": "Floor only, never a bed or sofa. Toddler sits at the mat's edge facing the baby, never on or over the mat; sit between them if the toddler is wriggly.",
+      "duration": {
+        "min": 2,
+        "default": 5,
+        "max": 10
+      },
+      "effort": "low",
+      "intents": [
+        "connect",
+        "move"
+      ],
+      "steps": [
+        "Lay the baby tummy-down on the mat. Sit the toddler at the mat's edge, facing the baby, holding the board book.",
+        "The toddler holds the book open near the floor where the baby can see it; you ask, 'Who's that? Show the baby the duck!'",
+        "Put the baby's own toy just ahead for them to reach; the book stays in the toddler's hands and out of the baby's mouth.",
+        "Stop at the first fuss or head drop. Roll the baby onto their back to rest and thank your helper."
+      ],
+      "stopCues": [
+        "Baby's head dropping, fussing or crying",
+        "Baby rubbing eyes or drifting off to sleep",
+        "Toddler leaning on, climbing over or grabbing at the baby",
+        "Toddler losing interest: switch to a sofa story"
+      ],
+      "safety": [
+        {
+          "text": "Floor tummy time on a firm, flat mat, only while the baby is awake and you are right there. If they fall asleep, move them onto their back in their own sleep space.",
+          "claims": [
+            "clm.core.tummy-awake-supervised",
+            "clm.core.floor-not-bed",
+            "clm.core.sleep-on-back"
+          ]
+        },
+        {
+          "text": "The toddler is a playmate only: no touching, lifting, leaning on or lying over the baby. Never leave the two alone together, even briefly.",
+          "claims": [
+            "clm.mix.never-leave-toddler-with-baby"
+          ]
+        },
+        {
+          "text": "Only the board book and baby-safe toys near the baby; nothing the toddler brings goes into the baby's hands or mouth.",
+          "claims": [
+            "clm.b.toys-bigger-than-mouth",
+            "clm.c.older-sibling-small-things"
+          ]
+        },
+        {
+          "text": "This is floor tummy time on a flat surface. It counts toward a flat-surface target only if your baby's clinician set one; Trunk sets no target.",
+          "claims": [
+            "clm.core.ask-clinician-preterm"
+          ]
+        }
+      ],
+      "claims": [
+        "clm.core.young-child-joins-tummy-time",
+        "clm.core.reach-play",
+        "clm.e.book-questions",
+        "clm.b.lap-reading-bold-pictures",
+        "clm.core.stop-when-upset",
+        "clm.mix.toddler-small-jobs"
+      ]
+    },
+    {
+      "rev": 1,
+      "checked": "2026-10-29",
+      "outing": false,
+      "setupMinutes": 2,
+      "cleanupMinutes": 1,
+      "id": "mix.tummy-time-picture-show",
+      "mode": "together",
+      "title": "Tummy time picture show by a preschooler",
+      "summary": "Brief floor tummy time while your preschooler \"reads\" a board book to the baby from the pictures, with you on the floor beside the baby.",
+      "places": [
+        "indoors"
+      ],
+      "younger": {
+        "ageMin": "3m",
+        "ageMax": "8m",
+        "abilities": [],
+        "activity": "act.tummy-time-reach-and-play",
+        "does": "Lies tummy-down on a firm, flat floor mat, lifting up to look at the pages and the reader's face, and reaching for their own toy."
+      },
+      "older": {
+        "ageMin": "36m",
+        "ageMax": "60m",
+        "abilities": [],
+        "activity": "act.what-happens-next-book",
+        "does": "Sits at the mat's edge and tells the baby the story from the pictures, holding a sturdy board book low and open where the baby can see it.",
+        "adapt": "Ready for more? They choose the page they think will make the baby smile and tell you why."
+      },
+      "adult": {
+        "minAdults": 1,
+        "does": "On the floor beside the baby, within arm's reach and hands free. Praises the reader, asks 'What will baby see next?', watches the baby's face and ends it at the first fuss.",
+        "handsOnFor": "younger"
+      },
+      "sharedSetup": "Firm, flat floor mat, one sturdy board book for the show, one baby-safe toy. Put the preschooler's small toys and story props away first.",
+      "space": "Floor only, never a bed or sofa. The reader sits at the mat's edge facing the baby, not on or over the mat; you sit beside the baby.",
+      "duration": {
+        "min": 2,
+        "default": 5,
+        "max": 10
+      },
+      "effort": "low",
+      "intents": [
+        "connect",
+        "move"
+      ],
+      "steps": [
+        "Baby tummy-down on the mat; the preschooler sits at the edge facing the baby, holding the board book low and open.",
+        "They tell the baby what is happening on each page; you ask them, 'What will the baby see next?'",
+        "Keep a baby-safe toy just ahead for the baby to reach; the book stays with the reader.",
+        "At the first fuss, end the show: baby onto their back to rest, and the reader takes a bow."
+      ],
+      "stopCues": [
+        "Baby's head dropping, fussing or crying",
+        "Baby sleepy or rubbing eyes",
+        "Preschooler leaning over, poking or lying beside the baby's face",
+        "Preschooler wants a real story: read their book together next"
+      ],
+      "safety": [
+        {
+          "text": "Floor tummy time on a firm, flat mat, only while the baby is awake and you are right there. If they fall asleep, move them onto their back in their own sleep space.",
+          "claims": [
+            "clm.core.tummy-awake-supervised",
+            "clm.core.floor-not-bed",
+            "clm.core.sleep-on-back"
+          ]
+        },
+        {
+          "text": "The preschooler is the storyteller, not a helper with the baby's body: no touching, lifting or leaning on the baby. Never leave them alone together.",
+          "claims": [
+            "clm.mix.never-leave-toddler-with-baby"
+          ]
+        },
+        {
+          "text": "Story props, stickers and small toys that are fine for the preschooler stay out of the baby's reach.",
+          "claims": [
+            "clm.f.small-pieces-away-from-babies"
+          ]
+        },
+        {
+          "text": "This is floor tummy time on a flat surface. It counts toward a flat-surface target only if your baby's clinician set one; Trunk sets no target.",
+          "claims": [
+            "clm.core.ask-clinician-preterm"
+          ]
+        }
+      ],
+      "claims": [
+        "clm.core.young-child-joins-tummy-time",
+        "clm.core.reach-play",
+        "clm.f.read-ask-what-next",
+        "clm.core.stop-when-upset",
+        "clm.mix.toddler-small-jobs",
+        "clm.mix.gentle-open-palm"
+      ]
+    },
+    {
+      "rev": 1,
+      "checked": "2026-10-29",
+      "outing": false,
+      "setupMinutes": 1,
+      "cleanupMinutes": 1,
+      "id": "mix.newborn-sway-toddler-dance",
+      "mode": "together",
+      "title": "Sway with the newborn, dance with your toddler",
+      "summary": "Hold the newborn close and sway slowly to music while your toddler dances and freezes in a cleared patch in front of you.",
+      "places": [
+        "indoors"
+      ],
+      "younger": {
+        "ageMin": "1w",
+        "ageMax": "4m",
+        "abilities": [],
+        "activity": "act.sway-and-hum",
+        "does": "Held upright against your chest with head and neck supported, swaying slowly to the music and hearing you hum."
+      },
+      "older": {
+        "ageMin": "15m",
+        "ageMax": "30m",
+        "abilities": [],
+        "activity": "act.freeze-dance-toddler",
+        "does": "Dances freely in a cleared patch in front of you and freezes when you call 'Freeze!'",
+        "adapt": "Younger toddler? Skip the freezing; they dance and copy your words: 'Clap! Stomp! Turn!'"
+      },
+      "adult": {
+        "minAdults": 1,
+        "does": "Stands or sits holding the baby, one hand behind the head and neck, swaying slowly; calls 'Freeze!' and 'Dance!' by voice. Music plays from a speaker started first.",
+        "handsOnFor": "younger"
+      },
+      "sharedSetup": "Clear a dance patch: toys, rugs and cords out of the way. Start a playlist on a speaker before you pick up the baby. No hot drinks.",
+      "space": "Toddler dances in a marked patch at least an arm's length in front of you, never behind you or under your feet. You stay on clear, flat floor away from stairs.",
+      "duration": {
+        "min": 2,
+        "default": 5,
+        "max": 10
+      },
+      "effort": "low",
+      "intents": [
+        "connect",
+        "move"
+      ],
+      "steps": [
+        "Clear the floor and start the music. Pick up the baby, one hand behind their head and neck.",
+        "The toddler dances in their patch; you sway slowly and smoothly with the baby.",
+        "Call 'Freeze!' and all stand still, then 'Dance!' again. Keep your own steps small.",
+        "If the toddler runs at you, stop swaying and turn your shoulder to shield the baby. Finish with a slow song."
+      ],
+      "stopCues": [
+        "Baby crying harder, arching or falling asleep",
+        "Toddler running into you or getting wild",
+        "You feel tired or unsteady"
+      ],
+      "safety": [
+        {
+          "text": "Slow, smooth swaying with head and neck supported: no bouncing, jiggling, swinging or quick turns. Never shake a baby.",
+          "claims": [
+            "clm.a.head-support",
+            "clm.a.never-shake"
+          ]
+        },
+        {
+          "text": "Watch your step while holding the baby; the toddler's dance patch stays out of your path and away from stairs.",
+          "claims": [
+            "clm.a.carrying-trips"
+          ]
+        },
+        {
+          "text": "If the baby falls asleep, lay them on their back in their own sleep space before the toddler's next song.",
+          "claims": [
+            "clm.core.sleep-on-back"
+          ]
+        },
+        {
+          "text": "The toddler dances near you, never with the baby: no holding, pulling or lifting the baby.",
+          "claims": [
+            "clm.mix.never-leave-toddler-with-baby"
+          ]
+        }
+      ],
+      "claims": [
+        "clm.a.dance-over-shoulder",
+        "clm.a.rock-sway-sing-calms",
+        "clm.d.dance-and-freeze",
+        "clm.mix.special-time-older-child"
+      ]
+    },
+    {
+      "rev": 1,
+      "checked": "2026-10-29",
+      "outing": false,
+      "setupMinutes": 1,
+      "cleanupMinutes": 1,
+      "id": "mix.slow-dance-follow-the-leader",
+      "mode": "together",
+      "title": "Slow dance parade: baby in arms, toddler leads",
+      "summary": "Your toddler leads a marching parade around a cleared room while you follow at a slow, smooth sway with the baby held against your chest.",
+      "places": [
+        "indoors"
+      ],
+      "younger": {
+        "ageMin": "4m",
+        "ageMax": "12m",
+        "abilities": [],
+        "activity": "act.held-slow-dance",
+        "does": "Held upright against your chest, head and neck supported as needed, watching the parade and hearing you sing the beat."
+      },
+      "older": {
+        "ageMin": "24m",
+        "ageMax": "36m",
+        "abilities": [
+          "walks"
+        ],
+        "activity": "act.follow-the-leader-parade",
+        "does": "Leads the parade along a cleared loop: marches, tiptoes, stomps and turns, checking that you copy."
+      },
+      "adult": {
+        "minAdults": 1,
+        "does": "Follows a step or two behind the toddler, holding the baby in both arms; copies each move as a slow sway or small steps and sings or counts the beat.",
+        "handsOnFor": "younger"
+      },
+      "sharedSetup": "Clear a loop around the room: no toys, slippery rugs or cords, no stairs on the route. No hot drinks. Music optional.",
+      "space": "One loop on flat floor away from stairs. Toddler stays in front of you, never behind or under your feet; you never jump, hop or run while holding the baby.",
+      "duration": {
+        "min": 3,
+        "default": 6,
+        "max": 10
+      },
+      "effort": "medium",
+      "intents": [
+        "move",
+        "connect"
+      ],
+      "steps": [
+        "Clear the loop and pick up the baby. Tell your toddler: 'You're the leader. We'll copy, slowly!'",
+        "The toddler marches, tiptoes or stomps ahead; you copy with small steps and a gentle sway.",
+        "If they hop, jump or spin, you sway in place and cheer instead of copying.",
+        "Finish with a slow 'tiptoe home' to the sofa and a rest."
+      ],
+      "stopCues": [
+        "Baby fussing, arching or getting sleepy",
+        "Toddler speeding up, running or turning back into you",
+        "Your arms or back tiring"
+      ],
+      "safety": [
+        {
+          "text": "Slow, smooth swaying with head and neck supported: no bouncing, jiggling, swinging or quick turns. Never shake a baby.",
+          "claims": [
+            "clm.a.head-support",
+            "clm.a.never-shake"
+          ]
+        },
+        {
+          "text": "Clear the path and keep away from stairs: you can't catch a falling toddler while holding a baby.",
+          "claims": [
+            "clm.e.falls-2-to-4",
+            "clm.a.carrying-trips"
+          ]
+        },
+        {
+          "text": "The toddler leads the parade, not the baby: no holding, pulling or lifting the baby, and no climbing on you.",
+          "claims": [
+            "clm.mix.never-leave-toddler-with-baby"
+          ]
+        }
+      ],
+      "claims": [
+        "clm.e.follow-the-leader",
+        "clm.mix.rock-side-to-side-4-6m",
+        "clm.a.rock-sway-sing-calms",
+        "clm.mix.special-time-older-child"
+      ]
+    },
+    {
+      "rev": 1,
+      "checked": "2026-10-29",
+      "outing": true,
+      "setupMinutes": 5,
+      "cleanupMinutes": 2,
+      "id": "mix.newborn-stroll-toddler-walks",
+      "mode": "together",
+      "title": "Stroller stroll with a walking toddler",
+      "summary": "Push the newborn in the stroller while your toddler walks beside you, hand on the stroller or in yours, and you name what you both see.",
+      "places": [
+        "outdoors"
+      ],
+      "younger": {
+        "ageMin": "1w",
+        "ageMax": "4m",
+        "abilities": [],
+        "activity": "act.stroller-stroll-point-and-name",
+        "does": "Lies buckled in the stroller under the canopy, looking at leaves, light and faces while you name what passes."
+      },
+      "older": {
+        "ageMin": "18m",
+        "ageMax": "30m",
+        "abilities": [
+          "walks"
+        ],
+        "activity": "act.toddler-led-walk",
+        "does": "Walks beside you with a hand on the stroller frame or in yours, stopping at safe spots to point at dogs, leaves and buses.",
+        "adapt": "Tired legs? Use a stroller board or a double stroller, or keep it to one block and back."
+      },
+      "adult": {
+        "minAdults": 1,
+        "does": "Pushes the stroller with one hand and holds the toddler's hand with the other near roads, driveways and crossings. Full attention on the route; phone away.",
+        "handsOnFor": "both"
+      },
+      "sharedSetup": "Baby buckled in, canopy up, dressed for the weather. Plan a short, quiet route with sidewalks or a park path. No blanket over the stroller.",
+      "space": "Sidewalks or park paths only. Near roads, driveways and parking lots the toddler holds your hand; stop together and wait at every crossing.",
+      "duration": {
+        "min": 15,
+        "default": 20,
+        "max": 40
+      },
+      "effort": "medium",
+      "intents": [
+        "fresh-air",
+        "move",
+        "connect"
+      ],
+      "steps": [
+        "Buckle the baby in, canopy up. Agree the rule with your toddler: 'At the road, hand in mine.'",
+        "On the path, the toddler walks beside the stroller and picks places to stop and look; you name things for both.",
+        "At driveways and crossings: brake on, toddler's hand in yours, then cross together.",
+        "Turn back before the toddler is worn out; a short loop beats a long one."
+      ],
+      "stopCues": [
+        "Baby fussing, hungry, or too hot or cold",
+        "Toddler refusing your hand near traffic: head home or to a fenced park",
+        "Toddler tired and stumbling"
+      ],
+      "safety": [
+        {
+          "text": "Traffic needs your full attention: the toddler holds your hand near roads, driveways and parking lots, and you cross only at crossings, phone away.",
+          "claims": [
+            "clm.d.pedestrian-safety",
+            "clm.a.walk-sidewalks-crosswalks"
+          ]
+        },
+        {
+          "text": "Buckle the baby into the stroller harness every ride and set the brake whenever you stop.",
+          "claims": [
+            "clm.c.stroller-harness",
+            "clm.a.strap-in-stroller"
+          ]
+        },
+        {
+          "text": "Under 6 months: keep the baby in shade, skip the 10 a.m. to 4 p.m. sun, and never drape a blanket over the stroller.",
+          "claims": [
+            "clm.a.sun-under-6m",
+            "clm.a.no-blanket-over-stroller"
+          ]
+        },
+        {
+          "text": "The older child walks beside the stroller; they don't push, rock or steer it with the baby inside.",
+          "claims": [
+            "clm.mix.never-leave-toddler-with-baby"
+          ]
+        },
+        {
+          "text": "If the baby falls asleep in the stroller, move them onto their back on a firm, flat sleep surface once home.",
+          "claims": [
+            "clm.a.asleep-in-device"
+          ]
+        }
+      ],
+      "claims": [
+        "clm.a.point-and-name",
+        "clm.d.child-led-walks",
+        "clm.core.who-not-restrained-1h"
+      ]
+    },
+    {
+      "rev": 1,
+      "checked": "2026-10-29",
+      "outing": true,
+      "setupMinutes": 5,
+      "cleanupMinutes": 2,
+      "id": "mix.shaded-walk-nature-find",
+      "mode": "together",
+      "title": "Shaded stroller walk with a toddler nature hunt",
+      "summary": "The baby rides in a shaded stroller while your toddler hunts for three things you picked together, like a big leaf, a bird and something red.",
+      "places": [
+        "outdoors"
+      ],
+      "younger": {
+        "ageMin": "4m",
+        "ageMax": "6m",
+        "abilities": [],
+        "activity": "act.shaded-stroller-walk",
+        "does": "Rides buckled in the stroller in the shade, watching leaves move and listening to you name each find."
+      },
+      "older": {
+        "ageMin": "24m",
+        "ageMax": "36m",
+        "abilities": [
+          "walks"
+        ],
+        "activity": "act.nature-find-walk",
+        "does": "Walks beside the stroller hunting for the three finds and calls out each one for the baby."
+      },
+      "adult": {
+        "minAdults": 1,
+        "does": "Pushes the stroller and holds the toddler's hand near roads; at each find, sets the brake so the toddler can show it to the baby from a step away.",
+        "handsOnFor": "both"
+      },
+      "sharedSetup": "Pick a quiet path or park and three finds. Baby buckled in, canopy up, arms and legs covered. A paper bag for big leaves.",
+      "space": "Paths or a park away from traffic; hand in hand near roads, driveways and parking lots. Finds stay in the toddler's hands or bag, never in the stroller.",
+      "duration": {
+        "min": 15,
+        "default": 20,
+        "max": 40
+      },
+      "effort": "medium",
+      "intents": [
+        "fresh-air",
+        "explore",
+        "move"
+      ],
+      "steps": [
+        "Before you go, pick three finds together. Buckle the baby in with the canopy up.",
+        "Walk at the toddler's pace; at each find, brake on, and the toddler shows the baby from a step away.",
+        "Hold hands at every road, driveway and parking lot.",
+        "Head home after the third find, or sooner if either child is done."
+      ],
+      "stopCues": [
+        "Baby fussing, hot or hungry",
+        "Toddler darting off or refusing your hand near traffic",
+        "Either child tired"
+      ],
+      "safety": [
+        {
+          "text": "Hold the toddler's hand near traffic, driveways and parking lots; young children need an adult with them near roads.",
+          "claims": [
+            "clm.d.pedestrian-safety",
+            "clm.e.street-driveway"
+          ]
+        },
+        {
+          "text": "Leaves, sticks and stones stay out of the stroller and away from the baby's mouth.",
+          "claims": [
+            "clm.c.older-sibling-small-things",
+            "clm.d.small-parts-under-3"
+          ]
+        },
+        {
+          "text": "Babies under 6 months stay in shade with arms and legs covered; avoid 10 a.m. to 4 p.m., and no blanket over the stroller.",
+          "claims": [
+            "clm.b.sun-under-6-months",
+            "clm.a.no-blanket-over-stroller"
+          ]
+        },
+        {
+          "text": "Buckle the baby into the stroller harness every ride and set the brake whenever you stop.",
+          "claims": [
+            "clm.c.stroller-harness",
+            "clm.a.strap-in-stroller"
+          ]
+        },
+        {
+          "text": "The older child walks beside the stroller; they don't push, rock or steer it with the baby inside.",
+          "claims": [
+            "clm.mix.never-leave-toddler-with-baby"
+          ]
+        }
+      ],
+      "claims": [
+        "clm.b.name-things-outside",
+        "clm.e.park-walks-child-leads",
+        "clm.core.who-not-restrained-1h"
+      ]
+    },
+    {
+      "rev": 1,
+      "checked": "2026-10-29",
+      "outing": true,
+      "setupMinutes": 5,
+      "cleanupMinutes": 2,
+      "id": "mix.stroller-walk-toddler-hunt",
+      "mode": "together",
+      "title": "Stroller walk with a toddler treasure hunt",
+      "summary": "The baby rides in the stroller and looks where the toddler points, while your toddler walks beside you hunting for three finds on a safe path.",
+      "places": [
+        "outdoors"
+      ],
+      "younger": {
+        "ageMin": "6m",
+        "ageMax": "18m",
+        "abilities": [],
+        "activity": "act.narrated-stroller-walk",
+        "does": "Rides buckled in the stroller, looking where the toddler points while you name the dog, the bus or the tree.",
+        "adapt": "Wants out? Let them out only in a fenced, traffic-free spot, and keep the walk short."
+      },
+      "older": {
+        "ageMin": "24m",
+        "ageMax": "36m",
+        "abilities": [
+          "walks"
+        ],
+        "activity": "act.nature-find-walk",
+        "does": "Walks beside you on a hunt for three finds and calls out each one so the baby can look too."
+      },
+      "adult": {
+        "minAdults": 1,
+        "does": "Pushes the stroller and holds the toddler's hand near roads. At each find, brake on, then crouch to the baby's level to name it together.",
+        "handsOnFor": "both"
+      },
+      "sharedSetup": "Pick a quiet route and three finds. Baby buckled in, sun hat on. Water for both, and a paper bag for big leaves.",
+      "space": "Paths or a park away from traffic; hand in hand near roads, driveways and parking lots. Finds stay in the toddler's bag, out of the baby's reach.",
+      "duration": {
+        "min": 15,
+        "default": 25,
+        "max": 40
+      },
+      "effort": "medium",
+      "intents": [
+        "fresh-air",
+        "explore",
+        "move"
+      ],
+      "steps": [
+        "Pick three finds and buckle the baby in. Agree: 'At the road, hand in mine.'",
+        "The toddler walks and hunts; you name each find for the baby: 'A big, yellow leaf!'",
+        "Brake on at every stop. The toddler shows finds from a step away; they stay in the bag.",
+        "Hold hands at every road, driveway and parking lot, and head home while both are still happy."
+      ],
+      "stopCues": [
+        "Baby fussing, hot or straining to get out",
+        "Toddler darting off or refusing your hand near traffic",
+        "Either child tired or hungry"
+      ],
+      "safety": [
+        {
+          "text": "Traffic needs your full attention: the toddler holds your hand near roads, driveways and parking lots, and you cross only at crossings, phone away.",
+          "claims": [
+            "clm.d.pedestrian-safety",
+            "clm.a.walk-sidewalks-crosswalks"
+          ]
+        },
+        {
+          "text": "Leaves, berries, sticks and stones stay out of the stroller and away from the baby's mouth.",
+          "claims": [
+            "clm.c.older-sibling-small-things",
+            "clm.d.small-parts-under-3"
+          ]
+        },
+        {
+          "text": "Buckle the baby into the stroller harness every ride and set the brake whenever you stop.",
+          "claims": [
+            "clm.c.stroller-harness",
+            "clm.a.strap-in-stroller"
+          ]
+        },
+        {
+          "text": "Shade and a hat for both; sunscreen on exposed skin from 6 months.",
+          "claims": [
+            "clm.c.sun-protection",
+            "clm.d.sun-protection"
+          ]
+        },
+        {
+          "text": "The older child walks beside the stroller; they don't push, rock or steer it with the baby inside.",
+          "claims": [
+            "clm.mix.never-leave-toddler-with-baby"
+          ]
+        }
+      ],
+      "claims": [
+        "clm.c.name-on-walks",
+        "clm.e.park-walks-child-leads",
+        "clm.core.who-not-restrained-1h"
+      ]
+    },
+    {
+      "rev": 1,
+      "checked": "2026-10-29",
+      "outing": false,
+      "setupMinutes": 1,
+      "cleanupMinutes": 1,
+      "id": "mix.newborn-story-big-kid-reader",
+      "mode": "together",
+      "title": "Sofa story: newborn listens, big kid tells",
+      "summary": "Hold the newborn on the sofa while your preschooler tells a favourite picture book from the pages; you read the words and ask what happens next.",
+      "places": [
+        "indoors"
+      ],
+      "younger": {
+        "ageMin": "1w",
+        "ageMax": "4m",
+        "abilities": [],
+        "activity": "act.read-aloud-anything",
+        "does": "Snuggles in your arms with head supported, listening to voices and looking at faces and bold pages close up."
+      },
+      "older": {
+        "ageMin": "36m",
+        "ageMax": "60m",
+        "abilities": [],
+        "activity": "act.what-happens-next-book",
+        "does": "Sits beside you and tells the story from the pictures, turning pages and answering 'What happens next?'"
+      },
+      "adult": {
+        "minAdults": 1,
+        "does": "Sits on the sofa holding the baby with head supported, the book on your knee or the big kid's lap; reads the hard words and asks questions.",
+        "handsOnFor": "younger"
+      },
+      "sharedSetup": "Sofa or floor with back support. One picture book the big kid knows. Hot drinks put out of reach first.",
+      "space": "Big kid sits beside you, not on you while you hold the baby. The baby stays in your arms; if you feel sleepy, put the baby down on their back.",
+      "duration": {
+        "min": 3,
+        "default": 6,
+        "max": 10
+      },
+      "effort": "low",
+      "intents": [
+        "connect",
+        "calm"
+      ],
+      "steps": [
+        "Settle on the sofa with the baby in your arms and the big kid at your side.",
+        "The big kid turns pages and tells what's happening; you read the words and ask, 'What will happen next?'",
+        "Tilt a bright page or the reader's face toward the baby, about 20 to 30 cm away.",
+        "Stop when the baby looks away or fusses; the big kid can finish the story to you."
+      ],
+      "stopCues": [
+        "Baby looking away, arching or fussing",
+        "Baby asleep: lay them on their back in their own sleep space",
+        "Big kid restless or climbing on you"
+      ],
+      "safety": [
+        {
+          "text": "Holding the baby on a sofa or chair? Stay wide awake. If you feel drowsy, lay the baby on their back in their own sleep space.",
+          "claims": [
+            "clm.core.stay-awake-holding",
+            "clm.core.sleep-on-back"
+          ]
+        },
+        {
+          "text": "The big kid sits beside you and doesn't hold or lie on the baby; gentle open-palm touches only, with your hand there.",
+          "claims": [
+            "clm.mix.gentle-open-palm",
+            "clm.mix.never-leave-toddler-with-baby"
+          ]
+        },
+        {
+          "text": "No hot drinks while you hold the baby.",
+          "claims": [
+            "clm.a.no-hot-drinks-holding"
+          ]
+        }
+      ],
+      "claims": [
+        "clm.a.read-from-birth",
+        "clm.a.newborn-focus-distance",
+        "clm.f.read-ask-what-next",
+        "clm.mix.special-time-older-child"
+      ]
+    },
+    {
+      "rev": 1,
+      "checked": "2026-10-29",
+      "outing": false,
+      "setupMinutes": 1,
+      "cleanupMinutes": 1,
+      "id": "mix.baby-book-big-kid-story",
+      "mode": "together",
+      "title": "Two books: baby's board book, big kid's story",
+      "summary": "The baby sits in your lap with their own board book while your preschooler tells their story beside you, and you point and name for both.",
+      "places": [
+        "indoors"
+      ],
+      "younger": {
+        "ageMin": "6m",
+        "ageMax": "12m",
+        "abilities": [],
+        "activity": "act.point-and-name-books",
+        "does": "Sits in your lap with their own board book to pat, open and chew while you point to and name a picture."
+      },
+      "older": {
+        "ageMin": "36m",
+        "ageMax": "60m",
+        "abilities": [],
+        "activity": "act.what-happens-next-book",
+        "does": "Sits beside you with their picture book, telling what happens on each page and showing the baby a favourite picture."
+      },
+      "adult": {
+        "minAdults": 1,
+        "does": "Holds the baby in your lap, points and names in the board book, and asks the big kid 'What happens next?' between pages.",
+        "handsOnFor": "younger"
+      },
+      "sharedSetup": "Sofa or floor. A sturdy board book for the baby, a picture book for the big kid. Story props and small toys put away.",
+      "space": "Baby on your lap, big kid at your side. The baby has their own board book; the big kid's book and any props stay out of the baby's mouth.",
+      "duration": {
+        "min": 3,
+        "default": 6,
+        "max": 10
+      },
+      "effort": "low",
+      "intents": [
+        "connect",
+        "calm"
+      ],
+      "steps": [
+        "Hand the baby their board book and the big kid their story.",
+        "The big kid tells a page; you point to something similar in the baby's book: 'A dog! Woof!'",
+        "Let the baby pat, open and mouth their own book; the big kid's book stays with them.",
+        "When the baby loses interest, they sit at your feet with a toy while the big kid finishes."
+      ],
+      "stopCues": [
+        "Baby fussing, arching or turning away",
+        "Big kid upset that the baby grabs their book",
+        "Either child restless"
+      ],
+      "safety": [
+        {
+          "text": "Give the baby their own sturdy board book; story props, stickers and small toys stay out of the baby's reach.",
+          "claims": [
+            "clm.f.small-pieces-away-from-babies",
+            "clm.c.older-sibling-small-things"
+          ]
+        },
+        {
+          "text": "The big kid shows things; you check anything before it reaches the baby. Never leave the two alone together.",
+          "claims": [
+            "clm.mix.never-leave-toddler-with-baby"
+          ]
+        }
+      ],
+      "claims": [
+        "clm.c.read-name-pictures",
+        "clm.c.books-bond",
+        "clm.f.read-ask-what-next",
+        "clm.mix.special-time-older-child"
+      ]
+    },
+    {
+      "rev": 1,
+      "checked": "2026-10-29",
+      "outing": false,
+      "setupMinutes": 0,
+      "cleanupMinutes": 0,
+      "id": "mix.action-song-circle",
+      "mode": "together",
+      "title": "Action songs for a baby and a toddler",
+      "summary": "Sing body-part and action songs on the floor: the baby feels the actions in your lap while your toddler does the moves facing you.",
+      "places": [
+        "indoors",
+        "outdoors"
+      ],
+      "younger": {
+        "ageMin": "4m",
+        "ageMax": "8m",
+        "abilities": [],
+        "activity": "act.body-part-action-song",
+        "does": "Sits supported in your lap (or lies on a mat in front of you) while you gently guide their hands and touch toes and tummy."
+      },
+      "older": {
+        "ageMin": "15m",
+        "ageMax": "30m",
+        "abilities": [],
+        "activity": "act.toddler-action-songs",
+        "does": "Sits or stands facing you doing the actions, and fills in the word when you pause: 'Head, shoulders, knees and…'"
+      },
+      "adult": {
+        "minAdults": 1,
+        "does": "Sits on the floor with the baby supported in your lap; your hands guide the baby's actions while you sing and pause for the toddler.",
+        "handsOnFor": "younger"
+      },
+      "sharedSetup": "A clear patch of floor, rug or shaded grass. Pick two or three songs you all know. No materials.",
+      "space": "Toddler sits or stands an arm's length in front of you, facing the baby; actions stay in their own space, no clapping on the baby.",
+      "duration": {
+        "min": 2,
+        "default": 5,
+        "max": 10
+      },
+      "effort": "low",
+      "intents": [
+        "connect",
+        "move"
+      ],
+      "steps": [
+        "Sit on the floor with the baby in your lap and the toddler facing you.",
+        "Sing a body-part song slowly. Guide the baby's hands gently; the toddler shows the actions.",
+        "Pause before the last word so the toddler can shout it, then touch the baby's toes or tummy as you say it.",
+        "Let the toddler pick the next song. Stop after a few, before anyone gets wound up."
+      ],
+      "stopCues": [
+        "Baby turning away, fussing or yawning",
+        "Toddler getting rough or climbing on you",
+        "Both getting overexcited"
+      ],
+      "safety": [
+        {
+          "text": "Support the baby in your lap and guide their hands gently, never pulling; no bouncing or lifting games.",
+          "claims": [
+            "clm.a.head-support",
+            "clm.a.never-shake"
+          ]
+        },
+        {
+          "text": "The toddler does the actions on themself, not on the baby; show gentle open-palm touches if they want to touch.",
+          "claims": [
+            "clm.mix.gentle-open-palm",
+            "clm.mix.never-leave-toddler-with-baby"
+          ]
+        }
+      ],
+      "claims": [
+        "clm.b.songs-rhymes-actions",
+        "clm.d.action-songs",
+        "clm.mix.special-time-older-child"
+      ]
+    },
+    {
+      "rev": 1,
+      "checked": "2026-10-29",
+      "outing": false,
+      "setupMinutes": 1,
+      "cleanupMinutes": 1,
+      "id": "mix.diaper-change-helper",
+      "mode": "together",
+      "title": "Diaper change with a toddler helper",
+      "summary": "Change the newborn on a floor mat while your toddler fetches the diaper and wipes, then drops the baby's clean socks into a basket beside you.",
+      "places": [
+        "indoors"
+      ],
+      "younger": {
+        "ageMin": "1w",
+        "ageMax": "4m",
+        "abilities": [],
+        "activity": "act.diaper-change-chat",
+        "does": "Lies on a changing mat on the floor, hearing you chat and sing through each step of the change."
+      },
+      "older": {
+        "ageMin": "15m",
+        "ageMax": "30m",
+        "abilities": [],
+        "activity": "act.sock-basket-helper",
+        "does": "Fetches the diaper and wipes you point to, then drops the baby's clean socks into a basket at the foot of the mat."
+      },
+      "adult": {
+        "minAdults": 1,
+        "does": "Kneels at the floor mat with one hand on the baby the whole time and does the change; points the toddler to the next job and thanks them.",
+        "handsOnFor": "younger"
+      },
+      "sharedSetup": "Changing mat on the floor, supplies laid out within your reach before you start, a basket of the baby's clean socks. Diaper sacks and creams up high.",
+      "space": "Change on the floor, not a raised surface. The toddler works at the baby's feet end, not by the head; dirty diapers and sacks go straight out of reach.",
+      "duration": {
+        "min": 3,
+        "default": 5,
+        "max": 8
+      },
+      "effort": "low",
+      "intents": [
+        "routine",
+        "connect"
+      ],
+      "steps": [
+        "Lay out supplies within your reach, then put the baby on the floor mat. Keep one hand on the baby.",
+        "Ask the toddler: 'Can you bring me one diaper?' 'Now the wipes!' Praise each delivery.",
+        "While you change, the toddler drops socks in the basket; you chat to both: 'Legs up! Sock in!'",
+        "Fold the dirty diaper away yourself, out of reach, then wash everyone's hands."
+      ],
+      "stopCues": [
+        "Baby crying or getting cold",
+        "Toddler grabbing the dirty diaper, creams or sacks",
+        "Toddler climbing onto the mat"
+      ],
+      "safety": [
+        {
+          "text": "Change on a mat on the floor with a hand on the baby; never leave the baby on a raised surface, even for a second.",
+          "claims": [
+            "clm.a.changing-surface-falls"
+          ]
+        },
+        {
+          "text": "Diaper sacks, creams and wipes lids stay out of both children's reach.",
+          "claims": [
+            "clm.a.plastic-out-of-reach"
+          ]
+        },
+        {
+          "text": "The toddler passes things to you, not to the baby, and never lifts or holds the baby. Never leave them alone together.",
+          "claims": [
+            "clm.mix.never-leave-toddler-with-baby"
+          ]
+        }
+      ],
+      "claims": [
+        "clm.mix.toddler-small-jobs",
+        "clm.a.talk-during-care",
+        "clm.d.helping-tasks"
+      ]
+    },
+    {
+      "rev": 1,
+      "checked": "2026-10-29",
+      "outing": false,
+      "setupMinutes": 1,
+      "cleanupMinutes": 1,
+      "id": "mix.two-toddlers-freeze-dance",
+      "mode": "together",
+      "title": "Freeze dance for two toddlers",
+      "summary": "Put on music for two toddlers to dance, then stop it so everyone freezes; each child dances in their own spot and you run the music.",
+      "places": [
+        "indoors"
+      ],
+      "younger": {
+        "ageMin": "12m",
+        "ageMax": "30m",
+        "abilities": [],
+        "activity": "act.freeze-dance-toddler",
+        "does": "Dances, wobbles or claps in their own spot and stops when the music stops, copying you or the other toddler."
+      },
+      "older": {
+        "ageMin": "12m",
+        "ageMax": "30m",
+        "abilities": [],
+        "activity": "act.freeze-dance-toddler",
+        "does": "Dances in their own spot, shows a freeze pose, and can choose the next song."
+      },
+      "adult": {
+        "minAdults": 1,
+        "does": "Runs the music, dances along and calls the freezes; keeps the two dance spots apart and steps between them if bumping starts.",
+        "handsOnFor": "neither"
+      },
+      "sharedSetup": "Clear a patch of floor: toys, rugs and cords away, sharp corners out of the way. Music ready on a phone or speaker.",
+      "space": "Each toddler gets their own spot, a couple of steps apart, away from stairs, sharp corners and furniture they could climb.",
+      "duration": {
+        "min": 2,
+        "default": 6,
+        "max": 12
+      },
+      "effort": "medium",
+      "intents": [
+        "move",
+        "connect"
+      ],
+      "steps": [
+        "Give each toddler their own spot, such as beside a cushion each, and put on a song.",
+        "Stop the music and freeze in a funny pose; start it again.",
+        "Let the older one pick a freeze pose for everyone to copy.",
+        "Wind down with a slow song and a sit-down."
+      ],
+      "stopCues": [
+        "Bumping, pushing or falling",
+        "One toddler upset or overwhelmed",
+        "Tired or cranky"
+      ],
+      "safety": [
+        {
+          "text": "Clear the space, keep the toddlers far enough apart not to collide, and stay away from stairs and climbable furniture.",
+          "claims": [
+            "clm.d.falls-gates-furniture"
+          ]
+        }
+      ],
+      "claims": [
+        "clm.d.dance-and-freeze",
+        "clm.d.toddler-active-play"
+      ]
+    },
+    {
+      "rev": 1,
+      "checked": "2026-10-29",
+      "outing": false,
+      "setupMinutes": 1,
+      "cleanupMinutes": 1,
+      "id": "mix.big-kid-leads-toddler-copies",
+      "mode": "together",
+      "title": "Big kid leads the moves, toddler copies",
+      "summary": "Your preschooler leads copycat moves to music while your toddler copies what they can and everyone freezes when the music stops.",
+      "places": [
+        "indoors"
+      ],
+      "younger": {
+        "ageMin": "12m",
+        "ageMax": "30m",
+        "abilities": [],
+        "activity": "act.freeze-dance-toddler",
+        "does": "Dances to the music, copies what they can of the big kid's moves, and freezes when the music stops."
+      },
+      "older": {
+        "ageMin": "36m",
+        "ageMax": "60m",
+        "abilities": [
+          "walks"
+        ],
+        "activity": "act.copycat-moves",
+        "does": "Leads the moves for everyone: marching, tiptoeing, giant steps, stretching tall, then freezing when the music stops.",
+        "adapt": "Ask them to choose moves the toddler can try, like marching and stretching, not jumping off things."
+      },
+      "adult": {
+        "minAdults": 1,
+        "does": "Runs the music, joins in, and keeps the big kid's moves toddler-sized; stands between them if the big kid speeds up or the toddler gets bowled over.",
+        "handsOnFor": "neither"
+      },
+      "sharedSetup": "Clear a stretch of floor: toys, rugs and cords away, nothing to climb on. Music ready.",
+      "space": "Clear, non-slip floor away from stairs and sharp corners; the two children move side by side, not toward each other.",
+      "duration": {
+        "min": 3,
+        "default": 8,
+        "max": 15
+      },
+      "effort": "medium",
+      "intents": [
+        "move",
+        "connect"
+      ],
+      "steps": [
+        "The big kid is the leader: they show a move and everyone copies. Start the music.",
+        "Stop the music: everyone freezes. Start again with a new move.",
+        "Suggest toddler-friendly moves: march, tiptoe, stomp, reach up high, crouch small.",
+        "Swap: the toddler picks a move and the big kid copies it."
+      ],
+      "stopCues": [
+        "Toddler knocked over, frustrated or tired",
+        "Big kid getting too fast or rough",
+        "Anyone overexcited"
+      ],
+      "safety": [
+        {
+          "text": "Keep moves on the floor: no jumping off furniture, and clear stairs and sharp corners.",
+          "claims": [
+            "clm.f.falls-preschool",
+            "clm.d.falls-gates-furniture"
+          ]
+        },
+        {
+          "text": "The big kid leads the game, not the toddler: no pulling, lifting or carrying the younger child.",
+          "claims": []
+        }
+      ],
+      "claims": [
+        "clm.f.copycat-and-chasing-games",
+        "clm.d.dance-and-freeze",
+        "clm.f.stop-and-go-games"
+      ]
+    },
+    {
+      "rev": 1,
+      "checked": "2026-10-29",
+      "outing": false,
+      "setupMinutes": 1,
+      "cleanupMinutes": 1,
+      "id": "mix.opposites-parade",
+      "mode": "together",
+      "title": "Opposites parade for a toddler and a big kid",
+      "summary": "March in a line while your preschooler calls out opposites (big and small, loud and quiet, fast and slow) and everyone acts them out.",
+      "places": [
+        "indoors",
+        "outdoors"
+      ],
+      "younger": {
+        "ageMin": "24m",
+        "ageMax": "36m",
+        "abilities": [
+          "walks"
+        ],
+        "activity": "act.follow-the-leader-parade",
+        "does": "Marches in the line and copies each move: stomping loud, tiptoeing quiet, walking fast, then slow."
+      },
+      "older": {
+        "ageMin": "36m",
+        "ageMax": "60m",
+        "abilities": [],
+        "activity": "act.big-small-opposites-game",
+        "does": "Calls out the opposites for the parade ('Big!' 'Small!' 'Loud!' 'Quiet!') and shows each one first."
+      },
+      "adult": {
+        "minAdults": 1,
+        "does": "Walks at the back of the line, keeps the path clear, and helps the big kid pick moves the toddler can do.",
+        "handsOnFor": "neither"
+      },
+      "sharedSetup": "Clear a loop around a room or fenced yard: no toys, slippery rugs or sharp corners on the path, away from stairs.",
+      "space": "Flat, clear path away from stairs, the street and furniture to climb; the toddler walks in front of you so you can see both.",
+      "duration": {
+        "min": 5,
+        "default": 8,
+        "max": 15
+      },
+      "effort": "medium",
+      "intents": [
+        "move",
+        "connect"
+      ],
+      "steps": [
+        "Line up: big kid at the front, toddler in the middle, you at the back.",
+        "The big kid calls an opposite and shows it; everyone copies: stretch big, crouch small.",
+        "Try loud and quiet steps, then fast and slow (fast is a quick walk, not a run).",
+        "Swap: the toddler leads a move and the big kid names its opposite."
+      ],
+      "stopCues": [
+        "Toddler tripping, tired or upset",
+        "Big kid frustrated with the toddler's pace",
+        "Anyone running or pushing"
+      ],
+      "safety": [
+        {
+          "text": "Clear the path and stay away from stairs; children this age can fall from anything they climb.",
+          "claims": [
+            "clm.e.falls-2-to-4",
+            "clm.f.falls-preschool"
+          ]
+        },
+        {
+          "text": "Outdoors, play in a fenced yard or park lawn away from the street and driveways.",
+          "claims": [
+            "clm.f.street-play-safety"
+          ]
+        }
+      ],
+      "claims": [
+        "clm.e.follow-the-leader",
+        "clm.f.opposites-game"
+      ]
+    },
+    {
+      "rev": 1,
+      "checked": "2026-10-29",
+      "outing": false,
+      "setupMinutes": 5,
+      "cleanupMinutes": 5,
+      "id": "mix.seated-snack-for-two",
+      "mode": "together",
+      "title": "Seated snack for two",
+      "summary": "Both children sit at the table for a small snack they already eat, with you seated within reach of both and screens off.",
+      "places": [
+        "indoors",
+        "outdoors"
+      ],
+      "younger": {
+        "ageMin": "12m",
+        "ageMax": "60m",
+        "abilities": [
+          "eats-solids"
+        ],
+        "activity": "act.sit-down-snack-together",
+        "does": "Sits strapped in a high chair or seated at the table, eating a few small pieces of a food they already eat, with water."
+      },
+      "older": {
+        "ageMin": "12m",
+        "ageMax": "60m",
+        "abilities": [
+          "eats-solids"
+        ],
+        "activity": "act.sit-down-snack-together",
+        "does": "Sits at the table for their own snack and tells you about the morning; they may pass napkins or cups, but never food, to the younger one."
+      },
+      "adult": {
+        "minAdults": 1,
+        "does": "Sits between or across from both, within arm's reach of each, watching every mouthful. You prepare and hand out all the food yourself.",
+        "handsOnFor": "both"
+      },
+      "sharedSetup": "Wash hands. Each child seated: high chair strapped, or a chair or bench at the table. Small portions cut small, water for each, screens off.",
+      "space": "At a table, bench or picnic blanket, both seated, you within arm's reach of both. Food stays at the table; anyone who gets up leaves their snack.",
+      "duration": {
+        "min": 5,
+        "default": 10,
+        "max": 20
+      },
+      "effort": "low",
+      "intents": [
+        "routine",
+        "connect"
+      ],
+      "steps": [
+        "Wash hands and seat both children; strap the younger one in if they use a high chair.",
+        "Serve each child their own small portion of a food they already eat, cut small, with water.",
+        "Sit down with them and chat: 'What did you see at the park?' Watch both as they chew.",
+        "When one gets up, their snack stays at the table. Wipe hands and faces, then play."
+      ],
+      "stopCues": [
+        "Coughing, gagging or stuffing in too much",
+        "A child getting up or playing with food in their mouth",
+        "The older child handing food to the younger one"
+      ],
+      "safety": [
+        {
+          "text": "Both children seated with you right there: no walking, playing or lying down with food in the mouth. Cut food small.",
+          "claims": [
+            "clm.e.seated-eating"
+          ]
+        },
+        {
+          "text": "Until about 4, skip high-risk choking foods; choose what suits the younger child, and give both the same safe food.",
+          "claims": [
+            "clm.e.high-risk-foods-under-4",
+            "clm.f.choking-foods-under-4"
+          ]
+        },
+        {
+          "text": "Only you hand food to the younger child: many choking incidents start with an older sibling sharing food.",
+          "claims": [
+            "clm.d.older-siblings-small-objects",
+            "clm.mix.never-leave-toddler-with-baby"
+          ]
+        },
+        {
+          "text": "Know each child's food allergies and keep their foods and utensils apart.",
+          "claims": [
+            "clm.f.food-allergy-check"
+          ]
+        },
+        {
+          "text": "Snack time needs your full attention: no cooking, phone or other jobs, and screens off.",
+          "claims": [
+            "clm.e.screen-free-meals-and-bedtime"
+          ]
+        }
+      ],
+      "claims": [
+        "clm.e.seated-eating",
+        "clm.e.screen-free-meals-and-bedtime"
+      ]
+    },
+    {
+      "rev": 1,
+      "checked": "2026-10-29",
+      "outing": true,
+      "setupMinutes": 5,
+      "cleanupMinutes": 2,
+      "id": "mix.playground-stroller-spotting",
+      "mode": "together",
+      "title": "Playground: big kid climbs low, baby in the stroller",
+      "summary": "Your preschooler plays on low, preschool-sized equipment while the baby watches from the stroller, braked and parked right beside you.",
+      "places": [
+        "outdoors"
+      ],
+      "younger": {
+        "ageMin": "6m",
+        "ageMax": "18m",
+        "abilities": [],
+        "activity": "act.narrated-stroller-walk",
+        "does": "Rides to the park, then sits buckled in the braked stroller in the shade beside you, watching the big kid play.",
+        "adapt": "Old enough to want out? Toddler-area play needs its own close spotting; swap turns rather than spot both at once."
+      },
+      "older": {
+        "ageMin": "36m",
+        "ageMax": "60m",
+        "abilities": [
+          "climbs"
+        ],
+        "activity": "act.preschool-playground",
+        "does": "Chooses low equipment in the preschool area (ramps, low steps, small slides, spring riders) and stays where you can reach them.",
+        "adapt": "Wants the tall tower or the monkey bars? Save those for a trip with a second adult."
+      },
+      "adult": {
+        "minAdults": 1,
+        "does": "Stands between the stroller and the equipment: stroller braked within your reach, preschooler within arm's reach on anything off the ground. Move the stroller each time you move.",
+        "handsOnFor": "both"
+      },
+      "sharedSetup": "Pick a park with a preschool area and shade. Check surfacing, hot slides and broken parts. Baby buckled, brake on whenever you stop; water and hats for both.",
+      "space": "Only low equipment you can reach from beside the stroller. Stroller in shade, out of swing paths and slide exits, never left behind as you follow the big kid.",
+      "duration": {
+        "min": 15,
+        "default": 25,
+        "max": 45
+      },
+      "effort": "high",
+      "intents": [
+        "fresh-air",
+        "move"
+      ],
+      "steps": [
+        "Walk to the park, naming things for the baby. At the preschool area, check the ground, slides and equipment.",
+        "Park the stroller in shade beside a low climber or slide, brake on, and stand between the two.",
+        "Let the big kid pick low equipment. Before they move to the next piece, push the stroller along with you.",
+        "If the baby needs you, the big kid comes down and plays on the ground until you're ready."
+      ],
+      "stopCues": [
+        "Baby fussing, hungry, hot or straining at the straps",
+        "Big kid heading for tall or out-of-reach equipment",
+        "You can't keep both within reach"
+      ],
+      "safety": [
+        {
+          "text": "Stay within arm's reach while the big kid climbs. One adult can't spot tall equipment and mind a baby at once, so keep to low pieces.",
+          "claims": [
+            "clm.f.playground-safety",
+            "clm.c.playground-supervision"
+          ]
+        },
+        {
+          "text": "Check for soft surfacing and hot slides before play; no drawstrings or bike helmets on climbers.",
+          "claims": [
+            "clm.f.playground-safety"
+          ]
+        },
+        {
+          "text": "Baby buckled in with the brake on whenever you stop, and never out of your reach.",
+          "claims": [
+            "clm.c.stroller-harness"
+          ]
+        },
+        {
+          "text": "Keep the stroller well clear of moving swings and the bottom of slides.",
+          "claims": [
+            "clm.c.playground-supervision"
+          ]
+        },
+        {
+          "text": "Shade, a hat and covering clothes for both children; sunscreen on exposed skin from 6 months.",
+          "claims": [
+            "clm.c.sun-protection",
+            "clm.d.sun-protection"
+          ]
+        }
+      ],
+      "claims": [
+        "clm.f.playground-preschool",
+        "clm.c.name-on-walks",
+        "clm.core.who-not-restrained-1h"
+      ]
+    },
+    {
+      "rev": 1,
+      "checked": "2026-10-29",
+      "outing": false,
+      "setupMinutes": 1,
+      "cleanupMinutes": 1,
+      "id": "mix.mat-and-table-side-by-side",
+      "mode": "parallel",
+      "title": "Baby on the mat, toddler at the table",
+      "summary": "The baby plays on their back on a floor mat while your toddler works a chunky puzzle at a low table nearby; you sit where you can see both.",
+      "places": [
+        "indoors"
+      ],
+      "younger": {
+        "ageMin": "4m",
+        "ageMax": "7m",
+        "abilities": [],
+        "activity": "act.toe-catch-back-play",
+        "does": "Lies on their back on a firm mat, grabbing toes and kicking, with one or two big, baby-safe toys in reach."
+      },
+      "older": {
+        "ageMin": "15m",
+        "ageMax": "30m",
+        "abilities": [],
+        "activity": "act.chunky-puzzle-or-sorter",
+        "does": "Sits at a low table or toddler chair with a chunky puzzle or shape sorter, showing you each piece that fits."
+      },
+      "adult": {
+        "minAdults": 1,
+        "does": "Sits on the floor beside the mat, facing the table, so both children are in view; helps with a puzzle piece now and then and checks the baby's face often.",
+        "handsOnFor": "older"
+      },
+      "sharedSetup": "Mat on the floor a few steps from a low table. Chunky puzzle pieces bigger than a toilet-roll tube, nothing small. Baby's toys on the mat.",
+      "space": "Puzzle pieces stay on the table; the baby's mat is at least an arm's length from the table and out of the toddler's walking path. You sit between the two.",
+      "duration": {
+        "min": 3,
+        "default": 8,
+        "max": 15
+      },
+      "effort": "low",
+      "intents": [
+        "explore",
+        "parent-moment"
+      ],
+      "steps": [
+        "Lay the baby on their back on the mat with a toy in reach. Set the toddler up at the low table.",
+        "Sit on the floor between them, where you can see the baby's face and the toddler's hands.",
+        "Name puzzle pieces with the toddler; chat to the baby about their toes in between.",
+        "If the toddler wants to give the baby a piece, they show it from the table instead."
+      ],
+      "stopCues": [
+        "Baby fussing, rubbing eyes or rolling toward the table",
+        "Toddler frustrated, or wandering onto the mat",
+        "Baby falling asleep: onto their back in their own sleep space"
+      ],
+      "safety": [
+        {
+          "text": "The toddler's pieces stay at the table, and nothing passes from toddler to baby without you checking it. Check the floor afterward.",
+          "claims": [
+            "clm.d.older-siblings-small-objects",
+            "clm.c.toilet-roll-test"
+          ]
+        },
+        {
+          "text": "Firm mat on the floor with the baby's face clear of soft toys and blankets; if they fall asleep, move them to their back in their sleep space.",
+          "claims": [
+            "clm.a.keep-face-clear",
+            "clm.core.sleep-on-back"
+          ]
+        },
+        {
+          "text": "The toddler stays off the mat and never lifts or holds the baby. Never leave the two alone together, even briefly.",
+          "claims": [
+            "clm.mix.never-leave-toddler-with-baby"
+          ]
+        }
+      ],
+      "claims": [
+        "clm.b.feet-discovery",
+        "clm.b.reach-kick-floor-opportunities",
+        "clm.d.puzzles"
+      ]
+    },
+    {
+      "rev": 1,
+      "checked": "2026-10-29",
+      "outing": false,
+      "setupMinutes": 3,
+      "cleanupMinutes": 3,
+      "id": "mix.tummy-time-and-pretend-kitchen",
+      "mode": "parallel",
+      "title": "Tummy time while the toddler cooks for you",
+      "summary": "Do floor tummy time with the baby while your toddler cooks you a pretend meal at a low table nearby; you're the hungry customer at the mat.",
+      "places": [
+        "indoors"
+      ],
+      "younger": {
+        "ageMin": "3m",
+        "ageMax": "8m",
+        "abilities": [],
+        "activity": "act.tummy-time-reach-and-play",
+        "does": "Plays tummy-down on a firm floor mat, lifting up and reaching for a baby-safe toy you place just ahead."
+      },
+      "older": {
+        "ageMin": "24m",
+        "ageMax": "48m",
+        "abilities": [],
+        "activity": "act.pretend-kitchen-cook",
+        "does": "Stirs pots and 'serves' pretend dishes at a low table a few steps away, bringing orders to you, not to the baby."
+      },
+      "adult": {
+        "minAdults": 1,
+        "does": "Lies or sits on the floor beside the baby, within arm's reach, placing toys; orders meals from the mat ('One soup please!') and glances at the toddler's table.",
+        "handsOnFor": "younger"
+      },
+      "sharedSetup": "Firm mat on the floor with one or two baby toys. Pots, wooden spoons and empty boxes on a low table a few steps away, out of the baby's reach.",
+      "space": "Kitchen props stay at the toddler's table, a few steps from the mat; the toddler delivers 'food' to you at the mat's edge. Not in the real kitchen while cooking.",
+      "duration": {
+        "min": 3,
+        "default": 6,
+        "max": 12
+      },
+      "effort": "low",
+      "intents": [
+        "move",
+        "explore"
+      ],
+      "steps": [
+        "Set up the toddler's kitchen at a low table, then lay the baby tummy-down on the mat beside you.",
+        "Place a toy just ahead of the baby and order a meal from the toddler.",
+        "When the toddler brings a dish, 'eat' it at the mat's edge, then send them back to cook the next one.",
+        "When the baby tires, roll them onto their back to rest; the restaurant can stay open."
+      ],
+      "stopCues": [
+        "Baby's head dropping, fussing or crying",
+        "Toddler bringing props onto the mat or to the baby",
+        "Baby sleepy: onto their back in their own sleep space"
+      ],
+      "safety": [
+        {
+          "text": "Floor tummy time on a firm, flat mat, only while the baby is awake and you are right there. If they fall asleep, move them onto their back in their own sleep space.",
+          "claims": [
+            "clm.core.tummy-awake-supervised",
+            "clm.core.floor-not-bed",
+            "clm.core.sleep-on-back"
+          ]
+        },
+        {
+          "text": "Pots and boxes stay at the toddler's table, and nothing small (no dried pasta, beans or bottle caps).",
+          "claims": [
+            "clm.d.small-parts-under-3",
+            "clm.c.older-sibling-small-things"
+          ]
+        },
+        {
+          "text": "The toddler serves you, not the baby, and stays off the mat. Never leave the two alone together.",
+          "claims": [
+            "clm.mix.never-leave-toddler-with-baby"
+          ]
+        },
+        {
+          "text": "This is floor tummy time on a flat surface. It counts toward a flat-surface target only if your baby's clinician set one; Trunk sets no target.",
+          "claims": [
+            "clm.core.ask-clinician-preterm"
+          ]
+        }
+      ],
+      "claims": [
+        "clm.core.reach-play",
+        "clm.core.tummy-builds-strength",
+        "clm.e.pretend-kitchen"
+      ]
+    },
+    {
+      "rev": 1,
+      "checked": "2026-10-29",
+      "outing": false,
+      "setupMinutes": 1,
+      "cleanupMinutes": 1,
+      "id": "mix.sofa-cuddle-sock-sort",
+      "mode": "parallel",
+      "title": "Baby in your arms, toddler sorts socks",
+      "summary": "Sit with the newborn in your arms for a quiet coo-and-copy chat while your toddler drops clean socks into a basket at your feet.",
+      "places": [
+        "indoors"
+      ],
+      "younger": {
+        "ageMin": "1w",
+        "ageMax": "4m",
+        "abilities": [],
+        "activity": "act.coo-and-copy-chat",
+        "does": "Rests in your arms face to face, cooing and watching your face as you copy their sounds."
+      },
+      "older": {
+        "ageMin": "15m",
+        "ageMax": "30m",
+        "abilities": [],
+        "activity": "act.sock-basket-helper",
+        "does": "Sits on the floor at your feet dropping clean socks into a basket and bringing pairs to show you."
+      },
+      "adult": {
+        "minAdults": 1,
+        "does": "Sits on a sofa or chair, wide awake, holding the baby with head supported; chats with the baby and praises the toddler's sorting from your seat.",
+        "handsOnFor": "younger"
+      },
+      "sharedSetup": "A pile of clean socks and a basket on the floor in front of your seat. Hot drinks put away; what you need within reach before you sit down.",
+      "space": "Toddler plays on the floor right in front of you, in view; not climbing onto your lap while you hold the baby.",
+      "duration": {
+        "min": 3,
+        "default": 5,
+        "max": 8
+      },
+      "effort": "low",
+      "intents": [
+        "connect",
+        "calm",
+        "parent-moment"
+      ],
+      "steps": [
+        "Tip clean socks beside the basket at your feet and sit down with the baby.",
+        "Coo and copy the baby's sounds; between turns, ask the toddler to find a red sock.",
+        "Count socks as they go in: 'One, two!' The baby hears it too.",
+        "When the baby turns away or yawns, rest; the toddler can carry the basket to the bedroom with you."
+      ],
+      "stopCues": [
+        "Baby turning away, fussing or yawning",
+        "Toddler bored or climbing on you",
+        "You feel drowsy"
+      ],
+      "safety": [
+        {
+          "text": "Holding the baby on a sofa or chair? Stay wide awake. If you feel drowsy, lay the baby on their back in their own sleep space.",
+          "claims": [
+            "clm.core.stay-awake-holding",
+            "clm.core.sleep-on-back"
+          ]
+        },
+        {
+          "text": "The toddler stays at your feet: no climbing on you or the baby while you hold them; gentle open-palm touches only.",
+          "claims": [
+            "clm.mix.gentle-open-palm"
+          ]
+        },
+        {
+          "text": "No hot drinks while you hold the baby.",
+          "claims": [
+            "clm.a.no-hot-drinks-holding"
+          ]
+        }
+      ],
+      "claims": [
+        "clm.a.talk-copy-sounds",
+        "clm.d.helping-tasks",
+        "clm.mix.busy-nearby-during-feeds"
+      ]
+    },
+    {
+      "rev": 1,
+      "checked": "2026-10-29",
+      "outing": false,
+      "setupMinutes": 1,
+      "cleanupMinutes": 1,
+      "id": "mix.newborn-mat-teddy-meal",
+      "mode": "parallel",
+      "title": "Newborn on the mat, toddler feeds the teddy",
+      "summary": "The newborn gazes at a play gym on a floor mat while your toddler feeds and tucks in a teddy a few steps away, with you sitting between them.",
+      "places": [
+        "indoors"
+      ],
+      "younger": {
+        "ageMin": "1w",
+        "ageMax": "4m",
+        "abilities": [],
+        "activity": "act.play-gym-mat-gazing",
+        "does": "Lies on their back on a firm floor mat under a play gym, looking at the shapes and kicking."
+      },
+      "older": {
+        "ageMin": "15m",
+        "ageMax": "30m",
+        "abilities": [],
+        "activity": "act.feed-the-teddy",
+        "does": "Sits on the rug or at a low table a few steps away, feeding a teddy with a toy spoon and cup and tucking it in."
+      },
+      "adult": {
+        "minAdults": 1,
+        "does": "Sits on the floor between the mat and the toddler's spot; joins the teddy's meal now and then and glances at the baby's face often.",
+        "handsOnFor": "older"
+      },
+      "sharedSetup": "Firm mat and play gym on the floor, away from blind and monitor cords. Teddy, toy cup and spoon a few steps away; no real food.",
+      "space": "Toddler and teddy stay at their own spot, a few steps from the mat and out of the walking path; the play gym is out of the toddler's reach to pull.",
+      "duration": {
+        "min": 3,
+        "default": 8,
+        "max": 15
+      },
+      "effort": "low",
+      "intents": [
+        "explore",
+        "parent-moment"
+      ],
+      "steps": [
+        "Lay the baby on their back under the play gym. Set up the teddy's meal a few steps away.",
+        "Sit between the two. Ask the toddler, 'Is teddy hungry?' and let them feed and tuck it in.",
+        "Tell the baby what the toddler is doing: 'Teddy's having soup!'",
+        "Teddy can wave to the baby from its spot; it doesn't come onto the mat."
+      ],
+      "stopCues": [
+        "Baby fussing or looking away",
+        "Baby drowsy: onto their back in their own sleep space",
+        "Toddler pulling the play gym or stepping onto the mat"
+      ],
+      "safety": [
+        {
+          "text": "Teddy and blankets stay off the baby's mat; soft toys and fabric near a baby's face can block breathing.",
+          "claims": [
+            "clm.a.keep-face-clear"
+          ]
+        },
+        {
+          "text": "Use a play gym in good repair with short, firm links, set away from blind and monitor cords.",
+          "claims": [
+            "clm.a.toys-safe-condition",
+            "clm.c.cords-away"
+          ]
+        },
+        {
+          "text": "The toddler stays off the mat and never lifts or holds the baby. Never leave the two alone together, even briefly.",
+          "claims": [
+            "clm.mix.never-leave-toddler-with-baby"
+          ]
+        }
+      ],
+      "claims": [
+        "clm.a.back-play-mobile",
+        "clm.a.observe-content-baby",
+        "clm.d.pretend-feeding"
+      ]
+    },
+    {
+      "rev": 1,
+      "checked": "2026-10-29",
+      "outing": false,
+      "setupMinutes": 1,
+      "cleanupMinutes": 1,
+      "id": "mix.newborn-mat-sock-match",
+      "mode": "parallel",
+      "title": "Newborn on the mat, big kid matches socks",
+      "summary": "The newborn gazes at a play gym on a floor mat while your preschooler pairs socks nearby and you fold laundry beside the mat.",
+      "places": [
+        "indoors"
+      ],
+      "younger": {
+        "ageMin": "1w",
+        "ageMax": "4m",
+        "abilities": [],
+        "activity": "act.play-gym-mat-gazing",
+        "does": "Lies on their back on a firm floor mat under a play gym, looking at the shapes and kicking."
+      },
+      "older": {
+        "ageMin": "36m",
+        "ageMax": "60m",
+        "abilities": [
+          "follows-directions"
+        ],
+        "activity": "act.sock-match-and-sort",
+        "does": "Pairs clean socks on the floor or a table a few steps from the mat and sorts them into piles: yours, mine, the baby's."
+      },
+      "adult": {
+        "minAdults": 1,
+        "does": "Sits beside the mat folding the rest of the laundry, eyes on the baby's face; checks the big kid's pairs and counts them together.",
+        "handsOnFor": "neither"
+      },
+      "sharedSetup": "Firm mat and play gym on the floor. Clean, dry socks tipped out a few steps away. Detergent, pods and dryer sheets put away.",
+      "space": "Socks sorted away from the mat; the big kid walks around the mat, not over it. Laundry piles stay off the mat.",
+      "duration": {
+        "min": 3,
+        "default": 8,
+        "max": 15
+      },
+      "effort": "low",
+      "intents": [
+        "routine",
+        "parent-moment"
+      ],
+      "steps": [
+        "Baby on their back on the mat; tip the socks out for the big kid a few steps away.",
+        "Fold laundry beside the mat while the big kid pairs socks.",
+        "Count pairs together; the big kid can hold up the baby's tiny socks from the edge of the mat.",
+        "Let the big kid carry the baby's pile to the baby's room as their job."
+      ],
+      "stopCues": [
+        "Baby fussing or drowsy",
+        "Big kid bored or wandering off",
+        "Big kid lying or stepping on the mat"
+      ],
+      "safety": [
+        {
+          "text": "Detergent, pods and other laundry products locked away, out of sight and reach.",
+          "claims": [
+            "clm.f.products-out-of-reach"
+          ]
+        },
+        {
+          "text": "Laundry piles and blankets stay off the baby's mat; keep the baby's face clear.",
+          "claims": [
+            "clm.a.keep-face-clear"
+          ]
+        },
+        {
+          "text": "The big kid helps nearby but never lifts or holds the baby. Never leave the two alone together.",
+          "claims": [
+            "clm.mix.never-leave-toddler-with-baby"
+          ]
+        }
+      ],
+      "claims": [
+        "clm.f.simple-chores",
+        "clm.a.back-play-mobile",
+        "clm.mix.toddler-small-jobs"
+      ]
+    },
+    {
+      "rev": 1,
+      "checked": "2026-10-29",
+      "outing": false,
+      "setupMinutes": 3,
+      "cleanupMinutes": 2,
+      "id": "mix.play-yard-and-color-sort",
+      "mode": "parallel",
+      "title": "Baby in the play yard, toddler sorts colors",
+      "summary": "The baby plays inside a play yard in view while your toddler sorts big items into colored bowls at the table and you sit nearby.",
+      "places": [
+        "indoors"
+      ],
+      "younger": {
+        "ageMin": "6m",
+        "ageMax": "12m",
+        "abilities": [],
+        "activity": "act.play-yard-in-view",
+        "does": "Plays with a few big, baby-safe toys inside the play yard, sides fully up, where you can see them."
+      },
+      "older": {
+        "ageMin": "24m",
+        "ageMax": "36m",
+        "abilities": [],
+        "activity": "act.color-sort-bowls",
+        "does": "Sorts big blocks, cups and lids into colored bowls at the table, calling out each color."
+      },
+      "adult": {
+        "minAdults": 1,
+        "does": "Sits at the table near the toddler with the play yard in clear view; checks the sorting and talks to the baby across the room.",
+        "handsOnFor": "neither"
+      },
+      "sharedSetup": "Play yard set up away from cords and windows, sides fully up, a few baby toys inside. Bowls and big sorting items on the table.",
+      "space": "Sorting stays on the table; the play yard is a few steps from the table so the toddler can't pass things in. Nothing climbable inside the play yard.",
+      "duration": {
+        "min": 5,
+        "default": 10,
+        "max": 20
+      },
+      "effort": "low",
+      "intents": [
+        "explore",
+        "parent-moment"
+      ],
+      "steps": [
+        "Put the baby in the play yard with a few toys; set the toddler's bowls on the table.",
+        "Sort one item together, then let the toddler carry on; sit where you can see both.",
+        "Call colors out loud so the baby hears too: 'Blue! Another blue!'",
+        "If the toddler wants to give the baby something, you check it and hand it in yourself."
+      ],
+      "stopCues": [
+        "Baby fussing, bored or rattling the sides",
+        "Toddler carrying sorting items toward the play yard",
+        "Play-yard side down or mesh damaged"
+      ],
+      "safety": [
+        {
+          "text": "Play-yard sides fully up and mesh intact; nothing inside to climb on, and no cords nearby.",
+          "claims": [
+            "clm.c.playpen-setup",
+            "clm.c.cords-away"
+          ]
+        },
+        {
+          "text": "Sorting items stay on the table and are too big to fit through a toilet-paper tube.",
+          "claims": [
+            "clm.c.toilet-roll-test",
+            "clm.d.older-siblings-small-objects"
+          ]
+        },
+        {
+          "text": "A play yard is for short periods and doesn't replace watching: keep the baby in view.",
+          "claims": [
+            "clm.c.playpen-purpose"
+          ]
+        }
+      ],
+      "claims": [
+        "clm.c.playpen-purpose",
+        "clm.e.colors-and-matching"
+      ]
+    },
+    {
+      "rev": 1,
+      "checked": "2026-10-29",
+      "outing": false,
+      "setupMinutes": 3,
+      "cleanupMinutes": 2,
+      "id": "mix.treasure-basket-and-sock-match",
+      "mode": "parallel",
+      "title": "Treasure basket for baby, socks for the big kid",
+      "summary": "The sitting baby explores a treasure basket with you right beside them while your preschooler pairs socks on the sofa nearby.",
+      "places": [
+        "indoors"
+      ],
+      "younger": {
+        "ageMin": "6m",
+        "ageMax": "12m",
+        "abilities": [
+          "sits-independently"
+        ],
+        "activity": "act.treasure-basket",
+        "does": "Sits on the floor exploring a basket of big, sturdy household things: mouthing, banging and dropping them."
+      },
+      "older": {
+        "ageMin": "36m",
+        "ageMax": "60m",
+        "abilities": [
+          "follows-directions"
+        ],
+        "activity": "act.sock-match-and-sort",
+        "does": "Pairs clean socks on the sofa or at the table nearby and sorts them by person or color."
+      },
+      "adult": {
+        "minAdults": 1,
+        "does": "Sits on the floor right beside the baby's basket, within arm's reach; checks the big kid's piles and counts pairs together from there.",
+        "handsOnFor": "younger"
+      },
+      "sharedSetup": "A basket of big, sturdy household items (nothing that fits through a toilet-paper tube). A pile of clean socks on the sofa or table.",
+      "space": "The big kid sorts on the sofa or at the table, a few steps from the baby; socks and basket items stay apart. Laundry products away.",
+      "duration": {
+        "min": 5,
+        "default": 10,
+        "max": 20
+      },
+      "effort": "low",
+      "intents": [
+        "explore",
+        "routine"
+      ],
+      "steps": [
+        "Sit the baby by their treasure basket and sit down right beside them.",
+        "Tip the socks out for the big kid on the sofa or table nearby.",
+        "Name what the baby picks up ('Cold spoon!') and count pairs with the big kid.",
+        "When the baby tires, put the basket away; the big kid can help carry it."
+      ],
+      "stopCues": [
+        "Baby fussing, tired, or gagging on an item",
+        "Big kid adding their own small toys to the basket",
+        "Either child bored"
+      ],
+      "safety": [
+        {
+          "text": "Stay right beside the baby: household items aren't safety-tested toys. Remove anything small, sharp or broken.",
+          "claims": [
+            "clm.c.treasure-basket-stay",
+            "clm.c.toilet-roll-test"
+          ]
+        },
+        {
+          "text": "The big kid's own toys, game pieces and the laundry products stay out of the baby's reach.",
+          "claims": [
+            "clm.f.small-pieces-away-from-babies",
+            "clm.f.products-out-of-reach"
+          ]
+        },
+        {
+          "text": "The big kid is a playmate, never in charge of the baby. Never leave the two alone together.",
+          "claims": [
+            "clm.mix.never-leave-toddler-with-baby"
+          ]
+        }
+      ],
+      "claims": [
+        "clm.c.treasure-basket",
+        "clm.f.simple-chores"
+      ]
+    },
+    {
+      "rev": 1,
+      "checked": "2026-10-29",
+      "outing": false,
+      "setupMinutes": 3,
+      "cleanupMinutes": 2,
+      "id": "mix.blanket-and-red-light",
+      "mode": "parallel",
+      "title": "Baby on a blanket, big kid plays red light",
+      "summary": "Outside, the baby explores a shaded blanket beside you while your preschooler plays red light, green light on the grass, following your calls.",
+      "places": [
+        "outdoors"
+      ],
+      "younger": {
+        "ageMin": "6m",
+        "ageMax": "12m",
+        "abilities": [],
+        "activity": "act.grass-blanket-explore",
+        "does": "Sits or lies on a blanket in the shade, feeling the grass at the edge and watching the big kid run."
+      },
+      "older": {
+        "ageMin": "36m",
+        "ageMax": "60m",
+        "abilities": [
+          "runs",
+          "follows-directions"
+        ],
+        "activity": "act.red-light-green-light",
+        "does": "Runs toward the finish line on 'green light' and freezes on 'red light', in a lane well to the side of the blanket."
+      },
+      "adult": {
+        "minAdults": 1,
+        "does": "Sits on the blanket within arm's reach of the baby, calling 'Red light!' and 'Green light!' to the big kid; your hands stay free for the baby.",
+        "handsOnFor": "younger"
+      },
+      "sharedSetup": "Blanket in shade on grass checked for litter, droppings and plants. Mark a running lane (start and finish) well to the side of the blanket.",
+      "space": "The running lane passes beside the blanket, never toward it, several steps away; fenced yard or park lawn away from the street, pools and ponds.",
+      "duration": {
+        "min": 5,
+        "default": 10,
+        "max": 20
+      },
+      "effort": "low",
+      "intents": [
+        "fresh-air",
+        "move"
+      ],
+      "steps": [
+        "Check the grass, lay the blanket in shade, and settle the baby beside you.",
+        "Mark the big kid's start and finish to one side, so they run across, not toward the blanket.",
+        "Call 'Green light!' and 'Red light!' from the blanket; give the big kid a turn as caller.",
+        "Between calls, check the baby's hands and mouth."
+      ],
+      "stopCues": [
+        "Baby hot, fussing, or putting grass or stones in their mouth",
+        "Big kid running toward the blanket or out of the yard",
+        "Too hot or sunny"
+      ],
+      "safety": [
+        {
+          "text": "Check the grass for litter, stones, droppings and plants first; keep anything small out of the baby's mouth.",
+          "claims": [
+            "clm.c.yard-hazards",
+            "clm.d.small-parts-under-3"
+          ]
+        },
+        {
+          "text": "Shade, a hat and covering clothes for both children; sunscreen on exposed skin from 6 months.",
+          "claims": [
+            "clm.c.sun-protection",
+            "clm.d.sun-protection"
+          ]
+        },
+        {
+          "text": "Running lane away from the blanket and the street; the big kid never chases a game or ball into the road.",
+          "claims": [
+            "clm.f.street-play-safety"
+          ]
+        }
+      ],
+      "claims": [
+        "clm.c.blanket-outside",
+        "clm.f.stop-and-go-games"
+      ]
+    },
+    {
+      "rev": 1,
+      "checked": "2026-10-29",
+      "outing": false,
+      "setupMinutes": 3,
+      "cleanupMinutes": 2,
+      "id": "mix.blanket-and-bubbles",
+      "mode": "parallel",
+      "title": "Baby on a blanket, toddler chases bubbles",
+      "summary": "Sit on a shaded blanket with the baby and blow bubbles downwind, away from the baby, for your toddler to chase and pop on the grass.",
+      "places": [
+        "outdoors"
+      ],
+      "younger": {
+        "ageMin": "6m",
+        "ageMax": "12m",
+        "abilities": [],
+        "activity": "act.grass-blanket-explore",
+        "does": "Sits or lies on a shaded blanket beside you, watching bubbles float away and the toddler chase them."
+      },
+      "older": {
+        "ageMin": "12m",
+        "ageMax": "30m",
+        "abilities": [],
+        "activity": "act.bubble-pop-outside",
+        "does": "Chases and pops the bubbles you blow across the grass, away from the blanket."
+      },
+      "adult": {
+        "minAdults": 1,
+        "does": "Sits on the blanket within arm's reach of the baby and blows bubbles downwind, away from the baby; keeps the bottle capped beside you.",
+        "handsOnFor": "both"
+      },
+      "sharedSetup": "Blanket in shade on checked grass. A bubble wand and a small, spill-proof bottle of solution. Find which way the wind is blowing.",
+      "space": "Blow bubbles downwind of the blanket so the toddler chases away from the baby. Solution capped, on your far side, out of both children's reach. Away from the street.",
+      "duration": {
+        "min": 5,
+        "default": 10,
+        "max": 15
+      },
+      "effort": "low",
+      "intents": [
+        "fresh-air",
+        "move"
+      ],
+      "steps": [
+        "Check the grass, lay the blanket in shade, and sit with the baby; find the wind direction.",
+        "Blow bubbles downwind; the toddler chases and pops them on the grass.",
+        "Name it for both: 'Pop! Big bubble! Up high!'",
+        "Cap the bottle between rounds and keep it on your far side."
+      ],
+      "stopCues": [
+        "Baby rubbing eyes, fussy or hot",
+        "Toddler running onto the blanket or toward the street",
+        "Solution spilled or a child reaching for the bottle"
+      ],
+      "safety": [
+        {
+          "text": "Bubbles go away from the baby's face; keep the solution capped and out of reach so no one drinks it.",
+          "claims": [
+            "clm.d.bubbles-not-eaten"
+          ]
+        },
+        {
+          "text": "Check the grass for litter, stones, droppings and plants first; keep anything small out of the baby's mouth.",
+          "claims": [
+            "clm.c.yard-hazards",
+            "clm.d.small-parts-under-3"
+          ]
+        },
+        {
+          "text": "Shade, a hat and covering clothes for both children; sunscreen on exposed skin from 6 months.",
+          "claims": [
+            "clm.c.sun-protection",
+            "clm.d.sun-protection"
+          ]
+        },
+        {
+          "text": "Play in a yard or park lawn away from the street and driveways.",
+          "claims": [
+            "clm.e.street-driveway"
+          ]
+        }
+      ],
+      "claims": [
+        "clm.d.bubble-play",
+        "clm.c.blanket-outside"
+      ]
+    },
+    {
+      "rev": 1,
+      "checked": "2026-10-29",
+      "outing": false,
+      "setupMinutes": 1,
+      "cleanupMinutes": 1,
+      "id": "mix.two-toddlers-blocks-and-puzzle",
+      "mode": "parallel",
+      "title": "Two toddlers: one stacks, one puzzles",
+      "summary": "One toddler stacks and topples blocks on the rug while the other works a chunky puzzle at a low table, each with their own things.",
+      "places": [
+        "indoors"
+      ],
+      "younger": {
+        "ageMin": "12m",
+        "ageMax": "30m",
+        "abilities": [],
+        "activity": "act.stack-and-topple",
+        "does": "Stacks big soft blocks or plastic cups on the rug and knocks them down, again and again."
+      },
+      "older": {
+        "ageMin": "15m",
+        "ageMax": "30m",
+        "abilities": [],
+        "activity": "act.chunky-puzzle-or-sorter",
+        "does": "Works a chunky puzzle or shape sorter at a low table, away from the toppling tower."
+      },
+      "adult": {
+        "minAdults": 1,
+        "does": "Sits on the floor between them, building a tower with one and naming puzzle pieces with the other; steps in when one wants the other's toys.",
+        "handsOnFor": "both"
+      },
+      "sharedSetup": "Two spots, each child's own set: soft blocks or cups on the rug, a chunky puzzle at a low table. All pieces bigger than a toilet-roll tube.",
+      "space": "Two separate spots a few steps apart so towers don't fall on the puzzle; you sit between.",
+      "duration": {
+        "min": 3,
+        "default": 8,
+        "max": 15
+      },
+      "effort": "low",
+      "intents": [
+        "explore",
+        "create"
+      ],
+      "steps": [
+        "Set up two spots: blocks on the rug, the puzzle at a low table.",
+        "Build a tower with the younger child to knock down; name a puzzle piece with the older.",
+        "Swap spots after a while if both want a turn.",
+        "Tidy up together: blocks in the box, puzzle pieces back in the frame."
+      ],
+      "stopCues": [
+        "Grabbing or throwing blocks",
+        "Frustration with the puzzle",
+        "Both wanting the same toy"
+      ],
+      "safety": [
+        {
+          "text": "All blocks and pieces too big to fit through a toilet-paper tube, with no loose or broken parts.",
+          "claims": [
+            "clm.d.small-parts-under-3",
+            "clm.c.toilet-roll-test"
+          ]
+        },
+        {
+          "text": "Soft blocks or cups only, and towers built away from the other child.",
+          "claims": []
+        }
+      ],
+      "claims": [
+        "clm.d.blocks-and-towers",
+        "clm.d.puzzles",
+        "clm.d.simple-objects-play"
+      ]
+    },
+    {
+      "rev": 1,
+      "checked": "2026-10-29",
+      "outing": false,
+      "setupMinutes": 1,
+      "cleanupMinutes": 1,
+      "id": "mix.toddler-blocks-big-kid-socks",
+      "mode": "parallel",
+      "title": "Toddler stacks blocks, big kid matches socks",
+      "summary": "Build and topple towers with your toddler on the rug while your preschooler pairs and counts clean socks on the sofa nearby.",
+      "places": [
+        "indoors"
+      ],
+      "younger": {
+        "ageMin": "12m",
+        "ageMax": "30m",
+        "abilities": [],
+        "activity": "act.stack-and-topple",
+        "does": "Stacks big soft blocks or plastic cups on the rug and knocks them down, then does it again."
+      },
+      "older": {
+        "ageMin": "36m",
+        "ageMax": "60m",
+        "abilities": [
+          "follows-directions"
+        ],
+        "activity": "act.sock-match-and-sort",
+        "does": "Pairs and sorts clean socks on the sofa or at the table and counts the pairs."
+      },
+      "adult": {
+        "minAdults": 1,
+        "does": "Sits on the floor building with the toddler, checking the big kid's sock pairs and counting with them.",
+        "handsOnFor": "younger"
+      },
+      "sharedSetup": "Soft blocks or cups on the rug for the toddler; clean socks on the sofa or table for the big kid. Laundry products put away.",
+      "space": "The big kid sorts on the sofa or at the table, away from the tower zone; the big kid's own small toys stay out of the toddler's reach.",
+      "duration": {
+        "min": 5,
+        "default": 10,
+        "max": 15
+      },
+      "effort": "low",
+      "intents": [
+        "explore",
+        "routine"
+      ],
+      "steps": [
+        "Set the toddler up with blocks on the rug and the big kid with socks on the sofa.",
+        "Build and topple with the toddler; ask the big kid to find all the striped socks.",
+        "The big kid can bring a pair to count by the tower: 'One pair, two socks!'",
+        "Finish with the big kid delivering piles to each room."
+      ],
+      "stopCues": [
+        "Toddler throwing blocks or grabbing socks",
+        "Big kid bored or frustrated",
+        "Squabbling over space"
+      ],
+      "safety": [
+        {
+          "text": "Laundry products locked away, out of sight and reach.",
+          "claims": [
+            "clm.f.products-out-of-reach"
+          ]
+        },
+        {
+          "text": "The big kid's small toys and pieces stay out of the toddler's reach; blocks are too big to fit through a toilet-paper tube.",
+          "claims": [
+            "clm.f.small-pieces-away-from-babies",
+            "clm.d.small-parts-under-3"
+          ]
+        }
+      ],
+      "claims": [
+        "clm.d.blocks-and-towers",
+        "clm.f.simple-chores"
+      ]
+    },
+    {
+      "rev": 1,
+      "checked": "2026-10-29",
+      "outing": false,
+      "setupMinutes": 3,
+      "cleanupMinutes": 3,
+      "id": "mix.toddler-kitchen-big-kid-memory",
+      "mode": "parallel",
+      "title": "Toddler cooks, big kid plays memory match",
+      "summary": "Your toddler cooks pretend meals on the floor nearby while you play a memory-matching card game with your preschooler at the table.",
+      "places": [
+        "indoors"
+      ],
+      "younger": {
+        "ageMin": "24m",
+        "ageMax": "48m",
+        "abilities": [],
+        "activity": "act.pretend-kitchen-cook",
+        "does": "Cooks pretend meals with pots, spoons and empty boxes on the floor nearby, serving you between turns."
+      },
+      "older": {
+        "ageMin": "36m",
+        "ageMax": "60m",
+        "abilities": [
+          "follows-directions"
+        ],
+        "activity": "act.memory-match-cards",
+        "does": "Plays memory match with you at the table, flipping two cards a turn and keeping the pairs they find."
+      },
+      "adult": {
+        "minAdults": 1,
+        "does": "Sits at the table playing memory match with the big kid, facing the toddler's kitchen; 'tastes' the toddler's dishes between turns.",
+        "handsOnFor": "older"
+      },
+      "sharedSetup": "Pots, wooden spoons, bowls and empty boxes on the floor or a low table in view. Memory cards laid out on the table, out of the toddler's reach.",
+      "space": "Cards stay on the table; the toddler's kitchen is on the floor a few steps away, in your view and away from the real stove.",
+      "duration": {
+        "min": 10,
+        "default": 15,
+        "max": 25
+      },
+      "effort": "low",
+      "intents": [
+        "connect",
+        "explore"
+      ],
+      "steps": [
+        "Set out the toddler's kitchen in view, then lay 4 to 6 pairs of cards on the table.",
+        "Take turns flipping two cards with the big kid; order a meal from the toddler between turns.",
+        "When the toddler serves a dish, the big kid can guess what it is.",
+        "Pack the cards away before the toddler joins the table."
+      ],
+      "stopCues": [
+        "Toddler grabbing or mouthing cards",
+        "Big kid frustrated",
+        "Toddler bored: offer them a job at the table"
+      ],
+      "safety": [
+        {
+          "text": "Cards and any small game pieces stay on the table, out of the toddler's reach.",
+          "claims": [
+            "clm.f.small-pieces-away-from-babies"
+          ]
+        },
+        {
+          "text": "Kitchen props are unbreakable and too big to swallow, and the game happens away from the stove while anyone cooks.",
+          "claims": [
+            "clm.d.small-parts-under-3",
+            "clm.e.kitchen-underfoot"
+          ]
+        }
+      ],
+      "claims": [
+        "clm.f.matching-memory-games",
+        "clm.e.pretend-kitchen"
+      ]
+    },
+    {
+      "rev": 1,
+      "checked": "2026-10-29",
+      "outing": false,
+      "setupMinutes": 2,
+      "cleanupMinutes": 3,
+      "id": "mix.twin-quiet-table",
+      "mode": "parallel",
+      "title": "Quiet table for two: drawing and a jigsaw",
+      "summary": "Two preschoolers share the table, one drawing and one doing a jigsaw, each at their own end, while you work nearby and check in.",
+      "places": [
+        "indoors"
+      ],
+      "younger": {
+        "ageMin": "36m",
+        "ageMax": "60m",
+        "abilities": [
+          "no-longer-mouthing"
+        ],
+        "activity": "act.draw-and-tell",
+        "does": "Draws at one end of the table, then tells you about the picture when you check in."
+      },
+      "older": {
+        "ageMin": "36m",
+        "ageMax": "60m",
+        "abilities": [
+          "no-longer-mouthing"
+        ],
+        "activity": "act.jigsaw-at-the-table",
+        "does": "Works a jigsaw at the other end of the table, finding the edge pieces first."
+      },
+      "adult": {
+        "minAdults": 1,
+        "does": "Works nearby in the same room and checks in on each in turn: 'Tell me about your drawing.' 'Found a corner?'",
+        "handsOnFor": "neither"
+      },
+      "sharedSetup": "Paper and crayons at one end of the table, a jigsaw at the other; each child has their own space. Caps on markers when not in use.",
+      "space": "Each child has their own end of the table. If a baby or toddler is also home, all pieces and caps stay up on the table and out of reach.",
+      "duration": {
+        "min": 10,
+        "default": 20,
+        "max": 30
+      },
+      "effort": "low",
+      "intents": [
+        "create",
+        "calm",
+        "parent-moment"
+      ],
+      "steps": [
+        "Give each child their own end of the table and their own materials.",
+        "Do your task nearby; check in on each child every few minutes.",
+        "If one finishes early, they can draw the other's puzzle picture.",
+        "Pack pieces and caps away and check the floor."
+      ],
+      "stopCues": [
+        "Frustration with the puzzle",
+        "Squabbling over space or materials",
+        "Tired or restless"
+      ],
+      "safety": [
+        {
+          "text": "Puzzle pieces, crayons and caps suit preschoolers who no longer mouth things; keep them away from any younger child and check the floor after.",
+          "claims": [
+            "clm.f.small-pieces-away-from-babies"
+          ]
+        }
+      ],
+      "claims": [
+        "clm.f.drawing-and-art",
+        "clm.f.puzzles-building"
+      ]
+    }
+  ],
+  "starterPlans": [
+    {
+      "id": "plan.gentle-newborn-hour",
+      "rev": 1,
+      "title": "Gentle newborn hour",
+      "summary": "Short, flexible pieces with long breaks: a chat, a few minutes of floor tummy time, bold pictures and a slow sway. A feed or a nap can replace any piece.",
+      "circumstance": "A 3-week-old at home with one adult; feeds and sleep can come at any time.",
+      "ages": [
+        "3w"
+      ],
+      "start": "09:30",
+      "segments": [
+        {
+          "kind": "activity",
+          "ref": "act.coo-and-copy-chat",
+          "minutes": 4
+        },
+        {
+          "kind": "break",
+          "minutes": 15,
+          "label": "Feed, diaper or nap: whatever comes first"
+        },
+        {
+          "kind": "activity",
+          "ref": "act.tummy-time-floor-face-to-face",
+          "minutes": 3
+        },
+        {
+          "kind": "break",
+          "minutes": 5,
+          "label": "Cuddle and rest"
+        },
+        {
+          "kind": "activity",
+          "ref": "act.bold-picture-gazing",
+          "minutes": 3
+        },
+        {
+          "kind": "break",
+          "minutes": 15,
+          "label": "Feed or sleep if baby is ready"
+        },
+        {
+          "kind": "activity",
+          "ref": "act.sway-and-hum",
+          "minutes": 8
+        },
+        {
+          "kind": "break",
+          "minutes": 7,
+          "label": "Rest, or a drink for you"
+        }
+      ],
+      "checked": "2026-10-29"
+    },
+    {
+      "id": "plan.rainy-afternoon-4m-28m",
+      "rev": 1,
+      "title": "Rainy afternoon: 4 months and 28 months, one adult",
+      "summary": "Indoor side-by-side play, a short tummy-time book session, action songs and a slow dance parade, with breaks for feeds, diapers and drinks.",
+      "circumstance": "One adult indoors on a wet afternoon with a 4-month-old and a 2-year-old.",
+      "ages": [
+        "4m",
+        "28m"
+      ],
+      "start": "15:00",
+      "segments": [
+        {
+          "kind": "recipe",
+          "ref": "mix.mat-and-table-side-by-side",
+          "minutes": 12
+        },
+        {
+          "kind": "break",
+          "minutes": 5,
+          "label": "Diapers and drinks"
+        },
+        {
+          "kind": "recipe",
+          "ref": "mix.tummy-time-book-helper",
+          "minutes": 5
+        },
+        {
+          "kind": "break",
+          "minutes": 10,
+          "label": "Baby feed or cuddle; toddler beside you"
+        },
+        {
+          "kind": "recipe",
+          "ref": "mix.action-song-circle",
+          "minutes": 6
+        },
+        {
+          "kind": "break",
+          "minutes": 5,
+          "label": "Quiet minute"
+        },
+        {
+          "kind": "recipe",
+          "ref": "mix.slow-dance-follow-the-leader",
+          "minutes": 6
+        },
+        {
+          "kind": "break",
+          "minutes": 10,
+          "label": "Rest, or a nap for the baby"
+        }
+      ],
+      "checked": "2026-10-29"
+    },
+    {
+      "id": "plan.park-snack-playdough",
+      "rev": 1,
+      "title": "Park, snack, then playdough",
+      "summary": "Run off energy in the playground's 2-to-5 area, sit down together for a snack, then squish and roll playdough at the table.",
+      "circumstance": "A 2- to 3-year-old with one adult on a dry morning.",
+      "ages": [
+        "30m"
+      ],
+      "start": "10:00",
+      "segments": [
+        {
+          "kind": "activity",
+          "ref": "act.preschool-playground-area",
+          "minutes": 25
+        },
+        {
+          "kind": "break",
+          "minutes": 10,
+          "label": "Walk home, wash hands"
+        },
+        {
+          "kind": "activity",
+          "ref": "act.sit-down-snack-together",
+          "minutes": 10
+        },
+        {
+          "kind": "break",
+          "minutes": 5,
+          "label": "Wipe hands and table"
+        },
+        {
+          "kind": "activity",
+          "ref": "act.playdough-squish-and-roll",
+          "minutes": 15
+        }
+      ],
+      "checked": "2026-10-29"
+    },
+    {
+      "id": "plan.dinner-prep-hour",
+      "rev": 1,
+      "title": "Dinner-prep hour",
+      "summary": "Toddler jobs and play near you while you cook: a pretend kitchen, color sorting, an optional calm show, then carrying cups and napkins to the table.",
+      "circumstance": "One adult cooking dinner with a 2- to 3-year-old in view, outside the cooking area.",
+      "ages": [
+        "30m"
+      ],
+      "start": "17:00",
+      "segments": [
+        {
+          "kind": "activity",
+          "ref": "act.pretend-kitchen-cook",
+          "minutes": 15
+        },
+        {
+          "kind": "break",
+          "minutes": 5,
+          "label": "Check in, drink of water"
+        },
+        {
+          "kind": "activity",
+          "ref": "act.color-sort-bowls",
+          "minutes": 10
+        },
+        {
+          "kind": "activity",
+          "ref": "act.calm-show-while-you-cook",
+          "minutes": 20
+        },
+        {
+          "kind": "activity",
+          "ref": "act.carry-to-the-table-helper",
+          "minutes": 5
+        }
+      ],
+      "checked": "2026-10-29"
+    },
+    {
+      "id": "plan.saturday-morning-4-year-old",
+      "rev": 1,
+      "title": "Saturday morning with a 4-year-old",
+      "summary": "Playground climbing and sliding, a calm breathing game and a story at home, then a real job: matching the family's socks.",
+      "circumstance": "A 4-year-old and one adult on a free weekend morning.",
+      "ages": [
+        "48m"
+      ],
+      "start": "09:30",
+      "segments": [
+        {
+          "kind": "activity",
+          "ref": "act.preschool-playground",
+          "minutes": 30
+        },
+        {
+          "kind": "break",
+          "minutes": 10,
+          "label": "Walk home, water and a rest"
+        },
+        {
+          "kind": "activity",
+          "ref": "act.smell-flower-blow-candle",
+          "minutes": 5
+        },
+        {
+          "kind": "activity",
+          "ref": "act.what-happens-next-book",
+          "minutes": 10
+        },
+        {
+          "kind": "activity",
+          "ref": "act.sock-match-and-sort",
+          "minutes": 10
+        }
+      ],
+      "checked": "2026-10-29"
+    },
+    {
+      "id": "plan.baby-and-preschooler-9m-4y",
+      "rev": 1,
+      "title": "Baby and preschooler: 9 months and 4 years",
+      "summary": "A treasure basket beside a sock-matching job, a shaded blanket with red light, green light, then two books on the sofa.",
+      "circumstance": "One adult with a 9-month-old and a 4-year-old; yard or park lawn nearby.",
+      "ages": [
+        "9m",
+        "48m"
+      ],
+      "start": "10:00",
+      "segments": [
+        {
+          "kind": "recipe",
+          "ref": "mix.treasure-basket-and-sock-match",
+          "minutes": 10
+        },
+        {
+          "kind": "break",
+          "minutes": 5,
+          "label": "Diaper, shoes and hats"
+        },
+        {
+          "kind": "recipe",
+          "ref": "mix.blanket-and-red-light",
+          "minutes": 15
+        },
+        {
+          "kind": "break",
+          "minutes": 10,
+          "label": "Back inside, wash hands, drinks"
+        },
+        {
+          "kind": "recipe",
+          "ref": "mix.baby-book-big-kid-story",
+          "minutes": 8
+        },
+        {
+          "kind": "break",
+          "minutes": 10,
+          "label": "Baby's nap or feed when ready"
+        }
+      ],
+      "checked": "2026-10-29"
+    }
+  ]
+}

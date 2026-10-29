@@ -276,17 +276,17 @@
     {
       "age": "4 mo",
       "days": 122,
-      "total": 17,
-      "lowEffort": 15,
+      "total": 18,
+      "lowEffort": 16,
       "busyNearby": 3,
-      "indoors": 16,
+      "indoors": 17,
       "outdoors": 8,
-      "noMaterials": 3,
+      "noMaterials": 4,
       "media": 0,
       "byIntent": {
-        "connect": 13,
-        "move": 7,
-        "calm": 3,
+        "connect": 14,
+        "move": 8,
+        "calm": 4,
         "fresh-air": 1,
         "explore": 8,
         "create": 0,
@@ -297,17 +297,17 @@
     {
       "age": "5 mo",
       "days": 152,
-      "total": 16,
-      "lowEffort": 14,
+      "total": 17,
+      "lowEffort": 15,
       "busyNearby": 2,
-      "indoors": 15,
+      "indoors": 16,
       "outdoors": 8,
-      "noMaterials": 3,
+      "noMaterials": 4,
       "media": 0,
       "byIntent": {
-        "connect": 13,
-        "move": 6,
-        "calm": 3,
+        "connect": 14,
+        "move": 7,
+        "calm": 4,
         "fresh-air": 1,
         "explore": 7,
         "create": 0,
@@ -318,17 +318,17 @@
     {
       "age": "6 mo",
       "days": 183,
-      "total": 17,
-      "lowEffort": 14,
+      "total": 18,
+      "lowEffort": 15,
       "busyNearby": 2,
-      "indoors": 15,
+      "indoors": 16,
       "outdoors": 9,
-      "noMaterials": 3,
+      "noMaterials": 4,
       "media": 0,
       "byIntent": {
-        "connect": 12,
-        "move": 4,
-        "calm": 5,
+        "connect": 13,
+        "move": 5,
+        "calm": 6,
         "fresh-air": 2,
         "explore": 10,
         "create": 0,
@@ -339,17 +339,17 @@
     {
       "age": "7 mo",
       "days": 213,
-      "total": 17,
-      "lowEffort": 14,
+      "total": 18,
+      "lowEffort": 15,
       "busyNearby": 2,
-      "indoors": 14,
+      "indoors": 15,
       "outdoors": 9,
-      "noMaterials": 4,
+      "noMaterials": 5,
       "media": 0,
       "byIntent": {
-        "connect": 11,
-        "move": 4,
-        "calm": 6,
+        "connect": 12,
+        "move": 5,
+        "calm": 7,
         "fresh-air": 3,
         "explore": 9,
         "create": 0,
@@ -360,17 +360,17 @@
     {
       "age": "8 mo",
       "days": 244,
-      "total": 16,
-      "lowEffort": 11,
+      "total": 17,
+      "lowEffort": 12,
       "busyNearby": 2,
-      "indoors": 13,
+      "indoors": 14,
       "outdoors": 7,
-      "noMaterials": 3,
+      "noMaterials": 4,
       "media": 0,
       "byIntent": {
-        "connect": 10,
-        "move": 5,
-        "calm": 4,
+        "connect": 11,
+        "move": 6,
+        "calm": 5,
         "fresh-air": 3,
         "explore": 8,
         "create": 0,
@@ -381,17 +381,17 @@
     {
       "age": "9 mo",
       "days": 274,
-      "total": 16,
-      "lowEffort": 11,
+      "total": 17,
+      "lowEffort": 12,
       "busyNearby": 2,
-      "indoors": 13,
+      "indoors": 14,
       "outdoors": 7,
-      "noMaterials": 3,
+      "noMaterials": 4,
       "media": 0,
       "byIntent": {
-        "connect": 10,
-        "move": 5,
-        "calm": 4,
+        "connect": 11,
+        "move": 6,
+        "calm": 5,
         "fresh-air": 3,
         "explore": 8,
         "create": 0,
@@ -402,17 +402,17 @@
     {
       "age": "10 mo",
       "days": 304,
-      "total": 16,
-      "lowEffort": 11,
+      "total": 17,
+      "lowEffort": 12,
       "busyNearby": 2,
-      "indoors": 13,
+      "indoors": 14,
       "outdoors": 7,
-      "noMaterials": 3,
+      "noMaterials": 4,
       "media": 0,
       "byIntent": {
-        "connect": 10,
-        "move": 5,
-        "calm": 4,
+        "connect": 11,
+        "move": 6,
+        "calm": 5,
         "fresh-air": 3,
         "explore": 8,
         "create": 0,
@@ -423,17 +423,17 @@
     {
       "age": "11 mo",
       "days": 335,
-      "total": 16,
-      "lowEffort": 11,
+      "total": 17,
+      "lowEffort": 12,
       "busyNearby": 2,
-      "indoors": 13,
+      "indoors": 14,
       "outdoors": 7,
-      "noMaterials": 3,
+      "noMaterials": 4,
       "media": 0,
       "byIntent": {
-        "connect": 10,
-        "move": 5,
-        "calm": 4,
+        "connect": 11,
+        "move": 6,
+        "calm": 5,
         "fresh-air": 3,
         "explore": 8,
         "create": 0,
@@ -1454,111 +1454,95 @@
     {
       "younger": "3 wk",
       "older": "2 yr",
-      "together": 0,
-      "parallel": 0
+      "together": 3,
+      "parallel": 2
     },
     {
       "younger": "6 wk",
       "older": "3 yr",
-      "together": 0,
-      "parallel": 0
+      "together": 1,
+      "parallel": 1
     },
     {
       "younger": "10 wk",
       "older": "20 mo",
-      "together": 0,
-      "parallel": 0
+      "together": 3,
+      "parallel": 2
     },
     {
       "younger": "4 mo",
       "older": "2 yr 4 mo",
-      "together": 0,
-      "parallel": 0
+      "together": 4,
+      "parallel": 2
     },
     {
       "younger": "5 mo",
       "older": "3 yr 6 mo",
-      "together": 0,
-      "parallel": 0
+      "together": 1,
+      "parallel": 1
     },
     {
       "younger": "7 mo",
       "older": "2 yr 6 mo",
-      "together": 0,
-      "parallel": 0
+      "together": 3,
+      "parallel": 2
     },
     {
       "younger": "9 mo",
       "older": "4 yr",
-      "together": 0,
-      "parallel": 0
+      "together": 2,
+      "parallel": 2
     },
     {
       "younger": "11 mo",
       "older": "2 yr 2 mo",
-      "together": 0,
-      "parallel": 0
+      "together": 2,
+      "parallel": 2
     },
     {
       "younger": "14 mo",
       "older": "3 yr 2 mo",
-      "together": 0,
-      "parallel": 0
+      "together": 3,
+      "parallel": 1
     },
     {
       "younger": "18 mo",
       "older": "3 yr 4 mo",
-      "together": 0,
-      "parallel": 0
+      "together": 2,
+      "parallel": 1
     },
     {
       "younger": "20 mo",
       "older": "4 yr 6 mo",
-      "together": 0,
-      "parallel": 0
+      "together": 2,
+      "parallel": 1
     },
     {
       "younger": "2 yr 2 mo",
       "older": "4 yr 2 mo",
-      "together": 0,
-      "parallel": 0
+      "together": 3,
+      "parallel": 2
     },
     {
       "younger": "2 yr 6 mo",
       "older": "4 yr 10 mo",
-      "together": 0,
-      "parallel": 0
+      "together": 2,
+      "parallel": 1
     },
     {
       "younger": "15 mo",
       "older": "16 mo",
-      "together": 0,
-      "parallel": 0
+      "together": 2,
+      "parallel": 1
     },
     {
       "younger": "3 yr 1 mo",
       "older": "3 yr 1 mo",
-      "together": 0,
-      "parallel": 0
+      "together": 1,
+      "parallel": 2
     }
   ],
-  "gaps": [
-    "pair 3 wk + 2 yr: only 0 curated recipes",
-    "pair 6 wk + 3 yr: only 0 curated recipes",
-    "pair 10 wk + 20 mo: only 0 curated recipes",
-    "pair 4 mo + 2 yr 4 mo: only 0 curated recipes",
-    "pair 5 mo + 3 yr 6 mo: only 0 curated recipes",
-    "pair 7 mo + 2 yr 6 mo: only 0 curated recipes",
-    "pair 9 mo + 4 yr: only 0 curated recipes",
-    "pair 11 mo + 2 yr 2 mo: only 0 curated recipes",
-    "pair 14 mo + 3 yr 2 mo: only 0 curated recipes",
-    "pair 18 mo + 3 yr 4 mo: only 0 curated recipes",
-    "pair 20 mo + 4 yr 6 mo: only 0 curated recipes",
-    "pair 2 yr 2 mo + 4 yr 2 mo: only 0 curated recipes",
-    "pair 2 yr 6 mo + 4 yr 10 mo: only 0 curated recipes",
-    "pair 15 mo + 16 mo: only 0 curated recipes",
-    "pair 3 yr 1 mo + 3 yr 1 mo: only 0 curated recipes"
-  ],
+  "gaps": [],
   "thresholds": {
     "total": 6,
     "lowEffort": 2,
