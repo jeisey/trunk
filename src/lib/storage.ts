@@ -179,8 +179,9 @@ export class PlanStore {
 
   /**
    * Re-read what is stored right now, so a write never drops plans another tab
-   * saved since this tab loaded. Unreadable or newer data leaves the in-memory
-   * list as it is (load() reports those cases).
+   * saved since this tab loaded. Unreadable data leaves the in-memory list as
+   * it is (load() reports it); data from a newer version switches this tab to
+   * read-only, so it never overwrites what the newer version wrote.
    */
   private sync(): void {
     if (!this.storage || this.status === 'newer') return;

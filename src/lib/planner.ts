@@ -19,7 +19,7 @@
  * 4. Two children: the main sequence uses curated pairings only. During one
  *    child's routine block, the other child's free time is filled with that
  *    child's own activities when one adult can supervise them (alongFeasible),
- *    or left visibly open.
+ *    or left visibly open. While the other child naps, quieter ideas rank higher.
  * 5. Variety, place continuity, low setup, at most one outing and one screen
  *    option, sun/night rules, realistic durations, and flexible breaks at the
  *    youngest child's cadence in long stretches (never next to a routine block).
@@ -85,11 +85,15 @@ export type Candidate = {
   duration: { min: number; default: number; max: number };
   stimulation: Stimulation;
   mess: 'none' | 'low' | 'medium' | 'high';
+  noise: 'quiet' | 'moderate' | 'loud';
   act?: Activity;
   rec?: MixedAgeRecipe;
 };
 
 const MESS_ORDER = ['none', 'low', 'medium', 'high'] as const;
+const NOISE_ORDER = ['quiet', 'moderate', 'loud'] as const;
+/** While the other child sleeps, quieter ideas rank higher (ranking only). */
+const NEAR_SLEEP_NOISE = { quiet: 0, moderate: -2, loud: -8 } as const;
 
 const fromActivity = (a: Activity): Candidate => ({
   kind: 'activity',
@@ -109,12 +113,14 @@ const fromActivity = (a: Activity): Candidate => ({
   duration: a.duration,
   stimulation: a.timing.stimulation,
   mess: a.mess,
+  noise: a.noise,
   act: a,
 });
 
 const fromRecipe = (r: MixedAgeRecipe, c: IndexedCatalog): Candidate => {
   const acts = [c.activityById.get(r.younger.activity), c.activityById.get(r.older.activity)];
   const mess = acts.reduce((m, a) => Math.max(m, a ? MESS_ORDER.indexOf(a.mess) : 0), 0);
+  const noise = acts.reduce((m, a) => Math.max(m, a ? NOISE_ORDER.indexOf(a.noise) : 0), 0);
   return {
     kind: 'recipe',
     id: r.id,
@@ -133,6 +139,7 @@ const fromRecipe = (r: MixedAgeRecipe, c: IndexedCatalog): Candidate => {
     duration: r.duration,
     stimulation: r.timing.stimulation,
     mess: MESS_ORDER[mess],
+    noise: NOISE_ORDER[noise],
     rec: r,
   };
 };
@@ -225,8 +232,10 @@ function phaseScore(cand: Candidate, span: Span, lanes: readonly (0 | 1)[], timi
         if (known) s += cand.stimulation === 'settling' ? 10 : cand.stimulation === 'gentle' ? 7 : -10;
         s += cand.mess === 'none' || cand.mess === 'low' ? 1 : -4;
         s -= Math.min(4, cand.cleanup) + Math.min(3, Math.max(0, cand.setup - 1));
-      } else if (until > 30 && active && known) {
-        s += cand.stimulation === 'lively' ? 5 : cand.stimulation === 'gentle' ? 2 : 0;
+      } else if (until > 30 && known) {
+        // Earlier on: active play when energy allows; keep the settling ideas for winding down.
+        if (cand.stimulation === 'settling') s -= 3;
+        else if (active) s += cand.stimulation === 'lively' ? 5 : 2;
       }
     }
     if (woke !== -Infinity && span.start - woke <= 20 && known) s += cand.stimulation === 'lively' ? -8 : 7;
@@ -281,6 +290,8 @@ interface Track {
   youngestDays: number;
   /** Alongside: which child the entry is for. */
   who?: 'c1' | 'c2';
+  /** Alongside the other child's nap: quieter ideas rank higher. */
+  nearSleep?: boolean;
   feasible?: (cand: Candidate, at: number) => boolean;
 }
 
@@ -371,7 +382,7 @@ export function planWindow(c: IndexedCatalog, input: PlannerInput): PlannerResul
     return NO_TIMING;
   };
 
-  const baseScore = (cand: Candidate, minutes: number, room: number, ts: TrackState): number => {
+  const baseScore = (cand: Candidate, minutes: number, room: number, ts: TrackState, track: Track): number => {
     let s = 20;
     if ((uses.get(cand.id) ?? 0) > 0) s -= REPEAT;
     const last = ts.last;
@@ -389,6 +400,7 @@ export function planWindow(c: IndexedCatalog, input: PlannerInput): PlannerResul
     if (cand.setup + cand.duration.default + cand.cleanup > room) s -= 4;
     // Unnecessary setup and tidy-up.
     s -= Math.min(4, Math.max(0, cand.setup + cand.cleanup - 3));
+    if (track.nearSleep) s += NEAR_SLEEP_NOISE[cand.noise];
     return s + (hash(`${seed}:${cand.id}`) % 6);
   };
 
@@ -426,7 +438,9 @@ export function planWindow(c: IndexedCatalog, input: PlannerInput): PlannerResul
       }
       phase = phaseScore(cand, span, track.lanes, timings, settings.energy);
     }
-    return { cand, minutes, wall, span, timing, score: baseScore(cand, minutes, room, ts) + timing.score + phase };
+    // Variety first, unless timing clearly favours repeating an idea here (a calm one before a nap, say).
+    const relief = (uses.get(cand.id) ?? 0) > 0 && timing.score + phase >= 7 ? REPEAT / 2 : 0;
+    return { cand, minutes, wall, span, timing, score: baseScore(cand, minutes, room, ts, track) + timing.score + phase + relief };
   };
 
   /** Every idea that fits here. An idea appears at most twice, never back to back, and a repeat costs REPEAT. */
@@ -493,7 +507,8 @@ export function planWindow(c: IndexedCatalog, input: PlannerInput): PlannerResul
     while (generatedCount < budget) {
       const room = gap.end - at;
       if (room <= 0) break;
-      if (carry && placed > 0 && carry.sinceBreak >= cadence.every && room >= cadence.length + smallest) {
+      // A break only where something can follow it in this stretch (never as the last thing before a block).
+      if (carry && placed > 0 && carry.sinceBreak >= cadence.every && room >= cadence.length + smallest && options(at + cadence.length, room - cadence.length, track, ts, true).length > 0) {
         out.push({ id: newId('b'), kind: 'break', minutes: cadence.length, label: BREAK_LABEL });
         generatedCount++;
         at += cadence.length;
@@ -569,13 +584,15 @@ export function planWindow(c: IndexedCatalog, input: PlannerInput): PlannerResul
       const other: 0 | 1 = hs.who === 'c1' ? 1 : 0;
       const who = other === 0 ? 'c1' : 'c2';
       const trackStart = h.start + (hs.routine === 'nap' && !hs.holding ? (hs.settle ?? 0) : 0);
+      // Like the main sequence, the track stays inside the plan's window.
+      const trackEnd = Math.min(h.end, window);
       const sub: Gap[] = [];
       let t = trackStart;
       for (const x of items.filter((y) => y.host === h.index)) {
-        if (x.start > t && t < h.end) sub.push({ start: t, end: Math.min(x.start, h.end), before: x.index });
+        if (x.start > t && t < trackEnd) sub.push({ start: t, end: Math.min(x.start, trackEnd), before: x.index });
         t = Math.max(t, x.end);
       }
-      if (t < h.end) sub.push({ start: t, end: h.end, before: null });
+      if (t < trackEnd) sub.push({ start: t, end: trackEnd, before: null });
       if (!sub.length) continue;
       childPools[other] ??= childPool(c, kids, settings, other);
       const track: Track = {
@@ -583,6 +600,7 @@ export function planWindow(c: IndexedCatalog, input: PlannerInput): PlannerResul
         lanes: [other],
         youngestDays: kidDays[other],
         who,
+        nearSleep: hs.routine === 'nap',
         feasible: (cand, at) =>
           alongFeasible({ id: 'x', kind: 'activity', ref: cand.id, minutes: cand.duration.min, who, along: true }, cand.act, hs, adultStateAt(hs, h.start, at), settings.adults).ok,
       };
@@ -658,7 +676,12 @@ export function planWindow(c: IndexedCatalog, input: PlannerInput): PlannerResul
   if (!pool.length) {
     const ages = kids.map((k) => formatAgeShort(k.age)).join(' and ');
     result.blocked = {
-      reason: eligibleCount === 0 ? `Nothing in Trunk fits a ${ages} together with ${settings.adults === 1 ? 'one adult' : 'two adults'} yet; your own entries are kept.` : `Your current choices rule out every option for a ${ages}.`,
+      reason:
+        eligibleCount === 0
+          ? two
+            ? `Trunk doesn’t have a curated activity that safely fits a ${ages} together with ${settings.adults === 1 ? 'one adult' : 'two adults'} yet. Your own entries are kept.`
+            : 'No activities fit this age and readiness yet. Your own entries are kept.'
+          : `Your current choices rule out every option for a ${ages}.`,
       relax: eligibleCount ? relax() : [],
     };
   }
@@ -834,6 +857,8 @@ export function optionsForSlot(c: IndexedCatalog, plan: Plan, slot: { replace?: 
     if (next && cand.intents[0] === next.intents[0]) variety -= 4;
     if (prev) variety += cand.places.some((p) => prev!.places.includes(p)) ? 3 : -3;
     variety -= Math.min(4, Math.max(0, overhead - 3));
+    if (slot.host !== undefined && items[slot.host].segment.routine === 'nap') variety += NEAR_SLEEP_NOISE[cand.noise];
+    else if (slot.replace !== undefined && items[slot.replace].host !== null && items[items[slot.replace].host!].segment.routine === 'nap') variety += NEAR_SLEEP_NOISE[cand.noise];
     const opt: SlotOption = { kind: cand.kind, id: cand.id, title: cand.title, minutes, timing };
     if (cand.kind === 'activity' && two) opt.who = lane === 1 ? 'c2' : 'c1';
     scored.push({ opt, rank: timing.score + phaseScore(cand, span, lanes, timings, plan.settings.energy), variety });

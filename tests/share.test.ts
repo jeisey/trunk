@@ -98,6 +98,29 @@ describe('share links', () => {
     expect(url.length).toBeLessThan(MAX_LINK_LENGTH / 2);
   });
 
+  it('keeps a busy v2 plan (routines, alongside, anchors, locks) inside the link budget', async () => {
+    const segments: Plan['segments'] = [
+      { id: 'f1', kind: 'routine', minutes: 20, who: 'c1', routine: 'milk-feed', at: 0 },
+      { id: 'n1', kind: 'routine', minutes: 90, who: 'c1', routine: 'nap', at: 30, settle: 10 },
+      ...Array.from({ length: 6 }, (_, i) => ({ id: `a${i}`, kind: 'activity' as const, ref: books.id, minutes: 10, who: 'c2' as const, along: true as const })),
+      { id: 'm1', kind: 'routine', minutes: 30, who: 'both', routine: 'meal', at: 130 },
+      ...Array.from({ length: 8 }, (_, i) => ({ id: `r${i}`, kind: 'recipe' as const, ref: recipe.id, minutes: 4, younger: 'c1' as const, ...(i % 3 === 0 ? { at: 170 + i * 10, locked: true as const } : {}) })),
+      { id: 's1', kind: 'routine', minutes: 15, who: 'c2', routine: 'snack', at: 300, holding: undefined },
+    ].map((s) => JSON.parse(JSON.stringify(s)));
+    const payload = await encodePayload(samplePlan({ segments, window: 360 }), DEFAULT_SHARE_OPTIONS);
+    expect(payload.startsWith('2z.')).toBe(true);
+    expect(shareUrl('https://jeisey.github.io/trunk/', payload).length).toBeLessThan(MAX_LINK_LENGTH / 2);
+    const { plan } = await importPayload(payload, c);
+    expect(plan.segments.filter((s) => s.kind === 'routine').map((s) => [s.routine, s.who, s.at, s.settle])).toEqual([
+      ['milk-feed', 'c1', 0, undefined],
+      ['nap', 'c1', 30, 10],
+      ['meal', 'both', 130, undefined],
+      ['snack', 'c2', 300, undefined],
+    ]);
+    expect(plan.segments.filter((s) => s.along)).toHaveLength(6);
+    expect(plan.segments.filter((s) => s.locked).map((s) => s.at)).toEqual([170, 200, 230]);
+  });
+
   it('reports links that exceed the budget so the UI can offer images instead', async () => {
     // Incompressible text at the maximum lengths parents can type.
     const rand = (n: number) => bytesToBase64Url(crypto.getRandomValues(new Uint8Array(n))).slice(0, n);

@@ -38,19 +38,19 @@ Open time: 0 min.
 | 9:50 AM–10:00 AM | Flexible break |  | Flexible break at the age cadence |
 | 10:00 AM–10:08 AM | Lullaby and slow rock | settling | fits: “Good for winding down” |
 | 10:08 AM–10:14 AM | Floor tummy time on a mat | gentle | Kept clear of the feed; outside the feed windows (30 min after, 15 min before) |
-| 10:14 AM–10:21 AM | Mirror chat | gentle | variety: different from the idea before it |
-| 10:21 AM–10:27 AM | Floor tummy time on a mat | gentle | outside the feed windows (30 min after, 15 min before) |
-| 10:27 AM–10:30 AM | Lullaby and slow rock | settling | fits: “Good for winding down”; Quiet play before the nap |
+| 10:14 AM–10:22 AM | Lullaby and slow rock | settling | fits: “Good for winding down” |
+| 10:22 AM–10:29 AM | Mirror chat | gentle | Calm play before the nap |
 | 10:30 AM–11:15 AM | Nap | — | Your block, kept at its time |
-| 11:15 AM–11:22 AM | High-contrast cards | gentle | fits: “Gentle start after waking”; Gentle start after waking |
-| 11:22 AM–11:29 AM | Mirror chat | gentle | fits: “Gentle start after waking” |
-| 11:29 AM–11:40 AM | Rattle and drum time | lively | variety: different from the idea before it |
-| 11:40 AM–11:52 AM | Kick and bat under a play gym | lively | variety: different from the idea before it |
+| 11:15 AM–11:21 AM | Floor tummy time on a mat | gentle | fits: “Gentle start after waking”; outside the feed windows (30 min after, 15 min before) |
+| 11:21 AM–11:28 AM | High-contrast cards | gentle | fits: “Gentle start after waking” |
+| 11:28 AM–11:35 AM | Mirror chat | gentle | fits: “Gentle start after waking” |
+| 11:35 AM–11:46 AM | Rattle and drum time | lively | variety: different from the idea before it |
+| 11:46 AM–11:58 AM | Kick and bat under a play gym | lively | variety: different from the idea before it |
 
-Open time: 8 min.
+Open time: 3 min.
 
 - Tummy time kept away from the feed.
-- 8 min left open. Activities aren't stretched past what's realistic for this age.
+- 3 min left open. Activities aren't stretched past what's realistic for this age.
 
 ## Rule check across seeds
 
@@ -58,5 +58,5 @@ Rules: no applicable "avoid" (tummy time out of the 30 min after and 15 min befo
 
 | Mode | Seeds that follow every rule | Examples of what broke |
 |---|---|---|
-| timing: false | 2 of 10 | seed 1: Floor tummy time on a mat at +38 min: Not right after a feed; lively Rattle and drum time right after waking<br>seed 2: Floor tummy time on a mat at +45 min: Not right after a feed; lively Rattle and drum time right after waking<br>seed 3: Floor tummy time on a mat at +28 min: Not right after a feed; lively Kick and bat under a play gym right after waking |
+| timing: false | 1 of 10 | seed 1: Floor tummy time on a mat at +38 min: Not right after a feed; lively Rattle and drum time right after waking<br>seed 2: Floor tummy time on a mat at +45 min: Not right after a feed; lively Rattle and drum time right after waking<br>seed 3: Floor tummy time on a mat at +28 min: Not right after a feed |
 | timing: true | 10 of 10 | — |

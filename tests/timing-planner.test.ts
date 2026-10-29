@@ -330,6 +330,20 @@ describe('two children, one adult (4 and 28 months, both orders)', () => {
   }
 });
 
+describe('alongside a nap', () => {
+  it('ranks quieter ideas first for the child who is awake (ranking only)', () => {
+    const p = planOf([infant, toddler], [routine('n1', 'nap', 'c1', 60, 0, { settle: 0 })]);
+    const opts = optionsForSlot(c, p, { host: 0 });
+    const noise = (id: string) => c.activityById.get(id)!.noise;
+    const loud = opts.findIndex((o) => noise(o.id) === 'loud');
+    expect(loud).toBeGreaterThan(-1);
+    expect(opts.slice(loud).every((o) => noise(o.id) !== 'quiet')).toBe(true);
+    // Not a nap (a feed): no noise preference, and nothing is excluded for noise.
+    const feed = optionsForSlot(c, planOf([infant, toddler], [routine('f1', 'milk-feed', 'c1', 30, 0)]), { host: 0 });
+    expect(feed.length).toBeGreaterThan(0);
+  });
+});
+
 describe('fill around blocks', () => {
   it('keeps routines, locked and custom entries (custom pinned where it was), and replaces the rest', () => {
     const p = planOf([toddler], [
@@ -493,6 +507,11 @@ describe('intervals and boundaries', () => {
       const la = analyzePlan(planOf([toddler], late.segments), c);
       expect(la.overrun).toBe(40);
       for (const e of la.entries.filter((x) => x.item.segment.kind !== 'routine')) expect(e.item.end).toBeLessThanOrEqual(100);
+      // An alongside track under a nap that runs past the window stays inside the window too.
+      const pair = [infant, toddler];
+      const over = planWindow(c, { kids: pair, settings, window: 120, seed, keep: [routine('n1', 'nap', 'c1', 60, 90, { settle: 0 })] });
+      const oa = analyzePlan(planOf(pair, over.segments), c);
+      for (const e of oa.entries.filter((x) => x.item.host !== null)) expect(e.item.end).toBeLessThanOrEqual(120);
     }
   });
 
