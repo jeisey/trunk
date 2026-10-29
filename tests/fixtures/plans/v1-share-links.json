@@ -1,0 +1,166 @@
+{
+  "note": "Generated once by the v1 share encoder (src/lib/share.ts, SHARE_VERSION 1, commit af243cb) on 2026-10-29. Do not regenerate: these pin what v1 links decode to.",
+  "plans": {
+    "twoKid": {
+      "v": 1,
+      "id": "p-mh2k9x-a1b2c3",
+      "title": "Maya and Theo, Tuesday",
+      "kids": [
+        {
+          "age": {
+            "value": 6,
+            "unit": "w"
+          },
+          "notYet": []
+        },
+        {
+          "age": {
+            "value": 28,
+            "unit": "m"
+          },
+          "notYet": [
+            "jumps"
+          ]
+        }
+      ],
+      "start": "16:30",
+      "window": 90,
+      "settings": {
+        "energy": "low",
+        "place": "indoors",
+        "mode": "either",
+        "adults": 1
+      },
+      "segments": [
+        {
+          "id": "r1",
+          "kind": "recipe",
+          "ref": "mix.fixture-tummy-time-and-books",
+          "minutes": 4,
+          "younger": "c1"
+        },
+        {
+          "id": "b1",
+          "kind": "break",
+          "minutes": 10,
+          "label": "Flexible break"
+        },
+        {
+          "id": "c1",
+          "kind": "custom",
+          "minutes": 45,
+          "who": "c1",
+          "label": "Nap"
+        },
+        {
+          "id": "c2",
+          "kind": "custom",
+          "minutes": 20,
+          "who": "c2",
+          "label": "Grandma Ruth video call"
+        }
+      ],
+      "notes": "Theo has a cold; skip the park.",
+      "createdAt": "2026-10-20T10:00:00.000Z",
+      "updatedAt": "2026-10-21T10:00:00.000Z"
+    },
+    "oneKid": {
+      "v": 1,
+      "id": "p-mh2k9y-d4e5f6",
+      "title": "Rainy morning",
+      "kids": [
+        {
+          "age": {
+            "value": 20,
+            "unit": "m"
+          },
+          "notYet": []
+        }
+      ],
+      "start": "09:15",
+      "window": 60,
+      "settings": {
+        "energy": "some",
+        "place": "any",
+        "mode": "either",
+        "adults": 1
+      },
+      "segments": [
+        {
+          "id": "a1",
+          "kind": "activity",
+          "ref": "act.fixture-board-book-basket",
+          "minutes": 15
+        },
+        {
+          "id": "b1",
+          "kind": "break",
+          "minutes": 10,
+          "label": "Flexible break"
+        },
+        {
+          "id": "c1",
+          "kind": "custom",
+          "minutes": 30,
+          "label": "Nap"
+        }
+      ],
+      "notes": "",
+      "createdAt": "2026-10-20T10:00:00.000Z",
+      "updatedAt": "2026-10-20T10:00:00.000Z"
+    }
+  },
+  "links": {
+    "twoKidDefault": "1z.NYxBCsIwAAT_MucNJLEWzVdCDrZWKSUG2hQV8e-Sg7edYdgPGwHXh4NFPAlnKxZCjH3DpOhPIpOSKITo5GTlkri3iBVxm191XydT95zfps55MpfH1QylLBvqhGs_DMjZNkbUHf92RN4KT0rfHw",
+    "twoKidAllText": "1z.LY7BToUwFER_5WbWg6H4fNH6Aa50Yd6OsLiPViFQSmhRifHfTY27mZOTyXwjwcKc7W0N4hP2oSYm2LY9l9qxbe6JgK4jImxraFjTdMR7kbCBeBu_8r75Ku8hHFUeg690cdU1ximBJ8KUHVxBU5fQg6e7QokXXfGPmppoQDxturig8rrnQT5G56P0Os9_DzIsnvVQ0cXJZfCRctl9cnqAWGBRmAyaRKWPs3uUNI2r5MHLqtt0g59f",
+    "oneKidDefault": "1z.FclBCsIwFEXRvdzxC_xUWjBbCX-Q1FokSKCtKIh7l84OnC87CbumOCLepMlEI-U8mHjiLjopDzKZoov1TAri_vgcr20JtZftFmrvLdSyt-VAcXRlKop2YkYXExX33x8"
+  },
+  "compact": {
+    "twoKidAllText": {
+      "s": "16:30",
+      "w": 90,
+      "k": [
+        [
+          6,
+          "w"
+        ],
+        [
+          28,
+          "m"
+        ]
+      ],
+      "o": [
+        1,
+        1,
+        0,
+        1
+      ],
+      "g": [
+        [
+          "r",
+          "fixture-tummy-time-and-books",
+          4,
+          "1"
+        ],
+        [
+          "b",
+          10
+        ],
+        [
+          "c",
+          45,
+          "1",
+          "Nap"
+        ],
+        [
+          "c",
+          20,
+          "2",
+          "Grandma Ruth video call"
+        ]
+      ],
+      "t": "Maya and Theo, Tuesday",
+      "n": "Theo has a cold; skip the park."
+    }
+  }
+}
