@@ -222,14 +222,14 @@ function phaseScore(cand: Candidate, span: Span, lanes: readonly (0 | 1)[], timi
       const until = next - span.end;
       if (until >= 0 && until <= 30) {
         // Winding down: calmer, less mess, little to set up or tidy away.
-        if (known) s += cand.stimulation === 'settling' ? 8 : cand.stimulation === 'gentle' ? 4 : -8;
+        if (known) s += cand.stimulation === 'settling' ? 10 : cand.stimulation === 'gentle' ? 7 : -10;
         s += cand.mess === 'none' || cand.mess === 'low' ? 1 : -4;
         s -= Math.min(4, cand.cleanup) + Math.min(3, Math.max(0, cand.setup - 1));
       } else if (until > 30 && active && known) {
         s += cand.stimulation === 'lively' ? 5 : cand.stimulation === 'gentle' ? 2 : 0;
       }
     }
-    if (woke !== -Infinity && span.start - woke <= 20 && known) s += cand.stimulation === 'lively' ? -6 : 5;
+    if (woke !== -Infinity && span.start - woke <= 20 && known) s += cand.stimulation === 'lively' ? -8 : 7;
     total += s;
   }
   return lanes.length ? total / lanes.length : 0;
@@ -293,7 +293,7 @@ interface Gap {
 
 const LOOKAHEAD = 5;
 /** Cost of repeating an idea already in the plan: variety first, unless timing clearly favours the repeat. */
-const REPEAT = 15;
+const REPEAT = 10;
 
 type AvoidLog = { event: 'milk-feed' | 'meal' | 'nap'; when: 'before' | 'after'; tummy: boolean; moment: boolean };
 

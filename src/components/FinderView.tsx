@@ -161,8 +161,10 @@ export function FinderView(props: {
           <div className="filter-bar">
             <details className="more filters">
               <summary>
-                <span>More filters</span>
-                {summary.length > 0 && <span className="filter-summary">{summary.join(' · ')}</span>}
+                <span className="summary-text">
+                  <span>More filters</span>
+                  {summary.length > 0 && <span className="filter-summary">{summary.join(' · ')}</span>}
+                </span>
               </summary>
               <div className="controls">
                 <Segmented

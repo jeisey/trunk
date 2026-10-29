@@ -190,8 +190,10 @@ export function PlannerView(props: {
         {plan ? (
           <details className="more">
             <summary>
-              <span>Settings</span>
-              <span className="filter-summary">{settingsSummary}</span>
+              <span className="summary-text">
+                <span>Settings</span>
+                <span className="filter-summary">{settingsSummary}</span>
+              </span>
             </summary>
             <div className="controls">{settingsControls}</div>
           </details>

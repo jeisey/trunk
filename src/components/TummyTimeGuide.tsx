@@ -52,7 +52,7 @@ export function TummyTimeGuide({ c, position, flatSurface, variant = 'activity' 
       {position && (
         <p>
           <strong>{TUMMY_POSITION_LABEL[position]}.</strong>{' '}
-          {flatSurface ? 'This is floor tummy time on a firm, flat surface.' : 'Useful tummy time, but not on a flat surface: Trunk never counts it toward a flat-surface amount.'}
+          {flatSurface ? 'Floor tummy time.' : 'Held or supported tummy time: useful, but not on a flat surface, so Trunk never counts it toward a flat-surface amount.'}
         </p>
       )}
       <GuidanceList c={c} />

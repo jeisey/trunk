@@ -185,7 +185,7 @@ export function AgeControl(props: {
         )}
         {props.onAddSibling && (
           <button type="button" className="quiet-button" onClick={props.onAddSibling}>
-            + Add a second child
+            + Second child
           </button>
         )}
       </div>

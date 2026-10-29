@@ -454,9 +454,14 @@ input[type='range'] {
 .age-extra {
   display: flex;
   flex-wrap: wrap;
-  gap: 0 4px;
+  gap: 0 2px;
   align-items: center;
-  margin: 2px 0 0 -8px;
+  margin: 2px 0 0 -6px;
+}
+
+.age-extra .quiet-button {
+  padding-left: 6px;
+  padding-right: 6px;
 }
 
 .age-entry {
@@ -483,6 +488,16 @@ input[type='range'] {
 }
 
 /* "Right now": independent toggles, held in memory only. */
+.child-card {
+  container-type: inline-size;
+}
+
+@container (max-width: 17.5rem) {
+  .moment-label {
+    flex-basis: 100%;
+  }
+}
+
 .moment {
   border-top: 1px solid var(--line);
   margin-top: 4px;
@@ -705,7 +720,6 @@ fieldset.segmented legend,
 details.more > summary {
   min-height: var(--tap);
   display: flex;
-  flex-wrap: wrap;
   align-items: center;
   gap: 0 8px;
   cursor: pointer;
@@ -725,6 +739,14 @@ details.more > summary::before {
 }
 details.more[open] > summary::before {
   transform: rotate(90deg);
+}
+
+.summary-text {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: baseline;
+  gap: 0 8px;
+  min-width: 0;
 }
 
 .filter-summary {

@@ -25,7 +25,7 @@ export async function setAge(page: Page, child: 1 | 2, value: number, unit: 'wee
 }
 
 export async function addSecondChild(page: Page) {
-  await page.getByRole('button', { name: '+ Add a second child' }).click();
+  await page.getByRole('button', { name: '+ Second child' }).click();
   await expect(page.getByRole('group', { name: 'Child 2', exact: true })).toBeVisible();
 }
 

@@ -89,7 +89,7 @@ function table(plan: Plan, a: PlanAnalysis, c: IndexedCatalog): string {
 }
 
 /** Rule checks the test also makes: avoided entries, tummy after the feed, the idea before the nap, the first idea after it. */
-export function checkRules(plan: Plan, a: PlanAnalysis, c: IndexedCatalog): string[] {
+export function checkRules(_plan: Plan, a: PlanAnalysis, c: IndexedCatalog): string[] {
   const problems: string[] = [];
   const play = a.entries.filter((e) => e.item.segment.kind === 'activity');
   const stim = (e: (typeof play)[number]) => c.activityById.get(e.item.segment.ref ?? '')?.timing.stimulation;
