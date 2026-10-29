@@ -1,4 +1,4 @@
-import { useMemo, useRef, useState, type ReactNode } from 'react';
+import { useEffect, useMemo, useRef, useState, type ReactNode } from 'react';
 import type { IndexedCatalog } from '../content/catalog.ts';
 import type { RoutineType } from '../content/schema.ts';
 import { monthsToDays, toDays } from '../lib/age.ts';
@@ -304,6 +304,16 @@ export function PlanEditor({
   const analysis = useMemo(() => analyzePlan(plan, c, extra), [plan, c, extra]);
   const [panel, setPanel] = useState<Panel>(null);
   const [editingTime, setEditingTime] = useState<string | null>(null);
+  const editorRef = useRef<HTMLDivElement>(null);
+  // Opening a form or option list moves focus into it (its first field or button).
+  useEffect(() => {
+    if (!panel) return;
+    const frame = requestAnimationFrame(() => {
+      const box = editorRef.current?.querySelector<HTMLElement>('.add-panel');
+      box?.querySelector<HTMLElement>('input:not([type="radio"]), input[type="radio"]:checked, select, textarea, .option-list button, button')?.focus();
+    });
+    return () => cancelAnimationFrame(frame);
+  }, [panel]);
   const optionSeed = useRef(seed);
   const listRef = useRef<HTMLOListElement>(null);
   const addRef = useRef<HTMLDivElement>(null);
@@ -312,6 +322,7 @@ export function PlanEditor({
   const full = plan.segments.length >= MAX_SEGMENTS;
   const anyOver6m = plan.kids.some((k) => toDays(k.age) >= monthsToDays(6));
   const name = (seg: PlanSegment) => entryTitle(seg, c);
+  const isGroupStartOf = (seg: PlanSegment) => !seg.along;
 
   const focusSoon = (selector: string, fallback?: string) =>
     requestAnimationFrame(() => {
@@ -411,12 +422,13 @@ export function PlanEditor({
     const anchored = seg.at !== undefined;
     const timeText = `${clockAt(plan, e.item.start)}–${clockAt(plan, e.item.end)}`;
     const note = sequenceNote(plan, analysis, i, c);
-    const roles = entryRoles(plan, c, e);
+    const napSelect = seg.kind === 'routine' && seg.routine === 'nap' && two && seg.who !== 'both' && isGroupStartOf(seg);
+    // The nap's "you" line is the select below, in the editor.
+    const roles = napSelect ? [] : entryRoles(plan, c, e);
     const timingConflict = e.conflicts.find((cf) => cf.kind === 'timing');
     const others = e.conflicts.filter((cf) => cf.kind !== 'timing');
     const safety = seg.kind === 'activity' ? c.activityById.get(seg.ref ?? '')?.safety[0]?.text : seg.kind === 'recipe' ? recipe?.safety[0]?.text : undefined;
     const lockable = seg.kind === 'activity' || seg.kind === 'recipe' || seg.kind === 'break';
-    const isGroupStart = !seg.along;
     const canUp = seg.along ? plan.segments[i - 1]?.along === true : plan.segments.slice(0, i).some((s) => !s.along);
     const canDown = seg.along ? plan.segments[i + 1]?.along === true : plan.segments.slice(i + 1).some((s) => !s.along);
     const more: MenuItem[] = [
@@ -477,7 +489,7 @@ export function PlanEditor({
               {title}
             </span>
           )}
-          {who && <span className="who-chip">{who}</span>}
+          {who && !seg.along && <span className="who-chip">{who}</span>}
           {recipe && <span className="tag sky">{recipe.mode === 'together' ? 'Together' : 'Side by side'}</span>}
           {seg.kind === 'custom' && <span className="tag">Your entry</span>}
           {seg.kind === 'routine' && <span className="tag">Your estimate</span>}
@@ -487,13 +499,12 @@ export function PlanEditor({
           <ul className="tracks">
             {roles.map((r) => (
               <li key={r.who}>
-                <span className="who">{r.who}</span>
-                <span>{r.text}</span>
+                <span className="who">{r.who}:</span> {r.text}
               </li>
             ))}
           </ul>
         )}
-        {seg.kind === 'routine' && seg.routine === 'nap' && two && seg.who !== 'both' && isGroupStart && (
+        {napSelect && (
           <NapAdultSelect hostChild={childLabel(seg.who === 'c2' ? 'c2' : 'c1')} value={napAdultValue(seg)} onChange={(v) => { onChange(updateEntry(plan, i, napAdultPatch(v))); announce(napAdultText({ ...seg, ...napAdultPatch(v) } as PlanSegment)); }} />
         )}
         {e.timing.cue && <CueDetails cue={e.timing.cue} c={c} prefix={two && seg.kind === 'recipe' ? childLabel(e.timing.cue.finding.child === 1 ? 1 : 0) : undefined} />}
@@ -543,7 +554,7 @@ export function PlanEditor({
           <button type="button" className="icon-button" data-move="1" onClick={() => move(i, 1)} disabled={!canDown} aria-label={`Move later: ${title}`}>
             ↓
           </button>
-          <MoreMenu label={title} items={more} />
+          <MoreMenu label={title} items={more} text="⋯" spoken="More" className="row-menu" />
         </div>
         {panel?.type === 'swap' && panel.id === seg.id && (
           <OptionList
@@ -587,7 +598,7 @@ export function PlanEditor({
     );
   };
 
-  const rows: ReactNode[] = planRows(plan, analysis).map((row) => {
+  const rows: ReactNode[] = (plan.segments.length ? planRows(plan, analysis) : []).map((row) => {
     if (row.kind === 'entry') return entryRow(row.entry);
     if (row.kind === 'gap') return gapRow(row.gap, `gap-${row.gap.who}-${row.gap.start}`);
     const hostIndex = row.host.item.index;
@@ -625,7 +636,7 @@ export function PlanEditor({
   });
 
   return (
-    <div className="plan-editor">
+    <div className="plan-editor" ref={editorRef}>
       <Summary plan={plan} analysis={analysis} />
       {(tally.flat > 0 || tally.supported > 0) && (
         <p className="tummy-tally note-box">

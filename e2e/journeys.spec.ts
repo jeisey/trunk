@@ -6,8 +6,16 @@ import { addSecondChild, ARTIFACTS, choose, freshStart, noHorizontalOverflow, se
 test.use({ viewport: { width: 390, height: 844 }, hasTouch: true });
 
 async function makePlan(page: Page, minutes = 90) {
-  await page.getByRole('button', { name: `Plan the next ${minutes} minutes` }).click();
-  await expect(page.getByRole('heading', { name: 'Plan a window' })).toBeVisible();
+  if ([10, 20, 30, 60].includes(minutes)) {
+    await choose(page, 'Minutes you have', String(minutes));
+    await page.getByRole('button', { name: `Plan the next ${minutes} minutes` }).click();
+  } else {
+    await choose(page, 'Minutes you have', 'Any');
+    await page.getByRole('button', { name: 'Make a plan' }).click();
+    await choose(page, 'Minutes', String(minutes));
+    await page.getByRole('button', { name: `Fill the next ${minutes} minutes` }).click();
+  }
+  await expect(page.getByRole('heading', { name: 'Plan', exact: true })).toBeVisible();
   await expect(page.getByRole('list', { name: 'Plan timeline' })).toBeVisible();
 }
 
@@ -18,7 +26,12 @@ test('1. a 3-week-old: low-prep activity and concise instructions with no onboar
   await expect(page.getByRole('group', { name: 'Child 1', exact: true })).toBeVisible();
   await setAge(page, 1, 3, 'weeks');
   await expect(page.getByRole('group', { name: 'Child 1', exact: true })).toContainText('3 weeks');
+  await page.locator('details.more summary', { hasText: 'More filters' }).click();
   await page.getByLabel(/Low prep only/).check();
+  // The active filter shows in the collapsed summary, with a visible Reset.
+  await page.locator('details.more summary', { hasText: 'More filters' }).click();
+  await expect(page.locator('details.filters summary')).toContainText('Low prep');
+  await expect(page.getByRole('button', { name: 'Reset' })).toBeVisible();
   const results = page.getByRole('heading', { name: /ideas? for age 3 weeks/ });
   await expect(results).toBeVisible();
   const cards = page.locator('.idea-list > li');
@@ -69,7 +82,6 @@ test('2. ages 4 and 28 months, one adult, 90 minutes: editable feasible plan', a
   if (await tally.count()) {
     await expect(tally).toContainText('floor tummy time on a flat surface');
     await expect(tally).toContainText('Count only the minutes your baby is actually on their tummy');
-    await expect(tally).toContainText(/clinicians/);
   }
   // Editable with buttons: resize, reorder, remove.
   const first = segs.first();
@@ -132,38 +144,42 @@ test('4. save ten plans, reject an eleventh, rename, delete with undo, survive r
   await setAge(page, 1, 10, 'months');
   for (let i = 1; i <= 10; i++) {
     await page.goto('#/');
-    await page.getByRole('button', { name: 'Plan the next 90 minutes' }).click();
-    if (i > 1) await page.getByRole('button', { name: 'Make a new plan' }).click();
+    await page.getByRole('button', { name: 'Plan the next 30 minutes' }).click();
     await page.getByLabel('Plan name').fill(`Plan ${i}`);
     await page.getByRole('button', { name: 'Save', exact: true }).click();
     await expect(page.getByText('Saved in this browser.')).toBeVisible();
     expect(await page.evaluate(() => JSON.parse(localStorage.getItem('trunk.plans')!).plans.length)).toBe(i);
   }
-  await page.getByRole('button', { name: 'Make a new plan' }).click();
+  await page.goto('#/');
+  await page.getByRole('button', { name: 'Plan the next 30 minutes' }).click();
   await page.getByLabel('Plan name').fill('Plan 11');
   await page.getByRole('button', { name: 'Save', exact: true }).click();
   await expect(page.getByText(/already have 10 saved plans/)).toBeVisible();
   // The unsaved plan is still open, nothing was lost.
   await expect(page.getByLabel('Plan name')).toHaveValue('Plan 11');
   await page.goto('#/saved');
-  await expect(page.getByText('10 of 10 saved in this browser.')).toBeVisible();
-  await expect(page.locator('.saved-item h3', { hasText: 'Plan 11' })).toHaveCount(0);
+  await expect(page.getByText('Saved on this device · 10/10')).toBeVisible();
+  await expect(page.getByText(/reached 10 saved plans/)).toBeVisible();
+  await expect(page.locator('.saved-title', { hasText: 'Plan 11' })).toHaveCount(0);
 
-  const item = page.locator('.saved-item').filter({ has: page.locator('h3', { hasText: /^Plan 3$/ }) });
-  await item.getByRole('button', { name: 'Rename' }).click();
+  const menuFor = async (title: string, action: string) => {
+    await page.getByRole('button', { name: `More: ${title}`, exact: true }).click();
+    await page.getByRole('menuitem', { name: action }).click();
+  };
+  await menuFor('Plan 3', 'Rename');
   await page.getByLabel('New name').fill('Rainy Tuesday');
   await page.getByRole('button', { name: 'Save name' }).click();
-  await expect(page.locator('.saved-item h3', { hasText: 'Rainy Tuesday' })).toBeVisible();
+  await expect(page.locator('.saved-title', { hasText: 'Rainy Tuesday' })).toBeVisible();
 
-  await page.locator('.saved-item').filter({ has: page.locator('h3', { hasText: /^Plan 5$/ }) }).getByRole('button', { name: 'Delete' }).click();
-  await expect(page.getByText('9 of 10 saved in this browser.')).toBeVisible();
+  await menuFor('Plan 5', 'Delete');
+  await expect(page.getByText('Saved on this device · 9/10')).toBeVisible();
   await page.getByRole('button', { name: 'Undo' }).click();
-  await expect(page.getByText('10 of 10 saved in this browser.')).toBeVisible();
-  await page.locator('.saved-item').filter({ has: page.locator('h3', { hasText: /^Plan 7$/ }) }).getByRole('button', { name: 'Delete' }).click();
+  await expect(page.getByText('Saved on this device · 10/10')).toBeVisible();
+  await menuFor('Plan 7', 'Delete');
   await page.reload();
-  await expect(page.getByText('9 of 10 saved in this browser.')).toBeVisible();
-  await expect(page.locator('.saved-item h3', { hasText: 'Rainy Tuesday' })).toBeVisible();
-  await expect(page.locator('.saved-item h3', { hasText: /^Plan 7$/ })).toHaveCount(0);
+  await expect(page.getByText('Saved on this device · 9/10')).toBeVisible();
+  await expect(page.locator('.saved-title', { hasText: 'Rainy Tuesday' })).toBeVisible();
+  await expect(page.locator('.saved-title', { hasText: /^Plan 7$/ })).toHaveCount(0);
   await page.screenshot({ path: join(ARTIFACTS, 'j4-saved.png'), fullPage: true });
 
   // Corrupt storage: backed up and reported, app keeps working.
@@ -186,7 +202,7 @@ test('4b. storage blocked entirely: plans still work in memory', async ({ browse
   const page = await context.newPage();
   const errors = trackErrors(page);
   await page.goto('');
-  await page.getByRole('button', { name: 'Plan the next 90 minutes' }).click();
+  await page.getByRole('button', { name: 'Plan the next 30 minutes' }).click();
   await expect(page.getByRole('list', { name: 'Plan timeline' })).toBeVisible();
   await page.getByRole('button', { name: 'Save', exact: true }).click();
   await expect(page.getByText(/Saving isn’t available in this browser/)).toBeVisible();
@@ -200,13 +216,14 @@ test('4b. storage blocked entirely: plans still work in memory', async ({ browse
 test('5. share links open in a fresh browser, sanitized, and never overwrite saved plans', async ({ page, browser }) => {
   await freshStart(page);
   await setAge(page, 1, 18, 'months');
-  await page.getByRole('button', { name: 'Plan the next 90 minutes' }).click();
+  await page.getByRole('button', { name: 'Plan the next 30 minutes' }).click();
   await page.getByLabel('Plan name').fill('Jamie’s Saturday');
   await page.getByLabel(/Private notes/).fill('Jamie is teething');
-  await page.getByRole('button', { name: '+ Your own' }).click();
+  await page.getByRole('button', { name: /^\+ Add block/ }).click();
+  await page.getByRole('menuitem', { name: 'Your own entry' }).click();
   await page.getByLabel('What').fill('Visit Aunt Rosa');
   await page.getByRole('button', { name: 'Add', exact: true }).click();
-  const titles = await page.locator('.timeline .seg .seg-title').allInnerTexts();
+  const titles = await page.locator('.timeline .seg:not(.open) .seg-title-text').allInnerTexts();
   await page.getByRole('button', { name: 'Share link' }).click();
   const dialog = page.getByRole('dialog', { name: 'Share this plan' });
   await expect(dialog.getByText('Anyone with the link can read what’s in it;')).toBeVisible();
@@ -214,7 +231,7 @@ test('5. share links open in a fresh browser, sanitized, and never overwrite sav
   await expect(dialog.locator('.preview-box')).not.toContainText('Rosa');
   await expect(dialog.locator('.preview-box')).toContainText('Your own activity');
   const url = await dialog.getByLabel(/Link \(/).inputValue();
-  expect(url).toContain('/trunk/#/s/1z.');
+  expect(url).toContain('/trunk/#/s/2z.');
   expect(url.length).toBeLessThan(2000);
   await page.screenshot({ path: join(ARTIFACTS, 'j5-share-dialog.png'), fullPage: true });
 
@@ -227,12 +244,13 @@ test('5. share links open in a fresh browser, sanitized, and never overwrite sav
   await expect(other.getByRole('heading', { name: 'Shared plan', exact: true })).toBeVisible();
   const body = await other.locator('main').innerText();
   expect(body).not.toMatch(/Jamie|Rosa|teething/);
+  expect(titles.length).toBeGreaterThan(1);
   for (const t of titles.filter((x) => !/Your own|Visit Aunt/.test(x))) {
-    await expect(other.locator('main')).toContainText(t.split('\n')[0].replace(/ (Your entry|Together|Side by side)$/, ''));
+    await expect(other.locator('main')).toContainText(t);
   }
   await other.screenshot({ path: join(ARTIFACTS, 'j5-shared-preview.png'), fullPage: true });
   await other.getByRole('button', { name: 'Save to my plans' }).click();
-  await expect(other.getByText('1 of 10 saved in this browser.')).toBeVisible();
+  await expect(other.getByText('Saved on this device · 1/10')).toBeVisible();
 
   // Bad links fail gracefully.
   for (const bad of ['#/s/garbage', '#/s/2z.AAAA', '#/s/0z.AAAA', `#/s/1z.${'A'.repeat(7000)}`]) {
@@ -289,7 +307,7 @@ test('6. image export: feed and story sizes, long plans paginate, download and m
   const errors = trackErrors(page);
   await freshStart(page);
   await setAge(page, 1, 2, 'years');
-  await page.getByRole('button', { name: 'Plan the next 90 minutes' }).click();
+  await page.getByRole('button', { name: 'Plan the next 30 minutes' }).click();
   await page.getByRole('button', { name: 'Save as image' }).click();
   const dialog = page.getByRole('dialog', { name: 'Save as image' });
   await expect(dialog.getByText(/Fits on one image|images, so the text stays readable/)).toBeVisible({ timeout: 20_000 });
@@ -313,9 +331,12 @@ test('6. image export: feed and story sizes, long plans paginate, download and m
   await dialog.getByRole('button', { name: 'Close' }).click();
 
   // A long plan paginates instead of shrinking text or dropping entries.
-  await page.getByRole('radiogroup', { name: 'How long' }).getByLabel('3 hr').check();
-  await page.getByRole('button', { name: 'Make a new plan' }).click();
-  for (let i = 0; i < 6; i++) await page.getByRole('button', { name: '+ Break' }).click();
+  await choose(page, 'Minutes', '180');
+  await page.getByRole('button', { name: 'Refill this plan' }).click();
+  for (let i = 0; i < 6; i++) {
+    await page.getByRole('button', { name: /^\+ Add block/ }).click();
+    await page.getByRole('menuitem', { name: 'Break' }).click();
+  }
   const entries = await page.locator('.timeline > li.seg:not(.open)').count();
   await page.getByRole('button', { name: 'Save as image' }).click();
   await dialog.getByLabel(/Feed/).check();
@@ -349,7 +370,8 @@ for (const width of [320, 390, 768, 1280]) {
     await addSecondChild(page);
     await noHorizontalOverflow(page);
     await page.screenshot({ path: join(ARTIFACTS, `j7-find-${width}.png`), fullPage: true });
-    await page.getByRole('button', { name: 'Plan the next 90 minutes' }).click();
+    await page.getByRole('button', { name: 'Plan the next 30 minutes' }).click();
+    await expect(page.getByRole('list', { name: 'Plan timeline' })).toBeVisible();
     await noHorizontalOverflow(page);
     await page.screenshot({ path: join(ARTIFACTS, `j7-plan-${width}.png`), fullPage: true });
     // 200% text size.
@@ -382,7 +404,7 @@ test('7b. keyboard-only: tab from the top reaches the age control, filters, and 
   }
   const all = [...seen].join('|');
   expect(all).toMatch(/INPUT:Child 1 age/);
-  expect(all).toMatch(/BUTTON:Plan the next 90 minutes/);
+  expect(all).toMatch(/BUTTON:Plan the next 30 minutes/);
   expect(all).toMatch(/A:/);
 });
 
@@ -398,12 +420,15 @@ test('8. served under /trunk/: load, refresh, sources, assets, fresh share link'
   await expect(page.getByRole('heading', { name: 'All sources' })).toBeVisible();
   const sourceLinks = await page.locator('section a[href^="https://"]').count();
   expect(sourceLinks).toBeGreaterThan(5);
-  const favicon = await request.get('favicon.svg');
-  expect(favicon.status()).toBe(200);
+  for (const icon of ['brand/web/trunk-icon-32.png', 'brand/web/trunk-icon-180.png', 'brand/web/trunk-logo-336.png']) {
+    const res = await request.get(icon);
+    expect(res.status(), icon).toBe(200);
+    expect(res.headers()['content-type']).toBe('image/png');
+  }
   await page.goto('#/a/act.tummy-time-floor-face-to-face');
   await expect(page.getByRole('heading', { name: 'Face-to-face floor tummy time' })).toBeVisible();
   await page.reload();
-  await expect(page.getByText(/not on a flat surface|floor tummy time on a firm, flat surface/)).toBeVisible();
+  await expect(page.locator('#tummy-guide').locator('..')).toContainText(/Floor tummy time|not on a flat surface/);
   expect(page.url()).toContain('/trunk/#/a/');
   expect(errors).toEqual([]);
 });

@@ -1503,14 +1503,11 @@ details.sources summary {
 }
 
 .tracks li {
-  display: grid;
-  grid-template-columns: minmax(5.4em, auto) 1fr;
-  gap: 8px;
+  display: block;
 }
 
 .tracks .who {
   font-weight: 700;
-  color: var(--muted);
 }
 
 .seq-note {
@@ -1579,6 +1576,17 @@ details.sources summary {
   min-width: var(--tap);
   padding: 0 8px;
   font-size: 1.2rem;
+}
+
+.row-menu .menu-button {
+  min-width: var(--tap);
+  padding: 0 10px;
+  font-size: 1.2rem;
+  letter-spacing: 0.05em;
+}
+
+.row-menu .menu-caret {
+  display: none;
 }
 
 .seg-tools .resize output,

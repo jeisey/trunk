@@ -15,7 +15,7 @@ export interface MenuItem {
  * between items; Escape closes it and returns focus to the button; Tab or a
  * click elsewhere closes it.
  */
-export function MoreMenu({ label, items, text = 'More', className }: { label: string; items: MenuItem[]; text?: string; className?: string }) {
+export function MoreMenu({ label, items, text = 'More', spoken, className }: { label: string; items: MenuItem[]; text?: string; /** Spoken name when `text` is a symbol. */ spoken?: string; className?: string }) {
   const [open, setOpen] = useState(false);
   const id = useId();
   const button = useRef<HTMLButtonElement>(null);
@@ -84,7 +84,7 @@ export function MoreMenu({ label, items, text = 'More', className }: { label: st
         aria-haspopup="menu"
         aria-expanded={open}
         aria-controls={open ? `${id}-menu` : undefined}
-        aria-label={`${text}: ${label}`}
+        aria-label={`${spoken ?? text}: ${label}`}
         onClick={() => {
           pendingFocus.current = 'first';
           setOpen((o) => !o);
@@ -111,6 +111,11 @@ export function MoreMenu({ label, items, text = 'More', className }: { label: st
                   if (item.disabled) return;
                   setOpen(false);
                   item.onSelect();
+                  // If the chosen action didn't move focus somewhere useful, return it to the button.
+                  requestAnimationFrame(() => {
+                    const active = document.activeElement;
+                    if ((!active || active === document.body) && button.current?.isConnected) button.current.focus();
+                  });
                 }}
               >
                 {item.label}

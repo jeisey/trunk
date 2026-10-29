@@ -24,7 +24,8 @@ test('find, detail, plan, saved, and about pages have no axe violations', async 
   await page.locator('details.sources summary').click();
   expect(await scan(page)).toEqual([]);
   await page.goto('#/');
-  await page.getByRole('button', { name: 'Plan the next 90 minutes' }).click();
+  await page.getByRole('button', { name: 'Plan the next 30 minutes' }).click();
+  await expect(page.getByRole('list', { name: 'Plan timeline' })).toBeVisible();
   expect(await scan(page)).toEqual([]);
   await page.goto('#/saved');
   expect(await scan(page)).toEqual([]);
@@ -35,7 +36,7 @@ test('find, detail, plan, saved, and about pages have no axe violations', async 
 test('share and image dialogs have no axe violations', async ({ page }) => {
   await freshStart(page);
   await setAge(page, 1, 20, 'months');
-  await page.getByRole('button', { name: 'Plan the next 90 minutes' }).click();
+  await page.getByRole('button', { name: 'Plan the next 30 minutes' }).click();
   await page.getByRole('button', { name: 'Share link' }).click();
   await expect(page.getByLabel(/Link \(/)).toBeVisible();
   expect(await scan(page)).toEqual([]);

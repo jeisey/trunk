@@ -16,7 +16,7 @@ test('M1: plans saved in two tabs are both kept, and the other tab updates live'
   const b = await context.newPage();
   await b.goto('');
   for (const [page, name] of [[b, 'From tab B'], [a, 'From tab A']] as const) {
-    await page.getByRole('button', { name: 'Plan the next 90 minutes' }).click();
+    await page.getByRole('button', { name: 'Plan the next 30 minutes' }).click();
     await page.getByLabel('Plan name').fill(name);
     await page.getByRole('button', { name: 'Save', exact: true }).click();
     await expect(page.getByText('Saved in this browser.')).toBeVisible();
@@ -24,16 +24,17 @@ test('M1: plans saved in two tabs are both kept, and the other tab updates live'
   const stored = await a.evaluate(() => JSON.parse(localStorage.getItem('trunk.plans')!).plans.map((p: { title: string }) => p.title));
   expect(stored.sort()).toEqual(['From tab A', 'From tab B']);
   await b.goto('#/saved');
-  await expect(b.locator('.saved-item h3', { hasText: 'From tab A' })).toBeVisible();
+  await expect(b.locator('.saved-title', { hasText: 'From tab A' })).toBeVisible();
 });
 
-test('M2: "Plan the next 90 minutes" starts from now, not from when the page loaded', async ({ page }) => {
+test('M2: "Plan the next 30 minutes" starts from now, not from when the page loaded', async ({ page }) => {
   await page.clock.install({ time: new Date('2026-10-29T08:00:00') });
   await freshStart(page);
   await setAge(page, 1, 4, 'months');
+  await page.locator('details.more summary', { hasText: 'More filters' }).click();
   await choose(page, 'Where', 'Outside');
   await page.clock.fastForward('03:05:00');
-  await page.getByRole('button', { name: 'Plan the next 90 minutes' }).click();
+  await page.getByRole('button', { name: 'Plan the next 30 minutes' }).click();
   await expect(page.getByLabel('Start')).toHaveValue('11:05');
   await expect(page.locator('.plan-summary')).toContainText('11:05 AM');
   // Nothing outdoors is scheduled for a 4-month-old in the midday window.
@@ -43,7 +44,7 @@ test('M2: "Plan the next 90 minutes" starts from now, not from when the page loa
 test('M3: Save and Share work when tapped while typing', async ({ page }) => {
   const errors = trackErrors(page);
   await freshStart(page);
-  await page.getByRole('button', { name: 'Plan the next 90 minutes' }).click();
+  await page.getByRole('button', { name: 'Plan the next 30 minutes' }).click();
   await page.getByLabel(/Private notes/).fill('Bring the blue blanket');
   // The notes field still has focus when Save is tapped.
   await page.getByRole('button', { name: 'Save', exact: true }).tap();
@@ -57,10 +58,12 @@ test('M3: Save and Share work when tapped while typing', async ({ page }) => {
 test('M4: changing place on the planner applies to the open plan', async ({ page }) => {
   await freshStart(page);
   await setAge(page, 1, 30, 'months');
-  await page.getByRole('button', { name: 'Plan the next 90 minutes' }).click();
+  await page.getByRole('button', { name: 'Plan the next 30 minutes' }).click();
+  await page.locator('details.more summary', { hasText: 'Settings' }).click();
   await choose(page, 'Where', 'Inside');
-  await page.getByRole('button', { name: '+ Activity' }).click();
-  const titles = await page.locator('.panel .idea-list > li strong').allInnerTexts();
+  await page.getByRole('button', { name: /^\+ Add block/ }).click();
+  await page.getByRole('menuitem', { name: 'Activity' }).click();
+  const titles = await page.locator('.option-list li strong').allInnerTexts();
   expect(titles.length).toBeGreaterThan(0);
   for (const t of titles) {
     const record = catalog.activities.find((a) => a.title === t);

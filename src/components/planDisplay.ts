@@ -8,7 +8,7 @@ import type { IndexedCatalog } from '../content/catalog.ts';
 import type { RoutineType } from '../content/schema.ts';
 import { formatAge, formatAgeShort } from '../lib/age.ts';
 import { adultText } from '../lib/labels.ts';
-import { childLabel, layoutPlan, segmentName, type EntryAnalysis, type Gap, type Lane, type PlanAnalysis } from '../lib/layout.ts';
+import { adultStateAt, childLabel, layoutPlan, segmentName, type EntryAnalysis, type Gap, type Lane, type PlanAnalysis } from '../lib/layout.ts';
 import { BREAK_HINT, ROUTINE_LABEL, type Plan, type PlanSegment } from '../lib/plan.ts';
 import { defaultPlanTitle } from '../lib/planTitle.ts';
 import type { MomentContext } from '../lib/timing.ts';
@@ -152,6 +152,20 @@ export type PlanRow =
       items: TrackItem[];
     };
 
+/**
+ * A child's unplanned time during a nap can span "you're settling them" and
+ * "you're free"; show the two parts separately so the adult state is right for each.
+ */
+function splitAtSettle(gap: Gap, host: PlanSegment, hostStart: number): Gap[] {
+  if (host.routine !== 'nap' || host.holding || host.settle === undefined) return [gap];
+  const t = hostStart + host.settle;
+  if (t <= gap.start || t >= gap.end) return [{ ...gap, adult: adultStateAt(host, hostStart, gap.start) }];
+  return [
+    { ...gap, end: t, adult: adultStateAt(host, hostStart, gap.start) },
+    { ...gap, start: t, adult: adultStateAt(host, hostStart, t) },
+  ];
+}
+
 const VERB: Record<RoutineType, string> = { nap: 'naps', 'milk-feed': 'feeds', meal: 'eats', snack: 'has a snack' };
 
 /**
@@ -177,7 +191,10 @@ export function planRows(plan: Pick<Plan, 'kids' | 'segments'>, analysis: PlanAn
     const hostLane: Lane = hs.who === 'c2' ? 'c2' : 'c1';
     const items: (TrackItem & { at: number })[] = [
       ...g.along.map((entry) => ({ kind: 'entry' as const, entry, at: entry.item.start })),
-      ...analysis.gaps.filter((gap) => gap.who !== 'all' && gap.host === g.host.item.index).map((gap) => ({ kind: 'gap' as const, gap, at: gap.start - 0.5 })),
+      ...analysis.gaps
+        .filter((gap) => gap.who !== 'all' && gap.host === g.host.item.index)
+        .flatMap((gap) => splitAtSettle(gap, hs, g.host.item.start))
+        .map((gap) => ({ kind: 'gap' as const, gap, at: gap.start - 0.5 })),
     ].sort((a, b) => a.at - b.at);
     rows.push({ kind: 'track', host: g.host, hostLane, otherLane: hostLane === 'c1' ? 'c2' : 'c1', verb: VERB[hs.routine], items: items.map(({ at: _at, ...rest }) => (void _at, rest as TrackItem)) });
   }

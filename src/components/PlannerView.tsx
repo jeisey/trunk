@@ -35,9 +35,7 @@ function starterFits(sp: StarterPlan, kids: PlanKid[], c: IndexedCatalog, energy
 const BASE_WINDOWS = [10, 20, 30, 60, 90, 120, 180];
 
 function windowLabel(m: number): string {
-  if (m % 60 === 0) return `${m / 60} hr`;
-  if (m > 60) return `${Math.floor(m / 60)} hr ${m % 60}`;
-  return `${m} min`;
+  return String(m);
 }
 
 export function windowOptions(current: number) {
@@ -186,7 +184,7 @@ export function PlannerView(props: {
             Now
           </button>
         </div>
-        <Segmented legend="How long" value={props.window} options={windowOptions(props.window)} onChange={props.onWindow} />
+        <Segmented legend="Minutes" value={props.window} options={windowOptions(props.window)} onChange={props.onWindow} />
         {plan ? (
           <details className="more">
             <summary>
@@ -239,8 +237,8 @@ export function PlannerView(props: {
       )}
 
       {plan ? (
-        <section className="plan-body" aria-labelledby="plan-name-label">
-          <label className="field plan-name" id="plan-name-label">
+        <section className="plan-body">
+          <label className="field plan-name">
             <span>Plan name</span>
             <input
               type="text"

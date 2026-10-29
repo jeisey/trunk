@@ -26,7 +26,7 @@ export function PlanPreview({ plan, analysis, c }: { plan: Plan; analysis: PlanA
         </div>
         <p className="seg-title">
           {href ? <a href={href}>{title}</a> : <span>{title}</span>}
-          {who && <span className="who-chip">{who}</span>}
+          {who && !seg.along && <span className="who-chip">{who}</span>}
           {recipe && <span className="tag sky">{recipe.mode === 'together' ? 'Together' : 'Side by side'}</span>}
           {seg.kind === 'custom' && <span className="tag">Their entry</span>}
           {seg.kind === 'routine' && <span className="tag">Estimate</span>}
@@ -35,8 +35,7 @@ export function PlanPreview({ plan, analysis, c }: { plan: Plan; analysis: PlanA
           <ul className="tracks">
             {roles.map((r) => (
               <li key={r.who}>
-                <span className="who">{r.who}</span>
-                <span>{r.text}</span>
+                <span className="who">{r.who}:</span> {r.text}
               </li>
             ))}
           </ul>
