@@ -5,11 +5,16 @@
  * curated pairings) are never relaxed. Optional preferences (time, energy,
  * place, low prep, goals, materials, mess, noise, mode) can be relaxed one tap
  * at a time, and the UI always says which one.
+ *
+ * Momentary timing ("Just fed", "Nap soon") only reorders results or sets an
+ * idea aside for now with its cue; it is never a relaxable filter and never
+ * counts as an age or safety exclusion.
  */
 import type { Activity, Goal, MixedAgeRecipe } from '../content/schema.ts';
 import type { IndexedCatalog } from '../content/catalog.ts';
 import { activityFitsAge, activityFitsReadiness, days, recipeAssignment, type ChildInput } from './eligibility.ts';
 import { isBusyNearbyCompatible } from './supervision.ts';
+import { assessActivity, assessRecipe, hasMoment, momentTiming, spanOf, type MomentContext, type TimingAssessment } from './timing.ts';
 
 export type Energy = 'busy' | 'low' | 'some' | 'plenty';
 export type PlaceFilter = 'any' | 'indoors' | 'outdoors';
@@ -154,7 +159,7 @@ export function hash(text: string): number {
  * child), then low setup when energy is low, with a seeded tiebreak; then
  * spread intents so the top of the list isn't five versions of one idea.
  */
-export function rankActivities(list: Activity[], childDays: number, f: Filters, seed: number): Activity[] {
+export function rankActivities(list: Activity[], childDays: number, f: Filters, seed: number, timingScore: (a: Activity) => number = () => 0): Activity[] {
   const score = (a: Activity) => {
     const min = days(a.ageMin);
     const max = days(a.ageMax);
@@ -164,7 +169,7 @@ export function rankActivities(list: Activity[], childDays: number, f: Filters, 
     if ((f.energy === 'low' || f.energy === 'busy') && a.setupMinutes <= 2) s += 8;
     if (f.minutes !== null && a.duration.default > f.minutes) s -= 6;
     if (a.kind === 'media') s -= 30;
-    return s + (hash(`${seed}:${a.id}`) % 12);
+    return s + timingScore(a) + (hash(`${seed}:${a.id}`) % 12);
   };
   const sorted = [...list].sort((a, b) => score(b) - score(a) || a.id.localeCompare(b.id));
   return spreadByIntent(sorted);
@@ -181,8 +186,9 @@ function spreadByIntent<T extends { intents: readonly string[] }>(sorted: T[]): 
   return out;
 }
 
-export function rankRecipes(list: MixedAgeRecipe[], seed: number): MixedAgeRecipe[] {
-  return spreadByIntent([...list].sort((a, b) => (hash(`${seed}:${b.id}`) % 100) - (hash(`${seed}:${a.id}`) % 100) || a.id.localeCompare(b.id)));
+export function rankRecipes(list: MixedAgeRecipe[], seed: number, timingScore: (r: MixedAgeRecipe) => number = () => 0): MixedAgeRecipe[] {
+  const score = (r: MixedAgeRecipe) => (hash(`${seed}:${r.id}`) % 100) + timingScore(r);
+  return spreadByIntent([...list].sort((a, b) => score(b) - score(a) || a.id.localeCompare(b.id)));
 }
 
 export interface Relaxation {
@@ -240,26 +246,77 @@ export function relaxFilter(f: Filters, filter: OptionalFilter): Filters {
   }
 }
 
+/** An idea left out for now because of an applicable timing rule (not an age, readiness, or safety exclusion). */
+export interface SetAside {
+  id: string;
+  kind: 'activity' | 'recipe';
+  title: string;
+  /** The rule's short parent-facing cue, e.g. "Not right after a feed". */
+  cue: string;
+}
+
 export interface FinderResult {
   kind: 'activities' | 'recipes';
   activities: Activity[];
   recipes: MixedAgeRecipe[];
   eligibleCount: number;
   relax: Relaxation[];
+  /** Timing assessment at "now" for every listed and set-aside idea (keyed by record ID). */
+  timing: Map<string, TimingAssessment>;
+  /** Left out of the results for now by an applicable, non-advisory timing rule. Never offered as a relaxation. */
+  setAside: SetAside[];
 }
 
-export function findIdeas(c: IndexedCatalog, kids: ChildInput[], f: Filters, seed = 0): FinderResult {
+/**
+ * Finder results for the parent's children and filters.
+ *
+ * `moments[i]` is child i's momentary context ("Just fed", "Nap soon"), held in
+ * memory only. Each idea is assessed as if it started now (setup, suggested
+ * minutes, tidy-up). An applicable non-advisory "avoid" moves it to `setAside`
+ * (it is not an age/readiness/supervision exclusion, so `eligibleCount` and
+ * relaxations ignore it); otherwise the timing score adjusts the ranking. With
+ * no moment set, results and ranking are exactly what they were without timing.
+ */
+export function findIdeas(c: IndexedCatalog, kids: ChildInput[], f: Filters, seed = 0, moments: readonly (MomentContext | undefined)[] = []): FinderResult {
   const pair = kids.length === 2 && f.focus === 'both';
+  const timing = new Map<string, TimingAssessment>();
+  const setAside: SetAside[] = [];
   if (pair) {
     const both = kids as [ChildInput, ChildInput];
+    const active = hasMoment(moments[0]) || hasMoment(moments[1]);
+    const ctx = [momentTiming(both[0].days, moments[0]), momentTiming(both[1].days, moments[1])] as const;
+    const assess = (r: MixedAgeRecipe, minutes: number | null) =>
+      assessRecipe(c, r, spanOf(0, r.setupMinutes, suggestedMinutes(r, minutes), r.cleanupMinutes), ctx, recipeAssignment(r, both[0], both[1]) === 1 ? 1 : 0);
     const eligible = c.recipes.filter((r) => recipeEligible(r, both, f.adults));
-    const recipes = rankRecipes(eligible.filter((r) => recipePasses(r, f, c)), seed);
-    const relax = recipes.length ? [] : relaxations((skip) => eligible.filter((r) => recipePasses(r, f, c, skip)).length, f, true);
-    return { kind: 'recipes', activities: [], recipes, eligibleCount: eligible.length, relax };
+    const shown: MixedAgeRecipe[] = [];
+    for (const r of eligible.filter((x) => recipePasses(x, f, c))) {
+      const t = assess(r, f.minutes);
+      timing.set(r.id, t);
+      if (t.avoid) setAside.push({ id: r.id, kind: 'recipe', title: r.title, cue: t.cue?.text ?? 'Not right now' });
+      else shown.push(r);
+    }
+    const recipes = rankRecipes(shown, seed, (r) => timing.get(r.id)?.score ?? 0);
+    const relax = recipes.length
+      ? []
+      : relaxations((skip) => eligible.filter((r) => recipePasses(r, f, c, skip) && !(active && assess(r, skip === 'minutes' ? null : f.minutes).avoid)).length, f, true);
+    return { kind: 'recipes', activities: [], recipes, eligibleCount: eligible.length, relax, timing, setAside };
   }
-  const child = kids.length === 2 && f.focus !== 'both' ? kids[f.focus] : kids[0];
+  const index = kids.length === 2 && f.focus !== 'both' ? f.focus : 0;
+  const child = kids[index];
+  const active = hasMoment(moments[index]);
+  const ctx = momentTiming(child.days, moments[index]);
+  const assess = (a: Activity, minutes: number | null) => assessActivity(c, a, spanOf(0, a.setupMinutes, suggestedMinutes(a, minutes), a.cleanupMinutes), ctx, index);
   const eligible = c.activities.filter((a) => activityEligible(a, child, f.adults));
-  const activities = rankActivities(eligible.filter((a) => activityPasses(a, f)), child.days, f, seed);
-  const relax = activities.length ? [] : relaxations((skip) => eligible.filter((a) => activityPasses(a, f, skip)).length, f, false);
-  return { kind: 'activities', activities, recipes: [], eligibleCount: eligible.length, relax };
+  const shown: Activity[] = [];
+  for (const a of eligible.filter((x) => activityPasses(x, f))) {
+    const t = assess(a, f.minutes);
+    timing.set(a.id, t);
+    if (t.avoid) setAside.push({ id: a.id, kind: 'activity', title: a.title, cue: t.cue?.text ?? 'Not right now' });
+    else shown.push(a);
+  }
+  const activities = rankActivities(shown, child.days, f, seed, (a) => timing.get(a.id)?.score ?? 0);
+  const relax = activities.length
+    ? []
+    : relaxations((skip) => eligible.filter((a) => activityPasses(a, f, skip) && !(active && assess(a, skip === 'minutes' ? null : f.minutes).avoid)).length, f, false);
+  return { kind: 'activities', activities, recipes: [], eligibleCount: eligible.length, relax, timing, setAside };
 }

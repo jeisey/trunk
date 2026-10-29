@@ -1,29 +1,29 @@
-import { useEffect, useState } from 'react';
+import { useEffect, useMemo, useState } from 'react';
 import type { IndexedCatalog } from '../content/catalog.ts';
 import { formatAge } from '../lib/age.ts';
+import { analyzePlan } from '../lib/layout.ts';
 import type { Plan } from '../lib/plan.ts';
-import { timeline } from '../lib/layout.ts';
 import { importPayload, ShareError, type ImportResult } from '../lib/share.ts';
-import { formatClock, formatMinutes, parseHHMM } from '../lib/time.ts';
-import { segmentTimeIssue, segmentTitle, Tracks } from './PlanEditor.tsx';
-import { TIME_ISSUE_TEXT } from '../lib/timeRules.ts';
+import { formatMinutes } from '../lib/time.ts';
+import { clockAt } from './planDisplay.ts';
+import { PlanPreview } from './PlanPreview.tsx';
 
 export function ImportedPlanPreview({ result, c }: { result: ImportResult; c: IndexedCatalog }) {
   const { plan, dropped, adjusted } = result;
-  const items = timeline(plan, c);
-  const used = items.reduce((s, t) => s + t.wall, 0);
-  const start = parseHHMM(plan.start);
+  const changed = result.changed ?? [];
+  const analysis = useMemo(() => analyzePlan(plan, c), [plan, c]);
+  const end = Math.max(plan.window, analysis.end);
   return (
     <>
-      <h2 style={{ marginTop: 8 }}>{plan.title}</h2>
+      <h2 className="shared-title">{plan.title}</h2>
       <p className="subtle">
-        For {plan.kids.map((k) => `about ${formatAge(k.age)}`).join(' and ')} · {formatClock(start)} to {formatClock(start + used)} ({formatMinutes(used)}) · planned for {plan.settings.adults === 1 ? 'one adult' : 'two adults'}
+        For {plan.kids.map((k, i) => `${plan.kids.length === 2 ? `Child ${i + 1}, ` : ''}about ${formatAge(k.age)}`).join(' and ')} · {clockAt(plan, 0)} to {clockAt(plan, end)} ({formatMinutes(analysis.busy)} planned) · {plan.settings.adults === 1 ? 'one adult' : 'two adults'} · estimated times
       </p>
-      {(dropped.length > 0 || adjusted > 0) && (
+      {(dropped.length > 0 || changed.length > 0 || adjusted > 0) && (
         <div className="banner" role="status">
           {dropped.length > 0 && (
             <>
-              <p style={{ marginBottom: 4 }}>Trunk left out {dropped.length} item(s) after checking them against today’s safety and age rules:</p>
+              <p>Trunk left out {dropped.length} item(s) after checking them against today’s safety and age rules:</p>
               <ul className="bullets">
                 {dropped.map((d, i) => (
                   <li key={i}>
@@ -33,26 +33,21 @@ export function ImportedPlanPreview({ result, c }: { result: ImportResult; c: In
               </ul>
             </>
           )}
-          {adjusted > 0 && <p style={{ margin: '4px 0 0' }}>{adjusted} length(s) were adjusted to a realistic range.</p>}
+          {changed.length > 0 && (
+            <ul className="bullets">
+              {changed.map((d, i) => (
+                <li key={i}>
+                  {d.label}: {d.reason}
+                </li>
+              ))}
+            </ul>
+          )}
+          {adjusted > 0 && <p>{adjusted} length(s) were adjusted to a realistic range.</p>}
         </div>
       )}
-      <ol className="timeline">
-        {items.map((t) => (
-          <li key={t.segment.id} className={`seg${t.segment.kind === 'break' ? ' break' : ''}`}>
-            <div className="seg-time">
-              {formatClock(t.start)}–{formatClock(t.end)} · {t.segment.minutes} min
-            </div>
-            <p className="seg-title">{segmentTitle(t.segment, c)}</p>
-            <Tracks seg={t.segment} plan={plan} c={c} />
-            {(() => {
-              const issue = segmentTimeIssue(t, plan, c);
-              return issue ? <p className="safety-line">{TIME_ISSUE_TEXT[issue]}</p> : null;
-            })()}
-          </li>
-        ))}
-      </ol>
+      <PlanPreview plan={plan} analysis={analysis} c={c} />
       {plan.notes && (
-        <p className="panel" style={{ marginTop: 10, whiteSpace: 'pre-wrap' }}>
+        <p className="panel sender-notes">
           <strong>Notes from the sender:</strong> {plan.notes}
         </p>
       )}
@@ -60,17 +55,7 @@ export function ImportedPlanPreview({ result, c }: { result: ImportResult; c: In
   );
 }
 
-export function SharedView({
-  payload,
-  c,
-  onSave,
-  onOpen,
-}: {
-  payload: string;
-  c: IndexedCatalog;
-  onSave: (plan: Plan) => void;
-  onOpen: (plan: Plan) => void;
-}) {
+export function SharedView({ payload, c, onSave, onOpen }: { payload: string; c: IndexedCatalog; onSave: (plan: Plan) => void; onOpen: (plan: Plan) => void }) {
   const [state, setState] = useState<{ status: 'loading' } | { status: 'error'; message: string } | { status: 'ok'; result: ImportResult }>({ status: 'loading' });
 
   useEffect(() => {

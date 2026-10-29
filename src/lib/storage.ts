@@ -7,14 +7,21 @@
  *   and readable plans are salvaged.
  * - Blocked storage (private modes, disabled site data) and quota errors are
  *   reported; the current in-memory plan is never discarded.
- * - Data written by a newer version is left untouched (read-only mode).
+ * - Data written by a newer version (a newer envelope or any newer plan) is
+ *   left untouched (read-only mode).
+ * - Envelope v2 holds plan v2. Older envelopes (v1 `{version: 1, plans}` and the
+ *   pre-envelope bare array) are read and migrated in memory with migratePlan;
+ *   before the first v2 write over them, the original text is copied once to
+ *   LEGACY_KEY (never overwritten), so an older build's data is never lost.
  */
 import * as z from 'zod/mini';
-import { Plan } from './plan.ts';
+import { isNewerPlan, migratePlan, type Plan } from './plan.ts';
 
 export const STORE_KEY = 'trunk.plans';
 export const BACKUP_KEY = 'trunk.plans.backup';
-export const STORE_VERSION = 1;
+/** One-time copy of the v1 (or pre-envelope) text, taken before the first v2 write. */
+export const LEGACY_KEY = 'trunk.plans.v1';
+export const STORE_VERSION = 2;
 export const MAX_PLANS = 10;
 
 export type StoreStatus = 'ok' | 'unavailable' | 'recovered' | 'newer';
@@ -24,24 +31,39 @@ export type SaveResult =
   | { ok: false; reason: 'limit' | 'quota' | 'unavailable' | 'newer' | 'invalid'; message: string };
 
 interface Envelope {
+  /** The envelope version as stored: 0 for the pre-envelope bare array, then 1 or 2. */
   version: number;
   plans: unknown[];
 }
 
-const EnvelopeV1 = z.strictObject({ version: z.literal(1), plans: z.array(z.unknown()) });
+const Stored = z.strictObject({ version: z.union([z.literal(1), z.literal(2)]), plans: z.array(z.unknown()) });
 
 /**
- * Migrations from older envelope versions to the current one. Version 0 is the
- * pre-envelope shape (a bare array of plans) used by early builds; it is kept
- * so the migration path is exercised and tested.
+ * Read any known envelope. Version 0 is the pre-envelope shape (a bare array of
+ * plans) used by early builds; it is kept so the migration path is exercised
+ * and tested. Plans inside are migrated separately (readPlans).
  */
 export function migrate(raw: unknown): Envelope | 'newer' | null {
-  if (Array.isArray(raw)) return { version: 1, plans: raw };
+  if (Array.isArray(raw)) return raw.some(isNewerPlan) ? 'newer' : { version: 0, plans: raw };
   if (typeof raw !== 'object' || raw === null) return null;
   const version = (raw as { version?: unknown }).version;
   if (typeof version === 'number' && version > STORE_VERSION) return 'newer';
-  const v1 = EnvelopeV1.safeParse(raw);
-  return v1.success ? v1.data : null;
+  const env = Stored.safeParse(raw);
+  if (!env.success) return null;
+  if (env.data.plans.some(isNewerPlan)) return 'newer';
+  return env.data;
+}
+
+/** Migrate every plan; `bad` counts unreadable entries, duplicates, and entries past the limit. */
+function readPlans(env: Envelope, limit = MAX_PLANS): { plans: Plan[]; bad: number } {
+  const plans: Plan[] = [];
+  let bad = 0;
+  for (const item of env.plans) {
+    const m = migratePlan(item);
+    if (m && plans.length < limit && !plans.some((p) => p.id === m.plan.id)) plans.push(m.plan);
+    else bad++;
+  }
+  return { plans, bad };
 }
 
 export interface LoadResult {
@@ -108,13 +130,7 @@ export class PlanStore {
       return { plans: [], status: 'newer', message: 'Your saved plans were made by a newer version of Trunk. Refresh to update; they haven’t been changed.' };
     }
     if (!env) return this.recover(text, []);
-    const good: Plan[] = [];
-    let bad = 0;
-    for (const item of env.plans) {
-      const p = Plan.safeParse(item);
-      if (p.success && good.length < MAX_PLANS && !good.some((g) => g.id === p.data.id)) good.push(p.data);
-      else bad++;
-    }
+    const { plans: good, bad } = readPlans(env);
     if (bad > 0) return this.recover(text, good);
     this.plans = good;
     this.status = 'ok';
@@ -136,6 +152,7 @@ export class PlanStore {
   private write(plans: Plan[]): SaveResult | null {
     if (this.status === 'newer') return { ok: false, reason: 'newer', message: 'Saving is paused because your saved plans came from a newer version of Trunk.' };
     if (!this.storage) return { ok: false, reason: 'unavailable', message: 'Saving isn’t available in this browser. Share the plan or keep this tab open.' };
+    this.keepLegacyCopy();
     try {
       this.storage.setItem(STORE_KEY, JSON.stringify({ version: STORE_VERSION, plans }));
     } catch (e) {
@@ -145,6 +162,19 @@ export class PlanStore {
     this.plans = plans;
     if (this.status === 'recovered') this.status = 'ok';
     return null;
+  }
+
+  /** Before the first v2 write over older data, copy the original text once (never overwriting an earlier copy). */
+  private keepLegacyCopy(): void {
+    if (!this.storage) return;
+    try {
+      const text = this.storage.getItem(STORE_KEY);
+      if (text === null || this.storage.getItem(LEGACY_KEY) !== null) return;
+      const env = migrate(JSON.parse(text));
+      if (env && env !== 'newer' && env.version < STORE_VERSION) this.storage.setItem(LEGACY_KEY, text);
+    } catch {
+      /* best effort: unreadable text is covered by BACKUP_KEY, and the plans themselves were migrated */
+    }
   }
 
   /**
@@ -170,13 +200,13 @@ export class PlanStore {
     } catch {
       return;
     }
-    if (!env || env === 'newer') return;
-    const fresh: Plan[] = [];
-    for (const item of env.plans) {
-      const p = Plan.safeParse(item);
-      if (p.success && !fresh.some((x) => x.id === p.data.id)) fresh.push(p.data);
+    if (env === 'newer') {
+      // Another tab running a newer version wrote here: stop writing.
+      this.status = 'newer';
+      return;
     }
-    this.plans = fresh.slice(0, MAX_PLANS);
+    if (!env) return;
+    this.plans = readPlans(env, Infinity).plans.slice(0, MAX_PLANS);
   }
 
   /** Pick up changes made in another tab (call on the window "storage" event). */
@@ -195,14 +225,14 @@ export class PlanStore {
 
   /** Create or update. Never evicts an existing plan. */
   save(plan: Plan): SaveResult {
-    const parsed = Plan.safeParse(plan);
-    if (!parsed.success) return { ok: false, reason: 'invalid', message: 'This plan has invalid data and wasn’t saved.' };
+    const parsed = migratePlan(plan);
+    if (!parsed || parsed.from !== 2) return { ok: false, reason: 'invalid', message: 'This plan has invalid data and wasn’t saved.' };
     this.sync();
     const exists = this.plans.some((p) => p.id === plan.id);
     if (!exists && this.plans.length >= MAX_PLANS) {
       return { ok: false, reason: 'limit', message: `You already have ${MAX_PLANS} saved plans. Delete one to save this; nothing was overwritten.` };
     }
-    const next = exists ? this.plans.map((p) => (p.id === plan.id ? parsed.data : p)) : [...this.plans, parsed.data];
+    const next = exists ? this.plans.map((p) => (p.id === plan.id ? parsed.plan : p)) : [...this.plans, parsed.plan];
     const err = this.write(next);
     return err ?? { ok: true, plans: next, action: exists ? 'updated' : 'created' };
   }

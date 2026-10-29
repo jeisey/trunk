@@ -13,6 +13,33 @@ export const BRAND = {
   white: '#ffffff',
 } as const;
 
+/**
+ * Interface tokens derived from the brand colours. Forest carries text and
+ * primary actions (white labels on forest buttons). Sky is for supporting
+ * accents and soft backgrounds with forest text on them; it never carries white
+ * text. Warning and error colours stay distinct from the brand and keep at
+ * least 4.5:1 contrast on their backgrounds.
+ *
+ * styles.css declares each of these as `--<kebab-case name>` on :root.
+ */
+export const UI = {
+  canvas: BRAND.white,
+  text: BRAND.forest,
+  action: BRAND.forest,
+  actionStrong: '#0f2e27',
+  onAction: BRAND.white,
+  sky: BRAND.sky,
+  skySoft: '#e8f3f8',
+  skyLine: '#b5d8e6',
+  muted: '#4a5f58',
+  line: '#d6e2df',
+  surface: '#f4f8f7',
+  safety: '#7a4300',
+  safetySoft: '#fff5e6',
+  safetyLine: '#f0d4a8',
+  danger: '#a3271f',
+} as const;
+
 /** Intrinsic size of the logo master (3:1, transparent padding included). */
 export const LOGO_RATIO = 2172 / 724;
 

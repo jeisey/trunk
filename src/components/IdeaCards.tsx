@@ -1,6 +1,8 @@
 import type { Activity, MixedAgeRecipe } from '../content/schema.ts';
 import { adultText, attentionNote, durationText, materialsLine } from '../lib/labels.ts';
 import { formatAgeShort, type EnteredAge } from '../lib/age.ts';
+import type { TimingAssessment } from '../lib/timing.ts';
+import { CueLine } from './Cues.tsx';
 
 export function activityHref(id: string) {
   return `#/a/${id}`;
@@ -11,15 +13,15 @@ export function recipeHref(id: string) {
 }
 
 function Tags({ a }: { a: Activity }) {
-  const tags: { text: string; blue?: boolean }[] = [];
-  if (a.tummyTime) tags.push({ text: a.tummyTime.flatSurface ? 'Tummy time · flat floor' : 'Tummy time · held/supported', blue: true });
+  const tags: { text: string; sky?: boolean }[] = [];
+  if (a.tummyTime) tags.push({ text: a.tummyTime.flatSurface ? 'Tummy time · flat floor' : 'Tummy time · held/supported', sky: true });
   if (a.kind === 'media') tags.push({ text: 'Screen option' });
   if (a.outing) tags.push({ text: 'Outing' });
   if (!tags.length) return null;
   return (
-    <span>
+    <span className="tags">
       {tags.map((t) => (
-        <span key={t.text} className={`tag${t.blue ? ' blue' : ''}`} style={{ marginRight: 6 }}>
+        <span key={t.text} className={`tag${t.sky ? ' sky' : ''}`}>
           {t.text}
         </span>
       ))}
@@ -27,7 +29,7 @@ function Tags({ a }: { a: Activity }) {
   );
 }
 
-export function ActivityCard({ a }: { a: Activity }) {
+export function ActivityCard({ a, timing }: { a: Activity; timing?: TimingAssessment }) {
   const attention = attentionNote(a.supervision);
   return (
     <li className="idea">
@@ -52,6 +54,7 @@ export function ActivityCard({ a }: { a: Activity }) {
             </span>
           </li>
         </ul>
+        <CueLine cue={timing?.cue ?? null} />
         <p className="safety-line">{a.safety[0].text}</p>
       </a>
     </li>
@@ -62,14 +65,16 @@ export function childName(index: number) {
   return `Child ${index + 1}`;
 }
 
-export function RecipeCard({ r, younger, ages }: { r: MixedAgeRecipe; younger: 0 | 1; ages: EnteredAge[] }) {
+export function RecipeCard({ r, younger, ages, timing }: { r: MixedAgeRecipe; younger: 0 | 1; ages: EnteredAge[]; timing?: TimingAssessment }) {
   const older = younger === 0 ? 1 : 0;
   return (
     <li className="idea">
       <a className="idea-link" href={recipeHref(r.id)}>
         <p className="idea-title">{r.title}</p>
-        <span className="tag blue">{r.mode === 'together' ? 'Together' : 'Side by side'}</span>
-        <p className="idea-summary" style={{ marginTop: 4 }}>
+        <span className="tags">
+          <span className="tag sky">{r.mode === 'together' ? 'Together' : 'Side by side'}</span>
+        </span>
+        <p className="idea-summary">
           {r.summary}
         </p>
         <ul className="facts">
@@ -96,6 +101,7 @@ export function RecipeCard({ r, younger, ages }: { r: MixedAgeRecipe; younger: 0
             </span>
           </li>
         </ul>
+        <CueLine cue={timing?.cue ?? null} prefix={timing?.cue ? childName(timing.cue.finding.child) : undefined} />
         <p className="safety-line">{r.safety[0].text}</p>
       </a>
     </li>

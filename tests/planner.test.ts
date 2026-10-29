@@ -3,10 +3,9 @@ import type { Activity, MixedAgeRecipe } from '../src/content/schema.ts';
 import { DEFAULT_FILTERS, findIdeas } from '../src/lib/filters.ts';
 import { planWindow } from '../src/lib/planner.ts';
 import { bounds, resize, type PlanKid, type PlanSegment, type PlanSettings } from '../src/lib/plan.ts';
-import { timeline, totalWallMinutes } from '../src/lib/layout.ts';
+import { analyzePlan, timeline, totalWallMinutes } from '../src/lib/layout.ts';
 import { reconcileSegments } from '../src/lib/reconcile.ts';
 import { timeIssue } from '../src/lib/timeRules.ts';
-import { segmentTimeIssue } from '../src/components/PlanEditor.tsx';
 import { toDays } from '../src/lib/age.ts';
 import { fixtureCatalog, loadFixture, variant } from './helpers.ts';
 
@@ -196,10 +195,9 @@ describe('shared time rules', () => {
     const shaded = variant(tummy, { id: 'act.fixture-shade-walk', kind: 'outing', outing: true, places: ['outdoors'], hazards: ['sun-weather'], tummyTime: undefined, supervision: { ...tummy.supervision, shareable: false } });
     const c = fixtureCatalog({ activities: [shaded] });
     const plan = { v: 2 as const, id: 'p-x', title: '', kids: [{ age: { value: 4, unit: 'm' as const }, notYet: [] }], start: '09:45', window: 90, settings, segments: [{ id: 'a1', kind: 'activity' as const, ref: shaded.id, minutes: 5 }], notes: '', createdAt: '2026-10-29T00:00:00.000Z', updatedAt: '2026-10-29T00:00:00.000Z' };
-    const [t] = timeline(plan, c);
-    expect(segmentTimeIssue(t, plan, c)).toBeNull();
+    expect(analyzePlan(plan, c).entries[0].timeIssue).toBeNull();
     const later = { ...plan, start: '09:58' };
-    expect(segmentTimeIssue(timeline(later, c)[0], later, c)).toBe('sun');
+    expect(analyzePlan(later, c).entries[0].timeIssue).toBe('sun');
   });
 });
 

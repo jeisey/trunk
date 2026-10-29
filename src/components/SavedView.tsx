@@ -1,11 +1,111 @@
 import { useRef, useState } from 'react';
-import { formatAge } from '../lib/age.ts';
+import type { IndexedCatalog } from '../content/catalog.ts';
+import { analyzePlan } from '../lib/layout.ts';
 import type { Plan } from '../lib/plan.ts';
 import { MAX_PLANS, type StoreStatus } from '../lib/storage.ts';
 import { LIMITS } from '../lib/text.ts';
 import { formatClock, parseHHMM } from '../lib/time.ts';
+import { MoreMenu } from './MoreMenu.tsx';
+import { kidsText, planTitle, routineSummary } from './planDisplay.ts';
+
+function SavedItem({
+  plan,
+  c,
+  full,
+  onOpen,
+  onRename,
+  onDuplicate,
+  onDelete,
+}: {
+  plan: Plan;
+  c: IndexedCatalog;
+  full: boolean;
+  onOpen: () => void;
+  onRename: (title: string) => void;
+  onDuplicate: () => void;
+  onDelete: () => void;
+}) {
+  const [renaming, setRenaming] = useState(false);
+  const [draft, setDraft] = useState('');
+  const item = useRef<HTMLLIElement>(null);
+  const title = planTitle(plan);
+  const start = parseHHMM(plan.start);
+  const end = start + Math.max(plan.window, analyzePlan(plan, c).end);
+  const routines = routineSummary(plan, c);
+  const backToMenu = () => requestAnimationFrame(() => item.current?.querySelector<HTMLButtonElement>('.menu-button')?.focus());
+
+  return (
+    <li className="saved-item" ref={item} data-plan={plan.id}>
+      {renaming ? (
+        <form
+          className="inline-fields rename"
+          onSubmit={(e) => {
+            e.preventDefault();
+            onRename(draft);
+            setRenaming(false);
+            backToMenu();
+          }}
+        >
+          <label>
+            New name
+            <input type="text" autoFocus maxLength={LIMITS.title} value={draft} placeholder={title} onChange={(e) => setDraft(e.target.value)} />
+          </label>
+          <div className="button-row">
+            <button type="submit" className="primary">
+              Save name
+            </button>
+            <button
+              type="button"
+              onClick={() => {
+                setRenaming(false);
+                backToMenu();
+              }}
+            >
+              Cancel
+            </button>
+          </div>
+        </form>
+      ) : (
+        <div className="saved-row">
+          <div className="saved-main">
+            <h2 className="saved-title">
+              <a
+                href="#/plan"
+                onClick={(e) => {
+                  e.preventDefault();
+                  onOpen();
+                }}
+              >
+                {title}
+              </a>
+            </h2>
+            <p className="subtle">
+              {kidsText(plan)} · {formatClock(start)}–{formatClock(end)} · {plan.segments.length} {plan.segments.length === 1 ? 'entry' : 'entries'}
+            </p>
+            {routines.length > 0 && <p className="saved-routines">{routines.slice(0, 3).join(' · ') + (routines.length > 3 ? ` · +${routines.length - 3} more` : '')}</p>}
+          </div>
+          <MoreMenu
+            label={title}
+            items={[
+              {
+                label: 'Rename',
+                onSelect: () => {
+                  setDraft(plan.title);
+                  setRenaming(true);
+                },
+              },
+              { label: 'Duplicate', onSelect: onDuplicate, disabled: full, description: full ? `You’ve reached ${MAX_PLANS} saved plans.` : undefined },
+              { label: 'Delete', onSelect: onDelete, danger: true },
+            ]}
+          />
+        </div>
+      )}
+    </li>
+  );
+}
 
 export function SavedView(props: {
+  c: IndexedCatalog;
   plans: Plan[];
   status: StoreStatus;
   statusMessage?: string;
@@ -15,83 +115,47 @@ export function SavedView(props: {
   onDelete: (plan: Plan) => void;
   onImportFile: (text: string) => void;
 }) {
-  const [renaming, setRenaming] = useState<string | null>(null);
-  const [draft, setDraft] = useState('');
   const fileRef = useRef<HTMLInputElement>(null);
+  const listRef = useRef<HTMLUListElement>(null);
   const full = props.plans.length >= MAX_PLANS;
+
+  const remove = (plan: Plan, index: number) => {
+    props.onDelete(plan);
+    // Keep focus in the list: the next plan's title, or the previous one, or the heading.
+    requestAnimationFrame(() => {
+      const links = listRef.current?.querySelectorAll<HTMLElement>('.saved-title a');
+      const next = links?.[Math.min(index, (links?.length ?? 1) - 1)];
+      (next ?? document.querySelector<HTMLElement>('main h1'))?.focus();
+    });
+  };
 
   return (
     <div className="page">
       <h1>Saved plans</h1>
       <p className="meter">
-        {props.plans.length} of {MAX_PLANS} saved in this browser.
+        Saved on this device · {props.plans.length}/{MAX_PLANS}
       </p>
-      {props.statusMessage && <p className={`banner${props.status === 'ok' ? ' info' : ''}`}>{props.statusMessage}</p>}
-      <p className="tiny">
-        Plans are stored only in this browser on this device. Clearing site data or using private browsing can remove them. There are no accounts and no syncing; use a share link or image to move a plan elsewhere.
-      </p>
+      {props.status !== 'ok' && props.statusMessage && <p className="banner">{props.statusMessage}</p>}
       {props.plans.length === 0 ? (
         <p className="empty">No saved plans yet. Make one on the Plan tab and tap Save.</p>
       ) : (
-        <ul className="saved-list">
-          {props.plans.map((p) => (
-            <li key={p.id} className="saved-item">
-              {renaming === p.id ? (
-                <form
-                  className="inline-fields"
-                  onSubmit={(e) => {
-                    e.preventDefault();
-                    props.onRename(p, draft);
-                    setRenaming(null);
-                  }}
-                >
-                  <label style={{ flex: '1 1 200px' }}>
-                    New name
-                    <input type="text" autoFocus maxLength={LIMITS.title} value={draft} onChange={(e) => setDraft(e.target.value)} />
-                  </label>
-                  <button type="submit" className="primary">
-                    Save name
-                  </button>
-                  <button type="button" onClick={() => setRenaming(null)}>
-                    Cancel
-                  </button>
-                </form>
-              ) : (
-                <h3>{p.title || 'Untitled plan'}</h3>
-              )}
-              <p className="subtle" style={{ marginBottom: 8 }}>
-                {p.kids.map((k) => formatAge(k.age)).join(' + ')} · starts {formatClock(parseHHMM(p.start))} · {p.segments.length} entries
-              </p>
-              <div className="button-row">
-                <button type="button" className="primary" onClick={() => props.onOpen(p)}>
-                  Open
-                </button>
-                <button
-                  type="button"
-                  onClick={() => {
-                    setRenaming(p.id);
-                    setDraft(p.title);
-                  }}
-                >
-                  Rename
-                </button>
-                <button type="button" onClick={() => props.onDuplicate(p)} disabled={full} aria-describedby={full ? 'full-note' : undefined}>
-                  Duplicate
-                </button>
-                <button type="button" className="danger" onClick={() => props.onDelete(p)}>
-                  Delete
-                </button>
-              </div>
-            </li>
+        <ul className="saved-list" ref={listRef}>
+          {props.plans.map((p, i) => (
+            <SavedItem
+              key={p.id}
+              plan={p}
+              c={props.c}
+              full={full}
+              onOpen={() => props.onOpen(p)}
+              onRename={(t) => props.onRename(p, t)}
+              onDuplicate={() => props.onDuplicate(p)}
+              onDelete={() => remove(p, i)}
+            />
           ))}
         </ul>
       )}
-      {full && (
-        <p id="full-note" className="tiny" style={{ marginTop: 8 }}>
-          You’ve reached {MAX_PLANS} saved plans. Delete one to save or duplicate another.
-        </p>
-      )}
-      <div style={{ marginTop: 18 }}>
+      {full && <p className="tiny full-note">You’ve reached {MAX_PLANS} saved plans. Delete one to save or duplicate another.</p>}
+      <div className="file-open">
         <input
           ref={fileRef}
           type="file"

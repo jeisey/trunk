@@ -8,6 +8,7 @@ import {
   importPayload,
   importPlanFile,
   MAX_LINK_LENGTH,
+  planFileText,
   reconcile,
   shareUrl,
   ShareError,
@@ -51,9 +52,9 @@ describe('share links', () => {
 
   it('round-trips a plan through a compressed fragment link', async () => {
     const payload = await encodePayload(samplePlan(), DEFAULT_SHARE_OPTIONS);
-    expect(payload).toMatch(/^1z\.[A-Za-z0-9_-]+$/);
+    expect(payload).toMatch(/^2z\.[A-Za-z0-9_-]+$/);
     const url = shareUrl('https://example.github.io/trunk/#/plan', payload);
-    expect(url.startsWith('https://example.github.io/trunk/#/s/1z.')).toBe(true);
+    expect(url.startsWith('https://example.github.io/trunk/#/s/2z.')).toBe(true);
     const { plan, dropped } = await importPayload(payloadOf(url), c);
     expect(dropped).toEqual([]);
     expect(plan.start).toBe('16:30');
@@ -107,12 +108,14 @@ describe('share links', () => {
 
   it.each([
     ['garbage', 'hello', 'malformed'],
-    ['newer version', '2z.AAAA', 'version'],
+    ['newer version', '3z.AAAA', 'version'],
+    ['much newer version', '12z.AAAA', 'version'],
     ['older version', '0z.AAAA', 'version'],
-    ['bad base64', '1z.@@@@', 'malformed'],
-    ['unknown codec', '1q.AAAA', 'version'],
-    ['not deflate data', '1z.AAAA', 'malformed'],
-    ['huge input', `1z.${'A'.repeat(7000)}`, 'too-large'],
+    ['bad base64', '2z.@@@@', 'malformed'],
+    ['unknown codec', '2q.AAAA', 'version'],
+    ['not deflate data', '2z.AAAA', 'malformed'],
+    ['not deflate data (v1)', '1z.AAAA', 'malformed'],
+    ['huge input', `2z.${'A'.repeat(7000)}`, 'too-large'],
   ])('fails gracefully on %s', async (_name, payload, code) => {
     await expect(decodePayload(payload)).rejects.toSatisfy((e: unknown) => e instanceof ShareError && e.code === code);
   });
@@ -121,15 +124,25 @@ describe('share links', () => {
     const big = new TextEncoder().encode(JSON.stringify({ s: '10:00', pad: ' '.repeat(200_000) }));
     const stream = new Blob([big]).stream().pipeThrough(new CompressionStream('deflate-raw'));
     const z = new Uint8Array(await new Response(stream).arrayBuffer());
-    const payload = `1z.${bytesToBase64Url(z)}`;
-    expect(payload.length).toBeLessThan(6000);
-    await expect(decodePayload(payload)).rejects.toSatisfy((e: unknown) => e instanceof ShareError && e.code === 'too-large');
+    for (const v of ['1', '2']) {
+      const payload = `${v}z.${bytesToBase64Url(z)}`;
+      expect(payload.length).toBeLessThan(6000);
+      await expect(decodePayload(payload)).rejects.toSatisfy((e: unknown) => e instanceof ShareError && e.code === 'too-large');
+    }
   });
 
   it('rejects schema-invalid payloads, including unknown keys', async () => {
-    const encode = (obj: unknown) => `1j.${bytesToBase64Url(new TextEncoder().encode(JSON.stringify(obj)))}`;
+    const encode = (obj: unknown, v = 2) => `${v}j.${bytesToBase64Url(new TextEncoder().encode(JSON.stringify(obj)))}`;
     const good = toCompact(samplePlan(), DEFAULT_SHARE_OPTIONS);
     await expect(decodePayload(encode(good))).resolves.toBeTruthy();
+    await expect(decodePayload(encode(good, 1))).resolves.toBeTruthy();
+    // v2-only entries are not accepted under the v1 format number.
+    const routine = { ...good, g: [['n', 'nap', 60, '1', 30, { s: 10 }]] };
+    await expect(decodePayload(encode(routine))).resolves.toBeTruthy();
+    await expect(decodePayload(encode(routine, 1))).rejects.toBeInstanceOf(ShareError);
+    await expect(decodePayload(encode({ ...good, g: [['n', 'nap', 60, '1', 30, { evil: 1 }]] }))).rejects.toBeInstanceOf(ShareError);
+    await expect(decodePayload(encode({ ...good, g: [['n', 'bath', 60, '1', 30]] }))).rejects.toBeInstanceOf(ShareError);
+    await expect(decodePayload(encode({ ...good, g: [['a', 'x', 5, { t: 5000 }]] }))).rejects.toBeInstanceOf(ShareError);
     await expect(decodePayload(encode({ ...good, evil: 1 }))).rejects.toBeInstanceOf(ShareError);
     await expect(decodePayload(encode({ ...good, w: 99999 }))).rejects.toBeInstanceOf(ShareError);
     await expect(decodePayload(encode({ ...good, g: [['a', '../../etc', 5]] }))).rejects.toBeInstanceOf(ShareError);
@@ -171,8 +184,18 @@ describe('share links', () => {
   it('imports a downloaded plan file through the same checks', async () => {
     const file = JSON.stringify({ trunkPlan: 1, plan: toCompact(samplePlan(), DEFAULT_SHARE_OPTIONS) });
     expect(importPlanFile(file, c).plan.segments).toHaveLength(3);
+    expect(importPlanFile(planFileText(samplePlan(), DEFAULT_SHARE_OPTIONS), c).plan.segments).toHaveLength(3);
+    expect(JSON.parse(planFileText(samplePlan(), DEFAULT_SHARE_OPTIONS)).trunkPlan).toBe(2);
     expect(() => importPlanFile('{"trunkPlan":2,"plan":{}}', c)).toThrow(ShareError);
     expect(() => importPlanFile('nope', c)).toThrow(ShareError);
+    try {
+      importPlanFile('{"trunkPlan":3,"plan":{}}', c);
+      expect.unreachable();
+    } catch (e) {
+      expect(e).toBeInstanceOf(ShareError);
+      expect((e as ShareError).code).toBe('version');
+      expect((e as ShareError).message).toMatch(/newer version/);
+    }
   });
 });
 

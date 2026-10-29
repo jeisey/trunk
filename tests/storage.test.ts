@@ -105,7 +105,7 @@ describe('saved plans', () => {
   });
 
   it('migrates the pre-envelope (version 0) array format', () => {
-    expect(migrate([plan(1)])).toEqual({ version: 1, plans: [plan(1)] });
+    expect(migrate([plan(1)])).toEqual({ version: 0, plans: [plan(1)] });
     const mem = new MemoryStorage();
     mem.setItem(STORE_KEY, JSON.stringify([plan(1), plan(2)]));
     const r = new PlanStore(() => mem).load();

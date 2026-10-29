@@ -1,31 +1,38 @@
 /* Trunk — calm, practical, readable. System fonts only. */
 :root {
-  --bg: #ffffff;
-  --text: #16332a;
-  --muted: #4b5f57;
-  --faint: #55665f;
-  --line: #dbe3df;
-  --surface: #f5f8f6;
-  --accent: #2457a6;
-  --accent-strong: #1b4380;
-  --accent-soft: #eaf1fb;
+  /* Brand (src/brand.ts BRAND) */
+  --brand-forest: #163e35;
+  --brand-sky: #6babc4;
+  --brand-white: #ffffff;
+  /* Interface tokens (src/brand.ts UI; tests/brand.test.ts keeps them equal) */
+  --canvas: #ffffff;
+  --text: #163e35;
+  --action: #163e35;
+  --action-strong: #0f2e27;
+  --on-action: #ffffff;
+  --sky: #6babc4;
+  --sky-soft: #e8f3f8;
+  --sky-line: #b5d8e6;
+  --muted: #4a5f58;
+  --line: #d6e2df;
+  --surface: #f4f8f7;
   --safety: #7a4300;
   --safety-soft: #fff5e6;
   --safety-line: #f0d4a8;
-  --ok: #1f6b45;
   --danger: #a3271f;
+  /* Layout */
   --radius: 10px;
   --radius-sm: 8px;
   --tap: 44px;
   --gutter: 16px;
   --nav-h: 64px;
-  --focus: 0 0 0 3px #ffffff, 0 0 0 5px #2457a6;
+  --focus: 0 0 0 3px var(--canvas), 0 0 0 5px var(--action);
   color-scheme: light;
   font-family: system-ui, -apple-system, 'Segoe UI', Roboto, 'Helvetica Neue', Arial, sans-serif;
   font-size: 100%;
   line-height: 1.5;
   color: var(--text);
-  background: var(--bg);
+  background: var(--canvas);
   -webkit-text-size-adjust: 100%;
   text-size-adjust: 100%;
 }
@@ -38,7 +45,7 @@
 
 body {
   margin: 0;
-  background: var(--bg);
+  background: var(--canvas);
   /* break-word (not anywhere) so long strings wrap without shrinking min-content widths. */
   overflow-wrap: break-word;
 }
@@ -76,7 +83,7 @@ p {
 }
 
 a {
-  color: var(--accent);
+  color: var(--action);
   text-underline-offset: 2px;
 }
 
@@ -103,7 +110,7 @@ a {
   left: 8px;
   top: -60px;
   z-index: 50;
-  background: var(--accent);
+  background: var(--action);
   color: #fff;
   padding: 10px 14px;
   border-radius: var(--radius-sm);
@@ -226,7 +233,7 @@ main {
 }
 
 .bottom-nav a[aria-current='page'] {
-  color: var(--accent);
+  color: var(--action);
 }
 
 .bottom-nav svg {
@@ -260,7 +267,7 @@ body.keyboard-open .bottom-nav {
 
 .tiny {
   font-size: 0.8rem;
-  color: var(--faint);
+  color: var(--muted);
 }
 
 /* ---------- Buttons ---------- */
@@ -295,19 +302,19 @@ button:disabled {
 }
 
 .primary {
-  background: var(--accent);
-  border-color: var(--accent);
+  background: var(--action);
+  border-color: var(--action);
   color: #fff;
 }
 .primary:hover {
-  background: var(--accent-strong);
-  border-color: var(--accent-strong);
+  background: var(--action-strong);
+  border-color: var(--action-strong);
 }
 
 .quiet-button {
   border-color: transparent;
   background: transparent;
-  color: var(--accent);
+  color: var(--action);
   padding-left: 8px;
   padding-right: 8px;
 }
@@ -359,7 +366,7 @@ button:disabled {
 .child-age {
   font-size: 1.15rem;
   font-weight: 750;
-  color: var(--accent-strong);
+  color: var(--action-strong);
 }
 
 .age-row {
@@ -380,7 +387,7 @@ input[type='range'] {
   width: 100%;
   min-width: 0;
   height: var(--tap);
-  accent-color: var(--accent);
+  accent-color: var(--action);
   margin: 0;
   background: transparent;
 }
@@ -390,7 +397,7 @@ input[type='range'] {
   position: relative;
   height: 1.2em;
   font-size: 0.72rem;
-  color: var(--faint);
+  color: var(--muted);
   margin: -4px calc(var(--tap) + 16px) 0;
 }
 
@@ -556,12 +563,12 @@ fieldset.segmented legend,
 }
 
 .segments label:has(input:checked) {
-  background: var(--accent);
+  background: var(--action);
   color: #fff;
 }
 
 .segments label:has(input:focus-visible) {
-  box-shadow: inset 0 0 0 3px #fff, inset 0 0 0 5px var(--accent-strong);
+  box-shadow: inset 0 0 0 3px #fff, inset 0 0 0 5px var(--action-strong);
   z-index: 1;
 }
 
@@ -577,7 +584,7 @@ fieldset.segmented legend,
 .check input {
   width: 22px;
   height: 22px;
-  accent-color: var(--accent);
+  accent-color: var(--action);
   margin: 0;
 }
 
@@ -587,7 +594,7 @@ details.more > summary {
   flex-wrap: wrap;
   align-items: center;
   cursor: pointer;
-  color: var(--accent);
+  color: var(--action);
   font-weight: 650;
   list-style: none;
 }
@@ -629,9 +636,9 @@ details.more[open] > summary::before {
   cursor: pointer;
 }
 .chip-toggle:has(input:checked) {
-  border-color: var(--accent);
-  background: var(--accent-soft);
-  color: var(--accent-strong);
+  border-color: var(--action);
+  background: var(--sky-soft);
+  color: var(--action-strong);
   font-weight: 650;
 }
 .chip-toggle:has(input:checked)::before {
@@ -686,7 +693,7 @@ details.more[open] > summary::before {
 .idea-title {
   font-weight: 700;
   font-size: 1.02rem;
-  color: var(--accent-strong);
+  color: var(--action-strong);
   margin: 0 0 2px;
 }
 
@@ -735,9 +742,9 @@ details.more[open] > summary::before {
 }
 
 .tag.blue {
-  background: var(--accent-soft);
-  color: var(--accent-strong);
-  border-color: #c9d9f1;
+  background: var(--sky-soft);
+  color: var(--action-strong);
+  border-color: var(--sky-line);
 }
 
 .safety-line {
@@ -848,8 +855,8 @@ details.more[open] > summary::before {
 }
 
 .note-box {
-  background: var(--accent-soft);
-  border: 1px solid #c9d9f1;
+  background: var(--sky-soft);
+  border: 1px solid var(--sky-line);
   border-radius: var(--radius);
   padding: 12px 14px;
 }
@@ -891,7 +898,7 @@ details.sources summary {
   align-items: center;
   cursor: pointer;
   font-weight: 650;
-  color: var(--accent);
+  color: var(--action);
 }
 
 .claim {
@@ -985,7 +992,7 @@ details.sources summary {
 }
 
 .seg-title a {
-  color: var(--accent-strong);
+  color: var(--action-strong);
 }
 
 .tracks {
@@ -1199,8 +1206,8 @@ dialog::backdrop {
 }
 
 .banner.info {
-  background: var(--accent-soft);
-  border-color: #c9d9f1;
+  background: var(--sky-soft);
+  border-color: var(--sky-line);
 }
 
 .site-footer {
