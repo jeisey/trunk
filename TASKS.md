@@ -52,4 +52,29 @@ Completion check for each: ≥ 12 distinct activities, `--check --only <file>` e
 ## 5. Delivery
 - [x] README, `docs/maintenance.md`, decisions, research summary.
 - [x] GitHub Actions: validate, test, build, e2e, deploy to Pages (green on PR jeisey/trunk#1).
-- [ ] PR opened, CI green, merged to `main`.
+- [x] PR opened, CI green, merged to `main` (jeisey/trunk#1).
+
+---
+
+# Refinement 2026-10-29: timing-aware activities, routine blocks, calmer mobile UI, brand kit
+
+Baseline (main @ b9cec90): content valid (108 activities, 29 recipes, 6 starter plans), 107 unit tests, 19 Playwright tests, 182 KB gzip initial JS.
+
+## R1. Contract (lead)
+- [x] Content schema v2: stimulation profile, timing-rule records, routine starter segments (`src/content/*`). Check: catalog validates.
+- [x] Shared evaluator `src/lib/timing.ts`; plan v2 + migration `src/lib/plan.ts`; layout/analysis `src/lib/layout.ts`; edit ops `src/lib/planEdit.ts`. Check: tests/layout.test.ts, tests/planEdit.test.ts.
+- [x] Contract doc `docs/timing-and-routines.md`.
+- [x] Brand masters + web renditions + `src/brand.ts`.
+
+## R2. Workstreams (≤ 3 concurrent)
+- [~] WS1 timing research + classify 108 activities / 29 recipes; timing coverage; `docs/research/timing.md`.
+- [~] WS2 planner (phase-aware, anchors, alongside), finder timing ranking, reconcile, storage/draft/share v2 + v1 legacy, fixtures, unit tests.
+- [~] WS3 finder/detail/saved/planner UI, routine blocks UI, About consolidation, brand application, exports, e2e + screenshots.
+
+## R3. Integration and verification (lead)
+- [ ] Integrate APIs; resolve interface mismatches.
+- [ ] Independent review of integrated changes and representative source mappings.
+- [ ] `npm run validate:content`, `npm run check`, `npm run build`, `npx playwright test`, perf lab.
+- [ ] Screenshots and exported PNGs inspected.
+- [ ] README, decisions, research, policy, maintenance docs updated.
+- [ ] PR opened, CI green, merged.
