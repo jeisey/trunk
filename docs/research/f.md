@@ -5,15 +5,15 @@ Owner files: `content/workstreams/f.json`, `docs/research/f.md`. Sources checked
 
 ## Summary
 
-- 22 distinct activities, all `36m`–`60m`.
+- 21 distinct activities, all `36m`–`60m`.
   - **Movement and outdoors (6):** copycat moves, red light green light, ball skills, trike ride, playground, nature hunt.
   - **Language and thinking (5):** opposites game, picture-book questions, take-turns story, I spy, memory match.
   - **Fine motor and making (4):** drawing, jigsaw, playdough, scissors.
-  - **Everyday life (5):** sock sort, set the table, wash fruit and veg, tear-and-spread helper, planting seeds.
+  - **Everyday life (4):** sock sort, wash fruit and veg, tear-and-spread helper, planting seeds.
   - **Calm (2):** breathing, calm corner.
 - 4 activities pass the app's busy-nearby check (`isBusyNearbyCompatible`): sock sort, draw-and-tell, jigsaw and playdough. All four are also shareable.
 - 33 claims (`clm.f.*`): 25 descriptive or recommendation claims and 8 safety claims.
-- 13 new sources. My own claims also cite 6 existing source IDs, each re-read on 2026-10-28. In addition, 5 existing claims are reused as written: `clm.core.who-active-play`, `clm.core.who-reading-storytelling`, `clm.d.pedestrian-safety`, `clm.d.sun-protection` and `clm.a.keep-face-clear`. Their owners verified them; I did not re-read their WHO, pedestrian-safety or sun-safety pages.
+- 11 new sources. My own claims also cite 8 existing source IDs, each re-read on 2026-10-28; two of them were registered by Workstream E in parallel, under the same IDs I had chosen. In addition, 5 existing claims are reused as written: `clm.core.who-active-play`, `clm.core.who-reading-storytelling`, `clm.d.pedestrian-safety`, `clm.d.sun-protection` and `clm.a.keep-face-clear`. Their owners verified them; I did not re-read their WHO, pedestrian-safety or sun-safety pages.
 - No media records and no seated-snack routine, because Workstream E owns both. The one food record, `act.tear-and-spread-helper`, is a food-preparation helper job, not a snack.
 - Activities are source-informed. No clinician has reviewed them. Durations, setup times and effort levels are editorial estimates.
 
@@ -52,7 +52,6 @@ I opened every page and read it before citing it.
 | `act.jigsaw-at-the-table` | 36m–60m | no-longer-mouthing | watches / same-room / none | yes | **yes** | small-parts | described |
 | `act.playdough-squish-and-shape` | 36m–60m | no-longer-mouthing | watches / same-room / none | yes | **yes** | small-parts, allergens | described |
 | `act.scissor-snipping` | 36m–60m | no-longer-mouthing, follows-directions | joins / arms-reach / intermittent | **no** | no | sharp | adapted |
-| `act.set-the-table-helper` (routine) | 36m–60m | follows-directions | joins / same-room / intermittent | yes | no | none | described |
 | `act.wash-fruit-and-veg` (routine) | 36m–60m | follows-directions | joins / arms-reach / intermittent | **no** | no | water, falls | described |
 | `act.tear-and-spread-helper` (routine) | 36m–60m | eats-solids, follows-directions | joins / arms-reach / intermittent | **no** | no | food, allergens | described |
 | `act.plant-and-water-seeds` | 36m–60m | no-longer-mouthing, follows-directions | joins / arms-reach / intermittent | **no** | no | water, small-parts | described |
@@ -81,13 +80,11 @@ New sources registered in `f.json`:
 
 | ID | Title (link) | Org | Jurisdiction | Page date | Checked | Read via |
 |---|---|---|---|---|---|---|
-| `src.cdc.milestones-3-years` | [Milestones by 3 Years](https://www.cdc.gov/act-early/milestones/3-years.html) | Centers for Disease Control and Prevention (CDC), Learn the Signs. Act Early. | US | pub. 2025-09-04; upd. 2026-05-16 | 2026-10-28 | fetch tool (paraphrase) |
 | `src.cdc.milestones-4-years` | [Milestones by 4 Years](https://www.cdc.gov/act-early/milestones/4-years.html) | Centers for Disease Control and Prevention (CDC), Learn the Signs. Act Early. | US | pub. 2025-09-04; upd. 2026-05-16 | 2026-10-28 | fetch tool (paraphrase) |
 | `src.cdc.milestones-5-years` | [Milestones by 5 Years](https://www.cdc.gov/act-early/milestones/5-years.html) | Centers for Disease Control and Prevention (CDC), Learn the Signs. Act Early. | US | pub. 2025-09-04; upd. 2026-05-16 | 2026-10-28 | fetch tool (paraphrase) |
 | `src.cdc.positive-parenting-preschoolers` | [Positive Parenting Tips: Preschoolers (3–5 years old)](https://www.cdc.gov/child-development/positive-parenting-tips/preschooler-3-5-years.html) | Centers for Disease Control and Prevention (CDC) | US | upd. 2026-02-20 | 2026-10-28 | fetch tool (paraphrase) |
 | `src.aap-hc.milestones-3-4-years` | [Developmental Milestones: 3 to 4 Year Olds](https://www.healthychildren.org/English/ages-stages/preschool/Pages/Developmental-Milestones-3-to-4-Year-Olds.aspx) | American Academy of Pediatrics (HealthyChildren.org) | US | upd. 2023-04-04 | 2026-10-28 | curl + pandoc (full text) |
 | `src.aap-hc.milestones-4-5-years` | [Developmental Milestones: 4 to 5 Year Olds](https://www.healthychildren.org/English/ages-stages/preschool/Pages/Developmental-Milestones-4-to-5-Year-Olds.aspx) | American Academy of Pediatrics (HealthyChildren.org) | US | upd. 2023-04-04 | 2026-10-28 | curl + pandoc (full text) |
-| `src.aap-hc.safety-2-to-4-years` | [Safety for Your Child: 2 to 4 Years Old](https://www.healthychildren.org/English/ages-stages/toddler/Pages/Safety-for-Your-Child-2-to-4-Years.aspx) | American Academy of Pediatrics (HealthyChildren.org) | US | upd. 2022-09-29 | 2026-10-28 | curl + pandoc (full text) |
 | `src.aap-hc.ready-for-tricycle` | [Ready for a Tricycle?](https://www.healthychildren.org/English/safety-prevention/at-play/Pages/Ready-For-A-Tricycle.aspx) | American Academy of Pediatrics (HealthyChildren.org) | US | upd. 2021-08-04 | 2026-10-28 | curl + pandoc (full text) |
 | `src.aap-hc.first-tricycle-or-bike` | [Your Child's First Tricycle or Bike: Important Safety Rules](https://www.healthychildren.org/English/safety-prevention/at-play/Pages/your-childs-first-tricycle-or-bike-teaching-them-to-ride-safely.aspx) | American Academy of Pediatrics (HealthyChildren.org) | US | upd. 2022-08-11 | 2026-10-28 | curl + pandoc (full text) |
 | `src.aap-hc.bike-helmets-faq` | [Bike Helmets for Kids: Parent FAQs](https://www.healthychildren.org/English/safety-prevention/at-play/Pages/Bicycle-Helmets-What-Every-Parent-Should-Know.aspx) | American Academy of Pediatrics (HealthyChildren.org) | US | upd. 2024-06-28 | 2026-10-28 | curl + pandoc (full text) |
@@ -95,11 +92,13 @@ New sources registered in `f.json`:
 | `src.hse.play-3-5-years` | [Play and toys to help your child develop - 3 to 5 years old](https://www2.hse.ie/babies-children/play/3-5-years/) | Health Service Executive (Ireland) | IE | upd. 2021-04-20 | 2026-10-28 | curl + pandoc (full text) |
 | `src.nhs.activity-under-5` | [Physical activity guidelines for children (under 5 years)](https://www.nhs.uk/live-well/exercise/physical-activity-guidelines-children-under-five-years/) | NHS (UK) | UK | upd. 2025-10-27 | 2026-10-28 | curl + pandoc (full text) |
 
-Existing sources cited by `clm.f.*` claims. Other workstreams registered them; I re-read each page on 2026-10-28 before citing it:
+Existing sources cited by `clm.f.*` claims. Other workstreams registered them; I re-read each page on 2026-10-28 before citing it. Workstream E registered `src.cdc.milestones-3-years` and `src.aap-hc.safety-2-to-4-years` at the same time as I did, with identical IDs and URLs. I removed my copies so that F reuses E's records; no ID changed.
 
 | ID | Title (link) | Org | Jurisdiction | Page date | Checked | Read via |
 |---|---|---|---|---|---|---|
 | `src.aap-hc.playing-outside` | [Playing Outside: Why It's Important for Kids](https://www.healthychildren.org/English/family-life/power-of-play/Pages/playing-outside-why-its-important-for-kids.aspx) | American Academy of Pediatrics (HealthyChildren.org) | US | upd. 2026-04-06 | 2026-10-28 | curl + pandoc (full text) |
+| `src.aap-hc.safety-2-to-4-years` | [Safety for Your Child: 2 to 4 Years Old](https://www.healthychildren.org/English/ages-stages/toddler/Pages/Safety-for-Your-Child-2-to-4-Years.aspx) | American Academy of Pediatrics (HealthyChildren.org) | US | upd. 2022-09-29 | 2026-10-28 | curl + pandoc (full text) |
+| `src.cdc.milestones-3-years` | [Milestones by 3 Years](https://www.cdc.gov/act-early/milestones/3-years.html) | Centers for Disease Control and Prevention (CDC), Learn the Signs. Act Early. | US | pub. 2025-09-04; upd. 2026-05-16 | 2026-10-28 | fetch tool (paraphrase) |
 | `src.aap-hc.playground-safety` | [Playground Safety: How to Ensure Injury-Free Fun](https://www.healthychildren.org/English/safety-prevention/at-play/Pages/Safety-on-the-Playground.aspx) | American Academy of Pediatrics (HealthyChildren.org) | US | upd. 2025-03-31 | 2026-10-28 | curl + pandoc (full text) |
 | `src.aap-hc.backyard-safety` | [Playing Outside in the Yard: 8 Tips to Keep it Fun & Safe for Kids](https://www.healthychildren.org/English/safety-prevention/at-home/Pages/Backyard-Safety.aspx) | American Academy of Pediatrics (HealthyChildren.org) | US | upd. 2022-06-28 | 2026-10-28 | curl + pandoc (full text) |
 | `src.aap-hc.choking-prevention` | [Choking Prevention for Babies & Children: What Every Parent Needs to Know](https://www.healthychildren.org/English/health-issues/injuries-emergencies/Pages/Choking-Prevention.aspx) | American Academy of Pediatrics (HealthyChildren.org) | US | upd. 2026-02-27 | 2026-10-28 | curl + pandoc (full text) |
@@ -226,5 +225,15 @@ Reused claims (not re-authored):
 
 ## Open items for the lead
 
-- If Workstream E also registers `https://www.cdc.gov/act-early/milestones/3-years.html` (it borders E's band), the duplicate-URL error will be reported in whichever file loads second (`e.json` loads before `f.json`). One file should reuse the other's ID. Mine is `src.cdc.milestones-3-years`.
-- Spot-check the CDC 4-year tips list in a browser; the fetch tool paraphrased every bullet.
+- **Parallel-work collisions, now resolved in `f.json`.**
+  - Workstream E registered `src.cdc.milestones-3-years` and `src.aap-hc.safety-2-to-4-years` with the same IDs and URLs as mine. I removed my two copies, and F's claims now cite E's records.
+  - E's notes differ slightly from mine. E reports only "read through a fetch tool" for the CDC 3-year page; mine added that the tool returned near-verbatim segments.
+  - E also has `act.set-the-table-helper` (24m–48m). I removed my record with the same ID instead of renaming a near-duplicate idea. My version ran 36m–60m and added counting places. If you want 48m–60m covered, consider widening E's `ageMax` to `60m`, or ask me for a distinct older-child chore.
+- **Overlapping ideas at 36m–48m.** E's ranges reach 48m, so the same idea now appears in both files for 36m–48m (different IDs, so the validator accepts them):
+  - `act.playdough-squish-and-roll` (E) and `act.playdough-squish-and-shape` (F)
+  - `act.preschool-playground-area` (E) and `act.preschool-playground` (F)
+  - `act.nature-find-walk` (E) and `act.nature-hunt-and-count` (F)
+  - `act.follow-the-leader-parade` (E) and `act.copycat-moves` (F)
+
+  F's versions add preschool details: cutters and small parts, swing pumping, a counting list, and hop and skip moves. You may want to cap E's versions at 36m or 48m, or start F's at 48m. I have not changed them.
+- **CDC 4-year tips.** Spot-check them in a browser; the fetch tool paraphrased every bullet.
