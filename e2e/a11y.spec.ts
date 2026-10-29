@@ -1,6 +1,6 @@
 import AxeBuilder from '@axe-core/playwright';
 import { expect, test } from '@playwright/test';
-import { addSecondChild, freshStart, setAge } from './helpers.ts';
+import { addRoutine, addSecondChild, blankPlan, freshStart, setAge } from './helpers.ts';
 
 // Automated accessibility scan (WCAG 2.1 A/AA rules in axe-core). Automated
 // checks catch only part of accessibility; keyboard and zoom checks live in
@@ -43,5 +43,33 @@ test('share and image dialogs have no axe violations', async ({ page }) => {
   await page.getByRole('dialog').getByRole('button', { name: 'Close' }).click();
   await page.getByRole('button', { name: 'Save as image' }).click();
   await expect(page.getByRole('dialog').getByRole('link', { name: /^Download/ }).first()).toBeVisible({ timeout: 20_000 });
+  expect(await scan(page)).toEqual([]);
+});
+
+test('routine blocks, menus, timing cues, and right-now toggles have no axe violations', async ({ page }) => {
+  await freshStart(page);
+  await setAge(page, 1, 4, 'months');
+  await addSecondChild(page);
+  await setAge(page, 2, 28, 'months');
+  await page.getByRole('group', { name: 'Child 1', exact: true }).getByRole('button', { name: 'Just fed' }).click();
+  await page.getByRole('group', { name: 'Child 2', exact: true }).getByRole('button', { name: 'Nap soon' }).click();
+  await page.locator('details.set-aside summary').click();
+  expect(await scan(page)).toEqual([]);
+  await blankPlan(page, '13:00');
+  await addRoutine(page, { routine: 'Nap', who: 'Child 1', at: '13:00', length: '1 hr', adult: 'Free after settling about 10 min' });
+  await page.getByRole('button', { name: 'Fill around these blocks' }).click();
+  await expect(page.locator('.along-track').first()).toBeVisible();
+  expect(await scan(page)).toEqual([]);
+  await page.getByRole('button', { name: /^\+ Add block/ }).click();
+  await expect(page.getByRole('menu')).toBeVisible();
+  expect(await scan(page)).toEqual([]);
+  await page.getByRole('menuitem', { name: 'Milk feed' }).click();
+  expect(await scan(page)).toEqual([]);
+  await page.getByRole('button', { name: 'Save', exact: true }).click();
+  await page.goto('#/saved');
+  await page.getByRole('button', { name: /^More:/ }).first().click();
+  expect(await scan(page)).toEqual([]);
+  await page.goto('#/a/act.tummy-time-reach-and-play');
+  await page.locator('details.cue summary').first().click();
   expect(await scan(page)).toEqual([]);
 });

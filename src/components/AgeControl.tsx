@@ -179,8 +179,8 @@ export function AgeControl(props: {
           </button>
         )}
         {props.onRemove && (
-          <button type="button" className="quiet-button" onClick={props.onRemove}>
-            Remove {props.label.toLowerCase()}
+          <button type="button" className="quiet-button" onClick={props.onRemove} aria-label={`Remove ${props.label.toLowerCase()}`}>
+            Remove
           </button>
         )}
         {props.onAddSibling && (

@@ -59,6 +59,8 @@ interface Block {
   indent: number;
   /** Don't end a page on this block (a track heading stays with its first entry). */
   keepWithNext?: boolean;
+  /** For entries in an alongside track: the track's heading, repeated when a page starts mid-track. */
+  track?: string;
 }
 
 function font(weight: number, size: number) {
@@ -144,7 +146,8 @@ function entryBlock(ctx: CanvasRenderingContext2D, e: EntryAnalysis, plan: Plan,
   roles.forEach((r, i) => b.push(`${r.who}: ${r.text}`, 450, 30, UI.text, i === 0 ? 8 : 4));
   if (e.timing.cue) {
     const who = plan.kids.length === 2 && seg.kind === 'recipe' ? `${childLabel(e.timing.cue.finding.child === 1 ? 1 : 0)}: ` : '';
-    b.push(`◷ ${who}${e.timing.cue.text}`, 650, 28, e.timing.cue.tone === 'good' ? UI.text : UI.safety, 8);
+    const good = e.timing.cue.tone === 'good';
+    b.push(`${good ? '◆' : '◷'} ${who}${e.timing.cue.text}`, 650, 28, good ? UI.text : UI.safety, 8);
   }
   if (e.timeIssue) b.push(`! ${TIME_ISSUE_TEXT[e.timeIssue]}`, 550, 27, UI.safety, 6);
   for (const cf of e.conflicts) if (cf.kind !== 'timing' && cf.severity === 'conflict') b.push(`Check: ${cf.message}`, 600, 27, UI.danger, 6);
@@ -164,16 +167,23 @@ function gapBlock(ctx: CanvasRenderingContext2D, g: Gap, plan: Plan, width: numb
   return b.block('gap', indent);
 }
 
+function trackHead(ctx: CanvasRenderingContext2D, text: string, width: number): Block {
+  const b = new Builder(ctx, width - 2 * M - INDENT - PAD);
+  b.push(text, 750, 30, UI.text);
+  return { ...b.block('head', INDENT), height: b.lines.reduce((h, l) => h + l.size * LINE, 0) + 8 };
+}
+
 export function planBlocks(ctx: CanvasRenderingContext2D, plan: Plan, analysis: PlanAnalysis, c: IndexedCatalog, opts: ExportOptions, width: number): Block[] {
   const blocks: Block[] = [];
   for (const row of planRows(plan, analysis)) {
     if (row.kind === 'entry') blocks.push(entryBlock(ctx, row.entry, plan, c, opts, width, 0));
     else if (row.kind === 'gap') blocks.push(gapBlock(ctx, row.gap, plan, width, 0));
     else {
-      const b = new Builder(ctx, width - 2 * M - INDENT - PAD);
-      b.push(`While ${childLabel(row.hostLane)} ${row.verb} · ${childLabel(row.otherLane)}:`, 750, 30, UI.text);
-      blocks.push({ ...b.block('head', INDENT), height: b.lines.reduce((h, l) => h + l.size * LINE, 0) + 8, keepWithNext: row.items.length > 0 });
-      for (const t of row.items) blocks.push(t.kind === 'entry' ? entryBlock(ctx, t.entry, plan, c, opts, width, INDENT) : gapBlock(ctx, t.gap, plan, width, INDENT));
+      const heading = `While ${childLabel(row.hostLane)} ${row.verb} · ${childLabel(row.otherLane)}:`;
+      // The routine, its track heading, and the first thing in the track stay together.
+      if (blocks.length) blocks[blocks.length - 1].keepWithNext = true;
+      blocks.push({ ...trackHead(ctx, heading, width), keepWithNext: row.items.length > 0 });
+      for (const t of row.items) blocks.push({ ...(t.kind === 'entry' ? entryBlock(ctx, t.entry, plan, c, opts, width, INDENT) : gapBlock(ctx, t.gap, plan, width, INDENT)), track: heading });
     }
   }
   if (analysis.overrun > 0) {
@@ -184,18 +194,25 @@ export function planBlocks(ctx: CanvasRenderingContext2D, plan: Plan, analysis: 
   return blocks;
 }
 
-/** Pack blocks onto pages without shrinking text. A block taller than a page gets a page of its own. */
-export function paginate(blocks: Block[], firstRoom: number, nextRoom: number): Block[][] {
+/**
+ * Pack blocks onto pages without shrinking text. A block taller than a page gets
+ * a page of its own. A page that starts inside an alongside track repeats the
+ * track's heading, so the child labels still make sense.
+ */
+export function paginate(blocks: Block[], firstRoom: number, nextRoom: number, continued: (track: string) => Block = (t) => ({ lines: [], height: 0, shade: 'head', indent: INDENT, track: t })): Block[][] {
   const pages: Block[][] = [[]];
   let room = firstRoom;
   for (let i = 0; i < blocks.length; i++) {
     const b = blocks[i];
     const cur = pages[pages.length - 1];
-    // A heading that must stay with the next block needs room for both.
-    const need = b.keepWithNext && blocks[i + 1] ? b.height + GAP + blocks[i + 1].height : b.height;
+    // Blocks that must stay with what follows (a routine, its track heading, the first entry) need room together.
+    let need = b.height;
+    for (let j = i; blocks[j]?.keepWithNext && blocks[j + 1]; j++) need += GAP + blocks[j + 1].height;
+    if (need > nextRoom) need = b.height;
     if (need > room && cur.length > 0) {
-      pages.push([b]);
-      room = nextRoom - b.height - GAP;
+      const head = b.track ? continued(b.track) : null;
+      pages.push(head ? [head, b] : [b]);
+      room = nextRoom - b.height - GAP - (head ? head.height + GAP : 0);
     } else {
       cur.push(b);
       room -= b.height + GAP;
@@ -231,9 +248,9 @@ export async function renderPlanImages(plan: Plan, c: IndexedCatalog, format: Ex
   const logoH = logoW / 3;
 
   const headerFirst = 330;
-  const headerNext = 230;
-  const footer = 132;
-  const pages = paginate(blocks, height - headerFirst - footer, height - headerNext - footer);
+  const headerNext = 210;
+  const footer = 124;
+  const pages = paginate(blocks, height - headerFirst - footer, height - headerNext - footer, (track) => trackHead(ctx, `${track.replace(/:$/, '')} (continued):`, width));
 
   const url = siteUrl();
   const out: RenderedPage[] = [];
@@ -276,10 +293,7 @@ export async function renderPlanImages(plan: Plan, c: IndexedCatalog, format: Ex
     for (const b of pages[p]) {
       const x = M + b.indent;
       const w = width - M - x;
-      if (b.shade === 'head') {
-        ctx.fillStyle = BRAND.sky;
-        ctx.fillRect(M + 8, y - GAP, 6, b.height + GAP * 2);
-      } else {
+      if (b.shade !== 'head') {
         if (b.shade === 'routine' || b.shade === 'soft' || b.shade === 'gap') {
           ctx.fillStyle = b.shade === 'routine' ? UI.skySoft : UI.surface;
           ctx.fillRect(x, y, w, b.height);
@@ -310,18 +324,18 @@ export async function renderPlanImages(plan: Plan, c: IndexedCatalog, format: Ex
     ctx.strokeStyle = UI.line;
     ctx.lineWidth = 2;
     ctx.beginPath();
-    ctx.moveTo(M, height - footer + 16);
-    ctx.lineTo(width - M, height - footer + 16);
+    ctx.moveTo(M, height - footer + 12);
+    ctx.lineTo(width - M, height - footer + 12);
     ctx.stroke();
     ctx.fillStyle = UI.muted;
     ctx.font = font(600, 26);
-    ctx.fillText('Estimated times', M, height - footer + 36);
+    ctx.fillText('Estimated times', M, height - footer + 30);
     ctx.fillStyle = UI.text;
     ctx.font = font(700, 28);
-    ctx.fillText(url, M, height - footer + 74);
+    ctx.fillText(url, M, height - footer + 66);
     if (pages.length > 1) {
       const label = `${p + 1} / ${pages.length}`;
-      ctx.fillText(label, width - M - ctx.measureText(label).width, height - footer + 74);
+      ctx.fillText(label, width - M - ctx.measureText(label).width, height - footer + 66);
     }
 
     const blob = await new Promise<Blob>((resolve, reject) => canvas.toBlob((b) => (b ? resolve(b) : reject(new Error('Could not create image'))), 'image/png'));

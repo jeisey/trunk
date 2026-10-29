@@ -111,7 +111,8 @@ a {
 .skip-link {
   position: absolute;
   left: 8px;
-  top: -60px;
+  top: 8px;
+  transform: translateY(calc(-100% - 16px));
   z-index: 50;
   background: var(--action);
   color: var(--on-action);
@@ -119,7 +120,7 @@ a {
   border-radius: var(--radius-sm);
 }
 .skip-link:focus {
-  top: 8px;
+  transform: none;
 }
 
 /* ---------- Layout ---------- */
@@ -547,6 +548,8 @@ input[type='range'] {
   display: flex;
   align-items: center;
   gap: 6px;
+  min-width: 0;
+  max-width: 100%;
   font-size: 0.9rem;
   font-weight: 600;
   color: var(--muted);
@@ -573,6 +576,11 @@ input[type='number'] {
   width: 6.5em;
 }
 
+.moment-detail select {
+  min-width: 0;
+  flex: 1 1 auto;
+}
+
 textarea {
   width: 100%;
   min-height: 88px;
@@ -594,6 +602,20 @@ textarea {
 .field input {
   color: var(--text);
   font-weight: 400;
+}
+
+/* Long option text must never widen the page: fields and rows may shrink below their content. */
+.field,
+.field select,
+.timeline > li,
+.timeline .seg,
+.add-panel,
+.add-panel > * {
+  min-width: 0;
+}
+
+.field select {
+  width: 100%;
 }
 
 .field-error {
@@ -1095,6 +1117,10 @@ details.cue.cue-avoid > summary {
   margin-top: 12px;
 }
 
+.timeline > .empty {
+  margin-top: 0;
+}
+
 .relax-list {
   display: grid;
   gap: 8px;
@@ -1196,6 +1222,17 @@ details.cue.cue-avoid > summary {
   padding-left: 1.2em;
   display: grid;
   gap: 4px;
+}
+
+/* Grid items may shrink below their longest word, so very large text wraps instead of widening the page. */
+.bullets > li,
+.steps > li,
+.cue-list > li,
+.safety-box li,
+.idea-list > li,
+.saved-list > li,
+.option-list > li {
+  min-width: 0;
 }
 
 .safety-box {
@@ -1451,7 +1488,7 @@ details.sources summary {
 }
 
 .time-button {
-  min-height: 36px;
+  min-height: var(--tap);
   padding: 2px 8px;
   margin-left: -8px;
   border-color: transparent;

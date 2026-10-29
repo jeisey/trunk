@@ -644,8 +644,8 @@ export function PlanEditor({
           {tally.supported > 0 ? `, and ${tally.supported} min held or supported (not counted as flat-surface time)` : ''}. Count only the minutes your baby is actually on their tummy, awake and watched.
         </p>
       )}
-      {plan.segments.length === 0 && <p className="empty">This plan is empty. Add an activity, a nap or feed, a break, or your own entry.</p>}
       <ol className="timeline" ref={listRef} aria-label="Plan timeline">
+        {plan.segments.length === 0 && <li className="empty">This plan is empty. Add an activity, a nap or feed, a break, or your own entry.</li>}
         {rows}
         {analysis.overrun > 0 && (
           <li className="seg overrun" role="note">

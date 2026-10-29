@@ -362,6 +362,7 @@ test('compatibility: v1 saved plans, v1 draft, v1 share link, and v1 plan file o
     { plans: [v1Plan('p-v1-legacy-1', 'Old Tuesday plan'), v1Plan('p-v1-legacy-2', '')] },
   );
   await page.goto('#/saved');
+  await page.reload();
   await expect(page.getByText('Saved on this device · 2/10')).toBeVisible();
   await expect(page.locator('.saved-title', { hasText: 'Old Tuesday plan' })).toBeVisible();
   // An old plan with no title shows the generated default, never "Untitled plan".
@@ -418,20 +419,33 @@ test('compatibility: v1 saved plans, v1 draft, v1 share link, and v1 plan file o
 
 const GENERAL_CAVEATS = /individually reviewed by a clinician|not medical advice|corrected age|age is (only )?a starting point|follow your child’s cues|not a (feeding|sleep|wake)|isn’t a feeding|one family reports|neonatal/i;
 
+/** Trunk's own words on screen: quoted source claims (which carry their own scope notes) and closed disclosures are left out. */
+async function ownText(page: Page, selector = 'main'): Promise<string> {
+  return page.locator(selector).evaluate((el) => {
+    const copy = el.cloneNode(true) as HTMLElement;
+    copy.querySelectorAll('.claim, details:not([open]) > :not(summary)').forEach((n) => n.remove());
+    return copy.textContent ?? '';
+  });
+}
+
 test('copy: general clinical caveats live on About; specific instructions, timing reasons, and sources still work', async ({ page, browser }) => {
   const errors = trackErrors(page);
   await freshStart(page);
   await setAge(page, 1, 2, 'months');
-  await expect(page.locator('main')).not.toContainText(GENERAL_CAVEATS);
+  expect(await ownText(page)).not.toMatch(GENERAL_CAVEATS);
   await page.locator('details.more summary', { hasText: 'More filters' }).click();
   await page.getByRole('group', { name: 'Child 1', exact: true }).getByRole('button', { name: 'Type an age' }).click();
+  expect(await ownText(page)).not.toMatch(GENERAL_CAVEATS);
+  await setAge(page, 1, 8, 'months');
   await page.getByRole('group', { name: 'Child 1', exact: true }).getByRole('button', { name: /Readiness/ }).click();
-  await expect(page.locator('main')).not.toContainText(GENERAL_CAVEATS);
+  await expect(page.getByText('Mark anything your child isn’t doing yet')).toBeVisible();
+  expect(await ownText(page)).not.toMatch(GENERAL_CAVEATS);
+  await setAge(page, 1, 2, 'months');
 
   // Activity detail: specific supervision and safety stay; the timing reason and sources expand.
   await page.getByRole('group', { name: 'Child 1', exact: true }).getByRole('button', { name: 'Just fed' }).click();
   await page.goto('#/a/act.tummy-time-floor-face-to-face');
-  await expect(page.locator('main')).not.toContainText(GENERAL_CAVEATS);
+  expect(await ownText(page)).not.toMatch(GENERAL_CAVEATS);
   await expect(page.locator('.your-part')).toContainText('Your part');
   await expect(page.getByRole('heading', { name: 'Safety' })).toBeVisible();
   await expect(page.locator('.safety-box')).toContainText(/awake/);
@@ -441,31 +455,31 @@ test('copy: general clinical caveats live on About; specific instructions, timin
   await expect(cue).toContainText(/HSE/);
   await expect(cue).toContainText(/Trunk’s convention|Trunk’s planning/);
   await expect(page.locator('#tummy-guide')).toHaveText('Tummy time position');
-  await expect(page.locator('main')).not.toContainText(/hospital|neonatal/i);
+  expect(await ownText(page)).not.toMatch(/hospital|neonatal/i);
   await page.locator('details.sources summary').click();
   await expect(page.locator('details.sources .claim').first()).toBeVisible();
   await page.locator('.disclosures summary', { hasText: 'Who it’s for' }).click();
-  await expect(page.locator('main')).not.toContainText(/age is a starting point/i);
+  expect(await ownText(page)).not.toMatch(/age is a starting point/i);
 
   // Planner, saved, shared.
   await page.goto('#/');
   await page.getByRole('button', { name: 'Plan the next 30 minutes' }).click();
   await expect(timeline(page)).toBeVisible();
-  await expect(page.locator('main')).not.toContainText(GENERAL_CAVEATS);
+  expect(await ownText(page)).not.toMatch(GENERAL_CAVEATS);
   await page.getByRole('button', { name: 'Save', exact: true }).click();
   await page.getByRole('button', { name: 'Share link' }).click();
   const url = await page.getByRole('dialog').getByLabel(/Link \(/).inputValue();
-  await expect(page.getByRole('dialog')).not.toContainText(GENERAL_CAVEATS);
+  expect(await ownText(page, 'dialog')).not.toMatch(GENERAL_CAVEATS);
   await page.getByRole('dialog').getByRole('button', { name: 'Close' }).click();
   await page.goto('#/saved');
-  await expect(page.locator('main')).not.toContainText(GENERAL_CAVEATS);
+  expect(await ownText(page)).not.toMatch(GENERAL_CAVEATS);
   await expect(page.locator('main')).not.toContainText(/Clearing site data|private browsing/);
   await expect(page.getByText(/^Saved on this device · 1\/10$/)).toBeVisible();
   const ctx = await browser.newContext({ viewport: { width: 390, height: 844 } });
   const other = await ctx.newPage();
   await other.goto(url);
   await expect(other.getByRole('heading', { name: 'A shared plan' })).toBeVisible();
-  await expect(other.locator('main')).not.toContainText(GENERAL_CAVEATS);
+  expect(await ownText(other)).not.toMatch(GENERAL_CAVEATS);
   await ctx.close();
 
   // About holds them, reachable from the header.
