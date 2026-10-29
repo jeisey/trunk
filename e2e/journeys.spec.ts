@@ -90,10 +90,17 @@ test('3. busy cooking dinner: honest attention needs, no hazards, media only whe
   await choose(page, 'Minutes you have', 'Any');
   const cards = page.locator('.idea-list > li');
   expect(await cards.count()).toBeGreaterThanOrEqual(2);
+  // Cross-check every result against the generated catalog: honest supervision, no undivided-attention hazards.
+  const catalog = JSON.parse(readFileSync(join(import.meta.dirname, '..', 'src/generated/catalog.json'), 'utf8')) as {
+    activities: { title: string; hazards: string[]; supervision: { participation: string; proximity: string; handsOn: string; shareable: boolean } }[];
+  };
   for (const text of await cards.allInnerTexts()) {
     expect(text).toMatch(/Same room, keeping an eye on them/);
     expect(text).not.toMatch(/Needs your full attention/);
-    expect(text.toLowerCase()).not.toMatch(/water play|bath|snack|stove/);
+    const record = catalog.activities.find((a) => text.startsWith(a.title));
+    expect(record, text.slice(0, 40)).toBeTruthy();
+    expect(record!.hazards.filter((h) => ['water', 'heat', 'food', 'traffic'].includes(h))).toEqual([]);
+    expect(record!.supervision).toMatchObject({ participation: 'watches', proximity: 'same-room', handsOn: 'none', shareable: true });
   }
   await expect(page.getByText(/You still need to keep watching/)).toBeVisible();
   const media = cards.filter({ hasText: 'Screen option' });
@@ -104,6 +111,7 @@ test('3. busy cooking dinner: honest attention needs, no hazards, media only whe
   await expect(page.getByText('No-screen alternative:')).toBeVisible();
   await page.screenshot({ path: join(ARTIFACTS, 'j3-media-detail.png'), fullPage: true });
   await page.goBack();
+  await expect(page.getByRole('heading', { name: /ideas? for age/ })).toBeVisible();
   // A younger toddler in the same context gets no screen option.
   await setAge(page, 1, 14, 'months');
   await expect(page.locator('.idea-list > li', { hasText: 'Screen option' })).toHaveCount(0);

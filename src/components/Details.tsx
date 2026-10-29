@@ -30,7 +30,7 @@ function MediaNote({ c, a, childAge }: { c: IndexedCatalog; a: Activity; childAg
     <section className="note-box" aria-labelledby="media-note">
       <h2 id="media-note">About this screen option</h2>
       <p>
-        A show can buy you a few minutes. It isn’t the same as playing together, and you still need to keep watch. Watching with your child and talking about it afterward adds back some of the connection.
+        A show can buy you a few minutes. It isn’t the same as playing together, and you still need to keep watch. When you can, current guidance encourages watching with your child and talking about it afterward.
       </p>
       {alternative && (
         <p>

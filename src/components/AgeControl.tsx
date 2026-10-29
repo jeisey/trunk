@@ -1,4 +1,4 @@
-import { useId, useState } from 'react';
+import { useId, useRef, useState } from 'react';
 import type { Ability } from '../content/schema.ts';
 import { AGE_STOPS, formatAge, nearestStopIndex, normalizeEnteredAge, type AgeUnit, type EnteredAge } from '../lib/age.ts';
 import { ABILITY_LABEL } from '../lib/labels.ts';
@@ -29,6 +29,7 @@ export function AgeControl(props: {
   const id = useId();
   const index = nearestStopIndex(child.age);
   const [typing, setTyping] = useState(false);
+  const typeButton = useRef<HTMLButtonElement>(null);
   const [draftValue, setDraftValue] = useState(String(child.age.value));
   const [draftUnit, setDraftUnit] = useState<AgeUnit>(child.age.unit);
   const ageText = formatAge(child.age);
@@ -45,6 +46,8 @@ export function AgeControl(props: {
     onChange({ ...child, age: next });
     setDraftValue(String(next.value));
     setDraftUnit(next.unit);
+    setTyping(false);
+    requestAnimationFrame(() => typeButton.current?.focus());
   };
 
   const toggleAbility = (a: Ability) => {
@@ -89,6 +92,7 @@ export function AgeControl(props: {
       </div>
       <div className="age-extra">
         <button
+          ref={typeButton}
           type="button"
           className="quiet-button"
           aria-expanded={typing}
