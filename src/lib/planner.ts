@@ -235,6 +235,6 @@ export function planWindow(c: IndexedCatalog, input: PlannerInput): PlannerResul
 export function alternativesFor(c: IndexedCatalog, kids: PlanKid[], settings: PlanSettings, exclude: readonly string[], seed = 0): Candidate[] {
   const { pool } = candidatesFor(c, kids, settings, null);
   return pool
-    .filter((p) => !exclude.includes(p.id))
+    .filter((p) => !exclude.includes(p.id) && !p.food)
     .sort((a, b) => (hash(`${seed}:${b.id}`) % 97) - (hash(`${seed}:${a.id}`) % 97) || a.id.localeCompare(b.id));
 }

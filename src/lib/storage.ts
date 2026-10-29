@@ -147,6 +147,44 @@ export class PlanStore {
     return null;
   }
 
+  /**
+   * Re-read what is stored right now, so a write never drops plans another tab
+   * saved since this tab loaded. Unreadable or newer data leaves the in-memory
+   * list as it is (load() reports those cases).
+   */
+  private sync(): void {
+    if (!this.storage || this.status === 'newer') return;
+    let text: string | null;
+    try {
+      text = this.storage.getItem(STORE_KEY);
+    } catch {
+      return;
+    }
+    if (text === null) {
+      this.plans = [];
+      return;
+    }
+    let env: ReturnType<typeof migrate>;
+    try {
+      env = migrate(JSON.parse(text));
+    } catch {
+      return;
+    }
+    if (!env || env === 'newer') return;
+    const fresh: Plan[] = [];
+    for (const item of env.plans) {
+      const p = Plan.safeParse(item);
+      if (p.success && !fresh.some((x) => x.id === p.data.id)) fresh.push(p.data);
+    }
+    this.plans = fresh.slice(0, MAX_PLANS);
+  }
+
+  /** Pick up changes made in another tab (call on the window "storage" event). */
+  refresh(): Plan[] {
+    this.sync();
+    return this.plans;
+  }
+
   list(): Plan[] {
     return this.plans;
   }
@@ -159,6 +197,7 @@ export class PlanStore {
   save(plan: Plan): SaveResult {
     const parsed = Plan.safeParse(plan);
     if (!parsed.success) return { ok: false, reason: 'invalid', message: 'This plan has invalid data and wasn’t saved.' };
+    this.sync();
     const exists = this.plans.some((p) => p.id === plan.id);
     if (!exists && this.plans.length >= MAX_PLANS) {
       return { ok: false, reason: 'limit', message: `You already have ${MAX_PLANS} saved plans. Delete one to save this; nothing was overwritten.` };
@@ -169,6 +208,7 @@ export class PlanStore {
   }
 
   remove(id: string): SaveResult & { removed?: Plan; index?: number } {
+    this.sync();
     const index = this.plans.findIndex((p) => p.id === id);
     if (index === -1) return { ok: true, plans: this.plans, action: 'updated' };
     const removed = this.plans[index];
@@ -179,6 +219,7 @@ export class PlanStore {
 
   /** Undo a delete, restoring the plan at its old position if there is room. */
   restore(plan: Plan, index: number): SaveResult {
+    this.sync();
     if (this.plans.some((p) => p.id === plan.id)) return { ok: true, plans: this.plans, action: 'updated' };
     if (this.plans.length >= MAX_PLANS) return { ok: false, reason: 'limit', message: 'There’s no room to restore that plan.' };
     const next = [...this.plans];

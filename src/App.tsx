@@ -7,7 +7,8 @@ import { planWindow, type PlannerResult } from './lib/planner.ts';
 import { newId, newPlanId, youngerFor, type Plan, type PlanSegment } from './lib/plan.ts';
 import { reconcileSegments } from './lib/reconcile.ts';
 import { importPlanFile, ShareError } from './lib/share.ts';
-import { PlanStore, type StoreStatus } from './lib/storage.ts';
+import { PlanStore, STORE_KEY, type StoreStatus } from './lib/storage.ts';
+import { Plan as PlanSchema } from './lib/plan.ts';
 import { cleanText, LIMITS } from './lib/text.ts';
 import { nextStart } from './lib/time.ts';
 import { loadPrefs, savePrefs, type Prefs } from './state.ts';
@@ -22,6 +23,22 @@ import { SharedView } from './components/SharedView.tsx';
 import { Toast, type ToastState } from './components/Toast.tsx';
 
 const ExportDialog = lazy(() => import('./export/ExportDialog.tsx'));
+
+const DRAFT_KEY = 'trunk.draft';
+
+/** The plan that was open in this tab before a reload, if it is still valid. */
+const restoredDraft: { plan: Plan; snapshot: string | null } | null = (() => {
+  try {
+    const raw = window.sessionStorage.getItem(DRAFT_KEY);
+    if (!raw) return null;
+    const parsed = JSON.parse(raw) as { plan?: unknown; snapshot?: unknown };
+    const plan = PlanSchema.safeParse(parsed.plan);
+    if (!plan.success) return null;
+    return { plan: plan.data, snapshot: typeof parsed.snapshot === 'string' ? parsed.snapshot : null };
+  } catch {
+    return null;
+  }
+})();
 
 type Route =
   | { name: 'find' }
@@ -56,11 +73,13 @@ export function App() {
   const store = useMemo(() => new PlanStore(), []);
   const [saved, setSaved] = useState<Plan[]>([]);
   const [storeStatus, setStoreStatus] = useState<{ status: StoreStatus; message?: string }>({ status: 'ok' });
-  const [draft, setDraft] = useState<Plan | null>(null);
-  const [savedSnapshot, setSavedSnapshot] = useState<string | null>(null);
+  const [draft, setDraft] = useState<Plan | null>(() => restoredDraft?.plan ?? null);
+  const [savedSnapshot, setSavedSnapshot] = useState<string | null>(() => restoredDraft?.snapshot ?? null);
   const [lastResult, setLastResult] = useState<PlannerResult | null>(null);
   const [windowMinutes, setWindowMinutes] = useState(90);
   const [start, setStart] = useState(() => nextStart());
+  /** True once the parent sets a start time themselves; otherwise new plans start now. */
+  const startTouched = useRef(false);
   const [sharing, setSharing] = useState(false);
   const [exporting, setExporting] = useState(false);
   const [toast, setToast] = useState<ToastState | null>(null);
@@ -75,6 +94,36 @@ export function App() {
   }, [store]);
 
   useEffect(() => savePrefs(prefs), [prefs]);
+
+  // Keep the open plan through a reload or a discarded tab (this tab only).
+  useEffect(() => {
+    try {
+      if (draft) window.sessionStorage.setItem(DRAFT_KEY, JSON.stringify({ plan: draft, snapshot: savedSnapshot }));
+      else window.sessionStorage.removeItem(DRAFT_KEY);
+    } catch {
+      /* a convenience only */
+    }
+  }, [draft, savedSnapshot]);
+
+  // Saved plans changed in another tab.
+  useEffect(() => {
+    const onStorage = (e: StorageEvent) => {
+      if (e.key === STORE_KEY || e.key === null) setSaved([...store.refresh()]);
+    };
+    window.addEventListener('storage', onStorage);
+    return () => window.removeEventListener('storage', onStorage);
+  }, [store]);
+
+  // Hide the bottom nav only while an on-screen keyboard is open, so it never
+  // covers the keyboard and never jumps under a tap on Save or Share.
+  useEffect(() => {
+    const vv = window.visualViewport;
+    if (!vv) return;
+    const update = () => document.body.classList.toggle('keyboard-open', vv.height < window.innerHeight * 0.75);
+    vv.addEventListener('resize', update);
+    update();
+    return () => vv.removeEventListener('resize', update);
+  }, []);
 
   // Prefetch claims and sources once the first screen is up.
   useEffect(() => {
@@ -127,18 +176,22 @@ export function App() {
     return kids.length === 2 && prefs.filters.focus !== 'both' ? [kids[prefs.filters.focus]] : kids;
   };
 
-  const generate = (minutes = windowMinutes) => {
+  const generate = (minutes = windowMinutes, fromNow = false) => {
     const planKids = planChildren();
     const settings = settingsFromFilters(prefs.filters);
     const s = seed + 1;
     setSeed(s);
-    const result = planWindow(c, { kids: planKids, settings, window: minutes, seed: s, start });
+    // "The next N minutes" means from now, unless the parent chose a start time.
+    const begin = fromNow || !startTouched.current ? nextStart() : start;
+    if (begin !== start) setStart(begin);
+    if (fromNow) startTouched.current = false;
+    const result = planWindow(c, { kids: planKids, settings, window: minutes, seed: s, start: begin });
     setLastResult(result);
     if (result.blocked) {
       announce(result.blocked.reason);
       return;
     }
-    setDraft(makePlan(planKids, settings, start, minutes, result.segments));
+    setDraft(makePlan(planKids, settings, begin, minutes, result.segments));
     setSavedSnapshot(null);
     announce(`Made a ${minutes}-minute plan with ${result.segments.length} entries.`);
   };
@@ -150,7 +203,7 @@ export function App() {
       notify('You have an unsaved plan open. Tap “Make a new plan” to replace it.');
       return;
     }
-    generate(minutes);
+    generate(minutes, true);
     go('#/plan');
   };
 
@@ -176,6 +229,7 @@ export function App() {
     setLastResult(null);
     setWindowMinutes(plan.window);
     setStart(plan.start);
+    startTouched.current = false;
     go('#/plan');
     if (dropped.length) notify(`${dropped.length} item(s) no longer fit and were left out.`);
   };
@@ -212,13 +266,16 @@ export function App() {
     if (!r.ok) return notify(r.message);
     setSaved(r.plans);
     const { removed, index } = r;
+    if (draft?.id === plan.id) setSavedSnapshot(null);
     notify(`Deleted “${plan.title || 'Untitled plan'}”.`, removed
       ? {
           label: 'Undo',
           run: () => {
             const back = store.restore(removed, index ?? 0);
-            if (back.ok) setSaved(back.plans);
-            else notify(back.message);
+            if (back.ok) {
+              setSaved(back.plans);
+              if (draft?.id === removed.id) setSavedSnapshot(JSON.stringify(removed));
+            } else notify(back.message);
           },
         }
       : undefined);
@@ -233,7 +290,8 @@ export function App() {
   const onRename = (plan: Plan, title: string) => {
     const updated = { ...plan, title: cleanText(title, LIMITS.title), updatedAt: new Date().toISOString() };
     if (savePlan(updated) && draft?.id === plan.id) {
-      setDraft(updated);
+      // Keep any unsaved edits in the open plan; only the name changes.
+      setDraft((d) => (d ? { ...d, title: updated.title, updatedAt: updated.updatedAt } : d));
       setSavedSnapshot(JSON.stringify(updated));
     }
   };
@@ -249,7 +307,9 @@ export function App() {
   };
 
   const kidsAges = prefs.kids.map((k) => k.age);
-  const detailAge = prefs.kids.length === 2 && prefs.filters.focus !== 'both' ? prefs.kids[prefs.filters.focus].age : prefs.kids[0].age;
+  // With two children on "Both", single-child pages don't assume either child's age.
+  const detailChild = prefs.kids.length === 2 ? (prefs.filters.focus === 'both' ? null : prefs.kids[prefs.filters.focus]) : prefs.kids[0];
+  const detailAge = detailChild?.age;
 
   let view: React.ReactNode;
   switch (route.name) {
@@ -272,14 +332,14 @@ export function App() {
       break;
     case 'activity': {
       const a = c.activityById.get(route.id);
-      const childInput = { days: toDays(detailAge), notYet: [] };
+      const childInput = detailChild ? { days: toDays(detailChild.age), notYet: detailChild.notYet } : null;
       view = a ? (
         <ActivityDetail
           c={c}
           a={a}
           childAge={detailAge}
           onBack={back}
-          onAdd={!a.retired && activityEligible(a, childInput, prefs.filters.adults) && !(prefs.kids.length === 2 && prefs.filters.focus === 'both') ? () => addToPlan('activity', a.id) : undefined}
+          onAdd={childInput && !a.retired && activityEligible(a, childInput, prefs.filters.adults) ? () => addToPlan('activity', a.id) : undefined}
         />
       ) : (
         <NotFound />
@@ -292,7 +352,7 @@ export function App() {
         r && prefs.kids.length === 2
           ? recipeAssignment(r, { days: toDays(kidsAges[0]), notYet: prefs.kids[0].notYet }, { days: toDays(kidsAges[1]), notYet: prefs.kids[1].notYet }) !== null
           : false;
-      view = r ? <RecipeDetail c={c} r={r} ages={kidsAges} onBack={back} onAdd={fits && !r.retired ? () => addToPlan('recipe', r.id) : undefined} /> : <NotFound />;
+      view = r ? <RecipeDetail c={c} r={r} ages={kidsAges} onBack={back} onAdd={fits && !r.retired && prefs.filters.focus === 'both' ? () => addToPlan('recipe', r.id) : undefined} /> : <NotFound />;
       break;
     }
     case 'plan':
@@ -312,11 +372,23 @@ export function App() {
           }}
           onStart={(value) => {
             setStart(value);
+            startTouched.current = value !== nextStart();
             setDraft((d) => (d ? { ...d, start: value, updatedAt: new Date().toISOString() } : d));
           }}
           onFilters={(next) => {
             setFilters(next);
             if (lastResult?.blocked) setLastResult(null);
+            // Energy, place, mode, and adults also apply to the open plan (its swaps, additions,
+            // and time checks); entries that no longer fit are re-checked. "Who's this for?" only
+            // affects the next plan.
+            if (draft) {
+              const settings = settingsFromFilters(next);
+              if (JSON.stringify(settings) !== JSON.stringify(draft.settings)) {
+                const { segments, dropped } = reconcileSegments(draft.kids, settings, draft.segments, c);
+                if (dropped.length) notify(`${dropped.length} item(s) no longer fit and were removed.`);
+                setDraft({ ...draft, settings, segments, updatedAt: new Date().toISOString() });
+              }
+            }
           }}
           onGenerate={() => generate()}
           onPlan={(p, note) => {

@@ -24,7 +24,7 @@ Trunk is a fast, mobile-first website that helps a parent of a child from 1 week
 - **Activities with a consistent structure:** time estimate, setup, 2–4 steps, stop cues, safety notes on the activity itself, adaptations, an optional sourced "why it can help", tummy-time position and target scope where relevant, and expandable sources with checked dates.
 - **Two children, one adult.** "Together" means one curated activity with distinct roles; "side by side" means two compatible tracks one adult can supervise in the same space. Two-child suggestions come only from curated pairings, each re-checked by the one-adult feasibility rules at build time.
 - **Plan a window or a day.** A deterministic client-side planner fills a window with varied activities, setup, flexible breaks, and visible open time. It never stretches an activity past its realistic maximum. Parallel tracks count once in wall-clock time. Every entry can be resized, reordered, swapped, or removed with buttons; parents can add their own entries (no sources attached).
-- **Save and share.** Up to 10 named plans in `localStorage` (versioned, with corrupt/blocked/quota handling and undo). Share links carry a compressed, versioned payload in the URL fragment, default to generic child labels and approximate ages, and leave out names, custom text, and notes unless the parent opts in after a preview. Recipients see a preview that is re-checked against today's catalog and choose whether to save.
+- **Save and share.** Up to 10 named plans in `localStorage` (versioned, with corrupt/blocked/quota handling and undo). Share links carry a compressed, versioned payload in the URL fragment, default to generic child labels and ages in whole weeks or months (no birth dates), and leave out names, custom text, and notes unless the parent opts in after a preview. Recipients see a preview that is re-checked against today's catalog and choose whether to save.
 - **Images.** 1080×1350 feed and 1080×1920 story PNGs, drawn on the device, paginated rather than shrunk, with download links and native file sharing where the browser allows it.
 
 ## Run, test, build
@@ -68,8 +68,8 @@ See [`docs/maintenance.md`](docs/maintenance.md): recheck sources every 6–12 m
 
 ## Checks
 
-- `npm run check`: content validation (schema, references, safety rules, one-adult feasibility) + typecheck + 106 unit tests.
-- `npx playwright test`: the eight browser journeys plus axe accessibility scans, against the production build served under `/trunk/` (Chromium; WebKit runs only where installed, `PW_WEBKIT=1`).
+- `npm run check`: content validation (schema, references, safety rules, one-adult feasibility) + typecheck + 107 unit tests.
+- `npx playwright test`: the eight browser journeys, integration regression tests, and axe accessibility scans, against the production build served under `/trunk/` (Chromium; WebKit runs only where installed, `PW_WEBKIT=1`).
 - Lab performance ([`reports/performance.md`](reports/performance.md)), emulated mobile (4× CPU, 1.6 Mbps): ~175 KB initial JS gzip, LCP ~1.6 s, CLS 0, filter updates ~40 ms. Not a real-device or field measurement.
 
 ## Known limitations
@@ -80,6 +80,8 @@ See [`docs/maintenance.md`](docs/maintenance.md): recheck sources every 6–12 m
 - Two-child suggestions exist only where a curated pairing fits both ages; some gaps (for example a 6-week-old with a 3-year-old) have only two options.
 - Browser journeys were run in headless Chromium in a container (with mobile viewport emulation); not on real phones, and not in WebKit/Safari here.
 - Native file sharing was tested with a mocked `navigator.share`; real share sheets weren't exercised.
+- "Two adults" only unlocks content that needs two adults; none does yet, so it changes nothing today.
+- Deleting two saved plans in a row replaces the first Undo notice with the second.
 - See [`docs/research.md`](docs/research.md) for source-level caveats (pages read through a summarizing tool, sources past their review dates).
 
 ## License

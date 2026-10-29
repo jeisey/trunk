@@ -234,8 +234,9 @@ main {
   height: 22px;
 }
 
-/* Hide the fixed nav while typing so it never covers the on-screen keyboard. */
-body:has(input[type='text']:focus, input[type='number']:focus, input[type='time']:focus, textarea:focus, select:focus) .bottom-nav {
+/* Hidden only while an on-screen keyboard is open (set from visualViewport in App),
+   so it never covers the keyboard and never moves under a tap on Save or Share. */
+body.keyboard-open .bottom-nav {
   display: none;
 }
 

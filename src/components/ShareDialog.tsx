@@ -4,6 +4,7 @@ import { formatAge } from '../lib/age.ts';
 import type { Plan } from '../lib/plan.ts';
 import { DEFAULT_SHARE_OPTIONS, encodePayload, MAX_LINK_LENGTH, shareUrl, toCompact, type ShareOptions } from '../lib/share.ts';
 import { formatClock, parseHHMM } from '../lib/time.ts';
+import { ENERGY_LABEL } from '../lib/filters.ts';
 import { segmentTitle } from './PlanEditor.tsx';
 
 export function downloadBlob(blob: Blob, filename: string) {
@@ -32,7 +33,7 @@ export function ShareDialog({ plan, c, onClose, onExport }: { plan: Plan; c: Ind
     let live = true;
     setCopied(false);
     encodePayload(plan, opts).then((payload) => {
-      if (live) setUrl(shareUrl(window.location.href, payload));
+      if (live) setUrl(shareUrl(`${window.location.origin}${window.location.pathname}`, payload));
     });
     return () => {
       live = false;
@@ -107,6 +108,9 @@ export function ShareDialog({ plan, c, onClose, onExport }: { plan: Plan; c: Ind
             <li>
               Starts {formatClock(parseHHMM(plan.start))}, {plan.window}-minute window
             </li>
+            <li>
+              Settings: {ENERGY_LABEL[plan.settings.energy]} · {plan.settings.place === 'any' ? 'anywhere' : plan.settings.place === 'indoors' ? 'inside' : 'outside'} · {plan.settings.adults === 1 ? 'one adult' : 'two adults'}
+            </li>
           </ul>
           <ol>
             {plan.segments.map((s) => (
@@ -117,7 +121,7 @@ export function ShareDialog({ plan, c, onClose, onExport }: { plan: Plan; c: Ind
           </ol>
           {compact.n && <p style={{ margin: '6px 0 0' }}>Notes: {compact.n}</p>}
           <p className="tiny" style={{ margin: '6px 0 0' }}>
-            No names, birthdays, dates, readiness notes, or saved-plan list are included.
+            Ages are the whole weeks or months entered here. No names, birthdays, dates, readiness notes, or saved-plan list are included.
           </p>
         </div>
         {url === null ? (

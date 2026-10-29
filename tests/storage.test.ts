@@ -58,6 +58,24 @@ describe('saved plans', () => {
     expect(new PlanStore(() => mem).load().plans.map((p) => p.id)).toEqual(['p-test-1', 'p-test-2', 'p-test-3']);
   });
 
+  it('never drops plans saved by another tab', () => {
+    const mem = new MemoryStorage();
+    const tabA = new PlanStore(() => mem);
+    const tabB = new PlanStore(() => mem);
+    tabA.load();
+    tabB.load();
+    tabB.save(plan(1, { title: 'From tab B' }));
+    tabA.save(plan(2, { title: 'From tab A' }));
+    expect(new PlanStore(() => mem).load().plans.map((p) => p.title)).toEqual(['From tab B', 'From tab A']);
+    // The limit applies to the merged list.
+    for (let i = 3; i <= MAX_PLANS; i++) tabB.save(plan(i));
+    const r = tabA.save(plan(99));
+    expect(r.ok).toBe(false);
+    tabA.remove('p-test-1');
+    expect(new PlanStore(() => mem).load().plans).toHaveLength(MAX_PLANS - 1);
+    expect(tabB.refresh().map((p) => p.id)).not.toContain('p-test-1');
+  });
+
   it('rejects malformed plans instead of storing them', () => {
     const { store } = fresh();
     const r = store.save({ ...plan(1), window: -5 } as Plan);

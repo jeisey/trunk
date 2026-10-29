@@ -184,7 +184,8 @@ export function PlanEditor({
     const seg = plan.segments[i];
     const exclude = plan.segments.map((s) => s.ref ?? '');
     swapSeed.current += 1;
-    const options = alternativesFor(c, plan.kids, plan.settings, exclude, swapSeed.current);
+    const hasOtherOuting = plan.segments.some((s, k) => k !== i && (c.activityById.get(s.ref ?? '')?.outing || c.recipeById.get(s.ref ?? '')?.outing));
+    const options = alternativesFor(c, plan.kids, plan.settings, exclude, swapSeed.current).filter((o) => !(hasOtherOuting && o.outing));
     if (!options.length) {
       announce('No other options fit your current choices.');
       return;

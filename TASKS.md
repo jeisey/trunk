@@ -29,7 +29,7 @@ Completion check for each: ≥ 12 distinct activities, `--check --only <file>` e
 - [x] F 36 – under 60 months → `f.json` (21), `docs/research/f.md`
 - [x] Mixed-age: 29 recipes (16 together, 13 parallel), 6 starter plans → `mix.json`, `docs/research/mix.md`
 - [x] Independent content/safety review against actual sources → `docs/review/content-review.md` (2 blockers, 11 majors, 21 minors; resolved)
-- [ ] Independent integration review → `docs/review/integration-review.md`
+- [x] Independent integration review → `docs/review/integration-review.md` (0 blockers, 4 majors, 13 minors; majors fixed with regression tests)
 
 ## 3. Application (lead)
 - [x] Finder: 1–2 children, non-uniform age slider + stepper + typed input, quick filters, advanced filters, results, empty states with one-tap relax.
@@ -51,5 +51,5 @@ Completion check for each: ≥ 12 distinct activities, `--check --only <file>` e
 
 ## 5. Delivery
 - [x] README, `docs/maintenance.md`, decisions, research summary.
-- [~] GitHub Actions: validate, test, build, e2e, deploy to Pages.
+- [x] GitHub Actions: validate, test, build, e2e, deploy to Pages (green on PR jeisey/trunk#1).
 - [ ] PR opened, CI green, merged to `main`.

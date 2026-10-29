@@ -40,11 +40,22 @@ export function makePlan(kids: PlanKid[], settings: PlanSettings, start: string,
   };
 }
 
-function starterFits(sp: StarterPlan, kids: PlanKid[], c: IndexedCatalog, energy: Filters['energy']): boolean {
+function starterFits(sp: StarterPlan, kids: PlanKid[], c: IndexedCatalog, energy: Filters['energy'], place: Filters['place']): boolean {
   if (sp.ages.length !== kids.length) return false;
   // Plans with a screen option only appear in the contexts where screens are offered at all.
   const hasMedia = sp.segments.some((s) => s.kind === 'activity' && c.activityById.get(s.ref)?.kind === 'media');
   if (hasMedia && !mediaAllowed(energy)) return false;
+  // "Inside" hides starter plans that include outdoor-only entries.
+  if (place === 'indoors') {
+    const outdoorOnly = sp.segments.some((s) =>
+      s.kind === 'activity'
+        ? !c.activityById.get(s.ref)?.places.includes('indoors')
+        : s.kind === 'recipe'
+          ? !c.recipeById.get(s.ref)?.places.includes('indoors')
+          : false,
+    );
+    if (outdoorOnly) return false;
+  }
   const segs = starterSegments(sp);
   const settings: PlanSettings = { energy: 'plenty', place: 'any', mode: 'either', adults: 1 };
   return reconcileSegments(kids, settings, segs, c).dropped.length === 0;
@@ -90,7 +101,7 @@ export function PlannerView(props: {
   const allKids = kidsToPlanKids(props.kids);
   const planKids = allKids.length === 2 && f.focus !== 'both' ? [allKids[f.focus]] : allKids;
   const [confirmReplace, setConfirmReplace] = useState(false);
-  const starters = c.starterPlans.filter((sp) => starterFits(sp, planKids, c, f.energy));
+  const starters = c.starterPlans.filter((sp) => starterFits(sp, planKids, c, f.energy, f.place));
   const blocked = props.lastResult?.blocked;
 
   const generate = () => {
@@ -106,15 +117,17 @@ export function PlannerView(props: {
     const settings = settingsFromFilters(f);
     const { segments, dropped } = reconcileSegments(planKids, settings, starterSegments(sp), c);
     const window = segments.reduce((sum, s) => sum + s.minutes, 0) + 30;
-    const next = makePlan(planKids, settings, props.start, Math.max(30, Math.min(720, Math.ceil(window / 15) * 15)), segments, sp.title);
+    const windowMinutes = Math.max(30, Math.min(720, Math.ceil(window / 15) * 15));
+    const next = makePlan(planKids, settings, props.start, windowMinutes, segments, sp.title);
     props.onPlan(next, dropped.length ? `${dropped.length} item(s) didn’t fit these ages and were left out.` : undefined);
+    props.onWindow(windowMinutes);
   };
 
   return (
     <div className="page">
       <h1>Plan a window</h1>
       <p className="subtle">
-        For {planKids.map((k) => formatAge(k.age)).join(' and ')}. A plan is a set of possibilities, not a schedule—follow your {planKids.length > 1 ? 'children’s' : 'child’s'} cues.
+        For {(plan ? plan.kids : planKids).map((k) => formatAge(k.age)).join(' and ')}. A plan is a set of possibilities, not a schedule—follow your {(plan ? plan.kids : planKids).length > 1 ? 'children’s' : 'child’s'} cues.
       </p>
       <div className="panel plan-inputs">
         <div className="inline-fields">
@@ -159,6 +172,11 @@ export function PlannerView(props: {
             ]}
             onChange={(focus) => props.onFilters({ ...f, focus })}
           />
+        )}
+        {props.kids.length === 2 && plan && (
+          <p className="tiny" style={{ margin: 0 }}>
+            “Who’s this for?” applies to your next plan. Energy, place, and adults also update the open plan.
+          </p>
         )}
         {props.kids.length === 2 && f.focus !== 'both' && (
           <p className="banner info" style={{ margin: 0 }}>

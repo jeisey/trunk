@@ -10,9 +10,10 @@ on:
 permissions:
   contents: read
 
+# Cancel superseded PR runs; on main, queue instead so a Pages deploy is never cut off.
 concurrency:
   group: ${{ github.workflow }}-${{ github.ref }}
-  cancel-in-progress: true
+  cancel-in-progress: ${{ github.event_name == 'pull_request' }}
 
 jobs:
   test:
