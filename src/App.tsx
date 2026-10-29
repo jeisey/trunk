@@ -306,8 +306,14 @@ export function App() {
           lastResult={lastResult}
           window={windowMinutes}
           start={start}
-          onWindow={setWindowMinutes}
-          onStart={setStart}
+          onWindow={(minutes) => {
+            setWindowMinutes(minutes);
+            setDraft((d) => (d ? { ...d, window: minutes, updatedAt: new Date().toISOString() } : d));
+          }}
+          onStart={(value) => {
+            setStart(value);
+            setDraft((d) => (d ? { ...d, start: value, updatedAt: new Date().toISOString() } : d));
+          }}
           onFilters={(next) => {
             setFilters(next);
             if (lastResult?.blocked) setLastResult(null);

@@ -52,6 +52,9 @@ test('2. ages 4 and 28 months, one adult, 90 minutes: editable feasible plan', a
   const timeline = page.getByRole('list', { name: 'Plan timeline' });
   const segs = timeline.locator('> li.seg');
   expect(await segs.count()).toBeGreaterThanOrEqual(3);
+  // Changing the start time moves the whole plan.
+  await page.getByLabel('Start').fill('16:30');
+  await expect(segs.first().locator('.seg-time')).toContainText(/^4:30 PM/);
   // Two-child entries come from curated pairings and show who does what.
   await expect(timeline.getByText(/Together|Side by side/).first()).toBeVisible();
   await expect(timeline.locator('.tracks .who', { hasText: 'Child 1' }).first()).toBeVisible();
