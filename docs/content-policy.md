@@ -88,6 +88,15 @@ review covers the rest.
   individualized clinical guidance: preserved, respected, and never turned into a
   rule for every baby. The app never overrides a child's care team.
 
+## Timing around feeds, meals, and naps
+
+- Trunk is an activity and day-planning tool, not a sleep-training, reflux-treatment, nutrition, or infant-tracking app.
+- Timing guidance keeps its source's population, age, condition, and jurisdiction. HSE's advice to avoid tummy time just before or after feeds applies to tummy time (every position), with Trunk's minute windows labelled as a planning convention. AAP's advice about limiting active play after feeds concerns babies who spit up; Trunk shows it as advice and never turns it into a universal post-meal rule for older children.
+- Before a nap, quieter activities are a preference, not a medical rule, and no activity is presented as making a child sleep. After waking, a gentle start is a preference, with no required waiting time.
+- Never infer feeds or naps from age or the clock, prescribe wake windows, nap lengths, or feeding intervals, suggest postponing a feed or keeping a child awake, or label anything "safe after feeding". Unknown context produces no reassurance.
+- Feeding a baby, settling a child, and supervising eating are adult work. Another child may only do something alongside them that one adult can supervise at the same time.
+- Meal and snack blocks are parent-placed routines for children already eating solids; Trunk never adds food activities to a plan on its own.
+
 ## Retirement and review
 
 - Records carry `checked` dates. Recheck sources every 6–12 months (see
