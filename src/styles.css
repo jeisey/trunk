@@ -705,8 +705,13 @@ details.more[open] > summary::before {
 
 .facts li {
   display: flex;
-  gap: 6px;
+  flex-wrap: wrap;
+  gap: 0 6px;
   align-items: baseline;
+}
+
+.facts li > span {
+  min-width: 0;
 }
 
 .facts .k {
