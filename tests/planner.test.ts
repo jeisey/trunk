@@ -2,7 +2,8 @@ import { describe, expect, it } from 'vitest';
 import type { Activity, MixedAgeRecipe } from '../src/content/schema.ts';
 import { DEFAULT_FILTERS, findIdeas } from '../src/lib/filters.ts';
 import { planWindow } from '../src/lib/planner.ts';
-import { bounds, resize, timeline, totalWallMinutes, type PlanKid, type PlanSegment, type PlanSettings } from '../src/lib/plan.ts';
+import { bounds, resize, type PlanKid, type PlanSegment, type PlanSettings } from '../src/lib/plan.ts';
+import { timeline, totalWallMinutes } from '../src/lib/layout.ts';
 import { reconcileSegments } from '../src/lib/reconcile.ts';
 import { timeIssue } from '../src/lib/timeRules.ts';
 import { segmentTimeIssue } from '../src/components/PlanEditor.tsx';
@@ -64,7 +65,7 @@ describe('planner', () => {
       expect(seg.minutes).toBeLessThanOrEqual(tummy.duration.max);
     }
     // The leftover is shown as open time, not hidden inside an activity.
-    const used = totalWallMinutes({ start: '10:00', segments: result.segments }, c);
+    const used = totalWallMinutes({ segments: result.segments }, c);
     expect(used + result.open).toBe(90);
     expect(result.open).toBeGreaterThan(60);
     expect(result.notes.join(' ')).toMatch(/left open/);
@@ -194,7 +195,7 @@ describe('shared time rules', () => {
   it('flags segments in an edited or imported plan', () => {
     const shaded = variant(tummy, { id: 'act.fixture-shade-walk', kind: 'outing', outing: true, places: ['outdoors'], hazards: ['sun-weather'], tummyTime: undefined, supervision: { ...tummy.supervision, shareable: false } });
     const c = fixtureCatalog({ activities: [shaded] });
-    const plan = { v: 1 as const, id: 'p-x', title: '', kids: [{ age: { value: 4, unit: 'm' as const }, notYet: [] }], start: '09:45', window: 90, settings, segments: [{ id: 'a1', kind: 'activity' as const, ref: shaded.id, minutes: 5 }], notes: '', createdAt: '2026-10-29T00:00:00.000Z', updatedAt: '2026-10-29T00:00:00.000Z' };
+    const plan = { v: 2 as const, id: 'p-x', title: '', kids: [{ age: { value: 4, unit: 'm' as const }, notYet: [] }], start: '09:45', window: 90, settings, segments: [{ id: 'a1', kind: 'activity' as const, ref: shaded.id, minutes: 5 }], notes: '', createdAt: '2026-10-29T00:00:00.000Z', updatedAt: '2026-10-29T00:00:00.000Z' };
     const [t] = timeline(plan, c);
     expect(segmentTimeIssue(t, plan, c)).toBeNull();
     const later = { ...plan, start: '09:58' };

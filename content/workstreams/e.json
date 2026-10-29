@@ -1,5 +1,5 @@
 {
-  "schema": 1,
+  "schema": 2,
   "workstream": "E",
   "description": "Workstream E: activities for children 24 to under 36 months (some spanning to 48 months), a seated snack routine, and the catalog's only screen-media records with current US, Canadian, Irish, UK and WHO media guidance.",
   "sources": [
@@ -535,6 +535,7 @@
       "scope": "US; children about 2 to 3."
     }
   ],
+  "timingRules": [],
   "activities": [
     {
       "id": "act.pretend-kitchen-cook",
@@ -629,6 +630,10 @@
           "clm.d.pretend-play",
           "clm.e.pretend-kitchen"
         ]
+      },
+      "timing": {
+        "stimulation": "variable",
+        "rules": []
       },
       "evidence": {
         "type": "described",
@@ -733,6 +738,10 @@
           "clm.e.big-box-pretend",
           "clm.d.pretend-play"
         ]
+      },
+      "timing": {
+        "stimulation": "variable",
+        "rules": []
       },
       "evidence": {
         "type": "described",
@@ -846,6 +855,10 @@
           "clm.e.playdough-hands"
         ]
       },
+      "timing": {
+        "stimulation": "variable",
+        "rules": []
+      },
       "evidence": {
         "type": "described",
         "claims": [
@@ -954,6 +967,10 @@
           "clm.e.simple-art",
           "clm.d.water-sand-pouring"
         ]
+      },
+      "timing": {
+        "stimulation": "variable",
+        "rules": []
       },
       "evidence": {
         "type": "adapted",
@@ -1064,6 +1081,10 @@
           "clm.e.hse-fine-motor-play"
         ]
       },
+      "timing": {
+        "stimulation": "variable",
+        "rules": []
+      },
       "evidence": {
         "type": "described",
         "claims": [
@@ -1165,6 +1186,10 @@
         "claims": [
           "clm.e.follow-the-leader"
         ]
+      },
+      "timing": {
+        "stimulation": "variable",
+        "rules": []
       },
       "evidence": {
         "type": "described",
@@ -1274,6 +1299,10 @@
           "clm.core.who-active-play"
         ]
       },
+      "timing": {
+        "stimulation": "variable",
+        "rules": []
+      },
       "evidence": {
         "type": "adapted",
         "claims": [
@@ -1376,6 +1405,10 @@
           "clm.d.simple-objects-play"
         ]
       },
+      "timing": {
+        "stimulation": "variable",
+        "rules": []
+      },
       "evidence": {
         "type": "adapted",
         "claims": [
@@ -1467,6 +1500,10 @@
         "claims": [
           "clm.e.mealtime-helper"
         ]
+      },
+      "timing": {
+        "stimulation": "variable",
+        "rules": []
       },
       "evidence": {
         "type": "described",
@@ -1562,6 +1599,10 @@
           "clm.e.mealtime-helper"
         ]
       },
+      "timing": {
+        "stimulation": "variable",
+        "rules": []
+      },
       "evidence": {
         "type": "adapted",
         "claims": [
@@ -1649,6 +1690,10 @@
         "claims": [
           "clm.e.book-questions"
         ]
+      },
+      "timing": {
+        "stimulation": "variable",
+        "rules": []
       },
       "evidence": {
         "type": "described",
@@ -1751,6 +1796,10 @@
         "claims": [
           "clm.e.library-and-parks"
         ]
+      },
+      "timing": {
+        "stimulation": "variable",
+        "rules": []
       },
       "evidence": {
         "type": "described",
@@ -1875,6 +1924,10 @@
           "clm.e.preschool-playground"
         ]
       },
+      "timing": {
+        "stimulation": "variable",
+        "rules": []
+      },
       "evidence": {
         "type": "described",
         "claims": [
@@ -1994,6 +2047,10 @@
           "clm.d.child-led-walks"
         ]
       },
+      "timing": {
+        "stimulation": "variable",
+        "rules": []
+      },
       "evidence": {
         "type": "described",
         "claims": [
@@ -2100,6 +2157,10 @@
           "clm.e.big-box-pretend",
           "clm.e.hse-fine-motor-play"
         ]
+      },
+      "timing": {
+        "stimulation": "variable",
+        "rules": []
       },
       "evidence": {
         "type": "adapted",
@@ -2215,6 +2276,10 @@
           ]
         }
       ],
+      "timing": {
+        "stimulation": "variable",
+        "rules": []
+      },
       "evidence": {
         "type": "practical",
         "claims": []
@@ -2313,6 +2378,10 @@
           "clm.e.uk-2026-limits",
           "clm.e.hse-screen-limits"
         ]
+      },
+      "timing": {
+        "stimulation": "variable",
+        "rules": []
       },
       "evidence": {
         "type": "adapted",
@@ -2417,6 +2486,10 @@
           "clm.e.cps-screen-limits",
           "clm.e.hse-screen-limits"
         ]
+      },
+      "timing": {
+        "stimulation": "variable",
+        "rules": []
       },
       "evidence": {
         "type": "adapted",

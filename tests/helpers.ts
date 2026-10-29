@@ -21,6 +21,7 @@ export function fixtureCatalog(extra: Partial<ContentFileT> = {}): IndexedCatalo
     activities: [...f.activities, ...(extra.activities ?? [])],
     recipes: [...f.recipes, ...(extra.recipes ?? [])],
     claims: [...f.claims, ...(extra.claims ?? [])],
+    timingRules: [...f.timingRules, ...(extra.timingRules ?? [])],
     starterPlans: [...f.starterPlans, ...(extra.starterPlans ?? [])],
   };
   const r = validateCatalog([{ file: 'fixture', data: merged }]);

@@ -1,5 +1,5 @@
 {
-  "schema": 1,
+  "schema": 2,
   "workstream": "B",
   "description": "Workstream B (3 to under 6 months): floor, rolling, sitting, social, book, routine and outing activities, including three busy-nearby back-play options, with sources and claims checked 2026-10-28.",
   "sources": [
@@ -542,6 +542,7 @@
       "scope": "Ireland; all babies."
     }
   ],
+  "timingRules": [],
   "activities": [
     {
       "id": "act.play-gym-bat-and-grab",
@@ -649,6 +650,10 @@
           "clm.b.swings-at-toys-4m",
           "clm.b.mobile-reach-grasp"
         ]
+      },
+      "timing": {
+        "stimulation": "variable",
+        "rules": []
       },
       "evidence": {
         "type": "described",
@@ -760,6 +765,10 @@
           "clm.b.feet-discovery"
         ]
       },
+      "timing": {
+        "stimulation": "variable",
+        "rules": []
+      },
       "evidence": {
         "type": "described",
         "claims": [
@@ -865,6 +874,10 @@
           "clm.b.talk-while-doing-tasks"
         ]
       },
+      "timing": {
+        "stimulation": "variable",
+        "rules": []
+      },
       "evidence": {
         "type": "adapted",
         "claims": [
@@ -969,6 +982,10 @@
           "clm.b.swings-at-toys-4m"
         ]
       },
+      "timing": {
+        "stimulation": "variable",
+        "rules": []
+      },
       "evidence": {
         "type": "described",
         "claims": [
@@ -1061,6 +1078,10 @@
           "clm.b.copy-sounds-take-turns"
         ]
       },
+      "timing": {
+        "stimulation": "variable",
+        "rules": []
+      },
       "evidence": {
         "type": "described",
         "claims": [
@@ -1150,6 +1171,10 @@
         "claims": [
           "clm.b.songs-rhymes-actions"
         ]
+      },
+      "timing": {
+        "stimulation": "variable",
+        "rules": []
       },
       "evidence": {
         "type": "described",
@@ -1248,6 +1273,10 @@
           "clm.b.lap-reading-bold-pictures",
           "clm.b.fabric-board-books-3-6m"
         ]
+      },
+      "timing": {
+        "stimulation": "variable",
+        "rules": []
       },
       "evidence": {
         "type": "described",
@@ -1349,6 +1378,10 @@
           "clm.b.mirror-interest"
         ]
       },
+      "timing": {
+        "stimulation": "variable",
+        "rules": []
+      },
       "evidence": {
         "type": "described",
         "claims": [
@@ -1434,6 +1467,10 @@
         "claims": [
           "clm.b.peekaboo"
         ]
+      },
+      "timing": {
+        "stimulation": "variable",
+        "rules": []
       },
       "evidence": {
         "type": "described",
@@ -1542,6 +1579,13 @@
       "tummyTime": {
         "position": "propped",
         "flatSurface": false
+      },
+      "timing": {
+        "stimulation": "variable",
+        "rules": [
+          "tim.core.tummy-after-milk-feed",
+          "tim.core.tummy-before-milk-feed"
+        ]
       },
       "evidence": {
         "type": "described",
@@ -1657,6 +1701,13 @@
         "position": "floor",
         "flatSurface": true
       },
+      "timing": {
+        "stimulation": "variable",
+        "rules": [
+          "tim.core.tummy-after-milk-feed",
+          "tim.core.tummy-before-milk-feed"
+        ]
+      },
       "evidence": {
         "type": "adapted",
         "claims": [
@@ -1764,6 +1815,10 @@
           "clm.b.side-lying-support"
         ]
       },
+      "timing": {
+        "stimulation": "variable",
+        "rules": []
+      },
       "evidence": {
         "type": "described",
         "claims": [
@@ -1869,6 +1924,10 @@
         "claims": [
           "clm.b.supported-sitting"
         ]
+      },
+      "timing": {
+        "stimulation": "variable",
+        "rules": []
       },
       "evidence": {
         "type": "described",
@@ -1977,6 +2036,10 @@
           "clm.b.mouthing-normal"
         ]
       },
+      "timing": {
+        "stimulation": "variable",
+        "rules": []
+      },
       "evidence": {
         "type": "adapted",
         "claims": [
@@ -2080,6 +2143,10 @@
         "claims": [
           "clm.b.narrate-care-routines"
         ]
+      },
+      "timing": {
+        "stimulation": "variable",
+        "rules": []
       },
       "evidence": {
         "type": "adapted",
@@ -2195,6 +2262,10 @@
         "claims": [
           "clm.b.name-things-outside"
         ]
+      },
+      "timing": {
+        "stimulation": "variable",
+        "rules": []
       },
       "evidence": {
         "type": "described",

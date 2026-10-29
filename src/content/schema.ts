@@ -1,5 +1,9 @@
 /**
- * Trunk content contract, v1.
+ * Trunk content contract, v2.
+ *
+ * v2 (2026-10-29) adds timing: a reviewed stimulation profile on every activity
+ * and recipe, timing-rule records keyed to routine events (milk feed, meal, nap),
+ * and routine blocks in starter plans. See docs/content-contract.md#timing.
  *
  * This file is the single authority for content shapes. TypeScript types are
  * inferred from these Zod schemas, and docs/schema/content.schema.json is
@@ -11,7 +15,7 @@
 import { z } from 'zod';
 import { AGE_STRING_PATTERN } from '../lib/age.ts';
 
-export const SCHEMA_VERSION = 1 as const;
+export const SCHEMA_VERSION = 2 as const;
 
 // ---------- Controlled vocabularies (defined in vocab.ts) ----------
 
@@ -34,6 +38,13 @@ import {
   TUMMY_POSITIONS,
   CLAIM_KINDS,
   JURISDICTIONS,
+  STIMULATION,
+  ROUTINE_EVENTS,
+  TIMING_WHEN,
+  TIMING_FIT,
+  TIMING_CONDITIONS,
+  TIMING_BASIS,
+  ROUTINE_TYPES,
 } from './vocab.ts';
 export {
   GOALS,
@@ -54,6 +65,13 @@ export {
   TUMMY_POSITIONS,
   CLAIM_KINDS,
   JURISDICTIONS,
+  STIMULATION,
+  ROUTINE_EVENTS,
+  TIMING_WHEN,
+  TIMING_FIT,
+  TIMING_CONDITIONS,
+  TIMING_BASIS,
+  ROUTINE_TYPES,
 };
 
 // ---------- Identifier rules ----------
@@ -65,6 +83,7 @@ export const ID_PATTERNS = {
   starterPlan: new RegExp(`^plan\\.${slug}$`),
   source: new RegExp(`^src\\.${slug}\\.${slug}$`),
   claim: new RegExp(`^clm\\.(?:core|[a-f]|mix)\\.${slug}$`),
+  timingRule: new RegExp(`^tim\\.(?:core|[a-f]|mix)\\.${slug}$`),
 } as const;
 
 export const ActivityId = z.string().regex(ID_PATTERNS.activity, 'activity id must look like act.some-slug');
@@ -74,6 +93,9 @@ export const SourceId = z.string().regex(ID_PATTERNS.source, 'source id must loo
 export const ClaimId = z
   .string()
   .regex(ID_PATTERNS.claim, 'claim id must look like clm.<core|a-f|mix>.some-slug');
+export const TimingRuleId = z
+  .string()
+  .regex(ID_PATTERNS.timingRule, 'timing rule id must look like tim.<core|a-f|mix>.some-slug');
 
 // ---------- Primitives ----------
 
@@ -154,6 +176,15 @@ export const Activity = z.strictObject({
   safety: z.array(SafetyNote).min(1).max(4),
   why: Why.optional(),
   tummyTime: z.strictObject({ position: z.enum(TUMMY_POSITIONS), flatSurface: z.boolean() }).optional(),
+  /**
+   * Reviewed timing profile. `rules` lists timing rules written for this record;
+   * policy rules (those with `match`) are added by the build and must not be listed.
+   * No rule for an event means "no specific timing guidance", never "cleared".
+   */
+  timing: z.strictObject({
+    stimulation: z.enum(STIMULATION),
+    rules: z.array(TimingRuleId).max(6),
+  }),
   evidence: z.strictObject({
     type: z.enum(EVIDENCE_TYPES),
     claims: z.array(ClaimId).max(8),
@@ -187,6 +218,47 @@ export const Claim = z.strictObject({
   /** Population, age, jurisdiction, and position limits of the claim. */
   scope: ShortText(260),
   caveat: ShortText(400).optional(),
+});
+
+/**
+ * A timing relationship between an activity and a routine event.
+ *
+ * - `before` windows run back from the event's start; `after` windows run forward from its end.
+ * - `window.basis` says whether the number of minutes comes from a source or is Trunk's
+ *   own planning convention. Editorial windows are labelled as such to parents.
+ * - `condition` limits a rule to a population (for example babies who spit up). Trunk
+ *   never records conditions, so conditional rules are shown as advice and ranked lower,
+ *   but never used to exclude anything.
+ * - A rule either lists nothing and is referenced by activities (`timing.rules`), or has
+ *   a `match` selector and applies to every activity/recipe with that reviewed profile.
+ */
+export const TimingRule = z.strictObject({
+  id: TimingRuleId,
+  rev: z.number().int().min(1),
+  event: z.enum(ROUTINE_EVENTS),
+  when: z.enum(TIMING_WHEN),
+  window: z.strictObject({
+    minutes: z.number().int().min(5).max(120),
+    basis: z.enum(TIMING_BASIS),
+  }),
+  fit: z.enum(TIMING_FIT),
+  /** Population limits; when omitted the rule covers whatever ages the activity covers. */
+  ageMin: AgeString.optional(),
+  ageMax: AgeString.optional(),
+  condition: z.enum(TIMING_CONDITIONS).optional(),
+  /** Where the guidance itself comes from (separate from where the window number comes from). */
+  basis: z.enum(TIMING_BASIS),
+  claims: z.array(ClaimId).max(4),
+  match: z
+    .strictObject({
+      stimulation: z.array(z.enum(STIMULATION)).min(1).max(3),
+    })
+    .optional(),
+  /** Short parent-facing cue, e.g. "Leave a gap after a feed". */
+  cue: ShortText(48),
+  /** One or two sentences: what applies, to whom, and whether it is a source's advice or Trunk's convention. */
+  reason: ShortText(260),
+  checked: IsoDate,
 });
 
 const RecipeRole = z.strictObject({
@@ -226,17 +298,38 @@ export const MixedAgeRecipe = z.strictObject({
   stopCues: z.array(ShortText(140)).min(1).max(4),
   safety: z.array(SafetyNote).min(1).max(5),
   claims: z.array(ClaimId).max(8),
+  /**
+   * Stimulation of the shared space (noise, excitement, mess) for both children. Each
+   * child's own rules come from their role activity; policy rules matching this profile
+   * also apply to both children.
+   */
+  timing: z.strictObject({ stimulation: z.enum(STIMULATION) }),
   checked: IsoDate,
   retired: z.strictObject({ date: IsoDate, reason: ShortText(200) }).optional(),
 });
 
 const StarterSegment = z.discriminatedUnion('kind', [
-  z.strictObject({ kind: z.literal('activity'), ref: ActivityId, minutes: z.number().int().min(1).max(240) }),
+  z.strictObject({
+    kind: z.literal('activity'),
+    ref: ActivityId,
+    minutes: z.number().int().min(1).max(240),
+    /** Two-child plans only: this child's activity runs alongside the preceding routine block for the other child. */
+    who: z.enum(['c1', 'c2']).optional(),
+    along: z.literal(true).optional(),
+  }),
   z.strictObject({ kind: z.literal('recipe'), ref: RecipeId, minutes: z.number().int().min(1).max(240) }),
   z.strictObject({
     kind: z.literal('break'),
     minutes: z.number().int().min(1).max(60),
     label: ShortText(60).optional(),
+  }),
+  /** An example routine block. `at` is minutes after the starter plan's start; parents edit it. */
+  z.strictObject({
+    kind: z.literal('routine'),
+    routine: z.enum(ROUTINE_TYPES),
+    who: z.enum(['c1', 'c2', 'both']),
+    minutes: z.number().int().min(5).max(240),
+    at: z.number().int().min(0).max(720),
   }),
 ]);
 
@@ -260,6 +353,7 @@ export const ContentFile = z.strictObject({
   description: ShortText(300).optional(),
   sources: z.array(Source).default([]),
   claims: z.array(Claim).default([]),
+  timingRules: z.array(TimingRule).default([]),
   activities: z.array(Activity).default([]),
   recipes: z.array(MixedAgeRecipe).default([]),
   starterPlans: z.array(StarterPlan).default([]),
@@ -276,6 +370,11 @@ export type EvidenceType = (typeof EVIDENCE_TYPES)[number];
 export type Activity = z.infer<typeof Activity>;
 export type Source = z.infer<typeof Source>;
 export type Claim = z.infer<typeof Claim>;
+export type TimingRule = z.infer<typeof TimingRule>;
+export type Stimulation = (typeof STIMULATION)[number];
+export type RoutineEvent = (typeof ROUTINE_EVENTS)[number];
+export type TimingFit = (typeof TIMING_FIT)[number];
+export type RoutineType = (typeof ROUTINE_TYPES)[number];
 export type MixedAgeRecipe = z.infer<typeof MixedAgeRecipe>;
 export type RecipeRole = z.infer<typeof RecipeRole>;
 export type StarterPlan = z.infer<typeof StarterPlan>;

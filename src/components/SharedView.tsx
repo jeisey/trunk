@@ -1,7 +1,8 @@
 import { useEffect, useState } from 'react';
 import type { IndexedCatalog } from '../content/catalog.ts';
 import { formatAge } from '../lib/age.ts';
-import { timeline, type Plan } from '../lib/plan.ts';
+import type { Plan } from '../lib/plan.ts';
+import { timeline } from '../lib/layout.ts';
 import { importPayload, ShareError, type ImportResult } from '../lib/share.ts';
 import { formatClock, formatMinutes, parseHHMM } from '../lib/time.ts';
 import { segmentTimeIssue, segmentTitle, Tracks } from './PlanEditor.tsx';

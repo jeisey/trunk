@@ -1,5 +1,5 @@
 {
-  "schema": 1,
+  "schema": 2,
   "workstream": "C",
   "description": "Workstream C: activities for babies 6 to under 12 months (some extend into the second year), with US, Irish and UK sources and claims checked 2026-10-28.",
   "sources": [
@@ -809,6 +809,7 @@
       "scope": "US; all infants."
     }
   ],
+  "timingRules": [],
   "activities": [
     {
       "id": "act.cloth-peekaboo",
@@ -895,6 +896,10 @@
         "claims": [
           "clm.c.peekaboo-object-permanence"
         ]
+      },
+      "timing": {
+        "stimulation": "variable",
+        "rules": []
       },
       "evidence": {
         "type": "described",
@@ -994,6 +999,10 @@
         "claims": [
           "clm.c.objects-scientist"
         ]
+      },
+      "timing": {
+        "stimulation": "variable",
+        "rules": []
       },
       "evidence": {
         "type": "described",
@@ -1097,6 +1106,10 @@
         "claims": [
           "clm.c.banging-noise"
         ]
+      },
+      "timing": {
+        "stimulation": "variable",
+        "rules": []
       },
       "evidence": {
         "type": "described",
@@ -1209,6 +1222,10 @@
           "clm.c.treasure-basket"
         ]
       },
+      "timing": {
+        "stimulation": "variable",
+        "rules": []
+      },
       "evidence": {
         "type": "described",
         "claims": [
@@ -1316,6 +1333,10 @@
           "clm.c.crawling-varies"
         ]
       },
+      "timing": {
+        "stimulation": "variable",
+        "rules": []
+      },
       "evidence": {
         "type": "described",
         "claims": [
@@ -1412,6 +1433,10 @@
         "claims": [
           "clm.c.ball-roll"
         ]
+      },
+      "timing": {
+        "stimulation": "variable",
+        "rules": []
       },
       "evidence": {
         "type": "described",
@@ -1516,6 +1541,10 @@
           "clm.c.cruising-practice"
         ]
       },
+      "timing": {
+        "stimulation": "variable",
+        "rules": []
+      },
       "evidence": {
         "type": "described",
         "claims": [
@@ -1610,6 +1639,10 @@
           "clm.c.books-bond"
         ]
       },
+      "timing": {
+        "stimulation": "variable",
+        "rules": []
+      },
       "evidence": {
         "type": "described",
         "claims": [
@@ -1699,6 +1732,10 @@
         "claims": [
           "clm.c.gestures-songs"
         ]
+      },
+      "timing": {
+        "stimulation": "variable",
+        "rules": []
       },
       "evidence": {
         "type": "described",
@@ -1791,6 +1828,10 @@
         "claims": [
           "clm.c.name-body-parts"
         ]
+      },
+      "timing": {
+        "stimulation": "variable",
+        "rules": []
       },
       "evidence": {
         "type": "adapted",
@@ -1904,6 +1945,10 @@
           "clm.c.objects-scientist"
         ]
       },
+      "timing": {
+        "stimulation": "variable",
+        "rules": []
+      },
       "evidence": {
         "type": "described",
         "claims": [
@@ -2005,6 +2050,10 @@
         "claims": [
           "clm.c.blanket-outside"
         ]
+      },
+      "timing": {
+        "stimulation": "variable",
+        "rules": []
       },
       "evidence": {
         "type": "described",
@@ -2118,6 +2167,10 @@
         "claims": [
           "clm.c.name-on-walks"
         ]
+      },
+      "timing": {
+        "stimulation": "variable",
+        "rules": []
       },
       "evidence": {
         "type": "described",
@@ -2237,6 +2290,10 @@
           "clm.c.swing-calms"
         ]
       },
+      "timing": {
+        "stimulation": "variable",
+        "rules": []
+      },
       "evidence": {
         "type": "described",
         "claims": [
@@ -2346,6 +2403,10 @@
           ]
         }
       ],
+      "timing": {
+        "stimulation": "variable",
+        "rules": []
+      },
       "evidence": {
         "type": "practical",
         "claims": [
@@ -2465,6 +2526,10 @@
           "clm.c.crawling-varies",
           "clm.c.floor-time"
         ]
+      },
+      "timing": {
+        "stimulation": "variable",
+        "rules": []
       },
       "evidence": {
         "type": "adapted",

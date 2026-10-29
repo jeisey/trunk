@@ -1,5 +1,5 @@
 {
-  "schema": 1,
+  "schema": 2,
   "workstream": "D",
   "description": "Workstream D: toddlers 12 to under 24 months. Movement, hands-on, book, song, pretend, helper, outdoor and water activities, with US-default safety sources (AAP, CDC, CPSC) plus HSE and ZERO TO THREE.",
   "sources": [
@@ -564,6 +564,7 @@
       "scope": "Toddlers 12–24 months; US organization. The page gives no safety notes; Trunk adds floor-level setup, anchoring and arm's-reach spotting."
     }
   ],
+  "timingRules": [],
   "activities": [
     {
       "id": "act.push-toy-laps",
@@ -666,6 +667,10 @@
           "clm.d.push-to-practice-walking"
         ]
       },
+      "timing": {
+        "stimulation": "variable",
+        "rules": []
+      },
       "evidence": {
         "type": "described",
         "claims": [
@@ -767,6 +772,10 @@
           "clm.d.toddler-active-play"
         ]
       },
+      "timing": {
+        "stimulation": "variable",
+        "rules": []
+      },
       "evidence": {
         "type": "described",
         "claims": [
@@ -863,6 +872,10 @@
         "claims": [
           "clm.d.dance-and-freeze"
         ]
+      },
+      "timing": {
+        "stimulation": "variable",
+        "rules": []
       },
       "evidence": {
         "type": "described",
@@ -971,6 +984,10 @@
           "clm.d.bubble-play"
         ]
       },
+      "timing": {
+        "stimulation": "variable",
+        "rules": []
+      },
       "evidence": {
         "type": "described",
         "claims": [
@@ -1058,6 +1075,10 @@
         "claims": [
           "clm.d.action-songs"
         ]
+      },
+      "timing": {
+        "stimulation": "variable",
+        "rules": []
       },
       "evidence": {
         "type": "described",
@@ -1149,6 +1170,10 @@
         "claims": [
           "clm.d.book-sharing"
         ]
+      },
+      "timing": {
+        "stimulation": "variable",
+        "rules": []
       },
       "evidence": {
         "type": "described",
@@ -1250,6 +1275,10 @@
           ]
         }
       ],
+      "timing": {
+        "stimulation": "variable",
+        "rules": []
+      },
       "evidence": {
         "type": "adapted",
         "claims": [
@@ -1345,6 +1374,10 @@
         "claims": [
           "clm.d.blocks-and-towers"
         ]
+      },
+      "timing": {
+        "stimulation": "variable",
+        "rules": []
       },
       "evidence": {
         "type": "described",
@@ -1450,6 +1483,10 @@
           "clm.d.simple-objects-play"
         ]
       },
+      "timing": {
+        "stimulation": "variable",
+        "rules": []
+      },
       "evidence": {
         "type": "described",
         "claims": [
@@ -1548,6 +1585,10 @@
           "clm.d.puzzles"
         ]
       },
+      "timing": {
+        "stimulation": "variable",
+        "rules": []
+      },
       "evidence": {
         "type": "described",
         "claims": [
@@ -1643,6 +1684,10 @@
           "clm.d.pretend-feeding"
         ]
       },
+      "timing": {
+        "stimulation": "variable",
+        "rules": []
+      },
       "evidence": {
         "type": "described",
         "claims": [
@@ -1735,6 +1780,10 @@
           "clm.d.hide-and-find"
         ]
       },
+      "timing": {
+        "stimulation": "variable",
+        "rules": []
+      },
       "evidence": {
         "type": "described",
         "claims": [
@@ -1821,6 +1870,10 @@
         "claims": [
           "clm.d.helping-tasks"
         ]
+      },
+      "timing": {
+        "stimulation": "variable",
+        "rules": []
       },
       "evidence": {
         "type": "described",
@@ -1942,6 +1995,10 @@
           "clm.d.child-led-walks"
         ]
       },
+      "timing": {
+        "stimulation": "variable",
+        "rules": []
+      },
       "evidence": {
         "type": "described",
         "claims": [
@@ -2059,6 +2116,10 @@
           "clm.d.outdoor-play-senses"
         ]
       },
+      "timing": {
+        "stimulation": "variable",
+        "rules": []
+      },
       "evidence": {
         "type": "described",
         "claims": [
@@ -2171,6 +2232,10 @@
           "clm.d.water-sand-pouring"
         ]
       },
+      "timing": {
+        "stimulation": "variable",
+        "rules": []
+      },
       "evidence": {
         "type": "described",
         "claims": [
@@ -2272,6 +2337,10 @@
         "claims": [
           "clm.d.over-under"
         ]
+      },
+      "timing": {
+        "stimulation": "variable",
+        "rules": []
       },
       "evidence": {
         "type": "described",

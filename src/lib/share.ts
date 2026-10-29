@@ -78,6 +78,9 @@ export function toCompact(plan: Plan, opts: ShareOptions): CompactPlan {
           const who = s.who === 'c1' ? '1' : s.who === 'c2' ? '2' : 'b';
           return opts.includeCustomText && s.label ? ['c', s.minutes, who, cleanText(s.label, LIMITS.custom)] : ['c', s.minutes, who];
         }
+        case 'routine':
+          // Placeholder until share format v2 lands (workstream 2): v1 links can't carry routines.
+          throw new Error('Routine blocks need share format v2');
       }
     }),
   };

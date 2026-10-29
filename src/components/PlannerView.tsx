@@ -62,11 +62,12 @@ function starterFits(sp: StarterPlan, kids: PlanKid[], c: IndexedCatalog, energy
 }
 
 function starterSegments(sp: StarterPlan): PlanSegment[] {
-  return sp.segments.map((s) =>
-    s.kind === 'break'
-      ? { id: newId('b'), kind: 'break', minutes: s.minutes, label: s.label ? cleanText(s.label, LIMITS.custom) : BREAK_LABEL }
-      : { id: newId(s.kind === 'recipe' ? 'r' : 'a'), kind: s.kind, ref: s.ref, minutes: s.minutes },
-  );
+  return sp.segments.map((s): PlanSegment => {
+    if (s.kind === 'break') return { id: newId('b'), kind: 'break', minutes: s.minutes, label: s.label ? cleanText(s.label, LIMITS.custom) : BREAK_LABEL };
+    if (s.kind === 'routine') return { id: newId('n'), kind: 'routine', routine: s.routine, who: s.who, minutes: s.minutes, at: s.at };
+    if (s.kind === 'activity') return { id: newId('a'), kind: 'activity', ref: s.ref, minutes: s.minutes, ...(s.who ? { who: s.who } : {}), ...(s.along ? { along: true as const } : {}) };
+    return { id: newId('r'), kind: 'recipe', ref: s.ref, minutes: s.minutes };
+  });
 }
 
 const WINDOW_OPTIONS = [

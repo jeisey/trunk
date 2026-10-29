@@ -1,5 +1,5 @@
 {
-  "schema": 1,
+  "schema": 2,
   "workstream": "mix",
   "description": "Curated two-child recipes (together and one-adult parallel) and editable starter plans that sequence existing activities across ages 1 week to 5 years.",
   "sources": [
@@ -108,6 +108,7 @@
       "caveat": "The same page's 7-9-month ideas include bouncing and lifting games. Trunk excludes those and keeps held movement slow and smooth for every age."
     }
   ],
+  "timingRules": [],
   "activities": [
     {
       "id": "act.held-slow-dance",
@@ -213,6 +214,10 @@
           "clm.a.cuddle-hold-secure"
         ]
       },
+      "timing": {
+        "stimulation": "variable",
+        "rules": []
+      },
       "evidence": {
         "type": "adapted",
         "claims": [
@@ -228,6 +233,9 @@
   "recipes": [
     {
       "rev": 2,
+      "timing": {
+        "stimulation": "variable"
+      },
       "checked": "2026-10-29",
       "outing": false,
       "setupMinutes": 2,
@@ -324,6 +332,9 @@
     },
     {
       "rev": 2,
+      "timing": {
+        "stimulation": "variable"
+      },
       "checked": "2026-10-29",
       "outing": false,
       "setupMinutes": 2,
@@ -418,6 +429,9 @@
     },
     {
       "rev": 2,
+      "timing": {
+        "stimulation": "variable"
+      },
       "checked": "2026-10-29",
       "outing": false,
       "setupMinutes": 1,
@@ -508,6 +522,9 @@
     },
     {
       "rev": 2,
+      "timing": {
+        "stimulation": "variable"
+      },
       "checked": "2026-10-29",
       "outing": false,
       "setupMinutes": 1,
@@ -594,6 +611,9 @@
     },
     {
       "rev": 1,
+      "timing": {
+        "stimulation": "variable"
+      },
       "checked": "2026-10-29",
       "outing": true,
       "setupMinutes": 5,
@@ -694,6 +714,9 @@
     },
     {
       "rev": 1,
+      "timing": {
+        "stimulation": "variable"
+      },
       "checked": "2026-10-29",
       "outing": true,
       "setupMinutes": 5,
@@ -794,6 +817,9 @@
     },
     {
       "rev": 1,
+      "timing": {
+        "stimulation": "variable"
+      },
       "checked": "2026-10-29",
       "outing": true,
       "setupMinutes": 5,
@@ -895,6 +921,9 @@
     },
     {
       "rev": 1,
+      "timing": {
+        "stimulation": "variable"
+      },
       "checked": "2026-10-29",
       "outing": false,
       "setupMinutes": 1,
@@ -979,6 +1008,9 @@
     },
     {
       "rev": 1,
+      "timing": {
+        "stimulation": "variable"
+      },
       "checked": "2026-10-29",
       "outing": false,
       "setupMinutes": 1,
@@ -1056,6 +1088,9 @@
     },
     {
       "rev": 1,
+      "timing": {
+        "stimulation": "variable"
+      },
       "checked": "2026-10-29",
       "outing": false,
       "setupMinutes": 0,
@@ -1134,6 +1169,9 @@
     },
     {
       "rev": 1,
+      "timing": {
+        "stimulation": "variable"
+      },
       "checked": "2026-10-29",
       "outing": false,
       "setupMinutes": 1,
@@ -1215,6 +1253,9 @@
     },
     {
       "rev": 1,
+      "timing": {
+        "stimulation": "variable"
+      },
       "checked": "2026-10-29",
       "outing": false,
       "setupMinutes": 1,
@@ -1283,6 +1324,9 @@
     },
     {
       "rev": 1,
+      "timing": {
+        "stimulation": "variable"
+      },
       "checked": "2026-10-29",
       "outing": false,
       "setupMinutes": 1,
@@ -1360,6 +1404,9 @@
     },
     {
       "rev": 1,
+      "timing": {
+        "stimulation": "variable"
+      },
       "checked": "2026-10-29",
       "outing": false,
       "setupMinutes": 1,
@@ -1438,6 +1485,9 @@
     },
     {
       "rev": 1,
+      "timing": {
+        "stimulation": "variable"
+      },
       "checked": "2026-10-29",
       "outing": false,
       "setupMinutes": 5,
@@ -1537,6 +1587,9 @@
     },
     {
       "rev": 1,
+      "timing": {
+        "stimulation": "variable"
+      },
       "checked": "2026-10-29",
       "outing": true,
       "setupMinutes": 5,
@@ -1636,6 +1689,9 @@
     },
     {
       "rev": 1,
+      "timing": {
+        "stimulation": "variable"
+      },
       "checked": "2026-10-29",
       "outing": false,
       "setupMinutes": 1,
@@ -1719,6 +1775,9 @@
     },
     {
       "rev": 2,
+      "timing": {
+        "stimulation": "variable"
+      },
       "checked": "2026-10-29",
       "outing": false,
       "setupMinutes": 3,
@@ -1809,6 +1868,9 @@
     },
     {
       "rev": 1,
+      "timing": {
+        "stimulation": "variable"
+      },
       "checked": "2026-10-29",
       "outing": false,
       "setupMinutes": 1,
@@ -1892,6 +1954,9 @@
     },
     {
       "rev": 1,
+      "timing": {
+        "stimulation": "variable"
+      },
       "checked": "2026-10-29",
       "outing": false,
       "setupMinutes": 1,
@@ -1974,6 +2039,9 @@
     },
     {
       "rev": 1,
+      "timing": {
+        "stimulation": "variable"
+      },
       "checked": "2026-10-29",
       "outing": false,
       "setupMinutes": 1,
@@ -2057,6 +2125,9 @@
     },
     {
       "rev": 1,
+      "timing": {
+        "stimulation": "variable"
+      },
       "checked": "2026-10-29",
       "outing": false,
       "setupMinutes": 3,
@@ -2139,6 +2210,9 @@
     },
     {
       "rev": 1,
+      "timing": {
+        "stimulation": "variable"
+      },
       "checked": "2026-10-29",
       "outing": false,
       "setupMinutes": 3,
@@ -2225,6 +2299,9 @@
     },
     {
       "rev": 2,
+      "timing": {
+        "stimulation": "variable"
+      },
       "checked": "2026-10-29",
       "outing": false,
       "setupMinutes": 3,
@@ -2316,6 +2393,9 @@
     },
     {
       "rev": 2,
+      "timing": {
+        "stimulation": "variable"
+      },
       "checked": "2026-10-29",
       "outing": false,
       "setupMinutes": 3,
@@ -2410,6 +2490,9 @@
     },
     {
       "rev": 1,
+      "timing": {
+        "stimulation": "variable"
+      },
       "checked": "2026-10-29",
       "outing": false,
       "setupMinutes": 1,
@@ -2484,6 +2567,9 @@
     },
     {
       "rev": 1,
+      "timing": {
+        "stimulation": "variable"
+      },
       "checked": "2026-10-29",
       "outing": false,
       "setupMinutes": 1,
@@ -2561,6 +2647,9 @@
     },
     {
       "rev": 1,
+      "timing": {
+        "stimulation": "variable"
+      },
       "checked": "2026-10-29",
       "outing": false,
       "setupMinutes": 3,
@@ -2638,6 +2727,9 @@
     },
     {
       "rev": 1,
+      "timing": {
+        "stimulation": "variable"
+      },
       "checked": "2026-10-29",
       "outing": false,
       "setupMinutes": 2,

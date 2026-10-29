@@ -1,5 +1,5 @@
 {
-  "schema": 1,
+  "schema": 2,
   "workstream": "A",
   "description": "Workstream A: activities for babies 1 week to under 3 months (some extend to 4 months), with the sources and claims they rely on. Sources opened 2026-10-28.",
   "sources": [
@@ -839,6 +839,7 @@
       "scope": "Young infants; UK and Canada."
     }
   ],
+  "timingRules": [],
   "activities": [
     {
       "id": "act.coo-and-copy-chat",
@@ -923,6 +924,10 @@
           "clm.a.talk-copy-sounds",
           "clm.a.smile-conversations"
         ]
+      },
+      "timing": {
+        "stimulation": "variable",
+        "rules": []
       },
       "evidence": {
         "type": "described",
@@ -1027,6 +1032,10 @@
         "claims": [
           "clm.a.talk-during-care"
         ]
+      },
+      "timing": {
+        "stimulation": "variable",
+        "rules": []
       },
       "evidence": {
         "type": "described",
@@ -1137,6 +1146,10 @@
           "clm.a.cuddle-hold-secure"
         ]
       },
+      "timing": {
+        "stimulation": "variable",
+        "rules": []
+      },
       "evidence": {
         "type": "described",
         "claims": [
@@ -1231,6 +1244,10 @@
           "clm.a.read-from-birth"
         ]
       },
+      "timing": {
+        "stimulation": "variable",
+        "rules": []
+      },
       "evidence": {
         "type": "described",
         "claims": [
@@ -1323,6 +1340,10 @@
           "clm.a.newborn-focus-distance",
           "clm.a.high-contrast-preference"
         ]
+      },
+      "timing": {
+        "stimulation": "variable",
+        "rules": []
       },
       "evidence": {
         "type": "described",
@@ -1418,6 +1439,10 @@
           "clm.a.moving-toy-in-view"
         ]
       },
+      "timing": {
+        "stimulation": "variable",
+        "rules": []
+      },
       "evidence": {
         "type": "described",
         "claims": [
@@ -1505,6 +1530,10 @@
           "clm.a.touch-rhymes",
           "clm.a.sing-rhymes"
         ]
+      },
+      "timing": {
+        "stimulation": "variable",
+        "rules": []
       },
       "evidence": {
         "type": "described",
@@ -1596,6 +1625,10 @@
           "clm.a.massage-follow-cues"
         ]
       },
+      "timing": {
+        "stimulation": "variable",
+        "rules": []
+      },
       "evidence": {
         "type": "described",
         "claims": [
@@ -1685,6 +1718,10 @@
         "claims": [
           "clm.a.diaper-free-kicking"
         ]
+      },
+      "timing": {
+        "stimulation": "variable",
+        "rules": []
       },
       "evidence": {
         "type": "described",
@@ -1797,6 +1834,10 @@
           "clm.a.back-play-mobile"
         ]
       },
+      "timing": {
+        "stimulation": "variable",
+        "rules": []
+      },
       "evidence": {
         "type": "adapted",
         "claims": [
@@ -1899,6 +1940,10 @@
           "clm.core.tummy-vary-positions"
         ]
       },
+      "timing": {
+        "stimulation": "variable",
+        "rules": []
+      },
       "evidence": {
         "type": "described",
         "claims": [
@@ -1987,6 +2032,10 @@
         "claims": [
           "clm.a.babies-prefer-faces-voices"
         ]
+      },
+      "timing": {
+        "stimulation": "variable",
+        "rules": []
       },
       "evidence": {
         "type": "described",
@@ -2103,6 +2152,10 @@
           "clm.a.point-and-name"
         ]
       },
+      "timing": {
+        "stimulation": "variable",
+        "rules": []
+      },
       "evidence": {
         "type": "described",
         "claims": [
@@ -2215,6 +2268,10 @@
           "clm.a.point-and-name"
         ]
       },
+      "timing": {
+        "stimulation": "variable",
+        "rules": []
+      },
       "evidence": {
         "type": "adapted",
         "claims": [
@@ -2313,6 +2370,10 @@
           "clm.a.point-and-name",
           "clm.a.rock-sway-sing-calms"
         ]
+      },
+      "timing": {
+        "stimulation": "variable",
+        "rules": []
       },
       "evidence": {
         "type": "adapted",

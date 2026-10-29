@@ -1,5 +1,5 @@
 {
-  "schema": 1,
+  "schema": 2,
   "workstream": "F",
   "description": "Workstream F: children 3 and 4 (36 to under 60 months). Active play, stories, games, making, helper jobs and calm-down ideas, drawn from CDC, AAP, HSE, NHS and WHO guidance.",
   "sources": [
@@ -525,6 +525,7 @@
       "scope": "US; homes with young children."
     }
   ],
+  "timingRules": [],
   "activities": [
     {
       "id": "act.copycat-moves",
@@ -616,6 +617,10 @@
         "claims": [
           "clm.f.copycat-and-chasing-games"
         ]
+      },
+      "timing": {
+        "stimulation": "variable",
+        "rules": []
       },
       "evidence": {
         "type": "described",
@@ -711,6 +716,10 @@
         "claims": [
           "clm.f.stop-and-go-games"
         ]
+      },
+      "timing": {
+        "stimulation": "variable",
+        "rules": []
       },
       "evidence": {
         "type": "described",
@@ -810,6 +819,10 @@
         "claims": [
           "clm.f.ball-skills"
         ]
+      },
+      "timing": {
+        "stimulation": "variable",
+        "rules": []
       },
       "evidence": {
         "type": "described",
@@ -934,6 +947,10 @@
           "clm.f.uk-active-play"
         ]
       },
+      "timing": {
+        "stimulation": "variable",
+        "rules": []
+      },
       "evidence": {
         "type": "described",
         "claims": [
@@ -1053,6 +1070,10 @@
           "clm.f.playground-preschool"
         ]
       },
+      "timing": {
+        "stimulation": "variable",
+        "rules": []
+      },
       "evidence": {
         "type": "described",
         "claims": [
@@ -1168,6 +1189,10 @@
           "clm.f.counting-everyday"
         ]
       },
+      "timing": {
+        "stimulation": "variable",
+        "rules": []
+      },
       "evidence": {
         "type": "adapted",
         "claims": [
@@ -1260,6 +1285,10 @@
         "claims": [
           "clm.f.opposites-game"
         ]
+      },
+      "timing": {
+        "stimulation": "variable",
+        "rules": []
       },
       "evidence": {
         "type": "described",
@@ -1355,6 +1384,10 @@
           "clm.core.who-reading-storytelling"
         ]
       },
+      "timing": {
+        "stimulation": "variable",
+        "rules": []
+      },
       "evidence": {
         "type": "described",
         "claims": [
@@ -1443,6 +1476,10 @@
           "clm.core.who-reading-storytelling",
           "clm.f.story-skills"
         ]
+      },
+      "timing": {
+        "stimulation": "variable",
+        "rules": []
       },
       "evidence": {
         "type": "adapted",
@@ -1533,6 +1570,10 @@
         "claims": [
           "clm.f.matching-memory-games"
         ]
+      },
+      "timing": {
+        "stimulation": "variable",
+        "rules": []
       },
       "evidence": {
         "type": "described",
@@ -1628,6 +1669,10 @@
           "clm.f.matching-memory-games"
         ]
       },
+      "timing": {
+        "stimulation": "variable",
+        "rules": []
+      },
       "evidence": {
         "type": "described",
         "claims": [
@@ -1721,6 +1766,10 @@
         "claims": [
           "clm.f.simple-chores"
         ]
+      },
+      "timing": {
+        "stimulation": "variable",
+        "rules": []
       },
       "evidence": {
         "type": "described",
@@ -1819,6 +1868,10 @@
           "clm.f.drawing-and-art"
         ]
       },
+      "timing": {
+        "stimulation": "variable",
+        "rules": []
+      },
       "evidence": {
         "type": "described",
         "claims": [
@@ -1916,6 +1969,10 @@
           "clm.f.puzzles-building",
           "clm.core.who-reading-storytelling"
         ]
+      },
+      "timing": {
+        "stimulation": "variable",
+        "rules": []
       },
       "evidence": {
         "type": "described",
@@ -2023,6 +2080,10 @@
           "clm.f.playdough-hands"
         ]
       },
+      "timing": {
+        "stimulation": "variable",
+        "rules": []
+      },
       "evidence": {
         "type": "described",
         "claims": [
@@ -2124,6 +2185,10 @@
         "claims": [
           "clm.f.child-safe-scissors"
         ]
+      },
+      "timing": {
+        "stimulation": "variable",
+        "rules": []
       },
       "evidence": {
         "type": "adapted",
@@ -2241,6 +2306,10 @@
         "claims": [
           "clm.f.help-with-meals"
         ]
+      },
+      "timing": {
+        "stimulation": "variable",
+        "rules": []
       },
       "evidence": {
         "type": "described",
@@ -2360,6 +2429,10 @@
           "clm.f.help-with-meals"
         ]
       },
+      "timing": {
+        "stimulation": "variable",
+        "rules": []
+      },
       "evidence": {
         "type": "described",
         "claims": [
@@ -2473,6 +2546,10 @@
           "clm.f.grow-seeds"
         ]
       },
+      "timing": {
+        "stimulation": "variable",
+        "rules": []
+      },
       "evidence": {
         "type": "described",
         "claims": [
@@ -2563,6 +2640,10 @@
         "claims": [
           "clm.f.calm-tools"
         ]
+      },
+      "timing": {
+        "stimulation": "variable",
+        "rules": []
       },
       "evidence": {
         "type": "adapted",
@@ -2664,6 +2745,10 @@
         "claims": [
           "clm.f.calm-space-feelings"
         ]
+      },
+      "timing": {
+        "stimulation": "variable",
+        "rules": []
       },
       "evidence": {
         "type": "described",

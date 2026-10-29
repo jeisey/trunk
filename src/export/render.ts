@@ -8,7 +8,8 @@
 import type { IndexedCatalog } from '../content/catalog.ts';
 import { formatAge } from '../lib/age.ts';
 import { adultText } from '../lib/labels.ts';
-import { BREAK_HINT, timeline, type Plan, type TimedSegment } from '../lib/plan.ts';
+import { BREAK_HINT, type Plan } from '../lib/plan.ts';
+import { timeline, type TimedSegment } from '../lib/layout.ts';
 import { formatClock, parseHHMM } from '../lib/time.ts';
 
 export type ExportFormat = 'feed' | 'story';
