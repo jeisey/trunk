@@ -1542,12 +1542,865 @@
       "parallel": 2
     }
   ],
-  "gaps": [],
+  "gaps": [
+    "4 mo to 11 mo: only 1 settling (wind-down) activity (want 2+)",
+    "12 mo to 14 mo: no settling (wind-down) activities (want 2+)",
+    "15 mo to 2 yr 11 mo: only 1 settling (wind-down) activity (want 2+)"
+  ],
   "thresholds": {
     "total": 6,
     "lowEffort": 2,
     "indoors": 4,
     "outdoors": 1,
-    "pairOptions": 2
+    "pairOptions": 2,
+    "settling": 2
+  },
+  "timing": {
+    "activities": {
+      "settling": 12,
+      "gentle": 68,
+      "lively": 25,
+      "variable": 3
+    },
+    "recipes": {
+      "settling": 2,
+      "gentle": 19,
+      "lively": 8,
+      "variable": 0
+    },
+    "stops": [
+      {
+        "age": "1 wk",
+        "days": 7,
+        "settling": 4,
+        "gentle": 14,
+        "lively": 0,
+        "variable": 0
+      },
+      {
+        "age": "2 wk",
+        "days": 14,
+        "settling": 4,
+        "gentle": 14,
+        "lively": 0,
+        "variable": 0
+      },
+      {
+        "age": "3 wk",
+        "days": 21,
+        "settling": 4,
+        "gentle": 14,
+        "lively": 0,
+        "variable": 0
+      },
+      {
+        "age": "4 wk",
+        "days": 28,
+        "settling": 4,
+        "gentle": 14,
+        "lively": 0,
+        "variable": 0
+      },
+      {
+        "age": "5 wk",
+        "days": 35,
+        "settling": 4,
+        "gentle": 14,
+        "lively": 0,
+        "variable": 0
+      },
+      {
+        "age": "6 wk",
+        "days": 42,
+        "settling": 4,
+        "gentle": 14,
+        "lively": 0,
+        "variable": 0
+      },
+      {
+        "age": "7 wk",
+        "days": 49,
+        "settling": 4,
+        "gentle": 14,
+        "lively": 0,
+        "variable": 0
+      },
+      {
+        "age": "8 wk",
+        "days": 56,
+        "settling": 4,
+        "gentle": 14,
+        "lively": 0,
+        "variable": 0
+      },
+      {
+        "age": "9 wk",
+        "days": 63,
+        "settling": 4,
+        "gentle": 14,
+        "lively": 0,
+        "variable": 0
+      },
+      {
+        "age": "10 wk",
+        "days": 70,
+        "settling": 4,
+        "gentle": 14,
+        "lively": 0,
+        "variable": 0
+      },
+      {
+        "age": "11 wk",
+        "days": 77,
+        "settling": 4,
+        "gentle": 14,
+        "lively": 0,
+        "variable": 0
+      },
+      {
+        "age": "12 wk",
+        "days": 84,
+        "settling": 4,
+        "gentle": 14,
+        "lively": 0,
+        "variable": 0
+      },
+      {
+        "age": "3 mo",
+        "days": 91,
+        "settling": 5,
+        "gentle": 21,
+        "lively": 0,
+        "variable": 0
+      },
+      {
+        "age": "4 mo",
+        "days": 122,
+        "settling": 1,
+        "gentle": 17,
+        "lively": 0,
+        "variable": 0
+      },
+      {
+        "age": "5 mo",
+        "days": 152,
+        "settling": 1,
+        "gentle": 16,
+        "lively": 0,
+        "variable": 0
+      },
+      {
+        "age": "6 mo",
+        "days": 183,
+        "settling": 1,
+        "gentle": 16,
+        "lively": 1,
+        "variable": 0
+      },
+      {
+        "age": "7 mo",
+        "days": 213,
+        "settling": 1,
+        "gentle": 14,
+        "lively": 3,
+        "variable": 0
+      },
+      {
+        "age": "8 mo",
+        "days": 244,
+        "settling": 1,
+        "gentle": 11,
+        "lively": 5,
+        "variable": 0
+      },
+      {
+        "age": "9 mo",
+        "days": 274,
+        "settling": 1,
+        "gentle": 11,
+        "lively": 5,
+        "variable": 0
+      },
+      {
+        "age": "10 mo",
+        "days": 304,
+        "settling": 1,
+        "gentle": 11,
+        "lively": 5,
+        "variable": 0
+      },
+      {
+        "age": "11 mo",
+        "days": 335,
+        "settling": 1,
+        "gentle": 11,
+        "lively": 5,
+        "variable": 0
+      },
+      {
+        "age": "12 mo",
+        "days": 365,
+        "settling": 0,
+        "gentle": 6,
+        "lively": 8,
+        "variable": 0
+      },
+      {
+        "age": "13 mo",
+        "days": 396,
+        "settling": 0,
+        "gentle": 6,
+        "lively": 8,
+        "variable": 0
+      },
+      {
+        "age": "14 mo",
+        "days": 426,
+        "settling": 0,
+        "gentle": 6,
+        "lively": 8,
+        "variable": 0
+      },
+      {
+        "age": "15 mo",
+        "days": 457,
+        "settling": 1,
+        "gentle": 11,
+        "lively": 10,
+        "variable": 0
+      },
+      {
+        "age": "16 mo",
+        "days": 487,
+        "settling": 1,
+        "gentle": 11,
+        "lively": 10,
+        "variable": 0
+      },
+      {
+        "age": "17 mo",
+        "days": 517,
+        "settling": 1,
+        "gentle": 11,
+        "lively": 10,
+        "variable": 0
+      },
+      {
+        "age": "18 mo",
+        "days": 548,
+        "settling": 1,
+        "gentle": 9,
+        "lively": 8,
+        "variable": 0
+      },
+      {
+        "age": "19 mo",
+        "days": 578,
+        "settling": 1,
+        "gentle": 9,
+        "lively": 8,
+        "variable": 0
+      },
+      {
+        "age": "20 mo",
+        "days": 609,
+        "settling": 1,
+        "gentle": 9,
+        "lively": 8,
+        "variable": 0
+      },
+      {
+        "age": "21 mo",
+        "days": 639,
+        "settling": 1,
+        "gentle": 9,
+        "lively": 8,
+        "variable": 0
+      },
+      {
+        "age": "22 mo",
+        "days": 670,
+        "settling": 1,
+        "gentle": 9,
+        "lively": 8,
+        "variable": 0
+      },
+      {
+        "age": "23 mo",
+        "days": 700,
+        "settling": 1,
+        "gentle": 9,
+        "lively": 8,
+        "variable": 0
+      },
+      {
+        "age": "2 yr",
+        "days": 731,
+        "settling": 1,
+        "gentle": 15,
+        "lively": 9,
+        "variable": 3
+      },
+      {
+        "age": "2 yr 1 mo",
+        "days": 761,
+        "settling": 1,
+        "gentle": 15,
+        "lively": 9,
+        "variable": 3
+      },
+      {
+        "age": "2 yr 2 mo",
+        "days": 791,
+        "settling": 1,
+        "gentle": 15,
+        "lively": 9,
+        "variable": 3
+      },
+      {
+        "age": "2 yr 3 mo",
+        "days": 822,
+        "settling": 1,
+        "gentle": 15,
+        "lively": 9,
+        "variable": 3
+      },
+      {
+        "age": "2 yr 4 mo",
+        "days": 852,
+        "settling": 1,
+        "gentle": 15,
+        "lively": 9,
+        "variable": 3
+      },
+      {
+        "age": "2 yr 5 mo",
+        "days": 883,
+        "settling": 1,
+        "gentle": 15,
+        "lively": 9,
+        "variable": 3
+      },
+      {
+        "age": "2 yr 6 mo",
+        "days": 913,
+        "settling": 1,
+        "gentle": 10,
+        "lively": 4,
+        "variable": 3
+      },
+      {
+        "age": "2 yr 7 mo",
+        "days": 944,
+        "settling": 1,
+        "gentle": 10,
+        "lively": 4,
+        "variable": 3
+      },
+      {
+        "age": "2 yr 8 mo",
+        "days": 974,
+        "settling": 1,
+        "gentle": 10,
+        "lively": 4,
+        "variable": 3
+      },
+      {
+        "age": "2 yr 9 mo",
+        "days": 1004,
+        "settling": 1,
+        "gentle": 10,
+        "lively": 4,
+        "variable": 3
+      },
+      {
+        "age": "2 yr 10 mo",
+        "days": 1035,
+        "settling": 1,
+        "gentle": 10,
+        "lively": 4,
+        "variable": 3
+      },
+      {
+        "age": "2 yr 11 mo",
+        "days": 1065,
+        "settling": 1,
+        "gentle": 10,
+        "lively": 4,
+        "variable": 3
+      },
+      {
+        "age": "3 yr",
+        "days": 1096,
+        "settling": 4,
+        "gentle": 16,
+        "lively": 9,
+        "variable": 3
+      },
+      {
+        "age": "3 yr 1 mo",
+        "days": 1126,
+        "settling": 4,
+        "gentle": 16,
+        "lively": 9,
+        "variable": 3
+      },
+      {
+        "age": "3 yr 2 mo",
+        "days": 1157,
+        "settling": 4,
+        "gentle": 16,
+        "lively": 9,
+        "variable": 3
+      },
+      {
+        "age": "3 yr 3 mo",
+        "days": 1187,
+        "settling": 4,
+        "gentle": 16,
+        "lively": 9,
+        "variable": 3
+      },
+      {
+        "age": "3 yr 4 mo",
+        "days": 1218,
+        "settling": 4,
+        "gentle": 16,
+        "lively": 9,
+        "variable": 3
+      },
+      {
+        "age": "3 yr 5 mo",
+        "days": 1248,
+        "settling": 4,
+        "gentle": 16,
+        "lively": 9,
+        "variable": 3
+      },
+      {
+        "age": "3 yr 6 mo",
+        "days": 1278,
+        "settling": 4,
+        "gentle": 16,
+        "lively": 9,
+        "variable": 3
+      },
+      {
+        "age": "3 yr 7 mo",
+        "days": 1309,
+        "settling": 4,
+        "gentle": 16,
+        "lively": 9,
+        "variable": 3
+      },
+      {
+        "age": "3 yr 8 mo",
+        "days": 1339,
+        "settling": 4,
+        "gentle": 16,
+        "lively": 9,
+        "variable": 3
+      },
+      {
+        "age": "3 yr 9 mo",
+        "days": 1370,
+        "settling": 4,
+        "gentle": 16,
+        "lively": 9,
+        "variable": 3
+      },
+      {
+        "age": "3 yr 10 mo",
+        "days": 1400,
+        "settling": 4,
+        "gentle": 16,
+        "lively": 9,
+        "variable": 3
+      },
+      {
+        "age": "3 yr 11 mo",
+        "days": 1431,
+        "settling": 4,
+        "gentle": 16,
+        "lively": 9,
+        "variable": 3
+      },
+      {
+        "age": "4 yr",
+        "days": 1461,
+        "settling": 4,
+        "gentle": 10,
+        "lively": 8,
+        "variable": 2
+      },
+      {
+        "age": "4 yr 1 mo",
+        "days": 1491,
+        "settling": 4,
+        "gentle": 10,
+        "lively": 8,
+        "variable": 2
+      },
+      {
+        "age": "4 yr 2 mo",
+        "days": 1522,
+        "settling": 4,
+        "gentle": 10,
+        "lively": 8,
+        "variable": 2
+      },
+      {
+        "age": "4 yr 3 mo",
+        "days": 1552,
+        "settling": 4,
+        "gentle": 10,
+        "lively": 8,
+        "variable": 2
+      },
+      {
+        "age": "4 yr 4 mo",
+        "days": 1583,
+        "settling": 4,
+        "gentle": 10,
+        "lively": 8,
+        "variable": 2
+      },
+      {
+        "age": "4 yr 5 mo",
+        "days": 1613,
+        "settling": 4,
+        "gentle": 10,
+        "lively": 8,
+        "variable": 2
+      },
+      {
+        "age": "4 yr 6 mo",
+        "days": 1644,
+        "settling": 4,
+        "gentle": 10,
+        "lively": 8,
+        "variable": 2
+      },
+      {
+        "age": "4 yr 7 mo",
+        "days": 1674,
+        "settling": 4,
+        "gentle": 10,
+        "lively": 8,
+        "variable": 2
+      },
+      {
+        "age": "4 yr 8 mo",
+        "days": 1705,
+        "settling": 4,
+        "gentle": 10,
+        "lively": 8,
+        "variable": 2
+      },
+      {
+        "age": "4 yr 9 mo",
+        "days": 1735,
+        "settling": 4,
+        "gentle": 10,
+        "lively": 8,
+        "variable": 2
+      },
+      {
+        "age": "4 yr 10 mo",
+        "days": 1765,
+        "settling": 4,
+        "gentle": 10,
+        "lively": 8,
+        "variable": 2
+      },
+      {
+        "age": "4 yr 11 mo",
+        "days": 1796,
+        "settling": 4,
+        "gentle": 10,
+        "lively": 8,
+        "variable": 2
+      }
+    ],
+    "rules": [
+      {
+        "id": "tim.core.tummy-after-milk-feed",
+        "event": "milk-feed",
+        "when": "after",
+        "minutes": 30,
+        "windowBasis": "editorial",
+        "fit": "avoid",
+        "basis": "source",
+        "ages": null,
+        "condition": null,
+        "policy": null,
+        "listedBy": 6
+      },
+      {
+        "id": "tim.core.tummy-before-milk-feed",
+        "event": "milk-feed",
+        "when": "before",
+        "minutes": 15,
+        "windowBasis": "editorial",
+        "fit": "avoid",
+        "basis": "source",
+        "ages": null,
+        "condition": null,
+        "policy": null,
+        "listedBy": 6
+      },
+      {
+        "id": "tim.core.gentle-play-after-feed-spit-up",
+        "event": "milk-feed",
+        "when": "after",
+        "minutes": 30,
+        "windowBasis": "source",
+        "fit": "later",
+        "basis": "source",
+        "ages": "1w–12m",
+        "condition": "spit-up",
+        "policy": null,
+        "listedBy": 12
+      },
+      {
+        "id": "tim.core.wind-down-before-nap",
+        "event": "nap",
+        "when": "before",
+        "minutes": 30,
+        "windowBasis": "editorial",
+        "fit": "preferred",
+        "basis": "editorial",
+        "ages": null,
+        "condition": null,
+        "policy": [
+          "settling"
+        ],
+        "listedBy": 0
+      },
+      {
+        "id": "tim.core.lively-earlier-than-nap",
+        "event": "nap",
+        "when": "before",
+        "minutes": 30,
+        "windowBasis": "editorial",
+        "fit": "later",
+        "basis": "editorial",
+        "ages": null,
+        "condition": null,
+        "policy": [
+          "lively"
+        ],
+        "listedBy": 0
+      },
+      {
+        "id": "tim.core.gentle-start-after-nap",
+        "event": "nap",
+        "when": "after",
+        "minutes": 15,
+        "windowBasis": "editorial",
+        "fit": "preferred",
+        "basis": "editorial",
+        "ages": null,
+        "condition": null,
+        "policy": [
+          "settling",
+          "gentle"
+        ],
+        "listedBy": 0
+      },
+      {
+        "id": "tim.core.lively-later-after-nap",
+        "event": "nap",
+        "when": "after",
+        "minutes": 15,
+        "windowBasis": "editorial",
+        "fit": "later",
+        "basis": "editorial",
+        "ages": null,
+        "condition": null,
+        "policy": [
+          "lively"
+        ],
+        "listedBy": 0
+      }
+    ],
+    "feedRules": [
+      {
+        "id": "act.tummy-time-chest",
+        "title": "Chest-to-chest tummy time",
+        "rules": [
+          "tim.core.tummy-after-milk-feed",
+          "tim.core.tummy-before-milk-feed",
+          "tim.core.gentle-play-after-feed-spit-up"
+        ]
+      },
+      {
+        "id": "act.tummy-time-lap",
+        "title": "Lap tummy time",
+        "rules": [
+          "tim.core.tummy-after-milk-feed",
+          "tim.core.tummy-before-milk-feed",
+          "tim.core.gentle-play-after-feed-spit-up"
+        ]
+      },
+      {
+        "id": "act.tummy-time-floor-face-to-face",
+        "title": "Face-to-face floor tummy time",
+        "rules": [
+          "tim.core.tummy-after-milk-feed",
+          "tim.core.tummy-before-milk-feed",
+          "tim.core.gentle-play-after-feed-spit-up"
+        ]
+      },
+      {
+        "id": "act.tummy-time-reach-and-play",
+        "title": "Tummy time reach and play",
+        "rules": [
+          "tim.core.tummy-after-milk-feed",
+          "tim.core.tummy-before-milk-feed",
+          "tim.core.gentle-play-after-feed-spit-up"
+        ]
+      },
+      {
+        "id": "act.tummy-time-towel-roll",
+        "title": "Propped tummy time over a towel roll",
+        "rules": [
+          "tim.core.tummy-after-milk-feed",
+          "tim.core.tummy-before-milk-feed",
+          "tim.core.gentle-play-after-feed-spit-up"
+        ]
+      },
+      {
+        "id": "act.tummy-to-back-roll-practice",
+        "title": "Tummy-to-back roll practice",
+        "rules": [
+          "tim.core.tummy-after-milk-feed",
+          "tim.core.tummy-before-milk-feed",
+          "tim.core.gentle-play-after-feed-spit-up"
+        ]
+      },
+      {
+        "id": "act.pot-and-spoon-band",
+        "title": "Pots and wooden spoon band",
+        "rules": [
+          "tim.core.gentle-play-after-feed-spit-up"
+        ]
+      },
+      {
+        "id": "act.cushion-crawl-course",
+        "title": "Cushion hills crawl course",
+        "rules": [
+          "tim.core.gentle-play-after-feed-spit-up"
+        ]
+      },
+      {
+        "id": "act.cruise-the-sofa",
+        "title": "Cruise along the sofa",
+        "rules": [
+          "tim.core.gentle-play-after-feed-spit-up"
+        ]
+      },
+      {
+        "id": "act.splash-and-pour",
+        "title": "Splash and pour water play",
+        "rules": [
+          "tim.core.gentle-play-after-feed-spit-up"
+        ]
+      },
+      {
+        "id": "act.bucket-swing",
+        "title": "Bucket swing at the playground",
+        "rules": [
+          "tim.core.gentle-play-after-feed-spit-up"
+        ]
+      },
+      {
+        "id": "act.safe-space-explore",
+        "title": "Free explore in a baby-safe room",
+        "rules": [
+          "tim.core.gentle-play-after-feed-spit-up"
+        ]
+      }
+    ],
+    "advisory": [
+      {
+        "rule": "tim.core.gentle-play-after-feed-spit-up",
+        "cue": "Spits up? Keep play calm after a feed",
+        "ages": "1w–12m",
+        "condition": "spit-up",
+        "records": [
+          "act.tummy-time-chest",
+          "act.tummy-time-lap",
+          "act.tummy-time-floor-face-to-face",
+          "act.tummy-time-reach-and-play",
+          "act.tummy-time-towel-roll",
+          "act.tummy-to-back-roll-practice",
+          "act.pot-and-spoon-band",
+          "act.cushion-crawl-course",
+          "act.cruise-the-sofa",
+          "act.splash-and-pour",
+          "act.bucket-swing",
+          "act.safe-space-explore"
+        ]
+      }
+    ],
+    "recipesByStimulation": {
+      "settling": [
+        "mix.newborn-story-big-kid-reader",
+        "mix.baby-book-big-kid-story"
+      ],
+      "gentle": [
+        "mix.tummy-time-book-helper",
+        "mix.tummy-time-picture-show",
+        "mix.newborn-stroll-toddler-walks",
+        "mix.shaded-walk-nature-find",
+        "mix.stroller-walk-toddler-hunt",
+        "mix.action-song-circle",
+        "mix.diaper-change-helper",
+        "mix.seated-snack-for-two",
+        "mix.mat-and-table-side-by-side",
+        "mix.tummy-time-and-pretend-kitchen",
+        "mix.sofa-cuddle-sock-sort",
+        "mix.newborn-mat-teddy-meal",
+        "mix.newborn-mat-sock-match",
+        "mix.play-yard-and-color-sort",
+        "mix.treasure-basket-and-sock-match",
+        "mix.two-toddlers-blocks-and-puzzle",
+        "mix.toddler-blocks-big-kid-socks",
+        "mix.toddler-kitchen-big-kid-memory",
+        "mix.twin-quiet-table"
+      ],
+      "lively": [
+        "mix.newborn-sway-toddler-dance",
+        "mix.slow-dance-follow-the-leader",
+        "mix.two-toddlers-freeze-dance",
+        "mix.big-kid-leads-toddler-copies",
+        "mix.opposites-parade",
+        "mix.playground-stroller-spotting",
+        "mix.blanket-and-red-light",
+        "mix.blanket-and-bubbles"
+      ],
+      "variable": []
+    },
+    "unresolved": [
+      {
+        "id": "act.library-story-time",
+        "title": "Library story time",
+        "kind": "activity",
+        "reason": "Outing: depends on the place or session"
+      },
+      {
+        "id": "act.calm-show-while-you-cook",
+        "title": "One calm show while you cook",
+        "kind": "activity",
+        "reason": "Screen: depends on the show"
+      },
+      {
+        "id": "act.watch-one-together-and-talk",
+        "title": "Watch one together and talk",
+        "kind": "activity",
+        "reason": "Screen: depends on the show"
+      }
+    ]
   }
 }

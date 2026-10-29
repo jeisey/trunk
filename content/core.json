@@ -58,7 +58,7 @@
       "org": "Health Service Executive (Ireland)",
       "title": "Tummy time for babies",
       "jurisdiction": "IE",
-      "checked": "2026-10-28",
+      "checked": "2026-10-29",
       "updated": "2026-05-17",
       "notes": "Page last reviewed 17/05/2026; next review due 17/06/2029."
     },
@@ -81,6 +81,36 @@
       "checked": "2026-10-28",
       "updated": "2021-03-30",
       "notes": "Written for babies followed by a neonatal follow-up clinic after NICU/CCCU care; recommendations use corrected age."
+    },
+    {
+      "id": "src.aap-hc.why-babies-spit-up",
+      "url": "https://www.healthychildren.org/English/ages-stages/baby/feeding-nutrition/Pages/Why-Babies-Spit-Up.aspx",
+      "org": "American Academy of Pediatrics (HealthyChildren.org)",
+      "title": "Why Babies Spit Up",
+      "jurisdiction": "US",
+      "checked": "2026-10-29",
+      "updated": "2025-01-03",
+      "notes": "By Alejandro Velez, MD, FAAP, and Christine Waasdorp Hurtado, MD, FAAP. Footer: last updated 1/3/2025; source AAP Section on Gastroenterology, Hepatology and Nutrition (© 2022). Filed under Baby (0–12 months) > Nutrition."
+    },
+    {
+      "id": "src.hse.naps-babies-toddlers",
+      "url": "https://www2.hse.ie/babies-children/sleep/naps-babies-and-toddlers/",
+      "org": "Health Service Executive (Ireland)",
+      "title": "Naps for babies and toddlers",
+      "jurisdiction": "IE",
+      "checked": "2026-10-29",
+      "updated": "2026-03-27",
+      "notes": "Page last reviewed 27/03/2026; next review due 27/03/2029. Also lists nap counts, spacing between naps and a 3.30 pm cut-off by age, which Trunk deliberately does not use."
+    },
+    {
+      "id": "src.nhs.helping-baby-sleep",
+      "url": "https://www.nhs.uk/baby/caring-for-a-newborn/helping-your-baby-to-sleep/",
+      "org": "NHS (England)",
+      "title": "Helping your baby to sleep",
+      "jurisdiction": "UK",
+      "checked": "2026-10-29",
+      "updated": "2025-01-28",
+      "notes": "Page last reviewed 28 January 2025; next review due 28 January 2028. Its winding-down advice is about bedtime; the page gives no advice on activity before daytime naps."
     }
   ],
   "claims": [
@@ -276,8 +306,55 @@
         "src.hse.tummy-time"
       ],
       "locator": "Section 'When to start', last paragraph",
-      "paraphrase": "Avoid tummy time just before or after a feed, especially if your baby has reflux.",
-      "scope": "Ireland public guidance; a practical timing tip, not a feeding schedule."
+      "paraphrase": "HSE advises against tummy time immediately before or after feeding, particularly for babies with reflux. It gives no number of minutes.",
+      "scope": "Ireland public guidance for babies doing tummy time in any position the page describes (chest, lap, arms, floor mat). A practical timing tip, not a feeding schedule."
+    },
+    {
+      "id": "clm.core.aap-spit-up-limit-active-play",
+      "kind": "recommendation",
+      "text": "AAP (US): if a baby spits up when bounced or played with after feeds, keep feeds calm and limit active play for about 20–30 minutes afterward.",
+      "sources": [
+        "src.aap-hc.why-babies-spit-up"
+      ],
+      "locator": "'Common concerns parents have about spit up' — 'My baby spits up when you bounce them or play with them after meals' (action to take); closing 'Remember' paragraph",
+      "paraphrase": "The likely cause is overstimulation: keep feeding times calm and cut back on active play for roughly 20 to 30 minutes after. The closing summary repeats this and adds keeping the baby upright for at least 20 minutes, closely supervised.",
+      "scope": "US; babies (the page sits in the AAP's 0–12 months section) whose spit-up follows play after milk feeds; 'meals' on the page means breast milk or formula. Not advice for every baby, or for toddlers and older children.",
+      "caveat": "The page says forceful vomiting after every feed, or blood in spit-up, needs a pediatrician. Trunk gives no medical advice about spit-up or reflux and never asks about it."
+    },
+    {
+      "id": "clm.core.aap-spit-up-postpone-tummy",
+      "kind": "recommendation",
+      "text": "AAP (US): pressing on a baby's belly right after a feed makes spit-up more likely, so postponing tummy time for a while after feeds can help babies who spit up.",
+      "sources": [
+        "src.aap-hc.why-babies-spit-up"
+      ],
+      "locator": "'Remedies for spitty babies' — '5 tips to reduce your baby's spit up', third tip ('Limit active play after meals and hold your baby upright')",
+      "paraphrase": "Pressure on the belly just after eating raises the chance that stomach contents come back up; tummy time matters, but delaying it for a while after feeds is a simple way to avoid this.",
+      "scope": "US; babies who spit up. The tip gives no number of minutes for postponing tummy time."
+    },
+    {
+      "id": "clm.core.hse-nap-calm-routine",
+      "kind": "recommendation",
+      "text": "HSE (Ireland): a consistent daily routine, a dark room, and a story read in a calming voice can make it easier for a baby or toddler to nap.",
+      "sources": [
+        "src.hse.naps-babies-toddlers"
+      ],
+      "locator": "Section 'Help your baby or toddler nap', list items 1, 3 and 6",
+      "paraphrase": "Children nap more easily with a steady daily routine so they know when nap time is, a darkened room, not being too warm, a comforter after 12 months, and a story read calmly.",
+      "scope": "Ireland; daytime naps for babies and toddlers. Describes a pre-nap routine; says nothing about which play suits the time before it and gives no wind-down length.",
+      "caveat": "The same page gives nap counts, spacing between naps and a 3.30 pm cut-off by age. Trunk does not use them: it never sets nap times, nap lengths or wake windows."
+    },
+    {
+      "id": "clm.core.nhs-bedtime-wind-down",
+      "kind": "recommendation",
+      "text": "NHS (England): a simple, soothing bedtime routine may help a baby settle. As children get older, too much excitement just before bedtime can wake them up again, so wind down with calmer activities like reading.",
+      "sources": [
+        "src.nhs.helping-baby-sleep"
+      ],
+      "locator": "Section 'Establishing a baby bedtime routine': opening sentence, routine list, and final paragraph",
+      "paraphrase": "A simple, soothing routine at bedtime (bath, night clothes, a story, dim lights, a cuddle, a lullaby) may help a baby settle. For older children, lots of excitement right before bed can wake them again, so spend time winding down with calmer activities such as reading.",
+      "scope": "UK (England); bedtime (night sleep) for babies and young children. Bedtime advice, not nap advice: the page says nothing about activity before daytime naps.",
+      "caveat": "The same page says that in the daytime you needn't keep the house quiet while a baby sleeps. Trunk cites this only as background for its own editorial nap preference."
     },
     {
       "id": "clm.core.ask-clinician-preterm",
@@ -397,8 +474,30 @@
       "checked": "2026-10-29"
     },
     {
-      "id": "tim.core.wind-down-before-nap",
+      "id": "tim.core.gentle-play-after-feed-spit-up",
       "rev": 1,
+      "event": "milk-feed",
+      "when": "after",
+      "window": {
+        "minutes": 30,
+        "basis": "source"
+      },
+      "fit": "later",
+      "ageMin": "1w",
+      "ageMax": "12m",
+      "condition": "spit-up",
+      "basis": "source",
+      "claims": [
+        "clm.core.aap-spit-up-limit-active-play",
+        "clm.core.aap-spit-up-postpone-tummy"
+      ],
+      "cue": "Spits up? Keep play calm after a feed",
+      "reason": "AAP (US) advice for babies who spit up when played with after feeds: limit active play for about 20–30 minutes (Trunk uses 30) and postpone tummy time for a while. Not a rule for babies who don't spit up.",
+      "checked": "2026-10-29"
+    },
+    {
+      "id": "tim.core.wind-down-before-nap",
+      "rev": 2,
       "event": "nap",
       "when": "before",
       "window": {
@@ -407,19 +506,22 @@
       },
       "fit": "preferred",
       "basis": "editorial",
-      "claims": [],
+      "claims": [
+        "clm.core.hse-nap-calm-routine",
+        "clm.core.nhs-bedtime-wind-down"
+      ],
       "match": {
         "stimulation": [
           "settling"
         ]
       },
       "cue": "Good for winding down",
-      "reason": "Quiet, familiar activities can fit the time before a nap. This is Trunk’s planning preference, not a sleep rule: no activity guarantees sleep, and the 30 minutes is a convention.",
+      "reason": "Quiet, familiar activities can fit before a nap. HSE suggests a calm story before naps and NHS winding down before bed; applying this to naps is Trunk’s preference. Nothing guarantees sleep, and the 30 minutes is a convention.",
       "checked": "2026-10-29"
     },
     {
       "id": "tim.core.lively-earlier-than-nap",
-      "rev": 1,
+      "rev": 2,
       "event": "nap",
       "when": "before",
       "window": {
@@ -428,19 +530,22 @@
       },
       "fit": "later",
       "basis": "editorial",
-      "claims": [],
+      "claims": [
+        "clm.core.nhs-bedtime-wind-down",
+        "clm.core.hse-nap-calm-routine"
+      ],
       "match": {
         "stimulation": [
           "lively"
         ]
       },
       "cue": "Better earlier, not right before a nap",
-      "reason": "Active, loud, or messy play fits earlier in the window, leaving calmer time and tidy-up before a planned nap. A planning preference, not a rule.",
+      "reason": "Active, loud, or messy play fits earlier, leaving calmer time and tidy-up before a planned nap. NHS notes that excitement just before bedtime can wake a child; for naps this is Trunk’s preference, not a rule.",
       "checked": "2026-10-29"
     },
     {
       "id": "tim.core.gentle-start-after-nap",
-      "rev": 1,
+      "rev": 2,
       "event": "nap",
       "when": "after",
       "window": {
@@ -457,7 +562,7 @@
         ]
       },
       "cue": "Gentle start after waking",
-      "reason": "Children often wake slowly, so Trunk prefers something gentle first. There’s no required waiting time; follow your child.",
+      "reason": "Trunk puts something gentle first after a nap. This is Trunk’s convention, not a source’s advice: there’s no required waiting time, so follow your child.",
       "checked": "2026-10-29"
     },
     {
@@ -574,10 +679,11 @@
         "flatSurface": false
       },
       "timing": {
-        "stimulation": "variable",
+        "stimulation": "gentle",
         "rules": [
           "tim.core.tummy-after-milk-feed",
-          "tim.core.tummy-before-milk-feed"
+          "tim.core.tummy-before-milk-feed",
+          "tim.core.gentle-play-after-feed-spit-up"
         ]
       },
       "evidence": {
@@ -679,10 +785,11 @@
         "flatSurface": false
       },
       "timing": {
-        "stimulation": "variable",
+        "stimulation": "gentle",
         "rules": [
           "tim.core.tummy-after-milk-feed",
-          "tim.core.tummy-before-milk-feed"
+          "tim.core.tummy-before-milk-feed",
+          "tim.core.gentle-play-after-feed-spit-up"
         ]
       },
       "evidence": {
@@ -790,10 +897,11 @@
         "flatSurface": true
       },
       "timing": {
-        "stimulation": "variable",
+        "stimulation": "gentle",
         "rules": [
           "tim.core.tummy-after-milk-feed",
-          "tim.core.tummy-before-milk-feed"
+          "tim.core.tummy-before-milk-feed",
+          "tim.core.gentle-play-after-feed-spit-up"
         ]
       },
       "evidence": {
@@ -906,10 +1014,11 @@
         "flatSurface": true
       },
       "timing": {
-        "stimulation": "variable",
+        "stimulation": "gentle",
         "rules": [
           "tim.core.tummy-after-milk-feed",
-          "tim.core.tummy-before-milk-feed"
+          "tim.core.tummy-before-milk-feed",
+          "tim.core.gentle-play-after-feed-spit-up"
         ]
       },
       "evidence": {

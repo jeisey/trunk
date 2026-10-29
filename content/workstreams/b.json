@@ -652,7 +652,7 @@
         ]
       },
       "timing": {
-        "stimulation": "variable",
+        "stimulation": "gentle",
         "rules": []
       },
       "evidence": {
@@ -766,7 +766,7 @@
         ]
       },
       "timing": {
-        "stimulation": "variable",
+        "stimulation": "gentle",
         "rules": []
       },
       "evidence": {
@@ -875,7 +875,7 @@
         ]
       },
       "timing": {
-        "stimulation": "variable",
+        "stimulation": "gentle",
         "rules": []
       },
       "evidence": {
@@ -983,7 +983,7 @@
         ]
       },
       "timing": {
-        "stimulation": "variable",
+        "stimulation": "gentle",
         "rules": []
       },
       "evidence": {
@@ -1079,7 +1079,7 @@
         ]
       },
       "timing": {
-        "stimulation": "variable",
+        "stimulation": "gentle",
         "rules": []
       },
       "evidence": {
@@ -1173,7 +1173,7 @@
         ]
       },
       "timing": {
-        "stimulation": "variable",
+        "stimulation": "gentle",
         "rules": []
       },
       "evidence": {
@@ -1275,7 +1275,7 @@
         ]
       },
       "timing": {
-        "stimulation": "variable",
+        "stimulation": "settling",
         "rules": []
       },
       "evidence": {
@@ -1379,7 +1379,7 @@
         ]
       },
       "timing": {
-        "stimulation": "variable",
+        "stimulation": "gentle",
         "rules": []
       },
       "evidence": {
@@ -1469,7 +1469,7 @@
         ]
       },
       "timing": {
-        "stimulation": "variable",
+        "stimulation": "gentle",
         "rules": []
       },
       "evidence": {
@@ -1581,10 +1581,11 @@
         "flatSurface": false
       },
       "timing": {
-        "stimulation": "variable",
+        "stimulation": "gentle",
         "rules": [
           "tim.core.tummy-after-milk-feed",
-          "tim.core.tummy-before-milk-feed"
+          "tim.core.tummy-before-milk-feed",
+          "tim.core.gentle-play-after-feed-spit-up"
         ]
       },
       "evidence": {
@@ -1702,10 +1703,11 @@
         "flatSurface": true
       },
       "timing": {
-        "stimulation": "variable",
+        "stimulation": "gentle",
         "rules": [
           "tim.core.tummy-after-milk-feed",
-          "tim.core.tummy-before-milk-feed"
+          "tim.core.tummy-before-milk-feed",
+          "tim.core.gentle-play-after-feed-spit-up"
         ]
       },
       "evidence": {
@@ -1816,7 +1818,7 @@
         ]
       },
       "timing": {
-        "stimulation": "variable",
+        "stimulation": "gentle",
         "rules": []
       },
       "evidence": {
@@ -1926,7 +1928,7 @@
         ]
       },
       "timing": {
-        "stimulation": "variable",
+        "stimulation": "gentle",
         "rules": []
       },
       "evidence": {
@@ -2037,7 +2039,7 @@
         ]
       },
       "timing": {
-        "stimulation": "variable",
+        "stimulation": "gentle",
         "rules": []
       },
       "evidence": {
@@ -2145,7 +2147,7 @@
         ]
       },
       "timing": {
-        "stimulation": "variable",
+        "stimulation": "gentle",
         "rules": []
       },
       "evidence": {
@@ -2264,7 +2266,7 @@
         ]
       },
       "timing": {
-        "stimulation": "variable",
+        "stimulation": "gentle",
         "rules": []
       },
       "evidence": {

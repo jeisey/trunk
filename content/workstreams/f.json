@@ -619,7 +619,7 @@
         ]
       },
       "timing": {
-        "stimulation": "variable",
+        "stimulation": "lively",
         "rules": []
       },
       "evidence": {
@@ -718,7 +718,7 @@
         ]
       },
       "timing": {
-        "stimulation": "variable",
+        "stimulation": "lively",
         "rules": []
       },
       "evidence": {
@@ -821,7 +821,7 @@
         ]
       },
       "timing": {
-        "stimulation": "variable",
+        "stimulation": "lively",
         "rules": []
       },
       "evidence": {
@@ -948,7 +948,7 @@
         ]
       },
       "timing": {
-        "stimulation": "variable",
+        "stimulation": "lively",
         "rules": []
       },
       "evidence": {
@@ -1071,7 +1071,7 @@
         ]
       },
       "timing": {
-        "stimulation": "variable",
+        "stimulation": "lively",
         "rules": []
       },
       "evidence": {
@@ -1190,7 +1190,7 @@
         ]
       },
       "timing": {
-        "stimulation": "variable",
+        "stimulation": "lively",
         "rules": []
       },
       "evidence": {
@@ -1287,7 +1287,7 @@
         ]
       },
       "timing": {
-        "stimulation": "variable",
+        "stimulation": "lively",
         "rules": []
       },
       "evidence": {
@@ -1385,7 +1385,7 @@
         ]
       },
       "timing": {
-        "stimulation": "variable",
+        "stimulation": "settling",
         "rules": []
       },
       "evidence": {
@@ -1478,7 +1478,7 @@
         ]
       },
       "timing": {
-        "stimulation": "variable",
+        "stimulation": "settling",
         "rules": []
       },
       "evidence": {
@@ -1572,7 +1572,7 @@
         ]
       },
       "timing": {
-        "stimulation": "variable",
+        "stimulation": "gentle",
         "rules": []
       },
       "evidence": {
@@ -1670,7 +1670,7 @@
         ]
       },
       "timing": {
-        "stimulation": "variable",
+        "stimulation": "gentle",
         "rules": []
       },
       "evidence": {
@@ -1768,7 +1768,7 @@
         ]
       },
       "timing": {
-        "stimulation": "variable",
+        "stimulation": "gentle",
         "rules": []
       },
       "evidence": {
@@ -1869,7 +1869,7 @@
         ]
       },
       "timing": {
-        "stimulation": "variable",
+        "stimulation": "gentle",
         "rules": []
       },
       "evidence": {
@@ -1971,7 +1971,7 @@
         ]
       },
       "timing": {
-        "stimulation": "variable",
+        "stimulation": "gentle",
         "rules": []
       },
       "evidence": {
@@ -2081,7 +2081,7 @@
         ]
       },
       "timing": {
-        "stimulation": "variable",
+        "stimulation": "gentle",
         "rules": []
       },
       "evidence": {
@@ -2187,7 +2187,7 @@
         ]
       },
       "timing": {
-        "stimulation": "variable",
+        "stimulation": "gentle",
         "rules": []
       },
       "evidence": {
@@ -2308,7 +2308,7 @@
         ]
       },
       "timing": {
-        "stimulation": "variable",
+        "stimulation": "gentle",
         "rules": []
       },
       "evidence": {
@@ -2430,7 +2430,7 @@
         ]
       },
       "timing": {
-        "stimulation": "variable",
+        "stimulation": "gentle",
         "rules": []
       },
       "evidence": {
@@ -2547,7 +2547,7 @@
         ]
       },
       "timing": {
-        "stimulation": "variable",
+        "stimulation": "lively",
         "rules": []
       },
       "evidence": {
@@ -2642,7 +2642,7 @@
         ]
       },
       "timing": {
-        "stimulation": "variable",
+        "stimulation": "settling",
         "rules": []
       },
       "evidence": {
@@ -2747,7 +2747,7 @@
         ]
       },
       "timing": {
-        "stimulation": "variable",
+        "stimulation": "settling",
         "rules": []
       },
       "evidence": {

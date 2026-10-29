@@ -215,7 +215,7 @@
         ]
       },
       "timing": {
-        "stimulation": "variable",
+        "stimulation": "gentle",
         "rules": []
       },
       "evidence": {
@@ -234,7 +234,7 @@
     {
       "rev": 2,
       "timing": {
-        "stimulation": "variable"
+        "stimulation": "gentle"
       },
       "checked": "2026-10-29",
       "outing": false,
@@ -333,7 +333,7 @@
     {
       "rev": 2,
       "timing": {
-        "stimulation": "variable"
+        "stimulation": "gentle"
       },
       "checked": "2026-10-29",
       "outing": false,
@@ -430,7 +430,7 @@
     {
       "rev": 2,
       "timing": {
-        "stimulation": "variable"
+        "stimulation": "lively"
       },
       "checked": "2026-10-29",
       "outing": false,
@@ -523,7 +523,7 @@
     {
       "rev": 2,
       "timing": {
-        "stimulation": "variable"
+        "stimulation": "lively"
       },
       "checked": "2026-10-29",
       "outing": false,
@@ -612,7 +612,7 @@
     {
       "rev": 1,
       "timing": {
-        "stimulation": "variable"
+        "stimulation": "gentle"
       },
       "checked": "2026-10-29",
       "outing": true,
@@ -715,7 +715,7 @@
     {
       "rev": 1,
       "timing": {
-        "stimulation": "variable"
+        "stimulation": "gentle"
       },
       "checked": "2026-10-29",
       "outing": true,
@@ -818,7 +818,7 @@
     {
       "rev": 1,
       "timing": {
-        "stimulation": "variable"
+        "stimulation": "gentle"
       },
       "checked": "2026-10-29",
       "outing": true,
@@ -922,7 +922,7 @@
     {
       "rev": 1,
       "timing": {
-        "stimulation": "variable"
+        "stimulation": "settling"
       },
       "checked": "2026-10-29",
       "outing": false,
@@ -1009,7 +1009,7 @@
     {
       "rev": 1,
       "timing": {
-        "stimulation": "variable"
+        "stimulation": "settling"
       },
       "checked": "2026-10-29",
       "outing": false,
@@ -1089,7 +1089,7 @@
     {
       "rev": 1,
       "timing": {
-        "stimulation": "variable"
+        "stimulation": "gentle"
       },
       "checked": "2026-10-29",
       "outing": false,
@@ -1170,7 +1170,7 @@
     {
       "rev": 1,
       "timing": {
-        "stimulation": "variable"
+        "stimulation": "gentle"
       },
       "checked": "2026-10-29",
       "outing": false,
@@ -1254,7 +1254,7 @@
     {
       "rev": 1,
       "timing": {
-        "stimulation": "variable"
+        "stimulation": "lively"
       },
       "checked": "2026-10-29",
       "outing": false,
@@ -1325,7 +1325,7 @@
     {
       "rev": 1,
       "timing": {
-        "stimulation": "variable"
+        "stimulation": "lively"
       },
       "checked": "2026-10-29",
       "outing": false,
@@ -1405,7 +1405,7 @@
     {
       "rev": 1,
       "timing": {
-        "stimulation": "variable"
+        "stimulation": "lively"
       },
       "checked": "2026-10-29",
       "outing": false,
@@ -1486,7 +1486,7 @@
     {
       "rev": 1,
       "timing": {
-        "stimulation": "variable"
+        "stimulation": "gentle"
       },
       "checked": "2026-10-29",
       "outing": false,
@@ -1588,7 +1588,7 @@
     {
       "rev": 1,
       "timing": {
-        "stimulation": "variable"
+        "stimulation": "lively"
       },
       "checked": "2026-10-29",
       "outing": true,
@@ -1690,7 +1690,7 @@
     {
       "rev": 1,
       "timing": {
-        "stimulation": "variable"
+        "stimulation": "gentle"
       },
       "checked": "2026-10-29",
       "outing": false,
@@ -1776,7 +1776,7 @@
     {
       "rev": 2,
       "timing": {
-        "stimulation": "variable"
+        "stimulation": "gentle"
       },
       "checked": "2026-10-29",
       "outing": false,
@@ -1869,7 +1869,7 @@
     {
       "rev": 1,
       "timing": {
-        "stimulation": "variable"
+        "stimulation": "gentle"
       },
       "checked": "2026-10-29",
       "outing": false,
@@ -1955,7 +1955,7 @@
     {
       "rev": 1,
       "timing": {
-        "stimulation": "variable"
+        "stimulation": "gentle"
       },
       "checked": "2026-10-29",
       "outing": false,
@@ -2040,7 +2040,7 @@
     {
       "rev": 1,
       "timing": {
-        "stimulation": "variable"
+        "stimulation": "gentle"
       },
       "checked": "2026-10-29",
       "outing": false,
@@ -2126,7 +2126,7 @@
     {
       "rev": 1,
       "timing": {
-        "stimulation": "variable"
+        "stimulation": "gentle"
       },
       "checked": "2026-10-29",
       "outing": false,
@@ -2211,7 +2211,7 @@
     {
       "rev": 1,
       "timing": {
-        "stimulation": "variable"
+        "stimulation": "gentle"
       },
       "checked": "2026-10-29",
       "outing": false,
@@ -2300,7 +2300,7 @@
     {
       "rev": 2,
       "timing": {
-        "stimulation": "variable"
+        "stimulation": "lively"
       },
       "checked": "2026-10-29",
       "outing": false,
@@ -2394,7 +2394,7 @@
     {
       "rev": 2,
       "timing": {
-        "stimulation": "variable"
+        "stimulation": "lively"
       },
       "checked": "2026-10-29",
       "outing": false,
@@ -2491,7 +2491,7 @@
     {
       "rev": 1,
       "timing": {
-        "stimulation": "variable"
+        "stimulation": "gentle"
       },
       "checked": "2026-10-29",
       "outing": false,
@@ -2568,7 +2568,7 @@
     {
       "rev": 1,
       "timing": {
-        "stimulation": "variable"
+        "stimulation": "gentle"
       },
       "checked": "2026-10-29",
       "outing": false,
@@ -2648,7 +2648,7 @@
     {
       "rev": 1,
       "timing": {
-        "stimulation": "variable"
+        "stimulation": "gentle"
       },
       "checked": "2026-10-29",
       "outing": false,
@@ -2728,7 +2728,7 @@
     {
       "rev": 1,
       "timing": {
-        "stimulation": "variable"
+        "stimulation": "gentle"
       },
       "checked": "2026-10-29",
       "outing": false,
@@ -3070,6 +3070,57 @@
           "kind": "break",
           "minutes": 10,
           "label": "Baby's nap or feed when ready"
+        }
+      ],
+      "checked": "2026-10-29"
+    },
+    {
+      "id": "plan.baby-nap-toddler-alongside",
+      "rev": 1,
+      "title": "Baby naps, toddler plays nearby: 4 months and 2 years",
+      "summary": "An example to edit: move the nap block to when your baby actually naps and set how long it usually lasts. Trunk never sets nap times or lengths. Quiet toddler play runs alongside.",
+      "circumstance": "One adult at home with a 4-month-old and a 2-year-old, around the baby’s nap.",
+      "ages": [
+        "4m",
+        "28m"
+      ],
+      "start": "13:00",
+      "segments": [
+        {
+          "kind": "recipe",
+          "ref": "mix.mat-and-table-side-by-side",
+          "minutes": 8
+        },
+        {
+          "kind": "break",
+          "minutes": 5,
+          "label": "Diaper, drinks and a cuddle"
+        },
+        {
+          "kind": "routine",
+          "routine": "nap",
+          "who": "c1",
+          "minutes": 45,
+          "at": 15
+        },
+        {
+          "kind": "activity",
+          "ref": "act.color-sort-bowls",
+          "minutes": 10,
+          "who": "c2",
+          "along": true
+        },
+        {
+          "kind": "activity",
+          "ref": "act.pretend-kitchen-cook",
+          "minutes": 20,
+          "who": "c2",
+          "along": true
+        },
+        {
+          "kind": "recipe",
+          "ref": "mix.action-song-circle",
+          "minutes": 5
         }
       ],
       "checked": "2026-10-29"
