@@ -56,7 +56,8 @@ How Trunk applies this:
 
 - Before a nap, settling activities are preferred and lively ones ranked "better earlier"; after a nap, something gentle first. These are editorial preferences with conventional windows (30 and 15 minutes), never sleep rules, and no activity is said to help a child sleep.
 - No universal post-meal rule: meal timing is unassessed because no reviewed source supports one. No rule ever keeps a child awake, moves a feed, or sets a nap time, nap length or wake window.
-- Gaps: from 4 months to under 3 years most slider stops have only one settling activity (none at 12–14 months); see `reports/coverage.md`.
+- Wind-down coverage: the first pass left most stops from 4 months to under 3 years with one settling activity (none at 12–14 months). Three new quiet records (a whispered story of the day, quiet window watching, a whispered goodbye round to the toys) now give every stop at least 3; see `reports/coverage.md`.
+- Two older starter plans were reordered so tummy time is not next to a feed break and the lively parade is not right before a nap break.
 
 ## Cross-workstream conflicts and how they were resolved
 

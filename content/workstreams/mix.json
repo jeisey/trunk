@@ -2856,7 +2856,7 @@
       "id": "plan.rainy-afternoon-4m-28m",
       "rev": 2,
       "title": "Rainy afternoon: 4 months and 28 months, one adult",
-      "summary": "A short tummy-time book session, side-by-side play, a slow dance parade and action songs, with breaks for feeds, diapers and drinks.",
+      "summary": "A short tummy-time book session, a slow dance parade, side-by-side play and action songs, with breaks for feeds, diapers and drinks.",
       "circumstance": "One adult indoors on a wet afternoon with a 4-month-old and a 2-year-old.",
       "ages": [
         "4m",
@@ -2876,8 +2876,8 @@
         },
         {
           "kind": "recipe",
-          "ref": "mix.mat-and-table-side-by-side",
-          "minutes": 12
+          "ref": "mix.slow-dance-follow-the-leader",
+          "minutes": 6
         },
         {
           "kind": "break",
@@ -2886,8 +2886,8 @@
         },
         {
           "kind": "recipe",
-          "ref": "mix.slow-dance-follow-the-leader",
-          "minutes": 6
+          "ref": "mix.mat-and-table-side-by-side",
+          "minutes": 12
         },
         {
           "kind": "break",

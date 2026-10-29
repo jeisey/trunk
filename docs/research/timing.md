@@ -72,7 +72,8 @@ everything else is paraphrase.
   <https://www.hse.ie/babies-children/parenting-advice/caring-for-a-new-baby/tummy-time/>.
   Ireland. Last reviewed 17/05/2026, next review 17/06/2029 (unchanged). The page's
   canonical link now points to the same path on `www2.hse.ie`; the registered URL
-  still resolves.
+  still resolves and is kept, with a note on the source saying HSE also serves it on
+  `www2.hse.ie`.
 - **Passage:** *When to start*, fourth and last paragraph: avoid tummy time just
   before or after a feed, especially if the baby has reflux. **No minutes.** The
   positions on the page are chest-to-chest, lap, carried in arms and a floor mat
@@ -93,8 +94,10 @@ everything else is paraphrase.
   Last reviewed 27/03/2026, next review 27/03/2029.
 - **Passages relied on:** *Help your baby or toddler nap*: napping is easier with a
   consistent daily routine (item 1), a dark room (item 3) and a story read in a
-  calming voice (item 6); also no play in bed, not too warm, a comforter after 12
-  months. → `clm.core.hse-nap-calm-routine`.
+  calming voice (item 6); also no play in bed, not too warm. →
+  `clm.core.hse-nap-calm-routine`. Item 5: a special blanket or toy as a comforter
+  **after 12 months of age**. → `clm.core.hse-comforter-after-12m` (used only on
+  a record that starts at 12 months, with a safety note for younger babies).
 - **Read but not used:** *When your baby or toddler should nap* and *Spacing out
   naps* (nap counts, gaps between naps by age, "think about how long your child has
   been awake", no sleep after 3.30 pm over 9 months). These are scheduling advice;
@@ -119,14 +122,15 @@ everything else is paraphrase.
   a baby sleeps. The page says nothing about activity before daytime naps. The claim
   is scoped to bedtime and its caveat says so.
 
-### Also reopened: `src.aap-hc.baby-massage` (no change)
+### Also reopened: `src.aap-hc.baby-massage` (`checked` → 2026-10-29)
 
-Reopened to check whether `act.gentle-hand-foot-massage` (whose first step says "not
+Reopened to check whether `act.gentle-hand-foot-massage` (whose first step said "not
 right after a feed") should carry a feed rule. The page's "at least 30 minutes after
 they eat" applies to its tummy-stroking Colic Relief Routine, and the same page
 suggests holding a baby's foot *while* feeding. A feed rule for hand-and-foot massage
-would overstate the source, so none was added (see open questions). The source's
-`checked` date is left as it was because no record that cites it changed.
+would overstate the source, so none was added. Follow-up: the step now uses the
+source's framing instead ("Choose a time when your baby is quiet and alert, and
+follow their signals as you go"; `rev` 2).
 
 ## How the sources map to rules
 
@@ -200,9 +204,9 @@ children share. The evaluator applies each child's own role activity rules to th
 child only (the baby's tummy-time feed rules never land on the toddler), and adds
 the policy rules for the shared profile to a child whose own role is calmer.
 
-## Activities (108)
+## Activities (111)
 
-Counts: settling 12, gentle 68, lively 25, variable 3. "HSE ×2" = `tim.core.tummy-after-milk-feed` and
+Counts: settling 15, gentle 68, lively 25, variable 3. "HSE ×2" = `tim.core.tummy-after-milk-feed` and
 `tim.core.tummy-before-milk-feed`; "spit-up" = `tim.core.gentle-play-after-feed-spit-up`.
 Nap rules are policy rules and apply by stimulation, so they are not listed.
 
@@ -212,6 +216,9 @@ Nap rules are policy rules and apply by stimulation, so they are not listed.
 | `act.tummy-time-lap` | Lap tummy time | core | 1w–4m | gentle | HSE ×2 + spit-up | Quiet lap position with a slow knee sway; still tummy time, so engaging rather than settling. |
 | `act.tummy-time-floor-face-to-face` | Face-to-face floor tummy time | core | 1w–3m | gentle | HSE ×2 + spit-up | Quiet floor tummy time with face-to-face chat; effortful for the baby. |
 | `act.tummy-time-reach-and-play` | Tummy time reach and play | core | 3m–8m | gentle | HSE ×2 + spit-up | Quiet, but the baby lifts, shifts weight and reaches. |
+| `act.story-of-our-day` | Tell the story of your day | core | 4m–36m | settling | — | New. Quiet, slow retelling of familiar events while held close; no book, so distinct from the reading records. |
+| `act.window-watch-in-arms` | Quiet window watching | core | 4m–18m | settling | — | New. Held still at a closed window watching something slow, with soft naming and long pauses. |
+| `act.whisper-bye-bye-to-toys` | Whisper bye-bye to the toys | core | 12m–36m | settling | — | New. Slow, whispered, repeatable goodbye round ending in a cuddle; a familiar ritual, not a sleep method. |
 | `act.coo-and-copy-chat` | Coo-and-copy chat | a | 1w–4m | gentle | — | Quiet turn-taking chat at a calm, alert moment; engaging rather than winding down. |
 | `act.diaper-change-chat` | Diaper-change chat | a | 1w–4m | gentle | — | Everyday routine with chat; medium mess rules out settling. |
 | `act.sway-and-hum` | Sway and hum | a | 1w–4m | settling | — | Slow rocking and soft humming while held; the steps already cover a baby who drifts off. |
@@ -219,7 +226,7 @@ Nap rules are policy rules and apply by stimulation, so they are not listed.
 | `act.bold-picture-gazing` | Bold picture gazing | a | 1w–3m | gentle | — | Quiet but alert looking at high-contrast pictures. |
 | `act.rattle-look-and-listen` | Rattle look-and-listen | a | 1w–4m | gentle | — | Rattle sound (moderate noise) and eye tracking. |
 | `act.pat-a-cake-touch-rhymes` | Pat-a-cake and toe rhymes | a | 1w–4m | gentle | — | Quiet, slow touch rhymes, but a playful game rather than a wind-down. |
-| `act.gentle-hand-foot-massage` | Gentle hand-and-foot massage | a | 1w–4m | settling | — | Slow, steady strokes when the baby is calm. No feed rule: see notes on the massage source. |
+| `act.gentle-hand-foot-massage` | Gentle hand-and-foot massage | a | 1w–4m | settling | — | Slow, steady strokes when the baby is quiet and alert. No feed rule: the source times only its tummy colic routine after feeds. |
 | `act.diaper-off-kick-time` | Diaper-off kick time | a | 1w–4m | gentle | — | Self-paced kicking on the back; medium mess. No spit-up rule: limbs only, no belly pressure or adult-driven motion. |
 | `act.play-gym-mat-gazing` | Play-gym gazing on the mat | a | 1w–4m | gentle | — | Quiet looking and batting under a play gym. |
 | `act.side-lying-play` | Side-lying play | a | 1w–4m | gentle | — | Quiet positional play with a toy. |
@@ -387,6 +394,45 @@ adult counts as busy), the songs after the nap get "Gentle start after waking", 
 the toddler has 5 unplanned minutes at the end of the nap (reported as a gap with
 the adult busy). Validated by the content validator.
 
+### Existing starters reordered (follow-up)
+
+Breaks are not routine blocks, so the evaluator cannot see a break labelled as a
+feed or nap. Both starters were reordered so they would still be fine if those
+breaks became real blocks (checked by replacing each feed- or nap-labelled break with
+a routine block at the same time and running `analyzePlan`: no avoid, caution or
+conflict). Labels stay responsive ("if your baby is ready", "or a cuddle"); no feed
+time is prescribed and no routine block was added.
+
+- `plan.gentle-newborn-hour` (rev 2): chat, then floor tummy time, cuddle and rest,
+  bold pictures, a neutral "Diaper, cuddle or nap: whatever your baby needs" break,
+  the slow sway, then "Feed or sleep if your baby is ready". Tummy time ends about
+  33 minutes before the only feed-labelled break.
+- `plan.rainy-afternoon-4m-28m` (rev 2): tummy-time book session first, then the
+  slow dance parade, side-by-side play, the "Baby feed or cuddle" break, action songs,
+  and "Rest, or a nap for the baby". Tummy time ends about 32 minutes before the feed
+  break; the lively parade ends about 35 minutes before the nap break, outside the
+  30-minute editorial window, and gentle songs come just before it. Summary updated to
+  the new order.
+
+## New settling activities (follow-up)
+
+The first pass left 4 months to under 3 years with one settling option per slider
+stop or none (12–14 months). Three new, distinct records were added to
+`content/core.json`. None widens an existing age range, none is a renamed book or
+song record, all are quiet with no mess, and none promises sleep.
+
+| Activity | Ages | Idea | Evidence (adapted) | Safety |
+|---|---|---|---|---|
+| `act.story-of-our-day` | 4m–36m | Held close, tell the child the simple story of their day in a quiet voice; no book. Babies listen; toddlers point or fill in. | `clm.core.who-reading-storytelling` (WHO: storytelling with a caregiver), `clm.c.narrate-everyday` (talk about everyday things, build on sounds), `clm.core.hse-nap-calm-routine` (a story in a calming voice) | Only while the adult is wide awake; a child who dozes off goes on their back in their own sleep space (`clm.core.stay-awake-holding`, `clm.core.sleep-on-back`). |
+| `act.window-watch-in-arms` | 4m–18m | Held at a closed window, watch something slow (leaves, rain, clouds) and name it softly with long pauses. | `clm.b.talk-while-doing-tasks` (talk about what the baby is looking at), `clm.c.name-on-walks` (name what they look at) | Hold the child yourself, never on a sill or furniture by the window; keep clear of blind and curtain cords (`clm.c.stairs-windows`, `clm.c.cords-away`); sleep-on-back note. |
+| `act.whisper-bye-bye-to-toys` | 12m–36m | A slow, whispered goodbye round to a few familiar toys and things, ending in a cuddle, with their comforter if they have one. | `clm.core.hse-nap-calm-routine`, `clm.core.nhs-bedtime-wind-down` (bedtime-scoped), `clm.core.hse-comforter-after-12m` (new claim) | Comforters and soft toys are for over-1s (HSE); for babies, soft toys and loose blankets stay away from the face and out of the sleep space (`clm.a.keep-face-clear`). |
+
+Why each is settling and not gentle: the noise is quiet, there is no mess, the pace
+is slow, the content is familiar (the child's own day, the same view, the same
+toys), and the adult keeps it low-key. The goodbye round is described as a familiar
+way to slow down, not a sleep method. No existing record's `noise` value was
+changed.
+
 ## Unresolved
 
 Records deliberately marked `variable` (never treated as calm, never cleared;
@@ -419,18 +465,17 @@ Judgment calls that are classified but worth a second look:
 
 ## Coverage gaps (settling options at each slider stop)
 
-From `reports/coverage.md` (threshold: 2 settling activities per stop):
+From `reports/coverage.md` (threshold: 2 settling activities per stop).
 
-- **4 to 11 months:** 1 (`act.bold-picture-lap-book` to under 6 months, then
-  `act.point-and-name-books`).
-- **12 to 14 months:** none. No book-sharing, lullaby or cuddle activity covers
-  12–15 months.
-- **15 months to 2 years 11 months:** 1 (`act.where-is-it-picture-book`, then
-  `act.who-what-where-book-chat`).
+- **First pass:** 4–11 months had 1, 12–14 months had none, and 15 months to 2 years
+  11 months had 1.
+- **After the follow-up:** every stop from 4 months to under 3 years has at least 3
+  (4–14 months: 3; 15–17 months: 4; 18 months to 2 years 11 months: 3). Under 4
+  months has 4–5 and 3 years and over has 4. No settling gap remains at the current
+  threshold.
 
-These need new, appropriate records (for example a lullaby-and-cuddle or quiet
-picture-book activity for 4–24 months). They were not filled by widening ages or
-softening classifications.
+The gaps were closed with new records, not by widening ages or softening
+classifications.
 
 ## Open questions
 
@@ -438,22 +483,14 @@ softening classifications.
    milk feeds. The advisory is keyed to milk feeds, so a plan's `meal` block for a
    9-month-old does not trigger it. A meal twin would be defensible but would
    duplicate the finding when "Just fed" emits both events. Lead/evaluator call.
-2. **Massage step.** `act.gentle-hand-foot-massage` step 1 says "not right after a
-   feed"; its source times only the tummy-stroking colic routine after feeds and
-   suggests holding a foot during a feed. Workstream A may want to soften the step;
-   no timing rule was added.
-3. **Starter plans written before routine blocks.** `plan.gentle-newborn-hour` puts
-   floor tummy time straight after a break labelled "Feed, diaper or nap: whatever
-   comes first", and `plan.rainy-afternoon-4m-28m` puts tummy time straight before a
-   "Baby feed or cuddle" break and a lively parade straight before "Rest, or a nap for
-   the baby". Breaks are not routine blocks, so the evaluator does not see these. If
-   the break is a feed, HSE's advice applies. A reorder or relabel is a mixed-age
-   workstream/lead call.
-4. **Upright holding.** The AAP's "hold your baby upright for at least 20 minutes"
+2. **Upright holding.** The AAP's "hold your baby upright for at least 20 minutes"
    is not encoded; Trunk has no way to represent it without prescribing a routine.
-5. **Rule revisions.** Three nap policy rules moved to `rev: 2` for wording and
+3. **Rule revisions.** Three nap policy rules moved to `rev: 2` for wording and
    claims. If shared plans or caches compare rule revisions, the lead should confirm
    that is expected.
-6. **HSE URL host.** `src.hse.tummy-time` is registered on `www.hse.ie`; the page's
-   canonical is now `www2.hse.ie`. Both resolve; changing the URL would need a new
-   check of every claim that cites it.
+4. **Where the new settling records live.** They sit in `content/core.json` because
+   they span several age bands; the lead may move them to a band file (ids stay).
+
+Resolved in the follow-up: the massage step now uses its source's framing; the two
+older starters were reordered; `src.hse.tummy-time` keeps its URL with a note that
+HSE also serves it on `www2.hse.ie`.
