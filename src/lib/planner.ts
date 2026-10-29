@@ -17,6 +17,7 @@ import { BREAK_LABEL, kidInputs, newId, youngerFor, type PlanKid, type PlanSegme
 import { monthsToDays } from './age.ts';
 import { formatAgeShort } from './age.ts';
 import { parseHHMM } from './time.ts';
+import { activityProfile, recipeProfile, timeIssue, type OutdoorProfile } from './timeRules.ts';
 
 export interface PlannerInput {
   kids: PlanKid[];
@@ -27,10 +28,7 @@ export interface PlannerInput {
   start?: string;
 }
 
-/** AAP: keep babies under 6 months out of the sun and avoid 10 a.m.–4 p.m. outdoors. */
-export const MIDDAY_SUN = { from: 10 * 60, to: 16 * 60 };
-/** Outdoor-only activities aren't scheduled in late evening or at night. */
-export const NIGHT = { from: 20 * 60, to: 6 * 60 };
+
 
 export interface PlannerResult {
   segments: PlanSegment[];
@@ -50,10 +48,9 @@ type Candidate = {
   places: readonly string[];
   outing: boolean;
   media: boolean;
-  /** Can only happen outdoors. */
-  outdoorOnly: boolean;
-  /** Outdoor activity with a sun/weather hazard for the youngest child. */
-  sun: boolean;
+  /** Snacks and other food activities are never added automatically. */
+  food: boolean;
+  profile: OutdoorProfile;
   effort: string;
   setup: number;
   cleanup: number;
@@ -68,8 +65,8 @@ const fromActivity = (a: Activity): Candidate => ({
   places: a.places,
   outing: a.outing,
   media: a.kind === 'media',
-  outdoorOnly: !a.places.includes('indoors'),
-  sun: a.hazards.includes('sun-weather') && a.places.includes('outdoors'),
+  food: a.hazards.includes('food'),
+  profile: activityProfile(a),
   effort: a.effort,
   setup: a.setupMinutes,
   cleanup: a.cleanupMinutes,
@@ -86,8 +83,8 @@ const fromRecipe = (r: MixedAgeRecipe, c: IndexedCatalog): Candidate => {
     places: r.places,
     outing: r.outing,
     media: acts.some((a) => a?.kind === 'media'),
-    outdoorOnly: !r.places.includes('indoors'),
-    sun: Boolean(acts[0]?.hazards.includes('sun-weather') && r.places.includes('outdoors')),
+    food: acts.some((a) => a?.hazards.includes('food')),
+    profile: recipeProfile(r, acts[0]),
     effort: r.effort,
     setup: r.setupMinutes,
     cleanup: r.cleanupMinutes,
@@ -149,18 +146,8 @@ export function planWindow(c: IndexedCatalog, input: PlannerInput): PlannerResul
 
   const cadence = breakCadence(youngest);
   const startClock = input.start ? parseHHMM(input.start) : null;
-  const sunSensitive = youngest < monthsToDays(6);
   let skippedForSun = false;
   let skippedForNight = false;
-  const clockAt = (offset: number) => (startClock === null ? null : (startClock + offset) % 1440);
-  const inMiddaySun = (offset: number) => {
-    const clock = clockAt(offset);
-    return clock !== null && clock >= MIDDAY_SUN.from && clock < MIDDAY_SUN.to;
-  };
-  const atNight = (offset: number) => {
-    const clock = clockAt(offset);
-    return clock !== null && (clock >= NIGHT.from || clock < NIGHT.to);
-  };
   const segments: PlanSegment[] = [];
   const uses = new Map<string, number>();
   let remaining = window;
@@ -195,14 +182,14 @@ export function planWindow(c: IndexedCatalog, input: PlannerInput): PlannerResul
       continue;
     }
     const options = pool.filter((p) => {
+      if (p.food) return false;
       if (p.setup + p.duration.min + p.cleanup > remaining) return false;
-      if (sunSensitive && p.sun && inMiddaySun(window - remaining)) {
-        skippedForSun = true;
-        return false;
-      }
-      if (p.outdoorOnly && atNight(window - remaining)) {
-        skippedForNight = true;
-        return false;
+      if (startClock !== null) {
+        const minutes = Math.max(p.duration.min, Math.min(p.duration.default, p.duration.max, remaining - p.setup - p.cleanup));
+        const issue = timeIssue(p.profile, startClock + (window - remaining), p.setup + minutes + p.cleanup, youngest, settings.place);
+        if (issue === 'sun') skippedForSun = true;
+        if (issue === 'night') skippedForNight = true;
+        if (issue) return false;
       }
       if (p.outing && usedOuting) return false;
       if (p.media && usedMedia) return false;

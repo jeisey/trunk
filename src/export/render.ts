@@ -26,6 +26,7 @@ export interface ExportOptions {
 const FONT = 'system-ui, -apple-system, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif';
 const COLORS = { text: '#16332a', muted: '#4b5f57', accent: '#2457a6', line: '#dbe3df', safety: '#7a4300', surface: '#f5f8f6', mascot: '#7f9cc6', ear: '#b9cbe6', leaf: '#3f8a5f' };
 const M = 72; // side margin
+const SERIOUS = new Set(['water', 'food', 'suffocation', 'heat', 'traffic', 'falls', 'small-parts']);
 const LINE = 1.3;
 
 interface Line {
@@ -97,7 +98,9 @@ function entryBlock(ctx: CanvasRenderingContext2D, t: TimedSegment, plan: Plan, 
     if (a) {
       push(`Child 1: ${a.summary}`, 450, 30, COLORS.text, 6);
       push(`You: ${adultText(a.supervision)}`, 450, 30, COLORS.text, 4);
-      push(`! ${a.safety[0].text}`, 550, 27, COLORS.safety, 6);
+      // Records with serious hazards show their two leading (sourced) safety notes.
+      const notes = a.hazards.some((h) => SERIOUS.has(h)) ? a.safety.slice(0, 2) : a.safety.slice(0, 1);
+      notes.forEach((n, i) => push(`! ${n.text}`, 550, 27, COLORS.safety, i === 0 ? 6 : 2));
     }
   } else if (seg.kind === 'recipe') {
     const r = c.recipeById.get(seg.ref ?? '');

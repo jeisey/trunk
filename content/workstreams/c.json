@@ -972,7 +972,7 @@
       ],
       "adaptations": [
         "Simpler: you fill the bowl and let your baby do the tipping out.",
-        "Harder: cut a wide slot in a box lid for posting big jar-free lids or balled-up socks.",
+        "Harder: cut a wide slot in a box lid for posting large jar lids or balled-up socks (each too big to fit through a toilet-paper tube) or balled-up socks.",
         "Hide a toy inside a cup or box for them to find."
       ],
       "stopCues": [
@@ -1803,7 +1803,7 @@
     },
     {
       "id": "act.splash-and-pour",
-      "rev": 1,
+      "rev": 2,
       "title": "Splash and pour water play",
       "summary": "In a shallow bath or a basin of water, let your baby splash, pour from cups, and squeeze a sponge while you stay hand-close.",
       "kind": "play",
@@ -1862,13 +1862,13 @@
         "heat"
       ],
       "steps": [
-        "Gather the towel, cups, and sponge first so you won't need to leave.",
+        "Gather the towel, cups, and sponge first so you won’t need to leave.",
         "Run a few centimetres of water, cold first, and check it with your wrist or elbow.",
-        "Kneel beside your baby and show them how to pour and squeeze: “splish, splash!”",
+        "Kneel beside your baby with one hand on them the whole time (touch supervision); show pouring and squeezing with the other.",
         "Lift them out onto the towel and empty the water straight away."
       ],
       "adaptations": [
-        "Less steady sitter: keep one hand on their back the whole time.",
+        "Less steady sitter: support their back as well as keeping your hand on them.",
         "Older baby: add a colander or a cup with holes and watch the water rain out.",
         "Make it bath time: name each body part as you wash it."
       ],
@@ -1879,7 +1879,7 @@
       ],
       "safety": [
         {
-          "text": "Stay within arm's reach, hand ready, every second. If the door or phone needs you, lift your baby out and take them with you.",
+          "text": "Keep a hand on your baby every second. If the door or phone needs you, lift your baby out and take them with you.",
           "claims": [
             "clm.c.water-touch-supervision"
           ]
@@ -1977,7 +1977,6 @@
         "Wash hands when you head back inside."
       ],
       "adaptations": [
-        "Not sitting yet: lie side by side on your backs and watch the leaves move, or try a few minutes on their tummy facing you.",
         "Crawler: let them crawl onto the grass while you stay alongside.",
         "Add outdoor story time with a board book."
       ],
@@ -2186,7 +2185,8 @@
       "noise": "moderate",
       "hazards": [
         "falls",
-        "sun-weather"
+        "sun-weather",
+        "traffic"
       ],
       "steps": [
         "Check the seat is an intact full bucket swing over soft surfacing, and touch it for heat on sunny days.",
@@ -2206,15 +2206,15 @@
       ],
       "safety": [
         {
-          "text": "Use only a full bucket seat made for babies and toddlers, and lift your baby in and out yourself.",
-          "claims": [
-            "clm.c.bucket-swing"
-          ]
-        },
-        {
           "text": "Stay at the swing with eyes on your baby, keep pushes low, and watch for children walking in front of swings.",
           "claims": [
             "clm.c.playground-supervision"
+          ]
+        },
+        {
+          "text": "Use only a full bucket seat made for babies and toddlers, and lift your baby in and out yourself.",
+          "claims": [
+            "clm.c.bucket-swing"
           ]
         },
         {
@@ -2222,6 +2222,12 @@
           "claims": [
             "clm.c.playground-supervision",
             "clm.c.sun-protection"
+          ]
+        },
+        {
+          "text": "Hold hands in the parking lot and near roads on the way there and back.",
+          "claims": [
+            "clm.d.pedestrian-safety"
           ]
         }
       ],

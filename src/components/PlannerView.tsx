@@ -2,7 +2,7 @@ import { useState } from 'react';
 import type { IndexedCatalog } from '../content/catalog.ts';
 import type { StarterPlan } from '../content/schema.ts';
 import { formatAge, parseAgeString, normalizeEnteredAge } from '../lib/age.ts';
-import { RELAX_LABEL, relaxFilter, type Filters } from '../lib/filters.ts';
+import { mediaAllowed, RELAX_LABEL, relaxFilter, type Filters } from '../lib/filters.ts';
 import type { PlannerResult } from '../lib/planner.ts';
 import { BREAK_LABEL, newId, newPlanId, PLAN_VERSION, type Plan, type PlanKid, type PlanSegment, type PlanSettings } from '../lib/plan.ts';
 import { reconcileSegments } from '../lib/reconcile.ts';
@@ -40,8 +40,11 @@ export function makePlan(kids: PlanKid[], settings: PlanSettings, start: string,
   };
 }
 
-function starterFits(sp: StarterPlan, kids: PlanKid[], c: IndexedCatalog): boolean {
+function starterFits(sp: StarterPlan, kids: PlanKid[], c: IndexedCatalog, energy: Filters['energy']): boolean {
   if (sp.ages.length !== kids.length) return false;
+  // Plans with a screen option only appear in the contexts where screens are offered at all.
+  const hasMedia = sp.segments.some((s) => s.kind === 'activity' && c.activityById.get(s.ref)?.kind === 'media');
+  if (hasMedia && !mediaAllowed(energy)) return false;
   const segs = starterSegments(sp);
   const settings: PlanSettings = { energy: 'plenty', place: 'any', mode: 'either', adults: 1 };
   return reconcileSegments(kids, settings, segs, c).dropped.length === 0;
@@ -87,7 +90,7 @@ export function PlannerView(props: {
   const allKids = kidsToPlanKids(props.kids);
   const planKids = allKids.length === 2 && f.focus !== 'both' ? [allKids[f.focus]] : allKids;
   const [confirmReplace, setConfirmReplace] = useState(false);
-  const starters = c.starterPlans.filter((sp) => starterFits(sp, planKids, c));
+  const starters = c.starterPlans.filter((sp) => starterFits(sp, planKids, c, f.energy));
   const blocked = props.lastResult?.blocked;
 
   const generate = () => {

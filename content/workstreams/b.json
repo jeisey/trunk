@@ -487,7 +487,7 @@
     {
       "id": "clm.b.sun-under-6-months",
       "kind": "safety",
-      "text": "AAP (US): keep babies under 6 months out of direct sun. Use shade or a stroller canopy, light clothes that cover arms and legs, and a wide-brimmed hat; avoid 10 a.m. to 4 p.m. Sunscreen only on small areas if there's no shade.",
+      "text": "AAP (US, 2026): keep babies under 6 months out of direct and indirect sunlight because of heat-stroke risk; use shade or a sunshade, light clothes that cover arms and legs, and a wide-brimmed hat, and avoid 10 a.m. to 4 p.m.",
       "sources": [
         "src.aap-hc.sun-safety",
         "src.aap-hc.baby-sunburn-prevention"
@@ -495,7 +495,7 @@
       "locator": "AAP Sun Safety: 'Simple rules to protect your family from sunburns', bullet 1, and 'Sunscreen for babies'; AAP Baby Sunburn Prevention: 'What is the best way to prevent sunburns in babies?'",
       "paraphrase": "Keep babies younger than 6 months out of direct sunlight, using shade from a tree, umbrella or stroller canopy; dress them in lightweight long sleeves, long pants and wide-brimmed hats; avoid having a baby outside between 10 a.m. and 4 p.m.; under 6 months, sunscreen on small areas such as the face only if clothing and shade aren't available.",
       "scope": "US; babies under 6 months.",
-      "caveat": "AAP's 2026 baby sunburn page is stricter: it says babies under 6 months should be kept out of direct and indirect sunlight entirely because of heat-stroke risk. HSE (Ireland) advises shade for all babies under 12 months; CPS (Canada) does not recommend sunscreen under 6 months."
+      "caveat": "The 2024 AAP sun-safety page allows sunscreen on small areas when shade isn’t available; Trunk follows the stricter 2026 baby page. HSE (Ireland) advises shade for all babies under 12 months; CPS (Canada) does not recommend sunscreen under 6 months."
     },
     {
       "id": "clm.b.carrier-face-visible",
@@ -637,6 +637,10 @@
             "clm.core.tummy-awake-supervised",
             "clm.core.sleep-on-back"
           ]
+        },
+        {
+          "text": "If you’re cooking, set this up outside the cooking area and out of your path with hot pans.",
+          "claims": []
         }
       ],
       "why": {
@@ -743,6 +747,10 @@
             "clm.core.floor-not-bed",
             "clm.b.raised-surface-falls"
           ]
+        },
+        {
+          "text": "If you’re cooking, set this up outside the cooking area and out of your path with hot pans.",
+          "claims": []
         }
       ],
       "why": {
@@ -765,7 +773,7 @@
     },
     {
       "id": "act.chore-chat-from-the-mat",
-      "rev": 1,
+      "rev": 2,
       "title": "Chore chat from the play mat",
       "summary": "Lay your baby on their back on a floor mat where they can see you, then talk them through a calm chore like folding laundry.",
       "kind": "play",
@@ -826,7 +834,7 @@
       ],
       "adaptations": [
         "Low on words today: hum or sing what you're doing instead of talking.",
-        "Older sibling around: they can hand you socks and tell the baby what color each one is."
+        "Two children? Use a side-by-side or together idea for both ages instead."
       ],
       "stopCues": [
         "Fussing or crying",
@@ -845,6 +853,10 @@
           "claims": [
             "clm.core.sleep-on-back"
           ]
+        },
+        {
+          "text": "If you’re cooking, set this up outside the cooking area and out of your path with hot pans.",
+          "claims": []
         }
       ],
       "why": {
@@ -1150,7 +1162,7 @@
     },
     {
       "id": "act.bold-picture-lap-book",
-      "rev": 1,
+      "rev": 2,
       "title": "Bold-picture book in your lap",
       "summary": "Hold your baby in your lap and share a board or cloth book with bold pictures, pointing, using fun voices, and letting them touch and taste it.",
       "kind": "play",
@@ -1211,7 +1223,7 @@
       "adaptations": [
         "Head control still developing: recline them against your chest so their head is supported.",
         "Grabby baby: give them a cloth book to hold while you point at the pictures in yours.",
-        "Big sibling nearby: let them pick the book and point to the pictures with you."
+        "Two children? Use a side-by-side or together idea for both ages instead."
       ],
       "stopCues": [
         "Looking away from the book",
@@ -1250,7 +1262,7 @@
     },
     {
       "id": "act.mirror-faces-together",
-      "rev": 1,
+      "rev": 2,
       "title": "Mirror faces together",
       "summary": "Lie or sit with your baby in front of an unbreakable baby mirror, smile and make faces, and name their eyes, nose, and mouth.",
       "kind": "play",
@@ -1310,7 +1322,7 @@
       ],
       "adaptations": [
         "Younger or tiring easily: hold them reclined in your lap with the mirror close.",
-        "Older sibling around: they can make silly faces in the mirror beside the baby."
+        "Two children? Use a side-by-side or together idea for both ages instead."
       ],
       "stopCues": [
         "Turning away from the mirror",
@@ -1434,7 +1446,7 @@
     },
     {
       "id": "act.tummy-time-towel-roll",
-      "rev": 1,
+      "rev": 2,
       "title": "Propped tummy time over a towel roll",
       "summary": "On a firm floor mat, lay your baby tummy-down with a small rolled towel under their chest and arms, then play face to face.",
       "kind": "play",
@@ -1498,7 +1510,7 @@
       ],
       "adaptations": [
         "Getting stronger: use a thinner roll, then none, moving toward flat tummy time on the mat.",
-        "Likes company: lie down facing them, or let an older child chat to them while you watch."
+        "Likes company: lie down facing them and chat while they work."
       ],
       "stopCues": [
         "Face dropping toward the towel or mat",
@@ -1657,7 +1669,7 @@
     },
     {
       "id": "act.side-lying-toy-play",
-      "rev": 1,
+      "rev": 2,
       "title": "Side-lying two-hand play",
       "summary": "Lay your baby on their side on a floor mat, a rolled towel behind their back, with a toy in front for both hands to reach; then switch sides.",
       "kind": "play",
@@ -1721,7 +1733,7 @@
       ],
       "adaptations": [
         "Prefers one side: start on the side they like, then give the other side a shorter turn.",
-        "Older sibling nearby: they can lie facing the baby and show them the toy."
+        "Two children? Use a side-by-side or together idea for both ages instead."
       ],
       "stopCues": [
         "Rolling forward onto their face and fussing",
@@ -1942,14 +1954,14 @@
       ],
       "safety": [
         {
-          "text": "Keep hold of each fabric yourself and keep cloth away from your baby's face; clear everything away when you finish.",
-          "claims": []
-        },
-        {
           "text": "Anything they mouth must be clean, with no buttons, strings, or loose threads that could come off.",
           "claims": [
             "clm.b.toys-bigger-than-mouth"
           ]
+        },
+        {
+          "text": "Keep hold of each fabric yourself and keep cloth away from your baby's face; clear everything away when you finish.",
+          "claims": []
         },
         {
           "text": "If your baby gets drowsy, clear the fabrics and lay them on their back in their own sleep space.",
@@ -2080,7 +2092,7 @@
     },
     {
       "id": "act.shaded-stroller-walk",
-      "rev": 1,
+      "rev": 2,
       "title": "Shaded stroller or carrier walk",
       "summary": "Take a short walk with your baby fully shaded in a stroller with the canopy up, or in a carrier, and name what you see along the way.",
       "kind": "outing",
@@ -2089,7 +2101,7 @@
       "readiness": {
         "abilities": [],
         "notes": [
-          "Born early or breathing problems? Ask your baby's clinician before using an upright carrier."
+          "Born early or breathing problems? AAP advises against upright carriers; ask your baby’s clinician about holding positions."
         ]
       },
       "goals": [
@@ -2147,7 +2159,7 @@
       "adaptations": [
         "Hot or glaring day: walk somewhere fully shaded or indoors instead, or skip it.",
         "Fussy in the stroller: try a carrier so they're close to you, keeping their face visible.",
-        "Older child along: they can 'spot' things for the baby while holding your hand."
+        "Two children? Use a together walk idea for both ages instead."
       ],
       "stopCues": [
         "Flushed, sweaty, or unusually fussy (too warm)",
@@ -2156,7 +2168,7 @@
       ],
       "safety": [
         {
-          "text": "Keep a baby under 6 months out of direct sun: shade, canopy, light covering clothes, and a hat. Sunscreen only on small areas if there's no shade.",
+          "text": "Under 6 months: AAP (2026) says keep babies out of direct and indirect sun (heat-stroke risk). Full shade, light long sleeves, a hat; not outside 10 a.m.–4 p.m.",
           "claims": [
             "clm.b.sun-under-6-months"
           ]

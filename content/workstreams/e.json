@@ -538,7 +538,7 @@
   "activities": [
     {
       "id": "act.pretend-kitchen-cook",
-      "rev": 1,
+      "rev": 2,
       "title": "Pretend cook with real pots",
       "summary": "Set out a pot, wooden spoons and empty boxes so your child can 'cook' you a pretend meal while you work nearby as the hungry customer.",
       "kind": "play",
@@ -601,7 +601,7 @@
       "adaptations": [
         "Younger: one pot, one spoon, and a teddy to feed.",
         "Older: take turns being cook and customer, or 'write' a menu together.",
-        "Baby nearby: give the baby their own wooden spoon and bowl beside the 'kitchen'."
+        "Two children? Use a side-by-side or together idea for both ages instead."
       ],
       "stopCues": [
         "Banging that turns into throwing",
@@ -641,7 +641,7 @@
     },
     {
       "id": "act.big-box-car-or-house",
-      "rev": 1,
+      "rev": 2,
       "title": "Big box car or house",
       "summary": "Turn a large cardboard box into a car or little house, and let your child climb in, decorate it with crayons and play.",
       "kind": "play",
@@ -705,7 +705,7 @@
       "adaptations": [
         "Younger: leave it plain and play peek-in-the-window from outside.",
         "Older: add a cushion seat and a cardboard-tube 'key', and take a pretend trip together.",
-        "Two children: one box each, or one drives while the other rides."
+        "Two children? Use a side-by-side or together idea for both ages instead."
       ],
       "stopCues": [
         "Trying to stand on or climb over the box walls",
@@ -930,7 +930,7 @@
       ],
       "safety": [
         {
-          "text": "Stay within arm's reach with full attention near any water, even a small cup, and tip it out as soon as you're done.",
+          "text": "Stay within arm's reach with full attention near any water, even a small cup, and tip it out as soon as you're done (AAP: “touch supervision”).",
           "claims": [
             "clm.d.water-touch-supervision"
           ]
@@ -1075,7 +1075,7 @@
     },
     {
       "id": "act.follow-the-leader-parade",
-      "rev": 1,
+      "rev": 2,
       "title": "Follow-the-leader parade",
       "summary": "March around the room or yard in a line, stomping, tiptoeing, turning and stepping backward, then let your child be the leader.",
       "kind": "play",
@@ -1151,6 +1151,12 @@
           "text": "Clear toys and slippery rugs from the path, stay away from stairs, and walk backward slowly on a flat floor.",
           "claims": [
             "clm.e.falls-2-to-4"
+          ]
+        },
+        {
+          "text": "Outdoors, use a fenced yard or enclosed play area well away from the street and driveways.",
+          "claims": [
+            "clm.d.pedestrian-safety"
           ]
         }
       ],
@@ -1655,7 +1661,7 @@
     },
     {
       "id": "act.library-story-time",
-      "rev": 1,
+      "rev": 2,
       "title": "Library story time",
       "summary": "Go to a story or rhyme time at your local library, then let your child choose a book or two to borrow.",
       "kind": "outing",
@@ -1703,12 +1709,14 @@
         "proximity": "arms-reach",
         "handsOn": "intermittent",
         "minAdults": 1,
-        "shareable": true,
+        "shareable": false,
         "space": "Sit together during the session; keep your child beside you near doors, stairs and the parking lot."
       },
       "mess": "none",
       "noise": "moderate",
-      "hazards": [],
+      "hazards": [
+        "traffic"
+      ],
       "steps": [
         "Check the library's story or rhyme time schedule and pick a session that misses nap time.",
         "Sit with your child, join the songs and actions, and let them watch first if they're shy.",
@@ -1717,7 +1725,7 @@
       "adaptations": [
         "Shy or new: sit near the back and leave whenever you need to.",
         "No session today: visit the children's section and read one book there.",
-        "Baby too: hold the baby on your lap while your toddler sits beside you."
+        "Two children? Use a side-by-side or together idea for both ages instead."
       ],
       "stopCues": [
         "Overwhelmed by the group: step out for a break",
@@ -1755,7 +1763,7 @@
     },
     {
       "id": "act.preschool-playground-area",
-      "rev": 1,
+      "rev": 2,
       "title": "Playground: the 2-to-5 area",
       "summary": "Visit a playground area made for ages 2 to 5 and let your child climb low steps, ramps and small slides while you stay close.",
       "kind": "outing",
@@ -1806,14 +1814,15 @@
         "proximity": "arms-reach",
         "handsOn": "intermittent",
         "minAdults": 1,
-        "shareable": true,
+        "shareable": false,
         "space": "Equipment sized for ages 2–5 over soft surfacing; within arm's reach whenever they climb or are off the ground."
       },
       "mess": "low",
       "noise": "loud",
       "hazards": [
         "falls",
-        "sun-weather"
+        "sun-weather",
+        "traffic"
       ],
       "steps": [
         "Find the area or sign for ages 2–5 and check: soft ground underneath, nothing broken, no ropes tied on, slides not hot.",
@@ -1854,12 +1863,13 @@
         {
           "text": "In sun, choose shade and use a hat and sunscreen on exposed skin.",
           "claims": [
-            "clm.d.sun-protection"
+            "clm.d.sun-protection",
+            "clm.d.pedestrian-safety"
           ]
         }
       ],
       "why": {
-        "text": "AAP says playgrounds let children exercise their bodies, brains and social skills; CPSC lists ramps, low ladders, small slides and spring rockers as suited to ages 2–5.",
+        "text": "AAP describes playgrounds as a chance for children to move, think, and play with others.",
         "claims": [
           "clm.e.playground-play",
           "clm.e.preschool-playground"
@@ -1878,7 +1888,7 @@
     },
     {
       "id": "act.nature-find-walk",
-      "rev": 1,
+      "rev": 2,
       "title": "Nature find walk",
       "summary": "On a short walk or park path, look for a few things together (something red, a big leaf, a bird, a puddle) and let your child lead.",
       "kind": "outing",
@@ -1949,7 +1959,7 @@
       "adaptations": [
         "Younger: one thing to find, like 'a dog!', and name everything else you pass.",
         "Older: find something soft, rough, round and tall, or count the birds.",
-        "Baby too: the baby rides in the stroller while your toddler walks holding your hand."
+        "Two children? Use a side-by-side or together idea for both ages instead."
       ],
       "stopCues": [
         "Tired legs or asking to be carried",
@@ -2213,7 +2223,7 @@
     },
     {
       "id": "act.calm-show-while-you-cook",
-      "rev": 1,
+      "rev": 2,
       "title": "One calm show while you cook",
       "summary": "While you make dinner, put on one calm, slow-paced episode made for preschoolers, with your child in view and away from the stove.",
       "kind": "media",
@@ -2222,7 +2232,7 @@
       "readiness": {
         "abilities": [],
         "notes": [
-          "Optional. A toy, activity or small job near you (outside the cooking area) works too."
+          "Optional, and US-based guidance. Irish and UK guidance prefer watching together; a toy or small job near you works too."
         ]
       },
       "goals": [],
@@ -2296,11 +2306,12 @@
         }
       ],
       "why": {
-        "text": "HSE recognizes screens can feel easier while cooking; UK and Irish guidance favor calm, slow-paced shows, and AAP suggests quality content with autoplay off.",
+        "text": "US guidance (AAP and CDC) allows a short, quality children’s show for ages 2 and up, with autoplay off and an adult present. Irish and UK guidance prefer watching together.",
         "claims": [
-          "clm.e.hse-busy-cooking",
-          "clm.e.slow-calm-content",
-          "clm.e.aap-5cs-preschool"
+          "clm.e.aap-5cs-preschool",
+          "clm.e.cdc-one-hour-adult-present",
+          "clm.e.uk-2026-limits",
+          "clm.e.hse-screen-limits"
         ]
       },
       "evidence": {

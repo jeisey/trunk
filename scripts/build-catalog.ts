@@ -33,6 +33,10 @@ function listJson(dir: string): string[] {
 }
 
 const files = contentDirs.flatMap(listJson);
+if (only && !existsSync(only)) {
+  console.error(`Content validation FAILED: ${relative(root, only)} does not exist.`);
+  process.exit(1);
+}
 const parsed: { file: string; data: z.infer<typeof ContentFile> }[] = [];
 const parseErrors: Issue[] = [];
 for (const path of files) {

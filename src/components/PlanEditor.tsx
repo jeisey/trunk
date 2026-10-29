@@ -3,7 +3,9 @@ import type { IndexedCatalog } from '../content/catalog.ts';
 import { formatAgeShort } from '../lib/age.ts';
 import { durationText, adultText } from '../lib/labels.ts';
 import { alternativesFor } from '../lib/planner.ts';
-import { BREAK_HINT, BREAK_LABEL, bounds, MAX_SEGMENTS, newId, resize, timeline, youngerFor, type Plan, type PlanSegment } from '../lib/plan.ts';
+import { BREAK_HINT, BREAK_LABEL, bounds, MAX_SEGMENTS, newId, resize, timeline, youngerFor, type Plan, type PlanSegment, type TimedSegment } from '../lib/plan.ts';
+import { activityProfile, recipeProfile, TIME_ISSUE_TEXT, timeIssue, type TimeIssue } from '../lib/timeRules.ts';
+import { toDays } from '../lib/age.ts';
 import { cleanText, LIMITS } from '../lib/text.ts';
 import { formatClock, formatMinutes, parseHHMM } from '../lib/time.ts';
 import { activityHref, childName, recipeHref } from './IdeaCards.tsx';
@@ -96,6 +98,21 @@ export function Tracks({ seg, plan, c }: { seg: PlanSegment; plan: Plan; c: Inde
       </li>
     </ul>
   );
+}
+
+/** Time-of-day rule a segment breaks, if any (sun for babies under 6 months, outdoors at night). */
+export function segmentTimeIssue(t: TimedSegment, plan: Plan, c: IndexedCatalog): TimeIssue | null {
+  const seg = t.segment;
+  const youngest = Math.min(...plan.kids.map((k) => toDays(k.age)));
+  if (seg.kind === 'activity') {
+    const a = c.activityById.get(seg.ref ?? '');
+    return a ? timeIssue(activityProfile(a), t.start, t.wall, youngest, plan.settings.place) : null;
+  }
+  if (seg.kind === 'recipe') {
+    const r = c.recipeById.get(seg.ref ?? '');
+    return r ? timeIssue(recipeProfile(r, c.activityById.get(r.younger.activity)), t.start, t.wall, youngest, plan.settings.place) : null;
+  }
+  return null;
 }
 
 function safetyCue(seg: PlanSegment, c: IndexedCatalog): string | null {
@@ -221,8 +238,8 @@ export function PlanEditor({
       </div>
       {(tally.flat > 0 || tally.supported > 0) && (
         <p className="tummy-tally note-box">
-          <strong>Tummy time in this plan:</strong> {tally.flat} min on a flat floor surface
-          {tally.supported > 0 ? `; ${tally.supported} min held or supported (not counted toward a flat-surface target)` : ''}. Follow any target your baby’s clinicians gave you.
+          <strong>Tummy time planned:</strong> up to {tally.flat} min of floor tummy time on a flat surface
+          {tally.supported > 0 ? `, plus ${tally.supported} min held or supported (not a flat-surface position)` : ''}. Count only the minutes your baby is actually on their tummy, awake and watched, toward any target your baby’s clinicians gave you.
         </p>
       )}
       {plan.segments.length === 0 && <p className="empty">This plan is empty. Add an activity, a break, or your own entry below.</p>}
@@ -247,6 +264,14 @@ export function PlanEditor({
               </p>
               {t.missing ? <p className="warn">This item is no longer in Trunk. Remove or swap it.</p> : <Tracks seg={seg} plan={plan} c={c} />}
               {cue && <p className="safety-line">{cue}</p>}
+              {(() => {
+                const issue = segmentTimeIssue(t, plan, c);
+                return issue ? (
+                  <p className="safety-line" role="note">
+                    {TIME_ISSUE_TEXT[issue]}
+                  </p>
+                ) : null;
+              })()}
               <div className="seg-tools">
                 <span className="resize" role="group" aria-label={`Length of ${title}`}>
                   <button type="button" onClick={() => sizeBy(i, -1)} aria-label={`Shorter: ${title}`} disabled={seg.minutes <= min}>

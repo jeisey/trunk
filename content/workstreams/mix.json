@@ -227,7 +227,7 @@
   ],
   "recipes": [
     {
-      "rev": 1,
+      "rev": 2,
       "checked": "2026-10-29",
       "outing": false,
       "setupMinutes": 2,
@@ -307,7 +307,7 @@
           ]
         },
         {
-          "text": "This is floor tummy time on a flat surface. It counts toward a flat-surface target only if your baby's clinician set one; Trunk sets no target.",
+          "text": "This is floor tummy time on a firm, flat surface, the position flat-surface targets count. Follow any target your baby’s clinician gave you.",
           "claims": [
             "clm.core.ask-clinician-preterm"
           ]
@@ -323,7 +323,7 @@
       ]
     },
     {
-      "rev": 1,
+      "rev": 2,
       "checked": "2026-10-29",
       "outing": false,
       "setupMinutes": 2,
@@ -401,7 +401,7 @@
           ]
         },
         {
-          "text": "This is floor tummy time on a flat surface. It counts toward a flat-surface target only if your baby's clinician set one; Trunk sets no target.",
+          "text": "This is floor tummy time on a firm, flat surface, the position flat-surface targets count. Follow any target your baby’s clinician gave you.",
           "claims": [
             "clm.core.ask-clinician-preterm"
           ]
@@ -417,7 +417,7 @@
       ]
     },
     {
-      "rev": 1,
+      "rev": 2,
       "checked": "2026-10-29",
       "outing": false,
       "setupMinutes": 1,
@@ -446,7 +446,7 @@
       },
       "adult": {
         "minAdults": 1,
-        "does": "Stands or sits holding the baby, one hand behind the head and neck, swaying slowly; calls 'Freeze!' and 'Dance!' by voice. Music plays from a speaker started first.",
+        "does": "Sits or stands still holding the baby, one hand behind the head and neck, swaying slowly in place; calls ‘Freeze!’ and ‘Dance!’. Music starts from a speaker first.",
         "handsOnFor": "younger"
       },
       "sharedSetup": "Clear a dance patch: toys, rugs and cords out of the way. Start a playlist on a speaker before you pick up the baby. No hot drinks.",
@@ -462,9 +462,9 @@
         "move"
       ],
       "steps": [
-        "Clear the floor and start the music. Pick up the baby, one hand behind their head and neck.",
-        "The toddler dances in their patch; you sway slowly and smoothly with the baby.",
-        "Call 'Freeze!' and all stand still, then 'Dance!' again. Keep your own steps small.",
+        "Clear the floor and start the music. Pick up the baby, one hand behind their head and neck, and sit or stand in one spot.",
+        "The toddler dances in their patch in front of you; you sway slowly in place.",
+        "Call ‘Freeze!’ and all stay still, then ‘Dance!’ again. You don’t step or turn while holding the baby.",
         "If the toddler runs at you, stop swaying and turn your shoulder to shield the baby. Finish with a slow song."
       ],
       "stopCues": [
@@ -507,7 +507,7 @@
       ]
     },
     {
-      "rev": 1,
+      "rev": 2,
       "checked": "2026-10-29",
       "outing": false,
       "setupMinutes": 1,
@@ -537,11 +537,11 @@
       },
       "adult": {
         "minAdults": 1,
-        "does": "Follows a step or two behind the toddler, holding the baby in both arms; copies each move as a slow sway or small steps and sings or counts the beat.",
+        "does": "Sits or stands in one spot holding the baby in both arms, swaying slowly and singing the beat while the toddler leads the parade around you. You never walk behind the toddler while holding the baby.",
         "handsOnFor": "younger"
       },
       "sharedSetup": "Clear a loop around the room: no toys, slippery rugs or cords, no stairs on the route. No hot drinks. Music optional.",
-      "space": "One loop on flat floor away from stairs. Toddler stays in front of you, never behind or under your feet; you never jump, hop or run while holding the baby.",
+      "space": "One loop on flat floor away from stairs, with you in one spot at the middle; you never walk, jump, hop or run while holding the baby.",
       "duration": {
         "min": 3,
         "default": 6,
@@ -553,10 +553,10 @@
         "connect"
       ],
       "steps": [
-        "Clear the loop and pick up the baby. Tell your toddler: 'You're the leader. We'll copy, slowly!'",
-        "The toddler marches, tiptoes or stomps ahead; you copy with small steps and a gentle sway.",
-        "If they hop, jump or spin, you sway in place and cheer instead of copying.",
-        "Finish with a slow 'tiptoe home' to the sofa and a rest."
+        "Clear a loop around your spot and pick up the baby. Tell your toddler: ‘You’re the leader. We’ll copy, slowly!’",
+        "The toddler marches, tiptoes or stomps around the loop; you copy each move as a slow sway in place.",
+        "If they hop, jump or spin, you cheer instead of copying.",
+        "Finish with a slow song on the sofa and a rest."
       ],
       "stopCues": [
         "Baby fussing, arching or getting sleepy",
@@ -811,7 +811,7 @@
         "abilities": [],
         "activity": "act.narrated-stroller-walk",
         "does": "Rides buckled in the stroller, looking where the toddler points while you name the dog, the bus or the tree.",
-        "adapt": "Wants out? Let them out only in a fenced, traffic-free spot, and keep the walk short."
+        "adapt": "Wants out? Pause the walk in a fenced, traffic-free spot and stay within reach of both, or keep the baby buckled."
       },
       "older": {
         "ageMin": "24m",
@@ -1718,7 +1718,7 @@
       ]
     },
     {
-      "rev": 1,
+      "rev": 2,
       "checked": "2026-10-29",
       "outing": false,
       "setupMinutes": 3,
@@ -1742,7 +1742,7 @@
         "ageMax": "48m",
         "abilities": [],
         "activity": "act.pretend-kitchen-cook",
-        "does": "Stirs pots and 'serves' pretend dishes at a low table a few steps away, bringing orders to you, not to the baby."
+        "does": "Stirs pots and ‘serves’ pretend dishes at a low table a few steps away, bringing orders to your side, never onto the baby’s mat."
       },
       "adult": {
         "minAdults": 1,
@@ -1750,7 +1750,7 @@
         "handsOnFor": "younger"
       },
       "sharedSetup": "Firm mat on the floor with one or two baby toys. Pots, wooden spoons and empty boxes on a low table a few steps away, out of the baby's reach.",
-      "space": "Kitchen props stay at the toddler's table, a few steps from the mat; the toddler delivers 'food' to you at the mat's edge. Not in the real kitchen while cooking.",
+      "space": "Props stay at the toddler’s table, a few steps from the mat. You sit between table and mat; deliveries come to your side, never onto the mat. Not in the real kitchen.",
       "duration": {
         "min": 3,
         "default": 6,
@@ -1764,7 +1764,7 @@
       "steps": [
         "Set up the toddler's kitchen at a low table, then lay the baby tummy-down on the mat beside you.",
         "Place a toy just ahead of the baby and order a meal from the toddler.",
-        "When the toddler brings a dish, 'eat' it at the mat's edge, then send them back to cook the next one.",
+        "When the toddler brings a dish, 'eat' it on your side, away from the mat, then send them back to cook the next one.",
         "When the baby tires, roll them onto their back to rest; the restaurant can stay open."
       ],
       "stopCues": [
@@ -1795,7 +1795,7 @@
           ]
         },
         {
-          "text": "This is floor tummy time on a flat surface. It counts toward a flat-surface target only if your baby's clinician set one; Trunk sets no target.",
+          "text": "This is floor tummy time on a firm, flat surface, the position flat-surface targets count. Follow any target your baby’s clinician gave you.",
           "claims": [
             "clm.core.ask-clinician-preterm"
           ]
@@ -2224,7 +2224,7 @@
       ]
     },
     {
-      "rev": 1,
+      "rev": 2,
       "checked": "2026-10-29",
       "outing": false,
       "setupMinutes": 3,
@@ -2259,7 +2259,7 @@
         "handsOnFor": "younger"
       },
       "sharedSetup": "Blanket in shade on grass checked for litter, droppings and plants. Mark a running lane (start and finish) well to the side of the blanket.",
-      "space": "The running lane passes beside the blanket, never toward it, several steps away; fenced yard or park lawn away from the street, pools and ponds.",
+      "space": "Fenced yard or enclosed play area only, away from the street and water. The running lane passes beside the blanket, never toward it, several steps away.",
       "duration": {
         "min": 5,
         "default": 10,
@@ -2282,6 +2282,12 @@
         "Too hot or sunny"
       ],
       "safety": [
+        {
+          "text": "If the big kid runs out of reach, pick up the baby and follow. Never leave the baby on the blanket.",
+          "claims": [
+            "clm.mix.never-leave-toddler-with-baby"
+          ]
+        },
         {
           "text": "Check the grass for litter, stones, droppings and plants first; keep anything small out of the baby's mouth.",
           "claims": [
@@ -2309,7 +2315,7 @@
       ]
     },
     {
-      "rev": 1,
+      "rev": 2,
       "checked": "2026-10-29",
       "outing": false,
       "setupMinutes": 3,
@@ -2337,11 +2343,11 @@
       },
       "adult": {
         "minAdults": 1,
-        "does": "Sits on the blanket within arm's reach of the baby and blows bubbles downwind, away from the baby; keeps the bottle capped beside you.",
+        "does": "Sits on the blanket within arm’s reach of the baby and blows bubbles a short way downwind, away from the baby; keeps the bottle capped beside you.",
         "handsOnFor": "both"
       },
       "sharedSetup": "Blanket in shade on checked grass. A bubble wand and a small, spill-proof bottle of solution. Find which way the wind is blowing.",
-      "space": "Blow bubbles downwind of the blanket so the toddler chases away from the baby. Solution capped, on your far side, out of both children's reach. Away from the street.",
+      "space": "Fenced yard or enclosed play area only, away from the street and water. Blow bubbles downwind of the blanket so the toddler chases away from the baby.",
       "duration": {
         "min": 5,
         "default": 10,
@@ -2364,6 +2370,12 @@
         "Solution spilled or a child reaching for the bottle"
       ],
       "safety": [
+        {
+          "text": "If the big kid runs out of reach, pick up the baby and follow. Never leave the baby on the blanket.",
+          "claims": [
+            "clm.mix.never-leave-toddler-with-baby"
+          ]
+        },
         {
           "text": "Bubbles go away from the baby's face; keep the solution capped and out of reach so no one drinks it.",
           "claims": [

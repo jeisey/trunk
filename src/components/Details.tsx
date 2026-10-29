@@ -1,6 +1,6 @@
 import type { Activity, MixedAgeRecipe } from '../content/schema.ts';
 import { activityClaims, recipeClaims, useEvidence, type IndexedCatalog } from '../content/catalog.ts';
-import { formatAge, type EnteredAge } from '../lib/age.ts';
+import { ageStringToDays, formatAge, monthsToDays, type EnteredAge } from '../lib/age.ts';
 import { activityFitsAge } from '../lib/eligibility.ts';
 import { toDays } from '../lib/age.ts';
 import { isBusyNearbyCompatible } from '../lib/supervision.ts';
@@ -9,6 +9,8 @@ import { ClaimBlock, EvidenceDetails } from './Evidence.tsx';
 import { activityHref, childName } from './IdeaCards.tsx';
 import { TummyTimeGuide } from './TummyTimeGuide.tsx';
 import { recipeAssignment } from '../lib/eligibility.ts';
+
+const SUN_UNDER_6M = 'If you do this outside: AAP (2026) says keep babies under 6 months out of direct and indirect sun, in full shade, and not outside 10 a.m.–4 p.m.';
 
 function BackLink({ onBack }: { onBack: () => void }) {
   return (
@@ -128,6 +130,7 @@ export function ActivityDetail({
           {a.safety.map((s) => (
             <li key={s.text}>{s.text}</li>
           ))}
+          {childAge && toDays(childAge) < monthsToDays(6) && a.places.includes('outdoors') && !a.hazards.includes('sun-weather') && <li>{SUN_UNDER_6M}</li>}
         </ul>
       </section>
 
@@ -290,6 +293,7 @@ export function RecipeDetail({
             <li key={s.text}>{s.text}</li>
           ))}
           <li>An older child is a playmate, never the one in charge of the baby.</li>
+          {r.places.includes('outdoors') && ageStringToDays(r.younger.ageMin) < monthsToDays(6) && <li>{SUN_UNDER_6M}</li>}
         </ul>
       </section>
 

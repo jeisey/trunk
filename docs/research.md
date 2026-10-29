@@ -21,7 +21,7 @@ Sources are kept separate; Trunk never blends them into one rule. Checked 2026-1
 | HSE, *Tummy time for babies* (Ireland; reviewed 2026-05-17) | Infants generally | ≥ 30 min/day in first 3 months; build to 60 min between 4 and 6 months | Chest, lap, arms, or floor mat from birth; **from 3 months, all tummy time on a firm, flat mat** |
 | Children's Wisconsin teaching sheet (US; rev. 2023-01-01) | Infants generally | Start 2–3 min; at least 60 min/day total by 4 months | Tummy-to-tummy, face-to-face on floor, over a small blanket roll, tummy carry; does not say only floor counts |
 | SickKids neonatal follow-up, 4-month visit (Canada; updated 2021-03-30) | Babies followed after NICU/cardiac critical care; **corrected age** | 50–60 min/day in short periods | Emphasizes floor play ("the bed is not appropriate"); does not list which positions count |
-| NICHD Safe to Sleep, tummy time (US) — via Workstream B | Infants generally | 15–30 min/day by about 2 months | Floor, chest, lap; includes a rolled towel under the chest |
+| NICHD Safe to Sleep, tummy time (US) | Infants generally | 2–3 short (3–5 min) sessions a day at first; 15–30 min/day total by about 2 months | A blanket on a clear area of the floor; a rolled-up towel under the baby's arms to prop them slightly |
 | **Reported, individualized (not public):** this family's CHOP neonatal clinicians | One 4-month-old | 60 min/day | **Flat surface only; elevated positions excluded** |
 
 How Trunk applies this:
@@ -39,7 +39,7 @@ How Trunk applies this: screen options exist only for ages 2+ and appear only wh
 
 ## Sun for babies under 6 months
 
-AAP's *Baby Sunburn Prevention* (updated 2026-04-13) says babies under 6 months should be kept out of direct and indirect sunlight entirely because of heat-stroke risk, recommends shade-covered strollers and sunshades, protective clothing and hats, and avoiding being outside between 10 a.m. and 4 p.m. AAP's general *Sun Safety* page (2024) allows sunscreen on small areas when shade and clothing aren't available. Trunk follows the stricter reading: walks for babies under 6 months are in full shade, with sun-protective clothing, and the planner never schedules them between 10 a.m. and 4 p.m.; the activity notes say to skip them in heat.
+AAP's *Baby Sunburn Prevention* (updated 2026-04-13) says babies under 6 months should be kept out of direct and indirect sunlight entirely because of heat-stroke risk, recommends shade-covered strollers and sunshades, protective clothing and hats, and avoiding being outside between 10 a.m. and 4 p.m. AAP's general *Sun Safety* page (2024) allows sunscreen on small areas when shade and clothing aren't available. Trunk follows the stricter 2026 reading and gives no sunscreen advice for this age. Outdoor records for babies under 6 months carry one shared line based on the 2026 wording; detail pages add it to any outdoor-capable activity viewed for a baby under 6 months. The planner doesn't schedule outdoor-only activities (or any activity when "Outside" is chosen) for a baby under 6 months if the segment would overlap 10 a.m.–4 p.m., and the plan editor flags any segment that does (for example after editing, or in a starter or shared plan).
 
 ## Cross-workstream conflicts and how they were resolved
 

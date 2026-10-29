@@ -43,6 +43,9 @@ export const BANNED_PATTERNS: readonly { pattern: RegExp; label: string }[] = [
 /** Movement words that should never appear in instructions for babies and young toddlers. */
 const ROUGH_HANDLING = /\bbounc|\btoss|\bthrow (the|your) (baby|child)|\bswing (the|your) baby|\bjiggl|\bshake (the|your) (baby|child)/i;
 
+/** Wording that brings a second child into a single-child activity. */
+const SECOND_CHILD = /\b(two children|baby nearby|baby too|toddler and baby|older child|older sibling|younger sibling|big kid|big sibling|sibling)\b/i;
+
 const SERIOUS_HAZARDS = new Set(['water', 'food', 'suffocation', 'heat', 'traffic', 'falls', 'small-parts']);
 
 interface Located<T> {
@@ -164,6 +167,10 @@ export function validateCatalog(files: { file: string; data: ContentFileT }[], t
     if (serious.length > 0) {
       const citesSafety = a.safety.some((n) => n.claims.some((c) => claimById.get(c)?.kind === 'safety'));
       if (!citesSafety) err(file, a.id, `hazards [${serious.join(', ')}] need a safety note citing a safety claim`);
+      // Cards and exported images show the first note, so it must be the sourced, most critical one.
+      else if (!a.safety[0].claims.some((c) => claimById.get(c)?.kind === 'safety')) {
+        err(file, a.id, 'with serious hazards, the first safety note must cite a safety claim (it is the one shown on cards and images)');
+      }
     }
     if (a.hazards.includes('water')) {
       if (a.supervision.shareable) err(file, a.id, 'water activities must not be shareable');
@@ -199,6 +206,14 @@ export function validateCatalog(files: { file: string; data: ContentFileT }[], t
     if (a.kind === 'outing' && !a.outing) err(file, a.id, 'kind "outing" requires outing: true');
     if (a.supervision.proximity === 'holding' && a.supervision.handsOn === 'none') {
       err(file, a.id, 'holding proximity implies hands-on supervision');
+    }
+
+    // Two-child setups belong in curated mixed-age recipes, which are feasibility-checked;
+    // a single-child record may only point to them.
+    for (const x of a.adaptations) {
+      if (SECOND_CHILD.test(x) && !x.startsWith('Two children? Use')) {
+        err(file, a.id, `adaptation adds a second child ("${x.slice(0, 40)}…"); use a mixed-age recipe instead`);
+      }
     }
 
     const instructional = [a.title, a.summary, ...a.materials.items, ...a.steps, ...a.adaptations].join(' \n ');
@@ -254,6 +269,10 @@ export function validateCatalog(files: { file: string; data: ContentFileT }[], t
       if (r.mode === 'parallel' && r.adult.minAdults === 1) {
         const result = checkParallel(ya, oa, 1);
         if (!result.ok) err(file, r.id, `parallel recipe is not feasible for one adult: ${result.reasons.join(' ')}`);
+      }
+      const undivided = [...ya.hazards, ...oa.hazards].filter((h) => h === 'water' || h === 'heat' || h === 'food' || h === 'traffic');
+      if (r.mode === 'together' && undivided.length && r.adult.handsOnFor !== 'both') {
+        err(file, r.id, `together recipe with ${[...new Set(undivided)].join(', ')} needs adult.handsOnFor "both" (full attention on both children)`);
       }
       if (r.mode === 'parallel' && ya.id === oa.id) err(file, r.id, 'parallel recipes need two different activities');
       if (oa.hazards.includes('small-parts') && y.min < monthsToDays(36)) {

@@ -141,7 +141,7 @@ How Trunk applies this:
 
 - **Ages 24m–60m only.** Media records start at 24m. Every jurisdiction allows some screen use from 2 years, and starting there avoids the under-2 disagreement (WHO and CPS: none; HSE: none to 18 months; AAP 2026: no fixed rule).
 - **One episode, at most 30 minutes.** This fits inside every hourly figure above and inside AAP's quality-first framing.
-- **Never at meals, and never to calm an upset child.** All five frameworks agree on this.
+- **Never at meals, and never to calm an upset child.** AAP (5 Cs), CPS, and HSE say this; the CDC and WHO pages read do not address calming.
 - **A non-screen alternative is always shown.** The app adds it automatically.
 
 ### Current vs. older AAP guidance

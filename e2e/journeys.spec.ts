@@ -67,7 +67,8 @@ test('2. ages 4 and 28 months, one adult, 90 minutes: editable feasible plan', a
   // Tummy-time minutes are split by position; supported time is never credited to a flat-surface target.
   const tally = page.locator('.tummy-tally');
   if (await tally.count()) {
-    await expect(tally).toContainText('flat floor surface');
+    await expect(tally).toContainText('floor tummy time on a flat surface');
+    await expect(tally).toContainText('Count only the minutes your baby is actually on their tummy');
     await expect(tally).toContainText(/clinicians/);
   }
   // Editable with buttons: resize, reorder, remove.

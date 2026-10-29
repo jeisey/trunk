@@ -753,7 +753,7 @@
     {
       "id": "clm.a.carrier-young-preterm",
       "kind": "safety",
-      "text": "Babies under 4 months, born early, with low birth weight, unwell, or with breathing problems face a higher suffocation risk in carriers and slings. Take extra care and ask your clinician first.",
+      "text": "AAP (US): babies born early or with breathing problems should not be placed in upright carriers or backpacks. HSE and CPSC add that babies under 4 months, low birth weight, or unwell need extra care in slings and carriers.",
       "sources": [
         "src.aap-hc.baby-carriers",
         "src.hse.carrier-sling-safety",
@@ -762,12 +762,12 @@
       "locator": "AAP: 'Safety tips for baby carriers', items 1 and 3; HSE: 'Babies with poor neck control or muscle tone'; CPSC: safety tips list",
       "paraphrase": "AAP: babies born prematurely or with respiratory problems should not go in backpacks or other upright positioning devices; CPSC warns of suffocation risk especially under 4 months. HSE: babies under 4 months, premature, low birth weight, or unwell may have poor neck control and a higher suffocation risk. CPSC: extra caution under 4 months.",
       "scope": "Young and medically vulnerable infants; US and Ireland.",
-      "caveat": "AAP's wording for premature babies and those with breathing problems (should not be placed in upright devices) is stricter than HSE's and CPSC's 'extra care'."
+      "caveat": "AAP’s advice for premature babies and breathing problems is stricter than HSE’s and CPSC’s “extra care”; Trunk follows AAP."
     },
     {
       "id": "clm.a.sun-under-6m",
       "kind": "safety",
-      "text": "Keep babies under 6 months out of direct sun: use shade (trees, an umbrella, the stroller canopy), light clothing that covers arms and legs, and a brimmed hat, and avoid the strongest sun from 10 a.m. to 4 p.m.",
+      "text": "AAP (US, 2026): keep babies under 6 months out of direct and indirect sunlight because of heat-stroke risk; use full shade, light clothing that covers arms and legs, and a brimmed hat, and avoid being outside 10 a.m. to 4 p.m.",
       "sources": [
         "src.aap-hc.sun-safety",
         "src.aap-hc.baby-sunburn-prevention"
@@ -775,7 +775,7 @@
       "locator": "AAP Sun safety: 'Simple rules to protect your family from sunburns' and 'Sunscreen for babies'; AAP Baby sunburn: 'What is the best way to prevent sunburns in babies?'",
       "paraphrase": "Keep babies under 6 months out of direct sunlight, in shade under a tree, umbrella, or stroller canopy; dress them in lightweight long sleeves, long pants, and wide-brimmed hats; avoid 10 a.m. to 4 p.m. The newer page adds that babies this young should be kept out of direct and indirect sunlight entirely because of heat-stroke risk.",
       "scope": "US; babies under 6 months.",
-      "caveat": "The 2024 AAP page allows sunscreen on small areas such as the face if shade and clothing aren't available; the 2026 AAP page is stricter about any sun for babies under 6 months."
+      "caveat": "An older AAP page (2024) allows sunscreen on small areas if shade isn’t available; Trunk follows the stricter 2026 page and gives no sunscreen advice for this age."
     },
     {
       "id": "clm.a.no-blanket-over-stroller",
@@ -1785,6 +1785,10 @@
           "claims": [
             "clm.a.back-play-mobile"
           ]
+        },
+        {
+          "text": "If you’re cooking, set this up outside the cooking area and out of your path with hot pans.",
+          "claims": []
         }
       ],
       "why": {
@@ -1995,7 +1999,7 @@
     },
     {
       "id": "act.stroller-stroll-point-and-name",
-      "rev": 1,
+      "rev": 2,
       "title": "Stroller stroll, point and name",
       "summary": "Walk with your baby in a shaded stroller or pram, stopping now and then to show and name what you see and hear.",
       "kind": "outing",
@@ -2067,7 +2071,7 @@
       ],
       "safety": [
         {
-          "text": "Babies under 6 months stay out of direct sun: canopy or shade, covering clothes, and a hat. Avoid midday sun.",
+          "text": "Under 6 months: AAP (2026) says keep babies out of direct and indirect sun (heat-stroke risk). Full shade, light long sleeves, a hat; not outside 10 a.m.–4 p.m.",
           "claims": [
             "clm.a.sun-under-6m"
           ]
@@ -2086,7 +2090,7 @@
           ]
         },
         {
-          "text": "If your baby falls asleep, move them onto their back on a firm, flat sleep surface once you're home.",
+          "text": "If your baby falls asleep, move them onto their back on a firm, flat sleep surface as soon as you can.",
           "claims": [
             "clm.a.asleep-in-device"
           ]
@@ -2111,7 +2115,7 @@
     },
     {
       "id": "act.home-tour-in-arms",
-      "rev": 1,
+      "rev": 2,
       "title": "Home tour in your arms",
       "summary": "Carry your baby slowly from room to room, in your arms or a carrier, stopping to show and name things: a window, a plant, a picture.",
       "kind": "play",
@@ -2120,7 +2124,7 @@
       "readiness": {
         "abilities": [],
         "notes": [
-          "Under 4 months, born early, or breathing concerns? Ask your clinician before using a carrier or sling."
+          "Born early or breathing problems? AAP advises against upright carriers; ask your baby’s clinician about holding positions."
         ]
       },
       "goals": [
@@ -2223,7 +2227,7 @@
     },
     {
       "id": "act.shade-sit-outdoors",
-      "rev": 1,
+      "rev": 2,
       "title": "Sit outside in the shade",
       "summary": "Sit somewhere shady outdoors with your baby in your arms, and listen and look together: leaves, birds, a breeze.",
       "kind": "play",
@@ -2290,7 +2294,7 @@
       ],
       "safety": [
         {
-          "text": "Babies under 6 months stay out of direct sun: full shade, covering clothes, and a hat. Avoid midday sun.",
+          "text": "Under 6 months: AAP (2026) says keep babies out of direct and indirect sun (heat-stroke risk). Full shade, light long sleeves, a hat; not outside 10 a.m.–4 p.m.",
           "claims": [
             "clm.a.sun-under-6m"
           ]

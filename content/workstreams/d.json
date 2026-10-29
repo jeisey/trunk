@@ -567,7 +567,7 @@
   "activities": [
     {
       "id": "act.push-toy-laps",
-      "rev": 1,
+      "rev": 2,
       "title": "Push a box or push toy around",
       "summary": "Let your toddler push an empty laundry basket, a big box or a sturdy push toy around a cleared, gated room while you stay in view.",
       "kind": "play",
@@ -635,7 +635,7 @@
       "adaptations": [
         "Just pulling up: a heavier box that slides slowly gives steadier support than a toy on wheels.",
         "Steady walker: make it a delivery game, pushing toys from one side of the room to the other.",
-        "Baby crawling nearby: keep the baby out of the push path or give the toddler a separate space."
+        "Two children? Use a side-by-side or together idea for both ages instead."
       ],
       "stopCues": [
         "Frustrated when the box keeps getting stuck",
@@ -654,6 +654,10 @@
           "claims": [
             "clm.d.anchor-furniture"
           ]
+        },
+        {
+          "text": "If you’re cooking, set this up outside the cooking area and out of your path with hot pans.",
+          "claims": []
         }
       ],
       "why": {
@@ -673,7 +677,7 @@
     },
     {
       "id": "act.big-ball-kick-and-chase",
-      "rev": 1,
+      "rev": 3,
       "title": "Kick and chase a big ball",
       "summary": "Out in an open space, kick, roll or throw a big soft ball for your walking toddler to chase, then take turns sending it back.",
       "kind": "play",
@@ -736,7 +740,7 @@
       "adaptations": [
         "Wobbly walker: roll it slowly a short way ahead and let them walk after it.",
         "Steady runner: kick it at a wall or into a laundry-basket “goal”.",
-        "Two children: an older child kicks to the toddler while you stand between them."
+        "Two children? Use a side-by-side or together idea for both ages instead."
       ],
       "stopCues": [
         "Losing interest or wandering off",
@@ -751,7 +755,7 @@
           ]
         },
         {
-          "text": "Play away from roads and driveways; a ball that rolls toward traffic is yours to fetch.",
+          "text": "Outdoors, use a fenced yard or enclosed play area well away from the street and driveways. An adult fetches anything that rolls toward a road.",
           "claims": [
             "clm.d.pedestrian-safety"
           ]
@@ -871,7 +875,7 @@
     },
     {
       "id": "act.bubble-pop-outside",
-      "rev": 1,
+      "rev": 3,
       "title": "Bubble pop outside",
       "summary": "Blow bubbles outdoors for your toddler to point at, chase and pop, saying 'pop!' each time.",
       "kind": "play",
@@ -934,7 +938,7 @@
       "adaptations": [
         "Not walking yet: sit them on the grass and blow bubbles low and slow.",
         "Steady runner: blow a long stream and let them chase it across the grass.",
-        "Baby nearby: blow the bubbles away from the baby's face."
+        "Two children? Use a side-by-side or together idea for both ages instead."
       ],
       "stopCues": [
         "Rubbing eyes (soap stings)",
@@ -952,6 +956,12 @@
           "text": "Use shade, a hat and covering clothes, and sunscreen on exposed skin; avoid the midday sun.",
           "claims": [
             "clm.d.sun-protection"
+          ]
+        },
+        {
+          "text": "Outdoors, use a fenced yard or enclosed play area well away from the street and driveways.",
+          "claims": [
+            "clm.d.pedestrian-safety"
           ]
         }
       ],
@@ -972,7 +982,7 @@
     },
     {
       "id": "act.toddler-action-songs",
-      "rev": 1,
+      "rev": 2,
       "title": "Action songs with pauses",
       "summary": "Sing an action song like “Wheels on the Bus” or a body-part song, and pause before an action or word so your toddler can fill it in.",
       "kind": "play",
@@ -1013,7 +1023,7 @@
       "effort": "low",
       "supervision": {
         "participation": "leads",
-        "proximity": "same-room",
+        "proximity": "arms-reach",
         "handsOn": "none",
         "minAdults": 1,
         "shareable": true,
@@ -1151,7 +1161,7 @@
     },
     {
       "id": "act.busy-basket-gated-space",
-      "rev": 1,
+      "rev": 2,
       "title": "Busy basket in a gated play space",
       "summary": "Before you cook or do a task, set out a basket of large, safe toys and board books in a gated, child-proofed spot you can see.",
       "kind": "play",
@@ -1212,7 +1222,7 @@
       "adaptations": [
         "Younger toddler: fewer items, plus a box to put things in and take out.",
         "Older toddler: add a 'job', like socks to sort or a dry cloth to wipe the toy table.",
-        "Toddler and baby: a separate basket for the baby, and nothing small enough for a baby's mouth in either."
+        "Two children? Use a side-by-side or together idea for both ages instead."
       ],
       "stopCues": [
         "Crying at the gate or trying to climb it",
@@ -1251,7 +1261,7 @@
     },
     {
       "id": "act.stack-and-topple",
-      "rev": 1,
+      "rev": 2,
       "title": "Stack it and knock it down",
       "summary": "Build a tower of big blocks, empty boxes or plastic cups and let your toddler knock it down, then take turns building again.",
       "kind": "play",
@@ -1311,7 +1321,7 @@
       "adaptations": [
         "Younger toddler: you build, they topple, as many times as it's fun.",
         "Older toddler: line boxes up as a train or build a wall to peek over.",
-        "Baby nearby: use light boxes or soft blocks and build on the far side of the room."
+        "Two children? Use a side-by-side or together idea for both ages instead."
       ],
       "stopCues": [
         "Throwing blocks at people",
@@ -1427,6 +1437,10 @@
           "claims": [
             "clm.d.falls-gates-furniture"
           ]
+        },
+        {
+          "text": "If you’re cooking, set this up outside the cooking area and out of your path with hot pans.",
+          "claims": []
         }
       ],
       "why": {
@@ -1640,7 +1654,7 @@
     },
     {
       "id": "act.hide-the-toy-hunt",
-      "rev": 1,
+      "rev": 2,
       "title": "Find the hidden toy",
       "summary": "Hide a favorite toy with a bit still showing, ask 'Where's teddy?' and give hints until your toddler finds it.",
       "kind": "play",
@@ -1700,7 +1714,7 @@
       "adaptations": [
         "Younger toddler: hide it under one cloth right in front of them.",
         "Older toddler: hide it fully out of sight, or hide yourself behind a chair.",
-        "Two children: an older sibling does the hiding while you cheer."
+        "Two children? Use a side-by-side or together idea for both ages instead."
       ],
       "stopCues": [
         "Upset when they can't find it",
@@ -1818,7 +1832,7 @@
     },
     {
       "id": "act.toddler-led-walk",
-      "rev": 1,
+      "rev": 2,
       "title": "Toddler-led walk",
       "summary": "Walk a safe route at your toddler's pace and let them lead, stopping to squat, look and collect a few big leaves.",
       "kind": "outing",
@@ -1889,7 +1903,7 @@
       "adaptations": [
         "New walker: walk a few minutes, ride a while, walk again.",
         "Older toddler: copy animals you see, running like a squirrel or flapping like a bird.",
-        "Baby too: the baby rides in the stroller or carrier while the toddler walks holding your hand."
+        "Two children? Use a side-by-side or together idea for both ages instead."
       ],
       "stopCues": [
         "Tired legs or asking to be carried",
@@ -1940,7 +1954,7 @@
     },
     {
       "id": "act.playground-toddler-area",
-      "rev": 1,
+      "rev": 2,
       "title": "Toddler area at the playground",
       "summary": "Visit a playground's toddler area and stay within arm's reach as your toddler tries low steps, ramps, small slides and bucket swings.",
       "kind": "outing",
@@ -1985,14 +1999,15 @@
         "proximity": "arms-reach",
         "handsOn": "intermittent",
         "minAdults": 1,
-        "shareable": true,
+        "shareable": false,
         "space": "Toddler-sized equipment over soft surfacing; you within arm's reach whenever they're off the ground."
       },
       "mess": "low",
       "noise": "loud",
       "hazards": [
         "falls",
-        "sun-weather"
+        "sun-weather",
+        "traffic"
       ],
       "steps": [
         "Head for the toddler section: low climbers, ramps, small slides, spring rockers and bucket swings.",
@@ -2028,6 +2043,12 @@
           "text": "Use shade, a hat and sunscreen on exposed skin; avoid the hottest hours.",
           "claims": [
             "clm.d.sun-protection"
+          ]
+        },
+        {
+          "text": "Hold hands in the parking lot and near roads on the way there and back.",
+          "claims": [
+            "clm.d.pedestrian-safety"
           ]
         }
       ],
@@ -2126,7 +2147,7 @@
       ],
       "safety": [
         {
-          "text": "Stay within arm's reach with full attention the whole time; toddlers can drown in an inch or two of water.",
+          "text": "Stay within arm's reach with full attention the whole time; toddlers can drown in an inch or two of water (AAP: “touch supervision”).",
           "claims": [
             "clm.d.water-touch-supervision"
           ]

@@ -66,7 +66,7 @@ export function AboutView({ c, version }: { c: IndexedCatalog; version: string }
 
       <section aria-labelledby="sources-h">
         <h2 id="sources-h">All sources</h2>
-        <p className="tiny">Each source was opened and read on the date shown. Guidance changes; Trunk’s content is meant to be rechecked every 6–12 months.</p>
+        <p className="tiny">Each source was opened and read on the date shown (a few, where the site blocked downloads, through a summarizing tool; their notes say so). Guidance changes; Trunk’s content is meant to be rechecked every 6–12 months.</p>
         {!ready && <p role="status">Loading sources…</p>}
         {[...byOrg.entries()].map(([org, list]) => (
           <div key={org} style={{ marginBottom: 10 }}>

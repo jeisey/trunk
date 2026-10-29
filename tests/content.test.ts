@@ -76,6 +76,8 @@ describe('content fixtures', () => {
     ['recipe role outside activity ages', (f: Raw) => ((f.recipes[0] as any).older.ageMin = '6m'), /must sit inside/], // eslint-disable-line @typescript-eslint/no-explicit-any
     ['recipe longer than an activity allows', (f: Raw) => ((f.recipes[0] as any).duration = { min: 2, default: 10, max: 30 }), /exceeds what both activities support/], // eslint-disable-line @typescript-eslint/no-explicit-any
     ['future check date', (f: Raw) => (act(f).checked = '2999-01-01'), /in the future/],
+    ['a second child added through an adaptation', (f: Raw) => (act(f, 1).adaptations = ['Baby nearby: give the baby a book too.']), /adds a second child/],
+    ['a serious hazard whose first safety note is unsourced', (f: Raw) => act(f).safety.unshift({ text: 'Have fun.', claims: [] }), /first safety note must cite a safety claim/],
   ])('rejects %s', (_name, mutate, pattern) => {
     expect(check(mutate as (f: Raw) => void)).toMatch(pattern);
   });

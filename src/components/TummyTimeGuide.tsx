@@ -29,8 +29,9 @@ export function TummyTimeGuide({ c, position, flatSurface }: { c: IndexedCatalog
             : 'It is useful tummy time, but it is not on a flat surface. Trunk does not count it toward a flat-surface target.'}
         </p>
       )}
+      <p>Tummy time is only for an awake baby with an adult watching. If they fall asleep, move them onto their back in their own sleep space.</p>
       <p>
-        <strong>If your baby’s clinicians gave you a target, follow it.</strong> Some care teams set a daily amount and say which positions count. For example, one family reports that their CHOP neonatal team asked for 60 minutes a day on a flat surface for their 4-month-old, not counting held or elevated positions. That is individualized guidance for that baby, not a public CHOP standard, and not a rule for every baby.
+        <strong>If your baby’s clinicians gave you a target, follow it.</strong> Some care teams set a daily amount and say which positions count. For example, one family reports that their hospital’s neonatal team asked for 60 minutes a day on a flat surface for their 4-month-old, not counting held or elevated positions. That is individualized guidance for that baby, not a published hospital standard, and not a rule for every baby. Count only time actually spent in the positions your team named.
       </p>
       <details className="more">
         <summary>What different public guidance says</summary>

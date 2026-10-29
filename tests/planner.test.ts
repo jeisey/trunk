@@ -4,6 +4,8 @@ import { DEFAULT_FILTERS, findIdeas } from '../src/lib/filters.ts';
 import { planWindow } from '../src/lib/planner.ts';
 import { bounds, resize, timeline, totalWallMinutes, type PlanKid, type PlanSegment, type PlanSettings } from '../src/lib/plan.ts';
 import { reconcileSegments } from '../src/lib/reconcile.ts';
+import { timeIssue } from '../src/lib/timeRules.ts';
+import { segmentTimeIssue } from '../src/components/PlanEditor.tsx';
 import { toDays } from '../src/lib/age.ts';
 import { fixtureCatalog, loadFixture, variant } from './helpers.ts';
 
@@ -162,6 +164,62 @@ describe('time-of-day rules', () => {
     expect(late.notes.join(' ')).toMatch(/8 p.m./);
     const morning = planWindow(c, { kids: [toddler], settings, window: 60, seed: 1, start: '09:00' });
     expect(morning.segments.some((s) => s.ref === walk.id)).toBe(true);
+  });
+});
+
+describe('shared time rules', () => {
+  const walk = { outdoorOnly: true, outdoors: true, sunHazard: true };
+  const either = { outdoorOnly: false, outdoors: true, sunHazard: false };
+  const fourMonths = toDays({ value: 4, unit: 'm' });
+  const twoYears = toDays({ value: 24, unit: 'm' });
+
+  it('checks the whole segment, not just its start', () => {
+    expect(timeIssue(walk, 9 * 60 + 45, 45, fourMonths, 'any')).toBe('sun');
+    expect(timeIssue(walk, 9 * 60, 30, fourMonths, 'any')).toBeNull();
+    expect(timeIssue(walk, 16 * 60, 30, fourMonths, 'any')).toBeNull();
+    expect(timeIssue(walk, 12 * 60, 30, twoYears, 'any')).toBeNull();
+  });
+
+  it('treats indoor-or-outdoor ideas as outdoors only when the parent chose outside', () => {
+    expect(timeIssue(either, 12 * 60, 20, fourMonths, 'any')).toBeNull();
+    expect(timeIssue(either, 12 * 60, 20, fourMonths, 'outdoors')).toBe('sun');
+  });
+
+  it('flags outdoor-only ideas that run into the night', () => {
+    expect(timeIssue(walk, 19 * 60 + 50, 20, twoYears, 'any')).toBe('night');
+    expect(timeIssue(walk, 5 * 60 + 30, 20, twoYears, 'any')).toBe('night');
+    expect(timeIssue(walk, 7 * 60, 20, twoYears, 'any')).toBeNull();
+  });
+
+  it('flags segments in an edited or imported plan', () => {
+    const shaded = variant(tummy, { id: 'act.fixture-shade-walk', kind: 'outing', outing: true, places: ['outdoors'], hazards: ['sun-weather'], tummyTime: undefined, supervision: { ...tummy.supervision, shareable: false } });
+    const c = fixtureCatalog({ activities: [shaded] });
+    const plan = { v: 1 as const, id: 'p-x', title: '', kids: [{ age: { value: 4, unit: 'm' as const }, notYet: [] }], start: '09:45', window: 90, settings, segments: [{ id: 'a1', kind: 'activity' as const, ref: shaded.id, minutes: 5 }], notes: '', createdAt: '2026-10-29T00:00:00.000Z', updatedAt: '2026-10-29T00:00:00.000Z' };
+    const [t] = timeline(plan, c);
+    expect(segmentTimeIssue(t, plan, c)).toBeNull();
+    const later = { ...plan, start: '09:58' };
+    expect(segmentTimeIssue(timeline(later, c)[0], later, c)).toBe('sun');
+  });
+});
+
+describe('auto-generated plans', () => {
+  it('never add a snack or other food activity on their own', () => {
+    const snack = variant(books, {
+      id: 'act.fixture-snack',
+      kind: 'routine',
+      hazards: ['food'],
+      readiness: { abilities: ['eats-solids'], notes: [] },
+      supervision: { ...books.supervision, proximity: 'arms-reach', shareable: false },
+      safety: [{ text: 'Seated, with you right there.', claims: ['clm.core.tummy-awake-supervised'] }],
+      goals: [],
+      evidence: { type: 'practical', claims: [] },
+      why: undefined,
+    });
+    const c = fixtureCatalog({ activities: [snack] });
+    for (let seed = 0; seed < 10; seed++) {
+      const plan = planWindow(c, { kids: [toddler], settings, window: 120, seed });
+      expect(plan.segments.some((s) => s.ref === snack.id)).toBe(false);
+    }
   });
 });
 

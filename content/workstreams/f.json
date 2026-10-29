@@ -528,7 +528,7 @@
   "activities": [
     {
       "id": "act.copycat-moves",
-      "rev": 1,
+      "rev": 2,
       "title": "Copycat moves: hop, tiptoe, march",
       "summary": "Take turns being the leader: tiptoe, march, hop and jump while the other copies.",
       "kind": "play",
@@ -603,6 +603,12 @@
           "claims": [
             "clm.f.falls-preschool"
           ]
+        },
+        {
+          "text": "Outdoors, use a fenced yard or enclosed play area well away from the street and driveways.",
+          "claims": [
+            "clm.d.pedestrian-safety"
+          ]
         }
       ],
       "why": {
@@ -623,7 +629,7 @@
     },
     {
       "id": "act.red-light-green-light",
-      "rev": 1,
+      "rev": 2,
       "title": "Red light, green light",
       "summary": "Call 'green light' to go and 'red light' to freeze as your child moves toward you, then swap roles.",
       "kind": "play",
@@ -694,7 +700,7 @@
       ],
       "safety": [
         {
-          "text": "Play away from the street and driveways. If something rolls toward the road, an adult fetches it.",
+          "text": "Outdoors, use a fenced yard or enclosed play area well away from the street and driveways. An adult fetches anything that rolls toward a road.",
           "claims": [
             "clm.f.street-play-safety"
           ]
@@ -717,7 +723,7 @@
     },
     {
       "id": "act.throw-catch-kick",
-      "rev": 1,
+      "rev": 2,
       "title": "Throw, catch and kick a big ball",
       "summary": "Take turns throwing, catching and kicking a big soft ball, stepping back a little as it gets easier.",
       "kind": "play",
@@ -793,7 +799,7 @@
       ],
       "safety": [
         {
-          "text": "Teach them never to chase a ball into the street; an adult fetches it.",
+          "text": "Outdoors, use a fenced yard or enclosed play area well away from the street and driveways. An adult fetches anything that rolls toward a road.",
           "claims": [
             "clm.f.street-play-safety"
           ]
@@ -940,7 +946,7 @@
     },
     {
       "id": "act.preschool-playground",
-      "rev": 1,
+      "rev": 2,
       "title": "Playground: climb, slide and swing",
       "summary": "Head to a playground with preschool-sized equipment and let your child choose, spotting them on climbers.",
       "kind": "outing",
@@ -989,14 +995,15 @@
         "proximity": "arms-reach",
         "handsOn": "intermittent",
         "minAdults": 1,
-        "shareable": true,
+        "shareable": false,
         "space": "Equipment sized for ages 2–5 over soft surfacing; within arm's reach on climbers and ladders."
       },
       "mess": "low",
       "noise": "loud",
       "hazards": [
         "falls",
-        "sun-weather"
+        "sun-weather",
+        "traffic"
       ],
       "steps": [
         "Pick equipment made for preschoolers. Check the ground is soft and slides aren't hot.",
@@ -1006,7 +1013,7 @@
       ],
       "adaptations": [
         "Cautious child: low climbers and the small slide first, holding your hand on steps.",
-        "Confident child: monkey bars with you spotting, or a climb-slide-run circuit.",
+        "From age 4: low, preschool-height monkey bars with you spotting at arm’s reach, or a climb-slide-run circuit. Not for 3-year-olds.",
         "Short on time: a 15-minute run-around still gives a good active break."
       ],
       "stopCues": [
@@ -1016,15 +1023,15 @@
       ],
       "safety": [
         {
-          "text": "Check for soft surfacing (not concrete or grass), hot slides and sharp edges; no drawstrings or bike helmets while climbing.",
-          "claims": [
-            "clm.f.playground-safety"
-          ]
-        },
-        {
           "text": "Stay close on climbing equipment: falls from play equipment are a common injury at this age.",
           "claims": [
             "clm.f.falls-preschool"
+          ]
+        },
+        {
+          "text": "Check for soft surfacing (not concrete or grass), hot slides and sharp edges; no drawstrings or bike helmets while climbing.",
+          "claims": [
+            "clm.f.playground-safety"
           ]
         },
         {
@@ -1032,10 +1039,16 @@
           "claims": [
             "clm.d.sun-protection"
           ]
+        },
+        {
+          "text": "Hold hands in the parking lot and near roads on the way there and back.",
+          "claims": [
+            "clm.d.pedestrian-safety"
+          ]
         }
       ],
       "why": {
-        "text": "CDC suggests playground visits where 5-year-olds learn to pump a swing and try monkey bars; AAP says playgrounds exercise bodies, brains and social skills.",
+        "text": "CDC suggests playground time for preschoolers, and AAP describes playgrounds as a chance to move, think, and play with others.",
         "claims": [
           "clm.f.playground-preschool"
         ]
@@ -1915,7 +1928,7 @@
     },
     {
       "id": "act.playdough-squish-and-shape",
-      "rev": 1,
+      "rev": 2,
       "title": "Playdough squish, roll and cut",
       "summary": "Set out playdough on a tray for squishing, pinching and rolling, with a rolling pin and cutters, while you're nearby.",
       "kind": "play",
@@ -1946,7 +1959,7 @@
       "materials": {
         "level": "special",
         "items": [
-          "Playdough",
+          "Store-bought playdough labelled for their age",
           "Rolling pin or a cup",
           "Blunt plastic knife or cookie cutters",
           "A tray or placemat"
@@ -2199,7 +2212,7 @@
       ],
       "safety": [
         {
-          "text": "Stay right beside them with full attention while there's water, and empty the bowl when you're done.",
+          "text": "Stay right beside them with full attention while there's water, and empty the bowl when you're done (AAP: “touch supervision”).",
           "claims": [
             "clm.f.water-arms-reach"
           ]
@@ -2436,7 +2449,7 @@
       ],
       "safety": [
         {
-          "text": "Stay beside them while there's water, and empty watering cans and buckets as soon as you've finished.",
+          "text": "Stay beside them while there's water, and empty watering cans and buckets as soon as you've finished (AAP: “touch supervision”).",
           "claims": [
             "clm.f.water-arms-reach"
           ]

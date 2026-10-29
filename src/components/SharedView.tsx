@@ -4,7 +4,8 @@ import { formatAge } from '../lib/age.ts';
 import { timeline, type Plan } from '../lib/plan.ts';
 import { importPayload, ShareError, type ImportResult } from '../lib/share.ts';
 import { formatClock, formatMinutes, parseHHMM } from '../lib/time.ts';
-import { segmentTitle, Tracks } from './PlanEditor.tsx';
+import { segmentTimeIssue, segmentTitle, Tracks } from './PlanEditor.tsx';
+import { TIME_ISSUE_TEXT } from '../lib/timeRules.ts';
 
 export function ImportedPlanPreview({ result, c }: { result: ImportResult; c: IndexedCatalog }) {
   const { plan, dropped, adjusted } = result;
@@ -15,7 +16,7 @@ export function ImportedPlanPreview({ result, c }: { result: ImportResult; c: In
     <>
       <h2 style={{ marginTop: 8 }}>{plan.title}</h2>
       <p className="subtle">
-        For {plan.kids.map((k) => `about ${formatAge(k.age)}`).join(' and ')} · {formatClock(start)} to {formatClock(start + used)} ({formatMinutes(used)})
+        For {plan.kids.map((k) => `about ${formatAge(k.age)}`).join(' and ')} · {formatClock(start)} to {formatClock(start + used)} ({formatMinutes(used)}) · planned for {plan.settings.adults === 1 ? 'one adult' : 'two adults'}
       </p>
       {(dropped.length > 0 || adjusted > 0) && (
         <div className="banner" role="status">
@@ -42,6 +43,10 @@ export function ImportedPlanPreview({ result, c }: { result: ImportResult; c: In
             </div>
             <p className="seg-title">{segmentTitle(t.segment, c)}</p>
             <Tracks seg={t.segment} plan={plan} c={c} />
+            {(() => {
+              const issue = segmentTimeIssue(t, plan, c);
+              return issue ? <p className="safety-line">{TIME_ISSUE_TEXT[issue]}</p> : null;
+            })()}
           </li>
         ))}
       </ol>

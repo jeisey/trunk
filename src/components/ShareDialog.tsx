@@ -154,7 +154,7 @@ export function ShareDialog({ plan, c, onClose, onExport }: { plan: Plan; c: Ind
               </button>
             </div>
             <p className="tiny" style={{ marginTop: 8 }}>
-              The person you send it to sees a preview and chooses whether to save it. Their copy is checked against Trunk’s current safety rules for these ages.
+              The person you send it to sees a preview and chooses whether to save it. Their copy is re-checked against Trunk’s current catalog and age and pairing rules; anything retired or unsuitable is left out.
             </p>
           </div>
         )}
