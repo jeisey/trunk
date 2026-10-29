@@ -55,11 +55,20 @@ Validator rules: tummy-time records must carry non-conditional `avoid`
 milk-feed rules for both before and after (HSE's advice covers every tummy
 position); listed rules must overlap the activity's ages.
 
-Core rules today: `tim.core.tummy-after-milk-feed` (30 min, editorial window),
-`tim.core.tummy-before-milk-feed` (15 min, editorial window), and four nap
-policies (settling → "Good for winding down" before a nap; lively → "Better
-earlier" before a nap; settling/gentle → "Gentle start after waking"; lively →
-"Ease in after waking"), all editorial.
+Core rules today (see `content/core.json` and `docs/research/timing.md`):
+
+- `tim.core.tummy-after-milk-feed` / `tim.core.tummy-before-milk-feed`: HSE's
+  "avoid tummy time just before or after a feed" (source guidance; 30/15-minute
+  windows are Trunk's convention because HSE gives no number). On every
+  tummy-time record, all positions.
+- `tim.core.gentle-play-after-feed-spit-up`: AAP's advice for babies who spit up
+  when played with after feeds (limit active play about 20–30 minutes; postpone
+  tummy time). Infants 1 week–12 months, `condition: spit-up`, so advisory only.
+- Nap policies (editorial; HSE's calm pre-nap story and NHS's bedtime wind-down
+  are cited as informing claims, not as nap rules): settling → "Good for winding
+  down" before a nap; lively → "Better earlier" before a nap; settling/gentle →
+  "Gentle start after waking"; lively → "Ease in after waking".
+- No meal rules: no reviewed source supports one, so meal timing is unassessed.
 
 ## 2. Evaluator (`src/lib/timing.ts`)
 
