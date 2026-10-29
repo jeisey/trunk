@@ -6,6 +6,11 @@ its completion check has actually been run.
 ## Status key
 `[x]` done and checked · `[~]` in progress · `[ ]` not started · `[!]` blocked
 
+## Resume notes
+- All research workstreams, the mixed-age synthesis, and the independent content/safety review are done; review fixes are applied (see docs/review/content-review.md → Resolution).
+- Local check: `npm run check` (content + typecheck + unit), `npm run build && npx playwright test` (all journeys + axe).
+- Perf: `node e2e/serve.mjs &` then `node scripts/perf-lab.mjs` → `reports/performance.md`.
+
 ## 1. Shared contract (lead)
 - [x] Zod schema + enums + ID rules (`src/content/schema.ts`). Check: fixtures validate.
 - [x] Age normalization utility (`src/lib/age.ts`). Check: unit tests for boundaries.
@@ -16,35 +21,35 @@ its completion check has actually been run.
 
 ## 2. Research workstreams (subagents, ≤ 4 at once)
 Completion check for each: ≥ 12 distinct activities, `--check --only <file>` exits 0, research notes complete, lead spot-check of sources.
-- [ ] A 1 week – under 3 months → `content/workstreams/a.json`, `docs/research/a.md`
-- [ ] B 3 – under 6 months → `b.json`, `docs/research/b.md`
-- [ ] C 6 – under 12 months → `c.json`, `docs/research/c.md`
-- [ ] D 12 – under 24 months → `d.json`, `docs/research/d.md`
-- [ ] E 24 – under 36 months (+ media guidance) → `e.json`, `docs/research/e.md`
-- [ ] F 36 – under 60 months → `f.json`, `docs/research/f.md`
-- [ ] Mixed-age: ≥ 18 recipes (9 together, 9 parallel), 6 starter plans → `mix.json`, `docs/research/mix.md`
-- [ ] Independent content/safety review against actual sources → `docs/review/content-review.md`
-- [ ] Independent integration review → `docs/review/integration-review.md`
+- [x] A 1 week – under 3 months → `content/workstreams/a.json` (15 activities), `docs/research/a.md`
+- [x] B 3 – under 6 months → `b.json` (16), `docs/research/b.md`
+- [x] C 6 – under 12 months → `c.json` (16), `docs/research/c.md`
+- [x] D 12 – under 24 months → `d.json` (17), `docs/research/d.md`
+- [x] E 24 – under 36 months (+ media guidance) → `e.json` (15 + snack + 2 media), `docs/research/e.md`
+- [x] F 36 – under 60 months → `f.json` (21), `docs/research/f.md`
+- [x] Mixed-age: 29 recipes (16 together, 13 parallel), 6 starter plans → `mix.json`, `docs/research/mix.md`
+- [x] Independent content/safety review against actual sources → `docs/review/content-review.md` (2 blockers, 11 majors, 21 minors; resolved)
+- [x] Independent integration review → `docs/review/integration-review.md` (0 blockers, 4 majors, 13 minors; majors fixed with regression tests)
 
 ## 3. Application (lead)
-- [ ] Finder: 1–2 children, non-uniform age slider + stepper + typed input, quick filters, advanced filters, results, empty states with one-tap relax.
-- [ ] Activity detail: setup, steps, adaptations, why, stop cues, safety, sources.
-- [ ] Two children: together / parallel / either from curated recipes only.
-- [ ] Deterministic planner: window fill, breaks, open time, wall-clock math, infeasibility explanations.
-- [ ] Plan editor: add/remove/replace/reorder/resize, custom entries, keyboard controls.
-- [ ] Saved plans: 10 max, rename/duplicate/delete+undo, migrations, corrupt/blocked/quota handling.
-- [ ] Share links: versioned compressed fragment payload, preview import, privacy options, size budget, fallback.
-- [ ] Image export (lazy): 1080×1350 and 1080×1920, pagination, preview, download + native share.
-- [ ] Sources/about page, tummy-time guidance panel, media guidance.
-- [ ] Mascot SVG, visual design, accessibility.
+- [x] Finder: 1–2 children, non-uniform age slider + stepper + typed input, quick filters, advanced filters, results, empty states with one-tap relax.
+- [x] Activity detail: setup, steps, adaptations, why, stop cues, safety, sources.
+- [x] Two children: together / parallel / either from curated recipes only.
+- [x] Deterministic planner: window fill, breaks, open time, wall-clock math, infeasibility explanations.
+- [x] Plan editor: add/remove/replace/reorder/resize, custom entries, keyboard controls.
+- [x] Saved plans: 10 max, rename/duplicate/delete+undo, migrations, corrupt/blocked/quota handling.
+- [x] Share links: versioned compressed fragment payload, preview import, privacy options, size budget, fallback.
+- [x] Image export (lazy): 1080×1350 and 1080×1920, pagination, preview, download + native share.
+- [x] Sources/about page, tummy-time guidance panel, media guidance.
+- [x] Mascot SVG, visual design, accessibility.
 
 ## 4. Verification
-- [ ] Vitest: schema/references, age boundaries, planner, storage, share codec, text safety.
-- [ ] Playwright journeys 1–8 against production build under a non-root base path.
-- [ ] Screenshots + exported images inspected (`review-artifacts/`, not committed).
-- [ ] Performance: bundle size, LCP/CLS lab profile, filter latency.
+- [x] Vitest: schema/references, age boundaries, planner, storage, share codec, text safety.
+- [x] Playwright journeys 1–8 + axe against production build under `/trunk/` (Chromium only; WebKit not installed here).
+- [x] Screenshots + exported images inspected (`review-artifacts/`, not committed).
+- [x] Performance: bundle size, LCP/CLS lab profile, filter latency (`reports/performance.md`).
 
 ## 5. Delivery
-- [ ] README, `docs/maintenance.md`, decisions, research summary.
-- [ ] GitHub Actions: validate, test, build, e2e, deploy to Pages.
+- [x] README, `docs/maintenance.md`, decisions, research summary.
+- [x] GitHub Actions: validate, test, build, e2e, deploy to Pages (green on PR jeisey/trunk#1).
 - [ ] PR opened, CI green, merged to `main`.

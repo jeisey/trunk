@@ -33,6 +33,10 @@ function listJson(dir: string): string[] {
 }
 
 const files = contentDirs.flatMap(listJson);
+if (only && !existsSync(only)) {
+  console.error(`Content validation FAILED: ${relative(root, only)} does not exist.`);
+  process.exit(1);
+}
 const parsed: { file: string; data: z.infer<typeof ContentFile> }[] = [];
 const parseErrors: Issue[] = [];
 for (const path of files) {
@@ -73,12 +77,23 @@ if (checkOnly) process.exit(0);
 if (allErrors.length) process.exit(1);
 
 // ---- Write bundled catalog (retired records are kept so old share links resolve) ----
+// Activities, recipes, and starter plans load with the app. Claims and sources
+// (the evidence) are a separate file the app loads lazily, keeping initial JS small.
 mkdirSync(join(root, 'src', 'generated'), { recursive: true });
-const contentVersion = new Date().toISOString().slice(0, 10);
+// Deterministic: the content version is the latest source-check date, so rebuilding never churns files.
+const contentVersion = catalog.sources.reduce((max, s) => (s.checked > max ? s.checked : max), '');
 writeFileSync(
   join(root, 'src', 'generated', 'catalog.json'),
-  JSON.stringify({ schema: SCHEMA_VERSION, ...catalog }),
+  JSON.stringify({
+    schema: SCHEMA_VERSION,
+    version: contentVersion,
+    sourceCount: catalog.sources.length,
+    activities: catalog.activities,
+    recipes: catalog.recipes,
+    starterPlans: catalog.starterPlans,
+  }),
 );
+writeFileSync(join(root, 'src', 'generated', 'evidence.json'), JSON.stringify({ claims: catalog.claims, sources: catalog.sources }));
 
 // ---- JSON Schema generated from the Zod authority ----
 mkdirSync(join(root, 'docs', 'schema'), { recursive: true });

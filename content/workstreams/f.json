@@ -1,0 +1,2680 @@
+{
+  "schema": 1,
+  "workstream": "F",
+  "description": "Workstream F: children 3 and 4 (36 to under 60 months). Active play, stories, games, making, helper jobs and calm-down ideas, drawn from CDC, AAP, HSE, NHS and WHO guidance.",
+  "sources": [
+    {
+      "id": "src.cdc.milestones-4-years",
+      "url": "https://www.cdc.gov/act-early/milestones/4-years.html",
+      "org": "Centers for Disease Control and Prevention (CDC), Learn the Signs. Act Early.",
+      "title": "Milestones by 4 Years",
+      "jurisdiction": "US",
+      "checked": "2026-10-28",
+      "published": "2025-09-04",
+      "updated": "2026-05-16",
+      "notes": "Read with a fetch tool because direct download returned HTTP 403. The tool gave each tip as a close paraphrase, plus a few exact quotes, so the lead may want to spot-check the tips list in a browser."
+    },
+    {
+      "id": "src.cdc.milestones-5-years",
+      "url": "https://www.cdc.gov/act-early/milestones/5-years.html",
+      "org": "Centers for Disease Control and Prevention (CDC), Learn the Signs. Act Early.",
+      "title": "Milestones by 5 Years",
+      "jurisdiction": "US",
+      "checked": "2026-10-28",
+      "published": "2025-09-04",
+      "updated": "2026-05-16",
+      "notes": "Read with a fetch tool because direct download returned HTTP 403. The tool gave exact quotes for the tips cited here and paraphrased the rest."
+    },
+    {
+      "id": "src.cdc.positive-parenting-preschoolers",
+      "url": "https://www.cdc.gov/child-development/positive-parenting-tips/preschooler-3-5-years.html",
+      "org": "Centers for Disease Control and Prevention (CDC)",
+      "title": "Positive Parenting Tips: Preschoolers (3–5 years old)",
+      "jurisdiction": "US",
+      "checked": "2026-10-28",
+      "updated": "2026-02-20",
+      "notes": "Read with a fetch tool (close paraphrase plus short quotes) because direct download returned HTTP 403. The page shows one unlabeled date, Feb. 20, 2026, recorded here as updated. The URL slug is singular: 'preschooler-3-5-years'."
+    },
+    {
+      "id": "src.aap-hc.milestones-3-4-years",
+      "url": "https://www.healthychildren.org/English/ages-stages/preschool/Pages/Developmental-Milestones-3-to-4-Year-Olds.aspx",
+      "org": "American Academy of Pediatrics (HealthyChildren.org)",
+      "title": "Developmental Milestones: 3 to 4 Year Olds",
+      "jurisdiction": "US",
+      "checked": "2026-10-28",
+      "updated": "2023-04-04",
+      "notes": "Adapted from Caring for Your Baby and Young Child: Birth to Age 5, 7th ed. (AAP 2019). Used only to describe skills many children are building, never as deadlines."
+    },
+    {
+      "id": "src.aap-hc.milestones-4-5-years",
+      "url": "https://www.healthychildren.org/English/ages-stages/preschool/Pages/Developmental-Milestones-4-to-5-Year-Olds.aspx",
+      "org": "American Academy of Pediatrics (HealthyChildren.org)",
+      "title": "Developmental Milestones: 4 to 5 Year Olds",
+      "jurisdiction": "US",
+      "checked": "2026-10-28",
+      "updated": "2023-04-04",
+      "notes": "Adapted from Caring for Your Baby and Young Child: Birth to Age 5, 7th ed. (AAP 2019). Used only to describe skills, never as deadlines."
+    },
+    {
+      "id": "src.aap-hc.ready-for-tricycle",
+      "url": "https://www.healthychildren.org/English/safety-prevention/at-play/Pages/Ready-For-A-Tricycle.aspx",
+      "org": "American Academy of Pediatrics (HealthyChildren.org)",
+      "title": "Ready for a Tricycle?",
+      "jurisdiction": "US",
+      "checked": "2026-10-28",
+      "updated": "2021-08-04",
+      "notes": "Adapted from Caring for Your Baby and Young Child: Birth to Age 5, 7th ed. (AAP 2019)."
+    },
+    {
+      "id": "src.aap-hc.first-tricycle-or-bike",
+      "url": "https://www.healthychildren.org/English/safety-prevention/at-play/Pages/your-childs-first-tricycle-or-bike-teaching-them-to-ride-safely.aspx",
+      "org": "American Academy of Pediatrics (HealthyChildren.org)",
+      "title": "Your Child's First Tricycle or Bike: Important Safety Rules",
+      "jurisdiction": "US",
+      "checked": "2026-10-28",
+      "updated": "2022-08-11",
+      "notes": "Adapted from TIPP, Safe Bicycling Starts Early (AAP 2020)."
+    },
+    {
+      "id": "src.aap-hc.bike-helmets-faq",
+      "url": "https://www.healthychildren.org/English/safety-prevention/at-play/Pages/Bicycle-Helmets-What-Every-Parent-Should-Know.aspx",
+      "org": "American Academy of Pediatrics (HealthyChildren.org)",
+      "title": "Bike Helmets for Kids: Parent FAQs",
+      "jurisdiction": "US",
+      "checked": "2026-10-28",
+      "updated": "2024-06-28",
+      "notes": "URL slug says 'Bicycle Helmets: What Every Parent Should Know'. Adapted from TIPP, About Bicycle Helmets (AAP 2020). CPSC certification is a US standard."
+    },
+    {
+      "id": "src.aap-hc.food-allergies",
+      "url": "https://www.healthychildren.org/English/healthy-living/nutrition/Pages/Food-Allergies-in-Children.aspx",
+      "org": "American Academy of Pediatrics (HealthyChildren.org)",
+      "title": "Food Allergies in Children: Causes, Symptoms, Diagnosis & Treatment",
+      "jurisdiction": "US",
+      "checked": "2026-10-28",
+      "updated": "2025-10-08",
+      "notes": "AAP Section on Allergy and Immunology and Section on Gastroenterology, Hepatology and Nutrition. Only the family tips on labels and cross-contact are used."
+    },
+    {
+      "id": "src.hse.play-3-5-years",
+      "url": "https://www2.hse.ie/babies-children/play/3-5-years/",
+      "org": "Health Service Executive (Ireland)",
+      "title": "Play and toys to help your child develop - 3 to 5 years old",
+      "jurisdiction": "IE",
+      "checked": "2026-10-28",
+      "updated": "2021-04-20",
+      "notes": "Page last reviewed 20/04/2021. Its stated next review date (20/04/2024) has passed, so recheck it at the next review."
+    },
+    {
+      "id": "src.nhs.activity-under-5",
+      "url": "https://www.nhs.uk/live-well/exercise/physical-activity-guidelines-children-under-five-years/",
+      "org": "NHS (UK)",
+      "title": "Physical activity guidelines for children (under 5 years)",
+      "jurisdiction": "UK",
+      "checked": "2026-10-28",
+      "updated": "2025-10-27",
+      "notes": "Page last reviewed 27 October 2025. Its targets for 3–4-year-olds match WHO 2019."
+    }
+  ],
+  "claims": [
+    {
+      "id": "clm.f.copycat-and-chasing-games",
+      "kind": "description",
+      "text": "For 3- to 5-year-olds, HSE (Ireland) suggests copycat moves such as tiptoeing, skipping, jumping and hopping, plus chasing games and hide-and-seek; AAP (US) suggests silly walks where children take turns leading.",
+      "sources": [
+        "src.hse.play-3-5-years",
+        "src.aap-hc.playing-outside"
+      ],
+      "locator": "HSE 3–5 years: 'Ways to play with children this age' list. AAP Playing Outside: 'Explore with preschoolers & grade-school age kids' — 'Go for a silly stroll'.",
+      "paraphrase": "HSE lists copycat activities (tiptoes, skip, jump, hop), chasing games and hide-and-seek among ways to play with 3–5-year-olds. AAP suggests challenging kids to tiptoe, turn in circles, march with high knees or wiggle, then letting them call the moves and trading off being the leader.",
+      "scope": "Preschoolers 3–5; Ireland and US general play guidance. Describes play ideas, not outcomes."
+    },
+    {
+      "id": "clm.f.uk-active-play",
+      "kind": "recommendation",
+      "text": "NHS (UK) matches WHO: 3–4-year-olds benefit from at least 180 minutes of varied activity a day, including 60 minutes of moderate-to-vigorous play. Ideas include jumping, skipping, climbing, hide and seek, throwing and catching, and riding a bike.",
+      "sources": [
+        "src.nhs.activity-under-5"
+      ],
+      "locator": "Sections 'Pre-schoolers (aged 3 to 4)' and 'Physical activity ideas for under 5s'.",
+      "paraphrase": "Pre-schoolers should spend at least 180 minutes a day in a variety of physical activities spread through the day, including active and outdoor play, with at least 60 minutes moderate-to-vigorous. Ideas for under-5s include jumping, dancing, playground activities, climbing, skipping, hide and seek, throwing and catching, scooting and riding a bike.",
+      "scope": "UK guidance for children aged 3–4. Daily totals across the whole day, not per activity.",
+      "caveat": "Same targets as WHO 2019 (clm.core.who-active-play). No jurisdiction conflict found."
+    },
+    {
+      "id": "clm.f.stop-and-go-games",
+      "kind": "recommendation",
+      "text": "CDC (US) suggests red light, green light or freeze dance to help 4-year-olds practise stopping and waiting when excited, outdoor games such as tag and follow the leader, and, at 5, games with rules such as Simon Says.",
+      "sources": [
+        "src.cdc.milestones-4-years",
+        "src.cdc.milestones-5-years"
+      ],
+      "locator": "CDC 4 years and 5 years: 'More parenting tips and activities' lists.",
+      "paraphrase": "The 4-year page suggests red light, green light or freeze dance to teach a child to stop and wait when excited, and outdoor games with friends such as tag, follow the leader and hide and seek. The 5-year page suggests teaching rule-following with simple board games, card games or Simon Says.",
+      "scope": "US; children around 4–5 years. Suggestions, not tests of ability."
+    },
+    {
+      "id": "clm.f.ball-skills",
+      "kind": "description",
+      "text": "HSE (Ireland) suggests more ball play—kicking, catching and throwing—for 3- to 5-year-olds. CDC (US) suggests giving preschoolers age-appropriate equipment such as balls and plastic bats and letting them choose how to play.",
+      "sources": [
+        "src.hse.play-3-5-years",
+        "src.cdc.positive-parenting-preschoolers"
+      ],
+      "locator": "HSE 3–5 years: 'Ways to play' list (ball activities) and toys list (large and small balls). CDC Preschoolers: 'Healthy Bodies'.",
+      "paraphrase": "HSE encourages more ball activities like kicking, catching and throwing, and lists large and small balls. CDC says to provide age-appropriate play equipment like balls and plastic bats, let the child choose what to play, and keep being active fun.",
+      "scope": "Preschoolers 3–5; Ireland and US."
+    },
+    {
+      "id": "clm.f.motor-skills-vary",
+      "kind": "description",
+      "text": "AAP (US) lists kicking a ball forward, throwing overhand, catching a bounced ball, hopping and pedaling a tricycle among movement skills many 3- to 4-year-olds show, and says each child develops in their own way.",
+      "sources": [
+        "src.aap-hc.milestones-3-4-years",
+        "src.aap-hc.milestones-4-5-years"
+      ],
+      "locator": "'Movement milestones' lists and 'Developmental health watch' paragraphs on both pages.",
+      "paraphrase": "The 3–4 page lists hopping, kicking a ball forward, throwing overhand, catching a bounced ball most of the time and pedaling a tricycle. The 4–5 page adds somersaults, swinging and climbing. Both say no one can tell exactly when a child will perfect a skill.",
+      "scope": "US general guidance. Describes typical skills, not deadlines or requirements.",
+      "caveat": "Trunk uses these lists only to describe what play may involve. Questions about a child's development go to their clinician."
+    },
+    {
+      "id": "clm.f.trike-readiness",
+      "kind": "description",
+      "text": "AAP (US) says most children are ready for a tricycle around age 3, once they can physically handle it, and that low trikes with big wheels tip less. HSE (Ireland) suggests tricycles, balance bikes and scooters for 3- to 5-year-olds.",
+      "sources": [
+        "src.aap-hc.ready-for-tricycle",
+        "src.hse.play-3-5-years"
+      ],
+      "locator": "AAP Ready for a Tricycle?: tips 1 ('Be ready') and 2 ('Go low'). HSE 3–5 years: intro paragraph and 'Ways to play' list.",
+      "paraphrase": "AAP: don't get a tricycle until the child can physically handle it; most are ready around 3; choose one low to the ground with big wheels, which is less likely to tip. HSE suggests pushing along on or pedaling a tricycle or small bike with stabilisers, balance bikes and scooters, and notes scooting moves from two feet to pushing off with one.",
+      "scope": "Preschoolers; US and Ireland. Readiness depends on the child, not age alone."
+    },
+    {
+      "id": "clm.f.trike-helmet-place",
+      "kind": "safety",
+      "text": "On a tricycle, balance bike or bike, a young child wears a snug, safety-certified bike helmet on every ride, plus closed-toe shoes, and rides only in protected places away from streets, driveways and pools, with an adult supervising.",
+      "sources": [
+        "src.aap-hc.ready-for-tricycle",
+        "src.aap-hc.first-tricycle-or-bike",
+        "src.aap-hc.bike-helmets-faq",
+        "src.cdc.positive-parenting-preschoolers"
+      ],
+      "locator": "AAP Ready for a Tricycle?: tips 3–5. AAP First Tricycle or Bike: 'Tips to teach your child safe bicycle use'. AAP Bike Helmets FAQ: fit section. CDC Preschoolers: 'Child Safety First'.",
+      "paraphrase": "AAP: a well-fitting helmet meeting CPSC standards on every ride, chin strap snug, closed-toe shoes, no riding near cars, driveways or pools, trikes only in protected places; young children ride only with adult supervision and off the street. Helmets sit level over the forehead and don't slide. CDC: keep the child on the sidewalk, away from the street, always with a helmet.",
+      "scope": "US guidance for young riders, including first tricycles. CPSC certification is a US standard; elsewhere look for the local equivalent.",
+      "caveat": "CDC says 'sidewalk'; AAP says protected places off the street, away from driveways. Trunk uses the stricter version: paths or closed areas away from streets and driveways, with an adult close by."
+    },
+    {
+      "id": "clm.f.street-play-safety",
+      "kind": "safety",
+      "text": "Preschoolers don't reliably understand traffic danger. Keep play and riding out of the street and driveways, teach them not to chase a ball into the road, and check behind the car before backing out.",
+      "sources": [
+        "src.cdc.positive-parenting-preschoolers",
+        "src.aap-hc.safety-2-to-4-years"
+      ],
+      "locator": "CDC Preschoolers: 'Child Safety First'. AAP Safety 2 to 4 Years: intro and 'Car & traffic-related crashes', last paragraph.",
+      "paraphrase": "CDC: explain why staying out of traffic matters, and tell the child not to play in the street or run after stray balls. AAP: children this age don't understand dangers or remember 'no' while playing; don't let a child play or ride a tricycle in the street; driveways are dangerous, so walk behind the car before backing out.",
+      "scope": "US guidance for children 2–5."
+    },
+    {
+      "id": "clm.f.playground-preschool",
+      "kind": "description",
+      "text": "CDC (US) suggests park visits for 3-year-olds, and playground trips where 5-year-olds learn to pump a swing and try monkey bars with help. AAP says playgrounds exercise children's bodies, brains and social skills on equipment that suits their age and size.",
+      "sources": [
+        "src.cdc.milestones-5-years",
+        "src.cdc.milestones-3-years",
+        "src.aap-hc.playground-safety"
+      ],
+      "locator": "CDC 5 years and 3 years: 'More parenting tips and activities'. AAP Safety on the Playground: opening paragraph and 'Sizing up playground equipment'.",
+      "paraphrase": "CDC 5 years: take your child to the playground, teach her to pump her legs on a swing and help her on the monkey bars. CDC 3 years: play outside with your child at the park or on a walking trail. AAP: playground visits exercise bodies, brains and social skills; choose equipment geared to the child's age, abilities and size.",
+      "scope": "US; preschoolers."
+    },
+    {
+      "id": "clm.f.playground-safety",
+      "kind": "safety",
+      "text": "At playgrounds, check for soft surfacing (not concrete, asphalt or grass), hot slides and sharp edges. Slide feet first, one at a time, stay clear of moving swings, take off bike helmets and drawstrings before climbing, and keep watching.",
+      "sources": [
+        "src.aap-hc.playground-safety",
+        "src.aap-hc.safety-2-to-4-years",
+        "src.cdc.positive-parenting-preschoolers"
+      ],
+      "locator": "AAP Playground: 'Playground surfaces', 'Climbing structures', 'Slides', 'Swings', 'Remember'. AAP Safety 2 to 4 Years: 'Falls'. CDC Preschoolers: 'Child Safety First'.",
+      "paraphrase": "AAP: most playground injuries are falls, so look for deep wood chips, mulch, sand or safety-tested mats (grass doesn't absorb shock); slides can burn; go feet first once the slide is clear; don't run in front of swings; no drawstrings, and a helmet comes off while playing; lack of supervision is linked to nearly half of injuries. CDC: check equipment for loose parts or sharp edges.",
+      "scope": "US playground guidance for young children."
+    },
+    {
+      "id": "clm.f.outdoor-explore-preschool",
+      "kind": "description",
+      "text": "AAP (US) suggests that preschoolers collect twigs, leaves, cones and rocks, play make-believe outdoors, and help with small supervised jobs such as watering flowers. It frames nature scavenger hunts as an idea for older children.",
+      "sources": [
+        "src.aap-hc.playing-outside"
+      ],
+      "locator": "'Outdoor play ideas by age': 'Explore with preschoolers & grade-school age kids' and 'Challenge older children & teens' (scavenger hunt).",
+      "paraphrase": "For preschoolers and grade-schoolers, AAP suggests nature sculptures from collected twigs, leaves, cones and rocks, imaginative outdoor play, chalk obstacle courses, silly strolls and small supervised yard jobs like watering flowers. Nature scavenger hunts and collections, using a list of things to find, appear under ideas for older children and teens.",
+      "scope": "US; general outdoor-play guidance.",
+      "caveat": "Trunk's preschool nature hunt is adapted: a short picture list with counting, not AAP's older-child version."
+    },
+    {
+      "id": "clm.f.counting-everyday",
+      "kind": "recommendation",
+      "text": "CDC (US) suggests counting games for 3- and 4-year-olds that use everyday things: body parts, stairs, fingers, toys or bananas.",
+      "sources": [
+        "src.cdc.milestones-3-years",
+        "src.cdc.milestones-4-years"
+      ],
+      "locator": "CDC 3 years and 4 years: 'More parenting tips and activities'.",
+      "paraphrase": "The 3-year page suggests counting games with body parts, stairs and other things used or seen every day, noting that children this age are starting to learn about numbers. The 4-year page suggests counting common items such as fingers, toys or bananas.",
+      "scope": "US; children about 3–4."
+    },
+    {
+      "id": "clm.f.matching-memory-games",
+      "kind": "recommendation",
+      "text": "CDC (US) suggests matching games at 3 and 4 (finding things that are the same), and card games, I Spy and Hot and Cold at 5 to help with memory and attention. HSE (Ireland) lists lotto and simple dice games for 3- to 5-year-olds.",
+      "sources": [
+        "src.cdc.milestones-3-years",
+        "src.cdc.milestones-4-years",
+        "src.cdc.milestones-5-years",
+        "src.hse.play-3-5-years"
+      ],
+      "locator": "CDC 3, 4 and 5 years: 'More parenting tips and activities'. HSE 3–5 years: 'Toys and items children of this age will enjoy'.",
+      "paraphrase": "CDC 3 years: play matching games, asking the child to find things in books or around the house that are the same. CDC 4 years: simple games such as tic-tac-toe or matching games. CDC 5 years: games that help memory and attention, such as card games, tic-tac-toe, I Spy or Hot and Cold. HSE lists puzzles, simple dice games and lotto games.",
+      "scope": "US and Ireland; children about 3–5."
+    },
+    {
+      "id": "clm.f.opposites-game",
+      "kind": "recommendation",
+      "text": "CDC (US) suggests an opposites game for 3-year-olds: crouch low and say 'I am small', stand tall and say 'I am big', then do the same for fast and slow, and quiet and loud.",
+      "sources": [
+        "src.cdc.milestones-3-years"
+      ],
+      "locator": "'More parenting tips and activities', opposites bullet.",
+      "paraphrase": "Play games to teach opposites: get down low and say you are small, then stand up and say you are big; repeat with fast and slow, and quiet and loud.",
+      "scope": "US; children around 3."
+    },
+    {
+      "id": "clm.f.read-ask-what-next",
+      "kind": "recommendation",
+      "text": "CDC (US) suggests reading with preschoolers and asking what is happening in the picture and what will happen next, asking for more details, letting 5-year-olds 'read' by telling the story from the pictures, and library trips.",
+      "sources": [
+        "src.cdc.milestones-3-years",
+        "src.cdc.milestones-5-years",
+        "src.cdc.milestones-4-years",
+        "src.cdc.positive-parenting-preschoolers"
+      ],
+      "locator": "CDC 3, 4 and 5 years: 'More parenting tips and activities'. CDC Preschoolers: 'Positive Parenting Tips', reading bullet.",
+      "paraphrase": "CDC 3 years: read together, ask what is happening in the picture or what will happen next, and ask for more details. CDC 5 years: encourage the child to 'read' by looking at the pictures and telling the story, and ask about pictures and what comes next. CDC 4 years: library trips to pick books. Preschool tips: continue to read to your child.",
+      "scope": "US; children about 3–5."
+    },
+    {
+      "id": "clm.f.story-skills",
+      "kind": "description",
+      "text": "AAP (US) lists telling stories and recalling parts of a story among language skills many 3- to 5-year-olds are building, and CDC notes many 5-year-olds tell a story they heard or made up. Timing varies from child to child.",
+      "sources": [
+        "src.aap-hc.milestones-3-4-years",
+        "src.aap-hc.milestones-4-5-years",
+        "src.cdc.milestones-5-years"
+      ],
+      "locator": "AAP 3–4 and 4–5: 'Language milestones' and 'Cognitive milestones'. CDC 5 years: 'Language/Communication Milestones'.",
+      "paraphrase": "AAP's 3–4 page lists telling stories and recalling parts of a story; the 4–5 page lists recalling part of a story and telling longer stories. CDC's 5-year list includes telling a story heard or made up with at least two events, and answering simple questions about a book or story.",
+      "scope": "US; descriptive milestone lists, not deadlines.",
+      "caveat": "Milestones describe what many children do. Trunk does not use them to judge a child; concerns go to the child's clinician."
+    },
+    {
+      "id": "clm.f.drawing-and-art",
+      "kind": "recommendation",
+      "text": "CDC (US) suggests an activity box of paper and crayons at 3, and a box of crayons, paper, paint, child scissors and glue at 5. It also suggests drawing lines and shapes together and asking 'why' and 'how' about what a child is making.",
+      "sources": [
+        "src.cdc.milestones-3-years",
+        "src.cdc.milestones-5-years",
+        "src.hse.play-3-5-years"
+      ],
+      "locator": "CDC 3 years: 'More parenting tips and activities'. CDC 5 years: 'More parenting tips and activities' and 'What You Can Do'. HSE 3–5 years: toys list.",
+      "paraphrase": "CDC 3 years: give an 'activity box' with paper, crayons and coloring books, and color and draw lines and shapes together. CDC 5 years: keep a box of crayons, paper, paint, child scissors and glue for creative play; ask what the child is playing and help expand answers with 'why' and 'how'. HSE lists non-toxic paint, crayons, stencils and finger paints.",
+      "scope": "US and Ireland; children about 3–5."
+    },
+    {
+      "id": "clm.f.playdough-hands",
+      "kind": "recommendation",
+      "text": "CDC (US) suggests letting 3-year-olds squish, press, pinch and roll playdough into balls, saying this builds the hand and finger muscles later used for writing, buttoning and cutting.",
+      "sources": [
+        "src.cdc.milestones-3-years"
+      ],
+      "locator": "'More parenting tips and activities', playdough bullet.",
+      "paraphrase": "Let your child play with playdough by squishing, pressing, pinching and making balls in different colors; this builds hand and finger muscles for writing, buttoning and cutting.",
+      "scope": "US; children around 3."
+    },
+    {
+      "id": "clm.f.child-safe-scissors",
+      "kind": "description",
+      "text": "AAP (US) lists using child-safe scissors among hand skills many 3- to 4-year-olds are building, and CDC suggests putting child scissors in a 5-year-old's art box.",
+      "sources": [
+        "src.aap-hc.milestones-3-4-years",
+        "src.cdc.milestones-5-years"
+      ],
+      "locator": "AAP 3–4: 'Milestones in hand and finger skills'. CDC 5 years: 'More parenting tips and activities', art-supplies bullet.",
+      "paraphrase": "AAP lists using child-safe scissors, copying square shapes and drawing circles and squares for 3–4-year-olds. CDC suggests keeping a box of crayons, paper, paint, child scissors and glue for creative play.",
+      "scope": "US; descriptive, not a deadline."
+    },
+    {
+      "id": "clm.f.puzzles-building",
+      "kind": "recommendation",
+      "text": "CDC (US) suggests toys that get 5-year-olds putting things together, such as puzzles and building blocks. HSE (Ireland) lists puzzles for 3- to 5-year-olds.",
+      "sources": [
+        "src.cdc.milestones-5-years",
+        "src.hse.play-3-5-years"
+      ],
+      "locator": "CDC 5 years: 'What You Can Do for Your 5-year-old'. HSE 3–5 years: toys list.",
+      "paraphrase": "CDC: play with toys that encourage your child to put things together, such as puzzles and building blocks. HSE lists puzzles among toys children aged 3 to 5 enjoy.",
+      "scope": "US and Ireland; preschoolers."
+    },
+    {
+      "id": "clm.f.simple-chores",
+      "kind": "recommendation",
+      "text": "CDC (US) suggests letting preschoolers help with simple chores. It notes many 4-year-olds like to be helpers, suggests jobs like wiping tables, and lists matching socks and clearing the table among chores many 5-year-olds do. HSE agrees.",
+      "sources": [
+        "src.cdc.positive-parenting-preschoolers",
+        "src.cdc.milestones-4-years",
+        "src.cdc.milestones-5-years",
+        "src.hse.play-3-5-years"
+      ],
+      "locator": "CDC Preschoolers: 'Positive Parenting Tips'. CDC 4 years: social milestones and tips. CDC 5 years: 'Social/Emotional Milestones'. HSE 3–5: 'Ways to play'.",
+      "paraphrase": "CDC: let your child help with simple chores. The 4-year page lists 'likes to be a helper' and suggests simple chores such as bringing in the mail, feeding a pet or wiping tables. The 5-year page lists simple chores such as matching socks or clearing the table after eating. HSE: let them help with little jobs around the home.",
+      "scope": "US and Ireland; children about 3–5."
+    },
+    {
+      "id": "clm.f.help-with-meals",
+      "kind": "recommendation",
+      "text": "CDC (US) suggests giving 3-year-olds simple meal jobs, such as washing fruits and vegetables or stirring, and letting 5-year-olds help prepare healthy foods and then enjoy them together.",
+      "sources": [
+        "src.cdc.milestones-3-years",
+        "src.cdc.milestones-5-years"
+      ],
+      "locator": "CDC 3 years and 5 years: 'More parenting tips and activities'.",
+      "paraphrase": "CDC 3 years: let your child help make meals and give simple tasks such as washing fruits and vegetables or stirring. CDC 5 years: let your child help prepare the healthy foods and enjoy them together.",
+      "scope": "US; children about 3–5. Not a feeding protocol."
+    },
+    {
+      "id": "clm.f.grow-seeds",
+      "kind": "description",
+      "text": "HSE (Ireland) suggests a window box or small garden patch where 3- to 5-year-olds can dig and grow seeds. AAP (US) says preschoolers enjoy small, supervised jobs such as watering flowers, which give sensory input that can be calming.",
+      "sources": [
+        "src.hse.play-3-5-years",
+        "src.aap-hc.playing-outside",
+        "src.aap-hc.backyard-safety"
+      ],
+      "locator": "HSE 3–5 years: toys list. AAP Playing Outside: 'Raise a yardwork helper'. AAP Backyard Safety: tip 5.",
+      "paraphrase": "HSE lists a window box or small area in the garden to dig and grow seeds. AAP says preschoolers are the right age for small, supervised helpful tasks like watering flowers, and many yardwork tasks give sensory input that can be calming; its backyard page suggests a container garden with kid-friendly shovels and gloves.",
+      "scope": "Preschoolers; Ireland and US."
+    },
+    {
+      "id": "clm.f.calm-tools",
+      "kind": "recommendation",
+      "text": "CDC (US) suggests helping 3-year-olds manage stressful feelings by teaching them to take deep breaths, hug a favorite toy, or go to a quiet, safe place. For a scared 4-year-old: comfort them and suggest coping steps like hugging a soft toy.",
+      "sources": [
+        "src.cdc.milestones-3-years",
+        "src.cdc.milestones-4-years"
+      ],
+      "locator": "CDC 3 years: 'What You Can Do for Your 3-year-old'. CDC 4 years: 'More parenting tips and activities'.",
+      "paraphrase": "CDC 3 years: talk about your child's emotions and give words for feelings; help manage stressful feelings by teaching deep breaths, hugging a favorite toy or going to a quiet, safe place when upset. CDC 4 years: comfort a scared child, talk about the fear and suggest coping steps such as hugging a stuffed animal.",
+      "scope": "US general parenting tips for 3–4-year-olds; not therapy or treatment."
+    },
+    {
+      "id": "clm.f.calm-space-feelings",
+      "kind": "recommendation",
+      "text": "CDC (US) suggests creating a spot at home where a child can go when upset, with you staying nearby so they can come to you for help calming, and talking about and naming both their feelings and your own.",
+      "sources": [
+        "src.cdc.milestones-5-years",
+        "src.cdc.milestones-3-years"
+      ],
+      "locator": "CDC 5 years: 'More parenting tips and activities' (calm spot; naming feelings). CDC 3 years: 'What You Can Do for Your 3-year-old'.",
+      "paraphrase": "CDC 5 years: create a spot in your home for your child to go when upset; stay nearby so they know they are safe and can come to you for help calming; talk about and label your child's and your own feelings. CDC 3 years: talk about emotions and give words to explain feelings.",
+      "scope": "US; children about 3–5. A calming space with an adult nearby, not isolation or punishment."
+    },
+    {
+      "id": "clm.f.small-pieces-away-from-babies",
+      "kind": "safety",
+      "text": "Small pieces that are fine for many preschoolers, such as puzzle pieces, game pieces, marker and pen caps, small balls and seeds, can choke a baby or toddler. Keep them out of younger children's reach, follow toy age labels, and check the floor afterward.",
+      "sources": [
+        "src.aap-hc.choking-prevention"
+      ],
+      "locator": "'Household items that are choking hazards' and 'How to prevent choking in children' (older siblings; age labels; check under furniture).",
+      "paraphrase": "AAP lists toys with small parts, small balls, coins and pen or marker caps among choking hazards to keep from infants and young children. It advises following toy age labels, checking under furniture and between cushions, and watching older children, because many choking incidents happen when older siblings give foods, toys or small objects to a younger child.",
+      "scope": "Homes with a baby or toddler as well as a preschooler; US. Most children who die from choking are under 5."
+    },
+    {
+      "id": "clm.f.choking-foods-under-4",
+      "kind": "safety",
+      "text": "AAP (US): keep high-risk foods (whole grapes, hot dogs, nuts, popcorn, raw carrot sticks, raw apple chunks, cheese or meat chunks, thick nut butter) from children until at least 4. Chop round foods small, spread thinly, and sit to eat.",
+      "sources": [
+        "src.aap-hc.choking-prevention"
+      ],
+      "locator": "'Foods that can cause choking' and 'How to prevent choking in children'.",
+      "paraphrase": "Keep high-risk foods from children until 4 or older, depending on development; round, firm foods can be served chopped into tiny pieces, and nut butters spread thinly. Children should eat sitting down and never run, walk, play or lie down with food in their mouths; supervise meals and cut food no larger than half an inch.",
+      "scope": "US; young children. High-risk foods are avoided or modified until at least age 4, depending on the child's development."
+    },
+    {
+      "id": "clm.f.food-allergy-check",
+      "kind": "safety",
+      "text": "If anyone in the home has a food allergy, read labels every time, use clean utensils, plates and surfaces to avoid cross-contact, and keep their safe foods apart. Reactions can follow eating, touching or breathing in an allergen.",
+      "sources": [
+        "src.aap-hc.food-allergies"
+      ],
+      "locator": "'Living with a food allergy: tips for families' and 'Signs & symptoms of food allergies in children & teens'.",
+      "paraphrase": "Read food labels carefully every time because ingredients change. At home, don't mix the allergen into the child's safe food, use clean utensils, plates, pans and trays, and store unsafe foods separately. Symptoms can follow eating, inhaling or touching food allergens; milk, egg, peanut, soy, wheat, tree nuts, fish, shellfish and sesame cause most allergies.",
+      "scope": "US; families managing a known food allergy. Not allergy diagnosis or treatment advice."
+    },
+    {
+      "id": "clm.f.sharp-and-hot-in-kitchen",
+      "kind": "safety",
+      "text": "Keep knives, scissors and other sharp tools separate from safe utensils and out of reach, and turn pot handles to the back. While you cook, give a preschooler something safe to do away from hot surfaces, which stay hot after use.",
+      "sources": [
+        "src.aap-hc.kitchen-safety",
+        "src.aap-hc.safety-2-to-4-years"
+      ],
+      "locator": "AAP Kitchen Safety: items 2 and 4. AAP Safety 2 to 4 Years: 'Burns'.",
+      "paraphrase": "AAP: keep knives, forks, scissors and other sharp instruments separate from 'safe' utensils and store sharp appliances out of reach; turn pot handles toward the back. The 2-to-4 page says the kitchen is dangerous while cooking, hot liquids and foods can spill on a child underfoot, so find something safe for them to do; appliances stay hot after use, and tap water should be no hotter than 120°F.",
+      "scope": "US; homes with children aged 2–4 and older."
+    },
+    {
+      "id": "clm.f.water-arms-reach",
+      "kind": "safety",
+      "text": "Young children can drown in an inch or two of water, quickly and silently. Whenever they are in or near water, stay within arm's reach with full attention, empty buckets and basins right after use, and never leave a young sibling in charge.",
+      "sources": [
+        "src.aap-hc.drowning-prevention-toddlers",
+        "src.cdc.positive-parenting-preschoolers",
+        "src.aap-hc.backyard-safety"
+      ],
+      "locator": "AAP Water Safety: opening; 'Empty water containers'; 'Provide close, constant supervision'; 'Use touch supervision'. CDC Preschoolers: 'Child Safety First'. AAP Backyard: tip 2.",
+      "paraphrase": "AAP: drowning is the leading cause of death in children 1–4; young children can drown in an inch or two of water, quickly and silently; empty buckets and containers right after use; give full attention and stay within arm's length ('touch supervision'); don't let a young sibling supervise. CDC: watch preschoolers at all times in or near any water, including kiddie pools.",
+      "scope": "US; children aged 1–4 (AAP) and 3–5 (CDC)."
+    },
+    {
+      "id": "clm.f.falls-preschool",
+      "kind": "safety",
+      "text": "Children aged 2 to 4 can fall off play equipment, down stairs, off a bike or trike, and off anything they climb. Use soft surfacing under play equipment, gates on stairs and window guards above the first floor. Call the doctor after a serious fall.",
+      "sources": [
+        "src.aap-hc.safety-2-to-4-years"
+      ],
+      "locator": "'Falls' section.",
+      "paraphrase": "Children this age can fall off play equipment, out of windows, down stairs, off a bike or tricycle and off anything that can be climbed. Use safety-tested mats or loose fill at least 9 inches deep under play equipment, stairway gates, and operable window guards above the first floor. Call the doctor after a serious fall or if the child doesn't act normally.",
+      "scope": "US; children aged 2–4."
+    },
+    {
+      "id": "clm.f.garden-chemicals-plants",
+      "kind": "safety",
+      "text": "Lock up lawn and garden chemicals, fuel and tools out of reach, keep children off treated lawns for 48 hours, check that garden plants are non-toxic, and call Poison Help if a child eats something harmful.",
+      "sources": [
+        "src.aap-hc.backyard-safety",
+        "src.aap-hc.safety-2-to-4-years"
+      ],
+      "locator": "AAP Backyard Safety: tips 5 and 7. AAP Safety 2 to 4 Years: 'Poisonings'.",
+      "paraphrase": "AAP: store mowers, trimmers, gasoline and lawn chemicals out of reach, with outdoor chemicals under lock and key; keep children off lawns and gardens for 48 hours after spraying; some plants are poisonous, so check trees, plants and shrubs; call Poison Control if a child eats something dangerous. The 2-to-4 page says children may swallow anything they find.",
+      "scope": "US; young children in yards and gardens. The Poison Help number given is US-only (1-800-222-1222)."
+    },
+    {
+      "id": "clm.f.products-out-of-reach",
+      "kind": "safety",
+      "text": "Keep detergents (especially pods), cleaners and medicines capped, in their original containers, and locked up out of sight and reach; preschoolers can open drawers and climb to find them. Call Poison Help if a child swallows something.",
+      "sources": [
+        "src.aap-hc.kitchen-safety",
+        "src.aap-hc.safety-2-to-4-years"
+      ],
+      "locator": "AAP Kitchen Safety: item 1. AAP Safety 2 to 4 Years: 'Poisonings'.",
+      "paraphrase": "AAP: store cleaners, dishwasher soap and other dangerous products high, locked and out of sight; detergent pods are a special risk because children mistake them for candy. Children 2–4 can open any drawer and climb anywhere, so keep products and medicines capped, out of sight and reach, and in original containers; call the Poison Help Line if a child puts something poisonous in their mouth.",
+      "scope": "US; homes with young children."
+    }
+  ],
+  "activities": [
+    {
+      "id": "act.copycat-moves",
+      "rev": 2,
+      "title": "Copycat moves: hop, tiptoe, march",
+      "summary": "Take turns being the leader: tiptoe, march, hop and jump while the other copies.",
+      "kind": "play",
+      "ageMin": "36m",
+      "ageMax": "60m",
+      "readiness": {
+        "abilities": [
+          "walks"
+        ],
+        "notes": [
+          "Hopping and skipping come at different times for different children; marching and tiptoeing work for everyone."
+        ]
+      },
+      "goals": [
+        "gross-motor"
+      ],
+      "intents": [
+        "move",
+        "connect"
+      ],
+      "places": [
+        "indoors",
+        "outdoors"
+      ],
+      "spaces": [
+        "open-area",
+        "yard-or-park"
+      ],
+      "outing": false,
+      "materials": {
+        "level": "none",
+        "items": []
+      },
+      "setupMinutes": 1,
+      "cleanupMinutes": 0,
+      "duration": {
+        "min": 5,
+        "default": 10,
+        "max": 20
+      },
+      "effort": "medium",
+      "supervision": {
+        "participation": "leads",
+        "proximity": "same-room",
+        "handsOn": "none",
+        "minAdults": 1,
+        "shareable": true,
+        "space": "Clear, non-slip floor or yard; away from stairs, sharp table corners and the street."
+      },
+      "mess": "none",
+      "noise": "loud",
+      "hazards": [],
+      "steps": [
+        "Say 'Copy me!' and tiptoe across the room, then march with high knees.",
+        "Add hops, jumps, giant steps and tiny mouse steps, naming each move as you do it.",
+        "Swap so your child leads and you copy. Trade leader every minute or so.",
+        "Finish slowly: stretch tall, curl up small, tiptoe to the sofa."
+      ],
+      "adaptations": [
+        "Not jumping yet: march, stomp, tiptoe and turn in circles instead.",
+        "Older: hop on one foot, skip, or string three moves together to copy in order.",
+        "Tired parent: sit and call out moves while your child does them."
+      ],
+      "stopCues": [
+        "Getting wild or bumping into things",
+        "Out of breath or flopping down",
+        "Frustrated with a move: switch to an easier one"
+      ],
+      "safety": [
+        {
+          "text": "Play on a clear floor away from stairs and furniture they might climb; children this age fall off anything they can climb.",
+          "claims": [
+            "clm.f.falls-preschool"
+          ]
+        },
+        {
+          "text": "Outdoors, use a fenced yard or enclosed play area well away from the street and driveways.",
+          "claims": [
+            "clm.d.pedestrian-safety"
+          ]
+        }
+      ],
+      "why": {
+        "text": "HSE suggests copycat moves like tiptoeing, skipping, jumping and hopping for 3- to 5-year-olds; AAP suggests silly walks where children take turns as leader.",
+        "claims": [
+          "clm.f.copycat-and-chasing-games"
+        ]
+      },
+      "evidence": {
+        "type": "described",
+        "claims": [
+          "clm.f.copycat-and-chasing-games",
+          "clm.f.uk-active-play",
+          "clm.core.who-active-play"
+        ]
+      },
+      "checked": "2026-10-28"
+    },
+    {
+      "id": "act.red-light-green-light",
+      "rev": 2,
+      "title": "Red light, green light",
+      "summary": "Call 'green light' to go and 'red light' to freeze as your child moves toward you, then swap roles.",
+      "kind": "play",
+      "ageMin": "36m",
+      "ageMax": "60m",
+      "readiness": {
+        "abilities": [
+          "runs",
+          "follows-directions"
+        ],
+        "notes": []
+      },
+      "goals": [
+        "gross-motor",
+        "social-emotional"
+      ],
+      "intents": [
+        "move",
+        "connect"
+      ],
+      "places": [
+        "indoors",
+        "outdoors"
+      ],
+      "spaces": [
+        "open-area",
+        "yard-or-park"
+      ],
+      "outing": false,
+      "materials": {
+        "level": "none",
+        "items": []
+      },
+      "setupMinutes": 1,
+      "cleanupMinutes": 0,
+      "duration": {
+        "min": 5,
+        "default": 10,
+        "max": 20
+      },
+      "effort": "medium",
+      "supervision": {
+        "participation": "leads",
+        "proximity": "same-room",
+        "handsOn": "none",
+        "minAdults": 1,
+        "shareable": true,
+        "space": "A long clear room, hallway, yard or park lawn, well away from the street and driveways."
+      },
+      "mess": "none",
+      "noise": "loud",
+      "hazards": [],
+      "steps": [
+        "Stand at one end of the space; your child starts at the other.",
+        "'Green light' means walk or run toward you; 'red light' means freeze like a statue.",
+        "Mix it up: 'yellow light' for slow motion, or 'tiptoe light' and 'hopping light'.",
+        "When they reach you, swap so your child calls the lights and you move."
+      ],
+      "adaptations": [
+        "Younger: walking only, and hold up something red or green as you say it.",
+        "Older: freeze in a pose you name, or play Simon Says moves at each green light.",
+        "Small room: freeze dance to music instead."
+      ],
+      "stopCues": [
+        "Upset about being caught moving: drop the 'go back' rule",
+        "Running too fast to stop safely",
+        "Tired or wandering off"
+      ],
+      "safety": [
+        {
+          "text": "Outdoors, use a fenced yard or enclosed play area well away from the street and driveways. An adult fetches anything that rolls toward a road.",
+          "claims": [
+            "clm.f.street-play-safety"
+          ]
+        }
+      ],
+      "why": {
+        "text": "CDC suggests red light, green light or freeze dance to help 4-year-olds practise stopping and waiting when they are excited.",
+        "claims": [
+          "clm.f.stop-and-go-games"
+        ]
+      },
+      "evidence": {
+        "type": "described",
+        "claims": [
+          "clm.f.stop-and-go-games",
+          "clm.core.who-active-play"
+        ]
+      },
+      "checked": "2026-10-28"
+    },
+    {
+      "id": "act.throw-catch-kick",
+      "rev": 2,
+      "title": "Throw, catch and kick a big ball",
+      "summary": "Take turns throwing, catching and kicking a big soft ball, stepping back a little as it gets easier.",
+      "kind": "play",
+      "ageMin": "36m",
+      "ageMax": "60m",
+      "readiness": {
+        "abilities": [
+          "runs"
+        ],
+        "notes": [
+          "Catching takes lots of practice; many children trap the ball against their chest at first."
+        ]
+      },
+      "goals": [
+        "gross-motor"
+      ],
+      "intents": [
+        "move",
+        "fresh-air",
+        "connect"
+      ],
+      "places": [
+        "outdoors",
+        "indoors"
+      ],
+      "spaces": [
+        "yard-or-park",
+        "open-area"
+      ],
+      "outing": false,
+      "materials": {
+        "level": "toys",
+        "items": [
+          "A big soft ball",
+          "Optional: a laundry basket or box as a target",
+          "Optional: plastic bat"
+        ]
+      },
+      "setupMinutes": 2,
+      "cleanupMinutes": 2,
+      "duration": {
+        "min": 10,
+        "default": 15,
+        "max": 30
+      },
+      "effort": "medium",
+      "supervision": {
+        "participation": "joins",
+        "proximity": "same-room",
+        "handsOn": "intermittent",
+        "minAdults": 1,
+        "shareable": true,
+        "space": "Fenced yard, park lawn or open room away from the street, windows and breakables."
+      },
+      "mess": "none",
+      "noise": "moderate",
+      "hazards": [],
+      "steps": [
+        "Stand a few steps apart. Bounce the big ball to your child and say 'hands ready!'",
+        "Take turns: they throw to you, you bounce it back. Step back a little after a few catches.",
+        "Kick it back and forth, then try kicking or throwing it into a basket or box.",
+        "Count catches together and cheer the tries as much as the catches."
+      ],
+      "adaptations": [
+        "Easier: roll the ball, or use a bigger, softer ball caught against the chest.",
+        "Harder: a smaller soft ball, overhand throws, or a plastic bat and a big ball.",
+        "Indoors: soft ball only, thrown into a laundry basket."
+      ],
+      "stopCues": [
+        "Frustrated after missed catches: go back to rolling",
+        "Tired or hot",
+        "Ball play turning into throwing at people or windows"
+      ],
+      "safety": [
+        {
+          "text": "Outdoors, use a fenced yard or enclosed play area well away from the street and driveways. An adult fetches anything that rolls toward a road.",
+          "claims": [
+            "clm.f.street-play-safety"
+          ]
+        }
+      ],
+      "why": {
+        "text": "HSE suggests more kicking, catching and throwing at this age, and CDC suggests balls and plastic bats for preschool play.",
+        "claims": [
+          "clm.f.ball-skills"
+        ]
+      },
+      "evidence": {
+        "type": "described",
+        "claims": [
+          "clm.f.ball-skills",
+          "clm.f.motor-skills-vary",
+          "clm.core.who-active-play"
+        ]
+      },
+      "checked": "2026-10-28"
+    },
+    {
+      "id": "act.trike-or-balance-bike-ride",
+      "rev": 1,
+      "title": "Trike or balance-bike ride on a path",
+      "summary": "Helmet on, then let your child ride a trike, balance bike or scooter on a park path while you walk alongside.",
+      "kind": "outing",
+      "ageMin": "36m",
+      "ageMax": "60m",
+      "readiness": {
+        "abilities": [
+          "walks",
+          "follows-directions"
+        ],
+        "notes": [
+          "Ready when they can get on, steer and stop with their feet. AAP says many children are ready for a trike around 3."
+        ]
+      },
+      "goals": [
+        "gross-motor"
+      ],
+      "intents": [
+        "move",
+        "fresh-air"
+      ],
+      "places": [
+        "outdoors"
+      ],
+      "spaces": [
+        "yard-or-park",
+        "neighborhood"
+      ],
+      "outing": true,
+      "materials": {
+        "level": "toys",
+        "items": [
+          "Tricycle, balance bike or scooter",
+          "Bike helmet with a safety-standard label",
+          "Closed-toe shoes"
+        ]
+      },
+      "setupMinutes": 5,
+      "cleanupMinutes": 5,
+      "duration": {
+        "min": 15,
+        "default": 30,
+        "max": 60
+      },
+      "effort": "high",
+      "supervision": {
+        "participation": "joins",
+        "proximity": "arms-reach",
+        "handsOn": "intermittent",
+        "minAdults": 1,
+        "shareable": false,
+        "space": "Park paths or a closed play area, never the street or driveway. Stay within arm's reach near any road."
+      },
+      "mess": "low",
+      "noise": "moderate",
+      "hazards": [
+        "traffic",
+        "falls",
+        "sun-weather"
+      ],
+      "steps": [
+        "Helmet on and buckled snug, closed-toe shoes on, every ride.",
+        "Walk to a path or park away from cars, holding hands and wheeling the trike across roads.",
+        "Walk alongside while they ride. Practise stopping when you say 'stop!' at each corner or bench.",
+        "Head home before legs get tired; carrying a trike and a tired child is hard work."
+      ],
+      "adaptations": [
+        "Not pedaling yet: push along with feet on a balance bike or ride-on.",
+        "More confident: ride a loop of landmarks, stopping at each one.",
+        "Scooter: helmet on too; start with both feet, then push off with one."
+      ],
+      "stopCues": [
+        "Tired legs or falling more often",
+        "Not stopping when asked: time to walk it home",
+        "Too hot, too cold, or getting dark"
+      ],
+      "safety": [
+        {
+          "text": "A snug, safety-certified bike helmet on every ride, plus closed-toe shoes; ride only on paths or in closed areas, away from streets, driveways and pools.",
+          "claims": [
+            "clm.f.trike-helmet-place"
+          ]
+        },
+        {
+          "text": "Children this age don't understand traffic. Hold hands at every crossing and never let them ride in the street or a driveway.",
+          "claims": [
+            "clm.f.street-play-safety",
+            "clm.d.pedestrian-safety"
+          ]
+        },
+        {
+          "text": "Helmet off before climbing on playground equipment; the straps can catch.",
+          "claims": [
+            "clm.f.playground-safety"
+          ]
+        },
+        {
+          "text": "Dress for the weather; in sun, use shade, a hat or sunscreen.",
+          "claims": [
+            "clm.d.sun-protection"
+          ]
+        }
+      ],
+      "why": {
+        "text": "HSE suggests trikes, balance bikes and scooters for 3- to 5-year-olds, and NHS lists scooting and riding a bike as active play for under-5s.",
+        "claims": [
+          "clm.f.trike-readiness",
+          "clm.f.uk-active-play"
+        ]
+      },
+      "evidence": {
+        "type": "described",
+        "claims": [
+          "clm.f.trike-readiness",
+          "clm.f.uk-active-play",
+          "clm.core.who-active-play"
+        ]
+      },
+      "checked": "2026-10-28"
+    },
+    {
+      "id": "act.preschool-playground",
+      "rev": 2,
+      "title": "Playground: climb, slide and swing",
+      "summary": "Head to a playground with preschool-sized equipment and let your child choose, spotting them on climbers.",
+      "kind": "outing",
+      "ageMin": "36m",
+      "ageMax": "60m",
+      "readiness": {
+        "abilities": [
+          "climbs"
+        ],
+        "notes": [
+          "Choose equipment that suits your child's size and confidence, not just their age."
+        ]
+      },
+      "goals": [
+        "gross-motor",
+        "social-emotional"
+      ],
+      "intents": [
+        "fresh-air",
+        "move"
+      ],
+      "places": [
+        "outdoors"
+      ],
+      "spaces": [
+        "yard-or-park"
+      ],
+      "outing": true,
+      "materials": {
+        "level": "none",
+        "items": [
+          "Water bottle",
+          "Hat or sunscreen"
+        ]
+      },
+      "setupMinutes": 5,
+      "cleanupMinutes": 0,
+      "duration": {
+        "min": 20,
+        "default": 40,
+        "max": 90
+      },
+      "effort": "medium",
+      "supervision": {
+        "participation": "joins",
+        "proximity": "arms-reach",
+        "handsOn": "intermittent",
+        "minAdults": 1,
+        "shareable": false,
+        "space": "Equipment sized for ages 2–5 over soft surfacing; within arm's reach on climbers and ladders."
+      },
+      "mess": "low",
+      "noise": "loud",
+      "hazards": [
+        "falls",
+        "sun-weather",
+        "traffic"
+      ],
+      "steps": [
+        "Pick equipment made for preschoolers. Check the ground is soft and slides aren't hot.",
+        "Let your child choose. Stay within arm's reach on climbers, ladders and high platforms.",
+        "Practise swing pumping: lean back with legs out, then lean forward with legs tucked.",
+        "Slides go feet first, one at a time; walk well clear of moving swings."
+      ],
+      "adaptations": [
+        "Cautious child: low climbers and the small slide first, holding your hand on steps.",
+        "From age 4: low, preschool-height monkey bars with you spotting at arm’s reach, or a climb-slide-run circuit. Not for 3-year-olds.",
+        "Short on time: a 15-minute run-around still gives a good active break."
+      ],
+      "stopCues": [
+        "Tired, clumsy or taking bigger risks",
+        "Too hot or too cold",
+        "Upset over turns: take a break on a bench"
+      ],
+      "safety": [
+        {
+          "text": "Stay close on climbing equipment: falls from play equipment are a common injury at this age.",
+          "claims": [
+            "clm.f.falls-preschool"
+          ]
+        },
+        {
+          "text": "Check for soft surfacing (not concrete or grass), hot slides and sharp edges; no drawstrings or bike helmets while climbing.",
+          "claims": [
+            "clm.f.playground-safety"
+          ]
+        },
+        {
+          "text": "On sunny days use shade, a hat and sunscreen, and bring water.",
+          "claims": [
+            "clm.d.sun-protection"
+          ]
+        },
+        {
+          "text": "Hold hands in the parking lot and near roads on the way there and back.",
+          "claims": [
+            "clm.d.pedestrian-safety"
+          ]
+        }
+      ],
+      "why": {
+        "text": "CDC suggests playground time for preschoolers, and AAP describes playgrounds as a chance to move, think, and play with others.",
+        "claims": [
+          "clm.f.playground-preschool"
+        ]
+      },
+      "evidence": {
+        "type": "described",
+        "claims": [
+          "clm.f.playground-preschool",
+          "clm.f.uk-active-play",
+          "clm.core.who-active-play"
+        ]
+      },
+      "checked": "2026-10-28"
+    },
+    {
+      "id": "act.nature-hunt-and-count",
+      "rev": 1,
+      "title": "Nature hunt: find and count",
+      "summary": "Name five things to find outside, such as a leaf, a stick and something yellow, and count the finds together.",
+      "kind": "outing",
+      "ageMin": "36m",
+      "ageMax": "60m",
+      "readiness": {
+        "abilities": [
+          "walks",
+          "no-longer-mouthing"
+        ],
+        "notes": []
+      },
+      "goals": [
+        "cognition",
+        "sensory"
+      ],
+      "intents": [
+        "fresh-air",
+        "explore",
+        "move"
+      ],
+      "places": [
+        "outdoors"
+      ],
+      "spaces": [
+        "yard-or-park",
+        "neighborhood"
+      ],
+      "outing": true,
+      "materials": {
+        "level": "household",
+        "items": [
+          "A paper bag or egg carton for finds",
+          "Optional: a drawn picture list"
+        ]
+      },
+      "setupMinutes": 5,
+      "cleanupMinutes": 5,
+      "duration": {
+        "min": 15,
+        "default": 30,
+        "max": 60
+      },
+      "effort": "medium",
+      "supervision": {
+        "participation": "joins",
+        "proximity": "arms-reach",
+        "handsOn": "intermittent",
+        "minAdults": 1,
+        "shareable": false,
+        "space": "Park, yard or quiet paths. Hold hands near roads and driveways."
+      },
+      "mess": "low",
+      "noise": "moderate",
+      "hazards": [
+        "traffic",
+        "sun-weather"
+      ],
+      "steps": [
+        "Draw or say five things to find: a leaf, a stick, a smooth stone, something yellow, something soft.",
+        "Walk slowly and let your child spot them. Count each find together as it goes in the bag.",
+        "Look for 'same and different': two matching leaves, a big stone and a small one.",
+        "At the end, lay the finds in a row and count again. Leave flowers, bugs and nests where they are."
+      ],
+      "adaptations": [
+        "Younger: three big, easy things to find.",
+        "Older: find ten of one thing, or one thing for each color you name.",
+        "Rainy day: hunt for colors and shapes from a window or doorway."
+      ],
+      "stopCues": [
+        "Tired legs or asking to be carried",
+        "Too hot, cold or wet",
+        "Wandering toward the road"
+      ],
+      "safety": [
+        {
+          "text": "Hold hands near roads, driveways and crossings, and stick to paths and sidewalks.",
+          "claims": [
+            "clm.d.pedestrian-safety",
+            "clm.f.street-play-safety"
+          ]
+        },
+        {
+          "text": "Look, don't taste: no berries, mushrooms or leaves in mouths, and stay off freshly sprayed lawns. Wash hands afterward.",
+          "claims": [
+            "clm.f.garden-chemicals-plants"
+          ]
+        },
+        {
+          "text": "Dress for the weather; in sun, use shade, a hat or sunscreen.",
+          "claims": [
+            "clm.d.sun-protection"
+          ]
+        }
+      ],
+      "why": {
+        "text": "AAP suggests preschoolers collect twigs, leaves, cones and rocks outdoors, and CDC suggests counting everyday things you see.",
+        "claims": [
+          "clm.f.outdoor-explore-preschool",
+          "clm.f.counting-everyday"
+        ]
+      },
+      "evidence": {
+        "type": "adapted",
+        "claims": [
+          "clm.f.outdoor-explore-preschool",
+          "clm.f.counting-everyday",
+          "clm.f.matching-memory-games"
+        ]
+      },
+      "checked": "2026-10-28"
+    },
+    {
+      "id": "act.big-small-opposites-game",
+      "rev": 1,
+      "title": "Big and small opposites game",
+      "summary": "Crouch low for 'small', stretch up for 'big', then act out fast and slow, and loud and quiet, together.",
+      "kind": "play",
+      "ageMin": "36m",
+      "ageMax": "60m",
+      "readiness": {
+        "abilities": [],
+        "notes": []
+      },
+      "goals": [
+        "communication",
+        "cognition"
+      ],
+      "intents": [
+        "move",
+        "connect"
+      ],
+      "places": [
+        "indoors",
+        "outdoors"
+      ],
+      "spaces": [
+        "open-area",
+        "floor",
+        "anywhere"
+      ],
+      "outing": false,
+      "materials": {
+        "level": "none",
+        "items": []
+      },
+      "setupMinutes": 0,
+      "cleanupMinutes": 0,
+      "duration": {
+        "min": 5,
+        "default": 10,
+        "max": 15
+      },
+      "effort": "medium",
+      "supervision": {
+        "participation": "leads",
+        "proximity": "same-room",
+        "handsOn": "none",
+        "minAdults": 1,
+        "shareable": true,
+        "space": "A clear patch of floor with nothing sharp to bump into."
+      },
+      "mess": "none",
+      "noise": "moderate",
+      "hazards": [],
+      "steps": [
+        "Crouch down low and say 'I am small!' Then stretch up tall: 'I am big!'",
+        "Your child copies. Try fast and slow walking, loud and quiet voices, high and low hands.",
+        "Call out one word, such as 'slow!', and let them show you the opposite.",
+        "Let them pick an opposite for you to act out."
+      ],
+      "adaptations": [
+        "Younger: stick to big and small, and loud and quiet, doing them together.",
+        "Older: add up and down, open and closed, happy and sad faces, in and out of a box.",
+        "Low energy: sit and play it with hands, faces and voices only."
+      ],
+      "stopCues": [
+        "Too silly to listen: finish with a slow, quiet round",
+        "Losing interest",
+        "Getting frustrated"
+      ],
+      "safety": [
+        {
+          "text": "Keep the fast moves to a clear floor, away from stairs and furniture they might climb.",
+          "claims": [
+            "clm.f.falls-preschool"
+          ]
+        }
+      ],
+      "why": {
+        "text": "CDC suggests an opposites game for 3-year-olds: small and big, fast and slow, quiet and loud.",
+        "claims": [
+          "clm.f.opposites-game"
+        ]
+      },
+      "evidence": {
+        "type": "described",
+        "claims": [
+          "clm.f.opposites-game"
+        ]
+      },
+      "checked": "2026-10-28"
+    },
+    {
+      "id": "act.what-happens-next-book",
+      "rev": 1,
+      "title": "Picture book: what happens next?",
+      "summary": "Read a picture book and pause to ask what is happening and what will happen next, then let your child retell it.",
+      "kind": "play",
+      "ageMin": "36m",
+      "ageMax": "60m",
+      "readiness": {
+        "abilities": [],
+        "notes": []
+      },
+      "goals": [
+        "communication",
+        "cognition"
+      ],
+      "intents": [
+        "connect",
+        "calm"
+      ],
+      "places": [
+        "indoors",
+        "outdoors"
+      ],
+      "spaces": [
+        "floor",
+        "seat",
+        "anywhere"
+      ],
+      "outing": false,
+      "materials": {
+        "level": "toys",
+        "items": [
+          "A picture book with a story"
+        ]
+      },
+      "setupMinutes": 1,
+      "cleanupMinutes": 1,
+      "duration": {
+        "min": 5,
+        "default": 15,
+        "max": 25
+      },
+      "effort": "low",
+      "supervision": {
+        "participation": "leads",
+        "proximity": "arms-reach",
+        "handsOn": "none",
+        "minAdults": 1,
+        "shareable": true,
+        "space": "Anywhere you can sit side by side and both see the pictures."
+      },
+      "mess": "none",
+      "noise": "quiet",
+      "hazards": [],
+      "steps": [
+        "Sit together with a story that has clear pictures.",
+        "Before turning a page, ask: 'What do you think will happen next?'",
+        "Ask about a picture, 'What's happening here? How does she feel?', and ask for one more detail.",
+        "At the end, let your child tell the story back while turning the pages."
+      ],
+      "adaptations": [
+        "Younger or tired: one question every few pages; pointing counts as an answer.",
+        "Older: invent a new ending together, or act the story out with toys.",
+        "Very tired parent: lie down and let your child 'read' you a book they know."
+      ],
+      "stopCues": [
+        "Wriggling or wanting to move",
+        "Rubbing eyes or getting cross",
+        "Wants the story without questions: just read it"
+      ],
+      "safety": [
+        {
+          "text": "If a baby joins in, give them a board book of their own and keep small story props out of their reach.",
+          "claims": [
+            "clm.f.small-pieces-away-from-babies"
+          ]
+        }
+      ],
+      "why": {
+        "text": "CDC suggests asking preschoolers what is happening in the pictures and what will happen next; WHO encourages reading and storytelling with a caregiver.",
+        "claims": [
+          "clm.f.read-ask-what-next",
+          "clm.core.who-reading-storytelling"
+        ]
+      },
+      "evidence": {
+        "type": "described",
+        "claims": [
+          "clm.f.read-ask-what-next",
+          "clm.core.who-reading-storytelling",
+          "clm.f.story-skills"
+        ]
+      },
+      "checked": "2026-10-28"
+    },
+    {
+      "id": "act.take-turns-story",
+      "rev": 1,
+      "title": "Take-turns made-up story",
+      "summary": "Start a story with one line, let your child add the next bit, and keep taking turns until it ends.",
+      "kind": "play",
+      "ageMin": "36m",
+      "ageMax": "60m",
+      "readiness": {
+        "abilities": [],
+        "notes": []
+      },
+      "goals": [
+        "communication"
+      ],
+      "intents": [
+        "connect",
+        "calm"
+      ],
+      "places": [
+        "indoors",
+        "outdoors"
+      ],
+      "spaces": [
+        "anywhere"
+      ],
+      "outing": false,
+      "materials": {
+        "level": "none",
+        "items": []
+      },
+      "setupMinutes": 0,
+      "cleanupMinutes": 0,
+      "duration": {
+        "min": 5,
+        "default": 10,
+        "max": 20
+      },
+      "effort": "low",
+      "supervision": {
+        "participation": "leads",
+        "proximity": "same-room",
+        "handsOn": "none",
+        "minAdults": 1,
+        "shareable": true,
+        "space": "Anywhere you can hear each other: the sofa, a waiting room, bedtime."
+      },
+      "mess": "none",
+      "noise": "quiet",
+      "hazards": [],
+      "steps": [
+        "Start with one line: 'Once there was a dog who lost his…'",
+        "Your child adds what happens next. Then you add a bit, and keep taking turns.",
+        "Help with questions: 'Who came along? What did they do? Then what?'",
+        "End it together, give it a title, and retell it later at dinner."
+      ],
+      "adaptations": [
+        "Younger: you tell most of it and they add a word, a name or an animal sound.",
+        "Older: use 'first, next, finally', or put your child in the story.",
+        "Stuck for ideas: start from a toy, a picture or something you can see."
+      ],
+      "stopCues": [
+        "Answers getting shorter",
+        "Wants to move",
+        "Upset about where the story is going: let them steer"
+      ],
+      "safety": [
+        {
+          "text": "It's talk only. If you play it in the car, the driver keeps their eyes on the road.",
+          "claims": []
+        }
+      ],
+      "why": {
+        "text": "WHO encourages storytelling with a caregiver during sitting time, and AAP lists telling stories among skills many 3- to 5-year-olds are building.",
+        "claims": [
+          "clm.core.who-reading-storytelling",
+          "clm.f.story-skills"
+        ]
+      },
+      "evidence": {
+        "type": "adapted",
+        "claims": [
+          "clm.core.who-reading-storytelling",
+          "clm.f.story-skills"
+        ]
+      },
+      "checked": "2026-10-28"
+    },
+    {
+      "id": "act.i-spy-colors-sounds",
+      "rev": 1,
+      "title": "I spy: colors, shapes and sounds",
+      "summary": "Say 'I spy something red' and let your child hunt for it, with clues; then they spy and you guess.",
+      "kind": "play",
+      "ageMin": "36m",
+      "ageMax": "60m",
+      "readiness": {
+        "abilities": [],
+        "notes": []
+      },
+      "goals": [
+        "cognition",
+        "communication"
+      ],
+      "intents": [
+        "connect",
+        "explore"
+      ],
+      "places": [
+        "indoors",
+        "outdoors"
+      ],
+      "spaces": [
+        "anywhere"
+      ],
+      "outing": false,
+      "materials": {
+        "level": "none",
+        "items": []
+      },
+      "setupMinutes": 0,
+      "cleanupMinutes": 0,
+      "duration": {
+        "min": 5,
+        "default": 10,
+        "max": 20
+      },
+      "effort": "low",
+      "supervision": {
+        "participation": "leads",
+        "proximity": "same-room",
+        "handsOn": "none",
+        "minAdults": 1,
+        "shareable": true,
+        "space": "Anywhere you can both look around: the kitchen, a waiting room, the park."
+      },
+      "mess": "none",
+      "noise": "quiet",
+      "hazards": [],
+      "steps": [
+        "Look around and say 'I spy something red!' Your child hunts and points.",
+        "Give clues if needed: 'It's round… it's on the table.'",
+        "Try sounds ('I hear something that beeps') or shapes ('something square').",
+        "Swap so your child spies and you guess."
+      ],
+      "adaptations": [
+        "Younger: colors only, with the thing in plain view.",
+        "Older: first sounds ('something that starts with b') or two clues at once.",
+        "Hot and cold: hide a toy and say 'warmer' or 'colder' as they search."
+      ],
+      "stopCues": [
+        "Frustrated after several wrong guesses: give a big hint",
+        "Wandering off",
+        "Bored: switch to a moving game"
+      ],
+      "safety": [
+        {
+          "text": "Keep guesses to things they can see or reach from the floor, with no climbing to touch the answer.",
+          "claims": [
+            "clm.f.falls-preschool"
+          ]
+        }
+      ],
+      "why": {
+        "text": "CDC suggests games like I Spy, card games and Hot and Cold to help with memory and attention around age 5.",
+        "claims": [
+          "clm.f.matching-memory-games"
+        ]
+      },
+      "evidence": {
+        "type": "described",
+        "claims": [
+          "clm.f.matching-memory-games"
+        ]
+      },
+      "checked": "2026-10-28"
+    },
+    {
+      "id": "act.memory-match-cards",
+      "rev": 1,
+      "title": "Matching pairs memory game",
+      "summary": "Lay picture cards face down and take turns flipping two at a time to find matching pairs.",
+      "kind": "play",
+      "ageMin": "36m",
+      "ageMax": "60m",
+      "readiness": {
+        "abilities": [
+          "follows-directions"
+        ],
+        "notes": []
+      },
+      "goals": [
+        "cognition",
+        "social-emotional"
+      ],
+      "intents": [
+        "connect",
+        "calm"
+      ],
+      "places": [
+        "indoors"
+      ],
+      "spaces": [
+        "table",
+        "floor"
+      ],
+      "outing": false,
+      "materials": {
+        "level": "toys",
+        "items": [
+          "A matching or memory card game",
+          "Or homemade pairs drawn twice on scrap card"
+        ]
+      },
+      "setupMinutes": 2,
+      "cleanupMinutes": 2,
+      "duration": {
+        "min": 10,
+        "default": 15,
+        "max": 25
+      },
+      "effort": "low",
+      "supervision": {
+        "participation": "joins",
+        "proximity": "same-room",
+        "handsOn": "intermittent",
+        "minAdults": 1,
+        "shareable": true,
+        "space": "A table or patch of floor big enough to lay the cards out in rows."
+      },
+      "mess": "low",
+      "noise": "quiet",
+      "hazards": [],
+      "steps": [
+        "Start with 4–6 pairs face up and find the matches together: 'Same or different?'",
+        "Turn them face down in rows. Take turns flipping two cards.",
+        "If they match, keep them. If not, turn them back over and say what you saw.",
+        "Add more pairs as it gets easy; stop while it's still fun."
+      ],
+      "adaptations": [
+        "Younger: play face up as a 'find the same' game.",
+        "Older: more pairs, or picture lotto with boards to fill.",
+        "No game at home: draw simple pictures twice on scrap card."
+      ],
+      "stopCues": [
+        "Upset about losing: play as a team instead",
+        "Too many cards: take some away",
+        "Restless: time to move"
+      ],
+      "safety": [
+        {
+          "text": "If a baby is around, keep cards and any small game pieces out of their reach.",
+          "claims": [
+            "clm.f.small-pieces-away-from-babies"
+          ]
+        }
+      ],
+      "why": {
+        "text": "CDC suggests matching games at 3 and 4 and card games at 5; HSE lists lotto games for 3- to 5-year-olds.",
+        "claims": [
+          "clm.f.matching-memory-games"
+        ]
+      },
+      "evidence": {
+        "type": "described",
+        "claims": [
+          "clm.f.matching-memory-games",
+          "clm.f.stop-and-go-games"
+        ]
+      },
+      "checked": "2026-10-28"
+    },
+    {
+      "id": "act.sock-match-and-sort",
+      "rev": 1,
+      "title": "Sock matching and laundry sort",
+      "summary": "Tip clean socks on the floor for your child to pair up and sort by person or color while you work nearby.",
+      "kind": "routine",
+      "ageMin": "36m",
+      "ageMax": "60m",
+      "readiness": {
+        "abilities": [
+          "follows-directions"
+        ],
+        "notes": []
+      },
+      "goals": [
+        "cognition"
+      ],
+      "intents": [
+        "routine",
+        "parent-moment"
+      ],
+      "places": [
+        "indoors"
+      ],
+      "spaces": [
+        "floor",
+        "table"
+      ],
+      "outing": false,
+      "materials": {
+        "level": "household",
+        "items": [
+          "A pile of clean, dry socks",
+          "Optional: small towels to fold"
+        ]
+      },
+      "setupMinutes": 2,
+      "cleanupMinutes": 5,
+      "duration": {
+        "min": 5,
+        "default": 10,
+        "max": 20
+      },
+      "effort": "low",
+      "supervision": {
+        "participation": "watches",
+        "proximity": "same-room",
+        "handsOn": "none",
+        "minAdults": 1,
+        "shareable": true,
+        "space": "On the floor in view of you, away from the washer, dryer and laundry products."
+      },
+      "mess": "low",
+      "noise": "quiet",
+      "hazards": [],
+      "steps": [
+        "Tip clean socks onto the floor and ask your child to find the pairs.",
+        "Sort into piles: yours, mine, the baby's, or by color.",
+        "When you check in, count the pairs together.",
+        "Let them carry each pile to the right room."
+      ],
+      "adaptations": [
+        "Younger: two piles, big socks and little socks.",
+        "Older: fold small towels in half, or match and count ten pairs.",
+        "Odd sock left over? Make it a mystery to solve later."
+      ],
+      "stopCues": [
+        "Socks become a throwing game: fine, or call it done",
+        "Losing interest",
+        "Frustrated by tricky pairs"
+      ],
+      "safety": [
+        {
+          "text": "Keep detergent, pods and other laundry products locked away, out of sight and reach.",
+          "claims": [
+            "clm.f.products-out-of-reach"
+          ]
+        }
+      ],
+      "why": {
+        "text": "CDC suggests letting preschoolers help with simple chores and lists matching socks among jobs many 5-year-olds do.",
+        "claims": [
+          "clm.f.simple-chores"
+        ]
+      },
+      "evidence": {
+        "type": "described",
+        "claims": [
+          "clm.f.simple-chores",
+          "clm.f.matching-memory-games"
+        ]
+      },
+      "checked": "2026-10-28"
+    },
+    {
+      "id": "act.draw-and-tell",
+      "rev": 1,
+      "title": "Draw, then tell me about it",
+      "summary": "Set out paper and crayons at the table where you can see them; later ask your child to tell you about the picture.",
+      "kind": "play",
+      "ageMin": "36m",
+      "ageMax": "60m",
+      "readiness": {
+        "abilities": [
+          "no-longer-mouthing"
+        ],
+        "notes": []
+      },
+      "goals": [
+        "fine-motor",
+        "communication"
+      ],
+      "intents": [
+        "create",
+        "calm",
+        "parent-moment"
+      ],
+      "places": [
+        "indoors"
+      ],
+      "spaces": [
+        "table"
+      ],
+      "outing": false,
+      "materials": {
+        "level": "household",
+        "items": [
+          "Paper (scrap is fine)",
+          "Crayons or washable markers"
+        ]
+      },
+      "setupMinutes": 2,
+      "cleanupMinutes": 5,
+      "duration": {
+        "min": 10,
+        "default": 20,
+        "max": 40
+      },
+      "effort": "low",
+      "supervision": {
+        "participation": "watches",
+        "proximity": "same-room",
+        "handsOn": "none",
+        "minAdults": 1,
+        "shareable": true,
+        "space": "A table in view of you; caps and crayons kept away from any baby or younger sibling."
+      },
+      "mess": "low",
+      "noise": "quiet",
+      "hazards": [
+        "small-parts"
+      ],
+      "steps": [
+        "Set out paper and crayons or washable markers at a table you can see.",
+        "Let them draw whatever they like while you get on with something nearby.",
+        "Check in: 'Tell me about your picture.' Ask why and how, and write their words on it.",
+        "Caps back on and crayons gathered up when they're done."
+      ],
+      "adaptations": [
+        "Younger: big paper taped to the table and chunky crayons.",
+        "Older: draw lines and shapes together, a person, or the letters of their name.",
+        "Keep an 'activity box' of paper and crayons they can fetch themselves."
+      ],
+      "stopCues": [
+        "Drawing on the table or walls",
+        "Upset that it 'looks wrong'",
+        "Wandering off"
+      ],
+      "safety": [
+        {
+          "text": "Marker caps and broken crayon bits can choke a baby or toddler: keep them out of younger siblings' reach.",
+          "claims": [
+            "clm.f.small-pieces-away-from-babies"
+          ]
+        }
+      ],
+      "why": {
+        "text": "CDC suggests an activity box of paper and crayons, drawing together, and asking 'why' and 'how' about what a child makes.",
+        "claims": [
+          "clm.f.drawing-and-art"
+        ]
+      },
+      "evidence": {
+        "type": "described",
+        "claims": [
+          "clm.f.drawing-and-art"
+        ]
+      },
+      "checked": "2026-10-28"
+    },
+    {
+      "id": "act.jigsaw-at-the-table",
+      "rev": 1,
+      "title": "Jigsaw puzzle at the table",
+      "summary": "Give your child a jigsaw labeled for their age to work on at the table while you're nearby, checking in now and then.",
+      "kind": "play",
+      "ageMin": "36m",
+      "ageMax": "60m",
+      "readiness": {
+        "abilities": [
+          "no-longer-mouthing"
+        ],
+        "notes": []
+      },
+      "goals": [
+        "cognition",
+        "fine-motor"
+      ],
+      "intents": [
+        "calm",
+        "explore",
+        "parent-moment"
+      ],
+      "places": [
+        "indoors"
+      ],
+      "spaces": [
+        "table",
+        "floor"
+      ],
+      "outing": false,
+      "materials": {
+        "level": "toys",
+        "items": [
+          "A jigsaw puzzle labeled for their age",
+          "Optional: a tray to keep pieces together"
+        ]
+      },
+      "setupMinutes": 1,
+      "cleanupMinutes": 3,
+      "duration": {
+        "min": 10,
+        "default": 15,
+        "max": 30
+      },
+      "effort": "low",
+      "supervision": {
+        "participation": "watches",
+        "proximity": "same-room",
+        "handsOn": "none",
+        "minAdults": 1,
+        "shareable": true,
+        "space": "A table or floor in view of you, out of any baby's reach."
+      },
+      "mess": "low",
+      "noise": "quiet",
+      "hazards": [
+        "small-parts"
+      ],
+      "steps": [
+        "Pick a puzzle labeled for their age and tip the pieces onto a tray, picture side up.",
+        "Show them how to find corners and straight edges first, then step back.",
+        "Check in now and then: 'What color goes next to the sky?'",
+        "Count the pieces back into the box so none are left on the floor."
+      ],
+      "adaptations": [
+        "Easier: fewer, bigger pieces, or a frame puzzle.",
+        "Harder: more pieces, or a big floor puzzle.",
+        "First time: build it together, then let them do it alone."
+      ],
+      "stopCues": [
+        "Pieces being thrown or forced",
+        "Frustrated: help with a piece or two",
+        "Lost interest"
+      ],
+      "safety": [
+        {
+          "text": "Puzzle pieces can be small. Keep them away from babies and younger siblings, follow the box's age label, and check the floor afterward.",
+          "claims": [
+            "clm.f.small-pieces-away-from-babies"
+          ]
+        }
+      ],
+      "why": {
+        "text": "CDC suggests toys that get children putting things together, such as puzzles; WHO lists puzzles among good sitting-time activities with a caregiver.",
+        "claims": [
+          "clm.f.puzzles-building",
+          "clm.core.who-reading-storytelling"
+        ]
+      },
+      "evidence": {
+        "type": "described",
+        "claims": [
+          "clm.f.puzzles-building",
+          "clm.core.who-reading-storytelling"
+        ]
+      },
+      "checked": "2026-10-28"
+    },
+    {
+      "id": "act.playdough-squish-and-shape",
+      "rev": 2,
+      "title": "Playdough squish, roll and cut",
+      "summary": "Set out playdough on a tray for squishing, pinching and rolling, with a rolling pin and cutters, while you're nearby.",
+      "kind": "play",
+      "ageMin": "36m",
+      "ageMax": "60m",
+      "readiness": {
+        "abilities": [
+          "no-longer-mouthing"
+        ],
+        "notes": []
+      },
+      "goals": [
+        "fine-motor",
+        "sensory"
+      ],
+      "intents": [
+        "create",
+        "calm",
+        "parent-moment"
+      ],
+      "places": [
+        "indoors"
+      ],
+      "spaces": [
+        "table"
+      ],
+      "outing": false,
+      "materials": {
+        "level": "special",
+        "items": [
+          "Store-bought playdough labelled for their age",
+          "Rolling pin or a cup",
+          "Blunt plastic knife or cookie cutters",
+          "A tray or placemat"
+        ]
+      },
+      "setupMinutes": 2,
+      "cleanupMinutes": 10,
+      "duration": {
+        "min": 10,
+        "default": 20,
+        "max": 40
+      },
+      "effort": "low",
+      "supervision": {
+        "participation": "watches",
+        "proximity": "same-room",
+        "handsOn": "none",
+        "minAdults": 1,
+        "shareable": true,
+        "space": "A table or tray in view of you; dough and small tools away from any baby or younger sibling."
+      },
+      "mess": "medium",
+      "noise": "quiet",
+      "hazards": [
+        "small-parts",
+        "allergens"
+      ],
+      "steps": [
+        "Put the dough on a tray or placemat at a table you can see from where you're working.",
+        "Show squishing, pinching and rolling balls and snakes, then leave them to it.",
+        "Add a rolling pin and cutters for shapes; count the shapes when you check in.",
+        "Squash it all back into the tub with the lid on so it doesn't dry out."
+      ],
+      "adaptations": [
+        "Easier: hands only, for squashing, poking and pulling.",
+        "Harder: make letters, a pretend meal or a dough person.",
+        "Give two colors and see what happens when they mix."
+      ],
+      "stopCues": [
+        "Dough going in the mouth",
+        "Throwing dough",
+        "Bored: time to tidy up"
+      ],
+      "safety": [
+        {
+          "text": "Keep dough crumbs and small cutters away from babies and younger siblings, and check the floor afterward.",
+          "claims": [
+            "clm.f.small-pieces-away-from-babies"
+          ]
+        },
+        {
+          "text": "Most playdough contains wheat. If anyone has a wheat allergy, check the label; reactions can follow touch as well as eating.",
+          "claims": [
+            "clm.f.food-allergy-check"
+          ]
+        }
+      ],
+      "why": {
+        "text": "CDC suggests squishing, pressing, pinching and rolling playdough, saying it builds the hand and finger muscles later used for writing, buttoning and cutting.",
+        "claims": [
+          "clm.f.playdough-hands"
+        ]
+      },
+      "evidence": {
+        "type": "described",
+        "claims": [
+          "clm.f.playdough-hands"
+        ]
+      },
+      "checked": "2026-10-28"
+    },
+    {
+      "id": "act.scissor-snipping",
+      "rev": 1,
+      "title": "Snip paper strips with child scissors",
+      "summary": "Sit beside your child and help them snip strips of scrap paper with child-safe scissors, then glue the snips into a picture.",
+      "kind": "play",
+      "ageMin": "36m",
+      "ageMax": "60m",
+      "readiness": {
+        "abilities": [
+          "no-longer-mouthing",
+          "follows-directions"
+        ],
+        "notes": [
+          "If cutting is hard, tearing paper is a fine start."
+        ]
+      },
+      "goals": [
+        "fine-motor"
+      ],
+      "intents": [
+        "create",
+        "calm"
+      ],
+      "places": [
+        "indoors"
+      ],
+      "spaces": [
+        "table"
+      ],
+      "outing": false,
+      "materials": {
+        "level": "special",
+        "items": [
+          "Child-safe scissors with blunt tips",
+          "Strips of scrap paper or junk mail",
+          "Optional: glue stick and paper"
+        ]
+      },
+      "setupMinutes": 3,
+      "cleanupMinutes": 5,
+      "duration": {
+        "min": 5,
+        "default": 15,
+        "max": 25
+      },
+      "effort": "medium",
+      "supervision": {
+        "participation": "joins",
+        "proximity": "arms-reach",
+        "handsOn": "intermittent",
+        "minAdults": 1,
+        "shareable": false,
+        "space": "Seated at a table with you beside them. Scissors stay at the table and away from any younger child."
+      },
+      "mess": "medium",
+      "noise": "quiet",
+      "hazards": [
+        "sharp"
+      ],
+      "steps": [
+        "Cut scrap paper into strips about two fingers wide.",
+        "Show the grip: thumb in the top hole, fingers below. Open and close like a crocodile mouth.",
+        "Hold the strip for them at first while they snip it into little pieces.",
+        "Glue the snips onto paper to make a picture, then put the scissors away."
+      ],
+      "adaptations": [
+        "Not ready for scissors: tear paper into pieces instead.",
+        "Older: cut along a drawn straight line, then a wavy one.",
+        "Left-handed child: left-handed child scissors may be easier."
+      ],
+      "stopCues": [
+        "Hand tired or grip slipping",
+        "Cutting hair, clothes or anything else: scissors away",
+        "Frustrated"
+      ],
+      "safety": [
+        {
+          "text": "Use only child-safe scissors. Store kitchen and adult scissors and knives separately, out of reach.",
+          "claims": [
+            "clm.f.sharp-and-hot-in-kitchen"
+          ]
+        },
+        {
+          "text": "Cut sitting down, and put the scissors away before you turn to a baby or another job.",
+          "claims": []
+        }
+      ],
+      "why": {
+        "text": "AAP lists using child-safe scissors among hand skills many 3- to 4-year-olds are building, and CDC suggests child scissors in a preschool art box.",
+        "claims": [
+          "clm.f.child-safe-scissors"
+        ]
+      },
+      "evidence": {
+        "type": "adapted",
+        "claims": [
+          "clm.f.child-safe-scissors",
+          "clm.f.drawing-and-art"
+        ]
+      },
+      "checked": "2026-10-28"
+    },
+    {
+      "id": "act.wash-fruit-and-veg",
+      "rev": 1,
+      "title": "Wash the fruit and veg",
+      "summary": "On a sturdy step stool at the sink, your child scrubs and rinses firm fruit and vegetables in a bowl of cool water.",
+      "kind": "routine",
+      "ageMin": "36m",
+      "ageMax": "60m",
+      "readiness": {
+        "abilities": [
+          "follows-directions"
+        ],
+        "notes": [
+          "Needs to stand steadily on a step stool, with you right beside them."
+        ]
+      },
+      "goals": [],
+      "intents": [
+        "routine",
+        "connect"
+      ],
+      "places": [
+        "indoors"
+      ],
+      "spaces": [
+        "kitchen",
+        "bath-or-sink"
+      ],
+      "outing": false,
+      "materials": {
+        "level": "household",
+        "items": [
+          "A bowl of cool water or a colander",
+          "Sturdy, non-slip step stool",
+          "Firm fruit or vegetables",
+          "A towel"
+        ]
+      },
+      "setupMinutes": 3,
+      "cleanupMinutes": 5,
+      "duration": {
+        "min": 5,
+        "default": 10,
+        "max": 20
+      },
+      "effort": "medium",
+      "supervision": {
+        "participation": "joins",
+        "proximity": "arms-reach",
+        "handsOn": "intermittent",
+        "minAdults": 1,
+        "shareable": false,
+        "space": "At the sink on a sturdy stool with you beside them. Cool water only; stove off or well out of reach."
+      },
+      "mess": "medium",
+      "noise": "quiet",
+      "hazards": [
+        "water",
+        "falls"
+      ],
+      "steps": [
+        "Set a sturdy step stool at the sink and run cool water into a bowl.",
+        "Hand over firm fruit or vegetables; they rub each one with their hands and rinse it.",
+        "Count them into a colander and pat dry with a towel.",
+        "Empty the bowl as soon as you've finished."
+      ],
+      "adaptations": [
+        "Younger: wash plastic cups and spoons instead.",
+        "Older: scrub potatoes with a clean vegetable brush.",
+        "No room at the sink: a bowl of water on a low table, with you right there."
+      ],
+      "stopCues": [
+        "Climbing or leaning too far over the sink",
+        "Splashing turning wild",
+        "Cold, wet and fed up"
+      ],
+      "safety": [
+        {
+          "text": "Stay right beside them with full attention while there's water, and empty the bowl when you're done (AAP: “touch supervision”).",
+          "claims": [
+            "clm.f.water-arms-reach"
+          ]
+        },
+        {
+          "text": "Use a sturdy, non-slip stool and stay within arm's reach while they stand on it.",
+          "claims": [
+            "clm.f.falls-preschool"
+          ]
+        },
+        {
+          "text": "Cool water only, and keep them away from the stove and the hot tap.",
+          "claims": [
+            "clm.f.sharp-and-hot-in-kitchen"
+          ]
+        },
+        {
+          "text": "This is a washing job, not a snack: raw carrot sticks and apple chunks are choking risks for under-4s.",
+          "claims": [
+            "clm.f.choking-foods-under-4"
+          ]
+        }
+      ],
+      "why": {
+        "text": "CDC suggests giving 3-year-olds simple meal jobs, such as washing fruits and vegetables or stirring.",
+        "claims": [
+          "clm.f.help-with-meals"
+        ]
+      },
+      "evidence": {
+        "type": "described",
+        "claims": [
+          "clm.f.help-with-meals"
+        ]
+      },
+      "checked": "2026-10-28"
+    },
+    {
+      "id": "act.tear-and-spread-helper",
+      "rev": 1,
+      "title": "Kitchen helper: tear and spread",
+      "summary": "At the table, your child tears washed lettuce for a salad and spreads a soft topping thinly with a blunt knife.",
+      "kind": "routine",
+      "ageMin": "36m",
+      "ageMax": "60m",
+      "readiness": {
+        "abilities": [
+          "eats-solids",
+          "follows-directions"
+        ],
+        "notes": [
+          "Check any food allergies in the family before you start."
+        ]
+      },
+      "goals": [],
+      "intents": [
+        "routine",
+        "connect"
+      ],
+      "places": [
+        "indoors"
+      ],
+      "spaces": [
+        "table",
+        "kitchen"
+      ],
+      "outing": false,
+      "materials": {
+        "level": "household",
+        "items": [
+          "Washed lettuce or soft greens",
+          "Bread, toast or crackers",
+          "A soft spread",
+          "Blunt butter knife or a spoon",
+          "A bowl and a plate"
+        ]
+      },
+      "setupMinutes": 5,
+      "cleanupMinutes": 5,
+      "duration": {
+        "min": 5,
+        "default": 10,
+        "max": 20
+      },
+      "effort": "medium",
+      "supervision": {
+        "participation": "joins",
+        "proximity": "arms-reach",
+        "handsOn": "intermittent",
+        "minAdults": 1,
+        "shareable": false,
+        "space": "Seated at a table, within your arm's reach, away from the stove, hot pans and sharp knives."
+      },
+      "mess": "medium",
+      "noise": "quiet",
+      "hazards": [
+        "food",
+        "allergens"
+      ],
+      "steps": [
+        "Wash hands together and sit at the table with a bowl and a plate.",
+        "Tear the washed lettuce into small pieces for the salad bowl.",
+        "Spread a soft topping thinly on bread or crackers with a blunt knife or the back of a spoon.",
+        "Serve it at the table and eat it sitting down together."
+      ],
+      "adaptations": [
+        "Younger: tearing only, or pressing a cookie cutter into soft bread.",
+        "Older: arrange pieces into a face, or count pieces onto each plate.",
+        "Allergy in the family: use only foods from their safe list."
+      ],
+      "stopCues": [
+        "Eating while walking around: sit back down or pause",
+        "Licking the knife or fingers a lot: wash hands",
+        "Tired or frustrated"
+      ],
+      "safety": [
+        {
+          "text": "For under-4s, avoid or cut up high-risk foods: whole grapes, raw carrot or apple chunks, nuts, popcorn, and thick nut butter (spread it thin).",
+          "claims": [
+            "clm.f.choking-foods-under-4"
+          ]
+        },
+        {
+          "text": "Eat only sitting down: no running, playing or lying down with food in the mouth.",
+          "claims": [
+            "clm.f.choking-foods-under-4"
+          ]
+        },
+        {
+          "text": "If anyone has a food allergy, check every label and use clean utensils and surfaces to avoid cross-contact.",
+          "claims": [
+            "clm.f.food-allergy-check"
+          ]
+        },
+        {
+          "text": "Blunt knife or spoon only; keep sharp knives and hot pans out of reach.",
+          "claims": [
+            "clm.f.sharp-and-hot-in-kitchen"
+          ]
+        }
+      ],
+      "why": {
+        "text": "CDC suggests letting preschoolers help prepare healthy foods and then enjoy them together.",
+        "claims": [
+          "clm.f.help-with-meals"
+        ]
+      },
+      "evidence": {
+        "type": "described",
+        "claims": [
+          "clm.f.help-with-meals"
+        ]
+      },
+      "checked": "2026-10-28"
+    },
+    {
+      "id": "act.plant-and-water-seeds",
+      "rev": 1,
+      "title": "Plant seeds and water them",
+      "summary": "Dig a pot or small patch together, press in a few seeds or a seedling, and water it from a small can.",
+      "kind": "play",
+      "ageMin": "36m",
+      "ageMax": "60m",
+      "readiness": {
+        "abilities": [
+          "no-longer-mouthing",
+          "follows-directions"
+        ],
+        "notes": []
+      },
+      "goals": [
+        "sensory"
+      ],
+      "intents": [
+        "fresh-air",
+        "explore",
+        "routine"
+      ],
+      "places": [
+        "outdoors",
+        "indoors"
+      ],
+      "spaces": [
+        "yard-or-park",
+        "table"
+      ],
+      "outing": false,
+      "materials": {
+        "level": "household",
+        "items": [
+          "A pot, window box or small patch of soil",
+          "Seeds such as peas or cress, or a seedling",
+          "Small watering can or cup",
+          "Old spoon or child trowel"
+        ]
+      },
+      "setupMinutes": 5,
+      "cleanupMinutes": 10,
+      "duration": {
+        "min": 10,
+        "default": 20,
+        "max": 30
+      },
+      "effort": "medium",
+      "supervision": {
+        "participation": "joins",
+        "proximity": "arms-reach",
+        "handsOn": "intermittent",
+        "minAdults": 1,
+        "shareable": false,
+        "space": "A garden patch or a pot on a table. No buckets or ponds left with water; chemicals locked away."
+      },
+      "mess": "high",
+      "noise": "quiet",
+      "hazards": [
+        "water",
+        "small-parts"
+      ],
+      "steps": [
+        "Fill a pot or clear a small patch, and let your child dig and break up the soil.",
+        "Press a few seeds in a finger-deep, or plant a seedling, and cover them up.",
+        "Water gently from a small can or cup, then empty it and put it away.",
+        "Wash hands. Check each day together and talk about what has changed."
+      ],
+      "adaptations": [
+        "Indoors: grow cress on a damp paper towel on a windowsill.",
+        "Older: draw labels for each pot, or measure the plant each week.",
+        "No garden: water the houseplants together with a small cup."
+      ],
+      "stopCues": [
+        "Soil or seeds going in the mouth",
+        "Tipping water everywhere",
+        "Bored: finish another day"
+      ],
+      "safety": [
+        {
+          "text": "Stay beside them while there's water, and empty watering cans and buckets as soon as you've finished (AAP: “touch supervision”).",
+          "claims": [
+            "clm.f.water-arms-reach"
+          ]
+        },
+        {
+          "text": "Keep fertilizer and garden chemicals locked away, and check garden plants are non-toxic.",
+          "claims": [
+            "clm.f.garden-chemicals-plants"
+          ]
+        },
+        {
+          "text": "Seeds are small. Keep packets and spilled seeds away from babies and toddlers.",
+          "claims": [
+            "clm.f.small-pieces-away-from-babies"
+          ]
+        }
+      ],
+      "why": {
+        "text": "HSE suggests a window box or garden patch to dig and grow seeds; AAP says small yard jobs like watering flowers give calming sensory input.",
+        "claims": [
+          "clm.f.grow-seeds"
+        ]
+      },
+      "evidence": {
+        "type": "described",
+        "claims": [
+          "clm.f.grow-seeds",
+          "clm.f.outdoor-explore-preschool"
+        ]
+      },
+      "checked": "2026-10-28"
+    },
+    {
+      "id": "act.smell-flower-blow-candle",
+      "rev": 1,
+      "title": "Smell the flower, blow the candle",
+      "summary": "Practise slow breaths together: sniff a pretend flower through the nose, then blow out a pretend candle.",
+      "kind": "play",
+      "ageMin": "36m",
+      "ageMax": "60m",
+      "readiness": {
+        "abilities": [],
+        "notes": [
+          "Practise when everyone is calm first; it's easier to use when upset if it's familiar."
+        ]
+      },
+      "goals": [
+        "social-emotional"
+      ],
+      "intents": [
+        "calm",
+        "connect"
+      ],
+      "places": [
+        "indoors",
+        "outdoors"
+      ],
+      "spaces": [
+        "anywhere"
+      ],
+      "outing": false,
+      "materials": {
+        "level": "none",
+        "items": [
+          "Optional: a favorite soft toy"
+        ]
+      },
+      "setupMinutes": 0,
+      "cleanupMinutes": 0,
+      "duration": {
+        "min": 2,
+        "default": 5,
+        "max": 10
+      },
+      "effort": "low",
+      "supervision": {
+        "participation": "leads",
+        "proximity": "same-room",
+        "handsOn": "none",
+        "minAdults": 1,
+        "shareable": true,
+        "space": "Anywhere quiet: the sofa, the floor, or a bench outside."
+      },
+      "mess": "none",
+      "noise": "quiet",
+      "hazards": [],
+      "steps": [
+        "Hold up a pretend flower and smell it slowly through your nose together.",
+        "Then blow out a pretend candle slowly through your mouth.",
+        "Do three to five breaths. Lying down, put a soft toy on their tummy and watch it rise and fall.",
+        "When they're upset later, invite rather than insist: 'Want to smell the flower with me?'"
+      ],
+      "adaptations": [
+        "Younger: blow a tissue or a feather to see the breath move.",
+        "Older: count 'in, two, three; out, two, three' on your fingers.",
+        "Finish with a hug of a favorite toy."
+      ],
+      "stopCues": [
+        "Feeling dizzy: go back to normal breathing",
+        "Giggly and not into it: try another time",
+        "Too upset to try: just stay close"
+      ],
+      "safety": [
+        {
+          "text": "Keep breaths slow and gentle, and stop if your child feels dizzy.",
+          "claims": []
+        }
+      ],
+      "why": {
+        "text": "CDC suggests helping 3-year-olds manage stressful feelings by teaching them to take deep breaths, hug a favorite toy, or go to a quiet, safe place.",
+        "claims": [
+          "clm.f.calm-tools"
+        ]
+      },
+      "evidence": {
+        "type": "adapted",
+        "claims": [
+          "clm.f.calm-tools"
+        ]
+      },
+      "checked": "2026-10-28"
+    },
+    {
+      "id": "act.calm-corner-together",
+      "rev": 1,
+      "title": "Make a calm-down corner together",
+      "summary": "Build a cozy corner together with a cushion, a soft toy and books, and name feelings while you set it up.",
+      "kind": "play",
+      "ageMin": "36m",
+      "ageMax": "60m",
+      "readiness": {
+        "abilities": [],
+        "notes": []
+      },
+      "goals": [
+        "social-emotional"
+      ],
+      "intents": [
+        "calm",
+        "create",
+        "connect"
+      ],
+      "places": [
+        "indoors"
+      ],
+      "spaces": [
+        "floor"
+      ],
+      "outing": false,
+      "materials": {
+        "level": "household",
+        "items": [
+          "A cushion or folded blanket",
+          "A favorite soft toy",
+          "Two or three books",
+          "Optional: paper to draw feelings faces"
+        ]
+      },
+      "setupMinutes": 5,
+      "cleanupMinutes": 0,
+      "duration": {
+        "min": 10,
+        "default": 15,
+        "max": 20
+      },
+      "effort": "low",
+      "supervision": {
+        "participation": "joins",
+        "proximity": "same-room",
+        "handsOn": "none",
+        "minAdults": 1,
+        "shareable": true,
+        "space": "A quiet corner you can see from where you usually are, away from cords and furniture that could tip."
+      },
+      "mess": "low",
+      "noise": "quiet",
+      "hazards": [
+        "suffocation"
+      ],
+      "steps": [
+        "Choose a corner together and add a cushion, a soft toy and two or three books.",
+        "Draw simple faces (happy, sad, cross, worried) and name each feeling together.",
+        "Practise while calm: go there, hug the toy, take slow breaths.",
+        "When they're upset, offer it as a choice, never a punishment, and stay nearby so they can come to you."
+      ],
+      "adaptations": [
+        "Younger: just a cushion and a toy, with you sitting there too.",
+        "Older: let them choose what goes in and draw their own feelings pictures.",
+        "Short on space: a 'calm basket' that goes wherever they are."
+      ],
+      "stopCues": [
+        "Treats it as a game: fine, that's still practice",
+        "Doesn't want to go: offer a hug instead",
+        "Gets more upset alone: stay with them"
+      ],
+      "safety": [
+        {
+          "text": "If there's a baby at home, keep loose cushions and blankets out of the baby's play and sleep space.",
+          "claims": [
+            "clm.a.keep-face-clear"
+          ]
+        },
+        {
+          "text": "A calm corner is for comfort with you nearby, never for sending a child away alone.",
+          "claims": [
+            "clm.f.calm-space-feelings"
+          ]
+        }
+      ],
+      "why": {
+        "text": "CDC suggests creating a spot at home where a child can go when upset, with you nearby, and talking about and naming feelings.",
+        "claims": [
+          "clm.f.calm-space-feelings"
+        ]
+      },
+      "evidence": {
+        "type": "described",
+        "claims": [
+          "clm.f.calm-space-feelings",
+          "clm.f.calm-tools"
+        ]
+      },
+      "checked": "2026-10-28"
+    }
+  ],
+  "recipes": [],
+  "starterPlans": []
+}

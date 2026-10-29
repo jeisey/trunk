@@ -1,0 +1,2481 @@
+{
+  "schema": 1,
+  "workstream": "C",
+  "description": "Workstream C: activities for babies 6 to under 12 months (some extend into the second year), with US, Irish and UK sources and claims checked 2026-10-28.",
+  "sources": [
+    {
+      "id": "src.cdc.milestones-9-months",
+      "url": "https://www.cdc.gov/act-early/milestones/9-months.html",
+      "org": "Centers for Disease Control and Prevention (Learn the Signs. Act Early.)",
+      "title": "Milestones by 9 Months",
+      "jurisdiction": "US",
+      "checked": "2026-10-28",
+      "published": "2025-09-04",
+      "updated": "2026-05-16",
+      "notes": "Activity list ('What you can do for your 9-month-old' plus 'More parenting tips and activities') is the main source for hide-and-find, container, turn-taking, reading and pull-to-stand ideas. Read with a web-fetch tool."
+    },
+    {
+      "id": "src.cdc.milestones-1-year",
+      "url": "https://www.cdc.gov/act-early/milestones/1-year.html",
+      "org": "Centers for Disease Control and Prevention (Learn the Signs. Act Early.)",
+      "title": "Milestones by 1 Year",
+      "jurisdiction": "US",
+      "checked": "2026-10-28",
+      "published": "2025-09-04",
+      "updated": "2026-05-16",
+      "notes": "Activity list for 1-year-olds (pots and pans, lift-the-flap books, push toys, no baby walkers). Read with a web-fetch tool."
+    },
+    {
+      "id": "src.aap-hc.cognitive-8-12-months",
+      "url": "https://www.healthychildren.org/English/ages-stages/baby/Pages/Cognitive-Development-8-to-12-Months.aspx",
+      "org": "American Academy of Pediatrics (HealthyChildren.org)",
+      "title": "Cognitive Development in Infants: 8 to 12 Months",
+      "jurisdiction": "US",
+      "checked": "2026-10-28",
+      "updated": "2023-11-20",
+      "notes": "Adapted from Caring for Your Baby and Young Child: Birth to Age Five, 7th ed. (AAP 2019)."
+    },
+    {
+      "id": "src.aap-hc.movement-8-12-months",
+      "url": "https://www.healthychildren.org/English/ages-stages/baby/Pages/Movement-8-to-12-Months.aspx",
+      "org": "American Academy of Pediatrics (HealthyChildren.org)",
+      "title": "Movement Milestones in Babies 8 to 12 Months Old",
+      "jurisdiction": "US",
+      "checked": "2026-10-28",
+      "updated": "2021-04-07",
+      "notes": "Adapted from Caring for Your Baby and Young Child, 7th ed. (AAP 2019). Contains a 'not sitting by nine months' prompt that Trunk does not repeat as a deadline."
+    },
+    {
+      "id": "src.aap-hc.choking-prevention",
+      "url": "https://www.healthychildren.org/English/health-issues/injuries-emergencies/Pages/Choking-Prevention.aspx",
+      "org": "American Academy of Pediatrics (HealthyChildren.org)",
+      "title": "Choking Prevention for Babies & Children: What Every Parent Needs to Know",
+      "jurisdiction": "US",
+      "checked": "2026-10-28",
+      "updated": "2026-02-27",
+      "notes": "Source line: AAP Council on Injury, Violence & Poison Prevention (2026)."
+    },
+    {
+      "id": "src.aap-hc.playpen-safety",
+      "url": "https://www.healthychildren.org/English/safety-prevention/at-home/Pages/Playpen-Safety.aspx",
+      "org": "American Academy of Pediatrics (HealthyChildren.org)",
+      "title": "Playpen Safety",
+      "jurisdiction": "US",
+      "checked": "2026-10-28",
+      "updated": "2009-11-02",
+      "notes": "Old page (2009, from Caring for Your Baby and Young Child) that is still published. Used only for long-standing set-up checks; cross-checked against current CPSC play-yard guidance."
+    },
+    {
+      "id": "src.aap-hc.infant-water-safety",
+      "url": "https://www.healthychildren.org/English/safety-prevention/at-play/Pages/Infant-Water-Safety.aspx",
+      "org": "American Academy of Pediatrics (HealthyChildren.org)",
+      "title": "Infant Drowning Prevention & Water Safety: How to Protect Your Baby",
+      "jurisdiction": "US",
+      "checked": "2026-10-28",
+      "updated": "2026-05-18",
+      "notes": "Source line: AAP Council on Injury, Violence & Poison Prevention (2026)."
+    },
+    {
+      "id": "src.aap-hc.playground-safety",
+      "url": "https://www.healthychildren.org/English/safety-prevention/at-play/Pages/Safety-on-the-Playground.aspx",
+      "org": "American Academy of Pediatrics (HealthyChildren.org)",
+      "title": "Playground Safety: How to Ensure Injury-Free Fun",
+      "jurisdiction": "US",
+      "checked": "2026-10-28",
+      "updated": "2025-03-31",
+      "notes": "By Julie Gilchrist, MD, FAAP; AAP Council on Injury, Violence and Poison Prevention."
+    },
+    {
+      "id": "src.aap-hc.furniture-tip-overs",
+      "url": "https://www.healthychildren.org/English/safety-prevention/at-home/Pages/Preventing-Furniture-and-TV-Tip-Overs.aspx",
+      "org": "American Academy of Pediatrics (HealthyChildren.org)",
+      "title": "Preventing Furniture and TV Tip-Overs",
+      "jurisdiction": "US",
+      "checked": "2026-10-28",
+      "updated": "2021-12-01",
+      "notes": "Written with Meghan's Hope; points to CPSC's Anchor It campaign."
+    },
+    {
+      "id": "src.aap-hc.kitchen-safety",
+      "url": "https://www.healthychildren.org/English/safety-prevention/at-home/Pages/Kitchen-Safety.aspx",
+      "org": "American Academy of Pediatrics (HealthyChildren.org)",
+      "title": "Kitchen Safety: 10 Tips for Families With Young Children",
+      "jurisdiction": "US",
+      "checked": "2026-10-28",
+      "updated": "2023-04-11"
+    },
+    {
+      "id": "src.aap-hc.stroller-safety",
+      "url": "https://www.healthychildren.org/English/safety-prevention/on-the-go/Pages/How-to-Buy-a-Safe-Stroller.aspx",
+      "org": "American Academy of Pediatrics (HealthyChildren.org)",
+      "title": "How to Choose a Safe Baby Stroller",
+      "jurisdiction": "US",
+      "checked": "2026-10-28",
+      "updated": "2022-08-11"
+    },
+    {
+      "id": "src.aap-hc.playing-outside",
+      "url": "https://www.healthychildren.org/English/family-life/power-of-play/Pages/playing-outside-why-its-important-for-kids.aspx",
+      "org": "American Academy of Pediatrics (HealthyChildren.org)",
+      "title": "Playing Outside: Why It's Important for Kids",
+      "jurisdiction": "US",
+      "checked": "2026-10-28",
+      "updated": "2026-04-06",
+      "notes": "By Danette Glassy, MD, FAAP and Pooja Tandon, MD, FAAP. Section 'Bring your infant or toddler outside' describes blanket time, narrated walks and ball rolling."
+    },
+    {
+      "id": "src.aap-hc.backyard-safety",
+      "url": "https://www.healthychildren.org/English/safety-prevention/at-home/Pages/Backyard-Safety.aspx",
+      "org": "American Academy of Pediatrics (HealthyChildren.org)",
+      "title": "Playing Outside in the Yard: 8 Tips to Keep it Fun & Safe for Kids",
+      "jurisdiction": "US",
+      "checked": "2026-10-28",
+      "updated": "2022-06-28"
+    },
+    {
+      "id": "src.cpsc.public-playground-handbook",
+      "url": "https://www.cpsc.gov/s3fs-public/325.pdf",
+      "org": "U.S. Consumer Product Safety Commission",
+      "title": "Public Playground Safety Handbook (Publication 325)",
+      "jurisdiction": "US",
+      "checked": "2026-10-28",
+      "published": "2010-11",
+      "updated": "2015-12-29",
+      "notes": "2010 edition with a December 2015 cover notice on surfacing. Written for playground owners and supervisors. Defines 'toddlers' as 6 through 23 months."
+    },
+    {
+      "id": "src.cpsc.play-yards-guidance",
+      "url": "https://www.cpsc.gov/Business--Manufacturing/Business-Education/Business-Guidance/Play-Yards",
+      "org": "U.S. Consumer Product Safety Commission",
+      "title": "Play Yards Business Guidance",
+      "jurisdiction": "US",
+      "checked": "2026-10-28",
+      "notes": "Manufacturer guidance, no page date shown. Play yards made or imported from 2025-04-05 must meet ASTM F406-24 as modified by CPSC (16 CFR part 1221). Read with a web-fetch tool."
+    },
+    {
+      "id": "src.cpsc.window-covering-cords",
+      "url": "https://www.cpsc.gov/gocordless",
+      "org": "U.S. Consumer Product Safety Commission",
+      "title": "Window Covering Cords",
+      "jurisdiction": "US",
+      "checked": "2026-10-28",
+      "notes": "No page date shown. Read with a web-fetch tool."
+    },
+    {
+      "id": "src.cpsc.small-parts",
+      "url": "https://www.cpsc.gov/Business--Manufacturing/Business-Education/Business-Guidance/Small-Parts-for-Toys-and-Childrens-Products",
+      "org": "U.S. Consumer Product Safety Commission",
+      "title": "Small Parts Ban and Choking Hazard Labeling",
+      "jurisdiction": "US",
+      "checked": "2026-10-28",
+      "notes": "Business guidance, no page date shown. Describes the small-parts cylinder (16 CFR 1501.4) but gives no dimensions on the page. Read with a web-fetch tool."
+    },
+    {
+      "id": "src.hse.burns-cooking",
+      "url": "https://www2.hse.ie/babies-children/child-safety/preventing-burns/cooking-hot-food/",
+      "org": "Health Service Executive (Ireland)",
+      "title": "Preventing burns from cooking and hot food",
+      "jurisdiction": "IE",
+      "checked": "2026-10-28",
+      "updated": "2023-01-23",
+      "notes": "Page last reviewed 23/01/2023; the stated next review (23/01/2026) has passed, so recheck at the next content review."
+    },
+    {
+      "id": "src.nhs.listening-learning-6-12-months",
+      "url": "https://www.nhs.uk/best-start-in-life/baby/learning-to-talk/listening-and-learning-6-to-12-months/",
+      "org": "NHS England (Best Start in Life)",
+      "title": "Listening and learning: 6 to 12 months",
+      "jurisdiction": "UK",
+      "checked": "2026-10-28",
+      "notes": "No review date shown on the page."
+    },
+    {
+      "id": "src.nhs.baby-moves",
+      "url": "https://www.nhs.uk/best-start-in-life/baby/baby-moves/",
+      "org": "NHS England (Best Start in Life)",
+      "title": "Baby moves",
+      "jurisdiction": "UK",
+      "checked": "2026-10-28",
+      "notes": "No review date shown on the page."
+    },
+    {
+      "id": "src.nhs-norfolk.play-ideas",
+      "url": "https://www.justonenorfolk.nhs.uk/child-development-additional-needs/talk-and-play/play-ideas/",
+      "org": "Just One Norfolk (East of England Community Health and Care NHS Trust)",
+      "title": "Play Ideas",
+      "jurisdiction": "UK",
+      "checked": "2026-10-28",
+      "notes": "Regional NHS community-trust service for families; no page date shown. Its treasure-basket example list includes keys and a bouncy ball, which Trunk leaves out."
+    }
+  ],
+  "claims": [
+    {
+      "id": "clm.c.peekaboo-object-permanence",
+      "kind": "description",
+      "text": "Between about 8 and 12 months, many babies start searching for a toy hidden under a cloth; peekaboo and its variations play on this growing sense that things still exist when out of sight.",
+      "sources": [
+        "src.aap-hc.cognitive-8-12-months"
+      ],
+      "locator": "Sections 'Now they see it' and '4 ways to play peekaboo'",
+      "paraphrase": "AAP describes babies of about eight months lifting a scarf to find a toy hidden under it and, by about ten months, continuing to search when it has been removed. It suggests playing peekaboo, switching between variations, to help babies learn object permanence.",
+      "scope": "US general guidance for babies about 8–12 months. Ages describe typical timing, not a deadline."
+    },
+    {
+      "id": "clm.c.hide-and-find",
+      "kind": "recommendation",
+      "text": "Hiding-and-finding games suit babies in the second half of the first year: cover your own head with a cloth for your baby to pull off, play peekaboo, or hide a toy under a blanket while they watch.",
+      "sources": [
+        "src.cdc.milestones-9-months",
+        "src.nhs.listening-learning-6-12-months",
+        "src.nhs.baby-moves",
+        "src.nhs-norfolk.play-ideas"
+      ],
+      "locator": "CDC 9 months: activity list; NHS Listening and learning: 'Little tips for everyday play'; NHS Baby moves: 'Playtime'; Just One Norfolk: '6 - 12 Months'",
+      "paraphrase": "CDC suggests covering your head with a cloth to see if your baby pulls it off, and hiding a toy under a blanket for them to find. NHS suggests joining in peekaboo ('Where are you? There you are!') and says most babies love it. Just One Norfolk says babies begin to look for toys hidden in boxes or under a blanket.",
+      "scope": "US (CDC) and UK (NHS, NHS community trust) parent guidance for babies about 6–12 months."
+    },
+    {
+      "id": "clm.c.containers-in-out",
+      "kind": "recommendation",
+      "text": "Putting things into a container and tipping them out again is a suggested game for babies who can sit up, from around 9 months; blocks and other hands-on toys suit this age.",
+      "sources": [
+        "src.cdc.milestones-9-months",
+        "src.cdc.milestones-1-year",
+        "src.nhs-norfolk.play-ideas"
+      ],
+      "locator": "CDC 9 months: activity list; CDC 1 year: Cognitive checklist and activity list; Just One Norfolk: '6 - 12 Months'",
+      "paraphrase": "CDC suggests dumping blocks from a container and putting them back in together with a 9-month-old, lists putting something in a container (like a block in a cup) among things most babies do by 1 year, and suggests blocks and toys that encourage using hands. Just One Norfolk says once babies sit up they love putting things in and out of boxes and pots.",
+      "scope": "US and UK parent guidance; ages are typical, not deadlines."
+    },
+    {
+      "id": "clm.c.household-objects-play",
+      "kind": "description",
+      "text": "Ordinary household things—pots and pans, wooden spoons, plastic containers, lids, baskets—are among the things babies most enjoy exploring, and pots and pans make a cheap, noisy toy.",
+      "sources": [
+        "src.aap-hc.cognitive-8-12-months",
+        "src.hse.play-toys",
+        "src.cdc.milestones-1-year"
+      ],
+      "locator": "AAP: 'Discovering the familiar & unfamiliar'; HSE: opening list of toys; CDC 1 year: activity list",
+      "paraphrase": "AAP says the 'toys' that fascinate babies most at 8–12 months are ordinary household objects such as wooden spoons, egg cartons and plastic containers, and that pots and pans are noisy but inexpensive entertainment. HSE lists household items such as pots, pans, baskets, cardboard tubes, tins or lids. CDC suggests giving a 1-year-old pots, pans or a small instrument to make noise.",
+      "scope": "US and Ireland general guidance for babies and toddlers. Every item still has to pass a choking check."
+    },
+    {
+      "id": "clm.c.objects-scientist",
+      "kind": "description",
+      "text": "Babies learn how objects behave by handling, mouthing, dropping, banging, and dunking them, noticing shapes, textures, and sizes and which things fit inside others.",
+      "sources": [
+        "src.aap-hc.cognitive-8-12-months",
+        "src.cdc.milestones-6-months"
+      ],
+      "locator": "AAP: 'Your tiny scientist'; CDC 6 months: Cognitive checklist",
+      "paraphrase": "AAP describes babies at 8–12 months dropping, rolling, throwing, submerging and waving objects to find out how they behave, developing ideas about shapes, textures and sizes (some things fit inside each other), and still putting everything into their mouths. CDC lists putting things in the mouth to explore them among things most 6-month-olds do.",
+      "scope": "US general guidance for babies about 6–12 months."
+    },
+    {
+      "id": "clm.c.banging-noise",
+      "kind": "description",
+      "text": "Banging two things together is something many babies do by about 9 months, and babies can enjoy discovering that they are the ones making the noise.",
+      "sources": [
+        "src.cdc.milestones-9-months",
+        "src.nhs-norfolk.play-ideas"
+      ],
+      "locator": "CDC 9 months: Cognitive checklist; Just One Norfolk: 'Exploring a Treasure Basket Together'",
+      "paraphrase": "CDC lists banging two things together among things most babies do by 9 months. Just One Norfolk describes a baby watching his mother bang two metal bowls together, trying it himself, and being pleased to realise he is making the noise.",
+      "scope": "US and UK; typical behaviour, not a deadline."
+    },
+    {
+      "id": "clm.c.treasure-basket",
+      "kind": "description",
+      "text": "A treasure basket is a container of everyday items with different shapes, textures, materials, and sounds that a sitting baby can reach into and explore with hands, eyes, and mouth while an adult sits close.",
+      "sources": [
+        "src.nhs-norfolk.play-ideas"
+      ],
+      "locator": "Section 'Treasure Basket', including 'Dexter's Treasure Basket'",
+      "paraphrase": "Just One Norfolk describes a treasure basket as any container a baby can reach into easily, filled with household things chosen for varied shapes, textures, materials and sounds. In its example the baby is placed so he can see and reach everything, uses hands, eyes and mouth to explore while sitting, reaching and balancing, and his mother sits close to watch, smile and talk.",
+      "scope": "UK (regional NHS community trust) guidance for babies who can sit.",
+      "caveat": "Its example items include keys and a bouncy ball. Trunk leaves these out: AAP lists small balls as a choking hazard, and key fobs can hold small batteries."
+    },
+    {
+      "id": "clm.c.treasure-basket-stay",
+      "kind": "safety",
+      "text": "Household objects are not safety-tested like toys. Stay with your baby during treasure-basket play and use only strong items that are too big to swallow.",
+      "sources": [
+        "src.nhs-norfolk.play-ideas",
+        "src.hse.play-toys"
+      ],
+      "locator": "Just One Norfolk: 'Treasure Basket', safety paragraph; HSE: 'Keeping your child safe while playing with toys'",
+      "paraphrase": "Just One Norfolk says treasure-basket items are not proper toys and are not safety-checked in the same way, so always be with your child and make sure the items are strong and too big to be swallowed. HSE says always watch your child while they play and keep toys in good condition because broken toys can be dangerous.",
+      "scope": "UK and Ireland guidance for babies and toddlers."
+    },
+    {
+      "id": "clm.c.toilet-roll-test",
+      "kind": "safety",
+      "text": "Anything that fits through the middle of a toilet-paper tube is too small for a baby or toddler to play with. US rules ban small parts in products made for children under 3.",
+      "sources": [
+        "src.hse.play-toys",
+        "src.cpsc.small-parts"
+      ],
+      "locator": "HSE: 'Keeping your child safe while playing with toys'; CPSC: 'Small Parts Ban'",
+      "paraphrase": "HSE says toys should not be a choking risk and that toys which fit through the centre of a toilet roll are too small. CPSC explains that children's products intended for under-3s may not contain small parts, judged with a test cylinder that approximates the fully expanded throat of a child under three.",
+      "scope": "Ireland (home check) and US (product regulation); children under 3.",
+      "caveat": "The toilet-roll check is a rough home screen, not the regulatory test. If an item is borderline, leave it out."
+    },
+    {
+      "id": "clm.c.choking-small-objects",
+      "kind": "safety",
+      "text": "Keep coins, small batteries, small balls, pen caps, toys with small parts, and anything a baby could squeeze into their mouth out of reach, and check floors, under furniture, and between cushions.",
+      "sources": [
+        "src.aap-hc.choking-prevention",
+        "src.nhs.baby-toddler-safety",
+        "src.cdc.positive-parenting-infants"
+      ],
+      "locator": "AAP: 'Household items that are choking hazards' and 'How to prevent choking in children'; NHS: 'Choking'; CDC: 'Child safety first'",
+      "paraphrase": "AAP lists coins, marbles, toys with small parts, toys that can be squeezed to fit entirely into a mouth, small balls, pen caps and button batteries as hazards and advises checking under furniture and between cushions. NHS says keep buttons, coins and small toy parts out of a baby's reach. CDC says keep small objects away from babies.",
+      "scope": "US and UK guidance for infants and young children."
+    },
+    {
+      "id": "clm.c.older-sibling-small-things",
+      "kind": "safety",
+      "text": "Many choking incidents happen when an older child gives a baby food, toys, or small objects, so keep older children's small toys out of the baby's play space.",
+      "sources": [
+        "src.aap-hc.choking-prevention",
+        "src.nhs.baby-toddler-safety"
+      ],
+      "locator": "AAP: 'How to prevent choking in children' (older brothers or sisters); NHS: 'Choking' (toys designed for older children)",
+      "paraphrase": "AAP says to be aware of what older children are doing because many choking incidents happen when older siblings give dangerous foods, toys or small objects to a younger child. NHS says keep toys designed for older children away from babies and toddlers because they may have small parts.",
+      "scope": "US and UK; households with older children."
+    },
+    {
+      "id": "clm.c.face-cover",
+      "kind": "safety",
+      "text": "Don't let your baby play with anything that could cover their face, and keep plastic and nappy bags out of reach.",
+      "sources": [
+        "src.cdc.positive-parenting-infants",
+        "src.nhs.baby-toddler-safety"
+      ],
+      "locator": "CDC: 'Child safety first'; NHS: 'Suffocation'",
+      "paraphrase": "CDC lists not letting your baby play with anything that could cover their face. NHS says keep plastic bags, including nappy bags, out of reach and sight of young children so they cannot put them over their nose and mouth.",
+      "scope": "US and UK guidance for infants."
+    },
+    {
+      "id": "clm.c.crawl-course",
+      "kind": "recommendation",
+      "text": "To encourage crawling, put interesting toys just out of reach, and as your baby gets more agile, make a small obstacle course from pillows, boxes, and sofa cushions.",
+      "sources": [
+        "src.aap-hc.movement-8-12-months",
+        "src.cdc.milestones-9-months"
+      ],
+      "locator": "AAP: 'Encouraging your child to crawl'; CDC 9 months: activity list (toys out of reach)",
+      "paraphrase": "AAP suggests presenting intriguing objects just beyond reach and building miniature obstacle courses from pillows, boxes and sofa cushions, joining in by hiding behind an obstacle for a peekaboo. CDC suggests putting toys just out of reach on the floor or a play mat so babies crawl, scoot or roll to them, and celebrating when they get there.",
+      "scope": "US guidance for babies starting to move, roughly 8–12 months; some babies scoot or slither instead of crawling."
+    },
+    {
+      "id": "clm.c.crawl-course-smother",
+      "kind": "safety",
+      "text": "Never leave a baby alone in a cushion or box course: a baby who slips between pillows or under a box may not be able to get out and could smother.",
+      "sources": [
+        "src.aap-hc.movement-8-12-months"
+      ],
+      "locator": "Section 'Encouraging your child to crawl'",
+      "paraphrase": "AAP warns never to leave the baby unsupervised during obstacle-course play, because a baby who falls between pillows or under a box might not be able to get out, which is frightening and could lead to smothering.",
+      "scope": "US; mobile infants."
+    },
+    {
+      "id": "clm.c.crawling-varies",
+      "kind": "description",
+      "text": "Babies get moving in different ways—crawling, bottom-scooting, or slithering on their tummies—and moving around lets them explore and build strength.",
+      "sources": [
+        "src.aap-hc.movement-8-12-months",
+        "src.nhs.baby-moves"
+      ],
+      "locator": "AAP: 'Crawling, scooting & slithering'; NHS: 'Crawling'",
+      "paraphrase": "AAP says some children never crawl and scoot on their bottoms or slither instead, and that what matters is exploring their surroundings and strengthening their bodies. NHS says not all babies crawl (some shuffle on their bottoms) and that crawling gives babies a chance to explore.",
+      "scope": "US and UK. Ask your baby's clinician about any concern with how your baby moves.",
+      "caveat": "Both pages give typical age ranges for crawling; Trunk does not repeat them as targets."
+    },
+    {
+      "id": "clm.c.cruising-practice",
+      "kind": "description",
+      "text": "After pulling up, many babies take steps while holding on, cruising along furniture or holding your hands, before walking on their own. Timing varies widely.",
+      "sources": [
+        "src.aap-hc.movement-8-12-months",
+        "src.cdc.milestones-1-year",
+        "src.cdc.milestones-9-months"
+      ],
+      "locator": "AAP: 'Standing, tottering & starting to walk'; CDC 1 year: Movement checklist and activity list; CDC 9 months: activity list",
+      "paraphrase": "AAP describes babies who feel secure standing taking steps while holding on and cruising alongside furniture. CDC lists walking while holding on to furniture among things most babies do by 1 year, suggests letting a baby hold your hands or sturdy furniture to practise walking, and suggests putting a 9-month-old near things they can safely pull up on.",
+      "scope": "US; typical sequence, not a deadline."
+    },
+    {
+      "id": "clm.c.cruising-support",
+      "kind": "safety",
+      "text": "Anything a baby pulls up on or cruises along should be sturdy, free of sharp edges, and heavy enough or fixed so it cannot tip; push toys should be weighted.",
+      "sources": [
+        "src.aap-hc.movement-8-12-months",
+        "src.cdc.milestones-9-months"
+      ],
+      "locator": "AAP: 'Standing, tottering & starting to walk' and walker paragraph; CDC 9 months: activity list",
+      "paraphrase": "AAP says whatever a cruising baby uses for support should have no sharp edges and be properly weighted or attached to the floor, and that a push car or wagon should be weighted so it won't tip when the baby pulls up on it. CDC suggests placing a baby close to things they can pull up on safely.",
+      "scope": "US; babies who pull to stand."
+    },
+    {
+      "id": "clm.c.anchor-furniture",
+      "kind": "safety",
+      "text": "Anchor dressers, bookcases, TVs, and other tip-prone furniture, and keep tempting things off high surfaces. Tip-overs can happen in an instant, even with an adult in the room.",
+      "sources": [
+        "src.aap-hc.furniture-tip-overs",
+        "src.hse.preventing-falls-babies"
+      ],
+      "locator": "AAP: 'How to prevent tip-overs' and the Meghan's Hope account; HSE: 'Furniture and TVs'",
+      "paraphrase": "AAP urges securing furniture and TVs with anti-tip devices, not keeping toys or remotes in high places that tempt climbing, and notes tip-overs also happen with an adult in the room. HSE says always secure free-standing furniture to the wall or floor and avoid putting TVs on cabinets or chests of drawers.",
+      "scope": "US and Ireland; all homes with babies and young children."
+    },
+    {
+      "id": "clm.c.no-walkers",
+      "kind": "safety",
+      "text": "Wheeled baby walkers are not recommended: they lead to falls, including down stairs, and let babies reach hazards. Floor time and sturdy support are safer ways to practise.",
+      "sources": [
+        "src.aap-hc.movement-8-12-months",
+        "src.hse.preventing-falls-babies",
+        "src.cdc.milestones-1-year"
+      ],
+      "locator": "AAP: 'Standing, tottering & starting to walk' (baby walker paragraph); HSE: 'Do not use baby walkers'; CDC 1 year: activity list",
+      "paraphrase": "AAP strongly urges parents not to use baby walkers, which do not help children learn to walk, tip over and lead to falls down stairs. HSE says walkers raise the risk of head injuries and falls down stairs and let babies reach kettles and medicines, and suggests floor time instead. CDC says baby walkers are not recommended.",
+      "scope": "US and Ireland; all infants."
+    },
+    {
+      "id": "clm.c.stairs-windows",
+      "kind": "safety",
+      "text": "Once your baby is on the move, keep gates closed at the top and bottom of stairs, and keep sofas, chairs, and other climbable furniture away from windows.",
+      "sources": [
+        "src.aap-hc.movement-8-12-months",
+        "src.hse.preventing-falls-babies",
+        "src.nhs.baby-toddler-safety"
+      ],
+      "locator": "AAP: 'Encouraging your child to crawl' (stairs); HSE: 'Stairs' and 'Windows and balconies'; NHS: 'When your baby starts crawling'",
+      "paraphrase": "AAP says to place sturdy gates at the top and bottom of stairs and keep them gated. HSE says use stair gates at the top and bottom and keep them closed, and do not place climbable furniture near window ledges. NHS says fit stair gates once babies crawl and keep low furniture away from windows.",
+      "scope": "US, Ireland, and UK; mobile babies."
+    },
+    {
+      "id": "clm.c.ball-roll",
+      "kind": "description",
+      "text": "Sitting across from your baby and rolling a ball back and forth is a simple turn-taking game that also calls for balance and planning a movement.",
+      "sources": [
+        "src.aap-hc.playing-outside",
+        "src.cdc.milestones-9-months",
+        "src.nhs-norfolk.play-ideas"
+      ],
+      "locator": "AAP: 'Bring your infant or toddler outside' ('Let's roll'); CDC 9 months: activity list; Just One Norfolk: turn-taking paragraph",
+      "paraphrase": "AAP suggests sitting on the grass across from your infant or toddler and rolling a ball back and forth, saying it builds motor planning and balance and teaches turn-taking and reading body language. CDC suggests passing a toy back and forth ('my turn, your turn'). Just One Norfolk says babies who can sit enjoy passing a toy back and forth.",
+      "scope": "US and UK guidance for babies who can sit, and toddlers."
+    },
+    {
+      "id": "clm.c.read-name-pictures",
+      "kind": "recommendation",
+      "text": "Look at books with your baby, point to pictures and name them, and answer their babble—you don't need to read every word. Sturdy, textured, and lift-the-flap books suit this age.",
+      "sources": [
+        "src.cdc.milestones-9-months",
+        "src.cdc.milestones-1-year",
+        "src.nhs.listening-learning-6-12-months",
+        "src.nhs-norfolk.play-ideas"
+      ],
+      "locator": "CDC 9 months and 1 year: activity lists; NHS: 'Little tips for everyday play'; Just One Norfolk: '6 - 12 Months'",
+      "paraphrase": "CDC suggests looking at pictures together and naming what you point to without reading the words, and choosing books with textures or flaps for a 1-year-old. NHS suggests describing simple picture books and trying books with textures. Just One Norfolk says not to worry if babies turn pages quickly or chew the book; just talk about the pictures.",
+      "scope": "US and UK guidance for babies about 6–12 months and young toddlers."
+    },
+    {
+      "id": "clm.c.books-bond",
+      "kind": "description",
+      "text": "Sharing books is bonding time, and hearing you read gives babies a feel for the sounds and rhythms of language even before they talk.",
+      "sources": [
+        "src.nhs.play-ideas"
+      ],
+      "locator": "Section 'Reading to your baby'",
+      "paraphrase": "NHS says time spent sharing books lets you bond with your baby and is good for emotional wellbeing, and that listening to you read gives babies a feel for the sounds, rhythms and rhymes of language before they can speak.",
+      "scope": "UK general guidance for babies."
+    },
+    {
+      "id": "clm.c.gestures-songs",
+      "kind": "recommendation",
+      "text": "Songs, rhymes, and simple gestures—waving bye-bye, clapping games, acting out action songs—are suggested ways to play with babies that pair words with movements.",
+      "sources": [
+        "src.cdc.milestones-9-months",
+        "src.cdc.milestones-1-year",
+        "src.nhs.baby-moves",
+        "src.nhs.listening-learning-6-12-months"
+      ],
+      "locator": "CDC 9 months: activity list; CDC 1 year: Social/Emotional checklist; NHS Baby moves: 'Ways to play and interact with your baby'; NHS Listening and learning: 'Little tips for everyday play'",
+      "paraphrase": "CDC suggests showing a 9-month-old how to wave 'bye-bye' and lists playing games such as pat-a-cake among things most babies do by 1 year. NHS suggests singing, taking turns clapping your hands and your baby's hands together, acting out the actions in songs, and waving as you say hello or goodbye so babies understand better.",
+      "scope": "US and UK guidance for babies."
+    },
+    {
+      "id": "clm.c.name-body-parts",
+      "kind": "recommendation",
+      "text": "Name body parts as you wash, dress, or sing with your baby; songs that name body parts and narrating care routines are suggested ways to build language into everyday care.",
+      "sources": [
+        "src.nhs.listening-learning-6-12-months",
+        "src.hse.how-to-play"
+      ],
+      "locator": "NHS: 'Bath time'; HSE: '6 to 12 months' list",
+      "paraphrase": "NHS suggests telling your baby which part of their body you are washing at bath time. HSE suggests dancing to songs that name body parts as a way to play with a baby aged 6 to 12 months.",
+      "scope": "UK and Ireland guidance for babies 6–12 months."
+    },
+    {
+      "id": "clm.c.narrate-everyday",
+      "kind": "recommendation",
+      "text": "Talk or sing to your baby about what you are doing during everyday tasks, and build on their sounds and attempts at words.",
+      "sources": [
+        "src.cdc.milestones-1-year",
+        "src.nhs-norfolk.play-ideas",
+        "src.cdc.positive-parenting-infants"
+      ],
+      "locator": "CDC 1 year: activity list; Just One Norfolk: talking tips list; CDC Positive Parenting: 'Positive parenting tips'",
+      "paraphrase": "CDC suggests talking or singing about what you are doing, such as handwashing, and building on a baby's partial words. Just One Norfolk suggests talking your baby through everyday activities as you do them. CDC's infant page suggests copying your baby's sounds and adding words.",
+      "scope": "US and UK guidance for babies."
+    },
+    {
+      "id": "clm.c.name-on-walks",
+      "kind": "recommendation",
+      "text": "On walks, name what your baby is looking at—dogs, buses, trees—and stop now and then at their level to talk about whatever has caught their attention.",
+      "sources": [
+        "src.cdc.milestones-6-months",
+        "src.nhs.listening-learning-6-12-months",
+        "src.aap-hc.playing-outside"
+      ],
+      "locator": "CDC 6 months: activity list; NHS: 'Out and about'; AAP: 'Bring your infant or toddler outside' ('Go on a guided tour')",
+      "paraphrase": "CDC suggests pointing out and naming new things such as cars, trees and animals on walks. NHS suggests talking about what you see and what your baby is looking at when out and about. AAP suggests a 'tour guide' commentary and, with a baby in a stroller, stopping and squatting to their level to talk about what has their attention.",
+      "scope": "US and UK guidance for babies and toddlers."
+    },
+    {
+      "id": "clm.c.blanket-outside",
+      "kind": "description",
+      "text": "A blanket on the grass lets a baby take in breezes, birdsong, smells, and plant textures; being outside offers sensory-rich experiences and room to move.",
+      "sources": [
+        "src.aap-hc.playing-outside"
+      ],
+      "locator": "Section 'Bring your infant or toddler outside' ('Get down to earth')",
+      "paraphrase": "AAP says being outside gives infants and toddlers sensory-rich experiences and physical activity, and suggests putting a blanket on grass or soft earth so a baby can enjoy breezes, bird songs, smells and plant textures.",
+      "scope": "US general guidance for infants and toddlers."
+    },
+    {
+      "id": "clm.c.sun-protection",
+      "kind": "safety",
+      "text": "Outdoors, use shade, light clothing that covers the body, and a wide-brimmed hat, and limit midday sun. From 6 months, sunscreen can go on exposed skin, taking care around the eyes.",
+      "sources": [
+        "src.aap-hc.sun-safety"
+      ],
+      "locator": "Sections 'Simple rules to protect your family from sunburns' and 'Sunscreen for babies'",
+      "paraphrase": "AAP advises shade, cool clothing that covers the body, a hat with an all-around brim, limiting sun between 10 a.m. and 4 p.m., and broad-spectrum sunscreen; for babies older than 6 months it says sunscreen can go on all areas, taking care around the eyes.",
+      "scope": "US guidance. Babies under 6 months should be kept out of direct sunlight.",
+      "caveat": "AAP says to call the doctor right away if a baby under 1 year gets sunburned."
+    },
+    {
+      "id": "clm.c.yard-hazards",
+      "kind": "safety",
+      "text": "Keep babies off lawns for 48 hours after pesticide or herbicide spraying, check the area for poisonous plants, and contact poison help if you think your baby swallowed something harmful.",
+      "sources": [
+        "src.aap-hc.backyard-safety",
+        "src.nhs.baby-toddler-safety"
+      ],
+      "locator": "AAP: tip 7 'Keep kids away from pesticides, fertilizers & poisonous plants'; NHS: 'Poisoning' (garden plants)",
+      "paraphrase": "AAP says children should stay off lawns and gardens for 48 hours after spraying, that some plants are poisonous to young children, and to call Poison Control if a child eats something dangerous. NHS says check your garden for poisonous plants.",
+      "scope": "US and UK. Poison help numbers differ by country."
+    },
+    {
+      "id": "clm.c.stroller-harness",
+      "kind": "safety",
+      "text": "Use the stroller's five-point harness on every ride, set the brake whenever you stop, don't hang bags from the handles, and never leave your baby unattended in it.",
+      "sources": [
+        "src.aap-hc.stroller-safety",
+        "src.hse.preventing-falls-babies",
+        "src.nhs.baby-toddler-safety"
+      ],
+      "locator": "AAP: stroller tips list; HSE: 'Seats'; NHS: 'Falls in babies' (harness in highchair or pram)",
+      "paraphrase": "AAP says use the five-point harness whenever your child rides, use the brake when stopped, avoid hanging bags on the handles because they can tip the stroller, and never leave a child unattended in it. HSE says strap babies into all seats including buggies and prams. NHS says use a 5-point harness in a pram every time.",
+      "scope": "US, Ireland, and UK."
+    },
+    {
+      "id": "clm.c.carrier-face-visible",
+      "kind": "safety",
+      "text": "In a baby carrier or sling, keep your baby's face visible, their chin off their chest, and their nose and mouth clear, and check on them often.",
+      "sources": [
+        "src.aap-hc.baby-carriers",
+        "src.nhs.baby-toddler-safety"
+      ],
+      "locator": "AAP: 'Safety tips for baby carriers', items 2–3; NHS: 'Suffocation' (TICKS)",
+      "paraphrase": "AAP says to keep a baby's neck straight with the chin off the chest, always be able to see their face, and check often that fabric or your body is not blocking their nose and mouth. NHS's TICKS advice says keep the sling tight, the baby in view, close enough to kiss, chin off the chest, and back supported.",
+      "scope": "US and UK; all infants in carriers and slings."
+    },
+    {
+      "id": "clm.c.bucket-swing",
+      "kind": "recommendation",
+      "text": "On playgrounds, full bucket-seat swings—supported on all sides and between the legs—are the swings meant for babies and toddlers, used with an adult lifting them in and out.",
+      "sources": [
+        "src.cpsc.public-playground-handbook"
+      ],
+      "locator": "§1.8 Definitions ('Full Bucket Seat Swing', 'Toddlers'); Table 1; §5.3.8.3.2 'Full bucket seat swings'",
+      "paraphrase": "CPSC defines a full bucket seat swing as generally appropriate for children under 4, supporting them on all sides and between the legs, and not able to be entered or exited without adult assistance. Table 1 lists swings with full bucket seats as age-appropriate equipment for toddlers, defined as 6 through 23 months.",
+      "scope": "US public playground guidance (2010 edition). CPSC calls 6–23-month-olds 'toddlers'."
+    },
+    {
+      "id": "clm.c.playground-supervision",
+      "kind": "safety",
+      "text": "Babies and toddlers need closer supervision at the playground than older children. Check the equipment and the surface under it, watch for hot surfaces, and keep clear of moving swings.",
+      "sources": [
+        "src.cpsc.public-playground-handbook",
+        "src.aap-hc.playground-safety"
+      ],
+      "locator": "CPSC: §2.2.7 'Supervision'; AAP: 'Playground surfaces', 'Slides', 'Swings' and 'Remember'",
+      "paraphrase": "CPSC says toddlers and preschoolers need more attentive supervision than older children and supervisors should check for broken equipment and maintained surfacing. AAP says most playground injuries are falls, grass is not a shock-absorbing surface, metal and plastic can get very hot in the sun, children should not run in front of swings, and adult supervision is the best way to prevent injuries.",
+      "scope": "US playground guidance for children of all ages, with extra attention for the youngest."
+    },
+    {
+      "id": "clm.c.swing-calms",
+      "kind": "description",
+      "text": "Swinging can calm children and build sensory skills.",
+      "sources": [
+        "src.aap-hc.playground-safety"
+      ],
+      "locator": "Section 'Swings', opening sentence",
+      "paraphrase": "AAP says swinging is shown to calm kids, build sensory skills, and even help them cooperate better with other children.",
+      "scope": "US; stated for children generally, not specifically for infants.",
+      "caveat": "The page does not cite infant-specific evidence; Trunk uses it only as a general description."
+    },
+    {
+      "id": "clm.c.water-touch-supervision",
+      "kind": "safety",
+      "text": "Babies can drown in an inch or two of water, quickly and silently. During any water play, keep a hand on or within arm's reach of your baby the whole time, and take them with you if you must leave.",
+      "sources": [
+        "src.aap-hc.infant-water-safety",
+        "src.nhs.baby-toddler-safety",
+        "src.nhs.play-ideas"
+      ],
+      "locator": "AAP: 'Water doesn't have to be deep…' and 'Safety in the tub: bath time basics'; NHS safety: 'Drowning'; NHS play ideas: 'Playing with water'",
+      "paraphrase": "AAP says babies can drown in 1 or 2 inches of water, silently and within seconds; use touch supervision with supplies within reach and bring the baby with you if you need to leave. NHS says babies can drown in 5 cm of water, never leave them for a moment, even with an older sibling in the bath, and never leave a young child alone playing with water.",
+      "scope": "US and UK; all infants and young children."
+    },
+    {
+      "id": "clm.c.bath-seat-not-safety",
+      "kind": "safety",
+      "text": "A bath seat or ring is not a safety device: seats can tip and babies can slip out, so you still need to stay right there.",
+      "sources": [
+        "src.aap-hc.infant-water-safety",
+        "src.nhs.baby-toddler-safety"
+      ],
+      "locator": "AAP: 'Safety in the tub: bath time basics'; NHS: 'Drowning'",
+      "paraphrase": "AAP says infant bath seats can tip over and children can slip out and drown in a few inches of water, so touch supervision is still needed. NHS says a bath seat is not a safety device and you still need to stay with your baby all the time.",
+      "scope": "US and UK; infants."
+    },
+    {
+      "id": "clm.c.water-temp-empty",
+      "kind": "safety",
+      "text": "Check bath water with your wrist or elbow before your baby goes in, and empty the bath, basin, or bucket as soon as you've finished.",
+      "sources": [
+        "src.aap-hc.infant-water-safety",
+        "src.nhs.baby-toddler-safety"
+      ],
+      "locator": "AAP: 'Check the water temperature' and 'Empty water containers immediately after use'; NHS: 'Burns and scalds' and 'Drowning'",
+      "paraphrase": "AAP says check the water temperature with your wrist or elbow because hot tap water can quickly scald, and never leave a filled open container unattended. NHS says run cold water first, check with your elbow, and empty the bath as soon as your child is out.",
+      "scope": "US and UK; infants.",
+      "caveat": "AAP also recommends a maximum hot-water temperature at the tap (120°F); other countries set different limits."
+    },
+    {
+      "id": "clm.c.water-play-ideas",
+      "kind": "description",
+      "text": "Babies enjoy water play in the bath or a plastic bowl—pouring from cups or bottles, squeezing a sponge, splashing—with unbreakable items, simple words for what's happening, and an adult right there.",
+      "sources": [
+        "src.nhs.play-ideas",
+        "src.nhs-norfolk.play-ideas",
+        "src.nhs.listening-learning-6-12-months"
+      ],
+      "locator": "NHS play ideas: 'Playing with water'; Just One Norfolk: '6 - 12 Months' and talking tips; NHS Listening and learning: 'Bath time'",
+      "paraphrase": "NHS says babies love water play in the bath, a sink or a plastic bowl, using unbreakable things such as plastic bottles, sponges and spoons. Just One Norfolk suggests letting babies pour water from plastic bottles and feel a squeezed sponge, and talking about what is happening. NHS suggests 'splish, splash' sounds and taking turns splashing.",
+      "scope": "UK guidance for babies and young children."
+    },
+    {
+      "id": "clm.c.playpen-purpose",
+      "kind": "description",
+      "text": "A play yard (playpen) is a safer enclosed space for short periods when you can't watch every moment. It is designed for children who cannot climb out and are under about 35 inches (89 cm).",
+      "sources": [
+        "src.aap-hc.playpen-safety",
+        "src.cpsc.play-yards-guidance",
+        "src.hse.preventing-falls-babies"
+      ],
+      "locator": "AAP: introduction; CPSC: play yard definition; HSE: 'Do not use baby walkers'",
+      "paraphrase": "AAP says many parents rely on playpens as a safe place for a baby when they cannot watch every moment. CPSC describes play yards as sleeping and play space for a child who cannot climb out and is under 35 inches tall. HSE suggests a play pen as safer than a baby walker, for short periods, without leaving the baby unsupervised.",
+      "scope": "US and Ireland; babies who cannot climb out.",
+      "caveat": "The AAP page dates from 2009. Neither source sets a time limit; HSE says short periods. Trunk keeps the parent in the same room."
+    },
+    {
+      "id": "clm.c.playpen-setup",
+      "kind": "safety",
+      "text": "Keep every play-yard side fully up and the mesh intact. Remove toys tied across the top once your baby can sit or get on all fours, and remove boxes or big toys they could climb on once they pull to stand.",
+      "sources": [
+        "src.aap-hc.playpen-safety"
+      ],
+      "locator": "Playpen safety list, items 1–6",
+      "paraphrase": "AAP says never leave a mesh side lowered because a baby can be trapped in the slack pocket and suffocate; remove toys strung across the top once the child can sit or get on all fours; remove a raised changing table when the child is in it; remove boxes and large toys once the child can pull to stand; and check mesh and top rails for tears.",
+      "scope": "US; play yards and playpens.",
+      "caveat": "Dated 2009; the current CPSC standard (ASTM F406-24, from April 2025) covers construction, not parent set-up."
+    },
+    {
+      "id": "clm.c.cords-away",
+      "kind": "safety",
+      "text": "Set up cribs, play yards, and play spaces away from window-blind, curtain, and appliance or monitor cords; a corded window covering can strangle a child in moments, even with an adult nearby.",
+      "sources": [
+        "src.cpsc.window-covering-cords",
+        "src.nhs.baby-toddler-safety"
+      ],
+      "locator": "CPSC: 'Window Covering Cords' and 'Baby Monitor Cords'; NHS: 'Strangulation'",
+      "paraphrase": "CPSC says young children have strangled on blind, shade and drapery cords, silently and in moments, even with an adult nearby; it recommends cordless coverings, moving cribs, beds, furniture and toys away from windows and cords, and keeping monitor cords away from babies. NHS says keep blind and curtain cords tied up out of reach.",
+      "scope": "US and UK; all homes with babies and young children."
+    },
+    {
+      "id": "clm.c.hot-drinks-cooking",
+      "kind": "safety",
+      "text": "Never cook while holding your baby, and never carry hot food or drinks while holding them. Trunk treats a baby in a carrier as held, so babywearing is not a cooking position.",
+      "sources": [
+        "src.hse.burns-cooking",
+        "src.cdc.positive-parenting-infants",
+        "src.aap-hc.kitchen-safety",
+        "src.nhs.baby-toddler-safety"
+      ],
+      "locator": "HSE: opening lines; CDC: 'Child safety first'; AAP: tip 4 (pot handles, carrying hot liquid); NHS: 'Burns and scalds'",
+      "paraphrase": "HSE says never cook while holding your baby or child and keep children away from cookers in use. CDC says keep hot foods and drinks away from your baby and never carry them while holding your baby. AAP says turn pot handles to the back and don't carry your child while walking with hot liquid. NHS says put a hot drink down out of reach before you hold your baby.",
+      "scope": "Ireland, US, and UK; all infants and young children.",
+      "caveat": "No source names babywearing specifically; applying the 'holding' rule to carriers is Trunk's conservative reading."
+    },
+    {
+      "id": "clm.c.safe-space",
+      "kind": "recommendation",
+      "text": "Make a safe space for your baby to explore—medicines and cleaning products locked away, sharp and breakable things out of reach—and stay within sight while they explore.",
+      "sources": [
+        "src.cdc.milestones-9-months",
+        "src.cdc.milestones-1-year",
+        "src.nhs.baby-moves"
+      ],
+      "locator": "CDC 9 months and 1 year: activity lists; NHS: 'Crawling'",
+      "paraphrase": "CDC suggests staying within sight as your baby explores so they know you are near, and making the home safe to explore by moving sharp or breakable items out of reach and locking up medicines, chemicals and cleaning products. NHS suggests creating a space in your house where your crawling baby can explore safely.",
+      "scope": "US and UK guidance for mobile babies."
+    },
+    {
+      "id": "clm.c.floor-time",
+      "kind": "recommendation",
+      "text": "Give babies plenty of time on the floor to move, roll, crawl, and pull up, and avoid leaving them in swings, strollers, bouncers, or exercise saucers for long stretches.",
+      "sources": [
+        "src.cdc.positive-parenting-infants",
+        "src.hse.preventing-falls-babies"
+      ],
+      "locator": "CDC: 'Healthy bodies'; HSE: 'Do not use baby walkers' (closing paragraph)",
+      "paraphrase": "CDC says spend time on the floor because moving there builds strength and supports learning and exploring, and don't leave babies in swings, strollers, bouncer seats or exercise saucers for long periods. HSE says give your baby time on the floor to roll, crawl and pull up, watching them at all times.",
+      "scope": "US and Ireland; infants."
+    },
+    {
+      "id": "clm.c.changing-falls",
+      "kind": "safety",
+      "text": "Never leave a baby alone on a changing table, bed, or sofa, even for a second. Once babies roll and wriggle, changing and dressing on a mat on the floor is safer.",
+      "sources": [
+        "src.aap-hc.movement-8-12-months",
+        "src.nhs.baby-toddler-safety",
+        "src.hse.preventing-falls-babies"
+      ],
+      "locator": "AAP: 'Flipping over'; NHS: 'Falls in babies'; HSE: 'Changing tables and raised surfaces'",
+      "paraphrase": "AAP says babies who flip over at will can fall during changes, suggests retiring the changing table, and says never leave them alone for an instant. NHS says change nappies on a mat on the floor and never leave a baby on a bed, sofa or changing table even for a second. HSE says never leave a baby alone on a changing table or raised surface.",
+      "scope": "US, UK, and Ireland; infants.",
+      "caveat": "AAP mentions the bed as an alternative to the changing table; NHS and HSE say not to leave a baby on a bed. Trunk uses the floor."
+    },
+    {
+      "id": "clm.c.play-when-alert",
+      "kind": "recommendation",
+      "text": "Play when your baby is alert and calm, offer breaks when they seem tired or fussy, and stop if they become overstimulated or upset.",
+      "sources": [
+        "src.cdc.positive-parenting-infants",
+        "src.hse.play-toys"
+      ],
+      "locator": "CDC: 'Positive parenting tips'; HSE: 'Making the most of playtime'",
+      "paraphrase": "CDC suggests playing when your baby is alert and calm and offering breaks when they seem tired or fussy. HSE says young children have short attention spans, so learn the signs that it is time to stop or change approach, and that over-stimulation can lead to tiredness and upset.",
+      "scope": "US and Ireland; infants and young children."
+    },
+    {
+      "id": "clm.c.never-shake",
+      "kind": "safety",
+      "text": "Never shake a baby: their neck muscles cannot yet support their head, and shaking can cause brain damage or death.",
+      "sources": [
+        "src.cdc.positive-parenting-infants"
+      ],
+      "locator": "Section 'Child safety first', first bullet",
+      "paraphrase": "CDC says never shake your baby, because babies' weak neck muscles cannot yet support their heads and shaking can damage the brain or cause death.",
+      "scope": "US; all infants."
+    }
+  ],
+  "activities": [
+    {
+      "id": "act.cloth-peekaboo",
+      "rev": 1,
+      "title": "Peekaboo with a cloth",
+      "summary": "Drape a light cloth over your own head, wait for your baby to pull it off, then greet them with a happy “Peekaboo!”",
+      "kind": "play",
+      "ageMin": "8m",
+      "ageMax": "15m",
+      "readiness": {
+        "abilities": [],
+        "notes": []
+      },
+      "goals": [
+        "cognition",
+        "social-emotional"
+      ],
+      "intents": [
+        "connect"
+      ],
+      "places": [
+        "indoors",
+        "outdoors"
+      ],
+      "spaces": [
+        "floor",
+        "lap-or-arms",
+        "anywhere"
+      ],
+      "outing": false,
+      "materials": {
+        "level": "none",
+        "items": [
+          "Your hands, or a light cloth or dish towel"
+        ]
+      },
+      "setupMinutes": 0,
+      "cleanupMinutes": 0,
+      "duration": {
+        "min": 1,
+        "default": 3,
+        "max": 8
+      },
+      "effort": "low",
+      "supervision": {
+        "participation": "leads",
+        "proximity": "arms-reach",
+        "handsOn": "intermittent",
+        "minAdults": 1,
+        "shareable": true,
+        "space": "Baby on the floor, in a seat, or on your lap, face to face. The cloth stays in your hands, never over your baby's face."
+      },
+      "mess": "none",
+      "noise": "moderate",
+      "hazards": [
+        "suffocation"
+      ],
+      "steps": [
+        "Sit face to face with your baby, close enough to touch.",
+        "Drape a light cloth over your head and ask, “Where did I go?”",
+        "Wait for your baby to pull it off—or lift it yourself after a second or two—and greet them with a big “Peekaboo!”",
+        "Take turns: hide behind your hands, a cushion, or the cloth again."
+      ],
+      "adaptations": [
+        "Just starting: keep hides very short and your voice soft so a disappearing face isn't startling.",
+        "Older baby: hide a toy under the cloth while they watch, then let them lift it to find the toy.",
+        "On the move: peek out from behind a doorway or the sofa and let them come and find you."
+      ],
+      "stopCues": [
+        "Turning away or fussing",
+        "Startled crying when your face disappears",
+        "Rubbing eyes or yawning"
+      ],
+      "safety": [
+        {
+          "text": "Put the cloth over your own head or the toy, never your baby's face, and put it away when the game ends.",
+          "claims": [
+            "clm.c.face-cover"
+          ]
+        }
+      ],
+      "why": {
+        "text": "Watching a face or toy disappear and come back plays into babies' growing understanding that things still exist when they can't see them.",
+        "claims": [
+          "clm.c.peekaboo-object-permanence"
+        ]
+      },
+      "evidence": {
+        "type": "described",
+        "claims": [
+          "clm.c.hide-and-find",
+          "clm.c.peekaboo-object-permanence",
+          "clm.c.play-when-alert"
+        ]
+      },
+      "checked": "2026-10-28"
+    },
+    {
+      "id": "act.put-in-tip-out",
+      "rev": 1,
+      "title": "Put in, tip out",
+      "summary": "Sit with your baby and take turns dropping big blocks or cups into a bowl, then tip them all out and start again.",
+      "kind": "play",
+      "ageMin": "8m",
+      "ageMax": "12m",
+      "readiness": {
+        "abilities": [
+          "sits-independently"
+        ],
+        "notes": []
+      },
+      "goals": [
+        "fine-motor",
+        "cognition"
+      ],
+      "intents": [
+        "explore",
+        "connect"
+      ],
+      "places": [
+        "indoors"
+      ],
+      "spaces": [
+        "floor"
+      ],
+      "outing": false,
+      "materials": {
+        "level": "household",
+        "items": [
+          "Large bowl, pot, or shoebox",
+          "Plastic cups, big lids, or balled-up socks",
+          "Large blocks or stacking cups, if you have them"
+        ]
+      },
+      "setupMinutes": 2,
+      "cleanupMinutes": 2,
+      "duration": {
+        "min": 2,
+        "default": 5,
+        "max": 15
+      },
+      "effort": "low",
+      "supervision": {
+        "participation": "joins",
+        "proximity": "arms-reach",
+        "handsOn": "intermittent",
+        "minAdults": 1,
+        "shareable": true,
+        "space": "Clear floor with your baby sitting steadily; nothing small enough to fit through a toilet-paper tube within reach."
+      },
+      "mess": "low",
+      "noise": "moderate",
+      "hazards": [
+        "mouthing"
+      ],
+      "steps": [
+        "Gather a big bowl or box and a handful of large, unbreakable things.",
+        "Drop one in with a clear “in!” and hand your baby the next one.",
+        "When the bowl is full, tip it out together—“all out!”—and start again.",
+        "Follow your baby's lead; banging or mouthing the cups is part of the game."
+      ],
+      "adaptations": [
+        "Simpler: you fill the bowl and let your baby do the tipping out.",
+        "Harder: cut a wide slot in a box lid for posting large jar lids or balled-up socks (each too big to fit through a toilet-paper tube) or balled-up socks.",
+        "Hide a toy inside a cup or box for them to find."
+      ],
+      "stopCues": [
+        "Losing interest or crawling off",
+        "Frustration when things won't go in",
+        "Fussing or rubbing eyes"
+      ],
+      "safety": [
+        {
+          "text": "Use only items too big to fit through a toilet-paper tube, with no loose bits that could break off.",
+          "claims": [
+            "clm.c.toilet-roll-test",
+            "clm.c.choking-small-objects"
+          ]
+        }
+      ],
+      "why": {
+        "text": "Filling and emptying lets babies explore how objects fit inside one another—one of the ways they work out shapes and sizes.",
+        "claims": [
+          "clm.c.objects-scientist"
+        ]
+      },
+      "evidence": {
+        "type": "described",
+        "claims": [
+          "clm.c.containers-in-out",
+          "clm.c.objects-scientist"
+        ]
+      },
+      "checked": "2026-10-28"
+    },
+    {
+      "id": "act.pot-and-spoon-band",
+      "rev": 1,
+      "title": "Pots and wooden spoon band",
+      "summary": "Set a couple of cold pots and a wooden spoon on the floor and make some noise together—tap, bang, and copy each other.",
+      "kind": "play",
+      "ageMin": "7m",
+      "ageMax": "18m",
+      "readiness": {
+        "abilities": [
+          "sits-independently"
+        ],
+        "notes": []
+      },
+      "goals": [
+        "sensory",
+        "cognition"
+      ],
+      "intents": [
+        "explore",
+        "connect"
+      ],
+      "places": [
+        "indoors"
+      ],
+      "spaces": [
+        "floor",
+        "kitchen"
+      ],
+      "outing": false,
+      "materials": {
+        "level": "household",
+        "items": [
+          "Two or three cold pots or pans",
+          "A wooden spoon",
+          "Plastic tubs or a silicone spatula (quieter)"
+        ]
+      },
+      "setupMinutes": 1,
+      "cleanupMinutes": 2,
+      "duration": {
+        "min": 2,
+        "default": 5,
+        "max": 15
+      },
+      "effort": "low",
+      "supervision": {
+        "participation": "joins",
+        "proximity": "arms-reach",
+        "handsOn": "intermittent",
+        "minAdults": 1,
+        "shareable": true,
+        "space": "Floor well away from the stove, hot drinks, and kettle cords—a time when you're not cooking."
+      },
+      "mess": "low",
+      "noise": "loud",
+      "hazards": [
+        "mouthing"
+      ],
+      "steps": [
+        "Turn two or three cold pots upside down on the floor and add a wooden spoon.",
+        "Tap a pot and say “bang!”, then hand your baby the spoon.",
+        "Copy whatever your baby does—loud, soft, fast, slow—and see if they copy you back."
+      ],
+      "adaptations": [
+        "Quieter: swap metal pots for plastic tubs and a silicone spatula.",
+        "Older baby: sing a simple song and tap along to the beat together.",
+        "Sound-sensitive baby: start with one soft tap and watch their face before going louder."
+      ],
+      "stopCues": [
+        "Startling or crying at loud bangs",
+        "Turning away or crawling off",
+        "Fussing or rubbing eyes"
+      ],
+      "safety": [
+        {
+          "text": "Never while you're cooking: keep the band away from the stove and hot drinks, and don't hold your baby near hot pans.",
+          "claims": [
+            "clm.c.hot-drinks-cooking"
+          ]
+        },
+        {
+          "text": "Check every item passes the toilet-paper-tube test and has no knobs or parts that come off.",
+          "claims": [
+            "clm.c.toilet-roll-test"
+          ]
+        }
+      ],
+      "why": {
+        "text": "Many babies around this age love banging things together and discovering that they're the ones making the sound.",
+        "claims": [
+          "clm.c.banging-noise"
+        ]
+      },
+      "evidence": {
+        "type": "described",
+        "claims": [
+          "clm.c.household-objects-play",
+          "clm.c.banging-noise",
+          "clm.c.play-when-alert"
+        ]
+      },
+      "checked": "2026-10-28"
+    },
+    {
+      "id": "act.treasure-basket",
+      "rev": 1,
+      "title": "Treasure basket of household things",
+      "summary": "Fill a low basket with a few sturdy household things of different textures and sounds, and sit close while your baby explores.",
+      "kind": "play",
+      "ageMin": "6m",
+      "ageMax": "12m",
+      "readiness": {
+        "abilities": [
+          "sits-independently"
+        ],
+        "notes": [
+          "Everything will go in the mouth at this age, so choose every item with that in mind."
+        ]
+      },
+      "goals": [
+        "sensory",
+        "fine-motor"
+      ],
+      "intents": [
+        "explore"
+      ],
+      "places": [
+        "indoors"
+      ],
+      "spaces": [
+        "floor"
+      ],
+      "outing": false,
+      "materials": {
+        "level": "household",
+        "items": [
+          "A low, sturdy basket or box",
+          "Wooden spoon",
+          "Silicone spatula",
+          "Large metal measuring cup",
+          "Clean balled-up sock",
+          "Saucepan lid without a removable knob",
+          "Washcloth or small fabric square"
+        ]
+      },
+      "setupMinutes": 5,
+      "cleanupMinutes": 3,
+      "duration": {
+        "min": 3,
+        "default": 10,
+        "max": 20
+      },
+      "effort": "low",
+      "supervision": {
+        "participation": "watches",
+        "proximity": "arms-reach",
+        "handsOn": "none",
+        "minAdults": 1,
+        "shareable": true,
+        "space": "Floor, baby sitting steadily, you within arm's reach and watching. Household items aren't safety-tested toys."
+      },
+      "mess": "low",
+      "noise": "moderate",
+      "hazards": [
+        "mouthing"
+      ],
+      "steps": [
+        "Pick 5–8 sturdy household things with different textures, weights, and sounds.",
+        "Check each one: too big to fit through a toilet-paper tube, nothing loose or breakable, clean enough to mouth.",
+        "Sit your baby beside the basket and let them choose. Stay close and quiet, smiling or naming things when they look up.",
+        "Another day, swap in a couple of new items to keep it interesting."
+      ],
+      "adaptations": [
+        "Less steady sitter: sit them in your lap and offer one item at a time.",
+        "Theme it: all wooden, all metal, or all soft things.",
+        "Older baby: add a second container so they can move things between the two."
+      ],
+      "stopCues": [
+        "Losing interest or crawling away",
+        "Fussing or tired",
+        "Gagging on an item—take it away"
+      ],
+      "safety": [
+        {
+          "text": "Household things aren't safety-tested toys: stay with your baby the whole time and remove anything that cracks, splinters, or comes apart.",
+          "claims": [
+            "clm.c.treasure-basket-stay"
+          ]
+        },
+        {
+          "text": "Every item must be too big to fit through a toilet-paper tube. Leave out keys, coins, batteries, small balls, and small lids.",
+          "claims": [
+            "clm.c.toilet-roll-test",
+            "clm.c.choking-small-objects"
+          ]
+        }
+      ],
+      "why": {
+        "text": "Babies this age learn by handling and mouthing objects, noticing textures, weights, and sounds—a treasure basket offers lots of that in one place.",
+        "claims": [
+          "clm.c.objects-scientist",
+          "clm.c.treasure-basket"
+        ]
+      },
+      "evidence": {
+        "type": "described",
+        "claims": [
+          "clm.c.treasure-basket",
+          "clm.c.household-objects-play"
+        ]
+      },
+      "checked": "2026-10-28"
+    },
+    {
+      "id": "act.cushion-crawl-course",
+      "rev": 1,
+      "title": "Cushion hills crawl course",
+      "summary": "Lay sofa cushions and pillows flat on the floor as low hills, put a favourite toy on the far side, and cheer your baby over.",
+      "kind": "play",
+      "ageMin": "8m",
+      "ageMax": "12m",
+      "readiness": {
+        "abilities": [
+          "crawls"
+        ],
+        "notes": [
+          "Bottom-shuffling or tummy-creeping counts too—follow how your baby moves."
+        ]
+      },
+      "goals": [
+        "gross-motor"
+      ],
+      "intents": [
+        "move",
+        "connect"
+      ],
+      "places": [
+        "indoors"
+      ],
+      "spaces": [
+        "floor"
+      ],
+      "outing": false,
+      "materials": {
+        "level": "household",
+        "items": [
+          "Sofa cushions or firm pillows",
+          "A favourite toy",
+          "Open-ended cardboard box (optional)"
+        ]
+      },
+      "setupMinutes": 3,
+      "cleanupMinutes": 3,
+      "duration": {
+        "min": 3,
+        "default": 8,
+        "max": 15
+      },
+      "effort": "medium",
+      "supervision": {
+        "participation": "joins",
+        "proximity": "arms-reach",
+        "handsOn": "intermittent",
+        "minAdults": 1,
+        "shareable": false,
+        "space": "Clear floor away from stairs and hard furniture edges; cushions low and firm; you within arm's reach the whole time."
+      },
+      "mess": "low",
+      "noise": "moderate",
+      "hazards": [
+        "suffocation",
+        "falls"
+      ],
+      "steps": [
+        "Lay a few firm cushions or pillows flat on the floor to make low bumps.",
+        "Put a favourite toy on the far side and call your baby.",
+        "Stay alongside, cheer them over, and pop up from behind a cushion for a peekaboo.",
+        "Rearrange the hills once they've got the hang of it."
+      ],
+      "adaptations": [
+        "Just starting to move: one flat cushion and a toy just out of reach is plenty.",
+        "Confident crawler: add a short, open-ended box tunnel you can see through, and wait at the exit.",
+        "Shufflers and scooters: make the course flatter and wider."
+      ],
+      "stopCues": [
+        "Getting stuck and upset",
+        "Tired, cranky, or rubbing eyes",
+        "Repeated tumbles or frustration"
+      ],
+      "safety": [
+        {
+          "text": "Stay right there: a baby who slips between cushions or under a box may not be able to get out and could smother.",
+          "claims": [
+            "clm.c.crawl-course-smother"
+          ]
+        },
+        {
+          "text": "Build it on the floor only—never on a bed or sofa—and away from stairs (gate them) and hard furniture edges.",
+          "claims": [
+            "clm.core.floor-not-bed",
+            "clm.c.stairs-windows"
+          ]
+        }
+      ],
+      "why": {
+        "text": "Low hills give babies a reason to move, and moving around—however they do it—is how they explore and build strength.",
+        "claims": [
+          "clm.c.crawl-course",
+          "clm.c.crawling-varies"
+        ]
+      },
+      "evidence": {
+        "type": "described",
+        "claims": [
+          "clm.c.crawl-course",
+          "clm.core.who-active-play"
+        ]
+      },
+      "checked": "2026-10-28"
+    },
+    {
+      "id": "act.ball-roll-turns",
+      "rev": 1,
+      "title": "Roll the ball back and forth",
+      "summary": "Sit facing your baby, legs spread to make a fence, and gently roll a big soft ball between you, taking turns.",
+      "kind": "play",
+      "ageMin": "7m",
+      "ageMax": "12m",
+      "readiness": {
+        "abilities": [
+          "sits-independently"
+        ],
+        "notes": []
+      },
+      "goals": [
+        "gross-motor",
+        "social-emotional"
+      ],
+      "intents": [
+        "connect",
+        "move"
+      ],
+      "places": [
+        "indoors",
+        "outdoors"
+      ],
+      "spaces": [
+        "floor",
+        "yard-or-park"
+      ],
+      "outing": false,
+      "materials": {
+        "level": "toys",
+        "items": [
+          "A large, soft ball"
+        ]
+      },
+      "setupMinutes": 1,
+      "cleanupMinutes": 1,
+      "duration": {
+        "min": 2,
+        "default": 5,
+        "max": 10
+      },
+      "effort": "low",
+      "supervision": {
+        "participation": "leads",
+        "proximity": "arms-reach",
+        "handsOn": "intermittent",
+        "minAdults": 1,
+        "shareable": true,
+        "space": "Clear floor, or a blanket on flat grass in the shade; sit close enough that the ball comes straight back."
+      },
+      "mess": "none",
+      "noise": "moderate",
+      "hazards": [
+        "mouthing"
+      ],
+      "steps": [
+        "Sit facing your baby, close together, with your legs out to stop the ball escaping.",
+        "Roll the ball slowly to them and say “your turn!”",
+        "Help them push it back, then cheer: “my turn!”"
+      ],
+      "adaptations": [
+        "Wobbly sitter: sit behind them and push the ball together toward a wall or another adult.",
+        "Crawler: roll the ball slowly past them and let them crawl after it.",
+        "Outdoors: play on a blanket on flat grass in the shade."
+      ],
+      "stopCues": [
+        "Looking away or crawling off",
+        "Frustration when the ball rolls away",
+        "Fussing or tired"
+      ],
+      "safety": [
+        {
+          "text": "Use a ball far too big to fit through a toilet-paper tube—small balls are a choking hazard.",
+          "claims": [
+            "clm.c.toilet-roll-test",
+            "clm.c.choking-small-objects"
+          ]
+        }
+      ],
+      "why": {
+        "text": "Rolling a ball back and forth is turn-taking at its simplest, and it asks for balance and planning a movement.",
+        "claims": [
+          "clm.c.ball-roll"
+        ]
+      },
+      "evidence": {
+        "type": "described",
+        "claims": [
+          "clm.c.ball-roll"
+        ]
+      },
+      "checked": "2026-10-28"
+    },
+    {
+      "id": "act.cruise-the-sofa",
+      "rev": 1,
+      "title": "Cruise along the sofa",
+      "summary": "Line a few toys along a sturdy sofa so your baby can pull up and side-step from one to the next while you stay close.",
+      "kind": "play",
+      "ageMin": "8m",
+      "ageMax": "15m",
+      "readiness": {
+        "abilities": [
+          "pulls-to-stand"
+        ],
+        "notes": []
+      },
+      "goals": [
+        "gross-motor"
+      ],
+      "intents": [
+        "move",
+        "explore"
+      ],
+      "places": [
+        "indoors"
+      ],
+      "spaces": [
+        "floor"
+      ],
+      "outing": false,
+      "materials": {
+        "level": "toys",
+        "items": [
+          "A sturdy sofa or anchored low furniture",
+          "Two or three favourite toys"
+        ]
+      },
+      "setupMinutes": 2,
+      "cleanupMinutes": 1,
+      "duration": {
+        "min": 2,
+        "default": 5,
+        "max": 10
+      },
+      "effort": "medium",
+      "supervision": {
+        "participation": "joins",
+        "proximity": "arms-reach",
+        "handsOn": "intermittent",
+        "minAdults": 1,
+        "shareable": true,
+        "space": "Stable sofa or anchored furniture with no sharp corners; clear floor; away from windows, stairs, and TV stands."
+      },
+      "mess": "none",
+      "noise": "quiet",
+      "hazards": [
+        "falls",
+        "sharp"
+      ],
+      "steps": [
+        "Check the sofa is stable and clear hard toys and sharp-cornered furniture from the floor around it.",
+        "Set toys along the seat a short step apart, starting where your baby pulls up.",
+        "Stay alongside as they side-step to the next toy, and cheer each step.",
+        "If they get stuck standing, show them how to bend their knees and sit down."
+      ],
+      "adaptations": [
+        "Just pulling up: one toy on the seat right above where they're kneeling.",
+        "Steadier: space toys a little farther apart, or around the corner of the sofa.",
+        "Pushing practice: a sturdy, weighted push toy or an empty cardboard box to push across the floor."
+      ],
+      "stopCues": [
+        "Legs buckling or repeated falls",
+        "Frustration or crying",
+        "Tired or rubbing eyes"
+      ],
+      "safety": [
+        {
+          "text": "Only use furniture that can't tip or slide. Anchor dressers, bookcases, and TV stands, and keep tempting things off high surfaces.",
+          "claims": [
+            "clm.c.cruising-support",
+            "clm.c.anchor-furniture"
+          ]
+        },
+        {
+          "text": "Skip the wheeled baby walker: walkers lead to falls, including down stairs. Gate the stairs and keep climbable furniture away from windows.",
+          "claims": [
+            "clm.c.no-walkers",
+            "clm.c.stairs-windows"
+          ]
+        }
+      ],
+      "why": {
+        "text": "Pulling up and side-stepping along furniture is how many babies practise standing and stepping before walking on their own.",
+        "claims": [
+          "clm.c.cruising-practice"
+        ]
+      },
+      "evidence": {
+        "type": "described",
+        "claims": [
+          "clm.c.cruising-practice",
+          "clm.c.cruising-support"
+        ]
+      },
+      "checked": "2026-10-28"
+    },
+    {
+      "id": "act.point-and-name-books",
+      "rev": 1,
+      "title": "Point-and-name book time",
+      "summary": "Cuddle up with a board or lift-the-flap book, point to the pictures, and name them—no need to read every word.",
+      "kind": "play",
+      "ageMin": "6m",
+      "ageMax": "12m",
+      "readiness": {
+        "abilities": [],
+        "notes": []
+      },
+      "goals": [
+        "communication",
+        "social-emotional"
+      ],
+      "intents": [
+        "connect",
+        "calm"
+      ],
+      "places": [
+        "indoors",
+        "outdoors"
+      ],
+      "spaces": [
+        "lap-or-arms",
+        "floor"
+      ],
+      "outing": false,
+      "materials": {
+        "level": "toys",
+        "items": [
+          "Board, cloth, or lift-the-flap books"
+        ]
+      },
+      "setupMinutes": 1,
+      "cleanupMinutes": 1,
+      "duration": {
+        "min": 2,
+        "default": 5,
+        "max": 10
+      },
+      "effort": "low",
+      "supervision": {
+        "participation": "leads",
+        "proximity": "holding",
+        "handsOn": "intermittent",
+        "minAdults": 1,
+        "shareable": true,
+        "space": "Your lap or a floor cushion, with your baby sitting supported against you."
+      },
+      "mess": "none",
+      "noise": "quiet",
+      "hazards": [],
+      "steps": [
+        "Sit your baby on your lap facing the book, or lie side by side on the floor.",
+        "Point to a picture and name it simply: “Dog! Woof woof.”",
+        "Pause to let them pat, lift flaps, or babble—then answer what they ‘said’.",
+        "Stop while it's still fun; a page or two counts."
+      ],
+      "adaptations": [
+        "Younger: photo books of faces and familiar things.",
+        "Older: ask “Where's the ball?” and let them pat or point to it.",
+        "Outdoors: take the books onto a blanket in the shade."
+      ],
+      "stopCues": [
+        "Turning away or arching back",
+        "Squirming to get down",
+        "Rubbing eyes or yawning"
+      ],
+      "safety": [
+        {
+          "text": "Chewing books is normal. Choose sturdy board or cloth books and remove any with loose flaps or peeling pieces.",
+          "claims": [
+            "clm.c.choking-small-objects"
+          ]
+        }
+      ],
+      "why": {
+        "text": "Naming pictures and answering your baby's babble surrounds them with words and turn-taking, and sharing a book is good bonding time.",
+        "claims": [
+          "clm.c.read-name-pictures",
+          "clm.c.books-bond"
+        ]
+      },
+      "evidence": {
+        "type": "described",
+        "claims": [
+          "clm.c.read-name-pictures",
+          "clm.core.who-reading-storytelling"
+        ]
+      },
+      "checked": "2026-10-28"
+    },
+    {
+      "id": "act.clap-and-wave-songs",
+      "rev": 1,
+      "title": "Clapping and waving songs",
+      "summary": "Sing a simple action song—pat-a-cake, wave bye-bye, “if you're happy and you know it”—and do the moves with your baby.",
+      "kind": "play",
+      "ageMin": "8m",
+      "ageMax": "12m",
+      "readiness": {
+        "abilities": [],
+        "notes": []
+      },
+      "goals": [
+        "communication",
+        "social-emotional"
+      ],
+      "intents": [
+        "connect"
+      ],
+      "places": [
+        "indoors",
+        "outdoors"
+      ],
+      "spaces": [
+        "anywhere",
+        "lap-or-arms"
+      ],
+      "outing": false,
+      "materials": {
+        "level": "none",
+        "items": []
+      },
+      "setupMinutes": 0,
+      "cleanupMinutes": 0,
+      "duration": {
+        "min": 1,
+        "default": 4,
+        "max": 10
+      },
+      "effort": "low",
+      "supervision": {
+        "participation": "leads",
+        "proximity": "arms-reach",
+        "handsOn": "intermittent",
+        "minAdults": 1,
+        "shareable": true,
+        "space": "Baby on your lap, strapped in a high chair, or sitting on the floor facing you."
+      },
+      "mess": "none",
+      "noise": "moderate",
+      "hazards": [],
+      "steps": [
+        "Sit face to face so your baby can see your hands and face.",
+        "Sing slowly with big, clear moves: clap, wave, pat your knees.",
+        "Gently clap their hands together, then pause to see if they try it themselves.",
+        "Repeat favourites—babies love knowing what comes next."
+      ],
+      "adaptations": [
+        "Younger: sing and move your own hands; guide theirs only if they enjoy it.",
+        "Older: wait for them to start the clap or wave, then sing on cue.",
+        "Wave “hello” and “bye-bye” for real at people, pets, and the bath water draining."
+      ],
+      "stopCues": [
+        "Looking away or going quiet and still",
+        "Fussing or squirming",
+        "Yawning or rubbing eyes"
+      ],
+      "safety": [
+        {
+          "text": "Keep moves gentle: guide hands softly, support your baby's body, and never jerk or shake them.",
+          "claims": [
+            "clm.c.never-shake"
+          ]
+        }
+      ],
+      "why": {
+        "text": "Songs, clapping, and waving pair words with gestures, which helps babies follow what you mean and join in before they can talk.",
+        "claims": [
+          "clm.c.gestures-songs"
+        ]
+      },
+      "evidence": {
+        "type": "described",
+        "claims": [
+          "clm.c.gestures-songs",
+          "clm.core.who-reading-storytelling"
+        ]
+      },
+      "checked": "2026-10-28"
+    },
+    {
+      "id": "act.dressing-name-body-parts",
+      "rev": 1,
+      "title": "Name body parts while dressing",
+      "summary": "As you dress or change your baby on the floor, name each body part you touch—“arm in… there's your hand!”—and pause for a reaction.",
+      "kind": "routine",
+      "ageMin": "8m",
+      "ageMax": "18m",
+      "readiness": {
+        "abilities": [],
+        "notes": []
+      },
+      "goals": [
+        "communication"
+      ],
+      "intents": [
+        "routine",
+        "connect"
+      ],
+      "places": [
+        "indoors"
+      ],
+      "spaces": [
+        "floor"
+      ],
+      "outing": false,
+      "materials": {
+        "level": "household",
+        "items": [
+          "A changing mat or towel on the floor",
+          "Today's clothes"
+        ]
+      },
+      "setupMinutes": 0,
+      "cleanupMinutes": 0,
+      "duration": {
+        "min": 2,
+        "default": 4,
+        "max": 8
+      },
+      "effort": "low",
+      "supervision": {
+        "participation": "leads",
+        "proximity": "arms-reach",
+        "handsOn": "continuous",
+        "minAdults": 1,
+        "shareable": true,
+        "space": "Changing mat or towel on the floor, with everything you need within reach before you start."
+      },
+      "mess": "low",
+      "noise": "quiet",
+      "hazards": [
+        "falls"
+      ],
+      "steps": [
+        "Lay a mat or towel on the floor and put the clothes within reach.",
+        "Name each part as it goes in: “Arm in… hand out! Where's your foot?”",
+        "Tickle or kiss the part you named, then pause and let your baby react."
+      ],
+      "adaptations": [
+        "Younger: just name and touch—“toes, toes, toes.”",
+        "Older: ask “Where's your tummy?” and let them pat it or point.",
+        "Add a body-part song, like “Head, shoulders, knees and toes.”"
+      ],
+      "stopCues": [
+        "Arching or twisting away",
+        "Crying or upset",
+        "Tired and wanting to be held"
+      ],
+      "safety": [
+        {
+          "text": "Dress and change on the floor once your baby rolls. Never leave them on a changing table, bed, or sofa, even for a second.",
+          "claims": [
+            "clm.c.changing-falls"
+          ]
+        }
+      ],
+      "why": {
+        "text": "Naming body parts during everyday care links words to things your baby can see and feel, over and over.",
+        "claims": [
+          "clm.c.name-body-parts"
+        ]
+      },
+      "evidence": {
+        "type": "adapted",
+        "claims": [
+          "clm.c.name-body-parts",
+          "clm.c.narrate-everyday"
+        ]
+      },
+      "checked": "2026-10-28"
+    },
+    {
+      "id": "act.splash-and-pour",
+      "rev": 2,
+      "title": "Splash and pour water play",
+      "summary": "In a shallow bath or a basin of water, let your baby splash, pour from cups, and squeeze a sponge while you stay hand-close.",
+      "kind": "play",
+      "ageMin": "6m",
+      "ageMax": "12m",
+      "readiness": {
+        "abilities": [
+          "sits-independently"
+        ],
+        "notes": []
+      },
+      "goals": [
+        "sensory",
+        "communication"
+      ],
+      "intents": [
+        "explore",
+        "connect"
+      ],
+      "places": [
+        "indoors"
+      ],
+      "spaces": [
+        "bath-or-sink"
+      ],
+      "outing": false,
+      "materials": {
+        "level": "household",
+        "items": [
+          "Bath or wide basin with a few centimetres of water",
+          "Plastic cups or a clean squeezy bottle",
+          "Sponge or washcloth",
+          "Towel within reach"
+        ]
+      },
+      "setupMinutes": 3,
+      "cleanupMinutes": 5,
+      "duration": {
+        "min": 3,
+        "default": 8,
+        "max": 15
+      },
+      "effort": "medium",
+      "supervision": {
+        "participation": "leads",
+        "proximity": "arms-reach",
+        "handsOn": "continuous",
+        "minAdults": 1,
+        "shareable": false,
+        "space": "Bath, or a basin on the floor; shallow lukewarm water; towel and toys within reach so you never step away."
+      },
+      "mess": "medium",
+      "noise": "moderate",
+      "hazards": [
+        "water",
+        "heat"
+      ],
+      "steps": [
+        "Gather the towel, cups, and sponge first so you won’t need to leave.",
+        "Run a few centimetres of water, cold first, and check it with your wrist or elbow.",
+        "Kneel beside your baby with one hand on them the whole time (touch supervision); show pouring and squeezing with the other.",
+        "Lift them out onto the towel and empty the water straight away."
+      ],
+      "adaptations": [
+        "Less steady sitter: support their back as well as keeping your hand on them.",
+        "Older baby: add a colander or a cup with holes and watch the water rain out.",
+        "Make it bath time: name each body part as you wash it."
+      ],
+      "stopCues": [
+        "Shivering or seeming cold",
+        "Fussing or trying to climb out",
+        "Tired or rubbing eyes"
+      ],
+      "safety": [
+        {
+          "text": "Keep a hand on your baby every second. If the door or phone needs you, lift your baby out and take them with you.",
+          "claims": [
+            "clm.c.water-touch-supervision"
+          ]
+        },
+        {
+          "text": "A bath seat or ring is not a safety device—seats can tip and babies can slip out.",
+          "claims": [
+            "clm.c.bath-seat-not-safety"
+          ]
+        },
+        {
+          "text": "Test the water with your wrist or elbow first, and empty the bath or basin as soon as you finish.",
+          "claims": [
+            "clm.c.water-temp-empty"
+          ]
+        }
+      ],
+      "why": {
+        "text": "Pouring, squeezing, and splashing let babies see how water and objects behave, and naming what happens adds words to the fun.",
+        "claims": [
+          "clm.c.water-play-ideas",
+          "clm.c.objects-scientist"
+        ]
+      },
+      "evidence": {
+        "type": "described",
+        "claims": [
+          "clm.c.water-play-ideas",
+          "clm.c.water-touch-supervision"
+        ]
+      },
+      "checked": "2026-10-28"
+    },
+    {
+      "id": "act.grass-blanket-explore",
+      "rev": 1,
+      "title": "Blanket on the grass",
+      "summary": "Spread a blanket on shady grass and let your baby feel the grass edge, a big leaf, and the breeze while you name what they touch.",
+      "kind": "play",
+      "ageMin": "6m",
+      "ageMax": "12m",
+      "readiness": {
+        "abilities": [],
+        "notes": []
+      },
+      "goals": [
+        "sensory"
+      ],
+      "intents": [
+        "fresh-air",
+        "explore",
+        "calm"
+      ],
+      "places": [
+        "outdoors"
+      ],
+      "spaces": [
+        "yard-or-park"
+      ],
+      "outing": false,
+      "materials": {
+        "level": "household",
+        "items": [
+          "A blanket",
+          "Sun hat and light clothes that cover skin",
+          "A large leaf or two (optional)"
+        ]
+      },
+      "setupMinutes": 5,
+      "cleanupMinutes": 3,
+      "duration": {
+        "min": 5,
+        "default": 10,
+        "max": 20
+      },
+      "effort": "low",
+      "supervision": {
+        "participation": "joins",
+        "proximity": "arms-reach",
+        "handsOn": "intermittent",
+        "minAdults": 1,
+        "shareable": true,
+        "space": "Shady, flat grass in your yard or a nearby green space, away from traffic, water, and recently sprayed lawns."
+      },
+      "mess": "medium",
+      "noise": "quiet",
+      "hazards": [
+        "mouthing",
+        "sun-weather"
+      ],
+      "steps": [
+        "Check the patch for small stones, sticks, litter, droppings, or mushrooms, then spread the blanket in the shade.",
+        "Sit with your baby near the blanket's edge so they can reach out and pat the grass.",
+        "Offer a big leaf to crinkle and name things: “Grass—tickly!” “A bird—tweet!”",
+        "Wash hands when you head back inside."
+      ],
+      "adaptations": [
+        "Crawler: let them crawl onto the grass while you stay alongside.",
+        "Add outdoor story time with a board book."
+      ],
+      "stopCues": [
+        "Fussing, or seeming too hot or cold",
+        "Putting grass, soil, or leaves in their mouth again and again",
+        "Tired or rubbing eyes"
+      ],
+      "safety": [
+        {
+          "text": "Use shade, a hat, and light clothes that cover skin, and avoid the strongest midday sun. From 6 months, sunscreen can go on exposed skin.",
+          "claims": [
+            "clm.c.sun-protection"
+          ]
+        },
+        {
+          "text": "Clear away anything small enough to mouth, and skip lawns treated in the last 48 hours or spots with poisonous plants.",
+          "claims": [
+            "clm.c.choking-small-objects",
+            "clm.c.yard-hazards"
+          ]
+        }
+      ],
+      "why": {
+        "text": "Grass, leaves, breezes, and birdsong give babies a rich mix of things to feel, hear, and see.",
+        "claims": [
+          "clm.c.blanket-outside"
+        ]
+      },
+      "evidence": {
+        "type": "described",
+        "claims": [
+          "clm.c.blanket-outside"
+        ]
+      },
+      "checked": "2026-10-28"
+    },
+    {
+      "id": "act.narrated-stroller-walk",
+      "rev": 1,
+      "title": "Narrated stroller walk",
+      "summary": "Head out with the stroller or carrier and keep up a running commentary—stop to name the dog, bus, or tree your baby is watching.",
+      "kind": "outing",
+      "ageMin": "6m",
+      "ageMax": "18m",
+      "readiness": {
+        "abilities": [],
+        "notes": []
+      },
+      "goals": [
+        "communication"
+      ],
+      "intents": [
+        "fresh-air",
+        "connect",
+        "calm"
+      ],
+      "places": [
+        "outdoors"
+      ],
+      "spaces": [
+        "neighborhood",
+        "yard-or-park"
+      ],
+      "outing": true,
+      "materials": {
+        "level": "household",
+        "items": [
+          "Stroller with a five-point harness, or a baby carrier",
+          "Sun hat or weather layers"
+        ]
+      },
+      "setupMinutes": 5,
+      "cleanupMinutes": 2,
+      "duration": {
+        "min": 10,
+        "default": 20,
+        "max": 45
+      },
+      "effort": "medium",
+      "supervision": {
+        "participation": "leads",
+        "proximity": "arms-reach",
+        "handsOn": "continuous",
+        "minAdults": 1,
+        "shareable": false,
+        "space": "Sidewalks and paths, kept back from the curb and traffic; harness on, brake set whenever you stop."
+      },
+      "mess": "none",
+      "noise": "moderate",
+      "hazards": [
+        "traffic",
+        "sun-weather"
+      ],
+      "steps": [
+        "Buckle the five-point harness and dress your baby for the weather.",
+        "As you walk, name what you see: “Dog! Big dog. Woof!”",
+        "Every few minutes, set the brake, crouch to your baby's level, and talk about whatever they're watching.",
+        "Answer their babbles as if it's a conversation."
+      ],
+      "adaptations": [
+        "In a carrier: keep their face visible and chin off their chest.",
+        "Older baby: stop and ask “Where's the bus?” and wait for a look or a point.",
+        "Rainy day: do the same thing at a window or under a covered porch."
+      ],
+      "stopCues": [
+        "Fussing or arching in the seat",
+        "Getting too hot or cold",
+        "Falling asleep—keep them in view, then move them to a firm, flat sleep space at home"
+      ],
+      "safety": [
+        {
+          "text": "Use the five-point harness every ride, set the brake whenever you stop, keep bags off the handles, and stay with your baby.",
+          "claims": [
+            "clm.c.stroller-harness"
+          ]
+        },
+        {
+          "text": "In a carrier, keep your baby's face visible, chin off their chest, and nose and mouth clear.",
+          "claims": [
+            "clm.c.carrier-face-visible"
+          ]
+        },
+        {
+          "text": "If your baby falls asleep, move them onto their back on a firm, flat sleep surface as soon as you can.",
+          "claims": [
+            "clm.core.sleep-on-back"
+          ]
+        },
+        {
+          "text": "In strong sun, use the canopy or shade, a hat, and light clothes that cover skin.",
+          "claims": [
+            "clm.c.sun-protection"
+          ]
+        }
+      ],
+      "why": {
+        "text": "Talking about what your baby is looking at helps them link words to the things right in front of them.",
+        "claims": [
+          "clm.c.name-on-walks"
+        ]
+      },
+      "evidence": {
+        "type": "described",
+        "claims": [
+          "clm.c.name-on-walks",
+          "clm.core.who-not-restrained-1h"
+        ]
+      },
+      "checked": "2026-10-28"
+    },
+    {
+      "id": "act.bucket-swing",
+      "rev": 1,
+      "title": "Bucket swing at the playground",
+      "summary": "Settle your baby in a full bucket-seat swing, stand in front, and give small, slow pushes while you chat and smile.",
+      "kind": "outing",
+      "ageMin": "7m",
+      "ageMax": "18m",
+      "readiness": {
+        "abilities": [
+          "sits-independently"
+        ],
+        "notes": [
+          "Only in a full bucket seat that supports your baby on all sides and between the legs."
+        ]
+      },
+      "goals": [
+        "sensory"
+      ],
+      "intents": [
+        "fresh-air",
+        "move",
+        "calm"
+      ],
+      "places": [
+        "outdoors"
+      ],
+      "spaces": [
+        "yard-or-park"
+      ],
+      "outing": true,
+      "materials": {
+        "level": "none",
+        "items": [
+          "A playground with infant bucket-seat swings"
+        ]
+      },
+      "setupMinutes": 0,
+      "cleanupMinutes": 0,
+      "duration": {
+        "min": 3,
+        "default": 8,
+        "max": 15
+      },
+      "effort": "medium",
+      "supervision": {
+        "participation": "leads",
+        "proximity": "arms-reach",
+        "handsOn": "continuous",
+        "minAdults": 1,
+        "shareable": false,
+        "space": "Infant bucket swing over soft playground surfacing, not grass or concrete; you in front, clear of other swings."
+      },
+      "mess": "none",
+      "noise": "moderate",
+      "hazards": [
+        "falls",
+        "sun-weather",
+        "traffic"
+      ],
+      "steps": [
+        "Check the seat is an intact full bucket swing over soft surfacing, and touch it for heat on sunny days.",
+        "Lift your baby in, legs through the leg holes, and check they're sitting upright.",
+        "Stand in front and give small, slow pushes; eye contact and a “wheee!” make it a game.",
+        "Lift them out yourself when they've had enough."
+      ],
+      "adaptations": [
+        "First time: keep pushes tiny and stay face to face so they can see you.",
+        "Enjoying it: add “Ready, steady… go!” before each push.",
+        "Busy playground: wait for a quiet swing bay away from big kids' swings."
+      ],
+      "stopCues": [
+        "Gripping tight, crying, or looking scared",
+        "Slumping or getting sleepy",
+        "Turning away or reaching to get out"
+      ],
+      "safety": [
+        {
+          "text": "Stay at the swing with eyes on your baby, keep pushes low, and watch for children walking in front of swings.",
+          "claims": [
+            "clm.c.playground-supervision"
+          ]
+        },
+        {
+          "text": "Use only a full bucket seat made for babies and toddlers, and lift your baby in and out yourself.",
+          "claims": [
+            "clm.c.bucket-swing"
+          ]
+        },
+        {
+          "text": "Check seats and chains for heat in strong sun, and dress your baby for the weather.",
+          "claims": [
+            "clm.c.playground-supervision",
+            "clm.c.sun-protection"
+          ]
+        },
+        {
+          "text": "Hold hands in the parking lot and near roads on the way there and back.",
+          "claims": [
+            "clm.d.pedestrian-safety"
+          ]
+        }
+      ],
+      "why": {
+        "text": "Gentle swinging is a sensory experience that many children find calming.",
+        "claims": [
+          "clm.c.swing-calms"
+        ]
+      },
+      "evidence": {
+        "type": "described",
+        "claims": [
+          "clm.c.bucket-swing",
+          "clm.c.playground-supervision"
+        ]
+      },
+      "checked": "2026-10-28"
+    },
+    {
+      "id": "act.play-yard-in-view",
+      "rev": 1,
+      "title": "Play yard play while you work nearby",
+      "summary": "Put your baby in a safe play yard with two or three toys where you can see them, and chat to them as you do a nearby task.",
+      "kind": "play",
+      "ageMin": "6m",
+      "ageMax": "12m",
+      "readiness": {
+        "abilities": [],
+        "notes": [
+          "Stop using the play yard once your baby can climb out or reaches about 35 in (89 cm) tall."
+        ]
+      },
+      "goals": [],
+      "intents": [
+        "parent-moment",
+        "explore"
+      ],
+      "places": [
+        "indoors"
+      ],
+      "spaces": [
+        "floor",
+        "kitchen"
+      ],
+      "outing": false,
+      "materials": {
+        "level": "toys",
+        "items": [
+          "A play yard (playpen) in good repair",
+          "Two or three safe toys or board books"
+        ]
+      },
+      "setupMinutes": 2,
+      "cleanupMinutes": 1,
+      "duration": {
+        "min": 5,
+        "default": 10,
+        "max": 20
+      },
+      "effort": "low",
+      "supervision": {
+        "participation": "watches",
+        "proximity": "same-room",
+        "handsOn": "none",
+        "minAdults": 1,
+        "shareable": true,
+        "space": "Play yard in your line of sight, well away from the stove, hot drinks, blind cords, and anything a standing baby could grab."
+      },
+      "mess": "none",
+      "noise": "quiet",
+      "hazards": [
+        "suffocation",
+        "falls",
+        "cords",
+        "mouthing"
+      ],
+      "steps": [
+        "Set up the play yard with every side fully up and locked, where you can see it from your task.",
+        "Add two or three safe toys or board books—nothing strung across the top and nothing to climb on.",
+        "Talk to your baby as you work: say what you're doing and answer their sounds.",
+        "Check on them often, and lift them out when they fuss or you're done."
+      ],
+      "adaptations": [
+        "Cooking: keep the play yard well away from the stove and out of the path you walk with hot pans.",
+        "Fussy after a few minutes: swap one toy, or move the play yard closer to where you're working.",
+        "Older baby: rotate toys between sessions so there's something new each time."
+      ],
+      "stopCues": [
+        "Crying or reaching to be picked up",
+        "Trying to climb out",
+        "Tired, rubbing eyes, or falling asleep"
+      ],
+      "safety": [
+        {
+          "text": "Keep the sides fully up and the mesh intact. Remove hanging toys and changing-table add-ons, and anything a standing baby could climb on.",
+          "claims": [
+            "clm.c.playpen-setup"
+          ]
+        },
+        {
+          "text": "Never cook or carry hot drinks while holding or wearing your baby—that's what the play yard is for.",
+          "claims": [
+            "clm.c.hot-drinks-cooking"
+          ]
+        },
+        {
+          "text": "Place the play yard away from window-blind, curtain, and appliance cords.",
+          "claims": [
+            "clm.c.cords-away"
+          ]
+        },
+        {
+          "text": "If your baby falls asleep, lay them on their back in their own firm, flat sleep space with nothing else in it.",
+          "claims": [
+            "clm.core.sleep-on-back"
+          ]
+        }
+      ],
+      "evidence": {
+        "type": "practical",
+        "claims": [
+          "clm.c.playpen-purpose"
+        ]
+      },
+      "checked": "2026-10-28"
+    },
+    {
+      "id": "act.safe-space-explore",
+      "rev": 1,
+      "title": "Free explore in a baby-safe room",
+      "summary": "Let your crawler roam a baby-proofed, gated room with a few toys while you do a task in the same room and check in often.",
+      "kind": "play",
+      "ageMin": "7m",
+      "ageMax": "12m",
+      "readiness": {
+        "abilities": [
+          "crawls"
+        ],
+        "notes": []
+      },
+      "goals": [
+        "gross-motor"
+      ],
+      "intents": [
+        "parent-moment",
+        "explore",
+        "move"
+      ],
+      "places": [
+        "indoors"
+      ],
+      "spaces": [
+        "floor"
+      ],
+      "outing": false,
+      "materials": {
+        "level": "toys",
+        "items": [
+          "Baby gate or a closed door",
+          "A few safe toys",
+          "Furniture anchors and cupboard locks in place"
+        ]
+      },
+      "setupMinutes": 5,
+      "cleanupMinutes": 2,
+      "duration": {
+        "min": 5,
+        "default": 10,
+        "max": 20
+      },
+      "effort": "low",
+      "supervision": {
+        "participation": "watches",
+        "proximity": "same-room",
+        "handsOn": "none",
+        "minAdults": 1,
+        "shareable": true,
+        "space": "Gated, baby-proofed room: anchored furniture; no cords, small objects, open stairs, or hot drinks; you stay in the room."
+      },
+      "mess": "low",
+      "noise": "moderate",
+      "hazards": [
+        "falls",
+        "cords",
+        "mouthing"
+      ],
+      "steps": [
+        "Sweep the floor: check under furniture and between cushions for anything small.",
+        "Close the gate or door, and move cords, cleaning products, and hot drinks out of reach.",
+        "Scatter a few safe toys and let your baby choose where to go.",
+        "Do your task in the same room, glancing over often and chatting when they look up."
+      ],
+      "adaptations": [
+        "Not crawling yet: use a play yard instead.",
+        "Starting to pull up: re-check that every piece of furniture in the room is stable or anchored.",
+        "Rotate a different basket of toys each day."
+      ],
+      "stopCues": [
+        "Crying or wanting to be held",
+        "Heading again and again for something off-limits",
+        "Tired, cranky, or rubbing eyes"
+      ],
+      "safety": [
+        {
+          "text": "Before play, check under furniture and between cushions for coins, batteries, and other small things, and keep older children's toys out.",
+          "claims": [
+            "clm.c.choking-small-objects",
+            "clm.c.older-sibling-small-things"
+          ]
+        },
+        {
+          "text": "Anchor tip-prone furniture and TVs, gate the stairs, and keep climbable furniture away from windows.",
+          "claims": [
+            "clm.c.anchor-furniture",
+            "clm.c.stairs-windows"
+          ]
+        },
+        {
+          "text": "Keep blind and appliance cords out of reach, and lock away medicines and cleaning products.",
+          "claims": [
+            "clm.c.cords-away",
+            "clm.c.safe-space"
+          ]
+        },
+        {
+          "text": "A safe room buys you time, not a break from watching: stay in the room and keep your baby in sight.",
+          "claims": [
+            "clm.c.safe-space"
+          ]
+        }
+      ],
+      "why": {
+        "text": "Moving around a safe space lets babies choose where to go and what to explore, building strength as they go.",
+        "claims": [
+          "clm.c.crawling-varies",
+          "clm.c.floor-time"
+        ]
+      },
+      "evidence": {
+        "type": "adapted",
+        "claims": [
+          "clm.c.safe-space",
+          "clm.c.floor-time"
+        ]
+      },
+      "checked": "2026-10-28"
+    }
+  ],
+  "recipes": [],
+  "starterPlans": []
+}
