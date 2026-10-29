@@ -7,8 +7,8 @@ its completion check has actually been run.
 `[x]` done and checked · `[~]` in progress · `[ ]` not started · `[!]` blocked
 
 ## Resume notes
-- Research agents A–D finished; E and F in progress; mixed-age + independent review not started yet (they need E/F).
-- Local check: `npm run check` (content + typecheck + unit), `npm run build && npx playwright test` (journeys; 2 and 3 need mixed-age and E content).
+- All research workstreams, the mixed-age synthesis, and the independent content/safety review are done; review fixes are applied (see docs/review/content-review.md → Resolution).
+- Local check: `npm run check` (content + typecheck + unit), `npm run build && npx playwright test` (all journeys + axe).
 - Perf: `node e2e/serve.mjs &` then `node scripts/perf-lab.mjs` → `reports/performance.md`.
 
 ## 1. Shared contract (lead)
@@ -25,16 +25,16 @@ Completion check for each: ≥ 12 distinct activities, `--check --only <file>` e
 - [x] B 3 – under 6 months → `b.json` (16), `docs/research/b.md`
 - [x] C 6 – under 12 months → `c.json` (16), `docs/research/c.md`
 - [x] D 12 – under 24 months → `d.json` (17), `docs/research/d.md`
-- [~] E 24 – under 36 months (+ media guidance) → `e.json`, `docs/research/e.md`
-- [~] F 36 – under 60 months → `f.json`, `docs/research/f.md`
-- [ ] Mixed-age: ≥ 18 recipes (9 together, 9 parallel), 6 starter plans → `mix.json`, `docs/research/mix.md`
-- [ ] Independent content/safety review against actual sources → `docs/review/content-review.md`
+- [x] E 24 – under 36 months (+ media guidance) → `e.json` (15 + snack + 2 media), `docs/research/e.md`
+- [x] F 36 – under 60 months → `f.json` (21), `docs/research/f.md`
+- [x] Mixed-age: 29 recipes (16 together, 13 parallel), 6 starter plans → `mix.json`, `docs/research/mix.md`
+- [x] Independent content/safety review against actual sources → `docs/review/content-review.md` (2 blockers, 11 majors, 21 minors; resolved)
 - [ ] Independent integration review → `docs/review/integration-review.md`
 
 ## 3. Application (lead)
 - [x] Finder: 1–2 children, non-uniform age slider + stepper + typed input, quick filters, advanced filters, results, empty states with one-tap relax.
 - [x] Activity detail: setup, steps, adaptations, why, stop cues, safety, sources.
-- [~] Two children: together / parallel / either from curated recipes only.
+- [x] Two children: together / parallel / either from curated recipes only.
 - [x] Deterministic planner: window fill, breaks, open time, wall-clock math, infeasibility explanations.
 - [x] Plan editor: add/remove/replace/reorder/resize, custom entries, keyboard controls.
 - [x] Saved plans: 10 max, rename/duplicate/delete+undo, migrations, corrupt/blocked/quota handling.
@@ -45,11 +45,11 @@ Completion check for each: ≥ 12 distinct activities, `--check --only <file>` e
 
 ## 4. Verification
 - [x] Vitest: schema/references, age boundaries, planner, storage, share codec, text safety.
-- [~] Playwright journeys 1–8 against production build under a non-root base path.
-- [ ] Screenshots + exported images inspected (`review-artifacts/`, not committed).
-- [ ] Performance: bundle size, LCP/CLS lab profile, filter latency.
+- [x] Playwright journeys 1–8 + axe against production build under `/trunk/` (Chromium only; WebKit not installed here).
+- [x] Screenshots + exported images inspected (`review-artifacts/`, not committed).
+- [x] Performance: bundle size, LCP/CLS lab profile, filter latency (`reports/performance.md`).
 
 ## 5. Delivery
-- [ ] README, `docs/maintenance.md`, decisions, research summary.
+- [x] README, `docs/maintenance.md`, decisions, research summary.
 - [~] GitHub Actions: validate, test, build, e2e, deploy to Pages.
 - [ ] PR opened, CI green, merged to `main`.

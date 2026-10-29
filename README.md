@@ -10,6 +10,14 @@ Trunk is a fast, mobile-first website that helps a parent of a child from 1 week
 - Content contract: [`docs/content-contract.md`](docs/content-contract.md) · Policy: [`docs/content-policy.md`](docs/content-policy.md) · Research: [`docs/research.md`](docs/research.md) · Decisions: [`docs/decisions.md`](docs/decisions.md) · Maintenance: [`docs/maintenance.md`](docs/maintenance.md)
 - Coverage report: [`reports/coverage.md`](reports/coverage.md) · Performance: [`reports/performance.md`](reports/performance.md)
 
+## Catalog at a glance
+
+- **108 activities** from 1 week to 59 months (84 described by a cited source, 22 adapted from source-informed principles, 2 practical routines), **29 curated two-child pairings** (16 together, 13 side by side), and **6 editable starter plans**.
+- **248 claims** backed by **117 sources** (85 US, plus Ireland, UK, Canada, Australia, and WHO), each opened and read on its recorded date.
+- Every age-slider stop and every sampled two-child age pair meets the coverage thresholds in [`reports/coverage.md`](reports/coverage.md).
+- Independent content and safety review: [`docs/review/content-review.md`](docs/review/content-review.md) (all blockers and majors fixed; resolution table at the end).
+- No clinician has reviewed the content; the app says so.
+
 ## What it does
 
 - **Find something now.** The first screen is the tool: age slider (weekly steps for the first 12 weeks, then monthly), −/+ stepper, and typed age input; quick filters for time, your energy/attention ("busy nearby", low, some, ready to play), and indoors/outdoors; a low-prep switch; more filters behind a disclosure. Empty results offer one-tap relaxations of optional filters; age, readiness, and supervision limits are never relaxed silently.
@@ -58,9 +66,21 @@ The build uses relative asset paths and hash routing, so it works at any reposit
 
 See [`docs/maintenance.md`](docs/maintenance.md): recheck sources every 6–12 months, bump `rev` on material changes, retire (never delete) unsafe or outdated records so old links still resolve, and keep IDs permanent.
 
+## Checks
+
+- `npm run check`: content validation (schema, references, safety rules, one-adult feasibility) + typecheck + 106 unit tests.
+- `npx playwright test`: the eight browser journeys plus axe accessibility scans, against the production build served under `/trunk/` (Chromium; WebKit runs only where installed, `PW_WEBKIT=1`).
+- Lab performance ([`reports/performance.md`](reports/performance.md)), emulated mobile (4× CPU, 1.6 Mbps): ~175 KB initial JS gzip, LCP ~1.6 s, CLS 0, filter updates ~40 ms. Not a real-device or field measurement.
+
 ## Known limitations
 
-See the "Known limitations" section of [`docs/research.md`](docs/research.md) and the final notes in [`TASKS.md`](TASKS.md).
+- Content is source-informed, not clinician-reviewed; US guidance is the default and other jurisdictions are labelled.
+- Durations, setup times, and effort levels are editorial estimates.
+- Readiness filtering is opt-in ("not yet" toggles); age is only a starting filter.
+- Two-child suggestions exist only where a curated pairing fits both ages; some gaps (for example a 6-week-old with a 3-year-old) have only two options.
+- Browser journeys were run in headless Chromium in a container (with mobile viewport emulation); not on real phones, and not in WebKit/Safari here.
+- Native file sharing was tested with a mocked `navigator.share`; real share sheets weren't exercised.
+- See [`docs/research.md`](docs/research.md) for source-level caveats (pages read through a summarizing tool, sources past their review dates).
 
 ## License
 
