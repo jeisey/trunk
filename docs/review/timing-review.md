@@ -381,3 +381,34 @@ unexpected errors, and every import and every `fillAround` result passes `Plan`.
   error.
 - Privacy defaults hold in v2: no title, custom text, notes, segment notes, readiness, or
   momentary context.
+
+## Resolution (lead, 2026-10-30)
+
+| Finding | Resolution | Where / test |
+|---|---|---|
+| B1 "Kept clear of the meal" | Fixed: "kept clear" only from an in-scope, non-conditional avoid rule the entry carries, outside that rule's window; no meal note without a meal rule. | `src/lib/sequence.ts`; `tests/timing-planner.test.ts` |
+| M1 momentary nap as 1 minute | Fixed: momentary naps have no end (no after-waking cues); the planner stops filling at a known nap time and says so. | `src/lib/timing.ts`, `src/lib/planner.ts`; `tests/layout.test.ts`, `tests/timing-planner.test.ts` |
+| M2 nap at the window's end | Fixed: with no time, every idea is ranked as if a nap follows it; note asks for a nap block. | `src/lib/planner.ts`; `tests/timing-planner.test.ts` |
+| M3 overlaps inside a track | Fixed: `overlap` conflicts with shorten/shift/remove repairs, shown in the nested track. | `src/lib/layout.ts`; `tests/layout.test.ts`, `e2e/refinement.spec.ts` |
+| M4 unsaveable after removing a nap | Fixed: locked alongside entries stay anchored; property test over random edit sequences (it also caught `addEntry` allowing a child alongside their own nap, fixed). | `src/lib/planEdit.ts`; `tests/planEdit.test.ts` |
+| M5 old v1 tab overwrites v2 | Fixed: v2 mirror key, downgrade detection with backup, merge by id, parent told; tested with the real v1 `PlanStore`. | `src/lib/storage.ts`, `src/App.tsx`; `tests/compat.test.ts` |
+| M6 unknown availability fills more | Decided and fixed: unknown is its own adult state, never free; the planner leaves that time open and asks for a settling time; parent-added busy-nearby play gets a caution. Starter carries an example settling time. Decision 37 revised. | `src/lib/layout.ts`, `src/lib/planner.ts`, `content/workstreams/mix.json` |
+| m1 gap adult state | Fixed: gaps split at the end of settling. | `src/lib/layout.ts`; `tests/layout.test.ts` |
+| m2 out-of-order anchors | Fixed: two timed entries keep time order; the UI explains. | `src/lib/planEdit.ts`, `PlanEditor.tsx` |
+| m3 two-adult overlap wording | Fixed. | `src/lib/layout.ts` |
+| m4 mixed messages | Fixed: positive notes suppressed when a caution applies. | `src/lib/sequence.ts` |
+| m5 meal blocks and tummy time | Fixed: editorial meal rules for babies under 12 months, labelled. | `content/core.json`; decision 44 |
+| m6 "back or tummy" step | Fixed: "on their back". | `content/workstreams/b.json` |
+| m7 repeats and helper jobs | Fixed: everyday-routine records never auto-added; spacing per track and per hour. | `src/lib/planner.ts`; decision 45 |
+| m8 impossible repairs | Fixed: alongside routines offer "Move it after …". | `src/lib/layout.ts` |
+| m9 recipe stimulation per child | Fixed in phase scoring (`childStimulation`); no validator rule added (three walk recipes are deliberately gentle with a lively role, documented). | `src/lib/planner.ts` |
+| m10 time before the start | Fixed: refused with an inline message (`clockProblem`). | `src/lib/planEdit.ts`, routine form |
+| m11 legacy copy best effort | Fixed: a failed one-time copy blocks the overwrite and reports the error. | `src/lib/storage.ts`; `tests/compat.test.ts` |
+| m12 custom-entry wording | Fixed: "Check who's with them." | `src/lib/layout.ts` |
+| n1 wording close to sources | Reworded. | `content/core.json` |
+| n2 HSE exception | Recorded in `docs/content-policy.md`. | |
+| n3 starter placeholders | Summary now calls time, length, and settling time placeholders. | `content/workstreams/mix.json` |
+| n4 which child a cue is for | Fixed: pairing cues name the child. | UI |
+| n5 newer draft in same tab | Left as is (rollback edge case). | |
+| n6 travel time | Not in scope (pre-existing). | |
+| n7 wording | Wind-down reason reworded; toddler safe-sleep wording left (harmless). | `content/core.json` |
