@@ -1,0 +1,49 @@
+{
+  "trunkPlan": 1,
+  "plan": {
+    "s": "16:30",
+    "w": 90,
+    "k": [
+      [
+        6,
+        "w"
+      ],
+      [
+        28,
+        "m"
+      ]
+    ],
+    "o": [
+      1,
+      1,
+      0,
+      1
+    ],
+    "g": [
+      [
+        "r",
+        "fixture-tummy-time-and-books",
+        4,
+        "1"
+      ],
+      [
+        "b",
+        10
+      ],
+      [
+        "c",
+        45,
+        "1",
+        "Nap"
+      ],
+      [
+        "c",
+        20,
+        "2",
+        "Grandma Ruth video call"
+      ]
+    ],
+    "t": "Maya and Theo, Tuesday",
+    "n": "Theo has a cold; skip the park."
+  }
+}

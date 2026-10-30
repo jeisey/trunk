@@ -5,7 +5,7 @@
  * needs more than one record or encodes a safety rule: duplicate IDs, dangling
  * references, age bounds, duration compatibility, provenance, and hazard rules.
  */
-import { ContentFile, type Activity, type Claim, type ContentFile as ContentFileT, type MixedAgeRecipe, type Source, type StarterPlan } from './schema.ts';
+import { ContentFile, type Activity, type Claim, type ContentFile as ContentFileT, type MixedAgeRecipe, type Source, type StarterPlan, type TimingRule } from './schema.ts';
 import { ageStringToDays, MAX_SUPPORTED_DAYS_EXCLUSIVE, MIN_SUPPORTED_DAYS, monthsToDays } from '../lib/age.ts';
 import { checkParallel } from '../lib/supervision.ts';
 
@@ -18,6 +18,7 @@ export interface Issue {
 export interface Catalog {
   sources: Source[];
   claims: Claim[];
+  timingRules: TimingRule[];
   activities: Activity[];
   recipes: MixedAgeRecipe[];
   starterPlans: StarterPlan[];
@@ -84,9 +85,11 @@ export function validateCatalog(files: { file: string; data: ContentFileT }[], t
   const activities: Located<Activity>[] = [];
   const recipes: Located<MixedAgeRecipe>[] = [];
   const plans: Located<StarterPlan>[] = [];
+  const rules: Located<TimingRule>[] = [];
   for (const { file, data } of files) {
     data.sources.forEach((record) => sources.push({ file, record }));
     data.claims.forEach((record) => claims.push({ file, record }));
+    data.timingRules.forEach((record) => rules.push({ file, record }));
     data.activities.forEach((record) => activities.push({ file, record }));
     data.recipes.forEach((record) => recipes.push({ file, record }));
     data.starterPlans.forEach((record) => plans.push({ file, record }));
@@ -94,7 +97,7 @@ export function validateCatalog(files: { file: string; data: ContentFileT }[], t
 
   // ---- Duplicate IDs (all families share one namespace) and duplicate URLs ----
   const seen = new Map<string, string>();
-  for (const { file, record } of [...sources, ...claims, ...activities, ...recipes, ...plans] as Located<{ id: string }>[]) {
+  for (const { file, record } of [...sources, ...claims, ...rules, ...activities, ...recipes, ...plans] as Located<{ id: string }>[]) {
     const prior = seen.get(record.id);
     if (prior) err(file, record.id, `duplicate id (also in ${prior})`);
     else seen.set(record.id, file);
@@ -111,6 +114,8 @@ export function validateCatalog(files: { file: string; data: ContentFileT }[], t
   const claimById = new Map(claims.map((c) => [c.record.id, c.record]));
   const activityById = new Map(activities.map((a) => [a.record.id, a.record]));
   const recipeById = new Map(recipes.map((r) => [r.record.id, r.record]));
+  const ruleById = new Map(rules.map((r) => [r.record.id, r.record]));
+  const usedRules = new Set<string>();
   const usedSources = new Set<string>();
   const usedClaims = new Set<string>();
   const todayIso = today.toISOString().slice(0, 10);
@@ -147,6 +152,28 @@ export function validateCatalog(files: { file: string; data: ContentFileT }[], t
     if (min >= max) err(file, id, `${label} minimum ${minText} must be below maximum ${maxText}`);
     return { min, max };
   };
+
+  // ---- Timing rules ----
+  for (const { file, record: t } of rules) {
+    checkDate(file, t.id, t.checked, 'checked date');
+    refClaims(file, t.id, t.claims, 'timing claims');
+    if (t.basis === 'source' && t.claims.length === 0) err(file, t.id, 'a source-based timing rule needs at least one claim');
+    if (t.window.basis === 'source' && t.basis !== 'source') err(file, t.id, 'a source-based window needs a source-based rule');
+    if ((t.ageMin === undefined) !== (t.ageMax === undefined)) err(file, t.id, 'give both ageMin and ageMax, or neither');
+    if (t.ageMin && t.ageMax) ageRange(file, t.id, t.ageMin, t.ageMax, 'timing rule age');
+    if (t.condition && t.fit !== 'avoid' && t.fit !== 'later') err(file, t.id, 'a condition-limited rule must be "avoid" or "later"');
+    if (t.match && t.basis === 'source' && t.fit === 'avoid' && !t.condition) {
+      // Blanket exclusions by profile are too broad to attribute to a source; list the records instead.
+      err(file, t.id, 'a policy (match) rule cannot be a source-based "avoid"; reference it from the specific activities');
+    }
+    if (t.match) usedRules.add(t.id);
+  }
+
+  const policyRules = rules.map((r) => r.record).filter((r) => r.match);
+  const effectiveRules = (listed: readonly string[], stimulation: string) => [
+    ...listed.map((id) => ruleById.get(id)).filter((r): r is TimingRule => Boolean(r)),
+    ...policyRules.filter((r) => r.match!.stimulation.includes(stimulation as never)),
+  ];
 
   // ---- Activities ----
   for (const { file, record: a } of activities) {
@@ -204,6 +231,39 @@ export function validateCatalog(files: { file: string; data: ContentFileT }[], t
       }
     }
     if (a.kind === 'outing' && !a.outing) err(file, a.id, 'kind "outing" requires outing: true');
+
+    // Timing profile
+    const listed = new Set<string>();
+    for (const id of a.timing.rules) {
+      const rule = ruleById.get(id);
+      if (listed.has(id)) err(file, a.id, `timing rule ${id} listed twice`);
+      listed.add(id);
+      usedRules.add(id);
+      if (!rule) {
+        err(file, a.id, `unknown timing rule ${id}`);
+        continue;
+      }
+      if (rule.match) err(file, a.id, `${id} is a policy rule (it has match); it applies automatically and must not be listed`);
+      if (rule.ageMin && rule.ageMax) {
+        const lo = ageStringToDays(rule.ageMin);
+        const hi = ageStringToDays(rule.ageMax);
+        if (hi <= min || lo >= ageStringToDays(a.ageMax)) err(file, a.id, `${id} covers ${rule.ageMin}–${rule.ageMax}, which doesn't overlap this activity's ages`);
+      }
+    }
+    if (a.timing.stimulation === 'settling' && (a.noise !== 'quiet' || a.mess === 'medium' || a.mess === 'high')) {
+      err(file, a.id, 'stimulation "settling" needs quiet noise and little or no mess');
+    }
+    if ((a.noise === 'loud' || a.mess === 'high') && (a.timing.stimulation === 'settling' || a.timing.stimulation === 'gentle')) {
+      err(file, a.id, 'loud or very messy activities must be "lively" (or "variable")');
+    }
+    if (a.tummyTime) {
+      const eff = effectiveRules(a.timing.rules, a.timing.stimulation);
+      for (const when of ['before', 'after'] as const) {
+        if (!eff.some((r) => r.event === 'milk-feed' && r.when === when && r.fit === 'avoid' && !r.condition)) {
+          err(file, a.id, `tummy-time records need an "avoid" milk-feed rule for ${when} a feed (HSE advice applies to every position)`);
+        }
+      }
+    }
     if (a.supervision.proximity === 'holding' && a.supervision.handsOn === 'none') {
       err(file, a.id, 'holding proximity implies hands-on supervision');
     }
@@ -286,7 +346,21 @@ export function validateCatalog(files: { file: string; data: ContentFileT }[], t
     checkDate(file, p.id, p.checked, 'checked date');
     const ages = p.ages.map(ageStringToDays);
     const distinct = new Set<string>();
+    let host: { who: 'c1' | 'c2' | 'both' } | null = null;
     for (const seg of p.segments) {
+      if (seg.kind === 'routine') {
+        if (seg.who !== 'both' && ages.length === 1 && seg.who === 'c2') err(file, p.id, 'a one-child plan has no c2');
+        if ((seg.routine === 'meal' || seg.routine === 'snack') && seg.who !== 'both') {
+          const d = seg.who === 'c2' ? ages[1] : ages[0];
+          if (d !== undefined && d < monthsToDays(6)) err(file, p.id, 'meal/snack blocks are not for babies under 6 months');
+        }
+        if ((seg.routine === 'meal' || seg.routine === 'snack') && seg.who === 'both' && ages.some((d) => d < monthsToDays(6))) {
+          err(file, p.id, 'meal/snack blocks are not for babies under 6 months');
+        }
+        if (seg.settle !== undefined && seg.routine !== 'nap') err(file, p.id, 'settle applies to nap blocks only');
+        host = { who: seg.who };
+        continue;
+      }
       if (seg.kind === 'activity') {
         distinct.add(seg.ref);
         const act = activityById.get(seg.ref);
@@ -294,14 +368,26 @@ export function validateCatalog(files: { file: string; data: ContentFileT }[], t
           err(file, p.id, `unknown activity ${seg.ref}`);
           continue;
         }
-        if (ages.length !== 1) err(file, p.id, `two-child plans must use recipes, not single activity ${seg.ref}`);
+        let childAges = ages;
+        if (ages.length === 2) {
+          if (!seg.along || !seg.who) {
+            err(file, p.id, `two-child plans use recipes, or a single activity alongside the other child's routine block (${seg.ref})`);
+          } else if (!host || host.who === 'both' || host.who === seg.who) {
+            err(file, p.id, `${seg.ref} runs alongside a routine block, which must be for the other child`);
+          }
+          childAges = seg.who === 'c2' ? [ages[1]] : [ages[0]];
+        } else if (seg.along || seg.who === 'c2') {
+          err(file, p.id, `one-child plans can't use along/who on ${seg.ref}`);
+        }
         if (seg.minutes < act.duration.min || seg.minutes > act.duration.max) {
           err(file, p.id, `${seg.ref} minutes ${seg.minutes} outside ${act.duration.min}–${act.duration.max}`);
         }
         const aMin = ageStringToDays(act.ageMin);
         const aMax = ageStringToDays(act.ageMax);
-        if (!ages.every((d) => d >= aMin && d < aMax)) err(file, p.id, `${seg.ref} is not age-eligible for ${p.ages.join(', ')}`);
+        if (!childAges.every((d) => d >= aMin && d < aMax)) err(file, p.id, `${seg.ref} is not age-eligible for ${p.ages.join(', ')}`);
+        if (!seg.along) host = null;
       } else if (seg.kind === 'recipe') {
+        host = null;
         distinct.add(seg.ref);
         const rec = recipeById.get(seg.ref);
         if (!rec) {
@@ -318,6 +404,8 @@ export function validateCatalog(files: { file: string; data: ContentFileT }[], t
             d >= ageStringToDays(role.ageMin) && d < ageStringToDays(role.ageMax);
           if (!(fits(rec.younger, a) && fits(rec.older, b))) err(file, p.id, `${seg.ref} roles do not fit ages ${p.ages.join(', ')}`);
         }
+      } else {
+        host = null;
       }
     }
     if (distinct.size < 2) err(file, p.id, 'a starter plan must be a sequence of at least two different activities or recipes');
@@ -330,11 +418,15 @@ export function validateCatalog(files: { file: string; data: ContentFileT }[], t
   for (const { file, record } of sources) {
     if (!usedSources.has(record.id)) warn(file, record.id, 'source is not referenced by any claim');
   }
+  for (const { file, record } of rules) {
+    if (!usedRules.has(record.id)) warn(file, record.id, 'timing rule is not referenced by any activity');
+  }
 
   return {
     catalog: {
       sources: sources.map((s) => s.record),
       claims: claims.map((c) => c.record),
+      timingRules: rules.map((r) => r.record),
       activities: activities.map((a) => a.record),
       recipes: recipes.map((r) => r.record),
       starterPlans: plans.map((p) => p.record),

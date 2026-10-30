@@ -7,7 +7,7 @@
  */
 import { useEffect, useState } from 'react';
 import data from '../generated/catalog.json';
-import type { Activity, Claim, MixedAgeRecipe, Source, StarterPlan } from './schema.ts';
+import type { Activity, Claim, MixedAgeRecipe, Source, StarterPlan, TimingRule } from './schema.ts';
 import type { Catalog } from './validate.ts';
 
 export interface IndexedCatalog extends Catalog {
@@ -16,6 +16,7 @@ export interface IndexedCatalog extends Catalog {
   claimById: Map<string, Claim>;
   sourceById: Map<string, Source>;
   planById: Map<string, StarterPlan>;
+  timingRuleById: Map<string, TimingRule>;
 }
 
 export function indexCatalog(c: Catalog): IndexedCatalog {
@@ -26,6 +27,7 @@ export function indexCatalog(c: Catalog): IndexedCatalog {
     claimById: new Map(c.claims.map((x) => [x.id, x])),
     sourceById: new Map(c.sources.map((s) => [s.id, s])),
     planById: new Map(c.starterPlans.map((p) => [p.id, p])),
+    timingRuleById: new Map(c.timingRules.map((t) => [t.id, t])),
   };
 }
 

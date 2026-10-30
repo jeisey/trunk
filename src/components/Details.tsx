@@ -1,22 +1,49 @@
-import type { Activity, MixedAgeRecipe } from '../content/schema.ts';
+import type { Ability, Activity, MixedAgeRecipe } from '../content/schema.ts';
 import { activityClaims, recipeClaims, useEvidence, type IndexedCatalog } from '../content/catalog.ts';
 import { ageStringToDays, formatAge, monthsToDays, type EnteredAge } from '../lib/age.ts';
-import { activityFitsAge } from '../lib/eligibility.ts';
+import { activityFitsAge, recipeAssignment } from '../lib/eligibility.ts';
 import { toDays } from '../lib/age.ts';
 import { isBusyNearbyCompatible } from '../lib/supervision.ts';
-import { ABILITY_LABEL, activityAges, adultText, attentionNote, durationText, EFFORT_LABEL, EVIDENCE_LABEL, recipeAges } from '../lib/labels.ts';
+import { ABILITY_LABEL, activityAges, adultText, attentionNote, durationText, recipeAges } from '../lib/labels.ts';
+import { findingsFor, rulesFor, spanOf, type ChildTiming } from '../lib/timing.ts';
 import { ClaimBlock, EvidenceDetails } from './Evidence.tsx';
 import { activityHref, childName } from './IdeaCards.tsx';
+import { TimingSection } from './Cues.tsx';
 import { TummyTimeGuide } from './TummyTimeGuide.tsx';
-import { recipeAssignment } from '../lib/eligibility.ts';
 
 const SUN_UNDER_6M = 'If you do this outside: AAP (2026) says keep babies under 6 months out of direct and indirect sun, in full shade, and not outside 10 a.m.–4 p.m.';
+
+const ENERGY_SHORT: Record<Activity['effort'], string> = { low: 'Low', medium: 'Some', high: 'Active' };
 
 function BackLink({ onBack }: { onBack: () => void }) {
   return (
     <button type="button" className="quiet-button back" onClick={onBack}>
       ← Back
     </button>
+  );
+}
+
+function Facts({ items }: { items: [string, string][] }) {
+  return (
+    <dl className="inline-facts">
+      {items.map(([k, v]) => (
+        <div key={k}>
+          <dt>{k}</dt>
+          <dd>{v}</dd>
+        </div>
+      ))}
+    </dl>
+  );
+}
+
+function StickyAdd({ onAdd, hint, label = 'Add to plan' }: { onAdd?: () => void; hint?: string; label?: string }) {
+  if (!onAdd) return hint ? <p className="add-hint">{hint}</p> : null;
+  return (
+    <div className="sticky-add">
+      <button type="button" className="primary" onClick={onAdd}>
+        {label}
+      </button>
+    </div>
   );
 }
 
@@ -49,62 +76,70 @@ function MediaNote({ c, a, childAge }: { c: IndexedCatalog; a: Activity; childAg
   );
 }
 
+/** Rules that apply right now, from the finder's momentary "Just fed" / "Nap soon" (never stored). */
+function appliesNow(c: IndexedCatalog, a: Activity, now: ChildTiming | undefined): Set<string> {
+  if (!now) return new Set();
+  const span = spanOf(0, a.setupMinutes, a.duration.default, a.cleanupMinutes);
+  return new Set(findingsFor(rulesFor(c, a.timing.stimulation, a.timing.rules), span, now).map((f) => f.ruleId));
+}
+
+/** Rules relevant to a child of this age (age-limited rules outside it are left out). */
+function rulesForAge(c: IndexedCatalog, a: Activity, days: number | null) {
+  return rulesFor(c, a.timing.stimulation, a.timing.rules).filter(
+    (r) =>
+      days === null ||
+      ((!r.ageMin || !r.ageMax || (days >= ageStringToDays(r.ageMin) && days < ageStringToDays(r.ageMax))) &&
+        // Meal and snack blocks are only for children already eating solids (6 months and older).
+        !(r.event === 'meal' && days < monthsToDays(6))),
+  );
+}
+
 export function ActivityDetail({
   c,
   a,
   childAge,
+  now,
   onBack,
   onAdd,
+  addHint,
 }: {
   c: IndexedCatalog;
   a: Activity;
   childAge?: EnteredAge;
+  /** The finder's momentary context for this child, if any. */
+  now?: ChildTiming;
   onBack: () => void;
   onAdd?: () => void;
+  /** Why there's no "Add to plan" here, when that isn't obvious. */
+  addHint?: string;
 }) {
   const attention = attentionNote(a.supervision);
-  const fits = childAge ? activityFitsAge(a, toDays(childAge)) : true;
+  const days = childAge ? toDays(childAge) : null;
+  const fits = days !== null ? activityFitsAge(a, days) : true;
+  const facts: [string, string][] = [['Estimated time', durationText(a.duration)], ['Setup', a.setupMinutes ? `${a.setupMinutes} min` : 'none']];
+  if (a.cleanupMinutes) facts.push(['Tidy', `${a.cleanupMinutes} min`]);
+  facts.push(['Your energy', ENERGY_SHORT[a.effort]]);
   return (
     <article className="page detail">
       <BackLink onBack={onBack} />
       <h1>{a.title}</h1>
       <p className="lede">{a.summary}</p>
       {a.retired && <p className="banner">This activity has been retired from Trunk: {a.retired.reason}</p>}
-      {childAge && !fits && !a.retired && (
-        <p className="banner">This one is meant for {activityAges(a)}, not {formatAge(childAge)}.</p>
-      )}
-      <dl className="meta-grid">
-        <div>
-          <dt>Time (estimate)</dt>
-          <dd>{durationText(a.duration)}</dd>
-        </div>
-        <div>
-          <dt>Setup / tidy</dt>
-          <dd>
-            {a.setupMinutes} min / {a.cleanupMinutes} min
-          </dd>
-        </div>
-        <div>
-          <dt>You</dt>
-          <dd>
-            {adultText(a.supervision)}
-            {attention ? ` · ${attention}` : ''}
-          </dd>
-        </div>
-        <div>
-          <dt>Your energy</dt>
-          <dd>{EFFORT_LABEL[a.effort]}</dd>
-        </div>
-      </dl>
+      {childAge && !fits && !a.retired && <p className="banner">This one is meant for {activityAges(a)}, not {formatAge(childAge)}.</p>}
+      <Facts items={facts} />
 
-      <section aria-labelledby="setup-h">
-        <h2 id="setup-h">Setup</h2>
-        <p style={{ margin: 0 }}>
-          {a.materials.items.length ? a.materials.items.join(' · ') : 'Nothing needed.'}
-          <br />
-          <span className="subtle">{a.supervision.space}</span>
+      <div className="brief">
+        <p>
+          <span className="k">You need</span> {a.materials.items.length ? a.materials.items.join(' · ') : 'Nothing'}
         </p>
-      </section>
+        <p className="subtle">{a.supervision.space}</p>
+        <p className="your-part">
+          <span className="k">Your part</span> {adultText(a.supervision)}
+          {attention ? `. ${attention}.` : '.'}
+        </p>
+      </div>
+
+      <TimingSection c={c} groups={[{ rules: rulesForAge(c, a, days) }]} now={appliesNow(c, a, now)} knownChild={days !== null} />
 
       <section aria-labelledby="steps-h">
         <h2 id="steps-h">Steps</h2>
@@ -113,6 +148,16 @@ export function ActivityDetail({
             <li key={s}>{s}</li>
           ))}
         </ol>
+      </section>
+
+      <section className="safety-box" aria-labelledby="safety-h">
+        <h2 id="safety-h">Safety</h2>
+        <ul>
+          {a.safety.map((s) => (
+            <li key={s.text}>{s.text}</li>
+          ))}
+          {days !== null && days < monthsToDays(6) && a.places.includes('outdoors') && !a.hazards.includes('sun-weather') && <li>{SUN_UNDER_6M}</li>}
+        </ul>
       </section>
 
       <section aria-labelledby="stop-h">
@@ -124,58 +169,39 @@ export function ActivityDetail({
         </ul>
       </section>
 
-      <section className="safety-box" aria-labelledby="safety-h">
-        <h2 id="safety-h">Safety</h2>
-        <ul>
-          {a.safety.map((s) => (
-            <li key={s.text}>{s.text}</li>
-          ))}
-          {childAge && toDays(childAge) < monthsToDays(6) && a.places.includes('outdoors') && !a.hazards.includes('sun-weather') && <li>{SUN_UNDER_6M}</li>}
-        </ul>
-      </section>
-
-      {onAdd && (
-        <div className="button-row" style={{ marginTop: 14 }}>
-          <button type="button" onClick={onAdd}>
-            Add to my plan
-          </button>
-        </div>
-      )}
-
-      <section aria-labelledby="adapt-h">
-        <h2 id="adapt-h">Adjust it</h2>
-        <ul className="bullets">
-          {a.adaptations.map((s) => (
-            <li key={s}>{s}</li>
-          ))}
-        </ul>
-      </section>
-
-      {a.why && (
-        <section aria-labelledby="why-h">
-          <h2 id="why-h">Why it can help</h2>
-          <p>{a.why.text}</p>
-        </section>
-      )}
-
       {a.tummyTime && <TummyTimeGuide c={c} position={a.tummyTime.position} flatSurface={a.tummyTime.flatSurface} />}
       {a.kind === 'media' && <MediaNote c={c} a={a} childAge={childAge} />}
 
-      <section aria-labelledby="ready-h">
-        <h2 id="ready-h">Who it’s for</h2>
-        <p style={{ marginBottom: 4 }}>
-          {activityAges(a)}
-          {a.readiness.abilities.length ? `, once your child ${a.readiness.abilities.map((x) => ABILITY_LABEL[x]).join(' and ')}` : ''}.
-        </p>
-        {a.readiness.notes.map((n) => (
-          <p key={n} className="subtle" style={{ marginBottom: 4 }}>
-            {n}
+      <StickyAdd onAdd={onAdd} hint={addHint} />
+
+      <div className="disclosures">
+        <details className="more">
+          <summary>Make it easier or harder</summary>
+          <ul className="bullets">
+            {a.adaptations.map((s) => (
+              <li key={s}>{s}</li>
+            ))}
+          </ul>
+        </details>
+        {a.why && (
+          <details className="more">
+            <summary>Why it can help</summary>
+            <p>{a.why.text}</p>
+          </details>
+        )}
+        <details className="more">
+          <summary>Who it’s for</summary>
+          <p>
+            {activityAges(a)}
+            {a.readiness.abilities.length ? `, once your child ${a.readiness.abilities.map((x) => ABILITY_LABEL[x]).join(' and ')}` : ''}.
           </p>
-        ))}
-        <p className="tiny">
-          {EVIDENCE_LABEL[a.evidence.type].short}. Age is a starting point, not a deadline or a guarantee.
-        </p>
-      </section>
+          {a.readiness.notes.map((n) => (
+            <p key={n} className="subtle">
+              {n}
+            </p>
+          ))}
+        </details>
+      </div>
 
       <EvidenceDetails claims={() => activityClaims(c, a)} c={c} evidenceType={a.evidence.type} checked={a.checked} />
     </article>
@@ -185,49 +211,59 @@ export function ActivityDetail({
 export function RecipeDetail({
   c,
   r,
-  ages,
+  kids,
+  now,
   onBack,
   onAdd,
 }: {
   c: IndexedCatalog;
   r: MixedAgeRecipe;
-  ages: EnteredAge[];
+  /** The parent's children (age and the readiness they marked "not yet"). */
+  kids: { age: EnteredAge; notYet: Ability[] }[];
+  /** Momentary context per child (index matches `kids`). */
+  now?: (ChildTiming | undefined)[];
   onBack: () => void;
   onAdd?: () => void;
 }) {
+  const ages = kids.map((k) => k.age);
   const youngerAct = c.activityById.get(r.younger.activity);
   const olderAct = c.activityById.get(r.older.activity);
-  const assignment =
-    ages.length === 2
-      ? recipeAssignment(r, { days: toDays(ages[0]), notYet: [] }, { days: toDays(ages[1]), notYet: [] })
-      : null;
+  // The same check the Add button uses: ages and the readiness the parent marked.
+  const assignment = kids.length === 2 ? recipeAssignment(r, { days: toDays(ages[0]), notYet: kids[0].notYet }, { days: toDays(ages[1]), notYet: kids[1].notYet }) : null;
+  const byAgeOnly = kids.length === 2 ? recipeAssignment(r, { days: toDays(ages[0]), notYet: [] }, { days: toDays(ages[1]), notYet: [] }) : null;
+  const olderIdx = assignment === null ? null : assignment === 0 ? 1 : 0;
   const youngerName = assignment === null ? 'Younger child' : `${childName(assignment)} (${formatAge(ages[assignment])})`;
-  const olderName = assignment === null ? 'Older child' : `${childName(assignment === 0 ? 1 : 0)} (${formatAge(ages[assignment === 0 ? 1 : 0])})`;
+  const olderName = olderIdx === null ? 'Older child' : `${childName(olderIdx)} (${formatAge(ages[olderIdx])})`;
+  const youngerShort = assignment === null ? 'Younger child' : childName(assignment);
+  const olderShort = olderIdx === null ? 'Older child' : childName(olderIdx);
   const tummy = youngerAct?.tummyTime;
+  // The pairing's own sourced safety notes already cover sun when a role carries the sun hazard.
+  const sunCovered = [youngerAct, olderAct].some((x) => x?.hazards.includes('sun-weather')) || r.safety.some((x) => /\bsun\b|shade/i.test(x.text));
+  const groups = [
+    youngerAct && { label: youngerShort, rules: rulesForAge(c, youngerAct, assignment === null ? null : toDays(ages[assignment])) },
+    olderAct && { label: olderShort, rules: rulesForAge(c, olderAct, olderIdx === null ? null : toDays(ages[olderIdx])) },
+  ].filter((g): g is { label: string; rules: ReturnType<typeof rulesFor> } => Boolean(g));
+  const nowIds = new Set<string>();
+  if (assignment !== null && olderIdx !== null) {
+    if (youngerAct) appliesNow(c, youngerAct, now?.[assignment]).forEach((id) => nowIds.add(id));
+    if (olderAct) appliesNow(c, olderAct, now?.[olderIdx]).forEach((id) => nowIds.add(id));
+  }
   return (
     <article className="page detail">
       <BackLink onBack={onBack} />
-      <span className="tag blue">{r.mode === 'together' ? 'Together' : 'Side by side'}</span>
-      <h1 style={{ marginTop: 6 }}>{r.title}</h1>
+      <h1>{r.title}</h1>
       <p className="lede">{r.summary}</p>
       {r.retired && <p className="banner">This pairing has been retired from Trunk: {r.retired.reason}</p>}
-      {ages.length === 2 && assignment === null && <p className="banner">This pairing is meant for {recipeAges(r)}.</p>}
-      <dl className="meta-grid">
-        <div>
-          <dt>Time (estimate)</dt>
-          <dd>{durationText(r.duration)}</dd>
-        </div>
-        <div>
-          <dt>Setup / tidy</dt>
-          <dd>
-            {r.setupMinutes} min / {r.cleanupMinutes} min (once)
-          </dd>
-        </div>
-        <div>
-          <dt>Adults</dt>
-          <dd>{r.adult.minAdults === 1 ? 'One adult' : 'Two adults'}</dd>
-        </div>
-      </dl>
+      {kids.length === 2 && assignment === null && byAgeOnly === null && <p className="banner">This pairing is meant for {recipeAges(r)}.</p>}
+      {kids.length === 2 && assignment === null && byAgeOnly !== null && <p className="banner">This pairing needs something one of your children isn’t doing yet (you marked it under Readiness on Find).</p>}
+      <Facts
+        items={[
+          ['How', r.mode === 'together' ? 'Together' : 'Side by side'],
+          ['Estimated time', durationText(r.duration)],
+          ['Setup', r.setupMinutes ? `${r.setupMinutes} min, once` : 'none'],
+          ['Adults', r.adult.minAdults === 1 ? 'One' : 'Two'],
+        ]}
+      />
 
       <section aria-labelledby="roles-h">
         <h2 id="roles-h">Who does what</h2>
@@ -253,20 +289,20 @@ export function RecipeDetail({
             )}
           </div>
           <div className="role adult">
-            <h3>You</h3>
+            <h3>Your part</h3>
             <p>{r.adult.does}</p>
           </div>
         </div>
       </section>
 
-      <section aria-labelledby="setup-h">
-        <h2 id="setup-h">Setup and space</h2>
-        <p style={{ margin: 0 }}>
-          {r.sharedSetup}
-          <br />
-          <span className="subtle">{r.space}</span>
+      <div className="brief">
+        <p>
+          <span className="k">You need</span> {r.sharedSetup}
         </p>
-      </section>
+        <p className="subtle">{r.space}</p>
+      </div>
+
+      <TimingSection c={c} groups={groups} now={nowIds} knownChild={assignment !== null} />
 
       <section aria-labelledby="steps-h">
         <h2 id="steps-h">Steps</h2>
@@ -275,6 +311,17 @@ export function RecipeDetail({
             <li key={s}>{s}</li>
           ))}
         </ol>
+      </section>
+
+      <section className="safety-box" aria-labelledby="safety-h">
+        <h2 id="safety-h">Safety</h2>
+        <ul>
+          {r.safety.map((s) => (
+            <li key={s.text}>{s.text}</li>
+          ))}
+          {!r.safety.some((x) => /playmate|in charge/i.test(x.text)) && <li>An older child is a playmate, never the one in charge of the baby.</li>}
+          {r.places.includes('outdoors') && ageStringToDays(r.younger.ageMin) < monthsToDays(6) && !sunCovered && <li>{SUN_UNDER_6M}</li>}
+        </ul>
       </section>
 
       <section aria-labelledby="stop-h">
@@ -286,32 +333,16 @@ export function RecipeDetail({
         </ul>
       </section>
 
-      <section className="safety-box" aria-labelledby="safety-h">
-        <h2 id="safety-h">Safety</h2>
-        <ul>
-          {r.safety.map((s) => (
-            <li key={s.text}>{s.text}</li>
-          ))}
-          <li>An older child is a playmate, never the one in charge of the baby.</li>
-          {r.places.includes('outdoors') && ageStringToDays(r.younger.ageMin) < monthsToDays(6) && <li>{SUN_UNDER_6M}</li>}
-        </ul>
-      </section>
-
-      {onAdd && (
-        <div className="button-row" style={{ marginTop: 14 }}>
-          <button type="button" onClick={onAdd}>
-            Add to my plan
-          </button>
-        </div>
-      )}
-
       {tummy && <TummyTimeGuide c={c} position={tummy.position} flatSurface={tummy.flatSurface} />}
 
-      <section aria-labelledby="ready-h">
-        <h2 id="ready-h">Who it’s for</h2>
-        <p>{recipeAges(r)}.</p>
-        <p className="tiny">A curated pairing: Trunk only suggests two-child activities that were checked for one adult’s supervision.</p>
-      </section>
+      <StickyAdd onAdd={onAdd} />
+
+      <div className="disclosures">
+        <details className="more">
+          <summary>Who it’s for</summary>
+          <p>{recipeAges(r)}.</p>
+        </details>
+      </div>
 
       <EvidenceDetails claims={() => recipeClaims(c, r)} c={c} checked={r.checked} />
     </article>

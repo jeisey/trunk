@@ -1,0 +1,687 @@
+{
+  "scenario": {
+    "description": "A 4-month-old with one adult. The parent placed a milk feed at the start and a nap later; Trunk fills the rest. Timing rules are fixture copies of Trunk's core rules (editorial windows).",
+    "kids": [
+      {
+        "age": {
+          "value": 4,
+          "unit": "m"
+        },
+        "notYet": []
+      }
+    ],
+    "settings": {
+      "energy": "some",
+      "place": "indoors",
+      "mode": "either",
+      "adults": 1
+    },
+    "start": "09:00",
+    "window": 180,
+    "keep": [
+      {
+        "id": "feed1",
+        "kind": "routine",
+        "minutes": 20,
+        "who": "c1",
+        "routine": "milk-feed",
+        "at": 0
+      },
+      {
+        "id": "nap1",
+        "kind": "routine",
+        "minutes": 45,
+        "who": "c1",
+        "routine": "nap",
+        "at": 90,
+        "settle": 10
+      }
+    ],
+    "seeds": [
+      0,
+      1,
+      2,
+      3,
+      4,
+      5,
+      6,
+      7,
+      8,
+      9
+    ],
+    "reportSeed": 1
+  },
+  "content": {
+    "schema": 2,
+    "workstream": "fixture",
+    "description": "Feed-and-nap planner scenario: one baby, a milk feed early and a nap later.",
+    "sources": [
+      {
+        "id": "src.aap-hc.back-to-sleep-tummy-to-play",
+        "url": "https://www.healthychildren.org/English/ages-stages/baby/sleep/Pages/Back-to-Sleep-Tummy-to-Play.aspx",
+        "org": "American Academy of Pediatrics (HealthyChildren.org)",
+        "title": "Back to Sleep, Tummy to Play: Give Your Baby a Safe, Strong Start",
+        "jurisdiction": "US",
+        "checked": "2026-10-28",
+        "updated": "2026-09-08",
+        "notes": "Page footer: last updated 9/8/2026; adapted from AAP Back to Sleep, Tummy to Play (2026)."
+      }
+    ],
+    "claims": [
+      {
+        "id": "clm.core.tummy-awake-supervised",
+        "kind": "safety",
+        "text": "Tummy time is only for when your baby is awake and an adult is watching closely the whole time.",
+        "sources": [
+          "src.aap-hc.back-to-sleep-tummy-to-play"
+        ],
+        "locator": "AAP Back to Sleep: 'The basics of safe sleep & tummy time', item 2; HSE: 'Safety' do-list; AAP safe sleep guide: tummy time section",
+        "paraphrase": "AAP describes tummy time as for babies who are awake and closely supervised, and says an awake adult should supervise. HSE says always stay with your baby and keep them awake and supervised on their tummy.",
+        "scope": "All infants; US (AAP) and Ireland (HSE) public guidance agree."
+      },
+      {
+        "id": "clm.core.tummy-builds-strength",
+        "kind": "description",
+        "text": "Tummy time helps babies build the neck, shoulder, and back strength they use for rolling, sitting, and crawling.",
+        "sources": [
+          "src.aap-hc.back-to-sleep-tummy-to-play"
+        ],
+        "locator": "AAP Back to Sleep: 'Tummy to play'; HSE: opening paragraph; Children's Wisconsin: 'Why is tummy time important?'",
+        "paraphrase": "All three describe tummy time as building muscles babies need to roll, sit, and crawl; Children's Wisconsin adds back, neck, and shoulder muscles and using eyes and hands together.",
+        "scope": "General infant guidance; describes purpose, not a guaranteed outcome or timeline."
+      }
+    ],
+    "timingRules": [
+      {
+        "id": "tim.core.fixture-tummy-after-feed",
+        "rev": 1,
+        "event": "milk-feed",
+        "when": "after",
+        "window": {
+          "minutes": 30,
+          "basis": "editorial"
+        },
+        "fit": "avoid",
+        "basis": "editorial",
+        "claims": [],
+        "cue": "Not right after a feed",
+        "reason": "Fixture rule (editorial window): keep tummy time out of the 30 minutes after a feed ends.",
+        "checked": "2026-10-29"
+      },
+      {
+        "id": "tim.core.fixture-tummy-before-feed",
+        "rev": 1,
+        "event": "milk-feed",
+        "when": "before",
+        "window": {
+          "minutes": 15,
+          "basis": "editorial"
+        },
+        "fit": "avoid",
+        "basis": "editorial",
+        "claims": [],
+        "cue": "Not right before a feed",
+        "reason": "Fixture rule (editorial window): keep tummy time out of the 15 minutes before a feed starts.",
+        "checked": "2026-10-29"
+      },
+      {
+        "id": "tim.core.fixture-wind-down",
+        "rev": 1,
+        "event": "nap",
+        "when": "before",
+        "window": {
+          "minutes": 30,
+          "basis": "editorial"
+        },
+        "fit": "preferred",
+        "basis": "editorial",
+        "claims": [],
+        "match": {
+          "stimulation": [
+            "settling"
+          ]
+        },
+        "cue": "Good for winding down",
+        "reason": "Fixture policy (Trunk's convention): settling ideas suit the half hour before a nap.",
+        "checked": "2026-10-29"
+      },
+      {
+        "id": "tim.core.fixture-lively-earlier",
+        "rev": 1,
+        "event": "nap",
+        "when": "before",
+        "window": {
+          "minutes": 30,
+          "basis": "editorial"
+        },
+        "fit": "later",
+        "basis": "editorial",
+        "claims": [],
+        "match": {
+          "stimulation": [
+            "lively"
+          ]
+        },
+        "cue": "Better earlier",
+        "reason": "Fixture policy (Trunk's convention): lively ideas fit better earlier than the half hour before a nap.",
+        "checked": "2026-10-29"
+      },
+      {
+        "id": "tim.core.fixture-gentle-start",
+        "rev": 1,
+        "event": "nap",
+        "when": "after",
+        "window": {
+          "minutes": 15,
+          "basis": "editorial"
+        },
+        "fit": "preferred",
+        "basis": "editorial",
+        "claims": [],
+        "match": {
+          "stimulation": [
+            "settling",
+            "gentle"
+          ]
+        },
+        "cue": "Gentle start after waking",
+        "reason": "Fixture policy (Trunk's convention): start gently after a nap.",
+        "checked": "2026-10-29"
+      },
+      {
+        "id": "tim.core.fixture-ease-in",
+        "rev": 1,
+        "event": "nap",
+        "when": "after",
+        "window": {
+          "minutes": 15,
+          "basis": "editorial"
+        },
+        "fit": "later",
+        "basis": "editorial",
+        "claims": [],
+        "match": {
+          "stimulation": [
+            "lively"
+          ]
+        },
+        "cue": "Ease in after waking",
+        "reason": "Fixture policy (Trunk's convention): lively ideas fit better a little after waking.",
+        "checked": "2026-10-29"
+      }
+    ],
+    "activities": [
+      {
+        "id": "act.fixture-tummy-mat",
+        "rev": 1,
+        "title": "Floor tummy time on a mat",
+        "summary": "Your baby on their tummy on a firm mat, with you face to face.",
+        "kind": "play",
+        "ageMin": "1w",
+        "ageMax": "12m",
+        "readiness": {
+          "abilities": [],
+          "notes": []
+        },
+        "goals": [
+          "gross-motor"
+        ],
+        "intents": [
+          "move",
+          "connect"
+        ],
+        "places": [
+          "indoors"
+        ],
+        "spaces": [
+          "floor"
+        ],
+        "outing": false,
+        "materials": {
+          "level": "household",
+          "items": [
+            "A clear patch of floor"
+          ]
+        },
+        "setupMinutes": 1,
+        "cleanupMinutes": 0,
+        "duration": {
+          "min": 2,
+          "default": 5,
+          "max": 10
+        },
+        "effort": "low",
+        "supervision": {
+          "participation": "leads",
+          "proximity": "arms-reach",
+          "handsOn": "intermittent",
+          "minAdults": 1,
+          "shareable": true,
+          "space": "On the floor next to you."
+        },
+        "mess": "none",
+        "noise": "quiet",
+        "hazards": [
+          "suffocation"
+        ],
+        "steps": [
+          "Get down on the floor at your baby's level.",
+          "Stop when they've had enough."
+        ],
+        "adaptations": [
+          "Keep it short and follow their lead."
+        ],
+        "stopCues": [
+          "Turning away or fussing"
+        ],
+        "safety": [
+          {
+            "text": "Only while awake, with you right there.",
+            "claims": [
+              "clm.core.tummy-awake-supervised"
+            ]
+          }
+        ],
+        "tummyTime": {
+          "position": "floor",
+          "flatSurface": true
+        },
+        "why": {
+          "text": "Tummy time builds neck and shoulder strength.",
+          "claims": [
+            "clm.core.tummy-builds-strength"
+          ]
+        },
+        "timing": {
+          "stimulation": "gentle",
+          "rules": [
+            "tim.core.fixture-tummy-after-feed",
+            "tim.core.fixture-tummy-before-feed"
+          ]
+        },
+        "evidence": {
+          "type": "described",
+          "claims": [
+            "clm.core.tummy-awake-supervised"
+          ]
+        },
+        "checked": "2026-10-28"
+      },
+      {
+        "id": "act.fixture-kick-gym",
+        "rev": 1,
+        "title": "Kick and bat under a play gym",
+        "summary": "Your baby lies on their back kicking and batting at hanging toys.",
+        "kind": "play",
+        "ageMin": "1w",
+        "ageMax": "12m",
+        "readiness": {
+          "abilities": [],
+          "notes": []
+        },
+        "goals": [],
+        "intents": [
+          "move",
+          "explore"
+        ],
+        "places": [
+          "indoors"
+        ],
+        "spaces": [
+          "floor"
+        ],
+        "outing": false,
+        "materials": {
+          "level": "household",
+          "items": [
+            "A clear patch of floor"
+          ]
+        },
+        "setupMinutes": 1,
+        "cleanupMinutes": 1,
+        "duration": {
+          "min": 5,
+          "default": 10,
+          "max": 15
+        },
+        "effort": "low",
+        "supervision": {
+          "participation": "joins",
+          "proximity": "arms-reach",
+          "handsOn": "intermittent",
+          "minAdults": 1,
+          "shareable": true,
+          "space": "On the floor next to you."
+        },
+        "mess": "none",
+        "noise": "moderate",
+        "hazards": [],
+        "steps": [
+          "Get down on the floor at your baby's level.",
+          "Stop when they've had enough."
+        ],
+        "adaptations": [
+          "Keep it short and follow their lead."
+        ],
+        "stopCues": [
+          "Turning away or fussing"
+        ],
+        "safety": [
+          {
+            "text": "Only while awake, with you right there.",
+            "claims": []
+          }
+        ],
+        "timing": {
+          "stimulation": "lively",
+          "rules": []
+        },
+        "evidence": {
+          "type": "practical",
+          "claims": []
+        },
+        "checked": "2026-10-28"
+      },
+      {
+        "id": "act.fixture-lullaby-rock",
+        "rev": 1,
+        "title": "Lullaby and slow rock",
+        "summary": "Hold your baby close and sing slowly while you rock.",
+        "kind": "play",
+        "ageMin": "1w",
+        "ageMax": "12m",
+        "readiness": {
+          "abilities": [],
+          "notes": []
+        },
+        "goals": [],
+        "intents": [
+          "calm",
+          "connect"
+        ],
+        "places": [
+          "indoors"
+        ],
+        "spaces": [
+          "floor"
+        ],
+        "outing": false,
+        "materials": {
+          "level": "household",
+          "items": [
+            "A clear patch of floor"
+          ]
+        },
+        "setupMinutes": 0,
+        "cleanupMinutes": 0,
+        "duration": {
+          "min": 3,
+          "default": 8,
+          "max": 12
+        },
+        "effort": "low",
+        "supervision": {
+          "participation": "leads",
+          "proximity": "holding",
+          "handsOn": "continuous",
+          "minAdults": 1,
+          "shareable": true,
+          "space": "On the floor next to you."
+        },
+        "mess": "none",
+        "noise": "quiet",
+        "hazards": [],
+        "steps": [
+          "Get down on the floor at your baby's level.",
+          "Stop when they've had enough."
+        ],
+        "adaptations": [
+          "Keep it short and follow their lead."
+        ],
+        "stopCues": [
+          "Turning away or fussing"
+        ],
+        "safety": [
+          {
+            "text": "Only while awake, with you right there.",
+            "claims": []
+          }
+        ],
+        "timing": {
+          "stimulation": "settling",
+          "rules": []
+        },
+        "evidence": {
+          "type": "practical",
+          "claims": []
+        },
+        "checked": "2026-10-28"
+      },
+      {
+        "id": "act.fixture-contrast-cards",
+        "rev": 1,
+        "title": "High-contrast cards",
+        "summary": "Hold bold black-and-white cards where your baby can see them.",
+        "kind": "play",
+        "ageMin": "1w",
+        "ageMax": "12m",
+        "readiness": {
+          "abilities": [],
+          "notes": []
+        },
+        "goals": [],
+        "intents": [
+          "explore"
+        ],
+        "places": [
+          "indoors"
+        ],
+        "spaces": [
+          "floor"
+        ],
+        "outing": false,
+        "materials": {
+          "level": "household",
+          "items": [
+            "A clear patch of floor"
+          ]
+        },
+        "setupMinutes": 1,
+        "cleanupMinutes": 0,
+        "duration": {
+          "min": 3,
+          "default": 6,
+          "max": 10
+        },
+        "effort": "low",
+        "supervision": {
+          "participation": "leads",
+          "proximity": "arms-reach",
+          "handsOn": "intermittent",
+          "minAdults": 1,
+          "shareable": true,
+          "space": "On the floor next to you."
+        },
+        "mess": "none",
+        "noise": "quiet",
+        "hazards": [],
+        "steps": [
+          "Get down on the floor at your baby's level.",
+          "Stop when they've had enough."
+        ],
+        "adaptations": [
+          "Keep it short and follow their lead."
+        ],
+        "stopCues": [
+          "Turning away or fussing"
+        ],
+        "safety": [
+          {
+            "text": "Only while awake, with you right there.",
+            "claims": []
+          }
+        ],
+        "timing": {
+          "stimulation": "gentle",
+          "rules": []
+        },
+        "evidence": {
+          "type": "practical",
+          "claims": []
+        },
+        "checked": "2026-10-28"
+      },
+      {
+        "id": "act.fixture-mirror-chat",
+        "rev": 1,
+        "title": "Mirror chat",
+        "summary": "Sit with your baby in front of a safe mirror and chat about the faces.",
+        "kind": "play",
+        "ageMin": "1w",
+        "ageMax": "12m",
+        "readiness": {
+          "abilities": [],
+          "notes": []
+        },
+        "goals": [],
+        "intents": [
+          "connect"
+        ],
+        "places": [
+          "indoors"
+        ],
+        "spaces": [
+          "floor"
+        ],
+        "outing": false,
+        "materials": {
+          "level": "household",
+          "items": [
+            "A clear patch of floor"
+          ]
+        },
+        "setupMinutes": 1,
+        "cleanupMinutes": 0,
+        "duration": {
+          "min": 3,
+          "default": 6,
+          "max": 10
+        },
+        "effort": "low",
+        "supervision": {
+          "participation": "leads",
+          "proximity": "arms-reach",
+          "handsOn": "intermittent",
+          "minAdults": 1,
+          "shareable": true,
+          "space": "On the floor next to you."
+        },
+        "mess": "none",
+        "noise": "quiet",
+        "hazards": [],
+        "steps": [
+          "Get down on the floor at your baby's level.",
+          "Stop when they've had enough."
+        ],
+        "adaptations": [
+          "Keep it short and follow their lead."
+        ],
+        "stopCues": [
+          "Turning away or fussing"
+        ],
+        "safety": [
+          {
+            "text": "Only while awake, with you right there.",
+            "claims": []
+          }
+        ],
+        "timing": {
+          "stimulation": "gentle",
+          "rules": []
+        },
+        "evidence": {
+          "type": "practical",
+          "claims": []
+        },
+        "checked": "2026-10-28"
+      },
+      {
+        "id": "act.fixture-rattle-shake",
+        "rev": 1,
+        "title": "Rattle and drum time",
+        "summary": "Shake rattles and tap a pot together; loud and fun.",
+        "kind": "play",
+        "ageMin": "1w",
+        "ageMax": "12m",
+        "readiness": {
+          "abilities": [],
+          "notes": []
+        },
+        "goals": [],
+        "intents": [
+          "move",
+          "explore"
+        ],
+        "places": [
+          "indoors"
+        ],
+        "spaces": [
+          "floor"
+        ],
+        "outing": false,
+        "materials": {
+          "level": "household",
+          "items": [
+            "A clear patch of floor"
+          ]
+        },
+        "setupMinutes": 1,
+        "cleanupMinutes": 2,
+        "duration": {
+          "min": 4,
+          "default": 8,
+          "max": 12
+        },
+        "effort": "low",
+        "supervision": {
+          "participation": "joins",
+          "proximity": "arms-reach",
+          "handsOn": "intermittent",
+          "minAdults": 1,
+          "shareable": true,
+          "space": "On the floor next to you."
+        },
+        "mess": "none",
+        "noise": "loud",
+        "hazards": [],
+        "steps": [
+          "Get down on the floor at your baby's level.",
+          "Stop when they've had enough."
+        ],
+        "adaptations": [
+          "Keep it short and follow their lead."
+        ],
+        "stopCues": [
+          "Turning away or fussing"
+        ],
+        "safety": [
+          {
+            "text": "Only while awake, with you right there.",
+            "claims": []
+          }
+        ],
+        "timing": {
+          "stimulation": "lively",
+          "rules": []
+        },
+        "evidence": {
+          "type": "practical",
+          "claims": []
+        },
+        "checked": "2026-10-28"
+      }
+    ],
+    "recipes": [],
+    "starterPlans": []
+  }
+}

@@ -1,0 +1,9 @@
+:root {
+  --trunk-forest: #163e35;
+  --trunk-sky: #6babc4;
+  --trunk-canvas: #ffffff;
+  --trunk-text: var(--trunk-forest);
+  --trunk-action: var(--trunk-forest);
+  --trunk-on-action: #ffffff;
+}
+

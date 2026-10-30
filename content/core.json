@@ -1,5 +1,5 @@
 {
-  "schema": 1,
+  "schema": 2,
   "workstream": "core",
   "description": "Lead-owned shared registry: starting sources, cross-cutting tummy-time, safe-sleep and media claims, and the four core tummy-time activities. Workstreams reference these IDs and must not duplicate these source URLs.",
   "sources": [
@@ -58,9 +58,9 @@
       "org": "Health Service Executive (Ireland)",
       "title": "Tummy time for babies",
       "jurisdiction": "IE",
-      "checked": "2026-10-28",
+      "checked": "2026-10-29",
       "updated": "2026-05-17",
-      "notes": "Page last reviewed 17/05/2026; next review due 17/06/2029."
+      "notes": "Page last reviewed 17/05/2026; next review due 17/06/2029. HSE now also serves this page at the same path on www2.hse.ie, which its canonical link points to."
     },
     {
       "id": "src.childrens-wi.back-to-sleep-tummy-to-play",
@@ -81,6 +81,36 @@
       "checked": "2026-10-28",
       "updated": "2021-03-30",
       "notes": "Written for babies followed by a neonatal follow-up clinic after NICU/CCCU care; recommendations use corrected age."
+    },
+    {
+      "id": "src.aap-hc.why-babies-spit-up",
+      "url": "https://www.healthychildren.org/English/ages-stages/baby/feeding-nutrition/Pages/Why-Babies-Spit-Up.aspx",
+      "org": "American Academy of Pediatrics (HealthyChildren.org)",
+      "title": "Why Babies Spit Up",
+      "jurisdiction": "US",
+      "checked": "2026-10-29",
+      "updated": "2025-01-03",
+      "notes": "By Alejandro Velez, MD, FAAP, and Christine Waasdorp Hurtado, MD, FAAP. Footer: last updated 1/3/2025; source AAP Section on Gastroenterology, Hepatology and Nutrition (© 2022). Filed under Baby (0–12 months) > Nutrition."
+    },
+    {
+      "id": "src.hse.naps-babies-toddlers",
+      "url": "https://www2.hse.ie/babies-children/sleep/naps-babies-and-toddlers/",
+      "org": "Health Service Executive (Ireland)",
+      "title": "Naps for babies and toddlers",
+      "jurisdiction": "IE",
+      "checked": "2026-10-29",
+      "updated": "2026-03-27",
+      "notes": "Page last reviewed 27/03/2026; next review due 27/03/2029. Also lists nap counts, spacing between naps and a 3.30 pm cut-off by age, which Trunk deliberately does not use."
+    },
+    {
+      "id": "src.nhs.helping-baby-sleep",
+      "url": "https://www.nhs.uk/baby/caring-for-a-newborn/helping-your-baby-to-sleep/",
+      "org": "NHS (England)",
+      "title": "Helping your baby to sleep",
+      "jurisdiction": "UK",
+      "checked": "2026-10-29",
+      "updated": "2025-01-28",
+      "notes": "Page last reviewed 28 January 2025; next review due 28 January 2028. Its winding-down advice is about bedtime; the page gives no advice on activity before daytime naps."
     }
   ],
   "claims": [
@@ -88,7 +118,11 @@
       "id": "clm.core.tummy-awake-supervised",
       "kind": "safety",
       "text": "Tummy time is only for when your baby is awake and an adult is watching closely the whole time.",
-      "sources": ["src.aap-hc.back-to-sleep-tummy-to-play", "src.hse.tummy-time", "src.aap-hc.safe-sleep-guide"],
+      "sources": [
+        "src.aap-hc.back-to-sleep-tummy-to-play",
+        "src.hse.tummy-time",
+        "src.aap-hc.safe-sleep-guide"
+      ],
       "locator": "AAP Back to Sleep: 'The basics of safe sleep & tummy time', item 2; HSE: 'Safety' do-list; AAP safe sleep guide: tummy time section",
       "paraphrase": "AAP describes tummy time as for babies who are awake and closely supervised, and says an awake adult should supervise. HSE says always stay with your baby and keep them awake and supervised on their tummy.",
       "scope": "All infants; US (AAP) and Ireland (HSE) public guidance agree."
@@ -97,7 +131,11 @@
       "id": "clm.core.sleep-on-back",
       "kind": "safety",
       "text": "If your baby falls asleep during tummy, chest, lap, or carried time, move them onto their back on their own firm, flat sleep surface.",
-      "sources": ["src.aap-hc.tummy-time-activities", "src.hse.tummy-time", "src.aap-hc.safe-sleep-guide"],
+      "sources": [
+        "src.aap-hc.tummy-time-activities",
+        "src.hse.tummy-time",
+        "src.aap-hc.safe-sleep-guide"
+      ],
       "locator": "AAP 3 Tummy Time Activities: 'Activity #2: Lap Time'; HSE: 'Safety' don't-list; AAP safe sleep guide: section on babies who fall asleep in car seats, swings, carriers or slings",
       "paraphrase": "AAP says a baby who falls asleep on your lap should be transferred to bed on their back; HSE says not to let a baby sleep on their tummy and to roll them onto their back straight away; the AAP safe-sleep guide says babies who fall asleep in a seat, swing, carrier or sling should be moved to a firm sleep surface on their back as soon as possible.",
       "scope": "All infants; US and Ireland."
@@ -106,7 +144,10 @@
       "id": "clm.core.stay-awake-holding",
       "kind": "safety",
       "text": "Hold your baby on your chest or lap only while you are awake and alert; falling asleep with a baby on a sofa or armchair is especially dangerous.",
-      "sources": ["src.aap-hc.tummy-time-activities", "src.aap-hc.safe-sleep-guide"],
+      "sources": [
+        "src.aap-hc.tummy-time-activities",
+        "src.aap-hc.safe-sleep-guide"
+      ],
       "locator": "AAP 3 Tummy Time Activities: 'Activity #1: Tummy to Tummy'; AAP safe sleep guide: 'Share a room with your baby, but never share a bed'",
       "paraphrase": "AAP describes chest tummy time while the adult is awake and reclined. The safe-sleep guide says to avoid falling asleep with a baby in other spots, noting a much higher risk of sleep-related death when infants sleep with someone on a couch, soft armchair, or cushion.",
       "scope": "All infants; US guidance."
@@ -115,7 +156,11 @@
       "id": "clm.core.tummy-positions-young",
       "kind": "description",
       "text": "For young babies, tummy time can happen on your chest, across your lap, carried tummy-down in your arms, or on a firm mat on the floor.",
-      "sources": ["src.hse.tummy-time", "src.aap-hc.tummy-time-activities", "src.childrens-wi.back-to-sleep-tummy-to-play"],
+      "sources": [
+        "src.hse.tummy-time",
+        "src.aap-hc.tummy-time-activities",
+        "src.childrens-wi.back-to-sleep-tummy-to-play"
+      ],
       "locator": "HSE: 'From birth to 3 months' (chest-to-chest, on your lap, in your arms, on a mat on the floor); AAP: Activities #1 and #2; Children's Wisconsin: 'Why is tummy time important?' position list",
       "paraphrase": "HSE lists chest-to-chest, lap, carried face-down in arms, and a firm flat floor mat as tummy-time options from birth to 3 months. AAP describes tummy-to-tummy and lap time. Children's Wisconsin lists tummy to tummy, face to face on the floor, over a small blanket roll, and a tummy carry.",
       "scope": "Young infants. Positions differ in whether they count toward a specific target; see the target claims.",
@@ -125,7 +170,11 @@
       "id": "clm.core.tummy-builds-strength",
       "kind": "description",
       "text": "Tummy time helps babies build the neck, shoulder, and back strength they use for rolling, sitting, and crawling.",
-      "sources": ["src.aap-hc.back-to-sleep-tummy-to-play", "src.hse.tummy-time", "src.childrens-wi.back-to-sleep-tummy-to-play"],
+      "sources": [
+        "src.aap-hc.back-to-sleep-tummy-to-play",
+        "src.hse.tummy-time",
+        "src.childrens-wi.back-to-sleep-tummy-to-play"
+      ],
       "locator": "AAP Back to Sleep: 'Tummy to play'; HSE: opening paragraph; Children's Wisconsin: 'Why is tummy time important?'",
       "paraphrase": "All three describe tummy time as building muscles babies need to roll, sit, and crawl; Children's Wisconsin adds back, neck, and shoulder muscles and using eyes and hands together.",
       "scope": "General infant guidance; describes purpose, not a guaranteed outcome or timeline."
@@ -134,7 +183,9 @@
       "id": "clm.core.aap-tummy-amount",
       "kind": "recommendation",
       "text": "AAP (US): start with short tummy-time sessions of 3–5 minutes, 2–3 times a day, and gradually work up to 15–30 minutes a day by about 7 weeks as your baby enjoys it.",
-      "sources": ["src.aap-hc.back-to-sleep-tummy-to-play"],
+      "sources": [
+        "src.aap-hc.back-to-sleep-tummy-to-play"
+      ],
       "locator": "Section 'How much tummy time should a baby have?'",
       "paraphrase": "Play with your awake baby on their tummy two to three times a day for three to five minutes, starting from the day you come home, and build up to 15–30 minutes a day by 7 weeks.",
       "scope": "US general guidance for infants. The same page lists chest play among tummy-time ideas and does not say that only floor time counts toward the daily amount."
@@ -143,7 +194,9 @@
       "id": "clm.core.cw-60-by-4-months",
       "kind": "recommendation",
       "text": "Children's Wisconsin (US): start with 2–3 minutes at a time and slowly work up to a total of at least 60 minutes a day by the time your baby is 4 months old.",
-      "sources": ["src.childrens-wi.back-to-sleep-tummy-to-play"],
+      "sources": [
+        "src.childrens-wi.back-to-sleep-tummy-to-play"
+      ],
       "locator": "Section 'Why is tummy time important?' — 'How can I make tummy time happy?'",
       "paraphrase": "Supervise tummy time when awake, start on the first day, keep it happy, begin with 2–3 minutes, and work up to at least 60 minutes per day total by 4 months.",
       "scope": "One US children's hospital's teaching sheet. Its suggested positions include tummy-to-tummy on your chest, face to face on the floor, over a small blanket roll, and a tummy carry; it does not say that only floor time counts.",
@@ -153,7 +206,9 @@
       "id": "clm.core.hse-30-then-60-flat",
       "kind": "recommendation",
       "text": "HSE (Ireland): aim for at least 30 minutes a day, spread out, in the first 3 months, then build up to 60 minutes between 4 and 6 months. From 3 months, all tummy time should be on a firm, flat mat.",
-      "sources": ["src.hse.tummy-time"],
+      "sources": [
+        "src.hse.tummy-time"
+      ],
       "locator": "Sections 'When to start' and 'From 3 months'",
       "paraphrase": "Begin with 2–3 minutes a few times a day, aim for at least 30 minutes a day in the first 3 months, build to 60 minutes between 4 and 6 months; chest, lap, arms and floor-mat positions are described for birth to 3 months, and from 3 months all tummy time should be on a firm, flat mat.",
       "scope": "Ireland public health guidance for infants generally.",
@@ -163,7 +218,9 @@
       "id": "clm.core.sickkids-50-60-floor",
       "kind": "recommendation",
       "text": "SickKids neonatal follow-up (Canada): at 4 months corrected age, 50–60 minutes of tummy time a day in short periods, with as much floor play as possible.",
-      "sources": ["src.sickkids.neonatal-follow-up-4-months"],
+      "sources": [
+        "src.sickkids.neonatal-follow-up-4-months"
+      ],
       "locator": "'Neonatal follow-up clinic recommendations at four months' — 'Gross motor' list",
       "paraphrase": "Practice floor time for play as much as possible (the bed is not a safe place to play); practice tummy time, between 50 and 60 minutes total per day in short periods, to improve head and trunk control.",
       "scope": "Babies followed by a neonatal follow-up clinic, mostly after NICU or cardiac critical care; ages are corrected age. The page says to ask your child's doctor whether to follow it.",
@@ -173,7 +230,9 @@
       "id": "clm.core.who-30-prone",
       "kind": "recommendation",
       "text": "WHO (global, 2019): babies who are not yet mobile should have at least 30 minutes a day on their tummy while awake, spread through the day, as part of interactive floor-based play.",
-      "sources": ["src.who.sit-less-play-more-2019"],
+      "sources": [
+        "src.who.sit-less-play-more-2019"
+      ],
       "locator": "'Recommendations at a glance' — Infants (less than 1 year), first bullet",
       "paraphrase": "Infants should be physically active several times a day, particularly through interactive floor-based play; for those not yet mobile this includes at least 30 minutes in prone position spread through the day while awake.",
       "scope": "International guidance for infants under 1 year who are not yet mobile."
@@ -182,7 +241,10 @@
       "id": "clm.core.tummy-vary-positions",
       "kind": "description",
       "text": "Changing your awake baby's position and limiting long stretches in car seats, swings, and bouncy seats reduces pressure on the back of the head.",
-      "sources": ["src.aap-hc.back-to-sleep-tummy-to-play", "src.childrens-wi.back-to-sleep-tummy-to-play"],
+      "sources": [
+        "src.aap-hc.back-to-sleep-tummy-to-play",
+        "src.childrens-wi.back-to-sleep-tummy-to-play"
+      ],
       "locator": "AAP: 'There are ways to reduce the risk of the baby developing a flat spot'; Children's Wisconsin: 'How do I keep my baby from getting a flat head and tight neck muscles?'",
       "paraphrase": "Vary the awake baby's position, hold them, and watch them play on tummy and back on the floor; limit time in swings, bouncy chairs, and car seats, which press on the back of the head.",
       "scope": "Young infants; general guidance, not treatment for an existing head-shape concern."
@@ -191,7 +253,11 @@
       "id": "clm.core.floor-not-bed",
       "kind": "safety",
       "text": "Use a firm, flat surface on the floor for floor play and tummy time, not a bed, sofa, or cushion.",
-      "sources": ["src.sickkids.neonatal-follow-up-4-months", "src.hse.tummy-time", "src.aap-hc.tummy-time-activities"],
+      "sources": [
+        "src.sickkids.neonatal-follow-up-4-months",
+        "src.hse.tummy-time",
+        "src.aap-hc.tummy-time-activities"
+      ],
       "locator": "SickKids: 'Gross motor', first bullet; HSE: 'On a mat on the floor' and 'From 3 months'; AAP 3 Tummy Time Activities: 'More tummy-time tips' (secure blankets)",
       "paraphrase": "SickKids says the bed is not an appropriate or safe place to play and the floor is a safer, firmer surface. HSE describes a firm, flat mat on the floor. AAP suggests a clean floor, mat, or blankets secured so they don't slide.",
       "scope": "Infants; Canada, Ireland, and US sources agree on a firm floor surface."
@@ -200,7 +266,10 @@
       "id": "clm.core.reach-play",
       "kind": "description",
       "text": "On their tummy, a toy placed in front of or just beside your baby encourages them to lift their head, turn, shift their weight, and reach.",
-      "sources": ["src.hse.tummy-time", "src.aap-hc.back-to-sleep-tummy-to-play"],
+      "sources": [
+        "src.hse.tummy-time",
+        "src.aap-hc.back-to-sleep-tummy-to-play"
+      ],
       "locator": "HSE: 'From 3 months'; AAP: 'How can I exercise my baby during tummy time?'",
       "paraphrase": "HSE suggests a toy in front to encourage head lifting, then encouraging turning, balancing on one arm to reach, and moving forward as the baby gets stronger. AAP suggests a toy or yourself just out of reach and toys in a circle around the baby.",
       "scope": "Infants playing on their tummy; HSE frames this from 3 months."
@@ -209,7 +278,9 @@
       "id": "clm.core.young-child-joins-tummy-time",
       "kind": "description",
       "text": "While an adult keeps watch, a young child can get down on the floor and play with a baby during tummy time.",
-      "sources": ["src.aap-hc.back-to-sleep-tummy-to-play"],
+      "sources": [
+        "src.aap-hc.back-to-sleep-tummy-to-play"
+      ],
       "locator": "Section 'How can I exercise my baby during tummy time?', last bullet",
       "paraphrase": "While keeping watch, have a young child play with the baby on their tummy; young children get on the floor easily, have energy for playing with babies, and may enjoy the 'big kid' role.",
       "scope": "US general guidance. The adult supervises; the child is a playmate, not a caregiver."
@@ -218,7 +289,11 @@
       "id": "clm.core.stop-when-upset",
       "kind": "recommendation",
       "text": "Keep tummy time short and happy: stop when your baby becomes upset and try again later, building up gradually as they enjoy it.",
-      "sources": ["src.hse.tummy-time", "src.aap-hc.back-to-sleep-tummy-to-play", "src.childrens-wi.back-to-sleep-tummy-to-play"],
+      "sources": [
+        "src.hse.tummy-time",
+        "src.aap-hc.back-to-sleep-tummy-to-play",
+        "src.childrens-wi.back-to-sleep-tummy-to-play"
+      ],
       "locator": "HSE: 'Safety' do-list; AAP: 'How much tummy time…'; Children's Wisconsin: 'How can I make tummy time happy?'",
       "paraphrase": "HSE says stop and try again later if the baby becomes upset. AAP says increase gradually as babies show they enjoy it. Children's Wisconsin says time on the tummy should be happy.",
       "scope": "All infants; US and Ireland."
@@ -226,17 +301,81 @@
     {
       "id": "clm.core.hse-not-around-feeds",
       "kind": "recommendation",
-      "text": "HSE (Ireland) suggests avoiding tummy time just before or after a feed, especially if your baby has reflux.",
-      "sources": ["src.hse.tummy-time"],
+      "text": "HSE (Ireland) advises keeping tummy time away from the moments just before and after a feed, particularly for babies with reflux.",
+      "sources": [
+        "src.hse.tummy-time"
+      ],
       "locator": "Section 'When to start', last paragraph",
-      "paraphrase": "Avoid tummy time just before or after a feed, especially if your baby has reflux.",
-      "scope": "Ireland public guidance; a practical timing tip, not a feeding schedule."
+      "paraphrase": "HSE advises against tummy time immediately before or after feeding, particularly for babies with reflux. It gives no number of minutes.",
+      "scope": "Ireland public guidance for babies doing tummy time in any position the page describes (chest, lap, arms, floor mat). A practical timing tip, not a feeding schedule."
+    },
+    {
+      "id": "clm.core.aap-spit-up-limit-active-play",
+      "kind": "recommendation",
+      "text": "AAP (US): when a baby spits up after being bounced or played with following a feed, keep feeding times calm and cut back on active play for roughly 20–30 minutes after.",
+      "sources": [
+        "src.aap-hc.why-babies-spit-up"
+      ],
+      "locator": "'Common concerns parents have about spit up' — 'My baby spits up when you bounce them or play with them after meals' (action to take); closing 'Remember' paragraph",
+      "paraphrase": "The likely cause is overstimulation: keep feeding times calm and cut back on active play for roughly 20 to 30 minutes after. The closing summary repeats this and adds keeping the baby upright for at least 20 minutes, closely supervised.",
+      "scope": "US; babies (the page sits in the AAP's 0–12 months section) whose spit-up follows play after milk feeds; 'meals' on the page means breast milk or formula. Not advice for every baby, or for toddlers and older children.",
+      "caveat": "The page says forceful vomiting after every feed, or blood in spit-up, needs a pediatrician. Trunk gives no medical advice about spit-up or reflux and never asks about it."
+    },
+    {
+      "id": "clm.core.aap-spit-up-postpone-tummy",
+      "kind": "recommendation",
+      "text": "AAP (US): pressing on a baby's belly right after a feed makes spit-up more likely, so postponing tummy time for a while after feeds can help babies who spit up.",
+      "sources": [
+        "src.aap-hc.why-babies-spit-up"
+      ],
+      "locator": "'Remedies for spitty babies' — '5 tips to reduce your baby's spit up', third tip ('Limit active play after meals and hold your baby upright')",
+      "paraphrase": "Pressure on the belly just after eating raises the chance that stomach contents come back up; tummy time matters, but delaying it for a while after feeds is a simple way to avoid this.",
+      "scope": "US; babies who spit up. The tip gives no number of minutes for postponing tummy time."
+    },
+    {
+      "id": "clm.core.hse-nap-calm-routine",
+      "kind": "recommendation",
+      "text": "HSE (Ireland): a consistent daily routine, a dark room, and a story read in a calming voice can make it easier for a baby or toddler to nap.",
+      "sources": [
+        "src.hse.naps-babies-toddlers"
+      ],
+      "locator": "Section 'Help your baby or toddler nap', list items 1, 3 and 6",
+      "paraphrase": "Children nap more easily with a steady daily routine so they know when nap time is, a darkened room, not being too warm, a comforter after 12 months, and a story read calmly.",
+      "scope": "Ireland; daytime naps for babies and toddlers. Describes a pre-nap routine; says nothing about which play suits the time before it and gives no wind-down length.",
+      "caveat": "The same page gives nap counts, spacing between naps and a 3.30 pm cut-off by age. Trunk does not use them: it never sets nap times, nap lengths or wake windows."
+    },
+    {
+      "id": "clm.core.hse-comforter-after-12m",
+      "kind": "recommendation",
+      "text": "HSE (Ireland): from 12 months of age, a special blanket or toy can be given as a comforter to make napping easier.",
+      "sources": [
+        "src.hse.naps-babies-toddlers"
+      ],
+      "locator": "Section 'Help your baby or toddler nap', list item 5",
+      "paraphrase": "Among the things that make daytime naps easier, HSE lists giving a child a special blanket or toy as a comforter once they are over 12 months old.",
+      "scope": "Ireland; daytime naps; children over 12 months only. The page gives no comforter advice for younger babies.",
+      "caveat": "For babies under 12 months, other guidance in Trunk keeps soft toys and loose blankets away from a baby's face and sleep space."
+    },
+    {
+      "id": "clm.core.nhs-bedtime-wind-down",
+      "kind": "recommendation",
+      "text": "NHS (England): a simple, soothing bedtime routine may help a baby settle. As children get older, too much excitement just before bedtime can wake them up again, so wind down with calmer activities like reading.",
+      "sources": [
+        "src.nhs.helping-baby-sleep"
+      ],
+      "locator": "Section 'Establishing a baby bedtime routine': opening sentence, routine list, and final paragraph",
+      "paraphrase": "A simple, soothing routine at bedtime (bath, night clothes, a story, dim lights, a cuddle, a lullaby) may help a baby settle. For older children, lots of excitement right before bed can wake them again, so spend time winding down with calmer activities such as reading.",
+      "scope": "UK (England); bedtime (night sleep) for babies and young children. Bedtime advice, not nap advice: the page says nothing about activity before daytime naps.",
+      "caveat": "The same page says that in the daytime you needn't keep the house quiet while a baby sleeps. Trunk cites this only as background for its own editorial nap preference."
     },
     {
       "id": "clm.core.ask-clinician-preterm",
       "kind": "recommendation",
       "text": "If your baby was born early, has reflux, or has other medical needs, ask their clinician about tummy time; many follow-up teams use corrected age.",
-      "sources": ["src.aap-hc.tummy-time-activities", "src.sickkids.neonatal-follow-up-4-months"],
+      "sources": [
+        "src.aap-hc.tummy-time-activities",
+        "src.sickkids.neonatal-follow-up-4-months"
+      ],
       "locator": "AAP: 'Tummy time & babies with special health care needs'; SickKids: 'What is the Neonatal Follow-Up Clinic?' (corrected age)",
       "paraphrase": "AAP says to speak with your pediatrician about tummy time if your baby was premature or has reflux or special needs. SickKids notes its recommendations are for corrected age because most babies it follows were premature.",
       "scope": "Babies with prematurity or medical needs; US and Canada."
@@ -245,7 +384,9 @@
       "id": "clm.core.who-reading-storytelling",
       "kind": "recommendation",
       "text": "When young children are sitting still, interactive non-screen time with a caregiver—reading, storytelling, singing, puzzles—is encouraged.",
-      "sources": ["src.who.sit-less-play-more-2019"],
+      "sources": [
+        "src.who.sit-less-play-more-2019"
+      ],
       "locator": "Body paragraph on 24-hour activity patterns; 'Recommendations at a glance' bullets for each age group",
       "paraphrase": "Quality sedentary time in interactive non-screen activities with a caregiver, such as reading, storytelling, singing, and puzzles, is very important for development; when sedentary, reading and storytelling with a caregiver is encouraged.",
       "scope": "International guidance for children under 5."
@@ -254,7 +395,9 @@
       "id": "clm.core.who-not-restrained-1h",
       "kind": "recommendation",
       "text": "WHO (global): children under 5 shouldn't be kept restrained—in a stroller, high chair, or carrier—for more than an hour at a time.",
-      "sources": ["src.who.sit-less-play-more-2019"],
+      "sources": [
+        "src.who.sit-less-play-more-2019"
+      ],
       "locator": "'Recommendations at a glance', second bullet for each age group",
       "paraphrase": "Infants, 1–2-year-olds, and 3–4-year-olds should not be restrained for more than 1 hour at a time (e.g., prams/strollers, high chairs, strapped on a caregiver's back).",
       "scope": "International guidance for children under 5."
@@ -263,7 +406,9 @@
       "id": "clm.core.who-active-play",
       "kind": "recommendation",
       "text": "WHO (global): babies benefit from active, floor-based play several times a day; children 1–4 benefit from at least 180 minutes of varied physical activity spread through the day.",
-      "sources": ["src.who.sit-less-play-more-2019"],
+      "sources": [
+        "src.who.sit-less-play-more-2019"
+      ],
       "locator": "'Recommendations at a glance', first bullet for each age group",
       "paraphrase": "Infants should be active several times a day, particularly through interactive floor-based play. Children 1–2 and 3–4 should spend at least 180 minutes in a variety of physical activities spread through the day; for 3–4-year-olds at least 60 of those minutes are moderate-to-vigorous.",
       "scope": "International guidance; daily totals across the whole day, not per activity."
@@ -272,7 +417,9 @@
       "id": "clm.core.who-screen-under-5",
       "kind": "recommendation",
       "text": "WHO (global, 2019): no sedentary screen time for babies or 1-year-olds; for ages 2–4, no more than 1 hour a day, and less is better.",
-      "sources": ["src.who.sit-less-play-more-2019"],
+      "sources": [
+        "src.who.sit-less-play-more-2019"
+      ],
       "locator": "'Recommendations at a glance', second bullet for each age group",
       "paraphrase": "Screen time is not recommended for infants; for 1-year-olds sedentary screen time is not recommended; for 2-year-olds and 3–4-year-olds no more than 1 hour, less is better.",
       "scope": "International guidance (2019).",
@@ -282,7 +429,9 @@
       "id": "clm.core.aap-real-world-under-18m",
       "kind": "description",
       "text": "AAP (US, 2026): babies under 18 months learn best from real-world interactions, and heavy solo screen use can affect young children's language and social skills.",
-      "sources": ["src.aap-hc.digital-ecosystem-explained"],
+      "sources": [
+        "src.aap-hc.digital-ecosystem-explained"
+      ],
       "locator": "Section 'Early childhood (0-5 years)'",
       "paraphrase": "Infants under 18 months learn best from real-world interactions; heavy solo screen use can affect developing language and social skills, with outcomes depending on hours of use and how adults use screens to calm or entertain.",
       "scope": "US; children 0–5, with the real-world-learning statement specific to under 18 months."
@@ -291,10 +440,203 @@
       "id": "clm.core.aap-coview-quality",
       "kind": "recommendation",
       "text": "AAP (US, 2026): choose quality content that puts kids first, watch alongside your child when you can, and keep screen-free times such as meals and the hour before bed.",
-      "sources": ["src.aap-hc.digital-ecosystem-explained"],
+      "sources": [
+        "src.aap-hc.digital-ecosystem-explained"
+      ],
       "locator": "Section 'Tips for helping your child navigate the digital ecosystem'",
       "paraphrase": "Seek out quality content that models social-emotional skills or fosters play; watch and play alongside your kids; carve out screen-free time and zones such as mealtimes and the hour before bed; use a family media plan.",
       "scope": "US family guidance across ages; frames media around quality, context, and conversation rather than a single time limit."
+    }
+  ],
+  "timingRules": [
+    {
+      "id": "tim.core.tummy-after-milk-feed",
+      "rev": 1,
+      "event": "milk-feed",
+      "when": "after",
+      "window": {
+        "minutes": 30,
+        "basis": "editorial"
+      },
+      "fit": "avoid",
+      "basis": "source",
+      "claims": [
+        "clm.core.hse-not-around-feeds"
+      ],
+      "cue": "Not right after a feed",
+      "reason": "HSE (Ireland) suggests avoiding tummy time just after a feed, especially if your baby has reflux. HSE gives no number of minutes; keeping about 30 minutes clear is Trunk’s planning convention.",
+      "checked": "2026-10-29"
+    },
+    {
+      "id": "tim.core.tummy-before-milk-feed",
+      "rev": 1,
+      "event": "milk-feed",
+      "when": "before",
+      "window": {
+        "minutes": 15,
+        "basis": "editorial"
+      },
+      "fit": "avoid",
+      "basis": "source",
+      "claims": [
+        "clm.core.hse-not-around-feeds"
+      ],
+      "cue": "Not right before a feed",
+      "reason": "HSE (Ireland) suggests avoiding tummy time just before a feed, especially if your baby has reflux. HSE gives no number of minutes; the 15 minutes is Trunk’s planning convention.",
+      "checked": "2026-10-29"
+    },
+    {
+      "id": "tim.core.tummy-after-meal-under-12m",
+      "rev": 1,
+      "event": "meal",
+      "when": "after",
+      "window": {
+        "minutes": 30,
+        "basis": "editorial"
+      },
+      "fit": "avoid",
+      "ageMin": "1w",
+      "ageMax": "12m",
+      "basis": "editorial",
+      "claims": [
+        "clm.core.hse-not-around-feeds"
+      ],
+      "cue": "Not right after eating",
+      "reason": "HSE (Ireland) advises against tummy time just after a feed. Trunk also keeps it away from meals and snacks for babies under 12 months; that wider reading and the 30 minutes are Trunk’s conventions.",
+      "checked": "2026-10-30"
+    },
+    {
+      "id": "tim.core.tummy-before-meal-under-12m",
+      "rev": 1,
+      "event": "meal",
+      "when": "before",
+      "window": {
+        "minutes": 15,
+        "basis": "editorial"
+      },
+      "fit": "avoid",
+      "ageMin": "1w",
+      "ageMax": "12m",
+      "basis": "editorial",
+      "claims": [
+        "clm.core.hse-not-around-feeds"
+      ],
+      "cue": "Not right before eating",
+      "reason": "HSE (Ireland) advises against tummy time just before a feed. Trunk also keeps it away from meals and snacks for babies under 12 months; that wider reading and the 15 minutes are Trunk’s conventions.",
+      "checked": "2026-10-30"
+    },
+    {
+      "id": "tim.core.gentle-play-after-feed-spit-up",
+      "rev": 1,
+      "event": "milk-feed",
+      "when": "after",
+      "window": {
+        "minutes": 30,
+        "basis": "source"
+      },
+      "fit": "later",
+      "ageMin": "1w",
+      "ageMax": "12m",
+      "condition": "spit-up",
+      "basis": "source",
+      "claims": [
+        "clm.core.aap-spit-up-limit-active-play",
+        "clm.core.aap-spit-up-postpone-tummy"
+      ],
+      "cue": "Spits up? Keep play calm after a feed",
+      "reason": "AAP (US) advice for babies who spit up when played with after feeds: limit active play for about 20–30 minutes (Trunk uses 30) and postpone tummy time for a while. Not a rule for babies who don't spit up.",
+      "checked": "2026-10-29"
+    },
+    {
+      "id": "tim.core.wind-down-before-nap",
+      "rev": 3,
+      "event": "nap",
+      "when": "before",
+      "window": {
+        "minutes": 30,
+        "basis": "editorial"
+      },
+      "fit": "preferred",
+      "basis": "editorial",
+      "claims": [
+        "clm.core.hse-nap-calm-routine",
+        "clm.core.nhs-bedtime-wind-down"
+      ],
+      "match": {
+        "stimulation": [
+          "settling"
+        ]
+      },
+      "cue": "Good for winding down",
+      "reason": "Quiet, familiar activities can fit before a nap. HSE suggests a calm story before naps; using NHS bedtime advice for naps, and the 30 minutes, are Trunk’s choices. Nothing guarantees sleep.",
+      "checked": "2026-10-29"
+    },
+    {
+      "id": "tim.core.lively-earlier-than-nap",
+      "rev": 2,
+      "event": "nap",
+      "when": "before",
+      "window": {
+        "minutes": 30,
+        "basis": "editorial"
+      },
+      "fit": "later",
+      "basis": "editorial",
+      "claims": [
+        "clm.core.nhs-bedtime-wind-down",
+        "clm.core.hse-nap-calm-routine"
+      ],
+      "match": {
+        "stimulation": [
+          "lively"
+        ]
+      },
+      "cue": "Better earlier, not right before a nap",
+      "reason": "Active, loud, or messy play fits earlier, leaving calmer time and tidy-up before a planned nap. NHS notes that excitement just before bedtime can wake a child; for naps this is Trunk’s preference, not a rule.",
+      "checked": "2026-10-29"
+    },
+    {
+      "id": "tim.core.gentle-start-after-nap",
+      "rev": 2,
+      "event": "nap",
+      "when": "after",
+      "window": {
+        "minutes": 15,
+        "basis": "editorial"
+      },
+      "fit": "preferred",
+      "basis": "editorial",
+      "claims": [],
+      "match": {
+        "stimulation": [
+          "settling",
+          "gentle"
+        ]
+      },
+      "cue": "Gentle start after waking",
+      "reason": "Trunk puts something gentle first after a nap. This is Trunk’s convention, not a source’s advice: there’s no required waiting time, so follow your child.",
+      "checked": "2026-10-29"
+    },
+    {
+      "id": "tim.core.lively-later-after-nap",
+      "rev": 1,
+      "event": "nap",
+      "when": "after",
+      "window": {
+        "minutes": 15,
+        "basis": "editorial"
+      },
+      "fit": "later",
+      "basis": "editorial",
+      "claims": [],
+      "match": {
+        "stimulation": [
+          "lively"
+        ]
+      },
+      "cue": "Ease in after waking",
+      "reason": "Trunk puts something gentle first after a nap and saves lively play for a little later. A preference, not a waiting rule.",
+      "checked": "2026-10-29"
     }
   ],
   "activities": [
@@ -308,17 +650,38 @@
       "ageMax": "4m",
       "readiness": {
         "abilities": [],
-        "notes": ["Born early, reflux, or medical needs? Ask your baby's clinician about tummy time first."]
+        "notes": [
+          "Born early, reflux, or medical needs? Ask your baby's clinician about tummy time first."
+        ]
       },
-      "goals": ["gross-motor", "social-emotional"],
-      "intents": ["connect", "calm"],
-      "places": ["indoors"],
-      "spaces": ["lap-or-arms"],
+      "goals": [
+        "gross-motor",
+        "social-emotional"
+      ],
+      "intents": [
+        "connect",
+        "calm"
+      ],
+      "places": [
+        "indoors"
+      ],
+      "spaces": [
+        "lap-or-arms"
+      ],
       "outing": false,
-      "materials": { "level": "none", "items": ["A pillow behind your head"] },
+      "materials": {
+        "level": "none",
+        "items": [
+          "A pillow behind your head"
+        ]
+      },
       "setupMinutes": 1,
       "cleanupMinutes": 0,
-      "duration": { "min": 1, "default": 5, "max": 15 },
+      "duration": {
+        "min": 1,
+        "default": 5,
+        "max": 15
+      },
       "effort": "low",
       "supervision": {
         "participation": "leads",
@@ -330,7 +693,9 @@
       },
       "mess": "none",
       "noise": "quiet",
-      "hazards": ["suffocation"],
+      "hazards": [
+        "suffocation"
+      ],
       "steps": [
         "Recline with your head and back supported so you can see your baby's face.",
         "Lay your baby tummy-down on your chest, one hand resting on their back.",
@@ -341,21 +706,46 @@
         "Very new baby: a minute or two is plenty; let them rest their cheek on you between tries.",
         "Stronger baby: lie flatter so lifting their head takes more work."
       ],
-      "stopCues": ["Fussing, crying, or turning away", "Getting drowsy—move them to their back in their own sleep space"],
+      "stopCues": [
+        "Fussing, crying, or turning away",
+        "Getting drowsy—move them to their back in their own sleep space"
+      ],
       "safety": [
         {
           "text": "Only while you're awake and alert. If you feel sleepy, put your baby on their back in their own sleep space.",
-          "claims": ["clm.core.stay-awake-holding", "clm.core.sleep-on-back"]
+          "claims": [
+            "clm.core.stay-awake-holding",
+            "clm.core.sleep-on-back"
+          ]
         }
       ],
       "why": {
         "text": "Lifting their head to see your face is tummy time: it builds the neck and shoulder strength babies use for rolling and sitting.",
-        "claims": ["clm.core.tummy-builds-strength", "clm.core.tummy-positions-young"]
+        "claims": [
+          "clm.core.tummy-builds-strength",
+          "clm.core.tummy-positions-young"
+        ]
       },
-      "tummyTime": { "position": "chest", "flatSurface": false },
+      "tummyTime": {
+        "position": "chest",
+        "flatSurface": false
+      },
+      "timing": {
+        "stimulation": "gentle",
+        "rules": [
+          "tim.core.tummy-after-milk-feed",
+          "tim.core.tummy-before-milk-feed",
+          "tim.core.gentle-play-after-feed-spit-up",
+          "tim.core.tummy-after-meal-under-12m",
+          "tim.core.tummy-before-meal-under-12m"
+        ]
+      },
       "evidence": {
         "type": "described",
-        "claims": ["clm.core.tummy-positions-young", "clm.core.tummy-awake-supervised"]
+        "claims": [
+          "clm.core.tummy-positions-young",
+          "clm.core.tummy-awake-supervised"
+        ]
       },
       "checked": "2026-10-28"
     },
@@ -369,17 +759,37 @@
       "ageMax": "4m",
       "readiness": {
         "abilities": [],
-        "notes": ["Born early, reflux, or medical needs? Ask your baby's clinician about tummy time first."]
+        "notes": [
+          "Born early, reflux, or medical needs? Ask your baby's clinician about tummy time first."
+        ]
       },
-      "goals": ["gross-motor"],
-      "intents": ["calm", "connect"],
-      "places": ["indoors", "outdoors"],
-      "spaces": ["lap-or-arms", "seat"],
+      "goals": [
+        "gross-motor"
+      ],
+      "intents": [
+        "calm",
+        "connect"
+      ],
+      "places": [
+        "indoors",
+        "outdoors"
+      ],
+      "spaces": [
+        "lap-or-arms",
+        "seat"
+      ],
       "outing": false,
-      "materials": { "level": "none", "items": [] },
+      "materials": {
+        "level": "none",
+        "items": []
+      },
       "setupMinutes": 0,
       "cleanupMinutes": 0,
-      "duration": { "min": 1, "default": 4, "max": 10 },
+      "duration": {
+        "min": 1,
+        "default": 4,
+        "max": 10
+      },
       "effort": "low",
       "supervision": {
         "participation": "leads",
@@ -391,7 +801,10 @@
       },
       "mess": "none",
       "noise": "quiet",
-      "hazards": ["falls", "suffocation"],
+      "hazards": [
+        "falls",
+        "suffocation"
+      ],
       "steps": [
         "Sit with your knees together and lay your baby tummy-down along your thighs.",
         "Keep their head in line with their body, supporting it with your hand as needed.",
@@ -401,19 +814,46 @@
         "Turn them so they can see a window, a face, or a high-contrast picture.",
         "Calmer baby: slow, rhythmic back pats; alert baby: chat and pause for their sounds."
       ],
-      "stopCues": ["Crying or arching", "Spitting up or seeming uncomfortable", "Getting sleepy"],
+      "stopCues": [
+        "Crying or arching",
+        "Spitting up or seeming uncomfortable",
+        "Getting sleepy"
+      ],
       "safety": [
         {
           "text": "Keep a hand on your baby. If they fall asleep, move them onto their back in their own sleep space.",
-          "claims": ["clm.core.sleep-on-back", "clm.core.tummy-awake-supervised"]
+          "claims": [
+            "clm.core.sleep-on-back",
+            "clm.core.tummy-awake-supervised"
+          ]
         }
       ],
       "why": {
         "text": "Lap time is one of the tummy-time positions suggested for young babies who are still getting used to being on their tummy.",
-        "claims": ["clm.core.tummy-positions-young"]
+        "claims": [
+          "clm.core.tummy-positions-young"
+        ]
       },
-      "tummyTime": { "position": "lap", "flatSurface": false },
-      "evidence": { "type": "described", "claims": ["clm.core.tummy-positions-young"] },
+      "tummyTime": {
+        "position": "lap",
+        "flatSurface": false
+      },
+      "timing": {
+        "stimulation": "gentle",
+        "rules": [
+          "tim.core.tummy-after-milk-feed",
+          "tim.core.tummy-before-milk-feed",
+          "tim.core.gentle-play-after-feed-spit-up",
+          "tim.core.tummy-after-meal-under-12m",
+          "tim.core.tummy-before-meal-under-12m"
+        ]
+      },
+      "evidence": {
+        "type": "described",
+        "claims": [
+          "clm.core.tummy-positions-young"
+        ]
+      },
       "checked": "2026-10-28"
     },
     {
@@ -426,17 +866,38 @@
       "ageMax": "3m",
       "readiness": {
         "abilities": [],
-        "notes": ["Born early, reflux, or medical needs? Ask your baby's clinician about tummy time first."]
+        "notes": [
+          "Born early, reflux, or medical needs? Ask your baby's clinician about tummy time first."
+        ]
       },
-      "goals": ["gross-motor", "communication"],
-      "intents": ["move", "connect"],
-      "places": ["indoors"],
-      "spaces": ["floor"],
+      "goals": [
+        "gross-motor",
+        "communication"
+      ],
+      "intents": [
+        "move",
+        "connect"
+      ],
+      "places": [
+        "indoors"
+      ],
+      "spaces": [
+        "floor"
+      ],
       "outing": false,
-      "materials": { "level": "household", "items": ["Firm play mat or a blanket on a clean floor"] },
+      "materials": {
+        "level": "household",
+        "items": [
+          "Firm play mat or a blanket on a clean floor"
+        ]
+      },
       "setupMinutes": 1,
       "cleanupMinutes": 0,
-      "duration": { "min": 1, "default": 3, "max": 5 },
+      "duration": {
+        "min": 1,
+        "default": 3,
+        "max": 5
+      },
       "effort": "low",
       "supervision": {
         "participation": "leads",
@@ -448,7 +909,9 @@
       },
       "mess": "none",
       "noise": "quiet",
-      "hazards": ["suffocation"],
+      "hazards": [
+        "suffocation"
+      ],
       "steps": [
         "Lay a firm mat or smoothed blanket on a clear patch of floor.",
         "Place your baby tummy-down with their elbows tucked under their shoulders.",
@@ -459,22 +922,53 @@
         "Short and often beats long: 1–3 minutes a few times a day is a fine start.",
         "Add a high-contrast card or your face just in front to give them something to lift up for."
       ],
-      "stopCues": ["Face down and fussing", "Crying or frantic arm movements", "Getting drowsy"],
+      "stopCues": [
+        "Face down and fussing",
+        "Crying or frantic arm movements",
+        "Getting drowsy"
+      ],
       "safety": [
         {
           "text": "Only while awake, with you right there. If they get sleepy, move them to their back in their own sleep space.",
-          "claims": ["clm.core.tummy-awake-supervised", "clm.core.sleep-on-back"]
+          "claims": [
+            "clm.core.tummy-awake-supervised",
+            "clm.core.sleep-on-back"
+          ]
         },
-        { "text": "Use the floor, not a bed or sofa.", "claims": ["clm.core.floor-not-bed"] }
+        {
+          "text": "Use the floor, not a bed or sofa.",
+          "claims": [
+            "clm.core.floor-not-bed"
+          ]
+        }
       ],
       "why": {
         "text": "Short, frequent tummy sessions on the floor help babies build the strength they'll use to roll, sit, and crawl.",
-        "claims": ["clm.core.tummy-builds-strength"]
+        "claims": [
+          "clm.core.tummy-builds-strength"
+        ]
       },
-      "tummyTime": { "position": "floor", "flatSurface": true },
+      "tummyTime": {
+        "position": "floor",
+        "flatSurface": true
+      },
+      "timing": {
+        "stimulation": "gentle",
+        "rules": [
+          "tim.core.tummy-after-milk-feed",
+          "tim.core.tummy-before-milk-feed",
+          "tim.core.gentle-play-after-feed-spit-up",
+          "tim.core.tummy-after-meal-under-12m",
+          "tim.core.tummy-before-meal-under-12m"
+        ]
+      },
       "evidence": {
         "type": "described",
-        "claims": ["clm.core.tummy-positions-young", "clm.core.aap-tummy-amount", "clm.core.stop-when-upset"]
+        "claims": [
+          "clm.core.tummy-positions-young",
+          "clm.core.aap-tummy-amount",
+          "clm.core.stop-when-upset"
+        ]
       },
       "checked": "2026-10-28"
     },
@@ -488,17 +982,40 @@
       "ageMax": "8m",
       "readiness": {
         "abilities": [],
-        "notes": ["Your baby sets the pace; short, happy sessions count. Ask their clinician if they were born early."]
+        "notes": [
+          "Your baby sets the pace; short, happy sessions count. Ask their clinician if they were born early."
+        ]
       },
-      "goals": ["gross-motor", "fine-motor"],
-      "intents": ["move", "explore"],
-      "places": ["indoors", "outdoors"],
-      "spaces": ["floor"],
+      "goals": [
+        "gross-motor",
+        "fine-motor"
+      ],
+      "intents": [
+        "move",
+        "explore"
+      ],
+      "places": [
+        "indoors",
+        "outdoors"
+      ],
+      "spaces": [
+        "floor"
+      ],
       "outing": false,
-      "materials": { "level": "toys", "items": ["Firm play mat", "1–3 baby-safe toys or an unbreakable mirror"] },
+      "materials": {
+        "level": "toys",
+        "items": [
+          "Firm play mat",
+          "1–3 baby-safe toys or an unbreakable mirror"
+        ]
+      },
       "setupMinutes": 1,
       "cleanupMinutes": 1,
-      "duration": { "min": 2, "default": 8, "max": 15 },
+      "duration": {
+        "min": 2,
+        "default": 8,
+        "max": 15
+      },
       "effort": "low",
       "supervision": {
         "participation": "joins",
@@ -510,7 +1027,9 @@
       },
       "mess": "none",
       "noise": "quiet",
-      "hazards": ["suffocation"],
+      "hazards": [
+        "suffocation"
+      ],
       "steps": [
         "Lay your baby tummy-down on a firm, flat mat on the floor.",
         "Hold a toy or unbreakable mirror just in front, then move it slowly side to side.",
@@ -521,21 +1040,334 @@
         "Just starting out: keep the toy close and at eye level.",
         "Pushing up on straight arms: place toys in a loose circle so they pivot to reach."
       ],
-      "stopCues": ["Head dropping and fussing", "Crying or frustration", "Rubbing eyes or yawning"],
+      "stopCues": [
+        "Head dropping and fussing",
+        "Crying or frustration",
+        "Rubbing eyes or yawning"
+      ],
       "safety": [
         {
           "text": "Only while awake and watched. If they fall asleep, move them to their back in their own sleep space.",
-          "claims": ["clm.core.tummy-awake-supervised", "clm.core.sleep-on-back"]
+          "claims": [
+            "clm.core.tummy-awake-supervised",
+            "clm.core.sleep-on-back"
+          ]
         },
-        { "text": "Firm floor only; toys must be too big to fit in your baby's mouth.", "claims": ["clm.core.floor-not-bed"] }
+        {
+          "text": "Firm floor only; toys must be too big to fit in your baby's mouth.",
+          "claims": [
+            "clm.core.floor-not-bed"
+          ]
+        }
       ],
       "why": {
         "text": "Reaching for a toy on their tummy asks babies to lift, turn, and shift weight, building strength for rolling and crawling.",
-        "claims": ["clm.core.reach-play", "clm.core.tummy-builds-strength"]
+        "claims": [
+          "clm.core.reach-play",
+          "clm.core.tummy-builds-strength"
+        ]
       },
-      "tummyTime": { "position": "floor", "flatSurface": true },
-      "evidence": { "type": "described", "claims": ["clm.core.reach-play", "clm.core.hse-30-then-60-flat"] },
+      "tummyTime": {
+        "position": "floor",
+        "flatSurface": true
+      },
+      "timing": {
+        "stimulation": "gentle",
+        "rules": [
+          "tim.core.tummy-after-milk-feed",
+          "tim.core.tummy-before-milk-feed",
+          "tim.core.gentle-play-after-feed-spit-up",
+          "tim.core.tummy-after-meal-under-12m",
+          "tim.core.tummy-before-meal-under-12m"
+        ]
+      },
+      "evidence": {
+        "type": "described",
+        "claims": [
+          "clm.core.reach-play",
+          "clm.core.hse-30-then-60-flat"
+        ]
+      },
       "checked": "2026-10-28"
+    },
+    {
+      "id": "act.story-of-our-day",
+      "rev": 1,
+      "title": "Tell the story of your day",
+      "summary": "Cuddle up and, in a quiet voice, tell your child the simple story of their day so far: who you saw, what you did, what comes next.",
+      "kind": "play",
+      "ageMin": "4m",
+      "ageMax": "36m",
+      "readiness": {
+        "abilities": [],
+        "notes": []
+      },
+      "goals": [
+        "communication"
+      ],
+      "intents": [
+        "connect",
+        "calm"
+      ],
+      "places": [
+        "indoors",
+        "outdoors"
+      ],
+      "spaces": [
+        "lap-or-arms",
+        "seat",
+        "floor"
+      ],
+      "outing": false,
+      "materials": {
+        "level": "none",
+        "items": []
+      },
+      "setupMinutes": 0,
+      "cleanupMinutes": 0,
+      "duration": {
+        "min": 2,
+        "default": 5,
+        "max": 10
+      },
+      "effort": "low",
+      "supervision": {
+        "participation": "leads",
+        "proximity": "holding",
+        "handsOn": "intermittent",
+        "minAdults": 1,
+        "shareable": true,
+        "space": "A comfortable spot where you can hold your child close and stay awake, with the TV and music off."
+      },
+      "mess": "none",
+      "noise": "quiet",
+      "hazards": [
+        "suffocation"
+      ],
+      "steps": [
+        "Settle somewhere comfortable with your child in your lap or snuggled against you, and lower your voice.",
+        "Tell the story of their day so far in short, simple sentences: 'This morning you woke up. We had toast. We saw a big dog.'",
+        "Go slowly and leave pauses. A baby listens to your voice; a toddler may point, say a word, or fill in what happened.",
+        "End with a cuddle and what comes next, such as lunch, a walk or a rest."
+      ],
+      "adaptations": [
+        "Young baby: a few soft sentences while you hold them close is plenty.",
+        "Older toddler: leave gaps to fill in ('And then we saw a…?') or let them tell you one part.",
+        "Busy day? Tell just one small thing, like the bath or the bus ride."
+      ],
+      "stopCues": [
+        "Wriggles away or wants to get up",
+        "Looks away or fusses",
+        "Getting sleepy"
+      ],
+      "safety": [
+        {
+          "text": "Only while you're wide awake. If your child dozes off, lay them on their back in their own sleep space.",
+          "claims": [
+            "clm.core.stay-awake-holding",
+            "clm.core.sleep-on-back"
+          ]
+        }
+      ],
+      "timing": {
+        "stimulation": "settling",
+        "rules": []
+      },
+      "evidence": {
+        "type": "adapted",
+        "claims": [
+          "clm.core.who-reading-storytelling",
+          "clm.c.narrate-everyday",
+          "clm.core.hse-nap-calm-routine"
+        ]
+      },
+      "checked": "2026-10-29"
+    },
+    {
+      "id": "act.window-watch-in-arms",
+      "rev": 1,
+      "title": "Quiet window watching",
+      "summary": "Hold your child at a closed window and watch something slow together, like leaves, rain or clouds, naming it softly now and then.",
+      "kind": "play",
+      "ageMin": "4m",
+      "ageMax": "18m",
+      "readiness": {
+        "abilities": [],
+        "notes": []
+      },
+      "goals": [
+        "communication"
+      ],
+      "intents": [
+        "calm",
+        "connect",
+        "explore"
+      ],
+      "places": [
+        "indoors"
+      ],
+      "spaces": [
+        "lap-or-arms"
+      ],
+      "outing": false,
+      "materials": {
+        "level": "none",
+        "items": []
+      },
+      "setupMinutes": 0,
+      "cleanupMinutes": 0,
+      "duration": {
+        "min": 2,
+        "default": 5,
+        "max": 10
+      },
+      "effort": "low",
+      "supervision": {
+        "participation": "leads",
+        "proximity": "holding",
+        "handsOn": "continuous",
+        "minAdults": 1,
+        "shareable": true,
+        "space": "A closed window away from blind and curtain cords, with no furniture beneath it to climb."
+      },
+      "mess": "none",
+      "noise": "quiet",
+      "hazards": [
+        "falls",
+        "cords"
+      ],
+      "steps": [
+        "Pick a closed window with something slow to watch: trees moving, rain, clouds, birds or people passing.",
+        "Hold your child on your hip or sit with them in your lap facing out, head supported as needed.",
+        "Watch quietly together, naming things now and then in a soft voice: 'Leaves. Swish, swish.' Leave long pauses.",
+        "Follow their gaze; if they reach or point, name that thing slowly."
+      ],
+      "adaptations": [
+        "Younger baby: hold them upright against your shoulder so they can look over it.",
+        "Toddler: whisper 'What can you see?' and wait for a point or a word.",
+        "Rainy day? Watch the drops run down the glass."
+      ],
+      "stopCues": [
+        "Turns away or arches",
+        "Fusses or squirms",
+        "Getting sleepy"
+      ],
+      "safety": [
+        {
+          "text": "Hold your child yourself: never sit or stand them on a sill or on furniture by the window, and keep clear of blind and curtain cords.",
+          "claims": [
+            "clm.c.stairs-windows",
+            "clm.c.cords-away"
+          ]
+        },
+        {
+          "text": "If they doze off, lay them on their back in their own sleep space.",
+          "claims": [
+            "clm.core.sleep-on-back"
+          ]
+        }
+      ],
+      "timing": {
+        "stimulation": "settling",
+        "rules": []
+      },
+      "evidence": {
+        "type": "adapted",
+        "claims": [
+          "clm.b.talk-while-doing-tasks",
+          "clm.c.name-on-walks"
+        ]
+      },
+      "checked": "2026-10-29"
+    },
+    {
+      "id": "act.whisper-bye-bye-to-toys",
+      "rev": 1,
+      "title": "Whisper bye-bye to the toys",
+      "summary": "Walk slowly round the room together, whispering bye-bye to a few favourite toys and things, then sit down for a quiet cuddle.",
+      "kind": "play",
+      "ageMin": "12m",
+      "ageMax": "36m",
+      "readiness": {
+        "abilities": [],
+        "notes": []
+      },
+      "goals": [],
+      "intents": [
+        "calm",
+        "connect",
+        "routine"
+      ],
+      "places": [
+        "indoors"
+      ],
+      "spaces": [
+        "anywhere",
+        "lap-or-arms"
+      ],
+      "outing": false,
+      "materials": {
+        "level": "none",
+        "items": [
+          "Their comforter or a favourite soft toy, if they have one"
+        ]
+      },
+      "setupMinutes": 0,
+      "cleanupMinutes": 0,
+      "duration": {
+        "min": 2,
+        "default": 4,
+        "max": 8
+      },
+      "effort": "low",
+      "supervision": {
+        "participation": "leads",
+        "proximity": "arms-reach",
+        "handsOn": "intermittent",
+        "minAdults": 1,
+        "shareable": true,
+        "space": "Your usual play room with a clear floor to walk on and stairs gated."
+      },
+      "mess": "none",
+      "noise": "quiet",
+      "hazards": [],
+      "steps": [
+        "Lower your voice and tell your toddler it's time to say bye-bye to the toys for now.",
+        "Walk slowly round the room together, or carry them, whispering 'bye-bye, ball' and 'see you later, bear' to a few familiar things.",
+        "Let them wave or blow a kiss and choose the next one; doing it the same way each time can become a familiar ritual.",
+        "Finish sitting together for a quiet cuddle, with their comforter if they have one."
+      ],
+      "adaptations": [
+        "Not walking yet? Carry them on your hip and let them wave.",
+        "Older toddler: let them lead the round and whisper the goodbyes themselves.",
+        "Upset about leaving a toy? Let them bring it along to the cuddle."
+      ],
+      "stopCues": [
+        "Wants to run or play instead",
+        "Gets cross or upset"
+      ],
+      "safety": [
+        {
+          "text": "A comforter or soft toy is for over-1s (HSE). For babies, keep soft toys and loose blankets away from their face and out of their sleep space.",
+          "claims": [
+            "clm.core.hse-comforter-after-12m",
+            "clm.a.keep-face-clear"
+          ]
+        }
+      ],
+      "timing": {
+        "stimulation": "settling",
+        "rules": []
+      },
+      "evidence": {
+        "type": "adapted",
+        "claims": [
+          "clm.core.hse-nap-calm-routine",
+          "clm.core.nhs-bedtime-wind-down",
+          "clm.core.hse-comforter-after-12m"
+        ]
+      },
+      "checked": "2026-10-29"
     }
   ],
   "recipes": [],

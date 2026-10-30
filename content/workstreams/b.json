@@ -1,5 +1,5 @@
 {
-  "schema": 1,
+  "schema": 2,
   "workstream": "B",
   "description": "Workstream B (3 to under 6 months): floor, rolling, sitting, social, book, routine and outing activities, including three busy-nearby back-play options, with sources and claims checked 2026-10-28.",
   "sources": [
@@ -542,6 +542,7 @@
       "scope": "Ireland; all babies."
     }
   ],
+  "timingRules": [],
   "activities": [
     {
       "id": "act.play-gym-bat-and-grab",
@@ -649,6 +650,10 @@
           "clm.b.swings-at-toys-4m",
           "clm.b.mobile-reach-grasp"
         ]
+      },
+      "timing": {
+        "stimulation": "gentle",
+        "rules": []
       },
       "evidence": {
         "type": "described",
@@ -760,6 +765,10 @@
           "clm.b.feet-discovery"
         ]
       },
+      "timing": {
+        "stimulation": "gentle",
+        "rules": []
+      },
       "evidence": {
         "type": "described",
         "claims": [
@@ -865,6 +874,10 @@
           "clm.b.talk-while-doing-tasks"
         ]
       },
+      "timing": {
+        "stimulation": "gentle",
+        "rules": []
+      },
       "evidence": {
         "type": "adapted",
         "claims": [
@@ -969,6 +982,10 @@
           "clm.b.swings-at-toys-4m"
         ]
       },
+      "timing": {
+        "stimulation": "gentle",
+        "rules": []
+      },
       "evidence": {
         "type": "described",
         "claims": [
@@ -1061,6 +1078,10 @@
           "clm.b.copy-sounds-take-turns"
         ]
       },
+      "timing": {
+        "stimulation": "gentle",
+        "rules": []
+      },
       "evidence": {
         "type": "described",
         "claims": [
@@ -1150,6 +1171,10 @@
         "claims": [
           "clm.b.songs-rhymes-actions"
         ]
+      },
+      "timing": {
+        "stimulation": "gentle",
+        "rules": []
       },
       "evidence": {
         "type": "described",
@@ -1248,6 +1273,10 @@
           "clm.b.lap-reading-bold-pictures",
           "clm.b.fabric-board-books-3-6m"
         ]
+      },
+      "timing": {
+        "stimulation": "settling",
+        "rules": []
       },
       "evidence": {
         "type": "described",
@@ -1349,6 +1378,10 @@
           "clm.b.mirror-interest"
         ]
       },
+      "timing": {
+        "stimulation": "gentle",
+        "rules": []
+      },
       "evidence": {
         "type": "described",
         "claims": [
@@ -1434,6 +1467,10 @@
         "claims": [
           "clm.b.peekaboo"
         ]
+      },
+      "timing": {
+        "stimulation": "gentle",
+        "rules": []
       },
       "evidence": {
         "type": "described",
@@ -1542,6 +1579,16 @@
       "tummyTime": {
         "position": "propped",
         "flatSurface": false
+      },
+      "timing": {
+        "stimulation": "gentle",
+        "rules": [
+          "tim.core.tummy-after-milk-feed",
+          "tim.core.tummy-before-milk-feed",
+          "tim.core.gentle-play-after-feed-spit-up",
+          "tim.core.tummy-after-meal-under-12m",
+          "tim.core.tummy-before-meal-under-12m"
+        ]
       },
       "evidence": {
         "type": "described",
@@ -1657,6 +1704,16 @@
         "position": "floor",
         "flatSurface": true
       },
+      "timing": {
+        "stimulation": "gentle",
+        "rules": [
+          "tim.core.tummy-after-milk-feed",
+          "tim.core.tummy-before-milk-feed",
+          "tim.core.gentle-play-after-feed-spit-up",
+          "tim.core.tummy-after-meal-under-12m",
+          "tim.core.tummy-before-meal-under-12m"
+        ]
+      },
       "evidence": {
         "type": "adapted",
         "claims": [
@@ -1764,6 +1821,10 @@
           "clm.b.side-lying-support"
         ]
       },
+      "timing": {
+        "stimulation": "gentle",
+        "rules": []
+      },
       "evidence": {
         "type": "described",
         "claims": [
@@ -1775,7 +1836,7 @@
     },
     {
       "id": "act.supported-sit-lap-play",
-      "rev": 1,
+      "rev": 2,
       "title": "Supported sitting in your lap",
       "summary": "Sit on the floor with your baby upright between your legs or in your lap, your hands low on their trunk, and a toy in front to look at and reach for.",
       "kind": "play",
@@ -1838,7 +1899,7 @@
         "Sit on the floor and settle your baby upright between your legs or in your lap, facing out.",
         "Hold them around the hips or lower trunk, as low as still keeps them steady.",
         "Put a toy in front at their eye level and let them lean, look, and reach for it.",
-        "When they slump or tire, lay them on the floor on their back or tummy for a change."
+        "When they slump or tire, lay them on the floor on their back for a change."
       ],
       "adaptations": [
         "Wobbly: hold higher, around the chest, and let them lean back against you.",
@@ -1869,6 +1930,10 @@
         "claims": [
           "clm.b.supported-sitting"
         ]
+      },
+      "timing": {
+        "stimulation": "gentle",
+        "rules": []
       },
       "evidence": {
         "type": "described",
@@ -1977,6 +2042,10 @@
           "clm.b.mouthing-normal"
         ]
       },
+      "timing": {
+        "stimulation": "gentle",
+        "rules": []
+      },
       "evidence": {
         "type": "adapted",
         "claims": [
@@ -2080,6 +2149,10 @@
         "claims": [
           "clm.b.narrate-care-routines"
         ]
+      },
+      "timing": {
+        "stimulation": "gentle",
+        "rules": []
       },
       "evidence": {
         "type": "adapted",
@@ -2195,6 +2268,10 @@
         "claims": [
           "clm.b.name-things-outside"
         ]
+      },
+      "timing": {
+        "stimulation": "gentle",
+        "rules": []
       },
       "evidence": {
         "type": "described",

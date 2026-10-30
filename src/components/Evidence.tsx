@@ -67,7 +67,7 @@ export function EvidenceDetails({
         </p>
       )}
       <p className="tiny">
-        Sources checked {checked}. Times, setup, and effort are Trunk’s estimates, not recommendations. Trunk’s ideas have not been individually reviewed by a clinician.
+        Sources checked {checked}. <a href="#/about">How Trunk makes its ideas</a>
       </p>
       {claims.map((claim) => (
         <ClaimBlock key={claim.id} claim={claim} c={c} />

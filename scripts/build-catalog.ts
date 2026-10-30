@@ -66,7 +66,7 @@ if (warnings.length) {
 }
 if (hidden) console.log(`(${hidden} error(s) in other files not shown because of --only)`);
 
-const counts = `${catalog.activities.length} activities, ${catalog.recipes.length} recipes, ${catalog.starterPlans.length} starter plans, ${catalog.claims.length} claims, ${catalog.sources.length} sources from ${files.length} file(s)`;
+const counts = `${catalog.activities.length} activities, ${catalog.recipes.length} recipes, ${catalog.starterPlans.length} starter plans, ${catalog.timingRules.length} timing rules, ${catalog.claims.length} claims, ${catalog.sources.length} sources from ${files.length} file(s)`;
 
 if (shown.length) {
   console.error(`Content validation FAILED with ${shown.length} error(s):\n${shown.map(fmt).join('\n')}`);
@@ -88,6 +88,7 @@ writeFileSync(
     schema: SCHEMA_VERSION,
     version: contentVersion,
     sourceCount: catalog.sources.length,
+    timingRules: catalog.timingRules,
     activities: catalog.activities,
     recipes: catalog.recipes,
     starterPlans: catalog.starterPlans,

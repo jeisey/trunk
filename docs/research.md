@@ -41,6 +41,24 @@ How Trunk applies this: screen options exist only for ages 2+ and appear only wh
 
 AAP's *Baby Sunburn Prevention* (updated 2026-04-13) says babies under 6 months should be kept out of direct and indirect sunlight entirely because of heat-stroke risk, recommends shade-covered strollers and sunshades, protective clothing and hats, and avoiding being outside between 10 a.m. and 4 p.m. AAP's general *Sun Safety* page (2024) allows sunscreen on small areas when shade and clothing aren't available. Trunk follows the stricter 2026 reading and gives no sunscreen advice for this age. Outdoor records for babies under 6 months carry one shared line based on the 2026 wording; detail pages add it to any outdoor-capable activity viewed for a baby under 6 months. The planner doesn't schedule outdoor-only activities (or any activity when "Outside" is chosen) for a baby under 6 months if the segment would overlap 10 a.m.–4 p.m., and the plan editor flags any segment that does (for example after editing, or in a starter or shared plan).
 
+## Timing (2026-10-29)
+
+Every activity and recipe now has a reviewed stimulation profile, and timing rules link activities to a parent's own feeds, meals and naps. Full notes, passages, the per-record table, and open questions: [`research/timing.md`](research/timing.md). Agent review of public guidance, not clinical review.
+
+| Source (jurisdiction) | What Trunk uses | Rule |
+|---|---|---|
+| HSE, *Tummy time for babies* (IE; reviewed 2026-05-17) | Avoid tummy time just before or after a feed, especially with reflux. No minutes given. | Tummy-time records: "avoid" 30 min after / 15 min before a milk feed; windows are Trunk's convention |
+| AAP, *Why Babies Spit Up* (US; updated 2025-01-03) | If a baby spits up when played with after feeds, limit active play for about 20–30 minutes and put tummy time off for a while | Advisory only (spit-up, 1 week to under 12 months, milk feeds): ranked lower, never excluded; on tummy-time and active infant records only |
+| HSE, *Naps for babies and toddlers* (IE; reviewed 2026-03-27) | A consistent routine and a story in a calming voice make napping easier | Informs Trunk's editorial nap preferences; its nap counts and spacing are not used |
+| NHS, *Helping your baby to sleep* (UK; reviewed 2025-01-28) | Wind down with calmer activities before **bedtime** | Background only for the editorial nap preferences; bedtime advice is not nap advice |
+
+How Trunk applies this:
+
+- Before a nap, settling activities are preferred and lively ones ranked "better earlier"; after a nap, something gentle first. These are editorial preferences with conventional windows (30 and 15 minutes), never sleep rules, and no activity is said to help a child sleep.
+- No universal post-meal rule: meal timing is unassessed because no reviewed source supports one. No rule ever keeps a child awake, moves a feed, or sets a nap time, nap length or wake window.
+- Wind-down coverage: the first pass left most stops from 4 months to under 3 years with one settling activity (none at 12–14 months). Three new quiet records (a whispered story of the day, quiet window watching, a whispered goodbye round to the toys) now give every stop at least 3; see `reports/coverage.md`.
+- Two older starter plans were reordered so tummy time is not next to a feed break and the lively parade is not right before a nap break.
+
 ## Cross-workstream conflicts and how they were resolved
 
 - **Mobiles:** one HSE play page (2026) suggests a mobile over the cot for 0–3 months; other HSE pages and AAP say nothing over the sleep space. Trunk uses hanging toys only over an awake floor mat, and ends floor play-gym batting at 5 months (AAP's crib-toy removal rule applied conservatively).

@@ -1,5 +1,5 @@
 {
-  "schema": 1,
+  "schema": 2,
   "workstream": "fixture",
   "description": "Small valid fixture used by unit tests.",
   "sources": [
@@ -160,6 +160,10 @@
         "position": "floor",
         "flatSurface": true
       },
+      "timing": {
+        "stimulation": "variable",
+        "rules": []
+      },
       "evidence": {
         "type": "described",
         "claims": [
@@ -242,6 +246,10 @@
           "clm.core.who-reading-storytelling"
         ]
       },
+      "timing": {
+        "stimulation": "variable",
+        "rules": []
+      },
       "evidence": {
         "type": "adapted",
         "claims": [
@@ -313,6 +321,9 @@
       "claims": [
         "clm.core.young-child-joins-tummy-time"
       ],
+      "timing": {
+        "stimulation": "variable"
+      },
       "checked": "2026-10-28"
     }
   ],

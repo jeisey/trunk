@@ -26,6 +26,13 @@ Trunk's activities are meant to be reusable for years, but the advice behind the
 - IDs are permanent. Never rename an ID or reuse it for a different idea; old share links and saved plans refer to IDs.
 - Schema changes go through `src/content/schema.ts` (bump `SCHEMA_VERSION` and write a migration if stored or shared data would be affected).
 
+## Timing classifications
+
+- When an activity's steps, noise, mess, or movement change materially, re-review `timing.stimulation` and its listed rules, and bump `rev`.
+- Recheck the timing sources (AAP spit-up, HSE tummy time, HSE naps, NHS helping your baby to sleep) on the normal cadence; if a source adds or removes a number, update the rule's `window.basis` and `reason` accordingly.
+- `reports/coverage.md` lists `variable` (unresolved) records and wind-down coverage by age; treat those as the backlog.
+- Formats that store plans are versioned (plan, storage envelope, share links, plan files). Any change to `src/lib/plan.ts` needs a migration in `migratePlan` and a fixture test before release.
+
 ## Retiring a record
 
 Add a `retired` object:

@@ -1,5 +1,5 @@
 {
-  "schema": 1,
+  "schema": 2,
   "workstream": "A",
   "description": "Workstream A: activities for babies 1 week to under 3 months (some extend to 4 months), with the sources and claims they rely on. Sources opened 2026-10-28.",
   "sources": [
@@ -139,7 +139,7 @@
       "org": "American Academy of Pediatrics (HealthyChildren.org)",
       "title": "The Benefits of Baby Massage",
       "jurisdiction": "US",
-      "checked": "2026-10-28",
+      "checked": "2026-10-29",
       "updated": "2024-04-22",
       "notes": "By Patti Ideran, OTR/L, CEIM, and Mark Fishbein, MD, FAAP (co-authors of an AAP-published book). Page footer: last updated 4/22/2024. Trunk does not repeat the page's list of health benefits."
     },
@@ -839,6 +839,7 @@
       "scope": "Young infants; UK and Canada."
     }
   ],
+  "timingRules": [],
   "activities": [
     {
       "id": "act.coo-and-copy-chat",
@@ -923,6 +924,10 @@
           "clm.a.talk-copy-sounds",
           "clm.a.smile-conversations"
         ]
+      },
+      "timing": {
+        "stimulation": "gentle",
+        "rules": []
       },
       "evidence": {
         "type": "described",
@@ -1027,6 +1032,10 @@
         "claims": [
           "clm.a.talk-during-care"
         ]
+      },
+      "timing": {
+        "stimulation": "gentle",
+        "rules": []
       },
       "evidence": {
         "type": "described",
@@ -1137,6 +1146,10 @@
           "clm.a.cuddle-hold-secure"
         ]
       },
+      "timing": {
+        "stimulation": "settling",
+        "rules": []
+      },
       "evidence": {
         "type": "described",
         "claims": [
@@ -1231,6 +1244,10 @@
           "clm.a.read-from-birth"
         ]
       },
+      "timing": {
+        "stimulation": "settling",
+        "rules": []
+      },
       "evidence": {
         "type": "described",
         "claims": [
@@ -1323,6 +1340,10 @@
           "clm.a.newborn-focus-distance",
           "clm.a.high-contrast-preference"
         ]
+      },
+      "timing": {
+        "stimulation": "gentle",
+        "rules": []
       },
       "evidence": {
         "type": "described",
@@ -1418,6 +1439,10 @@
           "clm.a.moving-toy-in-view"
         ]
       },
+      "timing": {
+        "stimulation": "gentle",
+        "rules": []
+      },
       "evidence": {
         "type": "described",
         "claims": [
@@ -1506,6 +1531,10 @@
           "clm.a.sing-rhymes"
         ]
       },
+      "timing": {
+        "stimulation": "gentle",
+        "rules": []
+      },
       "evidence": {
         "type": "described",
         "claims": [
@@ -1517,7 +1546,7 @@
     },
     {
       "id": "act.gentle-hand-foot-massage",
-      "rev": 1,
+      "rev": 2,
       "title": "Gentle hand-and-foot massage",
       "summary": "When your baby is calm and alert, stroke their hands, feet, and legs with slow, gentle, steady touches, watching how they respond.",
       "kind": "play",
@@ -1568,7 +1597,7 @@
       "noise": "quiet",
       "hazards": [],
       "steps": [
-        "Pick a calm, alert time, not right after a feed or when they're hungry or tired.",
+        "Choose a time when your baby is quiet and alert, and follow their signals as you go.",
         "Lay your baby on their back. Hold one hand, rest your thumb in their palm, and stroke slowly along their fingers.",
         "Hold a foot in both hands and stroke from heel to toes, then make slow strokes down each leg.",
         "Watch their face. If they relax, keep going; if they squirm or fuss, stop and try another day."
@@ -1596,13 +1625,17 @@
           "clm.a.massage-follow-cues"
         ]
       },
+      "timing": {
+        "stimulation": "settling",
+        "rules": []
+      },
       "evidence": {
         "type": "described",
         "claims": [
           "clm.a.massage-follow-cues"
         ]
       },
-      "checked": "2026-10-28"
+      "checked": "2026-10-29"
     },
     {
       "id": "act.diaper-off-kick-time",
@@ -1685,6 +1718,10 @@
         "claims": [
           "clm.a.diaper-free-kicking"
         ]
+      },
+      "timing": {
+        "stimulation": "gentle",
+        "rules": []
       },
       "evidence": {
         "type": "described",
@@ -1797,6 +1834,10 @@
           "clm.a.back-play-mobile"
         ]
       },
+      "timing": {
+        "stimulation": "gentle",
+        "rules": []
+      },
       "evidence": {
         "type": "adapted",
         "claims": [
@@ -1899,6 +1940,10 @@
           "clm.core.tummy-vary-positions"
         ]
       },
+      "timing": {
+        "stimulation": "gentle",
+        "rules": []
+      },
       "evidence": {
         "type": "described",
         "claims": [
@@ -1987,6 +2032,10 @@
         "claims": [
           "clm.a.babies-prefer-faces-voices"
         ]
+      },
+      "timing": {
+        "stimulation": "gentle",
+        "rules": []
       },
       "evidence": {
         "type": "described",
@@ -2103,6 +2152,10 @@
           "clm.a.point-and-name"
         ]
       },
+      "timing": {
+        "stimulation": "gentle",
+        "rules": []
+      },
       "evidence": {
         "type": "described",
         "claims": [
@@ -2215,6 +2268,10 @@
           "clm.a.point-and-name"
         ]
       },
+      "timing": {
+        "stimulation": "gentle",
+        "rules": []
+      },
       "evidence": {
         "type": "adapted",
         "claims": [
@@ -2313,6 +2370,10 @@
           "clm.a.point-and-name",
           "clm.a.rock-sway-sing-calms"
         ]
+      },
+      "timing": {
+        "stimulation": "settling",
+        "rules": []
       },
       "evidence": {
         "type": "adapted",

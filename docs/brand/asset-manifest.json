@@ -1,0 +1,31 @@
+{
+  "schemaVersion": 1,
+  "brand": "Trunk",
+  "targetColors": {
+    "forest": "#163E35",
+    "sky": "#6BABC4",
+    "canvas": "#FFFFFF"
+  },
+  "assets": [
+    {
+      "path": "public/brand/trunk-logo.png",
+      "width": 2172,
+      "height": 724,
+      "format": "PNG",
+      "mode": "RGBA",
+      "transparent": true,
+      "bytes": 537359,
+      "sha256": "5391411a4e5260815ef13bb1eceb3218789af798aa0b91c6d19d111f5a4b6d9f"
+    },
+    {
+      "path": "public/brand/trunk-icon.png",
+      "width": 1254,
+      "height": 1254,
+      "format": "PNG",
+      "mode": "RGBA",
+      "transparent": true,
+      "bytes": 636338,
+      "sha256": "6d5a6eec7e2a4f0e3bb3b8d200f85bd054ada33cf172a91153888709bc10306d"
+    }
+  ]
+}

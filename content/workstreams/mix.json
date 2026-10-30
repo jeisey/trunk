@@ -1,5 +1,5 @@
 {
-  "schema": 1,
+  "schema": 2,
   "workstream": "mix",
   "description": "Curated two-child recipes (together and one-adult parallel) and editable starter plans that sequence existing activities across ages 1 week to 5 years.",
   "sources": [
@@ -108,6 +108,7 @@
       "caveat": "The same page's 7-9-month ideas include bouncing and lifting games. Trunk excludes those and keeps held movement slow and smooth for every age."
     }
   ],
+  "timingRules": [],
   "activities": [
     {
       "id": "act.held-slow-dance",
@@ -213,6 +214,10 @@
           "clm.a.cuddle-hold-secure"
         ]
       },
+      "timing": {
+        "stimulation": "gentle",
+        "rules": []
+      },
       "evidence": {
         "type": "adapted",
         "claims": [
@@ -227,7 +232,10 @@
   ],
   "recipes": [
     {
-      "rev": 2,
+      "rev": 3,
+      "timing": {
+        "stimulation": "gentle"
+      },
       "checked": "2026-10-29",
       "outing": false,
       "setupMinutes": 2,
@@ -305,12 +313,6 @@
             "clm.b.toys-bigger-than-mouth",
             "clm.c.older-sibling-small-things"
           ]
-        },
-        {
-          "text": "This is floor tummy time on a firm, flat surface, the position flat-surface targets count. Follow any target your baby’s clinician gave you.",
-          "claims": [
-            "clm.core.ask-clinician-preterm"
-          ]
         }
       ],
       "claims": [
@@ -323,7 +325,10 @@
       ]
     },
     {
-      "rev": 2,
+      "rev": 3,
+      "timing": {
+        "stimulation": "gentle"
+      },
       "checked": "2026-10-29",
       "outing": false,
       "setupMinutes": 2,
@@ -399,12 +404,6 @@
           "claims": [
             "clm.f.small-pieces-away-from-babies"
           ]
-        },
-        {
-          "text": "This is floor tummy time on a firm, flat surface, the position flat-surface targets count. Follow any target your baby’s clinician gave you.",
-          "claims": [
-            "clm.core.ask-clinician-preterm"
-          ]
         }
       ],
       "claims": [
@@ -418,6 +417,9 @@
     },
     {
       "rev": 2,
+      "timing": {
+        "stimulation": "lively"
+      },
       "checked": "2026-10-29",
       "outing": false,
       "setupMinutes": 1,
@@ -508,6 +510,9 @@
     },
     {
       "rev": 2,
+      "timing": {
+        "stimulation": "lively"
+      },
       "checked": "2026-10-29",
       "outing": false,
       "setupMinutes": 1,
@@ -594,6 +599,9 @@
     },
     {
       "rev": 1,
+      "timing": {
+        "stimulation": "gentle"
+      },
       "checked": "2026-10-29",
       "outing": true,
       "setupMinutes": 5,
@@ -694,6 +702,9 @@
     },
     {
       "rev": 1,
+      "timing": {
+        "stimulation": "gentle"
+      },
       "checked": "2026-10-29",
       "outing": true,
       "setupMinutes": 5,
@@ -794,6 +805,9 @@
     },
     {
       "rev": 1,
+      "timing": {
+        "stimulation": "gentle"
+      },
       "checked": "2026-10-29",
       "outing": true,
       "setupMinutes": 5,
@@ -895,6 +909,9 @@
     },
     {
       "rev": 1,
+      "timing": {
+        "stimulation": "settling"
+      },
       "checked": "2026-10-29",
       "outing": false,
       "setupMinutes": 1,
@@ -979,6 +996,9 @@
     },
     {
       "rev": 1,
+      "timing": {
+        "stimulation": "settling"
+      },
       "checked": "2026-10-29",
       "outing": false,
       "setupMinutes": 1,
@@ -1056,6 +1076,9 @@
     },
     {
       "rev": 1,
+      "timing": {
+        "stimulation": "gentle"
+      },
       "checked": "2026-10-29",
       "outing": false,
       "setupMinutes": 0,
@@ -1134,6 +1157,9 @@
     },
     {
       "rev": 1,
+      "timing": {
+        "stimulation": "gentle"
+      },
       "checked": "2026-10-29",
       "outing": false,
       "setupMinutes": 1,
@@ -1215,6 +1241,9 @@
     },
     {
       "rev": 1,
+      "timing": {
+        "stimulation": "lively"
+      },
       "checked": "2026-10-29",
       "outing": false,
       "setupMinutes": 1,
@@ -1283,6 +1312,9 @@
     },
     {
       "rev": 1,
+      "timing": {
+        "stimulation": "lively"
+      },
       "checked": "2026-10-29",
       "outing": false,
       "setupMinutes": 1,
@@ -1360,6 +1392,9 @@
     },
     {
       "rev": 1,
+      "timing": {
+        "stimulation": "lively"
+      },
       "checked": "2026-10-29",
       "outing": false,
       "setupMinutes": 1,
@@ -1438,6 +1473,9 @@
     },
     {
       "rev": 1,
+      "timing": {
+        "stimulation": "gentle"
+      },
       "checked": "2026-10-29",
       "outing": false,
       "setupMinutes": 5,
@@ -1537,6 +1575,9 @@
     },
     {
       "rev": 1,
+      "timing": {
+        "stimulation": "lively"
+      },
       "checked": "2026-10-29",
       "outing": true,
       "setupMinutes": 5,
@@ -1636,6 +1677,9 @@
     },
     {
       "rev": 1,
+      "timing": {
+        "stimulation": "gentle"
+      },
       "checked": "2026-10-29",
       "outing": false,
       "setupMinutes": 1,
@@ -1718,7 +1762,10 @@
       ]
     },
     {
-      "rev": 2,
+      "rev": 3,
+      "timing": {
+        "stimulation": "gentle"
+      },
       "checked": "2026-10-29",
       "outing": false,
       "setupMinutes": 3,
@@ -1793,12 +1840,6 @@
           "claims": [
             "clm.mix.never-leave-toddler-with-baby"
           ]
-        },
-        {
-          "text": "This is floor tummy time on a firm, flat surface, the position flat-surface targets count. Follow any target your baby’s clinician gave you.",
-          "claims": [
-            "clm.core.ask-clinician-preterm"
-          ]
         }
       ],
       "claims": [
@@ -1809,6 +1850,9 @@
     },
     {
       "rev": 1,
+      "timing": {
+        "stimulation": "gentle"
+      },
       "checked": "2026-10-29",
       "outing": false,
       "setupMinutes": 1,
@@ -1892,6 +1936,9 @@
     },
     {
       "rev": 1,
+      "timing": {
+        "stimulation": "gentle"
+      },
       "checked": "2026-10-29",
       "outing": false,
       "setupMinutes": 1,
@@ -1974,6 +2021,9 @@
     },
     {
       "rev": 1,
+      "timing": {
+        "stimulation": "gentle"
+      },
       "checked": "2026-10-29",
       "outing": false,
       "setupMinutes": 1,
@@ -2057,6 +2107,9 @@
     },
     {
       "rev": 1,
+      "timing": {
+        "stimulation": "gentle"
+      },
       "checked": "2026-10-29",
       "outing": false,
       "setupMinutes": 3,
@@ -2139,6 +2192,9 @@
     },
     {
       "rev": 1,
+      "timing": {
+        "stimulation": "gentle"
+      },
       "checked": "2026-10-29",
       "outing": false,
       "setupMinutes": 3,
@@ -2225,6 +2281,9 @@
     },
     {
       "rev": 2,
+      "timing": {
+        "stimulation": "lively"
+      },
       "checked": "2026-10-29",
       "outing": false,
       "setupMinutes": 3,
@@ -2316,6 +2375,9 @@
     },
     {
       "rev": 2,
+      "timing": {
+        "stimulation": "lively"
+      },
       "checked": "2026-10-29",
       "outing": false,
       "setupMinutes": 3,
@@ -2410,6 +2472,9 @@
     },
     {
       "rev": 1,
+      "timing": {
+        "stimulation": "gentle"
+      },
       "checked": "2026-10-29",
       "outing": false,
       "setupMinutes": 1,
@@ -2484,6 +2549,9 @@
     },
     {
       "rev": 1,
+      "timing": {
+        "stimulation": "gentle"
+      },
       "checked": "2026-10-29",
       "outing": false,
       "setupMinutes": 1,
@@ -2561,6 +2629,9 @@
     },
     {
       "rev": 1,
+      "timing": {
+        "stimulation": "gentle"
+      },
       "checked": "2026-10-29",
       "outing": false,
       "setupMinutes": 3,
@@ -2638,6 +2709,9 @@
     },
     {
       "rev": 1,
+      "timing": {
+        "stimulation": "gentle"
+      },
       "checked": "2026-10-29",
       "outing": false,
       "setupMinutes": 2,
@@ -2713,7 +2787,7 @@
   "starterPlans": [
     {
       "id": "plan.gentle-newborn-hour",
-      "rev": 1,
+      "rev": 2,
       "title": "Gentle newborn hour",
       "summary": "Short, flexible pieces with long breaks: a chat, a few minutes of floor tummy time, bold pictures and a slow sway. A feed or a nap can replace any piece.",
       "circumstance": "A 3-week-old at home with one adult; feeds and sleep can come at any time.",
@@ -2726,11 +2800,6 @@
           "kind": "activity",
           "ref": "act.coo-and-copy-chat",
           "minutes": 4
-        },
-        {
-          "kind": "break",
-          "minutes": 15,
-          "label": "Feed, diaper or nap: whatever comes first"
         },
         {
           "kind": "activity",
@@ -2750,7 +2819,7 @@
         {
           "kind": "break",
           "minutes": 15,
-          "label": "Feed or sleep if baby is ready"
+          "label": "Diaper, cuddle or nap: whatever your baby needs"
         },
         {
           "kind": "activity",
@@ -2760,16 +2829,16 @@
         {
           "kind": "break",
           "minutes": 7,
-          "label": "Rest, or a drink for you"
+          "label": "Feed or sleep if your baby is ready"
         }
       ],
       "checked": "2026-10-29"
     },
     {
       "id": "plan.rainy-afternoon-4m-28m",
-      "rev": 1,
+      "rev": 2,
       "title": "Rainy afternoon: 4 months and 28 months, one adult",
-      "summary": "Indoor side-by-side play, a short tummy-time book session, action songs and a slow dance parade, with breaks for feeds, diapers and drinks.",
+      "summary": "A short tummy-time book session, a slow dance parade, side-by-side play and action songs, with breaks for feeds, diapers and drinks.",
       "circumstance": "One adult indoors on a wet afternoon with a 4-month-old and a 2-year-old.",
       "ages": [
         "4m",
@@ -2779,8 +2848,8 @@
       "segments": [
         {
           "kind": "recipe",
-          "ref": "mix.mat-and-table-side-by-side",
-          "minutes": 12
+          "ref": "mix.tummy-time-book-helper",
+          "minutes": 5
         },
         {
           "kind": "break",
@@ -2789,17 +2858,7 @@
         },
         {
           "kind": "recipe",
-          "ref": "mix.tummy-time-book-helper",
-          "minutes": 5
-        },
-        {
-          "kind": "break",
-          "minutes": 10,
-          "label": "Baby feed or cuddle; toddler beside you"
-        },
-        {
-          "kind": "recipe",
-          "ref": "mix.action-song-circle",
+          "ref": "mix.slow-dance-follow-the-leader",
           "minutes": 6
         },
         {
@@ -2809,7 +2868,17 @@
         },
         {
           "kind": "recipe",
-          "ref": "mix.slow-dance-follow-the-leader",
+          "ref": "mix.mat-and-table-side-by-side",
+          "minutes": 12
+        },
+        {
+          "kind": "break",
+          "minutes": 10,
+          "label": "Baby feed or cuddle; toddler beside you"
+        },
+        {
+          "kind": "recipe",
+          "ref": "mix.action-song-circle",
           "minutes": 6
         },
         {

@@ -1,4 +1,9 @@
-# Trunk content contract (v1, frozen)
+# Trunk content contract (v2)
+
+v1 was frozen for the initial build. v2 (2026-10-29) adds timing: every
+activity and recipe carries a reviewed `timing` profile, and timing-rule
+records key activities to routine events. Content files declare `"schema": 2`.
+See [timing-and-routines.md](timing-and-routines.md) for the full model.
 
 This is the brief every content writer follows. The machine authority is
 `src/content/schema.ts` (Zod) plus `src/content/validate.ts` (cross-record and
@@ -104,7 +109,24 @@ span bands when that is genuinely appropriate.
 | `tummyTime` | Only for tummy-time activities: `{position: floor|chest|lap|carry|propped, flatSurface}`. Only `floor` is `flatSurface: true`. The lead owns the core tummy-time records; don't duplicate them. |
 | `evidence.type` | `described` (a cited source describes this activity), `adapted` (editorial design built on source-informed principles), `practical` (everyday routine/practical choice; no developmental claim). |
 | `evidence.claims` | Claims supporting the activity. Required for `described` and `adapted`. |
-| `checked` | The date you checked the sources (YYYY-MM-DD). |
+| `timing.stimulation` | Reviewed: `settling` (quiet, slow, familiar; needs quiet noise and little/no mess), `gentle`, `lively` (active, exciting, loud, or messy; required for loud or very messy records), or `variable` (depends, or not assessed; documented as unresolved). Don't derive it from `intents` alone. |
+| `timing.rules` | IDs of non-policy timing rules that apply (≤ 6). Tummy-time records must include the HSE before/after milk-feed rules. Policy rules (with `match`) apply automatically and are never listed. No rule means "no specific timing guidance", never "cleared". |
+| `checked` | The date you checked the sources (YYYY-MM-DD). Adding a timing classification doesn't change it. |
+
+## Timing rules (`timingRules`, ID `tim.<core|a-f|mix>.<slug>`)
+
+`event` (`milk-feed`, `meal`, `nap`; a snack block counts as a meal), `when`
+(`before`: window back from the event's start; `after`: window forward from its
+end), `window: {minutes, basis}` (`source` only when the source states the
+number; otherwise `editorial`), `fit` (`preferred`, `neutral`, `later`,
+`avoid`), optional `ageMin`/`ageMax` (population), optional `condition`
+(advisory only: Trunk never records conditions, so these are shown and ranked
+lower but never exclude), `basis` (`source` needs ≥ 1 claim), `claims`,
+optional `match: {stimulation: [...]}` (policy rule for every record with that
+profile; can't be a source-based blanket `avoid`), `cue` (≤ 48 chars), `reason`
+(≤ 260 chars, saying whether it's a source's advice or Trunk's convention),
+`checked`. None of these is a medical prohibition; age, readiness, and
+supervision rules stay separate and are never relaxed.
 
 ## Source and claim fields
 
@@ -133,7 +155,9 @@ abilities), `activity` (canonical activity ID), `does`, optional `adapt`.
 `adult`: `does`, `minAdults`, `handsOnFor` (`younger|older|both|neither`; must
 cover any continuous hands-on activity). Plus `sharedSetup`, `setupMinutes`,
 `cleanupMinutes` (counted once), `space`, `duration` (max ≤ both activities'
-max), `effort`, `intents`, `steps` (2–4), `stopCues`, `safety`, `claims`.
+max), `effort`, `intents`, `steps` (2–4), `stopCues`, `safety`, `claims`,
+`timing: {stimulation}` for the shared space. Each child's own timing rules come
+from their role activity and apply only to the child in that role.
 
 The validator runs the one-adult feasibility check on every parallel recipe:
 both activities shareable; no water/heat/food/traffic; at most one track needing
@@ -145,8 +169,13 @@ starts under 3 years.
 
 `title`, `summary`, `circumstance`, `ages` (1 or 2 age strings used to preview),
 `start` (HH:MM), `segments` (ordered `activity` / `recipe` / `break` entries
-with minutes inside each record's duration range). Single-child plans use
-activities; two-child plans use recipes and breaks. A plan is a sequence of at
+with minutes inside each record's duration range, and optional example
+`routine` blocks `{routine, who, minutes, at}`). Single-child plans use
+activities; two-child plans use recipes and breaks, plus single activities only
+with `who` and `along: true` directly after a routine block for the other
+child. Routine blocks in starters are examples the parent edits; they never
+prescribe nap lengths or feeding times, and meal/snack blocks are not for
+babies under 6 months. A plan is a sequence of at
 least two different activities or recipes, never one activity stretched.
 
 ## Completion checklist for a workstream

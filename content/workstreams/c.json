@@ -1,5 +1,5 @@
 {
-  "schema": 1,
+  "schema": 2,
   "workstream": "C",
   "description": "Workstream C: activities for babies 6 to under 12 months (some extend into the second year), with US, Irish and UK sources and claims checked 2026-10-28.",
   "sources": [
@@ -809,6 +809,7 @@
       "scope": "US; all infants."
     }
   ],
+  "timingRules": [],
   "activities": [
     {
       "id": "act.cloth-peekaboo",
@@ -895,6 +896,10 @@
         "claims": [
           "clm.c.peekaboo-object-permanence"
         ]
+      },
+      "timing": {
+        "stimulation": "gentle",
+        "rules": []
       },
       "evidence": {
         "type": "described",
@@ -994,6 +999,10 @@
         "claims": [
           "clm.c.objects-scientist"
         ]
+      },
+      "timing": {
+        "stimulation": "gentle",
+        "rules": []
       },
       "evidence": {
         "type": "described",
@@ -1096,6 +1105,12 @@
         "text": "Many babies around this age love banging things together and discovering that they're the ones making the sound.",
         "claims": [
           "clm.c.banging-noise"
+        ]
+      },
+      "timing": {
+        "stimulation": "lively",
+        "rules": [
+          "tim.core.gentle-play-after-feed-spit-up"
         ]
       },
       "evidence": {
@@ -1209,6 +1224,10 @@
           "clm.c.treasure-basket"
         ]
       },
+      "timing": {
+        "stimulation": "gentle",
+        "rules": []
+      },
       "evidence": {
         "type": "described",
         "claims": [
@@ -1316,6 +1335,12 @@
           "clm.c.crawling-varies"
         ]
       },
+      "timing": {
+        "stimulation": "lively",
+        "rules": [
+          "tim.core.gentle-play-after-feed-spit-up"
+        ]
+      },
       "evidence": {
         "type": "described",
         "claims": [
@@ -1412,6 +1437,10 @@
         "claims": [
           "clm.c.ball-roll"
         ]
+      },
+      "timing": {
+        "stimulation": "gentle",
+        "rules": []
       },
       "evidence": {
         "type": "described",
@@ -1516,6 +1545,12 @@
           "clm.c.cruising-practice"
         ]
       },
+      "timing": {
+        "stimulation": "lively",
+        "rules": [
+          "tim.core.gentle-play-after-feed-spit-up"
+        ]
+      },
       "evidence": {
         "type": "described",
         "claims": [
@@ -1610,6 +1645,10 @@
           "clm.c.books-bond"
         ]
       },
+      "timing": {
+        "stimulation": "settling",
+        "rules": []
+      },
       "evidence": {
         "type": "described",
         "claims": [
@@ -1699,6 +1738,10 @@
         "claims": [
           "clm.c.gestures-songs"
         ]
+      },
+      "timing": {
+        "stimulation": "gentle",
+        "rules": []
       },
       "evidence": {
         "type": "described",
@@ -1791,6 +1834,10 @@
         "claims": [
           "clm.c.name-body-parts"
         ]
+      },
+      "timing": {
+        "stimulation": "gentle",
+        "rules": []
       },
       "evidence": {
         "type": "adapted",
@@ -1904,6 +1951,12 @@
           "clm.c.objects-scientist"
         ]
       },
+      "timing": {
+        "stimulation": "lively",
+        "rules": [
+          "tim.core.gentle-play-after-feed-spit-up"
+        ]
+      },
       "evidence": {
         "type": "described",
         "claims": [
@@ -2005,6 +2058,10 @@
         "claims": [
           "clm.c.blanket-outside"
         ]
+      },
+      "timing": {
+        "stimulation": "gentle",
+        "rules": []
       },
       "evidence": {
         "type": "described",
@@ -2118,6 +2175,10 @@
         "claims": [
           "clm.c.name-on-walks"
         ]
+      },
+      "timing": {
+        "stimulation": "gentle",
+        "rules": []
       },
       "evidence": {
         "type": "described",
@@ -2237,6 +2298,12 @@
           "clm.c.swing-calms"
         ]
       },
+      "timing": {
+        "stimulation": "lively",
+        "rules": [
+          "tim.core.gentle-play-after-feed-spit-up"
+        ]
+      },
       "evidence": {
         "type": "described",
         "claims": [
@@ -2346,6 +2413,10 @@
           ]
         }
       ],
+      "timing": {
+        "stimulation": "gentle",
+        "rules": []
+      },
       "evidence": {
         "type": "practical",
         "claims": [
@@ -2464,6 +2535,12 @@
         "claims": [
           "clm.c.crawling-varies",
           "clm.c.floor-time"
+        ]
+      },
+      "timing": {
+        "stimulation": "gentle",
+        "rules": [
+          "tim.core.gentle-play-after-feed-spit-up"
         ]
       },
       "evidence": {

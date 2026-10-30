@@ -1,0 +1,66 @@
+{
+  "plan": {
+    "v": 1,
+    "id": "p-mh1a2b3d-p0z8rt",
+    "title": "Maya and Theo, Tuesday",
+    "kids": [
+      {
+        "age": {
+          "value": 6,
+          "unit": "w"
+        },
+        "notYet": []
+      },
+      {
+        "age": {
+          "value": 28,
+          "unit": "m"
+        },
+        "notYet": [
+          "jumps"
+        ]
+      }
+    ],
+    "start": "16:30",
+    "window": 90,
+    "settings": {
+      "energy": "low",
+      "place": "indoors",
+      "mode": "either",
+      "adults": 1
+    },
+    "segments": [
+      {
+        "id": "r2mv8c1qz",
+        "kind": "recipe",
+        "ref": "mix.fixture-tummy-time-and-books",
+        "minutes": 4,
+        "younger": "c1"
+      },
+      {
+        "id": "b0xk4w7ja",
+        "kind": "break",
+        "minutes": 10,
+        "label": "Flexible break"
+      },
+      {
+        "id": "c9pt2e6hn",
+        "kind": "custom",
+        "minutes": 45,
+        "label": "Nap",
+        "who": "c1"
+      },
+      {
+        "id": "c3fd8s1lb",
+        "kind": "custom",
+        "minutes": 20,
+        "label": "Grandma Ruth video call",
+        "who": "c2"
+      }
+    ],
+    "notes": "Theo has a cold; skip the park.",
+    "createdAt": "2026-10-21T15:58:03.902Z",
+    "updatedAt": "2026-10-21T16:04:27.335Z"
+  },
+  "snapshot": "{\"v\":1,\"id\":\"p-mh1a2b3d-p0z8rt\",\"title\":\"Maya and Theo, Tuesday\",\"kids\":[{\"age\":{\"value\":6,\"unit\":\"w\"},\"notYet\":[]},{\"age\":{\"value\":28,\"unit\":\"m\"},\"notYet\":[\"jumps\"]}],\"start\":\"16:30\",\"window\":90,\"settings\":{\"energy\":\"low\",\"place\":\"indoors\",\"mode\":\"either\",\"adults\":1},\"segments\":[{\"id\":\"r2mv8c1qz\",\"kind\":\"recipe\",\"ref\":\"mix.fixture-tummy-time-and-books\",\"minutes\":4,\"younger\":\"c1\"},{\"id\":\"b0xk4w7ja\",\"kind\":\"break\",\"minutes\":10,\"label\":\"Flexible break\"},{\"id\":\"c9pt2e6hn\",\"kind\":\"custom\",\"minutes\":45,\"label\":\"Nap\",\"who\":\"c1\"},{\"id\":\"c3fd8s1lb\",\"kind\":\"custom\",\"minutes\":20,\"label\":\"Grandma Ruth video call\",\"who\":\"c2\"}],\"notes\":\"Theo has a cold; skip the park.\",\"createdAt\":\"2026-10-21T15:58:03.902Z\",\"updatedAt\":\"2026-10-21T16:04:27.335Z\"}"
+}

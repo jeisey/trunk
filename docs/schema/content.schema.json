@@ -4,7 +4,7 @@
   "properties": {
     "schema": {
       "type": "number",
-      "const": 1
+      "const": 2
     },
     "workstream": {
       "type": "string",
@@ -143,6 +143,151 @@
           "locator",
           "paraphrase",
           "scope"
+        ],
+        "additionalProperties": false
+      }
+    },
+    "timingRules": {
+      "default": [],
+      "type": "array",
+      "items": {
+        "type": "object",
+        "properties": {
+          "id": {
+            "type": "string",
+            "pattern": "^tim\\.(?:core|[a-f]|mix)\\.[a-z0-9]+(?:-[a-z0-9]+)*$"
+          },
+          "rev": {
+            "type": "integer",
+            "minimum": 1,
+            "maximum": 9007199254740991
+          },
+          "event": {
+            "type": "string",
+            "enum": [
+              "milk-feed",
+              "meal",
+              "nap"
+            ]
+          },
+          "when": {
+            "type": "string",
+            "enum": [
+              "before",
+              "after"
+            ]
+          },
+          "window": {
+            "type": "object",
+            "properties": {
+              "minutes": {
+                "type": "integer",
+                "minimum": 5,
+                "maximum": 120
+              },
+              "basis": {
+                "type": "string",
+                "enum": [
+                  "source",
+                  "editorial"
+                ]
+              }
+            },
+            "required": [
+              "minutes",
+              "basis"
+            ],
+            "additionalProperties": false
+          },
+          "fit": {
+            "type": "string",
+            "enum": [
+              "preferred",
+              "neutral",
+              "later",
+              "avoid"
+            ]
+          },
+          "ageMin": {
+            "type": "string",
+            "pattern": "^(\\d{1,3})(w|m|y)$"
+          },
+          "ageMax": {
+            "type": "string",
+            "pattern": "^(\\d{1,3})(w|m|y)$"
+          },
+          "condition": {
+            "type": "string",
+            "enum": [
+              "spit-up"
+            ]
+          },
+          "basis": {
+            "type": "string",
+            "enum": [
+              "source",
+              "editorial"
+            ]
+          },
+          "claims": {
+            "maxItems": 4,
+            "type": "array",
+            "items": {
+              "type": "string",
+              "pattern": "^clm\\.(?:core|[a-f]|mix)\\.[a-z0-9]+(?:-[a-z0-9]+)*$"
+            }
+          },
+          "match": {
+            "type": "object",
+            "properties": {
+              "stimulation": {
+                "minItems": 1,
+                "maxItems": 3,
+                "type": "array",
+                "items": {
+                  "type": "string",
+                  "enum": [
+                    "settling",
+                    "gentle",
+                    "lively",
+                    "variable"
+                  ]
+                }
+              }
+            },
+            "required": [
+              "stimulation"
+            ],
+            "additionalProperties": false
+          },
+          "cue": {
+            "type": "string",
+            "minLength": 2,
+            "maxLength": 48
+          },
+          "reason": {
+            "type": "string",
+            "minLength": 2,
+            "maxLength": 260
+          },
+          "checked": {
+            "type": "string",
+            "format": "date",
+            "pattern": "^(?:(?:\\d\\d[2468][048]|\\d\\d[13579][26]|\\d\\d0[48]|[02468][048]00|[13579][26]00)-02-29|\\d{4}-(?:(?:0[13578]|1[02])-(?:0[1-9]|[12]\\d|3[01])|(?:0[469]|11)-(?:0[1-9]|[12]\\d|30)|(?:02)-(?:0[1-9]|1\\d|2[0-8])))$"
+          }
+        },
+        "required": [
+          "id",
+          "rev",
+          "event",
+          "when",
+          "window",
+          "fit",
+          "basis",
+          "claims",
+          "cue",
+          "reason",
+          "checked"
         ],
         "additionalProperties": false
       }
@@ -563,6 +708,33 @@
             ],
             "additionalProperties": false
           },
+          "timing": {
+            "type": "object",
+            "properties": {
+              "stimulation": {
+                "type": "string",
+                "enum": [
+                  "settling",
+                  "gentle",
+                  "lively",
+                  "variable"
+                ]
+              },
+              "rules": {
+                "maxItems": 6,
+                "type": "array",
+                "items": {
+                  "type": "string",
+                  "pattern": "^tim\\.(?:core|[a-f]|mix)\\.[a-z0-9]+(?:-[a-z0-9]+)*$"
+                }
+              }
+            },
+            "required": [
+              "stimulation",
+              "rules"
+            ],
+            "additionalProperties": false
+          },
           "evidence": {
             "type": "object",
             "properties": {
@@ -642,6 +814,7 @@
           "adaptations",
           "stopCues",
           "safety",
+          "timing",
           "evidence",
           "checked"
         ],
@@ -965,6 +1138,24 @@
               "pattern": "^clm\\.(?:core|[a-f]|mix)\\.[a-z0-9]+(?:-[a-z0-9]+)*$"
             }
           },
+          "timing": {
+            "type": "object",
+            "properties": {
+              "stimulation": {
+                "type": "string",
+                "enum": [
+                  "settling",
+                  "gentle",
+                  "lively",
+                  "variable"
+                ]
+              }
+            },
+            "required": [
+              "stimulation"
+            ],
+            "additionalProperties": false
+          },
           "checked": {
             "type": "string",
             "format": "date",
@@ -1013,6 +1204,7 @@
           "stopCues",
           "safety",
           "claims",
+          "timing",
           "checked"
         ],
         "additionalProperties": false
@@ -1082,6 +1274,17 @@
                       "type": "integer",
                       "minimum": 1,
                       "maximum": 240
+                    },
+                    "who": {
+                      "type": "string",
+                      "enum": [
+                        "c1",
+                        "c2"
+                      ]
+                    },
+                    "along": {
+                      "type": "boolean",
+                      "const": true
                     }
                   },
                   "required": [
@@ -1136,6 +1339,55 @@
                   "required": [
                     "kind",
                     "minutes"
+                  ],
+                  "additionalProperties": false
+                },
+                {
+                  "type": "object",
+                  "properties": {
+                    "kind": {
+                      "type": "string",
+                      "const": "routine"
+                    },
+                    "routine": {
+                      "type": "string",
+                      "enum": [
+                        "nap",
+                        "milk-feed",
+                        "meal",
+                        "snack"
+                      ]
+                    },
+                    "who": {
+                      "type": "string",
+                      "enum": [
+                        "c1",
+                        "c2",
+                        "both"
+                      ]
+                    },
+                    "minutes": {
+                      "type": "integer",
+                      "minimum": 5,
+                      "maximum": 240
+                    },
+                    "at": {
+                      "type": "integer",
+                      "minimum": 0,
+                      "maximum": 720
+                    },
+                    "settle": {
+                      "type": "integer",
+                      "minimum": 0,
+                      "maximum": 60
+                    }
+                  },
+                  "required": [
+                    "kind",
+                    "routine",
+                    "who",
+                    "minutes",
+                    "at"
                   ],
                   "additionalProperties": false
                 }

@@ -52,4 +52,29 @@ Completion check for each: ≥ 12 distinct activities, `--check --only <file>` e
 ## 5. Delivery
 - [x] README, `docs/maintenance.md`, decisions, research summary.
 - [x] GitHub Actions: validate, test, build, e2e, deploy to Pages (green on PR jeisey/trunk#1).
-- [ ] PR opened, CI green, merged to `main`.
+- [x] PR opened, CI green, merged to `main` (jeisey/trunk#1).
+
+---
+
+# Refinement 2026-10-29: timing-aware activities, routine blocks, calmer mobile UI, brand kit
+
+Baseline (main @ b9cec90): content valid (108 activities, 29 recipes, 6 starter plans), 107 unit tests, 19 Playwright tests, 182 KB gzip initial JS.
+
+## R1. Contract (lead)
+- [x] Content schema v2: stimulation profile, timing-rule records, routine starter segments (`src/content/*`). Check: catalog validates.
+- [x] Shared evaluator `src/lib/timing.ts`; plan v2 + migration `src/lib/plan.ts`; layout/analysis `src/lib/layout.ts`; edit ops `src/lib/planEdit.ts`. Check: tests/layout.test.ts, tests/planEdit.test.ts.
+- [x] Contract doc `docs/timing-and-routines.md`.
+- [x] Brand masters + web renditions + `src/brand.ts`.
+
+## R2. Workstreams (≤ 3 concurrent)
+- [x] WS1 timing research + classify all activities / recipes; timing coverage; `docs/research/timing.md`; 3 new settling activities.
+- [x] WS2 planner (phase-aware, anchors, alongside), finder timing ranking, reconcile, storage/draft/share v2 + v1 legacy, fixtures, unit tests.
+- [x] WS3 finder/detail/saved/planner UI, routine blocks UI, About consolidation, brand application, exports, e2e + screenshots.
+
+## R3. Integration and verification (lead)
+- [x] Integrate APIs; resolve interface mismatches.
+- [x] Independent reviews: timing/planner/formats + source mappings (`docs/review/timing-review.md`), integrated UI (`docs/review/ui-review.md`); all findings resolved.
+- [x] `npm run validate:content`, `npm run check` (255 tests), `npm run build` (≤ 200 KB gzip initial JS), `npx playwright test` (49/49 Chromium), perf lab.
+- [x] Screenshots and exported PNGs inspected.
+- [x] README, decisions, research, policy, maintenance docs updated.
+- [ ] PR opened, CI green, merged.

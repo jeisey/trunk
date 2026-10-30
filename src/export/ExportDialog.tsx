@@ -49,7 +49,7 @@ export default function ExportDialog({ plan, c, onClose }: { plan: Plan; c: Inde
   const hasCustom = plan.segments.some((s) => s.kind === 'custom');
 
   return (
-    <dialog ref={ref} aria-labelledby="export-title" onClose={onClose} onCancel={onClose}>
+    <dialog ref={ref} aria-labelledby="export-title" onClose={onClose}>
       <div className="dialog-body">
         <div className="dialog-head">
           <h2 id="export-title">Save as image</h2>
