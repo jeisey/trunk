@@ -12,7 +12,7 @@ Trunk is a fast, mobile-first website that helps a parent of a child from 1 week
 
 ## Catalog at a glance
 
-- **111 activities** from 1 week to 59 months, **29 curated two-child pairings** (16 together, 13 side by side), and **7 editable starter plans** (one with an example nap block).
+- **111 activities** from 1 week to 59 months, **29 curated two-child pairings** (16 together, 13 side by side), and **6 editable starter plans**.
 - **253 claims** backed by **120 sources** (US, plus Ireland, UK, Canada, Australia, and WHO), each opened and read on its recorded date.
 - **Timing:** every activity and pairing has a reviewed stimulation profile (settling, gentle, lively, or variable), and **9 timing rules** relate activities to milk feeds, meals, and naps. Each rule says whether its guidance and its minute window come from a source or are Trunk's own planning convention.
 - Every age-slider stop and every sampled two-child age pair meets the coverage thresholds in [`reports/coverage.md`](reports/coverage.md).
