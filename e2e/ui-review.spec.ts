@@ -181,6 +181,8 @@ test('M3: focus lands somewhere sensible after actions that remove the control u
   const fix = timeline(page).locator('.repairs button').first();
   await expect(fix).toBeVisible();
   await fix.click();
+  // Focus moves after the plan re-renders (the clicked button is gone by then), so wait for it.
+  await expect(page.locator('.plan-editor .seg-title-text:focus')).toHaveCount(1);
   expect(await focused(page)).not.toBe('BODY');
   expect(errors).toEqual([]);
 });

@@ -413,11 +413,14 @@ export function PlanEditor({
   const name = (seg: PlanSegment) => entryTitle(seg, c);
   const isGroupStartOf = (seg: PlanSegment) => !seg.along;
 
-  const focusSoon = (selector: string, fallback?: string) =>
+  // Move focus once the edited plan has rendered. The control that was used is often
+  // gone by then, so look for the target for a few frames rather than only the next one.
+  const focusSoon = (selector: string, fallback?: string, tries = 5) =>
     requestAnimationFrame(() => {
       const root = listRef.current?.parentElement;
-      const el = root?.querySelector<HTMLElement>(selector) ?? (fallback ? root?.querySelector<HTMLElement>(fallback) : null);
-      el?.focus();
+      const el = root?.querySelector<HTMLElement>(selector) ?? (tries <= 1 && fallback ? root?.querySelector<HTMLElement>(fallback) : null);
+      if (el) el.focus();
+      else if (tries > 1) focusSoon(selector, fallback, tries - 1);
     });
 
   const move = (i: number, dir: -1 | 1) => {
