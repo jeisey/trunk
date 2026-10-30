@@ -39,8 +39,13 @@ export interface LaidOut {
   missing: boolean;
 }
 
-/** What the adult is doing during a routine block, for whoever else is awake. */
-export type AdultState = 'free' | 'busy' | 'undivided';
+/**
+ * What the adult is doing during a routine block, for whoever else is awake.
+ * free: available. busy: occupied but in the same place (feeding, settling, holding).
+ * undivided: supervising eating. unknown: the parent hasn't said (a nap with no
+ * settling time or "staying with them"); never treated as available.
+ */
+export type AdultState = 'free' | 'busy' | 'undivided' | 'unknown';
 
 export type Repair =
   | { kind: 'shorten'; index: number; minutes: number; label: string }
@@ -109,10 +114,11 @@ export interface PlanAnalysis {
 
 const ROUTINE_ADULT = { 'milk-feed': 'busy', meal: 'undivided', snack: 'undivided' } as const;
 
-/** What the adult is doing at offset `t` during a routine block. Unknown availability counts as busy. */
+/** What the adult is doing at offset `t` during a routine block. */
 export function adultStateAt(host: PlanSegment, hostStart: number, t: number): AdultState {
   if (host.routine === 'nap') {
-    if (host.holding || host.settle === undefined) return 'busy';
+    if (host.holding) return 'busy';
+    if (host.settle === undefined) return 'unknown';
     return t < hostStart + host.settle ? 'busy' : 'free';
   }
   return host.routine ? ROUTINE_ADULT[host.routine] : 'busy';
@@ -146,24 +152,22 @@ export function alongFeasible(
     return { ok: true };
   }
   const doing = `${ADULT_WORDS[host.routine ?? 'nap']} ${hostChild}`;
+  const unknownNote = `Trunk doesn’t know when you’ll be free during ${hostChild}’s nap. Set your settling time on the nap so Trunk can check this.`;
   if (seg.kind === 'routine') {
-    return state === 'free' ? { ok: true } : { ok: false, reason: `You’re ${doing}, so a second routine can’t start yet with one adult.` };
+    if (state === 'free') return { ok: true };
+    return { ok: false, reason: state === 'unknown' ? unknownNote : `You’re ${doing}, so a second routine can’t start yet with one adult.` };
   }
   if (seg.kind === 'custom') {
-    return state === 'free' ? { ok: true } : { ok: true, caution: `Check you can manage this while you’re ${doing}.` };
+    return state === 'free' ? { ok: true } : { ok: true, caution: state === 'unknown' ? unknownNote : `Check you can manage this while you’re ${doing}.` };
   }
   if (!act) return { ok: false, reason: 'This activity is no longer in Trunk.' };
   if (state === 'undivided') return { ok: false, reason: `You’re ${doing}, which needs your full attention with one adult.` };
   if (act.outing || !act.places.includes('indoors')) return { ok: false, reason: `${hostChild} is at home, so with one adult this needs to happen indoors.` };
-  if (state === 'busy' && !isBusyNearbyCompatible(act)) {
-    return {
-      ok: false,
-      reason:
-        host.routine === 'nap' && !host.holding && host.settle === undefined
-          ? `Trunk doesn’t know when you’ll be free during the nap, and this needs more of you. Set your settling time on the nap, or pick something they can do with you nearby.`
-          : `This needs more of you than you can give while ${doing}.`,
-    };
+  if (state !== 'free' && !isBusyNearbyCompatible(act)) {
+    return { ok: false, reason: state === 'unknown' ? unknownNote : `This needs more of you than you can give while ${doing}.` };
   }
+  // Something they can do with you nearby, but Trunk doesn't know where you'll be: the parent decides.
+  if (state === 'unknown') return { ok: true, caution: `${unknownNote} This works only if you can keep watch from the same room.` };
   return { ok: true };
 }
 
@@ -351,7 +355,12 @@ export function analyzePlan(plan: Plan, c: IndexedCatalog, extra?: ChildTiming[]
       other: it.index,
       minutes: by,
       severity: 'conflict',
-      message: sameChild || !two ? `Runs ${by} min into ${name(it.index)} at its set time.` : `Runs ${by} min into ${name(it.index)}; one adult can’t do both.`,
+      message:
+        sameChild || !two
+          ? `Runs ${by} min into ${name(it.index)} at its set time.`
+          : plan.settings.adults === 1
+            ? `Runs ${by} min into ${name(it.index)}; one adult can’t do both.`
+            : `Runs ${by} min into ${name(it.index)}. To do both at once, move one alongside the other.`,
       repairs,
     });
   }
@@ -364,23 +373,43 @@ export function analyzePlan(plan: Plan, c: IndexedCatalog, extra?: ChildTiming[]
     const along = items.filter((x) => x.host === h.index);
     if (two && hs.who !== 'both') {
       const other: Lane = hs.who === 'c2' ? 'c1' : 'c2';
-      for (const x of along) {
+      for (let k = 0; k < along.length; k++) {
+        const x = along[k];
         const act = x.segment.kind === 'activity' ? c.activityById.get(x.segment.ref ?? '') : undefined;
         const state = adultStateAt(hs, h.start, x.start);
         const f = alongFeasible(x.segment, act, hs, state, plan.settings.adults);
-        if (!f.ok) conflicts.push({ kind: 'along-adult', index: x.index, other: h.index, severity: 'conflict', message: f.reason!, repairs: [{ kind: 'swap', index: x.index, label: 'Swap for something that fits' }, { kind: 'remove', index: x.index, label: 'Remove it' }] });
+        const fixes: Repair[] =
+          x.segment.kind === 'routine'
+            ? [{ kind: 'shift', index: x.index, at: h.end, label: `Move it after ${name(h.index).toLowerCase()}` }, { kind: 'remove', index: x.index, label: 'Remove it' }]
+            : [{ kind: 'swap', index: x.index, label: 'Swap for something that fits' }, { kind: 'remove', index: x.index, label: 'Remove it' }];
+        if (!f.ok) conflicts.push({ kind: 'along-adult', index: x.index, other: h.index, severity: 'conflict', message: f.reason!, repairs: fixes });
         else if (f.caution) conflicts.push({ kind: 'along-adult', index: x.index, other: h.index, severity: 'caution', message: f.caution, repairs: [] });
+        // Two entries for the same child at once inside the track.
+        const prev = along.slice(0, k).reduce<LaidOut | null>((m, p) => (!m || p.end > m.end ? p : m), null);
+        if (prev && prev.end > x.start) {
+          const by = prev.end - x.start;
+          const { min } = bounds(prev.segment, c);
+          const repairs: Repair[] = [];
+          if (prev.segment.kind !== 'routine' && prev.segment.minutes - by >= min) repairs.push({ kind: 'shorten', index: prev.index, minutes: prev.segment.minutes - by, label: `Shorten ${name(prev.index)} by ${by} min` });
+          if (x.anchored) repairs.push({ kind: 'shift', index: x.index, at: prev.end, label: `Move ${name(x.index)} ${by} min later` });
+          repairs.push({ kind: 'remove', index: prev.index, label: `Remove ${name(prev.index)}` });
+          conflicts.push({ kind: 'overlap', index: prev.index, other: x.index, minutes: by, severity: 'conflict', message: `${childLabel(other)} would be doing ${name(prev.index)} and ${name(x.index)} at once for ${by} min.`, repairs });
+        }
         if (x.end > h.end) {
           const by = x.end - h.end;
           const { min } = bounds(x.segment, c);
           const repairs: Repair[] = [];
           if (x.segment.minutes - by >= min && x.segment.kind !== 'routine') repairs.push({ kind: 'shorten', index: x.index, minutes: x.segment.minutes - by, label: `Shorten it by ${by} min` });
+          if (x.segment.kind === 'routine') repairs.push({ kind: 'shift', index: x.index, at: h.end, label: `Move it after ${name(h.index).toLowerCase()}` });
           repairs.push({ kind: 'remove', index: x.index, label: 'Remove it' });
           conflicts.push({ kind: 'along-overrun', index: x.index, other: h.index, minutes: by, severity: 'conflict', message: `Runs ${by} min past the end of ${childLabel(hs.who === 'c2' ? 'c2' : 'c1')}’s ${name(h.index).toLowerCase()}.`, repairs });
         }
       }
+      // Split the other child's free time where your availability changes (end of settling).
+      const cut = hs.routine === 'nap' && !hs.holding && hs.settle !== undefined ? h.start + hs.settle : null;
       for (const g of freeIntervals(h.start, h.end, along)) {
-        gaps.push({ start: g.start, end: g.end, who: other, adult: adultStateAt(hs, h.start, g.start), host: h.index });
+        const parts = cut !== null && g.start < cut && cut < g.end ? [{ start: g.start, end: cut }, { start: cut, end: g.end }] : [g];
+        for (const part of parts) gaps.push({ start: part.start, end: part.end, who: other, adult: adultStateAt(hs, h.start, part.start), host: h.index });
       }
     } else {
       for (const x of along) {
@@ -403,7 +432,9 @@ export function analyzePlan(plan: Plan, c: IndexedCatalog, extra?: ChildTiming[]
           message:
             plan.settings.adults === 2
               ? `${other} has nothing planned during this; make sure the other adult is with them.`
-              : `${other} has nothing planned during this. Put it alongside ${other}’s nap or feed, or choose a pairing for both.`,
+              : s.kind === 'custom'
+                ? `${other} has nothing planned during this. Check who’s with them.`
+                : `${other} has nothing planned during this. Put it alongside ${other}’s nap or feed, or choose a pairing for both.`,
           repairs: [{ kind: 'remove', index: it.index, label: 'Remove it' }],
         });
       }

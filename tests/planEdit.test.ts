@@ -1,6 +1,6 @@
 import { describe, expect, it } from 'vitest';
 import { analyzePlan, layoutPlan } from '../src/lib/layout.ts';
-import { addEntry, addRoutine, duplicateEntry, makePlan, moveEntry, removeEntry, setAnchor } from '../src/lib/planEdit.ts';
+import { addEntry, addRoutine, applyRepair, clockProblem, duplicateEntry, makePlan, moveEntry, removeEntry, setAnchor, setLocked, setMinutes } from '../src/lib/planEdit.ts';
 import { Plan } from '../src/lib/plan.ts';
 import { fixtureCatalog, loadFixture } from './helpers.ts';
 
@@ -56,4 +56,60 @@ describe('plan editing', () => {
     p = setAnchor(p, 0, 120, c);
     expect(p.segments.map((s) => s.at)).toEqual([20, 120]);
   });
+
+  it('removing a nap keeps a locked alongside entry anchored, so the plan stays valid (review M4)', () => {
+    let p = two();
+    p = addRoutine(p, { routine: 'nap', who: 'c1', minutes: 60, clock: 12 * 60 + 10, settle: 5 }, c);
+    p = addEntry(p, { id: 'a1', kind: 'activity', ref: books.id, minutes: 15, who: 'c2' }, { host: 0 });
+    p = setLocked(p, 1, true, c);
+    const r = removeEntry(p, 0);
+    expect(Plan.safeParse(r).success).toBe(true);
+    expect(r.segments[0]).toMatchObject({ id: 'a1', locked: true, at: 15 });
+  });
+
+  it('keeps two timed entries in time order when moving (review m2)', () => {
+    let p = makePlan([{ age: { value: 9, unit: 'm' }, notYet: [] }], { ...settings }, '12:00', 180);
+    p = addRoutine(p, { routine: 'nap', who: 'c1', minutes: 60, clock: 12 * 60 + 30 }, c);
+    p = addRoutine(p, { routine: 'snack', who: 'c1', minutes: 15, clock: 14 * 60 }, c);
+    expect(moveEntry(p, 1, -1)).toBe(p);
+    expect(analyzePlan(p, c).conflicts).toEqual([]);
+  });
+
+  it('refuses a routine time before the plan starts instead of wrapping to tomorrow (review m10)', () => {
+    const p = makePlan([{ age: { value: 9, unit: 'm' }, notYet: [] }], { ...settings }, '14:00', 120);
+    expect(clockProblem(p, 13 * 60 + 30)).toMatch(/before this plan starts/);
+    expect(addRoutine(p, { routine: 'nap', who: 'c1', minutes: 30, clock: 13 * 60 + 30 }, c)).toBe(p);
+    expect(clockProblem(p, 15 * 60)).toBeNull();
+  });
+
+  it('every edit operation returns a valid plan (property check over random edit sequences)', () => {
+    let seed = 7;
+    const rand = (n: number) => {
+      seed = (seed * 1103515245 + 12345) % 2147483648;
+      return seed % n;
+    };
+    for (let run = 0; run < 200; run++) {
+      let p = two();
+      for (let step = 0; step < 12; step++) {
+        const n = p.segments.length;
+        const i = n ? rand(n) : 0;
+        const op = rand(9);
+        if (op === 0) p = addRoutine(p, { routine: (['nap', 'milk-feed', 'meal', 'snack'] as const)[rand(4)], who: (['c1', 'c2', 'both'] as const)[rand(3)], minutes: 10 + rand(60), clock: 12 * 60 + rand(200), settle: rand(2) ? rand(20) : undefined }, c);
+        else if (op === 1) p = addEntry(p, { id: `a${run}${step}`, kind: 'activity', ref: books.id, minutes: 10, who: rand(2) ? 'c1' : 'c2' }, n && p.segments[i].kind === 'routine' && !p.segments[i].along && p.segments[i].who !== 'both' ? { host: i } : {});
+        else if (op === 2) p = addEntry(p, { id: `r${run}${step}`, kind: 'recipe', ref: recipe.id, minutes: 5, younger: 'c1' });
+        else if (n && op === 3) p = moveEntry(p, i, rand(2) ? 1 : -1);
+        else if (n && op === 4) p = removeEntry(p, i);
+        else if (n && op === 5) p = duplicateEntry(p, i, c);
+        else if (n && op === 6) p = setLocked(p, i, Boolean(rand(2)), c);
+        else if (n && op === 7) p = setMinutes(p, i, 1 + rand(120), c);
+        else if (n && op === 8) {
+          const cf = analyzePlan(p, c).conflicts.flatMap((x) => x.repairs);
+          if (cf.length) p = applyRepair(p, cf[rand(cf.length)], c);
+        }
+        const r = Plan.safeParse(p);
+        if (!r.success) throw new Error(`run ${run} step ${step} op ${op}: ${JSON.stringify(p.segments)}`);
+      }
+    }
+  });
 });
+

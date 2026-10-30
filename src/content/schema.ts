@@ -330,6 +330,8 @@ const StarterSegment = z.discriminatedUnion('kind', [
     who: z.enum(['c1', 'c2', 'both']),
     minutes: z.number().int().min(5).max(240),
     at: z.number().int().min(0).max(720),
+    /** Nap only: an example settling time, so alongside play starts when the adult is free. */
+    settle: z.number().int().min(0).max(60).optional(),
   }),
 ]);
 

@@ -68,7 +68,11 @@ Core rules today (see `content/core.json` and `docs/research/timing.md`):
   are cited as informing claims, not as nap rules): settling → "Good for winding
   down" before a nap; lively → "Better earlier" before a nap; settling/gentle →
   "Gentle start after waking"; lively → "Ease in after waking".
-- No meal rules: no reviewed source supports one, so meal timing is unassessed.
+- `tim.core.tummy-after-meal-under-12m` / `tim.core.tummy-before-meal-under-12m`:
+  editorial, babies under 12 months. A cautious extension of HSE's feed advice
+  to meal and snack blocks (HSE says "feed"); labelled as Trunk's convention.
+- No other meal rules: no reviewed source supports one, so meal timing for older
+  children is unassessed.
 
 ## 2. Evaluator (`src/lib/timing.ts`)
 
@@ -88,11 +92,14 @@ Core rules today (see `content/core.json` and `docs/research/timing.md`):
 - `unassessed: true` when stimulation is `variable`: no profile preference;
   UIs may say "not rated" in detail, never "fine".
 
-Momentary context (`MomentContext`, finder only): per child `{ fed, fedAgo?, nap, napIn? }`,
+Momentary context (`MomentContext`, finder and planning from Find): per child `{ fed, fedAgo?, nap, napIn? }`,
 held in memory only (not prefs, not session storage, not plans, not shares).
 `momentTiming()` turns it into events on an axis where 0 = now: "Just fed" →
 milk-feed and meal events ending `fedAgo` ago (default 0); "Nap soon" → nap at
-`napIn`, or, with no time, "a nap follows this entry directly" (`napNext`).
+`napIn` with no end (its length is unknown, so no after-waking rule can fire),
+or, with no time, "a nap follows this entry directly" (`napNext`). The planner
+leaves time after a known `napIn` open, and with no time ranks calm ideas first
+throughout; it never places the nap at the end of the window.
 Both may be set at once for the same child.
 
 ## 3. Plan v2 (`src/lib/plan.ts`)
@@ -129,12 +136,20 @@ nothing planned.
 - Alongside track: starts at the host's start plus `settle` (nap), runs in
   order, never advances the main sequence until the next main entry. Overrun
   past the host → `along-overrun`.
-- Adult state during a routine: nap → busy until `settle` ends, then free
-  (holding or unknown → busy all through); milk feed → busy; meal/snack →
-  undivided. `alongFeasible()` (one adult): routines need a free adult; custom
-  entries get a caution unless free; activities need indoors/not an outing, no
-  undivided state, and when busy must be busy-nearby compatible. Two adults:
-  anything except two-adult activities.
+- Adult state during a routine: nap → busy until `settle` ends, then free;
+  nap with "staying with them" (`holding`) → busy all through; nap with neither →
+  **unknown** (never treated as free; the planner leaves the other child's time
+  open and asks for a settling time); milk feed → busy; meal/snack → undivided.
+  `alongFeasible()` (one adult): routines need a free adult; custom entries get a
+  caution unless free; activities need indoors/not an outing, no undivided state,
+  and when busy or unknown must be busy-nearby compatible (unknown adds a
+  caution: the parent decides whether they can watch from the same room). Two
+  adults: anything except two-adult activities.
+- Entries inside one alongside track that overlap are an `overlap` conflict too.
+  Gaps are split where settling ends, so each part carries the right adult state.
+- Two entries that both have set times are never swapped by ↑/↓ (they keep their
+  time order); a routine time more than 12 hours after the start is refused as
+  "before this plan starts" rather than wrapped to the next day.
 - `analyzePlan()` returns per entry: layout, `child`, timing assessment, time-of-
   day issue (sun/night), conflicts; plus gaps (`all`, or a child's gap during the
   other child's routine with the adult state), union `busy`, `open`, `overrun`,

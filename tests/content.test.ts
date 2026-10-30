@@ -1,6 +1,7 @@
 import { readdirSync, readFileSync } from 'node:fs';
 import { join } from 'node:path';
 import { describe, expect, it } from 'vitest';
+import { days } from '../src/lib/eligibility.ts';
 import { parseFile, validateCatalog } from '../src/content/validate.ts';
 import { buildCoverage } from '../src/content/coverage.ts';
 import { ageStringToDays } from '../src/lib/age.ts';
@@ -233,10 +234,15 @@ describe('the bundled catalog', () => {
       }
     });
 
-    it('only adds meal rules a source supports', () => {
+    it('keeps meal rules sourced, or cautious, baby-only, and labelled as Trunk’s convention', () => {
       for (const r of timingRules.filter((x) => x.event === 'meal')) {
-        expect(r.basis, r.id).toBe('source');
         expect(r.claims.length, r.id).toBeGreaterThan(0);
+        if (r.basis === 'editorial') {
+          // Only a cautious extension of feed advice for babies (tummy time and eating), never a rule for older children.
+          expect(r.ageMax && days(r.ageMax), r.id).toBeLessThanOrEqual(days('12m'));
+          expect(r.fit, r.id).toBe('avoid');
+          expect(r.reason, r.id).toMatch(/Trunk/);
+        }
       }
     });
 

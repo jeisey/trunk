@@ -301,7 +301,7 @@
     {
       "id": "clm.core.hse-not-around-feeds",
       "kind": "recommendation",
-      "text": "HSE (Ireland) suggests avoiding tummy time just before or after a feed, especially if your baby has reflux.",
+      "text": "HSE (Ireland) advises keeping tummy time away from the moments just before and after a feed, particularly for babies with reflux.",
       "sources": [
         "src.hse.tummy-time"
       ],
@@ -312,7 +312,7 @@
     {
       "id": "clm.core.aap-spit-up-limit-active-play",
       "kind": "recommendation",
-      "text": "AAP (US): if a baby spits up when bounced or played with after feeds, keep feeds calm and limit active play for about 20–30 minutes afterward.",
+      "text": "AAP (US): when a baby spits up after being bounced or played with following a feed, keep feeding times calm and cut back on active play for roughly 20–30 minutes after.",
       "sources": [
         "src.aap-hc.why-babies-spit-up"
       ],
@@ -486,6 +486,46 @@
       "checked": "2026-10-29"
     },
     {
+      "id": "tim.core.tummy-after-meal-under-12m",
+      "rev": 1,
+      "event": "meal",
+      "when": "after",
+      "window": {
+        "minutes": 30,
+        "basis": "editorial"
+      },
+      "fit": "avoid",
+      "ageMin": "1w",
+      "ageMax": "12m",
+      "basis": "editorial",
+      "claims": [
+        "clm.core.hse-not-around-feeds"
+      ],
+      "cue": "Not right after eating",
+      "reason": "HSE (Ireland) advises against tummy time just after a feed. Trunk also keeps it away from meals and snacks for babies under 12 months; that wider reading and the 30 minutes are Trunk’s conventions.",
+      "checked": "2026-10-30"
+    },
+    {
+      "id": "tim.core.tummy-before-meal-under-12m",
+      "rev": 1,
+      "event": "meal",
+      "when": "before",
+      "window": {
+        "minutes": 15,
+        "basis": "editorial"
+      },
+      "fit": "avoid",
+      "ageMin": "1w",
+      "ageMax": "12m",
+      "basis": "editorial",
+      "claims": [
+        "clm.core.hse-not-around-feeds"
+      ],
+      "cue": "Not right before eating",
+      "reason": "HSE (Ireland) advises against tummy time just before a feed. Trunk also keeps it away from meals and snacks for babies under 12 months; that wider reading and the 15 minutes are Trunk’s conventions.",
+      "checked": "2026-10-30"
+    },
+    {
       "id": "tim.core.gentle-play-after-feed-spit-up",
       "rev": 1,
       "event": "milk-feed",
@@ -509,7 +549,7 @@
     },
     {
       "id": "tim.core.wind-down-before-nap",
-      "rev": 2,
+      "rev": 3,
       "event": "nap",
       "when": "before",
       "window": {
@@ -528,7 +568,7 @@
         ]
       },
       "cue": "Good for winding down",
-      "reason": "Quiet, familiar activities can fit before a nap. HSE suggests a calm story before naps and NHS winding down before bed; applying this to naps is Trunk’s preference. Nothing guarantees sleep, and the 30 minutes is a convention.",
+      "reason": "Quiet, familiar activities can fit before a nap. HSE suggests a calm story before naps; using NHS bedtime advice for naps, and the 30 minutes, are Trunk’s choices. Nothing guarantees sleep.",
       "checked": "2026-10-29"
     },
     {
@@ -695,7 +735,9 @@
         "rules": [
           "tim.core.tummy-after-milk-feed",
           "tim.core.tummy-before-milk-feed",
-          "tim.core.gentle-play-after-feed-spit-up"
+          "tim.core.gentle-play-after-feed-spit-up",
+          "tim.core.tummy-after-meal-under-12m",
+          "tim.core.tummy-before-meal-under-12m"
         ]
       },
       "evidence": {
@@ -801,7 +843,9 @@
         "rules": [
           "tim.core.tummy-after-milk-feed",
           "tim.core.tummy-before-milk-feed",
-          "tim.core.gentle-play-after-feed-spit-up"
+          "tim.core.gentle-play-after-feed-spit-up",
+          "tim.core.tummy-after-meal-under-12m",
+          "tim.core.tummy-before-meal-under-12m"
         ]
       },
       "evidence": {
@@ -913,7 +957,9 @@
         "rules": [
           "tim.core.tummy-after-milk-feed",
           "tim.core.tummy-before-milk-feed",
-          "tim.core.gentle-play-after-feed-spit-up"
+          "tim.core.gentle-play-after-feed-spit-up",
+          "tim.core.tummy-after-meal-under-12m",
+          "tim.core.tummy-before-meal-under-12m"
         ]
       },
       "evidence": {
@@ -1030,7 +1076,9 @@
         "rules": [
           "tim.core.tummy-after-milk-feed",
           "tim.core.tummy-before-milk-feed",
-          "tim.core.gentle-play-after-feed-spit-up"
+          "tim.core.gentle-play-after-feed-spit-up",
+          "tim.core.tummy-after-meal-under-12m",
+          "tim.core.tummy-before-meal-under-12m"
         ]
       },
       "evidence": {

@@ -494,3 +494,10 @@ classifications.
 Resolved in the follow-up: the massage step now uses its source's framing; the two
 older starters were reordered; `src.hse.tummy-time` keeps its URL with a note that
 HSE also serves it on `www2.hse.ie`.
+
+## Lead addendum (2026-10-30, after independent review)
+
+- **Meal blocks and tummy time (review m5).** HSE says "feed". For babies under 12 months, Trunk now also keeps tummy time away from parent-placed meal and snack blocks (`tim.core.tummy-after-meal-under-12m`, `tim.core.tummy-before-meal-under-12m`). These are editorial rules citing `clm.core.hse-not-around-feeds` as the informing claim; the reasons say the wider reading and the minutes are Trunk's conventions.
+- **Starter `plan.baby-nap-toddler-alongside`.** The example nap now carries an example settling time (10 minutes), so the toddler's alongside play starts once the adult is free; its summary calls the nap's time, length, and settling time placeholders.
+- **`act.supported-sit-lap-play`.** Step changed from "on their back or tummy" to "on their back" (rev bumped): the record has no feed rules, so it shouldn't prompt tummy time that could land right after a feed (review m6).
+- **Claim wording (review n1).** `clm.core.hse-not-around-feeds` and `clm.core.aap-spit-up-limit-active-play` reworded further from the sources' sentences.

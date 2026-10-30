@@ -96,6 +96,7 @@ review covers the rest.
 - Never infer feeds or naps from age or the clock, prescribe wake windows, nap lengths, or feeding intervals, suggest postponing a feed or keeping a child awake, or label anything "safe after feeding". Unknown context produces no reassurance.
 - Feeding a baby, settling a child, and supervising eating are adult work. Another child may only do something alongside them that one adult can supervise at the same time.
 - Meal and snack blocks are parent-placed routines for children already eating solids; Trunk never adds food activities to a plan on its own.
+- Deliberate exception to "default to US guidance": HSE's (Ireland) advice to keep tummy time away from feeds is applied to every baby as a recommendation exclusion, because it is the more cautious guidance and costs nothing; the narrower AAP advice (babies who spit up) stays advisory. Both are labelled with their jurisdiction.
 
 ## Retirement and review
 

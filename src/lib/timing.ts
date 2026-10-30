@@ -220,7 +220,7 @@ export interface MomentContext {
   /** Minutes since the feed or meal ended, if the parent gave it. Unknown means "just now". */
   fedAgo?: number | null;
   nap: boolean;
-  /** Minutes until the nap, if the parent gave it. Unknown means "right after this". */
+  /** Minutes until the nap, if the parent gave it. Unknown means "right after this". The nap's length is never assumed. */
   napIn?: number | null;
 }
 
@@ -242,7 +242,8 @@ export function momentTiming(childDays: number, m: MomentContext | undefined): C
   }
   let napNext = false;
   if (m?.nap) {
-    if (m.napIn != null && m.napIn >= 0) events.push({ event: 'nap', start: m.napIn, end: m.napIn + 1 });
+    // The nap's length is unknown, so it has no end: no "after waking" rule can fire from it.
+    if (m.napIn != null && m.napIn >= 0) events.push({ event: 'nap', start: m.napIn, end: Infinity });
     else napNext = true;
   }
   return { days: childDays, events, napNext };

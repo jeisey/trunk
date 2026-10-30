@@ -33,6 +33,18 @@ export function offsetForClock(plan: Pick<Plan, 'start'>, clock: number): number
   return (((clock - parseHHMM(plan.start)) % 1440) + 1440) % 1440;
 }
 
+/** Latest offset a routine may start at: the longest window a plan can have. */
+export const MAX_ANCHOR = 720;
+
+/**
+ * Why a clock time can't hold a routine block in this plan, or null if it can.
+ * Times more than 12 hours after the start are almost always meant to be earlier
+ * the same day, so Trunk asks instead of wrapping them to tomorrow.
+ */
+export function clockProblem(plan: Pick<Plan, 'start'>, clock: number): string | null {
+  return offsetForClock(plan, clock) > MAX_ANCHOR ? 'That’s before this plan starts. Change the plan’s start time to include it.' : null;
+}
+
 /**
  * Put the group starting at `index` (an anchored main entry) where its time belongs:
  * before the first main entry that starts at or after it, using the layout of the
@@ -75,7 +87,8 @@ export function addRoutine(plan: Plan, input: RoutineInput, c: IndexedCatalog): 
   if (plan.segments.length >= MAX_SEGMENTS) return plan;
   const { min, max } = bounds({ id: 'x', kind: 'routine', routine: input.routine, who: input.who, minutes: 1, at: 0 }, c);
   const items = layoutPlan(plan, c);
-  const at = input.clock === undefined ? items.reduce((m, it) => Math.max(m, it.end), 0) : offsetForClock(plan, input.clock);
+  if (input.clock !== undefined && clockProblem(plan, input.clock)) return plan;
+  const at = Math.min(1439, input.clock === undefined ? items.reduce((m, it) => Math.max(m, it.end), 0) : offsetForClock(plan, input.clock));
   const seg: PlanSegment = {
     id: newId('n'),
     kind: 'routine',
@@ -97,12 +110,20 @@ export function addRoutine(plan: Plan, input: RoutineInput, c: IndexedCatalog): 
   return placeAnchored(appended, appended.segments.length - 1, c);
 }
 
-/** Add any entry: to the main sequence (end), or alongside the routine group at `host`. */
+/**
+ * Add any entry: to the main sequence (end), or alongside the routine group at `host`.
+ * An alongside entry is always for the other child; a host that isn't a one-child
+ * routine in a two-child plan can't take one, and the plan is returned unchanged.
+ */
 export function addEntry(plan: Plan, seg: PlanSegment, opts: { host?: number } = {}): Plan {
   if (plan.segments.length >= MAX_SEGMENTS) return plan;
   if (opts.host !== undefined) {
-    const [, end] = groupRange(plan.segments, opts.host);
-    return touch(plan, [...plan.segments.slice(0, end), { ...seg, along: true }, ...plan.segments.slice(end)]);
+    const [first, end] = groupRange(plan.segments, opts.host);
+    const host = plan.segments[first];
+    if (plan.kids.length !== 2 || host.kind !== 'routine' || (host.who !== 'c1' && host.who !== 'c2')) return plan;
+    if (seg.kind !== 'activity' && seg.kind !== 'custom' && seg.kind !== 'routine') return plan;
+    const who = host.who === 'c1' ? 'c2' : 'c1';
+    return touch(plan, [...plan.segments.slice(0, end), { ...seg, who, along: true }, ...plan.segments.slice(end)]);
   }
   const { along: _drop, ...main } = seg;
   void _drop;
@@ -157,7 +178,9 @@ export function updateEntry(plan: Plan, index: number, patch: Partial<PlanSegmen
 /**
  * Move an entry one step earlier or later. Main entries move with their group
  * past the neighbouring group; alongside entries move within their track.
- * Anchored entries keep their time; only their order changes.
+ * Anchored entries keep their time; two entries that both have set times are
+ * never swapped (that would put them out of time order): the plan is returned
+ * unchanged and the caller can suggest changing a time instead.
  */
 export function moveEntry(plan: Plan, index: number, dir: -1 | 1): Plan {
   const segs = plan.segments;
@@ -169,13 +192,17 @@ export function moveEntry(plan: Plan, index: number, dir: -1 | 1): Plan {
     return touch(plan, next);
   }
   const [a0, a1] = groupRange(segs, index);
+  // Two entries with set times keep their time order; change a time to reorder them.
+  const fixedPair = (x: PlanSegment, y: PlanSegment) => x.at !== undefined && y.at !== undefined;
   if (dir < 0) {
     if (a0 === 0) return plan;
     const [b0] = groupRange(segs, a0 - 1);
+    if (fixedPair(segs[a0], segs[b0])) return plan;
     return touch(plan, [...segs.slice(0, b0), ...segs.slice(a0, a1), ...segs.slice(b0, a0), ...segs.slice(a1)]);
   }
   if (a1 >= segs.length) return plan;
   const [, b1] = groupRange(segs, a1);
+  if (fixedPair(segs[a0], segs[a1])) return plan;
   return touch(plan, [...segs.slice(0, a0), ...segs.slice(a1, b1), ...segs.slice(a0, a1), ...segs.slice(b1)]);
 }
 
@@ -194,10 +221,11 @@ export function removeEntry(plan: Plan, index: number): Plan {
     segs.flatMap((s, i) => {
       if (i === index) return [];
       if (isHost && i > index && i < end) {
+        // Rejoin the main sequence. Routines and locked entries stay anchored (both need a time).
         const { along: _a, at: _t, ...rest } = s;
         void _a;
         void _t;
-        return [s.kind === 'routine' ? { ...rest, at: s.at ?? 0 } : rest];
+        return [s.kind === 'routine' || s.locked ? { ...rest, at: s.at ?? 0 } : rest];
       }
       return [s];
     }),

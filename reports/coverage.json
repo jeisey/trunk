@@ -2146,6 +2146,32 @@
         "listedBy": 6
       },
       {
+        "id": "tim.core.tummy-after-meal-under-12m",
+        "event": "meal",
+        "when": "after",
+        "minutes": 30,
+        "windowBasis": "editorial",
+        "fit": "avoid",
+        "basis": "editorial",
+        "ages": "1w–12m",
+        "condition": null,
+        "policy": null,
+        "listedBy": 6
+      },
+      {
+        "id": "tim.core.tummy-before-meal-under-12m",
+        "event": "meal",
+        "when": "before",
+        "minutes": 15,
+        "windowBasis": "editorial",
+        "fit": "avoid",
+        "basis": "editorial",
+        "ages": "1w–12m",
+        "condition": null,
+        "policy": null,
+        "listedBy": 6
+      },
+      {
         "id": "tim.core.gentle-play-after-feed-spit-up",
         "event": "milk-feed",
         "when": "after",
@@ -2227,7 +2253,9 @@
         "rules": [
           "tim.core.tummy-after-milk-feed",
           "tim.core.tummy-before-milk-feed",
-          "tim.core.gentle-play-after-feed-spit-up"
+          "tim.core.gentle-play-after-feed-spit-up",
+          "tim.core.tummy-after-meal-under-12m",
+          "tim.core.tummy-before-meal-under-12m"
         ]
       },
       {
@@ -2236,7 +2264,9 @@
         "rules": [
           "tim.core.tummy-after-milk-feed",
           "tim.core.tummy-before-milk-feed",
-          "tim.core.gentle-play-after-feed-spit-up"
+          "tim.core.gentle-play-after-feed-spit-up",
+          "tim.core.tummy-after-meal-under-12m",
+          "tim.core.tummy-before-meal-under-12m"
         ]
       },
       {
@@ -2245,7 +2275,9 @@
         "rules": [
           "tim.core.tummy-after-milk-feed",
           "tim.core.tummy-before-milk-feed",
-          "tim.core.gentle-play-after-feed-spit-up"
+          "tim.core.gentle-play-after-feed-spit-up",
+          "tim.core.tummy-after-meal-under-12m",
+          "tim.core.tummy-before-meal-under-12m"
         ]
       },
       {
@@ -2254,7 +2286,9 @@
         "rules": [
           "tim.core.tummy-after-milk-feed",
           "tim.core.tummy-before-milk-feed",
-          "tim.core.gentle-play-after-feed-spit-up"
+          "tim.core.gentle-play-after-feed-spit-up",
+          "tim.core.tummy-after-meal-under-12m",
+          "tim.core.tummy-before-meal-under-12m"
         ]
       },
       {
@@ -2263,7 +2297,9 @@
         "rules": [
           "tim.core.tummy-after-milk-feed",
           "tim.core.tummy-before-milk-feed",
-          "tim.core.gentle-play-after-feed-spit-up"
+          "tim.core.gentle-play-after-feed-spit-up",
+          "tim.core.tummy-after-meal-under-12m",
+          "tim.core.tummy-before-meal-under-12m"
         ]
       },
       {
@@ -2272,7 +2308,9 @@
         "rules": [
           "tim.core.tummy-after-milk-feed",
           "tim.core.tummy-before-milk-feed",
-          "tim.core.gentle-play-after-feed-spit-up"
+          "tim.core.gentle-play-after-feed-spit-up",
+          "tim.core.tummy-after-meal-under-12m",
+          "tim.core.tummy-before-meal-under-12m"
         ]
       },
       {

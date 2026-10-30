@@ -357,6 +357,7 @@ export function validateCatalog(files: { file: string; data: ContentFileT }[], t
         if ((seg.routine === 'meal' || seg.routine === 'snack') && seg.who === 'both' && ages.some((d) => d < monthsToDays(6))) {
           err(file, p.id, 'meal/snack blocks are not for babies under 6 months');
         }
+        if (seg.settle !== undefined && seg.routine !== 'nap') err(file, p.id, 'settle applies to nap blocks only');
         host = { who: seg.who };
         continue;
       }

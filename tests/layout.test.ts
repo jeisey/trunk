@@ -191,7 +191,7 @@ describe('plan layout', () => {
     expect(a.gaps.find((g) => g.who === 'c2' && g.start === 0)).toMatchObject({ end: 10, adult: 'busy' });
   });
 
-  it('treats unknown nap availability as busy and keeps meal supervision undivided', () => {
+  it('never treats unknown nap availability as free, and keeps meal supervision undivided', () => {
     const unknown = plan([4, 28], [
       { id: 'n1', kind: 'routine', routine: 'nap', who: 'c1', minutes: 60, at: 0 },
       { id: 'a1', kind: 'activity', ref: ledBooks.id, minutes: 20, who: 'c2', along: true },
@@ -223,4 +223,45 @@ describe('plan layout', () => {
     expect(a.open).toBe(120 - 90 + 30 - (20 + books.setupMinutes + books.cleanupMinutes));
     expect(a.gaps.some((g) => g.who === 'all' && g.end === 60)).toBe(true);
   });
+
+  it('reports two entries for the same child at once inside an alongside track (review M3)', () => {
+    const p = plan([4, 28], [
+      { id: 'n1', kind: 'routine', routine: 'nap', who: 'c1', minutes: 90, at: 0, settle: 0 },
+      { id: 'a1', kind: 'activity', ref: busyBlocks.id, minutes: 15, who: 'c2', along: true },
+      { id: 's1', kind: 'routine', routine: 'snack', who: 'c2', minutes: 15, at: 5, along: true },
+    ]);
+    const a = analyzePlan(p, c);
+    const o = a.conflicts.find((x) => x.kind === 'overlap');
+    expect(o).toMatchObject({ index: 1, other: 2, severity: 'conflict' });
+    expect(o!.repairs.map((r) => r.kind)).toEqual(expect.arrayContaining(['shorten', 'shift', 'remove']));
+  });
+
+  it('splits a child’s free time where settling ends (review m1)', () => {
+    const p = plan([4, 28], [{ id: 'n1', kind: 'routine', routine: 'nap', who: 'c1', minutes: 60, at: 0, settle: 15 }]);
+    const gaps = analyzePlan(p, c).gaps.filter((g) => g.who === 'c2');
+    expect(gaps.map((g) => [g.start, g.end, g.adult])).toEqual([
+      [0, 15, 'busy'],
+      [15, 60, 'free'],
+    ]);
+    const unknown = plan([4, 28], [{ id: 'n1', kind: 'routine', routine: 'nap', who: 'c1', minutes: 60, at: 0 }]);
+    expect(analyzePlan(unknown, c).gaps.filter((g) => g.who === 'c2').map((g) => g.adult)).toEqual(['unknown']);
+  });
+
+  it('marks alongside play during a nap with unknown availability as the parent’s call, never as free time', () => {
+    const p = plan([4, 28], [
+      { id: 'n1', kind: 'routine', routine: 'nap', who: 'c1', minutes: 60, at: 0 },
+      { id: 'a1', kind: 'activity', ref: busyBlocks.id, minutes: 20, who: 'c2', along: true },
+    ]);
+    const cf = analyzePlan(p, c).entries[1].conflicts;
+    expect(cf).toHaveLength(1);
+    expect(cf[0]).toMatchObject({ kind: 'along-adult', severity: 'caution' });
+    expect(cf[0].message).toMatch(/settling time/);
+  });
+
+  it('a momentary nap with a time has no end, so nothing gets an after-waking cue', () => {
+    const t = momentTiming(toDays({ value: 28, unit: 'm' }), { fed: false, nap: true, napIn: 15 });
+    const late = assessActivity(c, quietBooks, spanOf(10, 0, 30, 0), t);
+    expect(late.findings.map((x) => `${x.event}/${x.when}`)).toEqual(['nap/before']);
+  });
 });
+

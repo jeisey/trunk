@@ -3071,9 +3071,9 @@
     },
     {
       "id": "plan.baby-nap-toddler-alongside",
-      "rev": 1,
+      "rev": 2,
       "title": "Baby naps, toddler plays nearby: 4 months and 2 years",
-      "summary": "An example to edit: move the nap block to when your baby actually naps and set how long it usually lasts. Trunk never sets nap times or lengths. Quiet toddler play runs alongside.",
+      "summary": "The nap’s time, length, and settling time are placeholders: change them to match your baby. Trunk never sets nap times or lengths. Quiet toddler play runs alongside once you’re free.",
       "circumstance": "One adult at home with a 4-month-old and a 2-year-old, around the baby’s nap.",
       "ages": [
         "4m",
@@ -3096,7 +3096,8 @@
           "routine": "nap",
           "who": "c1",
           "minutes": 45,
-          "at": 15
+          "at": 15,
+          "settle": 10
         },
         {
           "kind": "activity",
