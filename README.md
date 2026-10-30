@@ -7,25 +7,27 @@ Trunk is a fast, mobile-first website that helps a parent of a child from 1 week
 "Trunk" is a working name, not a trademark or domain claim.
 
 - Live site (after Pages is enabled): `https://jeisey.github.io/trunk/`
-- Content contract: [`docs/content-contract.md`](docs/content-contract.md) · Policy: [`docs/content-policy.md`](docs/content-policy.md) · Research: [`docs/research.md`](docs/research.md) · Decisions: [`docs/decisions.md`](docs/decisions.md) · Maintenance: [`docs/maintenance.md`](docs/maintenance.md)
-- Coverage report: [`reports/coverage.md`](reports/coverage.md) · Performance: [`reports/performance.md`](reports/performance.md)
+- Content contract: [`docs/content-contract.md`](docs/content-contract.md) · Timing and routines: [`docs/timing-and-routines.md`](docs/timing-and-routines.md) · Policy: [`docs/content-policy.md`](docs/content-policy.md) · Research: [`docs/research.md`](docs/research.md), [`docs/research/timing.md`](docs/research/timing.md) · Decisions: [`docs/decisions.md`](docs/decisions.md) · Maintenance: [`docs/maintenance.md`](docs/maintenance.md) · Brand kit: [`docs/brand/README.md`](docs/brand/README.md)
+- Reports: [coverage](reports/coverage.md) · [planner sequence before/after](reports/planner-sequence.md) · [performance](reports/performance.md) · Reviews: [content](docs/review/content-review.md), [integration](docs/review/integration-review.md), [timing and formats](docs/review/timing-review.md)
 
 ## Catalog at a glance
 
-- **108 activities** from 1 week to 59 months (84 described by a cited source, 22 adapted from source-informed principles, 2 practical routines), **29 curated two-child pairings** (16 together, 13 side by side), and **6 editable starter plans**.
-- **248 claims** backed by **117 sources** (85 US, plus Ireland, UK, Canada, Australia, and WHO), each opened and read on its recorded date.
+- **111 activities** from 1 week to 59 months, **29 curated two-child pairings** (16 together, 13 side by side), and **7 editable starter plans** (one with an example nap block).
+- **253 claims** backed by **120 sources** (US, plus Ireland, UK, Canada, Australia, and WHO), each opened and read on its recorded date.
+- **Timing:** every activity and pairing has a reviewed stimulation profile (settling, gentle, lively, or variable), and **9 timing rules** relate activities to milk feeds, meals, and naps. Each rule says whether its guidance and its minute window come from a source or are Trunk's own planning convention.
 - Every age-slider stop and every sampled two-child age pair meets the coverage thresholds in [`reports/coverage.md`](reports/coverage.md).
 - Independent content and safety review: [`docs/review/content-review.md`](docs/review/content-review.md) (all blockers and majors fixed; resolution table at the end).
 - No clinician has reviewed the content; the app says so.
 
 ## What it does
 
-- **Find something now.** The first screen is the tool: age slider (weekly steps for the first 12 weeks, then monthly), −/+ stepper, and typed age input; quick filters for time, your energy/attention ("busy nearby", low, some, ready to play), and indoors/outdoors; a low-prep switch; more filters behind a disclosure. Empty results offer one-tap relaxations of optional filters; age, readiness, and supervision limits are never relaxed silently.
+- **Find something now.** The first screen is the tool: age slider (weekly steps for the first 12 weeks, then monthly), −/+ stepper, and typed age input; minutes and your energy/attention up front; place, low prep, focus, materials, mess, noise, and adults behind "More filters" with a summary and Reset. Optional per-child **Just fed** and **Nap soon** toggles (independent, kept in memory only) re-rank ideas, show one relevant cue per card, and set aside ideas that don't suit the moment, separately from age, readiness, and supervision limits, which are never relaxed silently. The plan button always matches the chosen minutes.
 - **Activities with a consistent structure:** time estimate, setup, 2–4 steps, stop cues, safety notes on the activity itself, adaptations, an optional sourced "why it can help", tummy-time position and target scope where relevant, and expandable sources with checked dates.
 - **Two children, one adult.** "Together" means one curated activity with distinct roles; "side by side" means two compatible tracks one adult can supervise in the same space. Two-child suggestions come only from curated pairings, each re-checked by the one-adult feasibility rules at build time.
-- **Plan a window or a day.** A deterministic client-side planner fills a window with varied activities, setup, flexible breaks, and visible open time. It never stretches an activity past its realistic maximum. Parallel tracks count once in wall-clock time. Every entry can be resized, reordered, swapped, or removed with buttons; parents can add their own entries (no sources attached).
-- **Save and share.** Up to 10 named plans in `localStorage` (versioned, with corrupt/blocked/quota handling and undo). Share links carry a compressed, versioned payload in the URL fragment, default to generic child labels and ages in whole weeks or months (no birth dates), and leave out names, custom text, and notes unless the parent opts in after a preview. Recipients see a preview that is re-checked against today's catalog and choose whether to save.
-- **Images.** 1080×1350 feed and 1080×1920 story PNGs, drawn on the device, paginated rather than shrunk, with download links and native file sharing where the browser allows it.
+- **Plan around naps and meals.** Start blank, fill the next N minutes, or use an example. "Add block" offers activities, **nap, milk feed, meal, snack**, breaks, and your own entries; routine blocks stay at their set times. "Fill around these blocks" keeps routines, kept entries, and your own entries, and fills the gaps with a deterministic, phase-aware sequence: livelier play earlier, calmer ideas before a known nap, a gentle start after waking, tummy time kept away from feeds. With two children, one child's activities can run alongside the other's nap or feed only when one adult can actually supervise both; otherwise the time is shown as unplanned. Conflicts come with local fixes (shorten, move, remove), never silent changes. Wall-clock time is the union of occupied time, so parallel tracks count once.
+- **Save and share.** Up to 10 plans in `localStorage` with useful default names (versioned, with corrupt/blocked/quota handling, undo, and an accessible More menu). Share links carry a compressed, versioned payload in the URL fragment, default to generic child labels and ages in whole weeks or months (no birth dates), and leave out names, custom text, and notes unless the parent opts in after a preview. Recipients see a preview that is re-checked against today's catalog and choose whether to save.
+- **Images.** 1080×1350 feed and 1080×1920 story PNGs with the Trunk logo, drawn on the device, paginated rather than shrunk (routines stay with their alongside tracks), with download links and native file sharing where the browser allows it.
+- **Brand.** The supplied Trunk logo and elephant mark (masters unchanged in `public/brand/`, 1–8 KB web renditions in `public/brand/web/`), forest and sky colours from one token source (`src/brand.ts`, mirrored in CSS and checked by a test).
 
 ## Run, test, build
 
@@ -56,6 +58,10 @@ One-time setup in the repository settings:
 
 The build uses relative asset paths and hash routing, so it works at any repository path without server rewrites. The deploy job sets `VITE_SITE_URL` from the Pages URL so exported images print the right address.
 
+## Formats and compatibility
+
+Plans, the saved-plans store, the session draft, share links, and plan files are versioned separately. Version 2 adds routine blocks, set times, kept entries, and alongside tracks; version 1 plans, drafts, `#/s/1z.…` links, and `trunkPlan: 1` files still open without losing entries or changing their timeline, and a v1 custom entry labelled "Nap" stays custom text. The first v2 save keeps a one-time copy of v1 data, and a downgrade written by an old tab is detected and merged rather than lost. Fixtures from the v1 encoder live in `tests/fixtures/plans/`.
+
 ## Storage and sharing limits
 
 - Saved plans live only in this browser on this device (max 10). Clearing site data or private browsing can remove them. No accounts, no sync, no server.
@@ -68,16 +74,17 @@ See [`docs/maintenance.md`](docs/maintenance.md): recheck sources every 6–12 m
 
 ## Checks
 
-- `npm run check`: content validation (schema, references, safety rules, one-adult feasibility) + typecheck + 107 unit tests.
-- `npx playwright test`: the eight browser journeys, integration regression tests, and axe accessibility scans, against the production build served under `/trunk/` (Chromium; WebKit runs only where installed, `PW_WEBKIT=1`).
-- Lab performance ([`reports/performance.md`](reports/performance.md)), emulated mobile (4× CPU, 1.6 Mbps): ~175 KB initial JS gzip, LCP ~1.6 s, CLS 0, filter updates ~40 ms. Not a real-device or field measurement.
+- `npm run check`: content validation (schema, references, safety and timing rules, one-adult feasibility) + typecheck + unit tests (evaluator, layout, edit operations incl. a property check, planner scenarios, compatibility fixtures, storage, share, brand tokens).
+- `npx playwright test`: browser journeys, refinement scenarios (duration, Just fed / Nap soon, routine lifecycle, two children in both orders, v1 compatibility, caveats on About), visual QA (320/390/768/1280 px, 200% text, touch targets, menus, exports), and axe scans, against the production build served under `/trunk/` (Chromium; WebKit runs only where installed, `PW_WEBKIT=1`).
+- Lab performance ([`reports/performance.md`](reports/performance.md)), emulated mobile (4× CPU, 1.6 Mbps): initial JS under 200 KB gzip, LCP under 2 s, CLS 0, brand images about 6 KB on first view. Not a real-device or field measurement.
 
 ## Known limitations
 
-- Content is source-informed, not clinician-reviewed; US guidance is the default and other jurisdictions are labelled.
+- Content and timing rules are source-informed and agent-reviewed, not clinician-reviewed; US guidance is the default and other jurisdictions are labelled. Before-nap and after-waking preferences, and all minute windows not stated by a source, are Trunk's editorial conventions.
+- Trunk doesn't track feeds or sleep, ask about medical conditions, or prescribe nap lengths, wake windows, or feeding intervals. "Just fed" and "Nap soon" are not saved.
 - Durations, setup times, and effort levels are editorial estimates.
 - Readiness filtering is opt-in ("not yet" toggles); age is only a starting filter.
-- Two-child suggestions exist only where a curated pairing fits both ages; some gaps (for example a 6-week-old with a 3-year-old) have only two options.
+- Two-child suggestions exist only where a curated pairing fits both ages; some gaps (for example a 6-week-old with a 3-year-old) have only two options. Alongside play during a nap needs a settling time; with "Not sure", the other child's time is left unplanned.
 - Browser journeys were run in headless Chromium in a container (with mobile viewport emulation); not on real phones, and not in WebKit/Safari here.
 - Native file sharing was tested with a mocked `navigator.share`; real share sheets weren't exercised.
 - "Two adults" only unlocks content that needs two adults; none does yet, so it changes nothing today.
