@@ -232,7 +232,7 @@
   ],
   "recipes": [
     {
-      "rev": 2,
+      "rev": 3,
       "timing": {
         "stimulation": "gentle"
       },
@@ -313,12 +313,6 @@
             "clm.b.toys-bigger-than-mouth",
             "clm.c.older-sibling-small-things"
           ]
-        },
-        {
-          "text": "This is floor tummy time on a firm, flat surface, the position flat-surface targets count. Follow any target your baby’s clinician gave you.",
-          "claims": [
-            "clm.core.ask-clinician-preterm"
-          ]
         }
       ],
       "claims": [
@@ -331,7 +325,7 @@
       ]
     },
     {
-      "rev": 2,
+      "rev": 3,
       "timing": {
         "stimulation": "gentle"
       },
@@ -409,12 +403,6 @@
           "text": "Story props, stickers and small toys that are fine for the preschooler stay out of the baby's reach.",
           "claims": [
             "clm.f.small-pieces-away-from-babies"
-          ]
-        },
-        {
-          "text": "This is floor tummy time on a firm, flat surface, the position flat-surface targets count. Follow any target your baby’s clinician gave you.",
-          "claims": [
-            "clm.core.ask-clinician-preterm"
           ]
         }
       ],
@@ -1774,7 +1762,7 @@
       ]
     },
     {
-      "rev": 2,
+      "rev": 3,
       "timing": {
         "stimulation": "gentle"
       },
@@ -1851,12 +1839,6 @@
           "text": "The toddler serves you, not the baby, and stays off the mat. Never leave the two alone together.",
           "claims": [
             "clm.mix.never-leave-toddler-with-baby"
-          ]
-        },
-        {
-          "text": "This is floor tummy time on a firm, flat surface, the position flat-surface targets count. Follow any target your baby’s clinician gave you.",
-          "claims": [
-            "clm.core.ask-clinician-preterm"
           ]
         }
       ],
