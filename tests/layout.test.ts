@@ -175,7 +175,7 @@ describe('plan layout', () => {
   });
 
   it('runs one child’s activity alongside the other child’s nap without double-counting time', () => {
-    const p = plan([4, 28], [
+    const p = plan([2, 28], [
       { id: 'n1', kind: 'routine', routine: 'nap', who: 'c1', minutes: 60, at: 0, settle: 10 },
       { id: 'a1', kind: 'activity', ref: books.id, minutes: 20, who: 'c2', along: true },
       { id: 'r1', kind: 'recipe', ref: recipe.id, minutes: 5, younger: 'c1' },
@@ -283,6 +283,28 @@ describe('plan layout', () => {
     // Moving the activity after the nap, or the nap later, would run into the feed.
     expect(kinds).not.toContain('shift');
     expect(kinds).not.toContain('move-after');
+  });
+
+  it('flags a pairing that no longer fits the children instead of hiding it', () => {
+    const p = plan([10, 28], [{ id: 'r1', kind: 'recipe', ref: recipe.id, minutes: 5, younger: 'c1' }]);
+    const cf = analyzePlan(p, c).entries[0].conflicts;
+    expect(cf.map((x) => x.kind)).toContain('eligibility');
+    expect(cf.find((x) => x.kind === 'eligibility')!.repairs.map((r) => r.kind)).toEqual(['swap', 'remove']);
+  });
+
+  it('flags a main entry that double-books a child already busy alongside another routine (UI review M5)', () => {
+    const p = plan([2, 28], [
+      { id: 'n1', kind: 'routine', routine: 'nap', who: 'c1', minutes: 90, at: 0, settle: 0 },
+      { id: 'a1', kind: 'activity', ref: busyBlocks.id, minutes: 20, who: 'c2', along: true },
+      { id: 'r1', kind: 'recipe', ref: recipe.id, minutes: 5, younger: 'c1', at: 10 },
+    ]);
+    const a = analyzePlan(p, c);
+    // The pairing runs into the nap (reported against the nap) and also double-books Child 2.
+    expect(a.conflicts.some((x) => x.kind === 'overlap' && x.index === 0 && x.other === 2)).toBe(true);
+    const double = a.conflicts.filter((x) => x.kind === 'overlap' && /Child 2 would be doing/.test(x.message));
+    expect(double).toHaveLength(1);
+    expect(double[0]).toMatchObject({ index: 1, other: 2 });
+    expect(a.entries[2].conflicts).toContain(double[0]);
   });
 });
 

@@ -67,14 +67,14 @@ Baseline (main @ b9cec90): content valid (108 activities, 29 recipes, 6 starter 
 - [x] Brand masters + web renditions + `src/brand.ts`.
 
 ## R2. Workstreams (≤ 3 concurrent)
-- [~] WS1 timing research + classify 108 activities / 29 recipes; timing coverage; `docs/research/timing.md`.
-- [~] WS2 planner (phase-aware, anchors, alongside), finder timing ranking, reconcile, storage/draft/share v2 + v1 legacy, fixtures, unit tests.
-- [~] WS3 finder/detail/saved/planner UI, routine blocks UI, About consolidation, brand application, exports, e2e + screenshots.
+- [x] WS1 timing research + classify all activities / recipes; timing coverage; `docs/research/timing.md`; 3 new settling activities.
+- [x] WS2 planner (phase-aware, anchors, alongside), finder timing ranking, reconcile, storage/draft/share v2 + v1 legacy, fixtures, unit tests.
+- [x] WS3 finder/detail/saved/planner UI, routine blocks UI, About consolidation, brand application, exports, e2e + screenshots.
 
 ## R3. Integration and verification (lead)
-- [ ] Integrate APIs; resolve interface mismatches.
-- [ ] Independent review of integrated changes and representative source mappings.
-- [ ] `npm run validate:content`, `npm run check`, `npm run build`, `npx playwright test`, perf lab.
-- [ ] Screenshots and exported PNGs inspected.
-- [ ] README, decisions, research, policy, maintenance docs updated.
+- [x] Integrate APIs; resolve interface mismatches.
+- [x] Independent reviews: timing/planner/formats + source mappings (`docs/review/timing-review.md`), integrated UI (`docs/review/ui-review.md`); all findings resolved.
+- [x] `npm run validate:content`, `npm run check` (255 tests), `npm run build` (≤ 200 KB gzip initial JS), `npx playwright test` (49/49 Chromium), perf lab.
+- [x] Screenshots and exported PNGs inspected.
+- [x] README, decisions, research, policy, maintenance docs updated.
 - [ ] PR opened, CI green, merged.

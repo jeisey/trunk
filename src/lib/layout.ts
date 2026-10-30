@@ -9,7 +9,8 @@
 import type { IndexedCatalog } from '../content/catalog.ts';
 import type { Activity } from '../content/schema.ts';
 import { monthsToDays, toDays } from './age.ts';
-import { activityEligible } from './filters.ts';
+import { activityEligible, recipeEligible } from './filters.ts';
+import type { ChildInput } from './eligibility.ts';
 import { bounds, lanesOf, overheadFor, ROUTINE_LABEL, routineEvent, type Plan, type PlanSegment } from './plan.ts';
 import { isBusyNearbyCompatible } from './supervision.ts';
 import { assessActivity, assessRecipe, NO_TIMING, spanOf, type ChildTiming, type EventSpan, type TimingAssessment } from './timing.ts';
@@ -309,6 +310,13 @@ export function analyzePlan(plan: Plan, c: IndexedCatalog, extra?: ChildTiming[]
         const span = spanOf(item.start, item.setup, seg.minutes, item.cleanup);
         timing = assessRecipe(c, r, span, [timings[0], timings[1]], seg.younger === 'c2' ? 1 : 0);
         issue = timeIssue(recipeProfile(r, c.activityById.get(r.younger.activity)), startClock + item.start, item.wall, Math.min(...kidDays), plan.settings.place);
+        const pair: [ChildInput, ChildInput] = [
+          { days: kidDays[0], notYet: plan.kids[0].notYet },
+          { days: kidDays[1], notYet: plan.kids[1].notYet },
+        ];
+        if (!recipeEligible(r, pair, plan.settings.adults)) {
+          list.push({ kind: 'eligibility', index: item.index, severity: 'conflict', message: `${r.title} isn’t suitable for these ages, readiness, or number of adults.`, repairs: [{ kind: 'swap', index: item.index, label: 'Swap it' }, { kind: 'remove', index: item.index, label: 'Remove it' }] });
+        }
       }
     } else if (seg.kind === 'routine' && (seg.routine === 'meal' || seg.routine === 'snack')) {
       const young = item.lanes.filter((l) => kidDays[l === 'c1' ? 0 : 1] < monthsToDays(6));
@@ -363,6 +371,32 @@ export function analyzePlan(plan: Plan, c: IndexedCatalog, extra?: ChildTiming[]
             : `Runs ${by} min into ${name(it.index)}. To do both at once, move one alongside the other.`,
       repairs,
     });
+  }
+
+  // ---- Main entries vs. another routine's alongside entries for the same child ----
+  for (const it of main) {
+    for (const x of items) {
+      if (x.host === null || x.host === it.index || x.index === it.index) continue;
+      if (!(x.start < it.end && it.start < x.end)) continue;
+      const lane = x.lanes.find((l) => it.lanes.includes(l));
+      if (!lane) continue;
+      // Already reported as the entry this one runs into (the latest-ending earlier entry)?
+      if (conflicts.some((cf) => cf.kind === 'overlap' && ((cf.index === x.index && cf.other === it.index) || (cf.index === it.index && cf.other === x.index)))) continue;
+      const by = Math.min(x.end, it.end) - Math.max(x.start, it.start);
+      const [first, second] = x.start <= it.start ? [x, it] : [it, x];
+      const repairs: Repair[] = [];
+      if (second.anchored) repairs.push({ kind: 'shift', index: second.index, at: first.end, label: `Move ${name(second.index)} ${first.end - second.start} min later` });
+      repairs.push({ kind: 'remove', index: x.index, label: `Remove ${name(x.index)}` });
+      conflicts.push({
+        kind: 'overlap',
+        index: first.index,
+        other: second.index,
+        minutes: by,
+        severity: 'conflict',
+        message: `${childLabel(lane)} would be doing ${name(x.index)} and ${name(it.index)} at once for ${by} min.`,
+        repairs,
+      });
+    }
   }
 
   // ---- Alongside tracks ----

@@ -401,3 +401,23 @@ Tab through the Plan screen at 390×844.
 - Generic caveats ("not individually reviewed", "starting point", "medical advice") appear only in `AboutView.tsx`.
 - About has the tummy-time position distinction and the clinician-target note.
 - The editor, preview, share dialog, saved list and export all read `analyzePlan` and `planRows`. The exceptions are M6, the solid-food age check in `PlanEditor.tsx:104` and `:371` (it duplicates layout's `routine-age` rule but agrees with it), and the export's own `SERIOUS` hazard list.
+
+## Resolution (lead, 2026-10-30)
+
+All findings were addressed; checks after the fixes: 255 unit tests, 49/49 Playwright (Chromium), initial JS 177.7 + 14.9 KB gzip.
+
+| Finding | Resolution | Test |
+|---|---|---|
+| B1 menus off-screen | Menus align to their button, clamp to the viewport, open upward near the nav; ↑ ↓ ⋯ never wrap apart. | `e2e/ui-review.spec.ts` (320/360/375, 200% text) |
+| M1 one-child labels | One-child plans say "Your child" everywhere (rows, moment line, share preview, shared view, image header). | `e2e/ui-review.spec.ts` |
+| M2 shared preview safety | Shared `entrySafety()` used by editor, shared preview, export. | `e2e/ui-review.spec.ts` |
+| M3 focus to body | Stable focus targets for every listed action; dialogs close natively and return focus to the opener. | `e2e/ui-review.spec.ts` |
+| M4 Undo out of reach | Inline "Deleted '…' · Undo" in place with focus; action toasts pause on hover/focus and last 15 s. | `e2e/ui-review.spec.ts` |
+| M5 set time inside a nap | Rows ordered by time (tracks split with "(continued)"); overlap conflicts on both entries; repairs come from `repairsForEntry` (only repairs that leave fewer conflicts and create none); the analysis now also flags a main entry that double-books a child busy alongside another routine. | `tests/layout.test.ts`, `e2e/ui-review.spec.ts` |
+| M6 Add to plan own rule | Alongside placement only where `optionsForSlot(…, { host })` offers it; honest toast. | `e2e/ui-review.spec.ts` |
+| M7 detail timing list | Rules that apply now + one concise line + "Timing notes (n)"; meal rules hidden under 6 months. | `e2e/ui-review.spec.ts` |
+| M8 starter prescribes a nap | Starter removed; a test keeps shipped starters free of routine blocks. | `tests/timing-planner.test.ts` |
+| M9 focus under the nav | `scroll-padding-bottom` for nav, safe area, and sticky Add. | `e2e/ui-review.spec.ts` |
+| m1–m13 | Fixed as listed in the workstream report (menus at 200% text, minutes control, duplicate repairs, empty-track reasons, default shared title, numbered copies, pairing safety list and content note, Both-mode Add explanation, About wording, single announcer, edit routine blocks, share dialog at 320, settings keep entries with eligibility conflicts — the analysis now also flags pairings that no longer fit). | unit + e2e |
+| n3, n5–n8 | Active tab bar + bold label; saved-state line; tummy note wording; stable child keys; recipe readiness banner. | e2e |
+| n1, n2, n4, n9 | Bundle re-measured; pagination keeps text legible (compact export option not added); 320×640 first load not required; planner fill granularity improved by the review-driven planner fixes. | |
