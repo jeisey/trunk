@@ -1027,6 +1027,7 @@ details.set-aside .bullets {
   margin: 0;
   padding: 0;
   display: grid;
+  grid-template-columns: minmax(0, 1fr);
   gap: 2px;
   font-size: 0.9rem;
   color: var(--muted);
@@ -1046,7 +1047,8 @@ details.set-aside .bullets {
 .facts .k {
   font-weight: 650;
   color: var(--text);
-  white-space: nowrap;
+  /* Keys stay on one line at normal sizes; at large text they may wrap rather than overflow. */
+  overflow-wrap: anywhere;
 }
 
 .tag {
@@ -1474,6 +1476,8 @@ details.sources summary {
 .plan-setup {
   display: grid;
   gap: 10px;
+  /* One column that never grows past the panel: children wrap at large text sizes. */
+  grid-template-columns: minmax(0, 1fr);
 }
 
 .plan-setup details.more .controls {
@@ -1486,7 +1490,7 @@ details.sources summary {
 
 .create-row {
   display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(10rem, 1fr));
+  grid-template-columns: repeat(auto-fit, minmax(min(10rem, 100%), 1fr));
   gap: 8px;
 }
 
@@ -1503,6 +1507,17 @@ details.sources summary {
   font-size: 0.85rem;
   font-weight: 650;
   color: var(--muted);
+}
+
+/* Let fields shrink to the panel at large text sizes and with wider system fonts. */
+.inline-fields > * {
+  min-width: 0;
+  max-width: 100%;
+}
+
+.inline-fields label input,
+.inline-fields label select {
+  min-width: 0;
 }
 
 .inline-fields .grow {

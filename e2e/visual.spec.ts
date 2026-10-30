@@ -134,22 +134,23 @@ test('brand: header logo and icons load from the base path', async ({ page, requ
 });
 
 test('200% text: no horizontal scrolling on find, detail, plan, saved, about', async ({ browser }) => {
-  for (const width of [320, 390]) {
+  // Also with a wide system font (CI runners fall back to DejaVu Sans, which is much wider than Inter).
+  for (const [width, wide] of [[320, false], [390, false], [320, true], [390, true]] as const) {
     const { ctx, page } = await seeded(browser, width, { draft: true, saved: 2 });
-    await page.addInitScript(() => {
+    await page.addInitScript((wide) => {
       document.addEventListener('DOMContentLoaded', () => {
         const s = document.createElement('style');
-        s.textContent = 'html { font-size: 200% !important; }';
+        s.textContent = `html { font-size: 200% !important; }${wide ? ' *, *::before, *::after { font-family: "DejaVu Sans", "Liberation Sans", Verdana, sans-serif !important; }' : ''}`;
         document.head.appendChild(s);
       });
-    });
+    }, wide);
     const errors = trackErrors(page);
     for (const hash of ['', '#/a/act.tummy-time-reach-and-play', '#/plan', '#/saved', '#/about']) {
       await page.goto(hash || '');
       await page.reload();
       await expect(page.locator('main h1').first()).toBeAttached();
       await noHorizontalOverflow(page);
-      if (hash === '' || hash === '#/plan') await page.screenshot({ path: join(ARTIFACTS, `qa-text200-${hash ? 'plan' : 'find'}-${width}.png`), fullPage: false });
+      if (hash === '' || hash === '#/plan') await page.screenshot({ path: join(ARTIFACTS, `qa-text200-${hash ? 'plan' : 'find'}-${width}${wide ? '-wide' : ''}.png`), fullPage: false });
     }
     expect(errors).toEqual([]);
     await ctx.close();
