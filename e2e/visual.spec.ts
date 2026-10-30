@@ -191,8 +191,7 @@ test('touch targets, input font sizes, menus by keyboard, sticky controls', asyn
   await page.getByRole('menuitem', { name: 'Nap', exact: true }).click();
   await expect(page.getByRole('form', { name: 'Add a nap' })).toBeVisible();
   // Opening the form moves focus into it.
-  await expect(page.locator(':focus')).toBeAttached();
-  expect(await page.evaluate(() => document.activeElement?.closest('form')?.getAttribute('aria-label'))).toBe('Add a nap');
+  await expect(page.getByRole('form', { name: 'Add a nap' }).locator(':focus')).toHaveCount(1);
   expect(await small(TARGETS)).toEqual([]);
   expect(await fonts()).toEqual([]);
   await page.getByRole('form', { name: 'Add a nap' }).getByRole('button', { name: 'Cancel' }).click();
