@@ -1,4 +1,4 @@
-import { useRef, useState } from 'react';
+import { Fragment, useRef, useState } from 'react';
 import type { IndexedCatalog } from '../content/catalog.ts';
 import { analyzePlan } from '../lib/layout.ts';
 import type { Plan } from '../lib/plan.ts';
@@ -104,6 +104,17 @@ function SavedItem({
   );
 }
 
+function DeletedRow({ title, onUndo }: { title: string; onUndo: () => void }) {
+  return (
+    <li className="saved-item deleted-item">
+      <p>Deleted “{title}”.</p>
+      <button type="button" onClick={onUndo} aria-label={`Deleted “${title}”. Undo`}>
+        Undo
+      </button>
+    </li>
+  );
+}
+
 export function SavedView(props: {
   c: IndexedCatalog;
   plans: Plan[];
@@ -112,22 +123,33 @@ export function SavedView(props: {
   onOpen: (plan: Plan) => void;
   onRename: (plan: Plan, title: string) => void;
   onDuplicate: (plan: Plan) => void;
-  onDelete: (plan: Plan) => void;
+  /** Deletes the plan; returns an undo for the inline "Deleted … · Undo" row (or null). */
+  onDelete: (plan: Plan) => (() => boolean) | null;
   onImportFile: (text: string) => void;
 }) {
   const fileRef = useRef<HTMLInputElement>(null);
   const listRef = useRef<HTMLUListElement>(null);
   const full = props.plans.length >= MAX_PLANS;
+  /** The plan just deleted, shown in its place with Undo (where focus already is). */
+  const [deleted, setDeleted] = useState<{ plan: Plan; index: number; undo: () => boolean } | null>(null);
 
   const remove = (plan: Plan, index: number) => {
-    props.onDelete(plan);
-    // Keep focus in the list: the next plan's title, or the previous one, or the heading.
-    requestAnimationFrame(() => {
-      const links = listRef.current?.querySelectorAll<HTMLElement>('.saved-title a');
-      const next = links?.[Math.min(index, (links?.length ?? 1) - 1)];
-      (next ?? document.querySelector<HTMLElement>('main h1'))?.focus();
-    });
+    const undo = props.onDelete(plan);
+    if (!undo) return;
+    setDeleted({ plan, index, undo });
+    requestAnimationFrame(() => listRef.current?.querySelector<HTMLElement>('.deleted-item button')?.focus());
   };
+
+  const undoDelete = () => {
+    if (!deleted) return;
+    const id = deleted.plan.id;
+    if (deleted.undo()) {
+      setDeleted(null);
+      requestAnimationFrame(() => listRef.current?.querySelector<HTMLElement>(`[data-plan="${id}"] .saved-title a`)?.focus());
+    }
+  };
+
+  const items = props.plans.map((p, i) => ({ p, i }));
 
   return (
     <div className="page">
@@ -136,22 +158,25 @@ export function SavedView(props: {
         Saved on this device · {props.plans.length}/{MAX_PLANS}
       </p>
       {props.status !== 'ok' && props.statusMessage && <p className="banner">{props.statusMessage}</p>}
-      {props.plans.length === 0 ? (
+      {props.plans.length === 0 && !deleted ? (
         <p className="empty">No saved plans yet. Make one on the Plan tab and tap Save.</p>
       ) : (
         <ul className="saved-list" ref={listRef}>
-          {props.plans.map((p, i) => (
-            <SavedItem
-              key={p.id}
-              plan={p}
-              c={props.c}
-              full={full}
-              onOpen={() => props.onOpen(p)}
-              onRename={(t) => props.onRename(p, t)}
-              onDuplicate={() => props.onDuplicate(p)}
-              onDelete={() => remove(p, i)}
-            />
+          {items.map(({ p, i }) => (
+            <Fragment key={p.id}>
+              {deleted && deleted.index === i && <DeletedRow title={planTitle(deleted.plan)} onUndo={undoDelete} />}
+              <SavedItem
+                plan={p}
+                c={props.c}
+                full={full}
+                onOpen={() => props.onOpen(p)}
+                onRename={(t) => props.onRename(p, t)}
+                onDuplicate={() => props.onDuplicate(p)}
+                onDelete={() => remove(p, i)}
+              />
+            </Fragment>
           ))}
+          {deleted && deleted.index >= props.plans.length && <DeletedRow title={planTitle(deleted.plan)} onUndo={undoDelete} />}
         </ul>
       )}
       {full && <p className="tiny full-note">You’ve reached {MAX_PLANS} saved plans. Delete one to save or duplicate another.</p>}

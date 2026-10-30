@@ -51,7 +51,7 @@ export function AboutView({ c, version }: { c: IndexedCatalog; version: string }
       <section aria-labelledby="timing-h">
         <h2 id="timing-h">How timing cues work</h2>
         <ul className="bullets">
-          <li>“Just fed” and “Nap soon” on Find apply only while the page is open. They’re never saved, shared, or added to a plan.</li>
+          <li>“Just fed” and “Nap soon” on Find shape the ideas and the plan you make right then. They’re never saved with the plan, shared, or restored after you leave the page.</li>
           <li>Naps, feeds, meals, and snacks in a plan are your own estimates. Trunk never suggests how long a nap should be, how often to feed, or when a child should sleep, and a plan is not a feeding, sleep, or wake schedule.</li>
           <li>
             Some cues come from a source, such as advice about tummy time and feeds. The number of minutes behind “right after” or “right before” is often Trunk’s own planning convention; each cue says which when you open it.

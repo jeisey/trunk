@@ -19,7 +19,7 @@ test('M1: plans saved in two tabs are both kept, and the other tab updates live'
     await page.getByRole('button', { name: 'Plan the next 30 minutes' }).click();
     await page.getByLabel('Plan name').fill(name);
     await page.getByRole('button', { name: 'Save', exact: true }).click();
-    await expect(page.getByText('Saved in this browser.')).toBeVisible();
+    await expect(page.getByText('Saved on this device.')).toBeVisible();
   }
   const stored = await a.evaluate(() => JSON.parse(localStorage.getItem('trunk.plans')!).plans.map((p: { title: string }) => p.title));
   expect(stored.sort()).toEqual(['From tab A', 'From tab B']);
@@ -48,7 +48,7 @@ test('M3: Save and Share work when tapped while typing', async ({ page }) => {
   await page.getByLabel(/Private notes/).fill('Bring the blue blanket');
   // The notes field still has focus when Save is tapped.
   await page.getByRole('button', { name: 'Save', exact: true }).tap();
-  await expect(page.getByText('Saved in this browser.')).toBeVisible();
+  await expect(page.getByText('Saved on this device.')).toBeVisible();
   await page.getByLabel(/Private notes/).fill('Bring the blue blanket and a hat');
   await page.getByRole('button', { name: 'Share link' }).tap();
   await expect(page.getByRole('dialog', { name: 'Share this plan' })).toBeVisible();

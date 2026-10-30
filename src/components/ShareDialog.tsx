@@ -6,7 +6,8 @@ import type { Plan } from '../lib/plan.ts';
 import { DEFAULT_SHARE_OPTIONS, encodePayload, MAX_LINK_LENGTH, planFileText, shareUrl, toCompact, type ShareOptions } from '../lib/share.ts';
 import { ENERGY_LABEL } from '../lib/filters.ts';
 import { childLabel } from '../lib/layout.ts';
-import { clockAt, entryHeading, planRows } from './planDisplay.ts';
+import { clockAt, entryHeading, kidLabel, planRows } from './planDisplay.ts';
+import { defaultPlanTitle } from '../lib/planTitle.ts';
 
 export function downloadBlob(blob: Blob, filename: string) {
   const url = URL.createObjectURL(blob);
@@ -82,7 +83,7 @@ export function ShareDialog({ plan, c, onClose, onExport }: { plan: Plan; c: Ind
   };
 
   return (
-    <dialog ref={ref} aria-labelledby="share-title" onClose={onClose} onCancel={onClose}>
+    <dialog ref={ref} aria-labelledby="share-title" onClose={onClose}>
       <div className="dialog-body">
         <div className="dialog-head">
           <h2 id="share-title">Share this plan</h2>
@@ -108,37 +109,6 @@ export function ShareDialog({ plan, c, onClose, onExport }: { plan: Plan; c: Ind
             Private notes
           </label>
         </fieldset>
-        <div className="preview-box" aria-live="polite">
-          <strong>The link will contain:</strong>
-          <ul className="bullets">
-            <li>{compact.t ? `Name: ${compact.t}` : 'Name: “Shared plan”'}</li>
-            {plan.kids.map((k, i) => (
-              <li key={i}>
-                Child {i + 1}: about {formatAge(k.age)}
-              </li>
-            ))}
-            <li>
-              Starts {clockAt(plan, 0)}, {plan.window}-minute window
-            </li>
-            <li>
-              Settings: {ENERGY_LABEL[plan.settings.energy]} · {plan.settings.place === 'any' ? 'anywhere' : plan.settings.place === 'indoors' ? 'inside' : 'outside'} · {plan.settings.adults === 1 ? 'one adult' : 'two adults'}
-            </li>
-          </ul>
-          <ol className="preview-entries">
-            {planRows(plan, analysis).map((row) =>
-              row.kind === 'entry' ? (
-                line(row.entry)
-              ) : row.kind === 'track' && row.items.some((t) => t.kind === 'entry') ? (
-                <li key={`t-${row.host.item.segment.id}`} className="preview-track">
-                  While {childLabel(row.hostLane)} {row.verb} · {childLabel(row.otherLane)}:
-                  <ul>{row.items.map((t) => (t.kind === 'entry' ? line(t.entry) : null))}</ul>
-                </li>
-              ) : null,
-            )}
-          </ol>
-          {compact.n && <p>Notes: {compact.n}</p>}
-          <p className="tiny">Ages are the whole weeks or months entered here. Naps, feeds, and meals are shown as your estimated times. No names, birthdays, dates, readiness notes, or saved-plan list are included.</p>
-        </div>
         {url === null ? (
           <p>Preparing link…</p>
         ) : tooLong ? (
@@ -155,7 +125,7 @@ export function ShareDialog({ plan, c, onClose, onExport }: { plan: Plan; c: Ind
           </div>
         ) : (
           <div className="share-link">
-            <label htmlFor="share-url" className="tiny">
+            <label htmlFor="share-url" className="field-label">
               Link ({url.length} characters)
             </label>
             <input id="share-url" className="link-field" type="text" readOnly value={url} onFocus={(e) => e.currentTarget.select()} />
@@ -177,6 +147,37 @@ export function ShareDialog({ plan, c, onClose, onExport }: { plan: Plan; c: Ind
             </p>
           </div>
         )}
+        <div className="preview-box">
+          <h3 className="preview-head">The link will contain</h3>
+          <ul className="bullets">
+            <li>Name: {compact.t ? compact.t : `“${defaultPlanTitle(plan)}” (made from the times and ages)`}</li>
+            {plan.kids.map((k, i) => (
+              <li key={i}>
+                {kidLabel(plan, i)}: about {formatAge(k.age)}
+              </li>
+            ))}
+            <li>
+              Starts {clockAt(plan, 0)}, {plan.window}-minute window
+            </li>
+            <li>
+              Settings: {ENERGY_LABEL[plan.settings.energy]} · {plan.settings.place === 'any' ? 'anywhere' : plan.settings.place === 'indoors' ? 'inside' : 'outside'} · {plan.settings.adults === 1 ? 'one adult' : 'two adults'}
+            </li>
+          </ul>
+          <ol className="preview-entries">
+            {planRows(plan, analysis).map((row) =>
+              row.kind === 'entry' ? (
+                line(row.entry)
+              ) : row.kind === 'track' && row.items.some((t) => t.kind === 'entry') ? (
+                <li key={`t-${row.host.item.segment.id}-${row.continued ? 'c' : 'a'}-${row.items.length}`} className="preview-track">
+                  While {childLabel(row.hostLane)} {row.verb} · {childLabel(row.otherLane)}{row.continued ? ' (continued)' : ''}:
+                  <ul>{row.items.map((t) => (t.kind === 'entry' ? line(t.entry) : null))}</ul>
+                </li>
+              ) : null,
+            )}
+          </ol>
+          {compact.n && <p>Notes: {compact.n}</p>}
+          <p className="tiny">Ages are the whole weeks or months entered here. Naps, feeds, and meals are shown as your estimated times. No names, birthdays, dates, readiness notes, or saved-plan list are included.</p>
+        </div>
       </div>
     </dialog>
   );

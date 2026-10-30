@@ -1,4 +1,4 @@
-import { useEffect, useId, useRef, useState, type KeyboardEvent } from 'react';
+import { useEffect, useId, useLayoutEffect, useRef, useState, type CSSProperties, type KeyboardEvent } from 'react';
 
 export interface MenuItem {
   label: string;
@@ -21,15 +21,49 @@ export function MoreMenu({ label, items, text = 'More', spoken, className }: { l
   const button = useRef<HTMLButtonElement>(null);
   const menu = useRef<HTMLUListElement>(null);
   const pendingFocus = useRef<'first' | 'last' | null>(null);
+  const wrap = useRef<HTMLDivElement>(null);
+  const [place, setPlace] = useState<CSSProperties | null>(null);
+
+  // Keep the open menu inside the viewport: line it up with the button, then clamp it to the
+  // screen edges, and open upward when there isn't room below (above the bottom nav).
+  useLayoutEffect(() => {
+    if (!open) {
+      setPlace(null);
+      return;
+    }
+    const m = menu.current;
+    const b = button.current;
+    const w = wrap.current;
+    if (!m || !b || !w) return;
+    const vw = document.documentElement.clientWidth;
+    const vh = window.innerHeight;
+    const margin = 8;
+    const br = b.getBoundingClientRect();
+    const wr = w.getBoundingClientRect();
+    const width = Math.min(m.offsetWidth, vw - 2 * margin);
+    const preferLeft = br.left + br.width / 2 < vw / 2;
+    let left = preferLeft ? br.left : br.right - width;
+    left = Math.max(margin, Math.min(left, vw - margin - width));
+    const nav = document.querySelector('.bottom-nav');
+    const floor = nav && getComputedStyle(nav).display !== 'none' ? nav.getBoundingClientRect().top : vh;
+    const height = m.offsetHeight;
+    const up = br.bottom + 4 + height > floor - margin && br.top - 4 - height > margin;
+    setPlace({ left: left - wr.left, right: 'auto', ...(up ? { top: 'auto', bottom: `calc(100% + 4px)` } : {}) });
+  }, [open]);
 
   const enabled = () => [...(menu.current?.querySelectorAll<HTMLButtonElement>('[role="menuitem"]:not([aria-disabled="true"])') ?? [])];
 
+  // Focus an item once the menu has been placed (it is hidden until then).
   useEffect(() => {
-    if (!open) return;
+    if (!open || !place || !pendingFocus.current) return;
     const list = enabled();
     const target = pendingFocus.current === 'last' ? list[list.length - 1] : list[0];
     target?.focus();
     pendingFocus.current = null;
+  }, [open, place]);
+
+  useEffect(() => {
+    if (!open) return;
     const onDown = (e: PointerEvent) => {
       const t = e.target as Node;
       if (!menu.current?.contains(t) && !button.current?.contains(t)) setOpen(false);
@@ -76,7 +110,7 @@ export function MoreMenu({ label, items, text = 'More', spoken, className }: { l
   };
 
   return (
-    <div className={`menu-wrap${className ? ` ${className}` : ''}`}>
+    <div ref={wrap} className={`menu-wrap${className ? ` ${className}` : ''}`}>
       <button
         ref={button}
         type="button"
@@ -97,7 +131,7 @@ export function MoreMenu({ label, items, text = 'More', spoken, className }: { l
         </span>
       </button>
       {open && (
-        <ul ref={menu} id={`${id}-menu`} role="menu" aria-label={label} className="menu" onKeyDown={onMenuKey}>
+        <ul ref={menu} id={`${id}-menu`} role="menu" aria-label={label} className="menu" style={place ?? { visibility: 'hidden' }} onKeyDown={onMenuKey}>
           {items.map((item) => (
             <li role="none" key={item.label}>
               <button

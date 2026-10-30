@@ -15,12 +15,11 @@
  */
 import { assetUrl, BRAND, BRAND_ASSETS, UI } from '../brand.ts';
 import type { IndexedCatalog } from '../content/catalog.ts';
-import { formatAge } from '../lib/age.ts';
 import { analyzePlan, childLabel, type EntryAnalysis, type Gap, type PlanAnalysis } from '../lib/layout.ts';
 import type { Plan } from '../lib/plan.ts';
 import { TIME_ISSUE_TEXT } from '../lib/timeRules.ts';
 import { formatMinutes } from '../lib/time.ts';
-import { childGapText, clockAt, entryHeading, entryRoles, planRows } from '../components/planDisplay.ts';
+import { childGapText, clockAt, entryHeading, entryRoles, entrySafety, kidsAboutText, planRows } from '../components/planDisplay.ts';
 
 export type ExportFormat = 'feed' | 'story';
 
@@ -39,7 +38,6 @@ const M = 72; // side margin
 const PAD = 28; // text inset inside a block
 const INDENT = 44; // alongside-track indent
 const GAP = 14; // between blocks
-const SERIOUS = new Set(['water', 'food', 'suffocation', 'heat', 'traffic', 'falls', 'small-parts']);
 const LINE = 1.3;
 
 interface Line {
@@ -151,12 +149,7 @@ function entryBlock(ctx: CanvasRenderingContext2D, e: EntryAnalysis, plan: Plan,
   }
   if (e.timeIssue) b.push(`! ${TIME_ISSUE_TEXT[e.timeIssue]}`, 550, 27, UI.safety, 6);
   for (const cf of e.conflicts) if (cf.kind !== 'timing' && cf.severity === 'conflict') b.push(`Check: ${cf.message}`, 600, 27, UI.danger, 6);
-  if (seg.kind === 'activity' || recipe) {
-    const act = seg.kind === 'activity' ? c.activityById.get(seg.ref ?? '') : undefined;
-    const hazards = act ? act.hazards : recipe ? [recipe.younger.activity, recipe.older.activity].flatMap((id) => c.activityById.get(id)?.hazards ?? []) : [];
-    const safety = (act?.safety ?? recipe?.safety ?? []).slice(0, hazards.some((h) => SERIOUS.has(h)) ? 2 : 1);
-    safety.forEach((n, i) => b.push(`! ${n.text}`, 550, 27, UI.safety, i === 0 ? 8 : 2));
-  }
+  entrySafety(seg, c).forEach((t, i) => b.push(`! ${t}`, 550, 27, UI.safety, i === 0 ? 8 : 2));
   return b.block(routine ? 'routine' : seg.kind === 'break' || seg.kind === 'custom' ? 'soft' : 'plain', indent);
 }
 
@@ -179,7 +172,7 @@ export function planBlocks(ctx: CanvasRenderingContext2D, plan: Plan, analysis: 
     if (row.kind === 'entry') blocks.push(entryBlock(ctx, row.entry, plan, c, opts, width, 0));
     else if (row.kind === 'gap') blocks.push(gapBlock(ctx, row.gap, plan, width, 0));
     else {
-      const heading = `While ${childLabel(row.hostLane)} ${row.verb} · ${childLabel(row.otherLane)}:`;
+      const heading = `While ${childLabel(row.hostLane)} ${row.verb} · ${childLabel(row.otherLane)}${row.continued ? ' (continued)' : ''}:`;
       // The routine, its track heading, and the first thing in the track stay together.
       if (blocks.length) blocks[blocks.length - 1].keepWithNext = true;
       blocks.push({ ...trackHead(ctx, heading, width), keepWithNext: row.items.length > 0 });
@@ -243,7 +236,7 @@ export async function renderPlanImages(plan: Plan, c: IndexedCatalog, format: Ex
   const end = Math.max(analysis.end, 0);
   const blocks = planBlocks(ctx, plan, analysis, c, opts, width);
   const title = opts.includeTitle && plan.title.trim() ? plan.title.trim() : 'Our plan';
-  const ages = plan.kids.map((k, i) => `Child ${i + 1}: about ${formatAge(k.age)}`).join('   ·   ');
+  const ages = kidsAboutText(plan, '   ·   ');
   const logoW = 228;
   const logoH = logoW / 3;
 

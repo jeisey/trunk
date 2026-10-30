@@ -67,33 +67,83 @@ export function CueDetails({ cue, c, prefix }: { cue: TimingCue | null; c: Index
 
 const FIT_TONE: Record<TimingRule['fit'], 'good' | 'caution' | 'neutral'> = { preferred: 'good', neutral: 'neutral', later: 'caution', avoid: 'caution' };
 
-/**
- * The timing rules an activity carries (its own plus the policy rules for its
- * stimulation profile), each with its reason and sources on demand. `now` marks
- * rules that apply at this moment (from the finder's "Just fed" / "Nap soon").
- */
-export function TimingRules({ c, groups, now }: { c: IndexedCatalog; groups: { label?: string; rules: TimingRule[] }[]; now?: ReadonlySet<string> }) {
-  const visible = groups.map((g) => ({ ...g, rules: g.rules.filter((r) => r.fit !== 'neutral') })).filter((g) => g.rules.length);
-  if (!visible.length) return null;
+const EVENT_PHRASE: Record<RoutineEvent, string> = { 'milk-feed': 'a feed', meal: 'eating', nap: 'a nap' };
+const FIT_RANK: Record<TimingRule['fit'], number> = { avoid: 0, later: 1, preferred: 2, neutral: 3 };
+
+type Labelled = { label?: string; rule: TimingRule };
+
+function RuleItem({ c, item, now }: { c: IndexedCatalog; item: Labelled; now?: boolean }) {
+  const r = item.rule;
   return (
-    <section aria-labelledby="timing-h">
+    <details className={`cue cue-${FIT_TONE[r.fit]}`}>
+      <summary>
+        {item.label ? `${item.label}: ` : ''}
+        {r.cue}
+        {now ? <span className="now-tag">Applies now</span> : null}
+      </summary>
+      <RuleBody rule={r} c={c} />
+    </details>
+  );
+}
+
+/**
+ * Timing on a detail page, kept short:
+ * - rules that apply right now (from "Just fed" / "Nap soon"), one line each;
+ * - one concise line for the most important remaining rule ("Best not right
+ *   before or after a feed"), with its reasons on demand;
+ * - everything else in one "Timing notes (n)" disclosure.
+ * Callers pass only rules that fit the shown child's age. When no single child
+ * is known, every rule stays inside the disclosure.
+ */
+export function TimingSection({ c, groups, now, knownChild }: { c: IndexedCatalog; groups: { label?: string; rules: TimingRule[] }[]; now?: ReadonlySet<string>; knownChild: boolean }) {
+  const all: Labelled[] = groups.flatMap((g) => g.rules.filter((r) => r.fit !== 'neutral').map((rule) => ({ label: g.label, rule })));
+  if (!all.length) return null;
+  const nowItems = knownChild ? all.filter((x) => now?.has(x.rule.id)) : [];
+  const rest = all.filter((x) => !nowItems.includes(x));
+  let headline: { text: string; items: Labelled[] } | null = null;
+  if (knownChild) {
+    const ranked = rest.filter((x) => !x.rule.condition).sort((a, b) => FIT_RANK[a.rule.fit] - FIT_RANK[b.rule.fit]);
+    const top = ranked[0];
+    if (top) {
+      const same = rest.filter((x) => x.label === top.label && !x.rule.condition && x.rule.event === top.rule.event && x.rule.fit === top.rule.fit);
+      const both = top.rule.fit !== 'preferred' && same.some((x) => x.rule.when === 'before') && same.some((x) => x.rule.when === 'after');
+      const text = both ? `Best not right before or after ${EVENT_PHRASE[top.rule.event]}` : top.rule.cue;
+      headline = { text: `${top.label ? `${top.label}: ` : ''}${text}`, items: both ? same : [top] };
+    }
+  }
+  const notes = rest.filter((x) => !headline?.items.includes(x));
+  return (
+    <section aria-labelledby="timing-h" className="timing">
       <h2 id="timing-h">Timing</h2>
       <ul className="cue-list">
-        {visible.flatMap((g) =>
-          g.rules.map((r) => (
-            <li key={`${g.label ?? ''}${r.id}`}>
-              <details className={`cue cue-${FIT_TONE[r.fit]}`}>
-                <summary>
-                  {g.label ? `${g.label}: ` : ''}
-                  {r.cue}
-                  {now?.has(r.id) ? <span className="now-tag">Applies now</span> : null}
-                </summary>
-                <RuleBody rule={r} c={c} />
-              </details>
-            </li>
-          )),
+        {nowItems.map((x) => (
+          <li key={`now-${x.label ?? ''}${x.rule.id}`}>
+            <RuleItem c={c} item={x} now />
+          </li>
+        ))}
+        {headline && (
+          <li>
+            <details className={`cue cue-${FIT_TONE[headline.items[0].rule.fit]}`}>
+              <summary>{headline.text}</summary>
+              {headline.items.map((x) => (
+                <RuleBody key={x.rule.id} rule={x.rule} c={c} />
+              ))}
+            </details>
+          </li>
         )}
       </ul>
+      {notes.length > 0 && (
+        <details className="more timing-notes">
+          <summary>{knownChild ? `Timing notes (${notes.length})` : `Timing notes (${notes.length}), by age`}</summary>
+          <ul className="cue-list">
+            {notes.map((x) => (
+              <li key={`${x.label ?? ''}${x.rule.id}`}>
+                <RuleItem c={c} item={x} />
+              </li>
+            ))}
+          </ul>
+        </details>
+      )}
     </section>
   );
 }

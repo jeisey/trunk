@@ -49,12 +49,16 @@ export function TummyTimeGuide({ c, position, flatSurface, variant = 'activity' 
   return (
     <section className="note-box" aria-labelledby="tummy-guide">
       <h2 id="tummy-guide">Tummy time position</h2>
-      {position && (
-        <p>
-          <strong>{TUMMY_POSITION_LABEL[position]}.</strong>{' '}
-          {flatSurface ? 'Floor tummy time.' : 'Held or supported tummy time: useful, but not on a flat surface, so Trunk never counts it toward a flat-surface amount.'}
-        </p>
-      )}
+      {position &&
+        (flatSurface ? (
+          <p>
+            <strong>Floor tummy time</strong> on a firm, flat surface.
+          </p>
+        ) : (
+          <p>
+            <strong>{TUMMY_POSITION_LABEL[position]}</strong>: held or supported tummy time. Useful, but not on a flat surface, so Trunk never counts it toward a flat-surface amount.
+          </p>
+        ))}
       <GuidanceList c={c} />
     </section>
   );

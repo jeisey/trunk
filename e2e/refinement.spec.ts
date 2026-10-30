@@ -99,7 +99,8 @@ test('right now: "Just fed" and "Nap soon" together, per child, cleared by Reset
   await page.getByRole('group', { name: 'Child 1', exact: true }).getByRole('button', { name: 'Just fed' }).click();
   await choose(page, 'Who’s this for?', 'Child 1');
   await page.getByRole('button', { name: 'Plan the next 30 minutes' }).click();
-  await expect(page.locator('.moment-line')).toHaveText('Planned for: Child 1 just fed');
+  // A one-child plan has one child, so no number: the same label everywhere.
+  await expect(page.locator('.moment-line')).toHaveText('Planned for: just fed');
   await expect(timeline(page).locator('.seg-title-text', { hasText: /tummy/i })).toHaveCount(0);
   await page.reload();
   await expect(timeline(page)).toBeVisible();
@@ -166,7 +167,7 @@ test('routine lifecycle: blank plan, nap/feed/meal/own entry, edit, reorder, fil
 
   await page.getByLabel('Plan name').fill('Rainy afternoon');
   await page.getByRole('button', { name: 'Save', exact: true }).click();
-  await expect(page.getByText('Saved in this browser.')).toBeVisible();
+  await expect(page.getByText('Saved on this device.')).toBeVisible();
   await page.reload();
   await expect(row(page, 'Nap').locator('.seg-time')).toContainText('1:15 PM–2:20 PM');
   await expect(row(page, 'Milk feed')).toBeVisible();
@@ -554,10 +555,11 @@ test('review follow-ups: unknown nap availability, before-start times, set-time 
   await page.getByRole('menuitem', { name: 'Set a time' }).click();
   await row(page, 'Bubbles').getByLabel('Bubbles starts at').fill('13:15');
   await row(page, 'Bubbles').getByRole('button', { name: 'Set' }).click();
+  // The overlap shows on both entries, with the shared, checked repairs.
   const overlap = track.locator('.conflict', { hasText: 'Child 2 would be doing Sticker book and Bubbles at once for 5 min.' });
-  await expect(overlap).toBeVisible();
-  await expect(overlap.getByRole('button', { name: 'Shorten Sticker book by 5 min' })).toBeVisible();
-  await overlap.getByRole('button', { name: 'Move Bubbles 5 min later' }).click();
+  await expect(overlap).toHaveCount(2);
+  await expect(row(page, 'Sticker book').getByRole('button', { name: 'Shorten Sticker book by 5 min' })).toBeVisible();
+  await row(page, 'Bubbles').getByRole('button', { name: 'Move Bubbles 5 min later' }).click();
   await expect(track.locator('.conflict', { hasText: /at once/ })).toHaveCount(0);
   await expect(row(page, 'Bubbles').locator('.seg-time')).toContainText('1:20 PM–1:30 PM');
 

@@ -103,9 +103,13 @@ export function AgeControl(props: {
   const [draftUnit, setDraftUnit] = useState<AgeUnit>(child.age.unit);
   const ageText = formatAge(child.age);
 
-  const setIndex = (i: number) => {
+  // One announcement per change: the slider speaks its own value; the −/+ buttons and the typed
+  // age use this polite region instead.
+  const [spoken, setSpoken] = useState('');
+  const setIndex = (i: number, say = false) => {
     const clamped = Math.max(0, Math.min(AGE_STOPS.length - 1, i));
     onChange({ ...child, age: { ...AGE_STOPS[clamped] } });
+    if (say) setSpoken(`${props.label}: ${formatAge(AGE_STOPS[clamped])}`);
   };
 
   const applyTyped = () => {
@@ -113,6 +117,7 @@ export function AgeControl(props: {
     if (!Number.isFinite(value) || value <= 0) return;
     const next = normalizeEnteredAge({ value, unit: draftUnit });
     onChange({ ...child, age: next });
+    setSpoken(`${props.label}: ${formatAge(next)}`);
     setDraftValue(String(next.value));
     setDraftUnit(next.unit);
     setTyping(false);
@@ -130,12 +135,13 @@ export function AgeControl(props: {
         <span className="child-label" id={`${id}-label`}>
           {props.label}
         </span>
-        <span className="child-age" aria-live="polite">
-          {ageText}
+        <span className="child-age">{ageText}</span>
+        <span className="visually-hidden" aria-live="polite">
+          {spoken}
         </span>
       </div>
       <div className="age-row">
-        <button type="button" onClick={() => setIndex(index - 1)} disabled={index === 0} aria-label={`${props.label}: younger`}>
+        <button type="button" onClick={() => setIndex(index - 1, true)} disabled={index === 0} aria-label={`${props.label}: younger`}>
           −
         </button>
         <input
@@ -148,7 +154,7 @@ export function AgeControl(props: {
           aria-label={`${props.label} age`}
           aria-valuetext={ageText}
         />
-        <button type="button" onClick={() => setIndex(index + 1)} disabled={index === AGE_STOPS.length - 1} aria-label={`${props.label}: older`}>
+        <button type="button" onClick={() => setIndex(index + 1, true)} disabled={index === AGE_STOPS.length - 1} aria-label={`${props.label}: older`}>
           +
         </button>
       </div>
@@ -184,7 +190,7 @@ export function AgeControl(props: {
           </button>
         )}
         {props.onAddSibling && (
-          <button type="button" className="quiet-button" onClick={props.onAddSibling}>
+          <button type="button" className="quiet-button" onClick={props.onAddSibling} data-add-child="">
             + Second child
           </button>
         )}

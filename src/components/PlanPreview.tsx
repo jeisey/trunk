@@ -5,7 +5,7 @@ import { TIME_ISSUE_TEXT } from '../lib/timeRules.ts';
 import { formatMinutes } from '../lib/time.ts';
 import { CueDetails } from './Cues.tsx';
 import { activityHref, recipeHref } from './IdeaCards.tsx';
-import { childGapText, clockAt, entryRoles, entryTitle, planRows, whoText } from './planDisplay.ts';
+import { childGapText, clockAt, entryRoles, entrySafety, entryTitle, planRows, whoText } from './planDisplay.ts';
 
 /** A read-only view of a plan (shared links, plan files): the same rows, roles, cues, and conflicts as the editor. */
 export function PlanPreview({ plan, analysis, c }: { plan: Plan; analysis: PlanAnalysis; c: IndexedCatalog }) {
@@ -42,8 +42,13 @@ export function PlanPreview({ plan, analysis, c }: { plan: Plan; analysis: PlanA
         )}
         {e.timing.cue && <CueDetails cue={e.timing.cue} c={c} prefix={plan.kids.length === 2 && seg.kind === 'recipe' ? childLabel(e.timing.cue.finding.child === 1 ? 1 : 0) : undefined} />}
         {e.timeIssue && <p className="safety-line">{TIME_ISSUE_TEXT[e.timeIssue]}</p>}
+        {entrySafety(seg, c).map((t) => (
+          <p key={t} className="safety-line">
+            {t}
+          </p>
+        ))}
         {e.conflicts
-          .filter((cf) => cf.kind !== 'timing')
+          .filter((cf, k, all) => cf.kind !== 'timing' && all.indexOf(cf) === k)
           .map((cf, k) => (
             <p key={k} className={`conflict ${cf.severity}`}>
               {cf.message}
@@ -78,9 +83,10 @@ export function PlanPreview({ plan, analysis, c }: { plan: Plan; analysis: PlanA
         if (row.kind === 'entry') return entry(row.entry);
         if (row.kind === 'gap') return gap(row.gap, `gap-${row.gap.who}-${row.gap.start}`);
         return (
-          <li key={`track-${row.host.item.segment.id}`} className="along-track">
+          <li key={`track-${row.host.item.segment.id}-${row.continued ? 'c' : 'a'}-${row.items.length}`} className="along-track">
             <p className="track-head">
-              While {childLabel(row.hostLane)} {row.verb} · {childLabel(row.otherLane)}:
+              While {childLabel(row.hostLane)} {row.verb} · {childLabel(row.otherLane)}
+              {row.continued ? ' (continued)' : ''}:
             </p>
             <ol className="timeline nested">{row.items.map((t) => (t.kind === 'entry' ? entry(t.entry) : gap(t.gap, `cg-${t.gap.start}`)))}</ol>
           </li>

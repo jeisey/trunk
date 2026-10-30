@@ -70,6 +70,8 @@ test('routine blocks, menus, timing cues, and right-now toggles have no axe viol
   await page.getByRole('button', { name: /^More:/ }).first().click();
   expect(await scan(page)).toEqual([]);
   await page.goto('#/a/act.tummy-time-reach-and-play');
-  await page.locator('details.cue summary').first().click();
+  // Two children on "Both": no single child is known, so the rules sit in "Timing notes".
+  await page.locator('details.timing-notes > summary').click();
+  await page.locator('details.timing-notes details.cue summary').first().click();
   expect(await scan(page)).toEqual([]);
 });

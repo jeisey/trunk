@@ -46,6 +46,16 @@
   box-sizing: border-box;
 }
 
+/* Focused or scrolled-to controls never end up under the fixed bottom nav (or the sticky Add button). */
+html {
+  scroll-padding-top: 12px;
+  scroll-padding-bottom: calc(var(--nav-h) + env(safe-area-inset-bottom) + 12px);
+}
+
+html:has(.sticky-add) {
+  scroll-padding-bottom: calc(var(--nav-h) + env(safe-area-inset-bottom) + 72px);
+}
+
 body {
   margin: 0;
   background: var(--canvas);
@@ -243,7 +253,9 @@ main:focus {
 
 .bottom-nav a[aria-current='page'] {
   color: var(--text);
-  box-shadow: inset 0 3px 0 var(--sky);
+  font-weight: 800;
+  /* Forest bar (not only colour or the pale sky) marks the current tab. */
+  box-shadow: inset 0 3px 0 var(--action);
 }
 
 .bottom-nav svg {
@@ -533,7 +545,7 @@ input[type='range'] {
 }
 
 .toggle[aria-pressed='true']::before {
-  content: '✓';
+  content: '✓' / '';
   font-weight: 800;
 }
 
@@ -647,6 +659,60 @@ textarea {
   font-size: 0.9rem;
 }
 
+.save-state {
+  margin: 12px 0 0;
+  font-size: 0.9rem;
+  font-weight: 650;
+  color: var(--muted);
+}
+
+.save-state[data-state='saved']::before {
+  content: '✓ ' / '';
+  color: var(--text);
+}
+
+.add-hint {
+  margin: 16px 0 0;
+  padding: 10px 12px;
+  border-radius: var(--radius-sm);
+  background: var(--surface);
+  font-size: 0.92rem;
+}
+
+.preview-head {
+  font-size: 0.95rem;
+  margin: 0 0 4px;
+}
+
+.field-label {
+  display: block;
+  font-size: 0.85rem;
+  font-weight: 650;
+  color: var(--muted);
+}
+
+.deleted-item {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  justify-content: space-between;
+  gap: 4px 12px;
+  background: var(--surface);
+  border-style: dashed;
+}
+
+.deleted-item p {
+  margin: 0;
+}
+
+.timing-notes {
+  margin-top: 4px;
+}
+
+.timing-notes .cue-list {
+  margin-top: 4px;
+}
+
 .overrun-row {
   display: flex;
   flex-wrap: wrap;
@@ -755,7 +821,7 @@ fieldset.segmented legend,
 
 .check {
   display: flex;
-  flex-wrap: wrap;
+  flex-wrap: nowrap;
   align-items: center;
   gap: 4px 10px;
   min-height: var(--tap);
@@ -764,6 +830,7 @@ fieldset.segmented legend,
 }
 
 .check input {
+  flex: none;
   width: 22px;
   height: 22px;
   accent-color: var(--action);
@@ -854,7 +921,7 @@ details.more[open] > summary::before {
   font-weight: 650;
 }
 .chip-toggle:has(input:checked)::before {
-  content: '✓ ';
+  content: '✓ ' / '';
   white-space: pre;
 }
 .chip-toggle:has(input:focus-visible) {
@@ -1646,6 +1713,12 @@ details.sources summary {
   font-size: 1.2rem;
 }
 
+.tool-group {
+  display: inline-flex;
+  flex-wrap: nowrap;
+  gap: 6px;
+}
+
 .row-menu .menu-button {
   min-width: var(--tap);
   padding: 0 10px;
@@ -1822,7 +1895,7 @@ details.sources summary {
   list-style: none;
   margin: 0;
   padding: 4px;
-  min-width: 12rem;
+  min-width: min(12rem, calc(100vw - 2 * var(--gutter)));
   max-width: calc(100vw - 2 * var(--gutter));
   background: var(--canvas);
   border: 1px solid var(--field-line);

@@ -147,7 +147,7 @@ test('4. save ten plans, reject an eleventh, rename, delete with undo, survive r
     await page.getByRole('button', { name: 'Plan the next 30 minutes' }).click();
     await page.getByLabel('Plan name').fill(`Plan ${i}`);
     await page.getByRole('button', { name: 'Save', exact: true }).click();
-    await expect(page.getByText('Saved in this browser.')).toBeVisible();
+    await expect(page.getByText('Saved on this device.')).toBeVisible();
     expect(await page.evaluate(() => JSON.parse(localStorage.getItem('trunk.plans')!).plans.length)).toBe(i);
   }
   await page.goto('#/');
@@ -241,7 +241,8 @@ test('5. share links open in a fresh browser, sanitized, and never overwrite sav
   const errors = trackErrors(other);
   await other.goto(url);
   await expect(other.getByRole('heading', { name: 'A shared plan' })).toBeVisible();
-  await expect(other.getByRole('heading', { name: 'Shared plan', exact: true })).toBeVisible();
+  // Without the sender's name, the plan is named from what the link carries (time, length, ages).
+  await expect(other.locator('h2.shared-title')).toHaveText(/^(Morning|Afternoon|Evening|Night) · 30 min · 18 mo$/);
   const body = await other.locator('main').innerText();
   expect(body).not.toMatch(/Jamie|Rosa|teething/);
   expect(titles.length).toBeGreaterThan(1);

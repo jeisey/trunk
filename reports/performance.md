@@ -1,15 +1,15 @@
 # Lab performance
 
-Measured 2026-10-29 with `scripts/perf-lab.mjs` against the production build served under `/trunk/` on localhost.
+Measured 2026-10-30 with `scripts/perf-lab.mjs` against the production build served under `/trunk/` on localhost.
 
 **Profile:** Playwright Chromium (Lighthouse-like mobile settings), gzip-compressed assets as GitHub Pages serves them, 390×844 viewport, device scale factor 3, touch, 4× CPU slowdown, emulated network 1.6 Mbps down / 750 Kbps up / 150 ms RTT. 5 cold loads. This is an emulated lab profile on a cloud container, not a real phone and not field Core Web Vitals.
 
 | Metric | Result | Target |
 |---|---|---|
-| Initial JS (gzip, excludes lazy evidence and image export) | 183.7 KB | < 200 KB |
-| LCP (median of 5) | 1732 ms | < 2500 ms |
+| Initial JS (gzip, excludes lazy evidence and image export) | 186.4 KB | < 200 KB |
+| LCP (median of 5) | 1824 ms | < 2500 ms |
 | CLS (worst of 5) | 0.000 | < 0.1 |
-| Filter change → results updated (median / worst of 30) | 39 ms / 82 ms | < 100 ms |
+| Filter change → results updated (median / worst of 30) | 39 ms / 84 ms | < 100 ms |
 | Brand images on first view (logo + icons fetched, DPR 3) | 6.2 KB | small; not render-blocking |
 
 ## Brand images
@@ -31,13 +31,13 @@ The header logo is an `<img>` with a 1×/2×/3× `srcset` and explicit width/hei
 
 | File | Raw | Gzip | Loaded |
 |---|---|---|---|
-| ExportDialog-DvsEiAm3.js | 9.7 KB | 4.2 KB | on demand |
-| PlannerView-CGOjC12z.js | 28.2 KB | 8.9 KB | on demand (prefetched when idle) |
-| ShareDialog-D8xR5qRR.js | 5.5 KB | 2.3 KB | on demand |
-| SharedView-D6osL7mI.js | 5.5 KB | 2.0 KB | on demand |
-| evidence-aLWkSZ4e.js | 251.9 KB | 66.1 KB | on demand (prefetched when idle) |
-| filters-BRMYlNb3.js | 43.4 KB | 14.4 KB | initially |
-| index-CJdVb7D8.js | 615.8 KB | 169.3 KB | initially |
-| index-Gf6LiHAf.css | 24.5 KB | 5.8 KB | initially |
-| planner-Bgc0Y2Ym.js | 16.5 KB | 6.6 KB | on demand (prefetched when idle) |
-| share-DTDGsSd2.js | 7.5 KB | 3.2 KB | on demand |
+| ExportDialog-B6RyHzQo.js | 9.3 KB | 4.1 KB | on demand |
+| PlannerView-DEvDanRb.js | 34.2 KB | 10.8 KB | on demand (prefetched when idle) |
+| ShareDialog-CID007RI.js | 5.6 KB | 2.3 KB | on demand |
+| SharedView-BTkas4x9.js | 5.6 KB | 2.1 KB | on demand |
+| evidence-BBGIZpC0.js | 252.0 KB | 66.1 KB | on demand (prefetched when idle) |
+| filters-AZhd8waV.js | 43.4 KB | 14.4 KB | initially |
+| index-Dl5qVfu0.css | 25.7 KB | 6.0 KB | initially |
+| index-KUAdVxe3.js | 625.8 KB | 172.0 KB | initially |
+| planner-DOTrJ1Mu.js | 17.9 KB | 7.0 KB | on demand (prefetched when idle) |
+| share-AWDa-EYa.js | 7.5 KB | 3.2 KB | on demand |

@@ -6,6 +6,7 @@ import { analyzePlan, childLabel, type EntryAnalysis, type Gap, type PlanAnalysi
 import { BREAK_LABEL, bounds, MAX_SEGMENTS, newId, resize, ROUTINE_BOUNDS, ROUTINE_LABEL, youngerFor, type Plan, type PlanSegment } from '../lib/plan.ts';
 import { addEntry, addRoutine, applyRepair, clockProblem, duplicateEntry, moveEntry, offsetForClock, removeEntry, setAnchor, setLocked, setMinutes, updateEntry } from '../lib/planEdit.ts';
 import { optionsForSlot, type SlotOption } from '../lib/planner.ts';
+import { repairsForEntry } from '../lib/repairs.ts';
 import { sequenceNote } from '../lib/sequence.ts';
 import { cleanText, LIMITS } from '../lib/text.ts';
 import { TIME_ISSUE_TEXT } from '../lib/timeRules.ts';
@@ -14,7 +15,7 @@ import { formatMinutes, parseHHMM, toHHMM } from '../lib/time.ts';
 import { CueDetails, CueLine } from './Cues.tsx';
 import { activityHref, recipeHref } from './IdeaCards.tsx';
 import { MoreMenu, type MenuItem } from './MoreMenu.tsx';
-import { childGapText, clockAt, entryRoles, entryTitle, napAdultText, planRows, whoText } from './planDisplay.ts';
+import { childGapText, clockAt, entryRoles, entrySafety, entryTitle, napAdultText, planRows, whoText } from './planDisplay.ts';
 
 /** Floor (flat-surface) vs. held/supported tummy-time minutes in a plan, never merged. */
 export function tummyTally(plan: Plan, c: IndexedCatalog): { flat: number; supported: number } {
@@ -86,22 +87,40 @@ function NapAdultSelect({ hostChild, value, onChange, hint }: { hostChild: strin
   );
 }
 
+interface RoutineInputUI {
+  routine: RoutineType;
+  who: 'c1' | 'c2' | 'both';
+  clock: number;
+  minutes: number;
+  settle?: number;
+  holding?: boolean;
+}
+
+/**
+ * Add a routine block, or change one (`edit`): type, child, time, and length.
+ * Nothing is pre-selected when adding; Trunk never suggests a length.
+ */
 function RoutineForm({
   plan,
-  routine,
+  routine: initialRoutine,
   defaultClock,
+  edit,
   onAdd,
   onCancel,
 }: {
   plan: Plan;
   routine: RoutineType;
   defaultClock: number;
-  onAdd: (input: { who: 'c1' | 'c2' | 'both'; clock: number; minutes: number; settle?: number; holding?: boolean }) => void;
+  /** Changing an existing block: its segment, and why its child is fixed (it runs alongside, or has entries alongside it). */
+  edit?: { seg: PlanSegment; whoLocked: false | 'along' | 'host' };
+  onAdd: (input: RoutineInputUI) => void;
   onCancel: () => void;
 }) {
   const two = plan.kids.length === 2;
+  const [routine, setRoutine] = useState<RoutineType>(initialRoutine);
   const food = routine === 'meal' || routine === 'snack';
   const eligible = plan.kids.map((k) => !food || toDays(k.age) >= monthsToDays(6));
+  const anyEligible = plan.kids.some((k) => toDays(k.age) >= monthsToDays(6));
   const whoOptions = (
     [
       ['c1', 'Child 1', eligible[0]],
@@ -109,10 +128,11 @@ function RoutineForm({
       ['both', 'Both', two && eligible[0] && eligible[1]],
     ] as const
   ).filter(([, , ok]) => ok);
-  const [who, setWho] = useState<'c1' | 'c2' | 'both'>(whoOptions[0]?.[0] ?? 'c1');
+  const [who, setWho] = useState<'c1' | 'c2' | 'both'>(edit?.seg.who ?? whoOptions[0]?.[0] ?? 'c1');
+  const effectiveWho = edit?.whoLocked || whoOptions.some(([v]) => v === who) ? who : (whoOptions[0]?.[0] ?? who);
   const [time, setTime] = useState(toHHMM(defaultClock));
-  const [minutes, setMinutes] = useState<number | null>(null);
-  const [adult, setAdult] = useState('unknown');
+  const [minutes, setMinutes] = useState<number | null>(edit ? edit.seg.minutes : null);
+  const [adult, setAdult] = useState(edit ? napAdultValue(edit.seg) : 'unknown');
   const [error, setError] = useState(false);
   const [timeError, setTimeError] = useState<string | null>(null);
   const timeRef = useRef<HTMLInputElement>(null);
@@ -122,12 +142,14 @@ function RoutineForm({
     setError(false);
     setMinutes((m) => Math.max(min, Math.min(max, (m ?? (d > 0 ? min - 5 : min + 5)) + d)));
   };
-  const otherChild = who === 'c2' ? 'Child 1' : 'Child 2';
+  const otherChild = effectiveWho === 'c2' ? 'Child 1' : 'Child 2';
+  const whoLabel = effectiveWho === 'both' ? 'Both' : childLabel(effectiveWho);
+  const types: RoutineType[] = ['nap', 'milk-feed', ...(anyEligible && (!edit?.whoLocked || eligible[who === 'c2' ? 1 : 0]) ? (['meal', 'snack'] as const) : [])];
 
   return (
     <form
       className="panel add-panel"
-      aria-label={`Add a ${name.toLowerCase()}`}
+      aria-label={edit ? `Change this ${ROUTINE_LABEL[initialRoutine].toLowerCase()}` : `Add a ${name.toLowerCase()}`}
       onSubmit={(e) => {
         e.preventDefault();
         // A time before the plan starts is refused (never wrapped to tomorrow); the form stays open.
@@ -141,25 +163,43 @@ function RoutineForm({
           setError(true);
           return;
         }
-        const patch = routine === 'nap' && two && who !== 'both' ? napAdultPatch(adult) : {};
-        onAdd({ who, clock: parseHHMM(time), minutes, settle: patch.settle, holding: patch.holding });
+        const patch = routine === 'nap' && two && effectiveWho !== 'both' ? napAdultPatch(adult) : {};
+        onAdd({ routine, who: effectiveWho, clock: parseHHMM(time), minutes: Math.max(min, Math.min(max, minutes)), settle: patch.settle, holding: patch.holding });
       }}
     >
-      <h3>Add a {name.toLowerCase()}</h3>
-      {two && whoOptions.length > 1 && (
+      <h3>{edit ? `Change this ${ROUTINE_LABEL[initialRoutine].toLowerCase()}` : `Add a ${name.toLowerCase()}`}</h3>
+      {edit && (
+        <fieldset className="segmented">
+          <legend>What</legend>
+          <div className="segments">
+            {types.map((t) => (
+              <label key={t}>
+                <input type="radio" name="routine-type" checked={routine === t} onChange={() => setRoutine(t)} />
+                {ROUTINE_LABEL[t]}
+              </label>
+            ))}
+          </div>
+        </fieldset>
+      )}
+      {two && edit?.whoLocked && (
+        <p className="subtle">
+          For {whoLabel}. {edit.whoLocked === 'along' ? 'It runs alongside the other child’s routine' : `${otherChild}’s plans run alongside it`}, so the child stays the same.
+        </p>
+      )}
+      {two && !edit?.whoLocked && whoOptions.length > 1 && (
         <fieldset className="segmented">
           <legend>For</legend>
           <div className="segments">
             {whoOptions.map(([v, label]) => (
               <label key={v}>
-                <input type="radio" name="routine-who" checked={who === v} onChange={() => setWho(v)} />
+                <input type="radio" name="routine-who" checked={effectiveWho === v} onChange={() => setWho(v)} />
                 {label}
               </label>
             ))}
           </div>
         </fieldset>
       )}
-      {two && whoOptions.length === 1 && <p className="subtle">For {whoOptions[0][1]}. Meals and snacks are for children already eating solid foods.</p>}
+      {two && !edit?.whoLocked && whoOptions.length === 1 && <p className="subtle">For {whoOptions[0][1]}. Meals and snacks are for children already eating solid foods.</p>}
       <label className="field">
         <span>Starts</span>
         <input
@@ -208,8 +248,8 @@ function RoutineForm({
           </button>
         </div>
       </fieldset>
-      {routine === 'nap' && two && who !== 'both' && (
-        <NapAdultSelect hostChild={who === 'c2' ? 'Child 2' : 'Child 1'} value={adult} onChange={setAdult} hint={`Trunk won’t plan ${otherChild}’s time during the nap until you set a settling time.`} />
+      {routine === 'nap' && two && effectiveWho !== 'both' && (
+        <NapAdultSelect hostChild={effectiveWho === 'c2' ? 'Child 2' : 'Child 1'} value={adult} onChange={setAdult} hint={`Trunk won’t plan ${otherChild}’s time during the nap until you set a settling time.`} />
       )}
       {error && (
         <p className="field-error" role="alert">
@@ -218,7 +258,7 @@ function RoutineForm({
       )}
       <div className="button-row">
         <button type="submit" className="primary">
-          Add {name.toLowerCase()}
+          {edit ? 'Save changes' : `Add ${name.toLowerCase()}`}
         </button>
         <button type="button" onClick={onCancel}>
           Cancel
@@ -316,6 +356,7 @@ type Panel =
   | { type: 'custom'; host?: number; who?: 'c1' | 'c2' }
   | { type: 'routine'; routine: RoutineType }
   | { type: 'swap'; id: string }
+  | { type: 'edit-routine'; id: string }
   | null;
 
 function segFromOption(o: SlotOption, plan: Plan, c: IndexedCatalog): PlanSegment {
@@ -415,14 +456,22 @@ export function PlanEditor({
     announce(`${name(seg)}: ${next.minutes} minutes.`);
   };
 
+  // Repairs per entry, from the shared helper: de-duplicated, and only ones that leave
+  // fewer hard conflicts and create none.
+  const repairsByIndex = useMemo(() => new Map(analysis.entries.map((e) => [e.item.index, e.conflicts.length ? repairsForEntry(plan, e.conflicts, c) : []])), [plan, analysis, c]);
+
   const repair = (r: Repair) => {
+    const target = plan.segments[r.index];
     if (r.kind === 'swap') {
-      const seg = plan.segments[r.index];
-      if (seg) setPanel({ type: 'swap', id: seg.id });
+      if (target) setPanel({ type: 'swap', id: target.id });
       return;
     }
+    const neighbour = plan.segments[r.index + 1]?.id ?? plan.segments[r.index - 1]?.id;
     onChange(applyRepair(plan, r, c));
     announce(`${r.label}. Done.`);
+    // Focus stays with the entry that was fixed, or the next one if it was removed.
+    const first = r.kind === 'remove' ? neighbour : target?.id;
+    focusSoon(first ? `[data-seg="${first}"] .seg-title-text` : '.add-block .menu-button', neighbour ? `[data-seg="${neighbour}"] .seg-title-text` : '.add-block .menu-button');
   };
 
   const addSeg = (seg: PlanSegment, host?: number) => {
@@ -483,13 +532,15 @@ export function PlanEditor({
     const napSelect = seg.kind === 'routine' && seg.routine === 'nap' && two && seg.who !== 'both' && isGroupStartOf(seg);
     // The nap's "you" line is the select below, in the editor.
     const roles = napSelect ? [] : entryRoles(plan, c, e);
-    const timingConflict = e.conflicts.find((cf) => cf.kind === 'timing');
-    const others = e.conflicts.filter((cf) => cf.kind !== 'timing');
-    const safety = seg.kind === 'activity' ? c.activityById.get(seg.ref ?? '')?.safety[0]?.text : seg.kind === 'recipe' ? recipe?.safety[0]?.text : undefined;
+    // Overlaps are listed on both entries involved; each shows once per row.
+    const others = e.conflicts.filter((cf, k, all) => cf.kind !== 'timing' && all.indexOf(cf) === k);
+    const fixes = repairsByIndex.get(i) ?? [];
+    const safety = entrySafety(seg, c);
     const lockable = seg.kind === 'activity' || seg.kind === 'recipe' || seg.kind === 'break';
     const canUp = seg.along ? plan.segments[i - 1]?.along === true : plan.segments.slice(0, i).some((s) => !s.along);
     const canDown = seg.along ? plan.segments[i + 1]?.along === true : plan.segments.slice(i + 1).some((s) => !s.along);
     const more: MenuItem[] = [
+      ...(seg.kind === 'routine' && seg.routine ? [{ label: `Change ${ROUTINE_LABEL[seg.routine].toLowerCase()}…`, onSelect: () => setPanel({ type: 'edit-routine', id: seg.id }) }] : []),
       { label: anchored ? 'Change time' : 'Set a time', onSelect: () => setEditingTime(seg.id) },
       ...(seg.kind === 'activity' || seg.kind === 'recipe' ? [{ label: 'Swap…', onSelect: () => setPanel({ type: 'swap', id: seg.id }) }] : []),
       ...(lockable && !seg.along ? [{ label: seg.locked ? 'Stop keeping' : 'Keep when filling', onSelect: () => { onChange(setLocked(plan, i, !seg.locked, c)); announce(seg.locked ? `${title} will be refilled.` : `${title} is kept at ${clockAt(plan, e.item.start)}.`); } }] : []),
@@ -593,36 +644,31 @@ export function PlanEditor({
           <NapAdultSelect hostChild={childLabel(seg.who === 'c2' ? 'c2' : 'c1')} value={napAdultValue(seg)} onChange={(v) => { onChange(updateEntry(plan, i, napAdultPatch(v))); announce(napAdultText({ ...seg, ...napAdultPatch(v) } as PlanSegment)); }} />
         )}
         {e.timing.cue && <CueDetails cue={e.timing.cue} c={c} prefix={two && seg.kind === 'recipe' ? childLabel(e.timing.cue.finding.child === 1 ? 1 : 0) : undefined} />}
-        {timingConflict && timingConflict.repairs.length > 0 && (
-          <div className="button-row repairs">
-            {timingConflict.repairs.map((r) => (
-              <button key={r.label} type="button" onClick={() => repair(r)}>
-                {r.label}
-              </button>
-            ))}
-          </div>
-        )}
         {note && <p className="seq-note">{note}</p>}
         {e.timeIssue && (
           <p className="safety-line" role="note">
             {TIME_ISSUE_TEXT[e.timeIssue]}
           </p>
         )}
-        {safety && <p className="safety-line">{safety}</p>}
-        {others.map((cf, k) => (
-          <div key={k} className={`conflict ${cf.severity}`} role="note">
-            <p>{cf.message}</p>
-            {cf.repairs.length > 0 && (
-              <div className="button-row">
-                {cf.repairs.map((r) => (
-                  <button key={r.label} type="button" onClick={() => repair(r)}>
-                    {r.label}
-                  </button>
-                ))}
-              </div>
-            )}
-          </div>
+        {safety.map((t) => (
+          <p key={t} className="safety-line">
+            {t}
+          </p>
         ))}
+        {others.map((cf, k) => (
+          <p key={k} className={`conflict ${cf.severity}`} role="note">
+            {cf.message}
+          </p>
+        ))}
+        {fixes.length > 0 && (
+          <div className="button-row repairs">
+            {fixes.map((r) => (
+              <button key={`${r.kind}-${r.index}-${r.label}`} type="button" onClick={() => repair(r)}>
+                {r.label}
+              </button>
+            ))}
+          </div>
+        )}
         <div className="seg-tools">
           <span className="resize" role="group" aria-label={`Length of ${title}`}>
             <button type="button" onClick={() => sizeBy(i, -1)} aria-label={`Shorter: ${title}`} disabled={seg.minutes <= min}>
@@ -633,15 +679,44 @@ export function PlanEditor({
               +
             </button>
           </span>
-          <button type="button" className="icon-button" data-move="-1" onClick={() => move(i, -1)} disabled={!canUp} aria-label={`Move earlier: ${title}`}>
-            ↑
-          </button>
-          <button type="button" className="icon-button" data-move="1" onClick={() => move(i, 1)} disabled={!canDown} aria-label={`Move later: ${title}`}>
-            ↓
-          </button>
-          <MoreMenu label={title} items={more} text="⋯" spoken="More" className="row-menu" />
+          <span className="tool-group">
+            <button type="button" className="icon-button" data-move="-1" onClick={() => move(i, -1)} disabled={!canUp} aria-label={`Move earlier: ${title}`}>
+              ↑
+            </button>
+            <button type="button" className="icon-button" data-move="1" onClick={() => move(i, 1)} disabled={!canDown} aria-label={`Move later: ${title}`}>
+              ↓
+            </button>
+            <MoreMenu label={title} items={more} text="⋯" spoken="More" className="row-menu" />
+          </span>
         </div>
         {rowNote?.id === seg.id && <p className="row-note">{rowNote.text}</p>}
+        {panel?.type === 'edit-routine' && panel.id === seg.id && seg.routine && (
+          <RoutineForm
+            plan={plan}
+            routine={seg.routine}
+            defaultClock={parseHHMM(plan.start) + e.item.start}
+            edit={{ seg, whoLocked: seg.along ? 'along' : plan.segments[i + 1]?.along ? 'host' : false }}
+            onCancel={() => {
+              setPanel(null);
+              focusSoon(`[data-seg="${seg.id}"] .menu-button`);
+            }}
+            onAdd={(input) => {
+              let next = updateEntry(plan, i, {
+                routine: input.routine,
+                who: two ? input.who : 'c1',
+                minutes: input.minutes,
+                settle: input.routine === 'nap' ? input.settle : undefined,
+                holding: input.routine === 'nap' && input.holding ? true : undefined,
+              });
+              const at = offsetForClock(next, input.clock);
+              if (at !== seg.at) next = setAnchor(next, next.segments.findIndex((x) => x.id === seg.id), at, c);
+              onChange(next);
+              setPanel(null);
+              announce(`${ROUTINE_LABEL[input.routine]}${two ? ` for ${input.who === 'both' ? 'both children' : childLabel(input.who)}` : ''} at ${clockAt(next, at)}, ${formatMinutes(input.minutes)}.`);
+              focusSoon(`[data-seg="${seg.id}"] .seg-title-text`);
+            }}
+          />
+        )}
         {panel?.type === 'swap' && panel.id === seg.id && (
           <OptionList
             title={`Swap ${title} for…`}
@@ -684,6 +759,16 @@ export function PlanEditor({
     );
   };
 
+  /** Why nothing can be added alongside a routine right now, in the parent's terms. */
+  const emptyAlongText = (hostIndex: number, other: string) => {
+    const gaps = analysis.gaps.filter((g) => g.host === hostIndex && g.who !== 'all');
+    const host = plan.segments[hostIndex];
+    if (gaps.some((g) => g.adult === 'unknown')) return `Set your settling time on the nap to plan ${other}’s time during it, or add your own entry.`;
+    if (gaps.reduce((m, g) => m + g.end - g.start, 0) < 2) return `There’s no unplanned time left for ${other} during this ${(host?.routine ? ROUTINE_LABEL[host.routine] : 'routine').toLowerCase()}.`;
+    if (gaps.every((g) => g.adult === 'undivided')) return `With one adult, ${other}’s time during a meal or snack stays unplanned: it needs your full attention.`;
+    return `Nothing in Trunk fits ${other} alongside this with one adult right now. You could add your own entry.`;
+  };
+
   const rows: ReactNode[] = (plan.segments.length ? planRows(plan, analysis) : []).map((row) => {
     if (row.kind === 'entry') return entryRow(row.entry);
     if (row.kind === 'gap') return gapRow(row.gap, `gap-${row.gap.who}-${row.gap.start}`);
@@ -691,12 +776,12 @@ export function PlanEditor({
     const hs = row.host.item.segment;
     const other = childLabel(row.otherLane);
     return (
-      <li key={`track-${hs.id}`} className="along-track" aria-label={`While ${childLabel(row.hostLane)} ${row.verb}: ${other}`}>
+      <li key={`track-${hs.id}-${row.continued ? (row.items[0]?.kind === 'entry' ? row.items[0].entry.item.segment.id : row.items[0]?.gap.start) : 'first'}`} className="along-track" aria-label={`While ${childLabel(row.hostLane)} ${row.verb}: ${other}${row.continued ? ' (continued)' : ''}`}>
         <p className="track-head">
-          While {childLabel(row.hostLane)} {row.verb} · {other}:
+          While {childLabel(row.hostLane)} {row.verb} · {other}{row.continued ? ' (continued)' : ''}:
         </p>
         {row.items.length > 0 && <ol className="timeline nested">{row.items.map((t) => (t.kind === 'entry' ? entryRow(t.entry) : gapRow(t.gap, `cg-${hostIndex}-${t.gap.start}`)))}</ol>}
-        <div className="add-along">
+        {row.last && <div className="add-along">
           <MoreMenu
             text={`+ Add for ${other}`}
             label={`alongside ${name(hs).toLowerCase()}`}
@@ -705,18 +790,18 @@ export function PlanEditor({
               { label: 'Your own entry', onSelect: () => setPanel({ type: 'custom', host: hostIndex, who: row.otherLane }), disabled: full },
             ]}
           />
-        </div>
-        {panel?.type === 'activity' && panel.host === hostIndex && (
+        </div>}
+        {row.last && panel?.type === 'activity' && panel.host === hostIndex && (
           <OptionList
             title={`Add for ${other} alongside the ${name(hs).toLowerCase()}`}
             options={options({ host: hostIndex })}
             pickLabel="Add"
-            empty={`Nothing fits ${other} alongside this right now with one adult. You could set your settling time on the nap, or add your own entry.`}
+            empty={emptyAlongText(hostIndex, other)}
             onPick={(o) => addSeg({ ...segFromOption(o, plan, c), who: row.otherLane }, hostIndex)}
             onCancel={() => setPanel(null)}
           />
         )}
-        {panel?.type === 'custom' && panel.host === hostIndex && <CustomForm plan={plan} alongWho={row.otherLane} onAdd={(seg) => addSeg(seg, hostIndex)} onCancel={() => setPanel(null)} />}
+        {row.last && panel?.type === 'custom' && panel.host === hostIndex && <CustomForm plan={plan} alongWho={row.otherLane} onAdd={(seg) => addSeg(seg, hostIndex)} onCancel={() => setPanel(null)} />}
       </li>
     );
   });
@@ -742,6 +827,7 @@ export function PlanEditor({
                 onClick={() => {
                   onChange({ ...plan, window: extendTo, updatedAt: new Date().toISOString() });
                   announce(`The plan now covers ${extendTo} minutes.`);
+                  focusSoon('.plan-summary');
                 }}
               >
                 Extend to {extendTo} min
@@ -780,13 +866,13 @@ export function PlanEditor({
           onCancel={() => setPanel(null)}
           onAdd={(input) => {
             const before = new Set(plan.segments.map((s) => s.id));
-            const next = addRoutine(plan, { routine: panel.routine, ...input }, c);
+            const next = addRoutine(plan, input, c);
             if (next === plan) return announce(`A plan can hold up to ${MAX_SEGMENTS} entries.`);
             onChange(next);
             setPanel(null);
             const added = next.segments.find((s) => !before.has(s.id));
             const who = two ? ` for ${input.who === 'both' ? 'both children' : childLabel(input.who)}` : '';
-            announce(`Added a ${ROUTINE_LABEL[panel.routine].toLowerCase()}${who} at ${clockAt(next, offsetForClock(next, input.clock))}${added?.along ? ', alongside the other child’s routine' : ''}.`);
+            announce(`Added a ${ROUTINE_LABEL[input.routine].toLowerCase()}${who} at ${clockAt(next, offsetForClock(next, input.clock))}${added?.along ? ', alongside the other child’s routine' : ''}.`);
             if (added) focusSoon(`[data-seg="${added.id}"] .seg-title-text`);
           }}
         />
@@ -798,7 +884,7 @@ export function PlanEditor({
 function Summary({ plan, analysis }: { plan: Plan; analysis: PlanAnalysis }) {
   const endOffset = Math.max(analysis.end, 0);
   return (
-    <div className="plan-summary" aria-live="polite">
+    <div className="plan-summary" tabIndex={-1}>
       <span>
         <strong>{clockAt(plan, 0)}</strong> to <strong>{clockAt(plan, Math.max(endOffset, plan.window))}</strong>
       </span>

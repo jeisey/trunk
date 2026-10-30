@@ -92,6 +92,16 @@ export function App() {
   const startTouched = useRef(false);
   const [sharing, setSharing] = useState(false);
   const [exporting, setExporting] = useState(false);
+  /** The control that opened a dialog: focus goes back to it when the dialog closes (Close or Escape). */
+  const opener = useRef<HTMLElement | null>(null);
+  const rememberOpener = () => {
+    opener.current = document.activeElement instanceof HTMLElement ? document.activeElement : null;
+  };
+  const returnFocus = () =>
+    requestAnimationFrame(() => {
+      const a = document.activeElement;
+      if ((!a || a === document.body) && opener.current?.isConnected) opener.current.focus();
+    });
   const [toast, setToast] = useState<ToastState | null>(null);
   const [announcement, setAnnouncement] = useState('');
   const findScroll = useRef(0);
@@ -279,7 +289,7 @@ export function App() {
       return;
     }
     if (draft && dirty) {
-      setWindowMinutes(minutes);
+      // The open plan keeps its own length; the Minutes control keeps showing it.
       go('#/plan');
       notify('You have an unsaved plan open. Save or close it to make a new one.');
       return;
@@ -294,7 +304,7 @@ export function App() {
       setSaved(r.plans);
       setStoreStatus({ status: store.getStatus(), message: store.getMessage() });
       if (draft && plan.id === draft.id) setSavedSnapshot(JSON.stringify(plan));
-      notify(r.action === 'created' ? 'Saved in this browser.' : 'Changes saved.');
+      notify(r.action === 'created' ? 'Saved on this device.' : 'Changes saved on this device.');
       return true;
     }
     notify(r.message);
@@ -321,25 +331,44 @@ export function App() {
     if (notes.length) notify(notes.join(' '));
   };
 
-  const addToPlan = (kind: 'activity' | 'recipe', ref: string) => {
+  const addToPlan = async (kind: 'activity' | 'recipe', ref: string) => {
     const planKids = planChildren();
     const item = kind === 'activity' ? c.activityById.get(ref) : c.recipeById.get(ref);
     if (!item) return;
-    // A one-child idea joins an open two-child plan for the matching child, alongside the
-    // other child's routine where there's room; otherwise it starts or extends a plan for
-    // the children shown on Find.
+    // A one-child idea joins an open two-child plan for the matching child. It goes alongside
+    // the other child's routine only where the planner's own check offers it there
+    // (optionsForSlot); otherwise it joins the main sequence, and the plan shows any conflict.
     const focus = prefs.filters.focus;
     const allKids = kidsToPlanKids(prefs.kids);
     const sameAges = (a: Plan['kids'], b: Plan['kids']) => JSON.stringify(a.map((k) => k.age)) === JSON.stringify(b.map((k) => k.age));
     if (kind === 'activity' && draft && draft.kids.length === 2 && prefs.kids.length === 2 && focus !== 'both' && sameAges(draft.kids, allKids)) {
+      const { optionsForSlot } = await loadPlanner();
       const who = focus === 0 ? 'c1' : 'c2';
-      const seg: PlanSegment = { id: newId('a'), kind: 'activity', ref, minutes: item.duration.default, who };
-      const analysis = analyzePlan(draft, c);
-      const host = analysis.gaps.find((g) => g.who === who && g.host !== undefined && g.adult !== 'undivided' && g.end - g.start >= item.duration.min)?.host;
-      setDraft(addEntry(draft, seg, host === undefined ? {} : { host }));
+      const other = who === 'c1' ? 'c2' : 'c1';
+      let host: number | undefined;
+      let minutes = item.duration.default;
+      for (const e of analyzePlan(draft, c).entries) {
+        const h = e.item.segment;
+        if (e.item.host !== null || h.kind !== 'routine' || h.who !== other) continue;
+        const fit = optionsForSlot(c, draft, { host: e.item.index }).find((o) => o.id === ref);
+        if (fit) {
+          host = e.item.index;
+          minutes = fit.minutes;
+          break;
+        }
+      }
+      const seg: PlanSegment = { id: newId('a'), kind: 'activity', ref, minutes, who };
+      const next = addEntry(draft, seg, host === undefined ? {} : { host });
+      setDraft(next);
       setLastResult(null);
       go('#/plan');
-      notify(`Added ${item.title} for ${childLabel(who)}${host !== undefined ? ' alongside the other child’s routine' : ''}.`);
+      const added = analyzePlan(next, c).entries.find((e) => e.item.segment.id === seg.id);
+      const hostName = host !== undefined ? draft.segments[host].routine : undefined;
+      notify(
+        added?.conflicts.some((cf) => cf.severity === 'conflict')
+          ? `Added ${item.title} for ${childLabel(who)}. It needs a look: see the note on it in the plan.`
+          : `Added ${item.title} for ${childLabel(who)}${hostName ? ` alongside ${childLabel(other)}’s ${hostName === 'milk-feed' ? 'milk feed' : hostName}` : ''}.`,
+      );
       return;
     }
     let base = draft;
@@ -364,32 +393,37 @@ export function App() {
     notify(`Added ${item.title}.`);
   };
 
-  const onDelete = (plan: Plan) => {
+  /** Delete a saved plan. Returns an undo for the inline "Deleted … · Undo" row, or null. */
+  const onDelete = (plan: Plan): (() => boolean) | null => {
     const r = store.remove(plan.id);
-    if (!r.ok) return notify(r.message);
+    if (!r.ok) {
+      notify(r.message);
+      return null;
+    }
     setSaved(r.plans);
     const { removed, index } = r;
     if (draft?.id === plan.id) setSavedSnapshot(null);
-    notify(
-      `Deleted “${planTitle(plan)}”.`,
-      removed
-        ? {
-            label: 'Undo',
-            run: () => {
-              const back = store.restore(removed, index ?? 0);
-              if (back.ok) {
-                setSaved(back.plans);
-                if (draft?.id === removed.id) setSavedSnapshot(JSON.stringify(removed));
-              } else notify(back.message);
-            },
-          }
-        : undefined,
-    );
+    if (!removed) return null;
+    return () => {
+      const back = store.restore(removed, index ?? 0);
+      if (!back.ok) {
+        notify(back.message);
+        return false;
+      }
+      setSaved(back.plans);
+      if (draft?.id === removed.id) setSavedSnapshot(JSON.stringify(removed));
+      return true;
+    };
   };
 
   const onDuplicate = (plan: Plan) => {
     const stamp = new Date().toISOString();
-    const copy = { ...plan, id: newPlanId(), title: `Copy of ${planTitle(plan)}`.slice(0, LIMITS.title), createdAt: stamp, updatedAt: stamp };
+    // "Copy of X", then "Copy 2 of X", "Copy 3 of X", so copies can be told apart.
+    const base = planTitle(plan).replace(/^Copy(?: \d+)? of /, '');
+    const taken = new Set(saved.map((p) => planTitle(p)));
+    let title = `Copy of ${base}`;
+    for (let n = 2; taken.has(title.slice(0, LIMITS.title)) && n < 100; n++) title = `Copy ${n} of ${base}`;
+    const copy = { ...plan, id: newPlanId(), title: title.slice(0, LIMITS.title), createdAt: stamp, updatedAt: stamp };
     savePlan(copy);
   };
 
@@ -453,7 +487,8 @@ export function App() {
           childAge={detailChild?.age}
           now={detailIndex === null ? undefined : nowFor(detailIndex)}
           onBack={back}
-          onAdd={childInput && !a.retired && activityEligible(a, childInput, prefs.filters.adults) ? () => addToPlan('activity', a.id) : undefined}
+          onAdd={childInput && !a.retired && activityEligible(a, childInput, prefs.filters.adults) ? () => void addToPlan('activity', a.id) : undefined}
+          addHint={prefs.kids.length === 2 && prefs.filters.focus === 'both' ? 'To add this to a plan, choose Child 1 or Child 2 under “Who’s this for?” on Find.' : undefined}
         />
       ) : (
         <NotFound />
@@ -470,10 +505,10 @@ export function App() {
         <RecipeDetail
           c={c}
           r={r}
-          ages={kidsAges}
+          kids={prefs.kids}
           now={prefs.kids.map((_, i) => nowFor(i))}
           onBack={back}
-          onAdd={fits && !r.retired && prefs.filters.focus === 'both' ? () => addToPlan('recipe', r.id) : undefined}
+          onAdd={fits && !r.retired && prefs.filters.focus === 'both' ? () => void addToPlan('recipe', r.id) : undefined}
         />
       ) : (
         <NotFound />
@@ -488,6 +523,7 @@ export function App() {
           filters={prefs.filters}
           plan={draft}
           dirty={dirty}
+          saveState={!draft ? null : savedSnapshot !== null && draftJson === savedSnapshot ? 'saved' : savedSnapshot !== null ? 'changed' : 'new'}
           lastResult={lastResult}
           window={windowMinutes}
           start={start}
@@ -514,15 +550,12 @@ export function App() {
             setFilters(next);
             if (lastResult?.blocked) setLastResult(null);
             // Energy, place, mode, and adults also apply to the open plan (its swaps, additions,
-            // and checks); entries that no longer fit are re-checked. "Who's this for?" only
-            // affects the next plan.
+            // and checks). Nothing is removed: an entry that no longer fits keeps its place and
+            // shows the analysis's conflict with Swap / Remove. "Who's this for?" only affects
+            // the next plan.
             if (draft) {
               const settings = settingsFromFilters(next);
-              if (JSON.stringify(settings) !== JSON.stringify(draft.settings)) {
-                const { segments, dropped } = reconcileSegments(draft.kids, settings, draft.segments, c);
-                if (dropped.length) notify(`${dropped.length} item(s) no longer fit and were removed.`);
-                setDraft({ ...draft, settings, segments, updatedAt: new Date().toISOString() });
-              }
+              if (JSON.stringify(settings) !== JSON.stringify(draft.settings)) setDraft({ ...draft, settings, updatedAt: new Date().toISOString() });
             }
           }}
           onGenerate={() => void generate()}
@@ -541,8 +574,14 @@ export function App() {
             if (note) notify(note);
           }}
           onSave={() => draft && savePlan(draft)}
-          onShare={() => setSharing(true)}
-          onExport={() => setExporting(true)}
+          onShare={() => {
+            rememberOpener();
+            setSharing(true);
+          }}
+          onExport={() => {
+            rememberOpener();
+            setExporting(true);
+          }}
           onClear={() => {
             if (dirty && !window.confirm('Close this plan? It isn’t saved.')) return;
             setDraft(null);
@@ -638,7 +677,10 @@ export function App() {
         <ShareDialog
           plan={draft}
           c={c}
-          onClose={() => setSharing(false)}
+          onClose={() => {
+            setSharing(false);
+            returnFocus();
+          }}
           onExport={() => {
             setSharing(false);
             setExporting(true);
@@ -654,7 +696,14 @@ export function App() {
             </p>
           }
         >
-          <ExportDialog plan={draft} c={c} onClose={() => setExporting(false)} />
+          <ExportDialog
+            plan={draft}
+            c={c}
+            onClose={() => {
+              setExporting(false);
+              returnFocus();
+            }}
+          />
         </Suspense>
       )}
     </>

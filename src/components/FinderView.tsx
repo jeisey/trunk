@@ -90,6 +90,11 @@ export function FinderView(props: {
     if (Math.abs(delta) > 1) window.scrollBy(0, delta);
   }, [momentKey, f]);
 
+  // Stable keys for the child cards, so removing Child 1 doesn't hand its open panels to Child 2.
+  const cardKeys = useRef<string[]>([]);
+  while (cardKeys.current.length < kids.length) cardKeys.current.push(Math.random().toString(36).slice(2));
+  if (cardKeys.current.length > kids.length) cardKeys.current.length = kids.length;
+
   const setMoment = (i: number, m: MomentContext) => {
     holdPosition();
     props.onMoments(kids.map((_, j) => (j === i ? m : (moments[j] ?? NO_MOMENT))));
@@ -110,7 +115,7 @@ export function FinderView(props: {
         <h1 className="visually-hidden">Find something to do</h1>
         {kids.map((k, i) => (
           <AgeControl
-            key={i}
+            key={cardKeys.current[i]}
             label={childName(i)}
             child={k}
             relevantAbilities={relevantAbilities(c, k)}
@@ -118,9 +123,12 @@ export function FinderView(props: {
             onRemove={
               two
                 ? () => {
+                    cardKeys.current.splice(i, 1);
                     props.onKids(kids.filter((_, j) => j !== i));
                     props.onMoments(moments.filter((_, j) => j !== i));
                     set({ focus: 'both' });
+                    // The Remove button is gone; continue from the remaining card's "+ Second child".
+                    requestAnimationFrame(() => document.querySelector<HTMLElement>('[data-add-child]')?.focus());
                   }
                 : undefined
             }
@@ -245,6 +253,8 @@ export function FinderView(props: {
                 onClick={() => {
                   props.onFilters(resetTo);
                   props.onMoments(kids.map(() => NO_MOMENT));
+                  // Reset disappears once there's nothing to reset; keep focus on the filters.
+                  requestAnimationFrame(() => document.querySelector<HTMLElement>('details.filters > summary')?.focus());
                 }}
               >
                 Reset

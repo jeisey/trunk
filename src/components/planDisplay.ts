@@ -23,6 +23,16 @@ export function kidsText(plan: Pick<Plan, 'kids'>): string {
   return plan.kids.map((k) => formatAge(k.age)).join(' + ');
 }
 
+/** The label for a child in a plan. A one-child plan has no number (it may be either of the parent's children). */
+export function kidLabel(plan: Pick<Plan, 'kids'>, i: number): string {
+  return plan.kids.length === 1 ? 'Your child' : childLabel(i === 1 ? 1 : 0);
+}
+
+/** "Child 1: about 4 months · Child 2: about 2 years" or "Your child: about 4 months". */
+export function kidsAboutText(plan: Pick<Plan, 'kids'>, sep = ' · '): string {
+  return plan.kids.map((k, i) => `${kidLabel(plan, i)}: about ${formatAge(k.age)}`).join(sep);
+}
+
 /** Clock text for an offset from the plan's start. */
 export function clockAt(plan: Pick<Plan, 'start'>, offset: number): string {
   return formatClock(parseHHMM(plan.start) + offset);
@@ -73,7 +83,7 @@ export function entryRoles(plan: Plan, c: IndexedCatalog, e: Pick<EntryAnalysis,
     if (!a) return [];
     const child = e.child ?? (seg.who === 'c2' ? 1 : 0);
     return [
-      { who: two ? `${childLabel(child)} (${ages[child]})` : 'Child 1', text: a.summary },
+      { who: two ? `${childLabel(child)} (${ages[child]})` : 'Your child', text: a.summary },
       { who: 'You', text: adultText(a.supervision) },
     ];
   }
@@ -88,12 +98,35 @@ export function entryRoles(plan: Plan, c: IndexedCatalog, e: Pick<EntryAnalysis,
       { who: 'You', text: r.adult.does },
     ];
   }
-  if (seg.kind === 'break') return [{ who: two ? 'Everyone' : 'Child 1', text: BREAK_HINT }];
+  if (seg.kind === 'break') return [{ who: two ? 'Everyone' : 'Your child', text: BREAK_HINT }];
   if (seg.kind === 'custom') {
-    const who = whoText(seg, plan.kids.length) ?? 'Child 1';
+    const who = whoText(seg, plan.kids.length) ?? 'Your child';
     return [{ who, text: opts.customText === false ? 'Your own entry' : 'Your own entry (no sources attached)' }];
   }
   if (seg.kind === 'routine' && seg.routine === 'nap' && two && seg.who !== 'both') return [{ who: 'You', text: napAdultText(seg) }];
+  return [];
+}
+
+/** Hazards serious enough that an entry shows its two leading safety notes instead of one. */
+export const SERIOUS_HAZARDS: ReadonlySet<string> = new Set(['water', 'food', 'suffocation', 'heat', 'traffic', 'falls', 'small-parts']);
+
+/**
+ * The safety line(s) shown with a plan entry everywhere (editor, shared preview,
+ * image): the entry's leading sourced safety note, or its first two when the
+ * activity (or either role in a pairing) carries a serious hazard.
+ */
+export function entrySafety(seg: PlanSegment, c: IndexedCatalog): string[] {
+  if (seg.kind === 'activity') {
+    const a = c.activityById.get(seg.ref ?? '');
+    if (!a) return [];
+    return a.safety.slice(0, a.hazards.some((h) => SERIOUS_HAZARDS.has(h)) ? 2 : 1).map((n) => n.text);
+  }
+  if (seg.kind === 'recipe') {
+    const r = c.recipeById.get(seg.ref ?? '');
+    if (!r) return [];
+    const hazards = [r.younger.activity, r.older.activity].flatMap((id) => c.activityById.get(id)?.hazards ?? []);
+    return r.safety.slice(0, hazards.some((h) => SERIOUS_HAZARDS.has(h)) ? 2 : 1).map((n) => n.text);
+  }
   return [];
 }
 
@@ -132,7 +165,8 @@ export function momentText(moments: readonly (MomentContext | undefined)[], labe
     const bits: string[] = [];
     if (m.fed) bits.push(m.fedAgo ? `fed about ${m.fedAgo} min ago` : 'just fed');
     if (m.nap) bits.push(m.napIn != null ? `nap in about ${m.napIn} min` : 'nap soon');
-    parts.push(`${labels[i] ?? childLabel(i === 1 ? 1 : 0)} ${bits.join(', ')}`);
+    const label = moments.length === 1 ? '' : `${labels[i] ?? childLabel(i === 1 ? 1 : 0)} `;
+    parts.push(`${label}${bits.join(', ')}`);
   });
   return parts.length ? parts.join('; ') : null;
 }
@@ -151,37 +185,82 @@ export type PlanRow =
       /** "naps", "feeds", "eats", "has a snack" */
       verb: string;
       items: TrackItem[];
+      /** The second part of a track split by a main entry that starts inside it. */
+      continued: boolean;
+      /** The last part of this routine's track (where "+ Add for…" goes). */
+      last: boolean;
     };
 
 const VERB: Record<RoutineType, string> = { nap: 'naps', 'milk-feed': 'feeds', meal: 'eats', snack: 'has a snack' };
 
 /**
- * The plan as a chronological list: main entries in order with open time
- * between them; after a one-child routine in a two-child plan, a track with the
- * other child's alongside entries and unplanned time (with the adult state).
+ * The plan as a chronological list. Main entries and open time are ordered by
+ * start time. After a one-child routine in a two-child plan come the other
+ * child's alongside entries and unplanned time (with the adult state), as a
+ * track. If a main entry starts in the middle of a track, the track is split
+ * around it and the second part is marked as continued, so rows always read in
+ * time order.
  */
 export function planRows(plan: Pick<Plan, 'kids' | 'segments'>, analysis: PlanAnalysis): PlanRow[] {
   const two = plan.kids.length === 2;
-  const groups: { host: EntryAnalysis; along: EntryAnalysis[] }[] = [];
+  type Unit = { at: number; order: number; seq: number } & ({ kind: 'entry'; entry: EntryAnalysis } | { kind: 'gap'; gap: Gap } | { kind: 'item'; host: number; item: TrackItem });
+  const units: Unit[] = [];
+  let seq = 0;
+  const trackHosts = new Set<number>();
   for (const e of analysis.entries) {
-    if (e.item.host !== null && groups.length) groups[groups.length - 1].along.push(e);
-    else groups.push({ host: e, along: [] });
+    const s = e.item.segment;
+    if (e.item.host === null) {
+      units.push({ kind: 'entry', entry: e, at: e.item.start, order: 0, seq: seq++ });
+      if (two && s.kind === 'routine' && s.routine && s.who !== 'both') trackHosts.add(e.item.index);
+    }
   }
-  const open = analysis.gaps.filter((g) => g.who === 'all');
+  for (const e of analysis.entries) {
+    if (e.item.host !== null && trackHosts.has(e.item.host)) units.push({ kind: 'item', host: e.item.host, item: { kind: 'entry', entry: e }, at: e.item.start, order: 2, seq: seq++ });
+  }
+  for (const g of analysis.gaps) {
+    if (g.who === 'all') units.push({ kind: 'gap', gap: g, at: g.start, order: 1, seq: seq++ });
+    else if (g.host !== undefined && trackHosts.has(g.host)) units.push({ kind: 'item', host: g.host, item: { kind: 'gap', gap: g }, at: g.start, order: 1.5, seq: seq++ });
+  }
+  units.sort((a, b) => a.at - b.at || a.order - b.order || a.seq - b.seq);
+
   const rows: PlanRow[] = [];
-  let k = 0;
-  for (const g of groups) {
-    while (k < open.length && open[k].end <= g.host.item.start) rows.push({ kind: 'gap', gap: open[k++] });
-    rows.push({ kind: 'entry', entry: g.host });
-    const hs = g.host.item.segment;
-    if (!two || hs.kind !== 'routine' || hs.who === 'both' || !hs.routine) continue;
+  const opened = new Set<number>();
+  for (const u of units) {
+    if (u.kind === 'entry') {
+      rows.push({ kind: 'entry', entry: u.entry });
+      const s = u.entry.item.segment;
+      // A track always follows its routine, even when it's empty (it holds "+ Add for…").
+      if (trackHosts.has(u.entry.item.index) && s.routine) {
+        const hostLane: Lane = s.who === 'c2' ? 'c2' : 'c1';
+        rows.push({ kind: 'track', host: u.entry, hostLane, otherLane: hostLane === 'c1' ? 'c2' : 'c1', verb: VERB[s.routine], items: [], continued: false, last: true });
+        opened.add(u.entry.item.index);
+      }
+      continue;
+    }
+    if (u.kind === 'gap') {
+      rows.push({ kind: 'gap', gap: u.gap });
+      continue;
+    }
+    const last = rows[rows.length - 1];
+    if (last?.kind === 'track' && last.host.item.index === u.host) {
+      last.items.push(u.item);
+      continue;
+    }
+    const host = analysis.entries[u.host];
+    const hs = host.item.segment;
     const hostLane: Lane = hs.who === 'c2' ? 'c2' : 'c1';
-    const items: (TrackItem & { at: number })[] = [
-      ...g.along.map((entry) => ({ kind: 'entry' as const, entry, at: entry.item.start })),
-      ...analysis.gaps.filter((gap) => gap.who !== 'all' && gap.host === g.host.item.index).map((gap) => ({ kind: 'gap' as const, gap, at: gap.start - 0.5 })),
-    ].sort((a, b) => a.at - b.at);
-    rows.push({ kind: 'track', host: g.host, hostLane, otherLane: hostLane === 'c1' ? 'c2' : 'c1', verb: VERB[hs.routine], items: items.map(({ at: _at, ...rest }) => (void _at, rest as TrackItem)) });
+    rows.push({ kind: 'track', host, hostLane, otherLane: hostLane === 'c1' ? 'c2' : 'c1', verb: VERB[hs.routine ?? 'nap'], items: [u.item], continued: opened.has(u.host), last: true });
+    opened.add(u.host);
   }
-  while (k < open.length) rows.push({ kind: 'gap', gap: open[k++] });
-  return rows;
+  // A split track: drop an empty first part, and keep "+ Add for…" on the last part only.
+  const out = rows.filter((r, i) => !(r.kind === 'track' && !r.continued && r.items.length === 0 && rows.slice(i + 1).some((x) => x.kind === 'track' && x.host === r.host)));
+  const seen = new Set<number>();
+  for (let i = out.length - 1; i >= 0; i--) {
+    const r = out[i];
+    if (r.kind !== 'track') continue;
+    r.last = !seen.has(r.host.item.index);
+    seen.add(r.host.item.index);
+  }
+  for (const r of out) if (r.kind === 'track' && r.continued && !out.some((x) => x !== r && x.kind === 'track' && x.host === r.host && out.indexOf(x) < out.indexOf(r))) r.continued = false;
+  return out;
 }

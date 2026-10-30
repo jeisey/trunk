@@ -1,4 +1,4 @@
-import type { Activity, MixedAgeRecipe } from '../content/schema.ts';
+import type { Ability, Activity, MixedAgeRecipe } from '../content/schema.ts';
 import { activityClaims, recipeClaims, useEvidence, type IndexedCatalog } from '../content/catalog.ts';
 import { ageStringToDays, formatAge, monthsToDays, type EnteredAge } from '../lib/age.ts';
 import { activityFitsAge, recipeAssignment } from '../lib/eligibility.ts';
@@ -8,7 +8,7 @@ import { ABILITY_LABEL, activityAges, adultText, attentionNote, durationText, re
 import { findingsFor, rulesFor, spanOf, type ChildTiming } from '../lib/timing.ts';
 import { ClaimBlock, EvidenceDetails } from './Evidence.tsx';
 import { activityHref, childName } from './IdeaCards.tsx';
-import { TimingRules } from './Cues.tsx';
+import { TimingSection } from './Cues.tsx';
 import { TummyTimeGuide } from './TummyTimeGuide.tsx';
 
 const SUN_UNDER_6M = 'If you do this outside: AAP (2026) says keep babies under 6 months out of direct and indirect sun, in full shade, and not outside 10 a.m.–4 p.m.';
@@ -36,8 +36,8 @@ function Facts({ items }: { items: [string, string][] }) {
   );
 }
 
-function StickyAdd({ onAdd, label = 'Add to plan' }: { onAdd?: () => void; label?: string }) {
-  if (!onAdd) return null;
+function StickyAdd({ onAdd, hint, label = 'Add to plan' }: { onAdd?: () => void; hint?: string; label?: string }) {
+  if (!onAdd) return hint ? <p className="add-hint">{hint}</p> : null;
   return (
     <div className="sticky-add">
       <button type="button" className="primary" onClick={onAdd}>
@@ -85,7 +85,13 @@ function appliesNow(c: IndexedCatalog, a: Activity, now: ChildTiming | undefined
 
 /** Rules relevant to a child of this age (age-limited rules outside it are left out). */
 function rulesForAge(c: IndexedCatalog, a: Activity, days: number | null) {
-  return rulesFor(c, a.timing.stimulation, a.timing.rules).filter((r) => days === null || !r.ageMin || !r.ageMax || (days >= ageStringToDays(r.ageMin) && days < ageStringToDays(r.ageMax)));
+  return rulesFor(c, a.timing.stimulation, a.timing.rules).filter(
+    (r) =>
+      days === null ||
+      ((!r.ageMin || !r.ageMax || (days >= ageStringToDays(r.ageMin) && days < ageStringToDays(r.ageMax))) &&
+        // Meal and snack blocks are only for children already eating solids (6 months and older).
+        !(r.event === 'meal' && days < monthsToDays(6))),
+  );
 }
 
 export function ActivityDetail({
@@ -95,6 +101,7 @@ export function ActivityDetail({
   now,
   onBack,
   onAdd,
+  addHint,
 }: {
   c: IndexedCatalog;
   a: Activity;
@@ -103,6 +110,8 @@ export function ActivityDetail({
   now?: ChildTiming;
   onBack: () => void;
   onAdd?: () => void;
+  /** Why there's no "Add to plan" here, when that isn't obvious. */
+  addHint?: string;
 }) {
   const attention = attentionNote(a.supervision);
   const days = childAge ? toDays(childAge) : null;
@@ -130,7 +139,7 @@ export function ActivityDetail({
         </p>
       </div>
 
-      <TimingRules c={c} groups={[{ rules: rulesForAge(c, a, days) }]} now={appliesNow(c, a, now)} />
+      <TimingSection c={c} groups={[{ rules: rulesForAge(c, a, days) }]} now={appliesNow(c, a, now)} knownChild={days !== null} />
 
       <section aria-labelledby="steps-h">
         <h2 id="steps-h">Steps</h2>
@@ -163,7 +172,7 @@ export function ActivityDetail({
       {a.tummyTime && <TummyTimeGuide c={c} position={a.tummyTime.position} flatSurface={a.tummyTime.flatSurface} />}
       {a.kind === 'media' && <MediaNote c={c} a={a} childAge={childAge} />}
 
-      <StickyAdd onAdd={onAdd} />
+      <StickyAdd onAdd={onAdd} hint={addHint} />
 
       <div className="disclosures">
         <details className="more">
@@ -202,28 +211,34 @@ export function ActivityDetail({
 export function RecipeDetail({
   c,
   r,
-  ages,
+  kids,
   now,
   onBack,
   onAdd,
 }: {
   c: IndexedCatalog;
   r: MixedAgeRecipe;
-  ages: EnteredAge[];
-  /** Momentary context per child (index matches `ages`). */
+  /** The parent's children (age and the readiness they marked "not yet"). */
+  kids: { age: EnteredAge; notYet: Ability[] }[];
+  /** Momentary context per child (index matches `kids`). */
   now?: (ChildTiming | undefined)[];
   onBack: () => void;
   onAdd?: () => void;
 }) {
+  const ages = kids.map((k) => k.age);
   const youngerAct = c.activityById.get(r.younger.activity);
   const olderAct = c.activityById.get(r.older.activity);
-  const assignment = ages.length === 2 ? recipeAssignment(r, { days: toDays(ages[0]), notYet: [] }, { days: toDays(ages[1]), notYet: [] }) : null;
+  // The same check the Add button uses: ages and the readiness the parent marked.
+  const assignment = kids.length === 2 ? recipeAssignment(r, { days: toDays(ages[0]), notYet: kids[0].notYet }, { days: toDays(ages[1]), notYet: kids[1].notYet }) : null;
+  const byAgeOnly = kids.length === 2 ? recipeAssignment(r, { days: toDays(ages[0]), notYet: [] }, { days: toDays(ages[1]), notYet: [] }) : null;
   const olderIdx = assignment === null ? null : assignment === 0 ? 1 : 0;
   const youngerName = assignment === null ? 'Younger child' : `${childName(assignment)} (${formatAge(ages[assignment])})`;
   const olderName = olderIdx === null ? 'Older child' : `${childName(olderIdx)} (${formatAge(ages[olderIdx])})`;
   const youngerShort = assignment === null ? 'Younger child' : childName(assignment);
   const olderShort = olderIdx === null ? 'Older child' : childName(olderIdx);
   const tummy = youngerAct?.tummyTime;
+  // The pairing's own sourced safety notes already cover sun when a role carries the sun hazard.
+  const sunCovered = [youngerAct, olderAct].some((x) => x?.hazards.includes('sun-weather')) || r.safety.some((x) => /\bsun\b|shade/i.test(x.text));
   const groups = [
     youngerAct && { label: youngerShort, rules: rulesForAge(c, youngerAct, assignment === null ? null : toDays(ages[assignment])) },
     olderAct && { label: olderShort, rules: rulesForAge(c, olderAct, olderIdx === null ? null : toDays(ages[olderIdx])) },
@@ -239,7 +254,8 @@ export function RecipeDetail({
       <h1>{r.title}</h1>
       <p className="lede">{r.summary}</p>
       {r.retired && <p className="banner">This pairing has been retired from Trunk: {r.retired.reason}</p>}
-      {ages.length === 2 && assignment === null && <p className="banner">This pairing is meant for {recipeAges(r)}.</p>}
+      {kids.length === 2 && assignment === null && byAgeOnly === null && <p className="banner">This pairing is meant for {recipeAges(r)}.</p>}
+      {kids.length === 2 && assignment === null && byAgeOnly !== null && <p className="banner">This pairing needs something one of your children isn’t doing yet (you marked it under Readiness on Find).</p>}
       <Facts
         items={[
           ['How', r.mode === 'together' ? 'Together' : 'Side by side'],
@@ -286,7 +302,7 @@ export function RecipeDetail({
         <p className="subtle">{r.space}</p>
       </div>
 
-      <TimingRules c={c} groups={groups} now={nowIds} />
+      <TimingSection c={c} groups={groups} now={nowIds} knownChild={assignment !== null} />
 
       <section aria-labelledby="steps-h">
         <h2 id="steps-h">Steps</h2>
@@ -303,8 +319,8 @@ export function RecipeDetail({
           {r.safety.map((s) => (
             <li key={s.text}>{s.text}</li>
           ))}
-          <li>An older child is a playmate, never the one in charge of the baby.</li>
-          {r.places.includes('outdoors') && ageStringToDays(r.younger.ageMin) < monthsToDays(6) && <li>{SUN_UNDER_6M}</li>}
+          {!r.safety.some((x) => /playmate|in charge/i.test(x.text)) && <li>An older child is a playmate, never the one in charge of the baby.</li>}
+          {r.places.includes('outdoors') && ageStringToDays(r.younger.ageMin) < monthsToDays(6) && !sunCovered && <li>{SUN_UNDER_6M}</li>}
         </ul>
       </section>
 

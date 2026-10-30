@@ -1,4 +1,4 @@
-import { useState } from 'react';
+import { useEffect, useRef, useState } from 'react';
 import type { IndexedCatalog } from '../content/catalog.ts';
 import type { StarterPlan } from '../content/schema.ts';
 import { formatAge, parseAgeString } from '../lib/age.ts';
@@ -49,6 +49,8 @@ export function PlannerView(props: {
   filters: Filters;
   plan: Plan | null;
   dirty: boolean;
+  /** Whether the open plan is saved on this device. */
+  saveState: 'saved' | 'changed' | 'new' | null;
   lastResult: PlannerResult | null;
   window: number;
   start: string;
@@ -77,6 +79,27 @@ export function PlannerView(props: {
   const blocked = props.lastResult?.blocked;
   const shownKids = plan ? plan.kids : planKids;
   const keeps = plan ? plan.segments.some((s) => s.kind === 'routine' || s.kind === 'custom' || s.locked) : false;
+
+  // When a plan appears (blank, filled, or a starter) or closes, the control that was used is
+  // gone; move focus somewhere sensible instead of leaving it on the page body.
+  const shownId = plan?.id ?? null;
+  const lastId = useRef(shownId);
+  useEffect(() => {
+    if (lastId.current === shownId) return;
+    lastId.current = shownId;
+    const frame = requestAnimationFrame(() => {
+      const a = document.activeElement;
+      if (a && a !== document.body && a.isConnected) return;
+      const target = !plan
+        ? document.querySelector<HTMLElement>('main h1')
+        : plan.segments.length
+          ? document.querySelector<HTMLElement>('.plan-editor .seg-title-text')
+          : document.querySelector<HTMLElement>('.add-block .menu-button');
+      if (target === document.querySelector('main h1')) target?.setAttribute('tabindex', '-1');
+      target?.focus();
+    });
+    return () => cancelAnimationFrame(frame);
+  }, [shownId]); // eslint-disable-line react-hooks/exhaustive-deps
 
   const useStarter = (sp: StarterPlan) => {
     const settings = settingsFromFilters(f);
@@ -290,6 +313,9 @@ export function PlannerView(props: {
             <span>Private notes (not shared unless you choose)</span>
             <textarea maxLength={LIMITS.notes} value={plan.notes} onChange={(e) => props.onPlan({ ...plan, notes: e.target.value.slice(0, LIMITS.notes), updatedAt: new Date().toISOString() })} />
           </label>
+          <p className="save-state" data-state={props.saveState ?? 'new'}>
+            {props.saveState === 'saved' ? 'Saved on this device' : props.saveState === 'changed' ? 'Changes not saved yet' : 'Not saved yet'}
+          </p>
           <div className="plan-actions">
             <button type="button" className="primary" onClick={props.onSave}>
               Save
