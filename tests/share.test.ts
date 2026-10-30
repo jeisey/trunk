@@ -1,4 +1,5 @@
 import { describe, expect, it } from 'vitest';
+import { defaultPlanTitle } from '../src/lib/planTitle.ts';
 import { PLAN_VERSION, type Plan } from '../src/lib/plan.ts';
 import {
   bytesToBase64Url,
@@ -76,7 +77,9 @@ describe('share links', () => {
     const text = JSON.stringify(compact);
     expect(text).not.toMatch(/Maya|Theo|Grandma|cold|jumps/);
     const { plan } = await importPayload(await encodePayload(samplePlan(), DEFAULT_SHARE_OPTIONS), c);
-    expect(plan.title).toBe('Shared plan');
+    // No sender title: a default built only from what the link carries (time of day, length, ages).
+    expect(plan.title).toBe(defaultPlanTitle(plan));
+    expect(plan.title).not.toMatch(/Maya|Theo|Grandma/);
     expect(plan.notes).toBe('');
     expect(plan.segments[2].label).toBe('Your own activity');
     expect(plan.kids[1].notYet).toEqual([]);

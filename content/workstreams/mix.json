@@ -3068,58 +3068,6 @@
         }
       ],
       "checked": "2026-10-29"
-    },
-    {
-      "id": "plan.baby-nap-toddler-alongside",
-      "rev": 2,
-      "title": "Baby naps, toddler plays nearby: 4 months and 2 years",
-      "summary": "The nap’s time, length, and settling time are placeholders: change them to match your baby. Trunk never sets nap times or lengths. Quiet toddler play runs alongside once you’re free.",
-      "circumstance": "One adult at home with a 4-month-old and a 2-year-old, around the baby’s nap.",
-      "ages": [
-        "4m",
-        "28m"
-      ],
-      "start": "13:00",
-      "segments": [
-        {
-          "kind": "recipe",
-          "ref": "mix.mat-and-table-side-by-side",
-          "minutes": 8
-        },
-        {
-          "kind": "break",
-          "minutes": 5,
-          "label": "Diaper, drinks and a cuddle"
-        },
-        {
-          "kind": "routine",
-          "routine": "nap",
-          "who": "c1",
-          "minutes": 45,
-          "at": 15,
-          "settle": 10
-        },
-        {
-          "kind": "activity",
-          "ref": "act.color-sort-bowls",
-          "minutes": 10,
-          "who": "c2",
-          "along": true
-        },
-        {
-          "kind": "activity",
-          "ref": "act.pretend-kitchen-cook",
-          "minutes": 20,
-          "who": "c2",
-          "along": true
-        },
-        {
-          "kind": "recipe",
-          "ref": "mix.action-song-circle",
-          "minutes": 5
-        }
-      ],
-      "checked": "2026-10-29"
     }
   ]
 }

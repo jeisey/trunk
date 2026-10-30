@@ -421,20 +421,10 @@ describe('starter plans', () => {
     }
   });
 
-  it('maps the real catalog’s alongside starter in both child orders', () => {
-    const sp = realCatalog.planById.get('plan.baby-nap-toddler-alongside');
-    if (!sp) return;
-    const ages = sp.ages.map((x) => ({ value: Number(x.slice(0, -1)), unit: x.slice(-1) as 'w' | 'm' }));
-    for (const kids of [ages.map((age) => ({ age, notYet: [] })), [...ages].reverse().map((age) => ({ age, notYet: [] }))]) {
-      const { segments, dropped } = starterToSegments(sp, kids, realCatalog);
-      expect(dropped).toEqual([]);
-      const younger = toDays(kids[0].age) < toDays(kids[1].age) ? 'c1' : 'c2';
-      const nap = segments.find((s) => s.kind === 'routine')!;
-      expect(nap.who).toBe(younger);
-      for (const s of segments.filter((x) => x.along)) expect(s.who).not.toBe(younger);
-      for (const s of segments.filter((x) => x.kind === 'recipe')) expect(s.younger).toBe(younger);
-      expect(Plan.safeParse(planOf(kids, segments, { start: sp.start })).success).toBe(true);
-    }
+  it('ships no starter that pre-fills a nap, feed, or meal time (UI review M8)', () => {
+    // Routine blocks in starters are supported (see the fixture test above), but a shipped
+    // example with a set nap length and settling time reads as prescribing one.
+    for (const sp of realCatalog.starterPlans) expect(sp.segments.filter((s) => s.kind === 'routine'), sp.id).toEqual([]);
   });
 });
 

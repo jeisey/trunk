@@ -454,8 +454,12 @@ export function analyzePlan(plan: Plan, c: IndexedCatalog, extra?: ChildTiming[]
   if (t < plan.window) gaps.push({ start: t, end: plan.window, who: 'all' });
   gaps.sort((a, b) => a.start - b.start || (a.who === 'all' ? -1 : 1));
 
-  for (const cf of conflicts) entries[cf.index]?.conflicts.push(cf);
-  const all = entries.flatMap((e) => e.conflicts);
+  const all = [...entries.flatMap((e) => e.conflicts), ...conflicts];
+  // Show each conflict on its entry, and an overlap on both entries involved (listed once in `all`).
+  for (const cf of conflicts) {
+    entries[cf.index]?.conflicts.push(cf);
+    if (cf.other !== undefined && cf.other !== cf.index && (cf.kind === 'overlap' || cf.kind === 'along-overrun')) entries[cf.other]?.conflicts.push(cf);
+  }
   const events: [EventSpan[], EventSpan[]] = [base[0]?.events.slice() ?? [], base[1]?.events.slice() ?? []];
   return { entries, gaps, end, busy, open, overrun, conflicts: all, events };
 }

@@ -26,6 +26,7 @@ import { reconcileSegments } from './reconcile.ts';
 import { normalizeEnteredAge } from './age.ts';
 import { cleanText, LIMITS } from './text.ts';
 import { HHMM } from './time.ts';
+import { defaultPlanTitle } from './planTitle.ts';
 
 export const SHARE_VERSION = 2;
 /** Oldest share format this build still reads. */
@@ -350,7 +351,8 @@ export function reconcile(compact: CompactPlan, c: IndexedCatalog, now = new Dat
   const plan: Plan = {
     v: PLAN_VERSION,
     id: newPlanId(),
-    title: compact.t ? cleanText(compact.t, LIMITS.title) || 'Shared plan' : 'Shared plan',
+    // Without the sender's title, name it from what the link already carries (no extra data).
+    title: (compact.t && cleanText(compact.t, LIMITS.title)) || defaultPlanTitle({ kids, start: compact.s, window: compact.w }),
     kids,
     start: compact.s,
     window: compact.w,

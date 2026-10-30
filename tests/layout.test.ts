@@ -263,5 +263,26 @@ describe('plan layout', () => {
     const late = assessActivity(c, quietBooks, spanOf(10, 0, 30, 0), t);
     expect(late.findings.map((x) => `${x.event}/${x.when}`)).toEqual(['nap/before']);
   });
+
+  it('shows an overlap on both entries and offers only repairs that don’t cause a new conflict (UI review M5)', async () => {
+    const { usefulRepairs } = await import('../src/lib/repairs.ts');
+    const wall = books.setupMinutes + 20 + books.cleanupMinutes;
+    const p = plan([28], [
+      { id: 'a1', kind: 'activity', ref: books.id, minutes: 20 },
+      { id: 'n1', kind: 'routine', routine: 'nap', who: 'c1', minutes: 60, at: wall - 10 },
+      { id: 'f1', kind: 'routine', routine: 'milk-feed', who: 'c1', minutes: 20, at: wall + 50 },
+    ]);
+    const a = analyzePlan(p, c);
+    const o = a.conflicts.find((x) => x.kind === 'overlap')!;
+    expect(a.entries[0].conflicts).toContain(o);
+    expect(a.entries[1].conflicts).toContain(o);
+    expect(a.conflicts.filter((x) => x === o)).toHaveLength(1);
+    const kinds = usefulRepairs(p, o, c).map((r) => r.kind);
+    expect(kinds).toContain('shorten');
+    expect(kinds).toContain('remove');
+    // Moving the activity after the nap, or the nap later, would run into the feed.
+    expect(kinds).not.toContain('shift');
+    expect(kinds).not.toContain('move-after');
+  });
 });
 

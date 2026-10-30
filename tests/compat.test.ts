@@ -9,6 +9,7 @@
 import { readFileSync } from 'node:fs';
 import { join } from 'node:path';
 import { describe, expect, it } from 'vitest';
+import { defaultPlanTitle } from '../src/lib/planTitle.ts';
 import { DRAFT_KEY, readDraft, writeDraft } from '../src/lib/draft.ts';
 import { analyzePlan, layoutPlan, timeline } from '../src/lib/layout.ts';
 import { migratePlan, overheadFor, Plan, type PlanKid, type PlanSegment, type PlanSettings } from '../src/lib/plan.ts';
@@ -233,7 +234,7 @@ describe('share links and files written by v1', () => {
     const def = await importPayload(links.links.twoKidDefault, c);
     expect(def.dropped).toEqual([]);
     expect(def.plan.v).toBe(2);
-    expect(def.plan.title).toBe('Shared plan');
+    expect(def.plan.title).toBe(defaultPlanTitle(def.plan));
     expect(def.plan.notes).toBe('');
     expect(def.plan.kids.map((k) => k.age)).toEqual([{ value: 6, unit: 'w' }, { value: 28, unit: 'm' }]);
     expect(def.plan.segments.map((s) => [s.kind, s.minutes, s.who, s.label])).toEqual([
