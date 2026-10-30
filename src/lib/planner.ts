@@ -2,28 +2,35 @@
  * Deterministic client-side planner (phase-aware, bounded).
  *
  * 1. Filter: age, readiness, adults, curated pairings (hard), then the parent's
- *    energy/place/mode preferences. Food activities are never added on their
- *    own (a parent-placed meal block is different: it is a routine block).
+ *    energy/place/mode preferences. Food activities and care routines
+ *    (`kind: 'routine'`: diaper chat, dressing, table jobs) are never added on
+ *    their own; a parent-placed meal block is different (a routine block).
  * 2. Keep what the parent placed (`keep`): routine blocks, locked and custom
  *    entries. The gaps of the main sequence lie between anchored entries inside
  *    [0, window). Each gap is filled in time order with a small look-ahead
  *    (depth 2 over the top few candidates), and every candidate is assessed at
- *    its actual start against each affected child's nearest routine events
- *    (blocks laid out by layout.ts plus momentary context). Applicable
- *    non-advisory `avoid` rules are never auto-scheduled.
- * 3. Phase preferences only rank (never exclude): active play earlier when a
- *    known nap is later and the energy setting allows it; settling, low-mess,
- *    low-tidy-up ideas toward a known nap; something gentle first after waking.
- *    No waiting period is ever inserted, and nothing is inferred from age, the
- *    clock, or the end of the window.
- * 4. Two children: the main sequence uses curated pairings only. During one
+ *    its actual start against each affected child's routine events (blocks laid
+ *    out by layout.ts plus momentary context, modelled as momentTiming does).
+ *    Applicable non-advisory `avoid` rules are never auto-scheduled.
+ * 3. Phase preferences rank: active play earlier when a known nap is later and
+ *    energy allows; calm, low-mess, low-tidy-up ideas toward a known nap (each
+ *    child scored on their own role in a pairing); something gentle first after
+ *    waking. In the 30 minutes before a known nap time only ideas rated settling
+ *    or gentle are placed (otherwise that time stays open). No waiting period is
+ *    ever inserted, and nothing is inferred from age, the clock, or the window.
+ * 4. Momentary "Nap soon": with a time, filling stops there (the rest is left
+ *    open, with a note); without one, every idea is ranked as if a nap follows it.
+ * 5. Two children: the main sequence uses curated pairings only. During one
  *    child's routine block, the other child's free time is filled with that
- *    child's own activities when one adult can supervise them (alongFeasible),
- *    or left visibly open. While the other child naps, quieter ideas rank higher.
- * 5. Variety, place continuity, low setup, at most one outing and one screen
- *    option, sun/night rules, realistic durations, and flexible breaks at the
- *    youngest child's cadence in long stretches (never next to a routine block).
- *    Whatever can't be filled is shown as open time.
+ *    child's own activities when one adult can clearly supervise them
+ *    (alongFeasible with no caution), or left visibly open. A nap with no
+ *    settling time is never filled. While the other child naps, quieter ideas
+ *    rank higher.
+ * 6. Variety, place continuity, low setup, at most one outing and one screen
+ *    option, sun/night rules, realistic durations, an idea at most once per
+ *    alongside track and once per 60 minutes of the main sequence, and flexible
+ *    breaks at the youngest child's cadence in long stretches (never next to a
+ *    routine block). Whatever can't be filled is shown as open time.
  *
  * Scoring is intentionally simple and readable; it is not an optimizer.
  */

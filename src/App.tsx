@@ -113,7 +113,11 @@ export function App() {
   // Saved plans changed in another tab.
   useEffect(() => {
     const onStorage = (e: StorageEvent) => {
-      if (e.key === STORE_KEY || e.key === null) setSaved([...store.refresh()]);
+      if (e.key === STORE_KEY || e.key === null) {
+        setSaved([...store.refresh()]);
+        // An older Trunk in another tab may have rewritten the store; the store merges and says so.
+        setStoreStatus({ status: store.getStatus(), message: store.getMessage() });
+      }
     };
     window.addEventListener('storage', onStorage);
     return () => window.removeEventListener('storage', onStorage);
@@ -288,7 +292,7 @@ export function App() {
     const r = store.save({ ...plan, title: cleanText(plan.title, LIMITS.title), notes: cleanText(plan.notes, LIMITS.notes, { multiline: true }) });
     if (r.ok) {
       setSaved(r.plans);
-      setStoreStatus({ status: store.getStatus() });
+      setStoreStatus({ status: store.getStatus(), message: store.getMessage() });
       if (draft && plan.id === draft.id) setSavedSnapshot(JSON.stringify(plan));
       notify(r.action === 'created' ? 'Saved in this browser.' : 'Changes saved.');
       return true;
