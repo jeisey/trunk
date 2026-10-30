@@ -16,7 +16,8 @@ import { addEntry, addRoutine, makePlan, moveEntry, setAnchor, setMinutes } from
 import { fillAround } from '../src/lib/planner.ts';
 import { reconcileSegments } from '../src/lib/reconcile.ts';
 import { decodePayload, DEFAULT_SHARE_OPTIONS, encodePayload, importPayload, importPlanFile, planFileText, toCompact, type ShareOptions } from '../src/lib/share.ts';
-import { LEGACY_KEY, MAX_PLANS, PlanStore, STORE_KEY } from '../src/lib/storage.ts';
+import { BACKUP_KEY, DOWNGRADE_KEY, LEGACY_KEY, MAX_PLANS, MIRROR_KEY, PlanStore, STORE_KEY } from '../src/lib/storage.ts';
+import { PlanStore as V1Store } from './fixtures/legacy/v1-storage.ts';
 import { fixtureCatalog, MemoryStorage, root, timingFixture } from './helpers.ts';
 
 const dir = join(root, 'tests/fixtures/plans');
@@ -422,5 +423,98 @@ describe('reconciling v2 entries', () => {
     expect(segs[3]).toMatchObject({ routine: 'snack', at: 70 });
     expect(segs[3].holding).toBeUndefined();
     expect(Plan.safeParse(r.plan).success).toBe(true);
+  });
+});
+
+describe('a v1 tab left open after the update (review M5, real v1 PlanStore from b9cec90)', () => {
+  const v2plan = (): Plan => ({
+    ...makePlan([{ age: { value: 4, unit: 'm' }, notYet: [] }], { energy: 'some', place: 'any', mode: 'either', adults: 1 }, '12:00', 90),
+    id: 'p-newplan-1234',
+    title: 'Nap day',
+    segments: [{ id: 'n1', kind: 'routine', minutes: 45, who: 'c1', routine: 'nap', at: 15 }],
+  });
+
+  it('a v1 write over v2 data loses nothing, is reported, and the next write restores v2', () => {
+    const mem = new MemoryStorage();
+    mem.setItem(STORE_KEY, savedText);
+    const oldTab = new V1Store(() => mem);
+    const old = oldTab.load();
+    expect(old.plans).toHaveLength(4);
+    const newTab = new PlanStore(() => mem);
+    newTab.load();
+    expect(newTab.save(v2plan()).ok).toBe(true);
+    expect(JSON.parse(mem.getItem(STORE_KEY)!)).toMatchObject({ version: 2 });
+    expect(mem.getItem(MIRROR_KEY)).toBe(mem.getItem(STORE_KEY));
+    // The old build doesn't notice and writes a v1 envelope without the new plan.
+    expect(oldTab.save({ ...old.plans[0], title: 'Rainy morning (edited)' }).ok).toBe(true);
+    const downgraded = mem.getItem(STORE_KEY)!;
+    expect(JSON.parse(downgraded).version).toBe(1);
+    expect(downgraded).not.toContain('p-newplan-1234');
+
+    // The new tab notices on its next read.
+    const seen = newTab.refresh();
+    expect(seen.map((p) => p.id)).toContain('p-newplan-1234');
+    expect(seen).toHaveLength(5);
+    expect(newTab.getStatus()).toBe('recovered');
+    expect(newTab.getMessage()).toBe('An older version of Trunk changed your saved plans in another tab. Trunk kept both versions.');
+    expect(mem.getItem(BACKUP_KEY)).toBe(downgraded);
+    // A tab opened now sees the same.
+    const fresh = new PlanStore(() => mem).load();
+    expect(fresh.status).toBe('recovered');
+    expect(fresh.plans.map((p) => p.id)).toEqual(seen.map((p) => p.id));
+    expect(fresh.message).toMatch(/older version of Trunk/);
+
+    // The next write restores v2 with every plan; the one-time v1 copy is untouched.
+    expect(newTab.save({ ...v2plan(), title: 'Nap day (edited)' }).ok).toBe(true);
+    expect(newTab.getStatus()).toBe('ok');
+    const restored = JSON.parse(mem.getItem(STORE_KEY)!);
+    expect(restored.version).toBe(2);
+    expect(restored.plans.map((p: { id: string }) => p.id)).toEqual(seen.map((p) => p.id));
+    expect(new PlanStore(() => mem).load()).toMatchObject({ status: 'ok' });
+    expect(mem.getItem(LEGACY_KEY)).toBe(savedText);
+  });
+
+  it('keeps new plans from the older text up to the limit and sets the rest aside', () => {
+    const mem = new MemoryStorage();
+    const ten = Array.from({ length: MAX_PLANS }, (_, i) => ({ ...migratePlan(savedFixture.plans[0])!.plan, id: `p-mirror-${i}` }));
+    const mirror = JSON.stringify({ version: 2, plans: ten });
+    mem.setItem(MIRROR_KEY, mirror);
+    mem.setItem(BACKUP_KEY, 'an earlier backup');
+    const older = JSON.stringify({ version: 1, plans: [savedFixture.plans[1], savedFixture.plans[2], { ...savedFixture.plans[0], id: 'p-mirror-0', title: 'v1 edit' }] });
+    mem.setItem(STORE_KEY, older);
+    const r = new PlanStore(() => mem).load();
+    expect(r.status).toBe('recovered');
+    expect(r.plans.map((p) => p.id)).toEqual(ten.map((p) => p.id));
+    expect(r.plans[0].title).toBe(ten[0].title);
+    expect(r.message).toMatch(/2 plans didn’t fit the 10-plan limit/);
+    expect(mem.getItem(BACKUP_KEY)).toBe('an earlier backup');
+    expect(mem.getItem(DOWNGRADE_KEY)).toBe(older);
+  });
+
+  it('falls back to reading the older data when the mirror is unreadable', () => {
+    const mem = new MemoryStorage();
+    mem.setItem(MIRROR_KEY, '{damaged');
+    mem.setItem(STORE_KEY, savedText);
+    const r = new PlanStore(() => mem).load();
+    expect(r.status).toBe('ok');
+    expect(r.plans).toHaveLength(savedFixture.plans.length);
+  });
+
+  it('review m11: if the one-time v1 copy can’t be written, the v1 text isn’t overwritten', () => {
+    class LegacyFull extends MemoryStorage {
+      override setItem(key: string, value: string) {
+        if (key === LEGACY_KEY) throw new DOMException('full', 'QuotaExceededError');
+        super.setItem(key, value);
+      }
+    }
+    const mem = new LegacyFull();
+    mem.setItem(STORE_KEY, savedText);
+    const store = new PlanStore(() => mem);
+    const [first] = store.load().plans;
+    const r = store.save({ ...first, title: 'Edited' });
+    expect(r.ok).toBe(false);
+    if (!r.ok) expect(r.reason).toBe('quota');
+    expect(mem.getItem(STORE_KEY)).toBe(savedText);
+    expect(mem.getItem(MIRROR_KEY)).toBeNull();
   });
 });

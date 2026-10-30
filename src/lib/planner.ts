@@ -226,13 +226,15 @@ export function childStimulation(cand: Pick<Candidate, 'stimulation' | 'roles'>,
 }
 
 /**
- * Planner convention (automatic plans only): nothing rated lively is placed in the
- * 30 minutes before a known nap time; that time is left open instead. Finder and
- * slot suggestions still list such ideas, ranked down. "Nap soon" with no time only ranks.
+ * Planner convention (automatic plans only): in the 30 minutes before a known nap
+ * time, only ideas rated settling or gentle are placed; otherwise that time is left
+ * open. Lively and unrated ideas are still listed by the finder and slot suggestions,
+ * ranked down. "Nap soon" with no time only ranks.
  */
-function livelyBeforeNap(cand: Candidate, span: Span, lanes: readonly (0 | 1)[], timings: ChildTiming[], younger: 0 | 1): boolean {
+function notCalmBeforeNap(cand: Candidate, span: Span, lanes: readonly (0 | 1)[], timings: ChildTiming[], younger: 0 | 1): boolean {
   return lanes.some((i) => {
-    if (childStimulation(cand, i, younger) !== 'lively') return false;
+    const stim = childStimulation(cand, i, younger);
+    if (stim === 'settling' || stim === 'gentle') return false;
     return (timings[i]?.events ?? []).some((e) => e.event === 'nap' && e.start >= span.end && e.start - span.end < 30);
   });
 }
@@ -264,10 +266,10 @@ function phaseScore(cand: Candidate, span: Span, lanes: readonly (0 | 1)[], timi
         s += cand.mess === 'none' || cand.mess === 'low' ? 1 : -4;
         s -= Math.min(4, cand.cleanup) + Math.min(3, Math.max(0, cand.setup - 1));
       } else if (until > 30 && known) {
-        // Earlier on: active play when energy allows; keep the calmer ideas for winding down.
-        if (stim === 'settling') s -= 3;
-        else if (stim === 'gentle') s -= 1;
-        else if (active) s += 5;
+        // Earlier on: active play when energy allows; in the stretch leading up to the nap,
+        // keep the calmer ideas for winding down.
+        if (stim === 'lively') s += active ? 5 : 0;
+        else if (until <= 90) s -= stim === 'settling' ? 4 : 3;
       }
     }
     if (woke !== -Infinity && span.start - woke <= 20 && known) s += stim === 'lively' ? -8 : 7;
@@ -486,7 +488,7 @@ export function planWindow(c: IndexedCatalog, input: PlannerInput): PlannerResul
         return null;
       }
       const y = youngerIdx.get(cand.id) ?? 0;
-      if (livelyBeforeNap(cand, span, track.lanes, timings, y)) return null;
+      if (notCalmBeforeNap(cand, span, track.lanes, timings, y)) return null;
       phase = phaseScore(cand, span, track.lanes, timings, settings.energy, y);
     }
     // Variety first, unless timing clearly favours repeating an idea here (a calm one before a nap, say).

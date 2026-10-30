@@ -10,11 +10,11 @@ import { DEFAULT_FILTERS, findIdeas, rankActivities, activityEligible, activityP
 import { analyzePlan, layoutPlan, timeline, type PlanAnalysis } from '../src/lib/layout.ts';
 import { Plan, PLAN_VERSION, type PlanKid, type PlanSegment, type PlanSettings } from '../src/lib/plan.ts';
 import { setMinutes, updateEntry } from '../src/lib/planEdit.ts';
-import { fillAround, optionsForSlot, planWindow, starterToSegments } from '../src/lib/planner.ts';
+import { childStimulation, fillAround, optionsForSlot, planWindow, starterToSegments } from '../src/lib/planner.ts';
 import { sequenceNote } from '../src/lib/sequence.ts';
 import { defaultPlanTitle } from '../src/lib/planTitle.ts';
 import { isBusyNearbyCompatible } from '../src/lib/supervision.ts';
-import { assessActivity, spanOf, type MomentContext } from '../src/lib/timing.ts';
+import { assessActivity, momentTiming, spanOf, type MomentContext } from '../src/lib/timing.ts';
 import { toDays } from '../src/lib/age.ts';
 import { checkRules, loadScenario } from '../scripts/planner-sequence.ts';
 import { fixtureCatalog, fixturePolicies, timingFixture, timingRule } from './helpers.ts';
@@ -599,5 +599,206 @@ describe('feed-and-nap scenario (tests/fixtures/planner/feed-nap.json)', () => {
       return checkRules(p, a, sc).length > 0;
     });
     expect(broken.length).toBeGreaterThan(0);
+  });
+});
+
+// ---------- Review fixes (docs/review/timing-review.md) ----------
+
+describe('review B1/m4: sequence notes only certify what a rule checked', () => {
+  const tummyId = ids['Tummy mat'];
+  const baby7 = kid(7);
+  it('never says "kept clear of the meal" when no meal rule applies', () => {
+    for (const gap of [0, 40]) {
+      const p = planOf([baby7], [routine('m1', 'meal', 'c1', 20, 0), ...(gap ? [{ id: 'c1', kind: 'custom', minutes: gap, label: 'Wash up' } as PlanSegment] : []), { id: 'a1', kind: 'activity', ref: tummyId, minutes: 5 }]);
+      const a = analyzePlan(p, c);
+      expect(p.segments.map((_, i) => sequenceNote(p, a, i, c))).toEqual(p.segments.map(() => null));
+    }
+    const snack = planOf([baby7], [routine('s1', 'snack', 'c1', 10, 0), { id: 'a1', kind: 'activity', ref: tummyId, minutes: 5 }]);
+    expect(sequenceNote(snack, analyzePlan(snack, c), 1, c)).toBeNull();
+  });
+
+  it('says it only outside the window of a meal rule the activity carries, and only nearby', () => {
+    const mealRule = timingRule('tim.core.fixture-tummy-after-meal', { event: 'meal', when: 'after', fit: 'avoid', ageMin: '1w', ageMax: '12m', cue: 'Not right after a meal' });
+    const base = c.activityById.get(tummyId)!;
+    const withMeal: Activity = { ...base, timing: { ...base.timing, rules: [...base.timing.rules, mealRule.id] } };
+    const cat = { ...c, timingRules: [...c.timingRules, mealRule], timingRuleById: new Map([...c.timingRuleById, [mealRule.id, mealRule]]), activityById: new Map([...c.activityById, [tummyId, withMeal]]) };
+    const at = (gap: number) => {
+      const p = planOf([baby7], [routine('m1', 'meal', 'c1', 20, 0), ...(gap ? [{ id: 'c1', kind: 'custom', minutes: gap, label: 'Wash up' } as PlanSegment] : []), { id: 'a1', kind: 'activity', ref: tummyId, minutes: 5 }]);
+      const a = analyzePlan(p, cat);
+      return { note: sequenceNote(p, a, p.segments.length - 1, cat), avoid: a.entries.at(-1)!.timing.avoid };
+    };
+    expect(at(0)).toEqual({ note: null, avoid: true });
+    expect(at(30)).toEqual({ note: 'Kept clear of the meal', avoid: false });
+    expect(at(120).note).toBeNull();
+    // A milk feed is not a meal: the meal rule never certifies distance from a feed.
+    const feed = planOf([baby7], [routine('f1', 'milk-feed', 'c1', 20, 0), { id: 'c1', kind: 'custom', minutes: 30, label: 'x' }, { id: 'a1', kind: 'activity', ref: tummyId, minutes: 5 }]);
+    expect(sequenceNote(feed, analyzePlan(feed, cat), 2, cat)).toBe('Kept clear of the feed');
+  });
+
+  it('gives no positive line to an entry with a caution', () => {
+    const spitUp = timingRule('tim.core.fixture-spit-up-later', { event: 'milk-feed', when: 'after', fit: 'later', condition: 'spit-up', ageMin: '1w', ageMax: '12m', cue: 'Spits up? Keep play calm after a feed' });
+    const kick = c.activityById.get(ids['Kick gym'])!;
+    const cat = { ...c, timingRules: [...c.timingRules, spitUp], timingRuleById: new Map([...c.timingRuleById, [spitUp.id, spitUp]]), activityById: new Map([...c.activityById, [kick.id, { ...kick, timing: { ...kick.timing, rules: [spitUp.id] } }]]) };
+    const segs = (feed: boolean): PlanSegment[] => [...(feed ? [routine('f1', 'milk-feed', 'c1', 10, 0)] : []), { id: 'a1', kind: 'activity', ref: kick.id, minutes: 10, ...(feed ? {} : { at: 10 }) }, routine('n1', 'nap', 'c1', 60, 90)];
+    const plain = planOf([baby7], segs(false));
+    expect(sequenceNote(plain, analyzePlan(plain, cat), 0, cat)).toBe('Active play while there’s time');
+    const fed = planOf([baby7], segs(true));
+    const a = analyzePlan(fed, cat);
+    expect(a.entries[1].timing.cue?.tone).toBe('caution');
+    expect(sequenceNote(fed, a, 1, cat)).toBeNull();
+  });
+});
+
+describe('review M1: "Nap soon" with a time', () => {
+  it('fills only up to the nap time, never shows "after waking", and says what it left open', () => {
+    for (const seed of SEEDS) {
+      for (const kids of [[infant], [infant, toddler], [toddler, infant]]) {
+        const lane = kids[0] === infant ? 0 : 1;
+        const moment: (MomentContext | undefined)[] = [undefined, undefined];
+        moment[lane] = { fed: false, nap: true, napIn: 45 };
+        const r = planWindow(c, { kids, settings, window: 120, seed, start: '14:00', moment });
+        const extra = kids.map((k, i) => momentTiming(toDays(k.age), moment[i]));
+        const a = analyzePlan(planOf(kids, r.segments, { start: '14:00' }), c, extra);
+        expect(r.segments.some((s) => s.kind === 'routine')).toBe(false);
+        for (const e of a.entries) {
+          expect(e.item.end).toBeLessThanOrEqual(45);
+          expect(e.timing.findings.some((f) => f.event === 'nap' && f.when === 'after')).toBe(false);
+        }
+        expect(r.notes).toContain(`${kids.length === 2 ? `${lane === 0 ? 'Child 1' : 'Child 2'}’s nap` : 'Nap'} expected at 2:45 PM: the rest is left open. Add a nap block to plan around it.`);
+        expect(r.open).toBeGreaterThanOrEqual(75);
+      }
+    }
+  });
+
+  it('a nap time past the window caps nothing', () => {
+    const r = planWindow(c, { kids: [toddler], settings, window: 60, seed: 1, moment: [{ fed: false, nap: true, napIn: 90 }] });
+    expect(r.notes.join(' ')).not.toMatch(/expected/);
+  });
+});
+
+describe('review M2: "Nap soon" with no time', () => {
+  it('ranks calm first throughout, never at the end of the window, and says so', () => {
+    let livelySoon = 0;
+    let livelyFree = 0;
+    for (const seed of SEEDS) {
+      const soon = planWindow(c, { kids: [toddler], settings: { ...settings, energy: 'plenty' }, window: 180, seed, moment: [{ fed: false, nap: true }] });
+      const free = planWindow(c, { kids: [toddler], settings: { ...settings, energy: 'plenty' }, window: 180, seed });
+      const first = soon.segments.find((s) => s.kind === 'activity')!;
+      expect(['settling', 'gentle']).toContain(stimOf(first));
+      expect(soon.notes).toContain('Nap soon: calmer ideas first. Add a nap block when you know the time.');
+      expect(soon.segments.some((s) => s.kind === 'routine')).toBe(false);
+      livelySoon += soon.segments.filter((s) => stimOf(s) === 'lively').length;
+      livelyFree += free.segments.filter((s) => stimOf(s) === 'lively').length;
+      // Lively ideas, if any, come after the calm ones: nothing assumes the nap is at the end.
+      const order = soon.segments.filter((s) => s.kind === 'activity').map((s) => stimOf(s));
+      const firstLively = order.indexOf('lively');
+      if (firstLively >= 0) expect(order.slice(0, firstLively).filter((x) => x === 'settling' || x === 'gentle').length).toBeGreaterThanOrEqual(2);
+    }
+    expect(livelySoon).toBeLessThan(livelyFree);
+  });
+});
+
+describe('review M6: alongside a nap with unknown settling time', () => {
+  for (const kids of [[infant, toddler], [toddler, infant]]) {
+    const baby = kids[0] === infant ? 'c1' : 'c2';
+    const big = baby === 'c1' ? 'Child 2' : 'Child 1';
+    const babyName = baby === 'c1' ? 'Child 1' : 'Child 2';
+    it(`plans nothing alongside until the settling time is known (${baby === 'c1' ? 'baby first' : 'toddler first'})`, () => {
+      for (const seed of SEEDS) {
+        const unknown = planWindow(c, { kids, settings, window: 90, seed, keep: [routine('n1', 'nap', baby, 60, 0)] });
+        expect(unknown.segments.filter((s) => s.along)).toEqual([]);
+        expect(unknown.notes).toContain(`Add your settling time to ${babyName}’s nap to plan ${big}’s time.`);
+        const known = planWindow(c, { kids, settings, window: 90, seed, keep: [routine('n1', 'nap', baby, 60, 0, { settle: 15 })] });
+        const items = layoutPlan(planOf(kids, known.segments), c).filter((x) => x.host !== null);
+        expect(items.length).toBeGreaterThan(0);
+        expect(items.every((x) => x.start >= 15)).toBe(true);
+        // Holding and milk feeds stay "busy": only busy-nearby ideas.
+        for (const keep of [[routine('n1', 'nap', baby, 60, 0, { holding: true })], [routine('f1', 'milk-feed', baby, 30, 0)]]) {
+          const r = planWindow(c, { kids, settings, window: 90, seed, keep });
+          for (const s of r.segments.filter((x) => x.along)) expect(isBusyNearbyCompatible(c.activityById.get(s.ref ?? '')!)).toBe(true);
+        }
+      }
+    });
+  }
+});
+
+describe('review m7: care routines and ritual repeats', () => {
+  const books = c.activityById.get(ids['Quiet books'])!;
+  const chore: Activity = { ...books, id: 'act.fixture-sock-helper', title: 'Sock helper', kind: 'routine', timing: { stimulation: 'gentle', rules: [] } };
+  const cat = { ...c, activities: [...c.activities, chore], activityById: new Map([...c.activityById, [chore.id, chore]]) };
+
+  it('never adds a care routine on its own, but still offers it last for a parent to add', () => {
+    for (const seed of SEEDS) {
+      expect(planWindow(cat, { kids: [toddler], settings, window: 180, seed }).segments.some((s) => s.ref === chore.id)).toBe(false);
+      expect(planWindow(cat, { kids: [infant, toddler], settings, window: 90, seed, keep: [routine('n1', 'nap', 'c1', 60, 0, { settle: 0 })] }).segments.some((s) => s.ref === chore.id)).toBe(false);
+    }
+    const opts = optionsForSlot(cat, planOf([toddler], []), {});
+    expect(opts.at(-1)?.id).toBe(chore.id);
+  });
+
+  it('repeats an idea at most once per alongside track and not within 60 minutes in the main sequence', () => {
+    for (const seed of SEEDS) {
+      const r = planWindow(c, { kids: [toddler], settings, window: 240, seed });
+      const items = layoutPlan(planOf([toddler], r.segments, { window: 240 }), c);
+      const starts = new Map<string, number[]>();
+      for (const it of items) if (it.segment.ref) starts.set(it.segment.ref, [...(starts.get(it.segment.ref) ?? []), it.start]);
+      for (const list of starts.values()) for (let i = 1; i < list.length; i++) expect(list[i] - list[i - 1]).toBeGreaterThanOrEqual(60);
+      const two = planWindow(c, { kids: [infant, toddler], settings, window: 150, seed, keep: [routine('n1', 'nap', 'c1', 120, 0, { settle: 0 })] });
+      const along = two.segments.filter((s) => s.along).map((s) => s.ref);
+      expect(new Set(along).size).toBe(along.length);
+    }
+  });
+});
+
+describe('review m9: each child’s own role stimulation', () => {
+  it('uses the role, with the shared space as a floor', () => {
+    expect(childStimulation({ stimulation: 'gentle', roles: ['gentle', 'lively'] }, 1, 0)).toBe('lively');
+    expect(childStimulation({ stimulation: 'gentle', roles: ['gentle', 'lively'] }, 0, 0)).toBe('gentle');
+    expect(childStimulation({ stimulation: 'gentle', roles: ['gentle', 'lively'] }, 0, 1)).toBe('lively');
+    expect(childStimulation({ stimulation: 'lively', roles: ['settling', 'gentle'] }, 0, 0)).toBe('lively');
+    expect(childStimulation({ stimulation: 'gentle', roles: ['variable', 'settling'] }, 0, 0)).toBe('variable');
+    expect(childStimulation({ stimulation: 'variable', roles: ['settling', 'gentle'] }, 1, 0)).toBe('gentle');
+    expect(childStimulation({ stimulation: 'settling' }, 1, 0)).toBe('settling');
+  });
+
+  it('keeps a pairing with a lively role for one child out of that child’s wind-down', () => {
+    const mixed = { ...c.recipeById.get('mix.fixture-cards-and-books')!, id: 'mix.fixture-cards-and-ball', older: { ...c.recipeById.get('mix.fixture-cards-and-books')!.older, activity: ids['Ball run'] } };
+    const cat = { ...c, recipes: [...c.recipes, mixed], recipeById: new Map([...c.recipeById, [mixed.id, mixed]]) };
+    for (const kids of [[infant, toddler], [toddler, infant]]) {
+      for (const seed of SEEDS) {
+        const r = planWindow(cat, { kids, settings, window: 120, seed, keep: [routine('n1', 'nap', 'both', 60, 60)] });
+        const a = analyzePlan(planOf(kids, r.segments), cat);
+        for (const e of a.entries) if (e.item.end <= 60 && 60 - e.item.end < 30) expect(e.item.segment.ref).not.toBe(mixed.id);
+      }
+    }
+  });
+});
+
+describe('review: notes and starters', () => {
+  it('no longer adds the general "young babies may need to feed or sleep" caveat', () => {
+    const r = planWindow(c, { kids: [kid(3, 'w')], settings, window: 60, seed: 1 });
+    expect(r.notes.join(' ')).not.toMatch(/may need to feed or sleep/);
+  });
+
+  it('copies an example settling time (or holding) from a starter nap', () => {
+    const sp = {
+      id: 'plan.fixture-settle',
+      rev: 1,
+      title: 'Fixture settle',
+      summary: 'An example to edit.',
+      circumstance: 'Fixture.',
+      ages: ['4m', '28m'],
+      start: '13:00',
+      segments: [
+        { kind: 'routine', routine: 'nap', who: 'c1', minutes: 45, at: 0, settle: 10 },
+        { kind: 'activity', ref: 'act.fixture-busy-blocks', minutes: 10, who: 'c2', along: true },
+        { kind: 'routine', routine: 'nap', who: 'c2', minutes: 45, at: 60, holding: true },
+      ],
+      checked: '2026-10-29',
+    } as unknown as StarterPlan;
+    const { segments } = starterToSegments(sp, [toddler, infant], c);
+    expect(segments[0]).toMatchObject({ routine: 'nap', who: 'c2', settle: 10 });
+    expect(segments[2]).toMatchObject({ routine: 'nap', who: 'c1', holding: true });
+    expect(segments[2].settle).toBeUndefined();
   });
 });
