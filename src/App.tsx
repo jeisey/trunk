@@ -529,6 +529,10 @@ export function App() {
               adopt(p, { pristine: true });
               setPlanMoment(null);
               setLastResult(null);
+            } else if (p.window !== draft.window) {
+              // "Extend to N min" from the editor: the window control follows the plan.
+              setWindowMinutes(p.window);
+              setDraft(retitle(draft, p));
             } else setDraft(p);
             if (note) notify(note);
           }}

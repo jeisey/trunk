@@ -162,7 +162,7 @@ test('routine lifecycle: blank plan, nap/feed/meal/own entry, edit, reorder, fil
   await expect(row(page, 'Nap').locator('.seg-time')).toContainText('1:15 PM–2:20 PM');
   await expect(row(page, 'Meal').locator('.seg-time')).toContainText('3:00 PM–3:20 PM');
   await expect(row(page, 'Library story time')).toBeVisible();
-  expect(await timeline(page).locator('li.seg-activity').count()).toBeGreaterThan(0);
+  await expect(timeline(page).locator('li.seg-activity').first()).toBeVisible();
 
   await page.getByLabel('Plan name').fill('Rainy afternoon');
   await page.getByRole('button', { name: 'Save', exact: true }).click();
@@ -246,7 +246,7 @@ for (const order of ['baby first', 'toddler first'] as const) {
     await expect(napTrack).toHaveCount(1);
     // The sleeping child gets no play: everything during the nap is the toddler's.
     const along = napTrack.locator('li.seg-activity');
-    expect(await along.count()).toBeGreaterThan(0);
+    await expect(along.first()).toBeVisible();
     for (const text of await along.locator('.tracks').allInnerTexts()) {
       expect(text).toContain(`${toddlerIs} (2 yr 4 mo):`);
       expect(text).not.toContain(`${babyIs} (`);
@@ -494,5 +494,86 @@ test('copy: general clinical caveats live on About; specific instructions, timin
   await expect(about).toContainText(/Clearing site data or using private browsing/);
   await expect(about).toContainText(/individual target/);
   await expect(about).not.toContainText(/one family reports/i);
+  expect(errors).toEqual([]);
+});
+
+test('review follow-ups: unknown nap availability, before-start times, set-time order, track overlaps, extend window', async ({ page }) => {
+  const errors = trackErrors(page);
+  await freshStart(page);
+  await setAge(page, 1, 4, 'months');
+  await addSecondChild(page);
+  await setAge(page, 2, 28, 'months');
+  await blankPlan(page, '13:00');
+
+  // A time before the plan starts is refused inline; the form stays open.
+  await addBlock(page, 'Nap');
+  const form = page.getByRole('form', { name: 'Add a nap' });
+  await form.getByRole('radio', { name: 'Child 1', exact: true }).check();
+  await form.getByLabel('Starts').fill('12:00');
+  await form.getByRole('radio', { name: '1 hr', exact: true }).check();
+  // "Not sure yet" is the default, with one line on what it means.
+  await expect(form.getByLabel(/naps, you’re/)).toHaveValue('unknown');
+  await expect(form).toContainText('Trunk won’t plan Child 2’s time during the nap until you set a settling time.');
+  await form.getByRole('button', { name: 'Add nap' }).click();
+  await expect(form.getByRole('alert')).toHaveText(/before this plan starts/);
+  await expect(form).toBeVisible();
+  await expect(timeline(page).locator('li.seg-routine')).toHaveCount(0);
+  await form.getByLabel('Starts').fill('13:00');
+  await expect(form.getByRole('alert')).toHaveCount(0);
+  await form.getByRole('button', { name: 'Add nap' }).click();
+  await expect(form).toHaveCount(0);
+
+  // Two entries with set times keep their order; the arrow explains instead of swapping.
+  await addRoutine(page, { routine: 'Meal', at: '14:30', length: '20 min' });
+  const before = await timeline(page).locator(':scope > li.seg .seg-title-text').allInnerTexts();
+  await row(page, 'Nap').getByRole('button', { name: 'Move later: Nap' }).click();
+  await expect(row(page, 'Nap').locator('.row-note')).toHaveText('Both have set times. Change a time to reorder them.');
+  expect(await timeline(page).locator(':scope > li.seg .seg-title-text').allInnerTexts()).toEqual(before);
+
+  // Unknown availability: Trunk leaves the other child's time unplanned and says how to plan it.
+  await page.getByRole('button', { name: 'Fill around these blocks' }).click();
+  const track = page.locator('.along-track').filter({ hasText: 'While Child 1 naps · Child 2:' });
+  await expect(track.locator('li.seg-activity')).toHaveCount(0);
+  await expect(track).toContainText('Child 2: nothing planned yet. Add your settling time to Child 1’s nap to plan this.');
+  await track.scrollIntoViewIfNeeded();
+  await page.screenshot({ path: join(ARTIFACTS, 'review-unknown-nap-390.png') });
+  // Overlap inside the track: two of Child 2's own entries at once, with a working repair.
+  await row(page, 'Nap').getByLabel(/naps, you’re/).selectOption({ label: 'Free after settling about 10 min' });
+  for (const [what, minutes] of [
+    ['Sticker book', '10'],
+    ['Bubbles', '10'],
+  ]) {
+    await track.getByRole('button', { name: /^\+ Add for Child 2/ }).click();
+    await page.getByRole('menuitem', { name: 'Your own entry' }).click();
+    await page.getByLabel('What').fill(what);
+    await page.getByRole('spinbutton', { name: 'Minutes' }).fill(minutes);
+    await page.getByRole('button', { name: 'Add', exact: true }).click();
+  }
+  await expect(row(page, 'Sticker book').locator('.seg-time')).toContainText('1:10 PM–1:20 PM');
+  await row(page, 'Bubbles').getByRole('button', { name: 'More: Bubbles' }).click();
+  await page.getByRole('menuitem', { name: 'Set a time' }).click();
+  await row(page, 'Bubbles').getByLabel('Bubbles starts at').fill('13:15');
+  await row(page, 'Bubbles').getByRole('button', { name: 'Set' }).click();
+  const overlap = track.locator('.conflict', { hasText: 'Child 2 would be doing Sticker book and Bubbles at once for 5 min.' });
+  await expect(overlap).toBeVisible();
+  await expect(overlap.getByRole('button', { name: 'Shorten Sticker book by 5 min' })).toBeVisible();
+  await overlap.getByRole('button', { name: 'Move Bubbles 5 min later' }).click();
+  await expect(track.locator('.conflict', { hasText: /at once/ })).toHaveCount(0);
+  await expect(row(page, 'Bubbles').locator('.seg-time')).toContainText('1:20 PM–1:30 PM');
+
+  // With a settling time set, Fill around plans Child 2's time and keeps their own entries.
+  await page.getByRole('button', { name: 'Fill around these blocks' }).click();
+  await expect(track.locator('li.seg-activity').first()).toBeVisible();
+  await expect(row(page, 'Bubbles')).toBeVisible();
+  await expect(track).toContainText('Child 2 stays near you while you settle Child 1');
+
+  // Past the window: one tap extends it to cover the plan.
+  await addRoutine(page, { routine: 'Snack', at: '14:50', length: '15 min' });
+  await expect(timeline(page).locator('li.overrun')).toContainText('Runs 35 min past your window');
+  await timeline(page).getByRole('button', { name: 'Extend to 125 min' }).click();
+  await expect(timeline(page).locator('li.overrun')).toHaveCount(0);
+  await expect(page.locator('.plan-summary')).toContainText('of 2 hr 5 min');
+  await expect(page.getByRole('radiogroup', { name: 'Minutes' }).getByLabel('125', { exact: true })).toBeChecked();
+  await page.screenshot({ path: join(ARTIFACTS, 'review-followups-plan-390.png'), fullPage: true });
   expect(errors).toEqual([]);
 });

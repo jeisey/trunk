@@ -1,10 +1,10 @@
-import { useEffect, useMemo, useRef, useState, type ReactNode } from 'react';
+import { useEffect, useId, useMemo, useRef, useState, type ReactNode } from 'react';
 import type { IndexedCatalog } from '../content/catalog.ts';
 import type { RoutineType } from '../content/schema.ts';
 import { monthsToDays, toDays } from '../lib/age.ts';
 import { analyzePlan, childLabel, type EntryAnalysis, type Gap, type PlanAnalysis, type Repair } from '../lib/layout.ts';
 import { BREAK_LABEL, bounds, MAX_SEGMENTS, newId, resize, ROUTINE_BOUNDS, ROUTINE_LABEL, youngerFor, type Plan, type PlanSegment } from '../lib/plan.ts';
-import { addEntry, addRoutine, applyRepair, duplicateEntry, moveEntry, offsetForClock, removeEntry, setAnchor, setLocked, setMinutes, updateEntry } from '../lib/planEdit.ts';
+import { addEntry, addRoutine, applyRepair, clockProblem, duplicateEntry, moveEntry, offsetForClock, removeEntry, setAnchor, setLocked, setMinutes, updateEntry } from '../lib/planEdit.ts';
 import { optionsForSlot, type SlotOption } from '../lib/planner.ts';
 import { sequenceNote } from '../lib/sequence.ts';
 import { cleanText, LIMITS } from '../lib/text.ts';
@@ -56,21 +56,33 @@ function napAdultPatch(value: string): Partial<PlanSegment> {
   return { holding: undefined, settle: Number(value) };
 }
 
-/** "While Child 1 naps, you’re…": Not sure (treated as busy) / Free after settling about N min / Staying with them. */
-function NapAdultSelect({ hostChild, value, onChange }: { hostChild: string; value: string; onChange: (v: string) => void }) {
+/**
+ * "While Child 1 naps, you’re…": Not sure yet (the default; Trunk then leaves the other
+ * child's time unplanned) / Free after settling about N min / Staying with them.
+ */
+function NapAdultSelect({ hostChild, value, onChange, hint }: { hostChild: string; value: string; onChange: (v: string) => void; hint?: string }) {
+  const id = useId();
+  const showHint = Boolean(hint) && value === 'unknown';
   return (
-    <label className="field">
-      <span>While {hostChild} naps, you’re…</span>
-      <select value={value} onChange={(e) => onChange(e.target.value)}>
-        <option value="unknown">Not sure (Trunk treats you as busy)</option>
-        {SETTLE_OPTIONS.map((m) => (
-          <option key={m} value={String(m)}>
-            Free after settling about {m} min
-          </option>
-        ))}
-        <option value="holding">Staying with them</option>
-      </select>
-    </label>
+    <div className="field-group">
+      <label className="field">
+        <span>While {hostChild} naps, you’re…</span>
+        <select value={value} onChange={(e) => onChange(e.target.value)} aria-describedby={showHint ? id : undefined}>
+          <option value="unknown">Not sure yet</option>
+          {SETTLE_OPTIONS.map((m) => (
+            <option key={m} value={String(m)}>
+              Free after settling about {m} min
+            </option>
+          ))}
+          <option value="holding">Staying with them</option>
+        </select>
+      </label>
+      {showHint && (
+        <p className="hint" id={id}>
+          {hint}
+        </p>
+      )}
+    </div>
   );
 }
 
@@ -102,9 +114,15 @@ function RoutineForm({
   const [minutes, setMinutes] = useState<number | null>(null);
   const [adult, setAdult] = useState('unknown');
   const [error, setError] = useState(false);
+  const [timeError, setTimeError] = useState<string | null>(null);
+  const timeRef = useRef<HTMLInputElement>(null);
   const { min, max } = ROUTINE_BOUNDS[routine];
   const name = ROUTINE_LABEL[routine];
-  const step = (d: number) => setMinutes((m) => Math.max(min, Math.min(max, (m ?? (d > 0 ? min - 5 : min + 5)) + d)));
+  const step = (d: number) => {
+    setError(false);
+    setMinutes((m) => Math.max(min, Math.min(max, (m ?? (d > 0 ? min - 5 : min + 5)) + d)));
+  };
+  const otherChild = who === 'c2' ? 'Child 1' : 'Child 2';
 
   return (
     <form
@@ -112,6 +130,13 @@ function RoutineForm({
       aria-label={`Add a ${name.toLowerCase()}`}
       onSubmit={(e) => {
         e.preventDefault();
+        // A time before the plan starts is refused (never wrapped to tomorrow); the form stays open.
+        const problem = clockProblem(plan, parseHHMM(time));
+        if (problem) {
+          setTimeError(problem);
+          timeRef.current?.focus();
+          return;
+        }
         if (minutes === null) {
           setError(true);
           return;
@@ -137,7 +162,23 @@ function RoutineForm({
       {two && whoOptions.length === 1 && <p className="subtle">For {whoOptions[0][1]}. Meals and snacks are for children already eating solid foods.</p>}
       <label className="field">
         <span>Starts</span>
-        <input type="time" value={time} onChange={(e) => e.target.value && setTime(e.target.value)} />
+        <input
+          ref={timeRef}
+          type="time"
+          value={time}
+          aria-invalid={timeError ? true : undefined}
+          aria-describedby={timeError ? `routine-time-error` : undefined}
+          onChange={(e) => {
+            if (!e.target.value) return;
+            setTime(e.target.value);
+            setTimeError(null);
+          }}
+        />
+        {timeError && (
+          <span className="field-error" id="routine-time-error" role="alert">
+            {timeError}
+          </span>
+        )}
       </label>
       <fieldset className="segmented">
         <legend>About how long? (your estimate)</legend>
@@ -167,7 +208,9 @@ function RoutineForm({
           </button>
         </div>
       </fieldset>
-      {routine === 'nap' && two && who !== 'both' && <NapAdultSelect hostChild={who === 'c2' ? 'Child 2' : 'Child 1'} value={adult} onChange={setAdult} />}
+      {routine === 'nap' && two && who !== 'both' && (
+        <NapAdultSelect hostChild={who === 'c2' ? 'Child 2' : 'Child 1'} value={adult} onChange={setAdult} hint={`Trunk won’t plan ${otherChild}’s time during the nap until you set a settling time.`} />
+      )}
       {error && (
         <p className="field-error" role="alert">
           Choose about how long first.
@@ -250,7 +293,7 @@ function OptionList({ title, options, onPick, onCancel, empty, pickLabel }: { ti
                 <span className="tiny">
                   {o.minutes} min{o.who ? ` · ${childLabel(o.who)}` : ''}
                 </span>
-                <CueLine cue={o.timing?.cue ?? null} />
+                <CueLine cue={o.timing?.cue ?? null} prefix={o.kind === 'recipe' && o.timing?.cue ? childLabel(o.timing.cue.finding.child === 1 ? 1 : 0) : undefined} />
               </span>
               <button type="button" onClick={() => onPick(o)} aria-label={`${pickLabel}: ${o.title}`}>
                 {pickLabel}
@@ -304,7 +347,12 @@ export function PlanEditor({
   const analysis = useMemo(() => analyzePlan(plan, c, extra), [plan, c, extra]);
   const [panel, setPanel] = useState<Panel>(null);
   const [editingTime, setEditingTime] = useState<string | null>(null);
+  const [timeError, setTimeError] = useState<string | null>(null);
+  /** A short note under one row's tools (for example why it can't move). */
+  const [rowNote, setRowNote] = useState<{ id: string; text: string } | null>(null);
   const editorRef = useRef<HTMLDivElement>(null);
+  // A row note belongs to the plan as it was; any change clears it.
+  useEffect(() => setRowNote(null), [plan]);
   // Opening a form or option list moves focus into it (its first field or button).
   useEffect(() => {
     if (!panel) return;
@@ -334,7 +382,14 @@ export function PlanEditor({
   const move = (i: number, dir: -1 | 1) => {
     const seg = plan.segments[i];
     const next = moveEntry(plan, i, dir);
-    if (next === plan) return;
+    if (next === plan) {
+      // Two entries with set times keep their time order.
+      const text = 'Both have set times. Change a time to reorder them.';
+      setRowNote({ id: seg.id, text });
+      announce(text);
+      return;
+    }
+    setRowNote(null);
     onChange(next);
     announce(`Moved ${name(seg)} ${dir < 0 ? 'earlier' : 'later'}.`);
     focusSoon(`[data-seg="${seg.id}"] [data-move="${dir}"]:not(:disabled)`, `[data-seg="${seg.id}"] [data-move]:not(:disabled)`);
@@ -389,6 +444,9 @@ export function PlanEditor({
   };
 
   const options = (opts: { replace?: number; host?: number }) => optionsForSlot(c, plan, opts, optionSeed.current).slice(0, 8);
+
+  // "Extend to N min": the plan's end rounded up to 5 minutes, within the longest window a plan can have.
+  const extendTo = Math.min(720, Math.max(10, Math.ceil(analysis.end / 5) * 5));
 
   // "Right after what's planned" for new routine blocks.
   const nextClock = parseHHMM(plan.start) + analysis.end;
@@ -447,23 +505,50 @@ export function PlanEditor({
               className="time-edit"
               onSubmit={(ev) => {
                 ev.preventDefault();
-                const input = (ev.currentTarget.elements.namedItem('t') as HTMLInputElement).value;
-                if (input) {
-                  onChange(setAnchor(plan, i, offsetForClock(plan, parseHHMM(input)), c));
-                  announce(`${title} now starts at ${clockAt(plan, offsetForClock(plan, parseHHMM(input)))}.`);
+                const field = ev.currentTarget.elements.namedItem('t') as HTMLInputElement;
+                if (field.value) {
+                  const clock = parseHHMM(field.value);
+                  const problem = clockProblem(plan, clock);
+                  if (problem) {
+                    setTimeError(problem);
+                    field.focus();
+                    return;
+                  }
+                  onChange(setAnchor(plan, i, offsetForClock(plan, clock), c));
+                  announce(`${title} now starts at ${clockAt(plan, offsetForClock(plan, clock))}.`);
                 }
                 setEditingTime(null);
+                setTimeError(null);
                 focusSoon(`[data-seg="${seg.id}"] .time-button`, `[data-seg="${seg.id}"] .menu-button`);
               }}
             >
               <label>
                 <span className="visually-hidden">{title} starts at</span>
-                <input name="t" type="time" defaultValue={toHHMM(parseHHMM(plan.start) + e.item.start)} autoFocus />
+                <input
+                  name="t"
+                  type="time"
+                  defaultValue={toHHMM(parseHHMM(plan.start) + e.item.start)}
+                  autoFocus
+                  aria-invalid={timeError ? true : undefined}
+                  aria-describedby={timeError ? `time-error-${seg.id}` : undefined}
+                  onChange={() => setTimeError(null)}
+                />
               </label>
               <button type="submit">Set</button>
-              <button type="button" onClick={() => setEditingTime(null)}>
+              <button
+                type="button"
+                onClick={() => {
+                  setEditingTime(null);
+                  setTimeError(null);
+                }}
+              >
                 Cancel
               </button>
+              {timeError && (
+                <span className="field-error" id={`time-error-${seg.id}`} role="alert">
+                  {timeError}
+                </span>
+              )}
             </form>
           ) : anchored ? (
             <button type="button" className="time-button" onClick={() => setEditingTime(seg.id)} aria-label={`${timeText}, change the time of ${title}`}>
@@ -556,6 +641,7 @@ export function PlanEditor({
           </button>
           <MoreMenu label={title} items={more} text="⋯" spoken="More" className="row-menu" />
         </div>
+        {rowNote?.id === seg.id && <p className="row-note">{rowNote.text}</p>}
         {panel?.type === 'swap' && panel.id === seg.id && (
           <OptionList
             title={`Swap ${title} for…`}
@@ -650,7 +736,18 @@ export function PlanEditor({
         {analysis.overrun > 0 && (
           <li className="seg overrun" role="note">
             <p className="seg-title">Runs {formatMinutes(analysis.overrun)} past your window</p>
-            <p className="subtle">Lengthen the window above, or shorten or remove something.</p>
+            <div className="overrun-row">
+              <button
+                type="button"
+                onClick={() => {
+                  onChange({ ...plan, window: extendTo, updatedAt: new Date().toISOString() });
+                  announce(`The plan now covers ${extendTo} minutes.`);
+                }}
+              >
+                Extend to {extendTo} min
+              </button>
+              <span className="subtle">or shorten or remove something.</span>
+            </div>
           </li>
         )}
       </ol>
