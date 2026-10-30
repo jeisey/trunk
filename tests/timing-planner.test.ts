@@ -246,7 +246,7 @@ describe('momentary context', () => {
         if (e.item.segment.ref === ids['Tummy mat'] || e.item.segment.ref === ids['Dance party']) expect(e.item.engageStart).toBeGreaterThanOrEqual(30);
         if (e.item.end <= 40 && e.item.end > 10) expect(stimOf(e.item.segment)).not.toBe('lively');
       }
-      expect(r.notes).toContain('The nap isn’t in the plan. Add it as a block to keep that time free.');
+      expect(r.notes).toContain('Nap expected in about 40 min: the rest is left open. Add a nap block to plan around it.');
     }
     const fed = planWindow(c, { kids: [infant], settings, window: 60, seed: 1, moment: [{ fed: true, nap: false }] });
     expect(fed.notes).toContain('Tummy time kept away from the feed you just finished.');

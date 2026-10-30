@@ -34,10 +34,10 @@ import { recipeAssignment, days as ageDays } from './eligibility.ts';
 import { adultStateAt, alongFeasible, analyzePlan, childLabel, childTimings, layoutPlan, type AdultState, type LaidOut } from './layout.ts';
 import { BREAK_LABEL, kidInputs, MAX_SEGMENTS, newId, PLAN_VERSION, ROUTINE_LABEL, youngerFor, type Plan, type PlanKid, type PlanSegment, type PlanSettings } from './plan.ts';
 import { reconcileSegments } from './reconcile.ts';
-import { assessActivity, assessRecipe, momentTiming, NO_TIMING, spanOf, type ChildTiming, type EventSpan, type MomentContext, type Span, type TimingAssessment } from './timing.ts';
+import { assessActivity, assessRecipe, momentTiming, NO_TIMING, spanOf, type ChildTiming, type MomentContext, type Span, type TimingAssessment } from './timing.ts';
 import { monthsToDays, formatAgeShort, toDays } from './age.ts';
 import { cleanText, LIMITS } from './text.ts';
-import { parseHHMM } from './time.ts';
+import { formatClock, parseHHMM } from './time.ts';
 import { activityProfile, recipeProfile, timeIssue, type OutdoorProfile } from './timeRules.ts';
 
 export interface PlannerInput {
@@ -86,6 +86,10 @@ export type Candidate = {
   stimulation: Stimulation;
   mess: 'none' | 'low' | 'medium' | 'high';
   noise: 'quiet' | 'moderate' | 'loud';
+  /** A care routine done when it's needed (diaper chat, dressing, table jobs): never added automatically. */
+  chore: boolean;
+  /** Pairings: stimulation of the [younger, older] role activities. */
+  roles?: [Stimulation, Stimulation];
   act?: Activity;
   rec?: MixedAgeRecipe;
 };
@@ -114,6 +118,7 @@ const fromActivity = (a: Activity): Candidate => ({
   stimulation: a.timing.stimulation,
   mess: a.mess,
   noise: a.noise,
+  chore: a.kind === 'routine',
   act: a,
 });
 
@@ -140,6 +145,8 @@ const fromRecipe = (r: MixedAgeRecipe, c: IndexedCatalog): Candidate => {
     stimulation: r.timing.stimulation,
     mess: MESS_ORDER[mess],
     noise: NOISE_ORDER[noise],
+    chore: acts.some((a) => a?.kind === 'routine'),
+    roles: [acts[0]?.timing.stimulation ?? 'variable', acts[1]?.timing.stimulation ?? 'variable'],
     rec: r,
   };
 };
@@ -187,36 +194,58 @@ function childPool(c: IndexedCatalog, kids: PlanKid[], settings: PlanSettings, c
 
 // ---------- Timing context ----------
 
-const NAP_UNKNOWN_END = Number.POSITIVE_INFINITY;
-
 /**
- * Per-child timing on the plan's axis: routine blocks plus momentary context.
- * A "nap soon" moment is used for ranking only and is never turned into a block:
- * at `napIn`, or with no time, at `napAt` (the end of the first gap). Its length
- * is unknown, so nothing after it is treated as "after waking".
+ * Per-child timing on the plan's axis: routine blocks plus momentary context,
+ * exactly as the evaluator models it (momentTiming). A "Nap soon" with a time is
+ * a nap of unknown length (no "after waking" ever follows it); without a time,
+ * `napNext` means "a nap follows the entry being assessed". Neither becomes a block.
  */
-function withMoments(base: ChildTiming[], moments: readonly (MomentContext | undefined)[], napAt: number): ChildTiming[] {
+function withMoments(base: ChildTiming[], moments: readonly (MomentContext | undefined)[]): ChildTiming[] {
   return base.map((t, i) => {
     const m = moments[i];
     if (!m || (!m.fed && !m.nap)) return t;
-    const fromMoment = momentTiming(t.days, { fed: m.fed, fedAgo: m.fedAgo, nap: false });
-    const events: EventSpan[] = [...t.events, ...fromMoment.events];
-    if (m.nap) {
-      const at = m.napIn != null && m.napIn >= 0 ? m.napIn : napAt;
-      events.push({ event: 'nap', start: at, end: NAP_UNKNOWN_END });
-    }
-    return { days: t.days, events };
+    const now = momentTiming(t.days, m);
+    return { days: t.days, events: [...t.events, ...now.events], napNext: now.napNext };
   });
 }
 
-/** Ranking nudges from the nearest known nap. Profile-based only for assessed (non-variable) records. */
-function phaseScore(cand: Candidate, span: Span, lanes: readonly (0 | 1)[], timings: ChildTiming[], energy: PlanSettings['energy']): number {
-  const known = cand.stimulation !== 'variable';
+const STIM_RANK = { settling: 0, gentle: 1, lively: 2 } as const;
+
+/**
+ * The stimulation one child gets from an idea: for a pairing, that child's own role,
+ * with the shared space's stimulation as a floor (a lively shared space is lively
+ * for both; an unrated role stays unrated unless the space is lively).
+ */
+export function childStimulation(cand: Pick<Candidate, 'stimulation' | 'roles'>, lane: 0 | 1, younger: 0 | 1 = 0): Stimulation {
+  if (!cand.roles) return cand.stimulation;
+  const role = cand.roles[lane === younger ? 0 : 1];
+  const shared = cand.stimulation;
+  if (shared === 'variable') return role;
+  if (role === 'variable') return shared === 'lively' ? 'lively' : 'variable';
+  return STIM_RANK[shared] > STIM_RANK[role] ? shared : role;
+}
+
+/**
+ * Planner convention (automatic plans only): nothing rated lively is placed in the
+ * 30 minutes before a known nap time; that time is left open instead. Finder and
+ * slot suggestions still list such ideas, ranked down. "Nap soon" with no time only ranks.
+ */
+function livelyBeforeNap(cand: Candidate, span: Span, lanes: readonly (0 | 1)[], timings: ChildTiming[], younger: 0 | 1): boolean {
+  return lanes.some((i) => {
+    if (childStimulation(cand, i, younger) !== 'lively') return false;
+    return (timings[i]?.events ?? []).some((e) => e.event === 'nap' && e.start >= span.end && e.start - span.end < 30);
+  });
+}
+
+/** Ranking nudges from the nearest known nap, per child. Profile-based only for rated (non-variable) records. */
+function phaseScore(cand: Candidate, span: Span, lanes: readonly (0 | 1)[], timings: ChildTiming[], energy: PlanSettings['energy'], younger: 0 | 1 = 0): number {
   const active = energy === 'plenty' || energy === 'some';
   let total = 0;
   for (const i of lanes) {
     const t = timings[i];
     if (!t) continue;
+    const stim = childStimulation(cand, i, younger);
+    const known = stim !== 'variable';
     let s = 0;
     let next = Infinity;
     let woke = -Infinity;
@@ -225,20 +254,23 @@ function phaseScore(cand: Candidate, span: Span, lanes: readonly (0 | 1)[], timi
       if (e.start >= span.start && e.start < next) next = e.start;
       if (e.end <= span.start && e.end > woke) woke = e.end;
     }
+    // "Nap soon" with no time: a nap follows whatever is chosen now.
+    if (t.napNext) next = Math.min(next, span.end);
     if (next !== Infinity) {
       const until = next - span.end;
       if (until >= 0 && until <= 30) {
         // Winding down: calmer, less mess, little to set up or tidy away.
-        if (known) s += cand.stimulation === 'settling' ? 10 : cand.stimulation === 'gentle' ? 7 : -10;
+        if (known) s += stim === 'settling' ? 10 : stim === 'gentle' ? 7 : -10;
         s += cand.mess === 'none' || cand.mess === 'low' ? 1 : -4;
         s -= Math.min(4, cand.cleanup) + Math.min(3, Math.max(0, cand.setup - 1));
       } else if (until > 30 && known) {
-        // Earlier on: active play when energy allows; keep the settling ideas for winding down.
-        if (cand.stimulation === 'settling') s -= 3;
-        else if (active) s += cand.stimulation === 'lively' ? 5 : 2;
+        // Earlier on: active play when energy allows; keep the calmer ideas for winding down.
+        if (stim === 'settling') s -= 3;
+        else if (stim === 'gentle') s -= 1;
+        else if (active) s += 5;
       }
     }
-    if (woke !== -Infinity && span.start - woke <= 20 && known) s += cand.stimulation === 'lively' ? -8 : 7;
+    if (woke !== -Infinity && span.start - woke <= 20 && known) s += stim === 'lively' ? -8 : 7;
     total += s;
   }
   return lanes.length ? total / lanes.length : 0;
@@ -281,6 +313,8 @@ interface TrackState {
   lastMinutes: number;
   /** No entry before this one in the whole plan (outings are nicest first). */
   first: boolean;
+  /** Where each idea already starts on this track (repeat spacing). */
+  starts: Map<string, number[]>;
 }
 
 interface Track {
@@ -292,6 +326,8 @@ interface Track {
   who?: 'c1' | 'c2';
   /** Alongside the other child's nap: quieter ideas rank higher. */
   nearSleep?: boolean;
+  /** Alongside tracks: an idea at most once per track. Otherwise repeats start at least REPEAT_GAP minutes apart. */
+  once?: boolean;
   feasible?: (cand: Candidate, at: number) => boolean;
 }
 
@@ -303,6 +339,8 @@ interface Gap {
 }
 
 const LOOKAHEAD = 5;
+/** In the main sequence, the same idea starts at most once in any 60-minute stretch. */
+const REPEAT_GAP = 60;
 /** Cost of repeating an idea already in the plan: variety first, unless timing clearly favours the repeat. */
 const REPEAT = 10;
 
@@ -320,26 +358,35 @@ export function planWindow(c: IndexedCatalog, input: PlannerInput): PlannerResul
   const kidDays = inputs.map((k) => k.days);
   const youngest = Math.min(...kidDays);
   const { pool, eligibleCount, relax } = candidatesFor(c, kids, settings, window);
+  // Care routines (diaper chat, dressing, table jobs) belong to the moment they happen: never added automatically.
+  const autoPool = pool.filter((p) => !p.chore);
 
   const kept = orderKept((input.keep ?? []).slice(), kids, c);
   const items = layoutPlan({ kids, segments: kept }, c);
+  const moments = timingOn ? (input.moment ?? []) : [];
+  const timings = withMoments(childTimings({ kids }, items), moments);
 
-  // ---- Main-sequence gaps between anchored entries, inside [0, window) ----
+  // A known "Nap soon" time ends what can be filled for that child (and for a pairing, both).
+  const napAt = kids.map((_, i) => {
+    const m = moments[i];
+    return m?.nap && m.napIn != null && m.napIn >= 0 ? m.napIn : Infinity;
+  });
+  const capFor = (lane: 0 | 1) => Math.min(window, napAt[lane]);
+  const mainCap = Math.min(window, ...napAt);
+
+  // ---- Main-sequence gaps between anchored entries, inside [0, cap) ----
   const gaps: Gap[] = [];
   {
     let t = 0;
     for (const it of items) {
       if (it.host !== null) continue;
-      if (it.start > t && t < window) gaps.push({ start: t, end: Math.min(it.start, window), before: it.index });
+      if (it.start > t && t < mainCap) gaps.push({ start: t, end: Math.min(it.start, mainCap), before: it.index });
       t = Math.max(t, it.end, ...items.filter((x) => x.host === it.index).map((x) => x.end));
     }
-    if (t < window) gaps.push({ start: t, end: window, before: null });
+    if (t < mainCap) gaps.push({ start: t, end: mainCap, before: null });
   }
 
-  const moments = timingOn ? (input.moment ?? []) : [];
-  const timings = withMoments(childTimings({ kids }, items), moments, gaps[0]?.end ?? window);
-
-  if (pool.length === 0 && kept.length === 0) {
+  if (autoPool.length === 0 && kept.length === 0) {
     const ages = kids.map((k) => formatAgeShort(k.age)).join(' and ');
     const reason =
       eligibleCount === 0
@@ -409,6 +456,8 @@ export function planWindow(c: IndexedCatalog, input: PlannerInput): PlannerResul
     if (cand.outing && usedOuting) return null;
     if (cand.media && usedMedia) return null;
     if (ts.last && ts.last.id === cand.id) return null;
+    const prior = ts.starts.get(cand.id);
+    if (prior && (track.once || prior.some((x) => Math.abs(x - at) < REPEAT_GAP))) return null;
     const overhead = cand.setup + cand.cleanup;
     if (overhead + cand.duration.min > room) return null;
     const minutes = Math.max(cand.duration.min, Math.min(cand.duration.default, cand.duration.max, room - overhead));
@@ -436,7 +485,9 @@ export function planWindow(c: IndexedCatalog, input: PlannerInput): PlannerResul
         }
         return null;
       }
-      phase = phaseScore(cand, span, track.lanes, timings, settings.energy);
+      const y = youngerIdx.get(cand.id) ?? 0;
+      if (livelyBeforeNap(cand, span, track.lanes, timings, y)) return null;
+      phase = phaseScore(cand, span, track.lanes, timings, settings.energy, y);
     }
     // Variety first, unless timing clearly favours repeating an idea here (a calm one before a nap, say).
     const relief = (uses.get(cand.id) ?? 0) > 0 && timing.score + phase >= 7 ? REPEAT / 2 : 0;
@@ -463,6 +514,7 @@ export function planWindow(c: IndexedCatalog, input: PlannerInput): PlannerResul
     ts.last = p.cand;
     ts.lastMinutes = p.minutes;
     ts.first = false;
+    ts.starts = new Map(ts.starts).set(p.cand.id, [...(ts.starts.get(p.cand.id) ?? []), p.span.start]);
   };
 
   /** Depth-2 look-ahead over the top candidates: how good is this choice, and what does it leave room for? */
@@ -498,7 +550,7 @@ export function planWindow(c: IndexedCatalog, input: PlannerInput): PlannerResul
     return seg;
   };
 
-  const smallest = pool.length ? Math.min(...pool.map((p) => p.setup + p.duration.min + p.cleanup)) : Infinity;
+  const smallest = autoPool.length ? Math.min(...autoPool.map((p) => p.setup + p.duration.min + p.cleanup)) : Infinity;
 
   const fill = (gap: Gap, track: Track, ts: TrackState, carry: { sinceBreak: number } | null): PlanSegment[] => {
     const out: PlanSegment[] = [];
@@ -544,9 +596,9 @@ export function planWindow(c: IndexedCatalog, input: PlannerInput): PlannerResul
   };
 
   // ---- Main sequence ----
-  if (pool.length) {
-    const main: Track = { pool, lanes: two ? [0, 1] : [0], youngestDays: youngest };
-    const ts: TrackState = { last: null, lastMinutes: 0, first: true };
+  if (autoPool.length) {
+    const main: Track = { pool: autoPool, lanes: two ? [0, 1] : [0], youngestDays: youngest };
+    const ts: TrackState = { last: null, lastMinutes: 0, first: true, starts: startsOf(items.filter((x) => x.host === null)) };
     const carry = { sinceBreak: 0 };
     let gi = 0;
     for (const it of [...items.filter((x) => x.host === null), null]) {
@@ -584,8 +636,10 @@ export function planWindow(c: IndexedCatalog, input: PlannerInput): PlannerResul
       const other: 0 | 1 = hs.who === 'c1' ? 1 : 0;
       const who = other === 0 ? 'c1' : 'c2';
       const trackStart = h.start + (hs.routine === 'nap' && !hs.holding ? (hs.settle ?? 0) : 0);
-      // Like the main sequence, the track stays inside the plan's window.
-      const trackEnd = Math.min(h.end, window);
+      // Like the main sequence, the track stays inside the window (and before a known "Nap soon" for this child).
+      const trackEnd = Math.min(h.end, capFor(other));
+      // One adult and a nap with no settling time: Trunk doesn't know when you're free, so it plans nothing alongside.
+      const unknownNap = settings.adults === 1 && hs.routine === 'nap' && !hs.holding && hs.settle === undefined;
       const sub: Gap[] = [];
       let t = trackStart;
       for (const x of items.filter((y) => y.host === h.index)) {
@@ -594,20 +648,24 @@ export function planWindow(c: IndexedCatalog, input: PlannerInput): PlannerResul
       }
       if (t < trackEnd) sub.push({ start: t, end: trackEnd, before: null });
       if (!sub.length) continue;
-      childPools[other] ??= childPool(c, kids, settings, other);
+      childPools[other] ??= childPool(c, kids, settings, other).filter((p) => !p.chore);
       const track: Track = {
         pool: childPools[other]!,
         lanes: [other],
         youngestDays: kidDays[other],
         who,
         nearSleep: hs.routine === 'nap',
-        feasible: (cand, at) =>
-          alongFeasible({ id: 'x', kind: 'activity', ref: cand.id, minutes: cand.duration.min, who, along: true }, cand.act, hs, adultStateAt(hs, h.start, at), settings.adults).ok,
+        once: true,
+        // Only what one adult can clearly supervise: a caution (something Trunk can't confirm) is never auto-filled.
+        feasible: (cand, at) => {
+          const f = alongFeasible({ id: 'x', kind: 'activity', ref: cand.id, minutes: cand.duration.min, who, along: true }, cand.act, hs, adultStateAt(hs, h.start, at), settings.adults);
+          return f.ok && !f.caution;
+        },
       };
-      const ts: TrackState = { last: null, lastMinutes: 0, first: false };
+      const ts: TrackState = { last: null, lastMinutes: 0, first: false, starts: startsOf(items.filter((x) => x.host === h.index)) };
       let open = 0;
       for (const g of sub) {
-        const segs = fill(g, track, ts, null);
+        const segs = unknownNap ? [] : fill(g, track, ts, null);
         if (g.before === null) put(appendToGroup, h.index, segs);
         else put(insertBefore, g.before, segs);
         const used = segs.reduce((m, s) => m + s.minutes + overheadOf(s, c), 0);
@@ -619,7 +677,7 @@ export function planWindow(c: IndexedCatalog, input: PlannerInput): PlannerResul
         const host = childLabel(hs.who);
         const kid = childLabel(who);
         if (settings.adults === 1 && state === 'undivided') notes.push(`${kid}’s time during ${host}’s ${routine} is left open: it needs your full attention with one adult.`);
-        else if (settings.adults === 1 && hs.routine === 'nap' && !hs.holding && hs.settle === undefined) notes.push(`Add your settling time to ${host}’s nap to see more for ${kid} alongside it.`);
+        else if (unknownNap) notes.push(`Add your settling time to ${host}’s nap to plan ${kid}’s time.`);
         else notes.push(`${open} min of ${kid}’s time during ${host}’s ${routine} is left open.`);
       }
     }
@@ -662,18 +720,18 @@ export function planWindow(c: IndexedCatalog, input: PlannerInput): PlannerResul
   for (const ev of ['milk-feed', 'meal', 'nap'] as const) {
     if (avoided.some((a) => a.event === ev && !a.tummy)) notes.push(`Some ideas left out right around the ${EVENT_WORD[ev]}.`);
   }
-  for (const [i, m] of moments.entries()) {
-    if (m?.nap && m.napIn != null && m.napIn >= 0 && m.napIn < window) {
-      notes.push(`${two ? childLabel(i === 0 ? 'c1' : 'c2') + '’s' : 'The'} nap isn’t in the plan. Add it as a block to keep that time free.`);
-    }
+  if (mainCap < window) {
+    const i = napAt.indexOf(mainCap);
+    const when = startClock !== null ? `at ${formatClock(startClock + mainCap)}` : `in about ${mainCap} min`;
+    notes.push(`${two ? `${childLabel(i === 1 ? 'c2' : 'c1')}’s nap` : 'Nap'} expected ${when}: the rest is left open. Add a nap block to plan around it.`);
   }
+  if (moments.some((m) => m?.nap && !(m.napIn != null && m.napIn >= 0))) notes.push('Nap soon: calmer ideas first. Add a nap block when you know the time.');
   if (open > 0 && made.length > 0) notes.push(`${open} min left open. Activities aren't stretched past what's realistic for this age.`);
   if (skippedForNight) notes.push('Outdoor-only ideas are left out between 8 p.m. and 6 a.m.');
   if (skippedForSun) notes.push('Outdoor time for babies under 6 months is kept out of 10 a.m.–4 p.m., following AAP sun-safety guidance.');
-  if (youngest < monthsToDays(3)) notes.push('Young babies may need to feed or sleep at any point. Stop the plan whenever they do.');
 
   const result: PlannerResult = { segments, open, notes: [...new Set(notes)] };
-  if (!pool.length) {
+  if (!autoPool.length) {
     const ages = kids.map((k) => formatAgeShort(k.age)).join(' and ');
     result.blocked = {
       reason:
@@ -686,6 +744,16 @@ export function planWindow(c: IndexedCatalog, input: PlannerInput): PlannerResul
     };
   }
   return result;
+}
+
+/** Where each catalog idea starts among these laid-out entries. */
+function startsOf(items: LaidOut[]): Map<string, number[]> {
+  const m = new Map<string, number[]>();
+  for (const it of items) {
+    const ref = it.segment.ref;
+    if (ref && (it.segment.kind === 'activity' || it.segment.kind === 'recipe')) m.set(ref, [...(m.get(ref) ?? []), it.start]);
+  }
+  return m;
 }
 
 function overheadOf(s: PlanSegment, c: IndexedCatalog): number {
@@ -828,7 +896,7 @@ export function optionsForSlot(c: IndexedCatalog, plan: Plan, slot: { replace?: 
   const lanes: (0 | 1)[] = lane === null ? [0, 1] : [lane];
   const ageForTime = lane === null ? youngest : inputs[lane].days;
 
-  const scored: { opt: SlotOption; rank: number; variety: number }[] = [];
+  const scored: { opt: SlotOption; chore: boolean; rank: number; variety: number }[] = [];
   for (const cand of pool) {
     if (used.has(cand.id) || cand.food) continue;
     if (cand.outing && otherOuting) continue;
@@ -861,9 +929,13 @@ export function optionsForSlot(c: IndexedCatalog, plan: Plan, slot: { replace?: 
     else if (slot.replace !== undefined && items[slot.replace].host !== null && items[items[slot.replace].host!].segment.routine === 'nap') variety += NEAR_SLEEP_NOISE[cand.noise];
     const opt: SlotOption = { kind: cand.kind, id: cand.id, title: cand.title, minutes, timing };
     if (cand.kind === 'activity' && two) opt.who = lane === 1 ? 'c2' : 'c1';
-    scored.push({ opt, rank: timing.score + phaseScore(cand, span, lanes, timings, plan.settings.energy), variety });
+    const y = cand.rec && two ? younger(cand.rec) : 0;
+    scored.push({ opt, chore: cand.chore, rank: timing.score + phaseScore(cand, span, lanes, timings, plan.settings.energy, y), variety });
   }
-  return scored.sort((a, b) => b.rank - a.rank || b.variety - a.variety || a.opt.id.localeCompare(b.opt.id)).map((s) => s.opt);
+  // Care routines stay available to add by hand, after everything else.
+  return scored
+    .sort((a, b) => Number(a.chore) - Number(b.chore) || b.rank - a.rank || b.variety - a.variety || a.opt.id.localeCompare(b.opt.id))
+    .map((s) => s.opt);
 }
 
 /** Ranked alternatives for one slot, excluding what's already in the plan. Kept for older callers; prefer optionsForSlot. */
@@ -901,8 +973,14 @@ export function starterToSegments(
     switch (s.kind) {
       case 'break':
         return { id: newId('b'), kind: 'break', minutes: s.minutes, label: s.label ? cleanText(s.label, LIMITS.custom) || BREAK_LABEL : BREAK_LABEL };
-      case 'routine':
-        return { id: newId('n'), kind: 'routine', minutes: s.minutes, who: map(s.who), routine: s.routine, at: Math.min(1439, s.at) };
+      case 'routine': {
+        const seg: PlanSegment = { id: newId('n'), kind: 'routine', minutes: s.minutes, who: map(s.who), routine: s.routine, at: Math.min(1439, s.at) };
+        // Example settling/holding on a starter nap (parents edit it); nap-only.
+        const nap = s as { settle?: number; holding?: boolean };
+        if (s.routine === 'nap' && nap.holding) seg.holding = true;
+        else if (s.routine === 'nap' && typeof nap.settle === 'number') seg.settle = Math.max(0, Math.min(60, Math.round(nap.settle)));
+        return seg;
+      }
       case 'activity': {
         const seg: PlanSegment = { id: newId('a'), kind: 'activity', ref: s.ref, minutes: s.minutes };
         if (s.who) seg.who = map(s.who);

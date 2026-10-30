@@ -8,7 +8,7 @@ import type { IndexedCatalog } from '../content/catalog.ts';
 import type { RoutineType } from '../content/schema.ts';
 import { formatAge, formatAgeShort } from '../lib/age.ts';
 import { adultText } from '../lib/labels.ts';
-import { adultStateAt, childLabel, layoutPlan, segmentName, type EntryAnalysis, type Gap, type Lane, type PlanAnalysis } from '../lib/layout.ts';
+import { childLabel, layoutPlan, segmentName, type EntryAnalysis, type Gap, type Lane, type PlanAnalysis } from '../lib/layout.ts';
 import { BREAK_HINT, ROUTINE_LABEL, type Plan, type PlanSegment } from '../lib/plan.ts';
 import { defaultPlanTitle } from '../lib/planTitle.ts';
 import type { MomentContext } from '../lib/timing.ts';
@@ -55,7 +55,7 @@ const ROUTINE_ADULT_WORD: Record<RoutineType, string> = { nap: 'settle', 'milk-f
 export function napAdultText(seg: PlanSegment): string {
   if (seg.holding) return 'You’re staying with them while they sleep.';
   if (seg.settle !== undefined) return `You’re settling them for about ${seg.settle} min, then free.`;
-  return 'Not sure when you’ll be free, so Trunk treats you as busy.';
+  return 'Not sure yet when you’ll be free, so Trunk doesn’t plan the other child’s time during it.';
 }
 
 export interface RoleLine {
@@ -117,6 +117,7 @@ export function childGapText(gap: Gap, plan: Plan): string {
   const host = gap.host !== undefined ? plan.segments[gap.host] : undefined;
   const hostChild = childLabel(lane === 'c1' ? 'c2' : 'c1');
   const routine = host?.routine ?? 'nap';
+  if (gap.adult === 'unknown') return `${other}: nothing planned yet. Add your settling time to ${hostChild}’s nap to plan this.`;
   if (gap.adult === 'free') return `${other}: unplanned time while ${hostChild} sleeps. You’re free to be with them.`;
   if (gap.adult === 'undivided') return `${other} has nothing planned while you ${ROUTINE_ADULT_WORD[routine]} ${hostChild}. They need to be safe and in view.`;
   if (routine === 'nap') return `${other} stays near you while you ${host?.holding ? 'stay with' : 'settle'} ${hostChild}.`;
@@ -152,20 +153,6 @@ export type PlanRow =
       items: TrackItem[];
     };
 
-/**
- * A child's unplanned time during a nap can span "you're settling them" and
- * "you're free"; show the two parts separately so the adult state is right for each.
- */
-function splitAtSettle(gap: Gap, host: PlanSegment, hostStart: number): Gap[] {
-  if (host.routine !== 'nap' || host.holding || host.settle === undefined) return [gap];
-  const t = hostStart + host.settle;
-  if (t <= gap.start || t >= gap.end) return [{ ...gap, adult: adultStateAt(host, hostStart, gap.start) }];
-  return [
-    { ...gap, end: t, adult: adultStateAt(host, hostStart, gap.start) },
-    { ...gap, start: t, adult: adultStateAt(host, hostStart, t) },
-  ];
-}
-
 const VERB: Record<RoutineType, string> = { nap: 'naps', 'milk-feed': 'feeds', meal: 'eats', snack: 'has a snack' };
 
 /**
@@ -191,10 +178,7 @@ export function planRows(plan: Pick<Plan, 'kids' | 'segments'>, analysis: PlanAn
     const hostLane: Lane = hs.who === 'c2' ? 'c2' : 'c1';
     const items: (TrackItem & { at: number })[] = [
       ...g.along.map((entry) => ({ kind: 'entry' as const, entry, at: entry.item.start })),
-      ...analysis.gaps
-        .filter((gap) => gap.who !== 'all' && gap.host === g.host.item.index)
-        .flatMap((gap) => splitAtSettle(gap, hs, g.host.item.start))
-        .map((gap) => ({ kind: 'gap' as const, gap, at: gap.start - 0.5 })),
+      ...analysis.gaps.filter((gap) => gap.who !== 'all' && gap.host === g.host.item.index).map((gap) => ({ kind: 'gap' as const, gap, at: gap.start - 0.5 })),
     ].sort((a, b) => a.at - b.at);
     rows.push({ kind: 'track', host: g.host, hostLane, otherLane: hostLane === 'c1' ? 'c2' : 'c1', verb: VERB[hs.routine], items: items.map(({ at: _at, ...rest }) => (void _at, rest as TrackItem)) });
   }
